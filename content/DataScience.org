@@ -1,0 +1,567 @@
+#+TITLE: Data Science
+#+OPTIONS: num:nil
+#+SETUPFILE: /home/silin/.emacs.d/org-html-themes/org/theme-readtheorg.setup
+#+STARTUP: overview
+* Association Rule Minning
+- Transaction: T, one behavior, which accomplished a lot of things(items)
+  -transaction instances t,
+- Item : I, which stands for the smallest unit, that can be done.
+- Our task is to find out, the relationship between items
+
+*Support*
+the probabilty of a itemset occurs
+$$Support (IS) = \frac{|t \in T: IS \subseteq t |}{|T|}$$
+All IS bigger than a setted value is called frequent itemset,
+but how to set the value is self-define
+
+
+
+*Confidence*
+$$C(a->b) = P(b|a) = \frac{P(ab)}{P(a)}$$
+#+begin_src 
+the Probabilities  If a is done, b will also be done.
+#+end_src
+
+*Support*
+$$S(a->b)=P(a\cap b) = P(ab)$$
+#+begin_src 
+a and b be done together from all Transaction, identify the special Transaction case
+#+end_src
+
+$$X -> Y(C=c, S=s)$$
+
+*practicability* (Lift)
+$$L(a->b)=\frac{Confidence(a->b)}{P(b)} =\frac{P(ab)}{P(a)P(b)}$$
+#+begin_src 
+The impact of a on b to be done
+#+end_src
+
+
+*Aprioir* *algorithm*
+
+1.(with support level(S) )
+- find the frequently itemset(L)
+- the subsets of frequently itemset is also frequently itemset
+- collect the total Transaction set(T), and set the the support level
+- find all $L_{1}$, which satisfied S,
+- find all $L_{2}$, which come from all 2-items combinations, which satisfied S
+- .....to only one left, $L_{k}$.
+
+2.(with Confidence (C) )find all subsets of $L_{k}$, which satisfied C.
+
+*Note* all the operations in this 2 step is done in the whole Transaction sets
+
+* sensor Fusion
+** Sensor Dataverarbeitung
+Tensor Fehler, Präzision: stochastisch
+Richtigkeit: systematisch
+** concepts
+|----------------+-----------------------------------------------------|
+| competitive    | many sensor for the same place für higher accuracy  |
+| complementary  | many sensor for many places für higher completeness |
+| dead reckoning | errors accumulation over previous knowlegde         |
+|----------------+-----------------------------------------------------|
+
+$$ y = H x + e $$
+|----------------------+-----------------------------------------------|
+| measurement equation | projects the state onto the measurement space |
+| y                    | measurement                                   |
+| x                    | state                                         |
+| H                    | measurement matrix                            |
+| e                    | measurement error                             |
+|----------------------+-----------------------------------------------|
+
+*Jacobian Matrix* one order
+
+*Hessian Matrix*  two order
+
+*Partial Matrix*
+- $$ \frac{\partial}{\partial x}c^{T}x = \frac{\partial}{\partial x}x^{T}c  = c $$
+- $$ \frac{\partial}{\partial x}x^{T}Ax = 2 Ax $$
+- $$ \frac{\partial}{\partial x}Ax = \frac{\partial}{\partial x}x^{T}A = A $$
+
+* data analysis
+** statistical mothode
+#+BEGIN_SRC python :results output
+  from scipy import stats
+  from scipy.stats import norm
+  import numpy as np
+  import scipy as sp
+  print(sp.stats.t.ppf(0.95,6))
+  print(norm.cdf([-1,0,1]))
+  print(norm.cdf(np.array([-1,0,1])))
+  print(norm.mean(), norm.std(), norm.var() )
+  print(norm.pdf(0))
+  print(norm.cdf(1.96))
+  print(norm.ppf(0.975))
+  print(norm.cdf(1))
+  print(norm.ppf(0.841344746090))
+  print(norm.sf(1-norm.cdf(1)))
+  print(norm.ppf(0.9))
+  print(stats.t.ppf(0.975,3))
+  print(stats.t.ppf(0.975,3))
+
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+1.9431802803927816
+[0.15865525 0.5        0.84134475]
+[0.15865525 0.5        0.84134475]
+0.0 1.0 1.0
+0.3989422804014327
+0.9750021048517795
+1.959963984540054
+0.8413447460685429
+1.0000000000886762
+0.4369702468636344
+1.2815515655446004
+3.182446305284263
+3.182446305284263
+#+end_example
+
+** confidence level interval determinate
+#+BEGIN_SRC python
+  import numpy as np
+  import scipy as sp
+  import scipy.stats
+
+  b = [8*x**0 for x in range(200)] + np.random.normal(0, 0.05, (200))
+
+
+  def t_stastik(data, confidence):
+      m, se = np.mean(data), sp.stats.sem(data)
+      h = se*sp.stats.t.isf((1-confidence)/2. , df = (len(data)-1) )
+      return m, m-h, m+h
+  print(" For given data sete we have their mean  with 95% confidence level of region :",t_stastik(b,0.95))
+
+  def mean_confidence_interval(data, confidence):
+      m, se = np.mean(data), sp.stats.sem(data)
+      h = se*sp.stats.t.ppf((1+confidence)/2.,len(data)-1)
+      return m, m-h, m+h
+  print('For data the mean  can also  be calcaleted as at 95% confidence level is :', mean_confidence_interval(b, 0.95))
+
+
+#+END_SRC
+** a complete ploted distribution of confidence level on t mode
+#+BEGIN_SRC python
+  import numpy as np
+#  import seaborn as sns
+  from scipy import stats
+  import matplotlib.pyplot as plt
+
+  np.random.seed(3)
+  MU = 64
+  sigma = 5
+  size = 10
+  heights = np.random.normal(MU, sigma,size)
+  print("accoding to the mean and deviation we have a example of 10 rondom number : ", heights)
+
+  mean_heights = np.mean(heights)
+  deviation_heights = np.std(heights)
+  SE = np.std(heights)/np.sqrt(size)
+
+  print('99% confidence interval is :', stats.t.interval(0.99, df = size-1 , loc = mean_heights, scale=SE))
+  print('90% confidence interval is :', stats.t.interval(0.90, df = size-1 , loc = mean_heights, scale=SE))
+  print('80% confidence interval is :', stats.t.interval(0.80, df = size-1 , loc = mean_heights, scale=SE)) 
+
+#+END_SRC
+** a complete ploted distribution
+#+BEGIN_SRC python
+  import numpy as np
+
+  sample_size = 1000
+  heights = np.random.normal(MU, sigma, sample_size)
+  SE = np.std(heights)/np.sqrt(sample_size)
+  (l,u) = stats.norm.interval(0.95, loc = np.mean(heights), scale = SE)
+  print(l,u)
+  plt.hist(heights, bins = 20)
+  y_height = 5
+  plt.plot([l,u], [y_height, y_height], '_', color='r')
+  plt.plot(np.mean(heights), y_height, 'o', color= 'b')
+  plt.show()
+
+#+END_SRC
+
+#+RESULTS:
+
+** a complete ploted distribution on between region
+
+#+BEGIN_SRC python
+  x = np.linspace(-5,5,100)
+  y = stats.norm.pdf(x,0,1)
+  plt.plot(x,y)
+  plt.vlines(-1.96,0,1,colors='r',linestyles='dashed')
+  plt.vlines(1.96,0,1,colors='r',linestyles='dashed')
+  fill_x = np.linspace(-1.96,1.96,500)
+  fill_y = stats.norm.pdf(fill_x, 0,1)
+  plt.fill_between(fill_x,fill_y)
+  plt.show()
+
+#+END_SRC
+** a example from internet
+#+BEGIN_SRC python
+  import pandas as pd
+  from scipy import stats as ss
+  data_url = "https://raw.githubusercontent.com/alstat/Analysis-with-Programming/master/2014/Python/Numerical-Descriptions-of-the-Data/data.csv"
+  df = pd.read_csv(data_url)
+  print(df.describe())
+  import matplotlib.pyplot as plt
+  pd.options.display.mpl_style = 'default' 
+  plt.show(df.plot(kind = 'box'))
+
+#+END_SRC
+** 1 2 3 order and gauss fitting
+#+BEGIN_SRC python
+  import numpy as np
+  import matplotlib.pyplot as plt
+  from scipy import optimize
+  from scipy.optimize import curve_fit
+
+
+  def f_1_degree(x,A,B):
+      return A*x + B
+
+  def f_2_degree(x,A,B,C):
+      return A*x**2 + B*x + C
+
+  def f_3_degree(x,A,B,C,D):
+      return A*x**3 + B*x**2 + C*x + D
+
+
+  def f_gauss(x,A,B,sigma):
+      return A*np.exp(-(x-B)**2/(2*sigma**2))
+
+  def plot_figure():
+      plt.figure()
+
+      x0 = [1,2,3,4,5]
+      y0 = [1,3,8,18,36]
+
+      #plot original data
+      plt.scatter(x0,y0,25,"red")
+
+      # plot f1
+      params_1, pcovariance_1 = optimize.curve_fit(f_1_degree,x0,y0)
+
+      params_f_1, pcovariance_f_1 = curve_fit(f_1_degree,x0,y0)
+      x1 = np.arange(0,6,0.01)
+      y1 = params_1[0]*x1+params_1[1]
+      plt.plot(x1,y1,"blue")
+      print("The liear fitting for date is : y = ",params_1[1],"*x + ",params_1[0])
+      print("The params uncertainies are:")
+      print("a =", params_1[0], "+/-", round(pcovariance_1[0,0]**0.5,3))
+      print("b =", params_1[1], "+/-", round(pcovariance_1[1,1]**0.5,3))
+
+
+      #plot f2
+      params_2, pcovariance_2 = curve_fit(f_2_degree,x0,y0)
+      x2 = np.arange(0,6,0.01)
+      y2 = params_2[0]*x1**2+params_2[1]*x1 + params_2[2]
+      plt.plot(x2,y2,"green")
+      print("The second order curve fitting for date is : y = " ,params_2[2],"*x² + " ,params_2[1],"*x + ",params_2[0])
+      print("The params uncertainies are:")
+      print("a =", params_2[0], "+/-", round(pcovariance_2[0,0]**0.5,3))
+      print("a =", params_2[0], "+/-", round(pcovariance_2[0,0]**0.5,3))
+      print("b =", params_2[1], "+/-", round(pcovariance_2[1,1]**0.5,3))
+      print("c =", params_2[2], "+/-", round(pcovariance_2[2,2]**0.5,3))
+
+      #plot f3
+      params_3, pcovariance_3 = curve_fit(f_3_degree,x0,y0)
+      x3 = np.arange(0,6,0.01)
+      y3 = params_3[0]*x1**3+params_3[1]*x1**2 + params_3[2]*x1 + params_3[3]
+      plt.plot(x3,y3,"purple")
+      print("The second order curve fitting for date is:y =",params_3[3],"*x³+",params_2[2],"*x² + " ,params_2[1],"*x + ",params_2[0])
+      print("The params uncertainies are:")
+      print("a =", params_3[0], "+/-", round(pcovariance_3[0,0]**0.5,3))
+      print("b =", params_3[1], "+/-", round(pcovariance_3[1,1]**0.5,3))
+      print("c =", params_3[2], "+/-", round(pcovariance_3[2,2]**0.5,3))
+      print("d =", params_3[3], "+/-", round(pcovariance_3[3,3]**0.5,3))
+
+      #plot gauss
+      params_gauss, pcovariance_gauss = curve_fit(f_gauss,x0,y0)
+      xgauss = np.arange(0,6,0.01)
+      ygauss = params_gauss[0]*np.exp(-(xgauss-params_gauss[1])**2/(2*params_gauss[2]**2))
+      plt.plot(xgauss,ygauss,"black")
+      print("The gauss function curve fitting for date is : y = ",params_gauss[2],"*exp{-(x-",params_gauss[1],")²/(2*sigma²) +",params_gauss[0])
+      print("The params uncertainies are:")
+      print("a =", params_gauss[0], "+/-", round(pcovariance_gauss[0,0]**0.5,3))
+      print("mean =", params_gauss[1], "+/-", round(pcovariance_gauss[1,1]**0.5,3))
+      print("std =", params_gauss[2], "+/-", round(pcovariance_gauss[2,2]**0.5,3))
+ 
+    
+
+      plt.title("plot for different fittign")
+      plt.xlabel("x")
+      plt.ylabel("y")
+      plt.show()
+      return
+
+  plot_figure()
+
+
+#+END_SRC
+** linear fitting
+#+BEGIN_SRC python
+  # matplotlib inline
+  import matplotlib.pyplot as plt;
+  import numpy as np;
+  from scipy import integrate
+  from scipy.optimize import curve_fit
+  import math
+
+  #1. x axis coordinnat for 10 points data
+  xmin=0.01; xmax=2; pts = 10;
+  xx = np.linspace(xmin, xmax, pts);
+
+  #2. y axis coordinnat for 10 points data
+  rho = np.sqrt(1/xx) + 0.5*np.exp(xx)*xx**2;
+
+  #plot the original data
+  plt.plot(xx, rho, 'bo', label='Original data')
+
+  #3. x axis coordinnat for 200 points fitting
+  x_fine = np.linspace(xmin, xmax, 200);
+
+  #fiting
+  params, cov = np.polyfit(xx, rho, 1, cov=True)
+
+  #to reconstruct the linear function
+  bestfit_rho = params[0]*x_fine + params[1]
+  plt.plot(x_fine, bestfit_rho, 'r-', lw=2, label='One order of linear fit');
+
+  print(params)
+
+
+
+#+END_SRC
+** linear fitting with ployfit
+
+#+BEGIN_SRC python
+  # matplotlib inline
+  import matplotlib.pyplot as plt;
+  import numpy as np;
+  from scipy import integrate
+  from scipy.optimize import curve_fit
+  import math
+
+  #1. x axis coordinnat for 10 points data
+  xmin=0.01; xmax=2; pts = 10;
+  xx = np.linspace(xmin, xmax, pts);
+
+  #2. y axis coordinnat for 10 points data
+  rho = np.sqrt(1/xx) + 0.5*np.exp(xx)*xx**2;
+
+  #plot the original data
+  plt.plot(xx, rho, 'bo', label='Original data')
+
+  #3. x axis coordinnat for 200 points fitting
+  x_fine = np.linspace(xmin, xmax, 200);
+
+  #fiting  it can be any order 
+  params, cov = np.polyfit(xx, rho, 4, cov=True);
+  p = np.poly1d(params)
+  plt.plot(x_fine, p(x_fine), 'g-', lw=2, label='The Best poly1d fit');
+
+  print(params)
+  plt.xlabel('$x$');
+  plt.ylabel(r'$\rho$');
+  plt.legend(fontsize=13);
+  plt.show()
+
+
+#+END_SRC
+
+* Data Exploration
+Singal feather: histogram density, rug, Box-Whisker
+Box-Whisker: low quartile to high quartile is interquartile range (IQR)
+
+low boundary: low quartile - IQR
+high boundary: high quartile + IQR
+
+pair-wise scatterplot
+
+hexbin plot
+
+correlation heatmap
+
+* Time Series Analysis
+** Descripation
+Discrete values  {$x_1$,....,$x_T$} = $(x_t)_{t=1}^T$
+A core  assumpation is the time difference between $x_{t}$ and $x_{t+1}$ is equal for $t \in (1...T)$.
+$x_{t}$ can be decomposed into 3 components:
+
+| 1. | trend component | T | change over all time                    |
+| 2. | seasonality     | S | the results of seasons effect           |
+| 3. | autocorrelation | R | how the values depends on  prior values |
+so   $$X = T + S + R$$
+** Box-Jenkins for stationary
+*** stationary
+Time series is stationary
+Mean  and Variance of  the trend and seasonality  are constant and can be removed
+so the autocorrelation is stochastic process, 
+*** Trend and Series Effects
+1. model the trend $T_{t}$ on the  time series $x_{t}$
+2. detrended time series $\hat{x}=x_{t}-T_{t}$
+3. model the seasonality  $S_{t}$ on the time series $x_{t}$
+4. get the seasonality adjusted time series $\hat{\hat{x_{t}}}=\hat{x}-S_{t}$
+*** Regession and Seasonal Means
+In this context we can only use linear regession to fit the all time series, get $\hat{x}$.
+
+and then substract the seasonal Means: $\hat{\hat{x}}= \hat{x}-(Mean(\hat x^{´}_{t})-Mean(\hat x_{t}))$
+$Mean(\hat x^{´}_{t})$ is special for mod(t, s), in the recursive seasonal effect,
+only the same time slot element will be calculated, this happens if
+the last season is not complete.
+
+*Cons* only works for linear trends and with seasonal effects that have no trend. 
+
+** Differencing for not stationary
+for $y=f(x)$ for two points($x_1$, $y_1$) and ($x_2, y_2$),
+the first-order difference to detrended time series:  $\hat x_{t} = \Delta x^{1}_{t}=x_{t}-x_{t-1}$.
+or if you want, you can get the second-order-difference
+$\Delta^{2}x_{}{t} = \Delta^{1}x_{t}-\Delta^{1}x_{t-1} = x_{t}-2x_{t-1}+x_{t-2}$
+
+using difference to adjust the seasonal effect:
+using  the difference  between two consecutive points in time during the season.
+$\hat{\hat{x}} = \Delta_{s} \hat x_{t} = \hat x_{t} - \hat x_{t-s}$
+
+*pro* it can deal with both changes in the mean, as well as changes in the movement of the mean
+
+** Correlation
+Autocorrelation is the direct relationship of the values
+of the time series at different points in time, for two adjacent points
+
+Partial autocorrelation is the autocorrelation without the carryover,
+i.e., only the direct correlation, not  for two adjacent points
+
+for Authentication and Partial authentication we can see the
+residual seasonal effect for regession and seasonal means
+** ARIMA
+three ways to model correlation
+*** AR: atuoregressive
+model the direct influence of the past p points on time series
+$c + \epsilon_{t} + \sum_{i=1}^{p}a_{i}x_{t-i}$
+c :constant over all time
+$\epsilon_{t}$: white noise, mean of 0, normal distribution
+
+*** MA: Moving average
+model the random effect on time series
+$c + \epsilon_{t} + \sum_{j=1}^{q}b_{j}\epsilon_{t-j}$
+the difference is the random influence of the past noise to next value 
+
+*** ARMA: autoregressive and Moving average
+
+$c + \epsilon_{t} + \sum_{i=1}^{p}a_{i}x_{t-i} + \sum_{j=1}^{q}b_{j}\epsilon_{t-j}$
+
+*** select p and q
+partial authentication estimate the p for AR, but if p can cover all the season,
+but if p is too big, it can lead to overfitting.
+
+autocorrelation can estimate the q for MA, using q as the steps for autocorrelation
+to be 0, so we look at when the autocorrelation goes towards zero and use this for q.
+at the same time the effect of AR should also be counted for determinate q.
+
+* Hadoop
+** inital
+hdfs namenode -format
+cd ~/hadoop-3-3.1/sbin
+./start-dfs.sh
+./start-yarn.sh
+jps
+
+** command
+hdfs dfs -ls /
+hdfs dfs -chmod 777 /testFolder
+hdfs dfs -cat /tesFolder/text.txt
+hdfs dfs -get hdfspath localpath
+hdfs dfs -put localpath hdfspath
+hdfs dfsadmin -report
+
+
+** map()
+map(fun <key1, val1>) -> list(<key2, val2>)
+to a list of key-value pairs
+all elemenet in list must have the same type
+** Schuffle
+schuffle(list(<key2, val2>)) -> list(<key2, list(val2)>)
+** reduce
+reduce (fun, list(<key2, list(val2)>)) -> list(val3)
+
+** Limitation
+1, multiple map() and reduce() must be manually specified
+2, intermediary results has to be written to  the HDFS, not on memory
+iterative algorithms are not very efficient with Hadoop.
+
+* HDFS
+Hadoop distributed file system
+Namenode vs Datanodes
+
+1, high throughout with low latency
+2, support large file
+3, locally computation in Node, less transfer zwischen Nodes
+4, resilient design for hardware failurs
+
+* YARN
+Yet Another Resource Negotiator
+Resource Manager vs NodeManager
+Resource Manager avoid overutilization and underutilization
+The NodeManager execute tasks on the local resources
+1, Client send a requirement to Resource Manager
+2, Resource manager allocate container in Node Manager
+3, Container in Node Manager start the application Master
+4, Application Master require Resource from Resoure Manager
+5, as the required Resoure is allocated, application master start the Application
+* Spark
+results do not  need to save in HDFS, it support in memory  executation.
+Resilient Distributed Datasets RDDS
+DataFrame from SparkSQL
+
+** pyspark
+#+begin_src
+cd spark
+bin/spark-submit examples/src/main/python/wordcount.py testtext.txt &> output.txt
+#+end_src
+
+* Text minning
+** Preprocessing
+*** Creation of a Corpus
+contains all text to analysis
+*** remove the irrelevant content,
+links, timestamps
+*** Punctuation and Cases
+remove all Punctuation, and all use small cases
+a problem is about acronyms
+*** Stop words
+commons words should be removed, auch as I, to ,a
+*** Stemming and Lemmatization
+first Lemmatization, and then Stemming
+** Visualiztation
+*** bag-of-words with wordclouds
+*** Term frequency(TF)
+is the count of a words within document
+*** Inverse Document Frequency(IDF)
+is to weight words by their uniqueness within the corpus
+$$IDF_{t} = \log \frac{N}{D_{t}}$$
+t: word(term)
+N: the number of document in corpus
+$D_{t}$: the number of document in corpus, which contains word t
+
+*** TFIDF
+$$TFIDF = TF \cdot IDF $$
+*** beyond the bag-of-words
+ignore the structure of document
+ignore simiarity of words
+
+** challages
+*** dimensionality
+*** Ambiguities
+* High performance Data Analysis
+* Paralle compuation
+** performance
+$$ S_{total} = \frac{1}{1-p+\frac{p}{s}} $$
+$$N = \frac{s}{s-P_{B}-P_{D} + \frac{P_{B}}{N_{B}} + \frac{P_{D}}{N_{D}}} $$
+normaly  $s = 1$ for Andel's law
+if s is changed, Gostafan's law,
+$$ s_{g} = \frac{T_{s} + p T_{p}}{T_{s} + T_{p}} $$
+Effectivy: $$ E = \frac{S}{P}$$
+$$ S = \frac{T_{s}}{T_{p}} = \frac{n}{\frac{n}{p}+ \log_{2} p}$$
