@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-11-28 Sun 10:35 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lisp</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">Lisp</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgd9e0d45">root</a></li>
+<li><a href="#org53a9f0b">command</a>
+<ul>
+<li><a href="#org332e848">execute</a></li>
+</ul>
+</li>
+<li><a href="#org44afeb6">List</a></li>
+<li><a href="#org7fb326d">Evaluation</a></li>
+<li><a href="#orgac2ae56">Buffer</a></li>
+<li><a href="#orgfb21185">let and let *</a></li>
+<li><a href="#orga7d7e0d">Special Form</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org6a892a3">defun</a></li>
+<li><a href="#org459202a">let</a></li>
+<li><a href="#orgcc75d22">if</a></li>
+<li><a href="#orgc3ded9a">if-then</a></li>
+<li><a href="#org4f55f23">save-excursion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgf12f4e4">2-36 arbitrary  base</a></li>
+<li><a href="#org9c9b191">code</a></li>
+<li><a href="#org7493083">Emacs lisp programm</a>
+<ul>
+<li><a href="#orgc99583a">file management</a></li>
+</ul>
+</li>
+<li><a href="#org14cd1d1">Function in orgmode</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd9e0d45" class="outline-2">
+<h2 id="orgd9e0d45">root</h2>
+<div class="outline-text-2" id="text-orgd9e0d45">
+<p>
+S-express can be atmo or list
+car : get the first S-express
+cdr : get the rest list
+cons : need a S-express and a list : put the first S-express into the second list
+(null? l) if l is null?
+(atom? l) if l is atmo?
+(member? ele list)
+(rember ele list)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org53a9f0b" class="outline-2">
+<h2 id="org53a9f0b">command</h2>
+<div class="outline-text-2" id="text-org53a9f0b">
+</div>
+<div id="outline-container-org332e848" class="outline-3">
+<h3 id="org332e848">execute</h3>
+<div class="outline-text-3" id="text-org332e848">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">command</td>
+<td class="org-left">explain</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-e</td>
+<td class="org-left">result in minibuffer</td>
+</tr>
+
+<tr>
+<td class="org-left">C-j</td>
+<td class="org-left">result under the cursor</td>
+</tr>
+
+<tr>
+<td class="org-left">M-x ielm</td>
+<td class="org-left">in elisp interactive mode</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org44afeb6" class="outline-2">
+<h2 id="org44afeb6">List</h2>
+<div class="outline-text-2" id="text-org44afeb6">
+<div class="org-src-container">
+<pre class="src src-elisp">(concat <span style="font-style: italic;">"abd"</span> <span style="font-style: italic;">"def"</span>)
+(+ 34 9)
+
+(substring <span style="font-style: italic;">"0123456789"</span> 2 8)
+
+(<span style="font-weight: bold;">setq</span> Emacs 'My-favour)
+
+(message <span style="font-style: italic;">"Am today %s I start to learn emacs %d "</span> <span style="font-style: italic;">"niaho"</span> 09)
+<span style="font-weight: bold; font-style: italic;">;</span><span style="font-weight: bold; font-style: italic;">"Am today niaho I start to learn emacs 9 "</span>
+(message <span style="font-style: italic;">"He saw %d %s"</span>
+(- fill-column 32)
+(concat <span style="font-style: italic;">"red "</span>
+(substring
+<span style="font-style: italic;">"The quick brown foxes jumped."</span> 16 21)
+<span style="font-style: italic;">" leaping."</span>))
+<span style="font-weight: bold; font-style: italic;">;</span><span style="font-weight: bold; font-style: italic;">"He saw 38 red foxes leaping."</span>
+(<span style="font-weight: bold;">setq</span> trees '(pine fir oak maple)
+           herbivores '(gazelle antelope zebra))
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7fb326d" class="outline-2">
+<h2 id="org7fb326d">Evaluation</h2>
+<div class="outline-text-2" id="text-org7fb326d">
+<p>
+#+BEGIN<sub>SRC</sub> elisp
+</p>
+
+<p>
+(buffer-file-name)
+(setq a 300)
+(* 34 67 45
+#+END<sub>SRC</sub>)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgac2ae56" class="outline-2">
+<h2 id="orgac2ae56">Buffer</h2>
+<div class="outline-text-2" id="text-orgac2ae56">
+<div class="org-src-container">
+<pre class="src src-elisp">(buffer-name)
+
+(current-buffer)
+
+(other-buffer)
+
+(switch-to-buffer (other-buffer))
+
+(buffer-size)
+
+(point)
+
+(point-min)
+
+(point-max)
+
+(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">multipy-by-seven</span> (number)
+<span style="font-style: italic;">"Multipy NUMBER by seven"</span>
+(* 7 number))
+
+(multipy-by-seven 4)
+
+(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">multipy-by-seven</span> (number))
+
+(<span style="font-weight: bold;">interactive</span> <span style="font-style: italic;">"p"</span>)
+
+(message <span style="font-style: italic;">"the result is %d"</span> (* 7 number))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfb21185" class="outline-2">
+<h2 id="orgfb21185">let and let *</h2>
+<div class="outline-text-2" id="text-orgfb21185">
+<p>
+let define the local variable
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">circle-area</span> (radix)
+  (<span style="font-weight: bold;">let</span> ((pi 3.1415926)
+        area)
+    (<span style="font-weight: bold;">setq</span> area (* pi radix radix))
+    (message <span style="font-style: italic;">"&#30452;&#24452;&#20026; %.2f &#30340;&#22278;&#38754;&#31215;&#26159; %.2f"</span> radix area)
+    ))
+(circle-area 5)
+
+</pre>
+</div>
+
+<p>
+let* define local variable, which can be immediately used
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">circle-eara</span> (radix)
+  (<span style="font-weight: bold;">let*</span> ((pi 3.1415926)
+         (area (pi*radix*radix))))
+    (message <span style="font-style: italic;">"&#30452;&#24452;&#20026; %.2f &#30340;&#22278;&#38754;&#31215;&#26159; %.2f"</span> radix area))
+(circle-area 6)
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orga7d7e0d" class="outline-2">
+<h2 id="orga7d7e0d">Special Form</h2>
+<div class="outline-text-2" id="text-orga7d7e0d">
+</div>
+<div id="outline-container-org6a892a3" class="outline-4">
+<h4 id="org6a892a3">defun</h4>
+<div class="outline-text-4" id="text-org6a892a3">
+<p>
+(defun name-of-function (argument-list)
+  "documentation&#x2026;"
+  body&#x2026;)
+</p>
+</div>
+</div>
+<div id="outline-container-org459202a" class="outline-4">
+<h4 id="org459202a">let</h4>
+<div class="outline-text-4" id="text-org459202a">
+<p>
+(let ((zebra "stripes")
+      (tiger "fierce"))
+  (message "One kind of animal has %s and another is %s."
+	   zebra tiger))
+</p>
+</div>
+</div>
+<div id="outline-container-orgcc75d22" class="outline-4">
+<h4 id="orgcc75d22">if</h4>
+<div class="outline-text-4" id="text-orgcc75d22">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">my-max</span> (a b)
+  (<span style="font-weight: bold;">if</span> ( &gt; a b)
+    (message <span style="font-style: italic;">"aaaaa"</span>)
+    (message <span style="font-style: italic;">"bbbbb"</span>)
+    ))
+(my-max 3 0)  
+</pre>
+</div>
+<p>
+(if true-or-false-test
+action-to-carry-out-if-the-test-returns-true)
+</p>
+</div>
+</div>
+<div id="outline-container-orgc3ded9a" class="outline-4">
+<h4 id="orgc3ded9a">if-then</h4>
+<div class="outline-text-4" id="text-orgc3ded9a">
+<p>
+(if true-or-false-test
+    action-to-carry-out-if-the-test-returns-true
+  action-to-carry-out-if-the-test-returns-false)
+</p>
+
+<p>
+(if 4
+    'true
+  'false)
+</p>
+
+<p>
+(if nil
+    'true
+  'false)
+</p>
+</div>
+</div>
+<div id="outline-container-org4f55f23" class="outline-4">
+<h4 id="org4f55f23">save-excursion</h4>
+<div class="outline-text-4" id="text-org4f55f23">
+<p>
+(message "We are %d characters into this buffer."
+	 (save-excursion
+	   (- (point)
+	      (goto-char (point-min)) (point))))
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf12f4e4" class="outline-2">
+<h2 id="orgf12f4e4">2-36 arbitrary  base</h2>
+<div class="outline-text-2" id="text-orgf12f4e4">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">#36re
+#36r1
+#36ra
+#36ru
+#36rk
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9c9b191" class="outline-2">
+<h2 id="org9c9b191">code</h2>
+<div class="outline-text-2" id="text-org9c9b191">
+<p>
+char count
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">cheap-count-words</span>()
+  (<span style="font-weight: bold;">interactive</span>)
+  (<span style="font-weight: bold;">let</span> ((words 0))
+    (goto-char (point-min))
+    (<span style="font-weight: bold;">while</span> (forward-word)
+      (<span style="font-weight: bold;">setq</span> words (1+ words)))
+    (message (format <span style="font-style: italic;">"Words is Buffer : %s"</span> words))
+    words)
+  )
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7493083" class="outline-2">
+<h2 id="org7493083">Emacs lisp programm</h2>
+<div class="outline-text-2" id="text-org7493083">
+</div>
+<div id="outline-container-orgc99583a" class="outline-3">
+<h3 id="orgc99583a">file management</h3>
+<div class="outline-text-3" id="text-orgc99583a">
+<p>
+read file :: insert-file-contents
+ and copy file :: write-region
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;;</span><span style="font-weight: bold; font-style: italic;">read file and print out</span>
+(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">read-file-as-lines</span> (file-path)
+  (<span style="font-weight: bold;">with-temp-buffer</span>
+    (insert-file-contents file-path)
+    (split-string (buffer-string) <span style="font-style: italic;">"\n"</span> t)))
+
+(read-file-as-lines <span style="font-style: italic;">"~/Desktop/110.py"</span>)
+
+<span style="font-weight: bold; font-style: italic;">;;</span><span style="font-weight: bold; font-style: italic;">read file and copy to another</span>
+(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">copy-file-to-file</span> (fromfile tofile)
+  (<span style="font-weight: bold;">with-temp-buffer</span>
+    (insert-file-contents fromfile)
+    (<span style="font-weight: bold;">setq</span> copy-test-path tofile)
+    (write-region (point-min) (point-max) copy-test-path)
+    (write-region <span style="font-style: italic;">"new  content"</span> nil copy-test-path t)))
+
+(copy-file-to-file <span style="font-style: italic;">"~/Desktop/110.py"</span> <span style="font-style: italic;">"~/Desktop/112.py"</span>)
+
+
+
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org14cd1d1" class="outline-2">
+<h2 id="org14cd1d1">Function in orgmode</h2>
+<div class="outline-text-2" id="text-org14cd1d1">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(+ 45 65)
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">do-some-math</span>(x y)
+  (* (+ x 20)
+     (- y 10) ) )
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">multipy-many</span>  (x <span style="font-weight: bold; text-decoration: underline;">&amp;rest</span> operands)
+  (<span style="font-weight: bold;">dolist</span> (operand operands) 
+    (<span style="font-weight: bold;">when</span> operand 
+      (<span style="font-weight: bold;">setq</span> x (* x operand)))) <span style="font-weight: bold;">x)</span>
+</pre>
+</div>
+
+
+<p>
+interactive function als commands
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">my-first-command</span>()
+(<span style="font-weight: bold;">interactive</span>)
+(message <span style="font-style: italic;">"Hey , it works"</span>) )
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-11-28 Sun 10:35</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>

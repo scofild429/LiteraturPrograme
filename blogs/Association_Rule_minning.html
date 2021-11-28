@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-11-28 Sun 10:35 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Association Rule Minning</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css" />
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Association Rule Minning</h1>
+<ul class="org-ul">
+<li>Transaction: T, one behavior, which accomplished a lot of things(items)</li>
+<li>Item : I, which stands for the smallest unit, that can be done.</li>
+<li>Our task is to find out, the relationship between items</li>
+</ul>
+
+<p>
+<b>Confidence</b>
+\[C(a->b) = P(b|a) = \frac{P(ab)}{P(a)}\]
+</p>
+<pre class="example">
+the Probabilities  If a is done, b will also be done.
+</pre>
+
+<p>
+<b>Support</b>
+\[S(a->b)=P(a\cap b) = P(ab)\]
+</p>
+<pre class="example">
+a and b be done together from all Transaction, identify the special Transaction case
+</pre>
+
+<p>
+\[X -> Y(C=c, S=s)\]
+</p>
+
+<p>
+<b>practicability</b> (Lift)
+\[L(a->b)=\frac{Confidence(a->b)}{P(b)} =\frac{P(ab)}{P(a)P(b)}\]
+</p>
+<pre class="example">
+The impact of a on b to be done
+</pre>
+
+
+<p>
+<b>Aprioir</b> <b>algorithm</b>
+</p>
+
+<p>
+1.(with support level(S) )
+</p>
+<ul class="org-ul">
+<li>find the frequently itemset(L)</li>
+<li>the subsets of frequently itemset is also frequently itemset</li>
+<li>collect the total Transaction set(T), and set the the support level</li>
+<li>find all \(L_{1}\), which satisfied S,</li>
+<li>find all \(L_{2}\), which come from all 2-items combinations, which satisfied S</li>
+<li>&#x2026;..to only one left, \(L_{k}\).</li>
+</ul>
+
+<p>
+2.(with Confidence (C) )find all subsets of \(L_{k}\), which satisfied C.
+</p>
+
+<p>
+<b>Note</b> all the operations in this 2 step is done in the whole Transaction sets
+</p>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-11-28 Sun 10:35</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>

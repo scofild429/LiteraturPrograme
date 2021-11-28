@@ -1,0 +1,1498 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-11-28 Sun 10:35 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cloud Service Computing</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">Cloud Service Computing</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org8876f7a">Platform Virtualization</a>
+<ul>
+<li><a href="#orge30a486">Defination of Virtualization</a></li>
+<li><a href="#orge212e41">The reasons for applying virtualization</a></li>
+<li><a href="#orgdda40f7">Full virtualization (Hypervisor system, Bare matal)</a></li>
+<li><a href="#org6b2d534">Hardware-assisted virtualization (Hypervisor system, Bare matal)</a></li>
+<li><a href="#orgcda8864">Para virtualization (Hypervisor system, Bare matal)</a></li>
+<li><a href="#org4560779">Host OS virtualization (Hypervisor system, Hosted)</a></li>
+<li><a href="#org41ef843">OS-level virtualization (Container system)</a></li>
+<li><a href="#orgbb5f7c9">Memory virtualization</a></li>
+<li><a href="#org3ae1a21">Network virtualization</a></li>
+<li><a href="#org0dea8e0">Feathers</a></li>
+</ul>
+</li>
+<li><a href="#org4ce6fa2">Docker</a>
+<ul>
+<li><a href="#orgf60005e">old note</a></li>
+<li><a href="#org8b5be0a">commands</a></li>
+<li><a href="#org109df9b">discripation</a></li>
+</ul>
+</li>
+<li><a href="#orgcc7c668">Kubernetes</a></li>
+<li><a href="#orgfd5adee">Virtual Machine</a></li>
+<li><a href="#org8dd9203">Storage Virtualization</a>
+<ul>
+<li><a href="#org742a093">SSD advantage and disadvanage over HDD</a></li>
+<li><a href="#org0d735cc">Storage virtualization advantage</a></li>
+<li><a href="#orgb86f921">Provisioning:</a></li>
+<li><a href="#org8bdcbd8">Deduplication</a></li>
+<li><a href="#org7ff3d80">Compression:</a></li>
+<li><a href="#orgb275edf">Cloning</a></li>
+<li><a href="#org8c0b40c">Snapshotting Copies</a></li>
+<li><a href="#orgf91a59a">increasing the proformance</a></li>
+</ul>
+</li>
+<li><a href="#orgd641359">Modern Datacenters</a>
+<ul>
+<li><a href="#org33804fe">automation</a></li>
+<li><a href="#org17d0ee5">Idempotent</a></li>
+<li><a href="#orgac815b3">Infrastructure as code</a></li>
+<li><a href="#orgb2aef1d">Foreman:</a></li>
+<li><a href="#orgd6c1981">Puppet</a></li>
+</ul>
+</li>
+<li><a href="#org5ed8565">Monitor</a>
+<ul>
+<li><a href="#org3d1cfe5">challange</a></li>
+<li><a href="#orgc051698">Real time monitoring</a></li>
+<li><a href="#org82d8754">Historical Monitoring</a></li>
+<li><a href="#orgef615bb">Architecture</a></li>
+</ul>
+</li>
+<li><a href="#org1f2accd">Cloud Computing Concepts</a>
+<ul>
+<li><a href="#orgfcb46e7">Cloud Defination</a></li>
+<li><a href="#org0d0a292">SOA</a></li>
+<li><a href="#orgb8228d3">Advantage</a></li>
+<li><a href="#org5148606">Network design</a></li>
+<li><a href="#orgc125eb1">GWDG feathers</a></li>
+<li><a href="#org5d9c5bc">Infrastructure as Service</a>
+<ul>
+<li><a href="#orge1fcc87">Different deployment methode</a></li>
+<li><a href="#org49161f4">Storage</a></li>
+<li><a href="#org4d79e07">Network</a></li>
+<li><a href="#org2e98b0a">advantage</a></li>
+<li><a href="#org78233dc">disadvantage</a></li>
+</ul>
+</li>
+<li><a href="#orge230e48">Platform as a Service</a></li>
+<li><a href="#orgeb7cdda">Software as a Service</a></li>
+</ul>
+</li>
+<li><a href="#orgacb0d18">Web services</a>
+<ul>
+<li><a href="#org7fbd188">Benefits</a></li>
+<li><a href="#org3535c89">SOAP</a></li>
+<li><a href="#org40e58c5">WSDL</a></li>
+<li><a href="#org0d58751">REST</a></li>
+<li><a href="#org507271e">API</a></li>
+</ul>
+</li>
+<li><a href="#orge9bf7b2">Big Data Service</a>
+<ul>
+<li><a href="#org96382ff">feathers</a></li>
+<li><a href="#orgbc5b6c8">processes</a></li>
+<li><a href="#orgc3981a4">Challenges</a></li>
+</ul>
+</li>
+<li><a href="#orgcfd99cb">Mapreduce</a></li>
+<li><a href="#org3c0593e">Large Scale Data Analysis</a>
+<ul>
+<li><a href="#orgc42a1aa">batch process</a></li>
+<li><a href="#org34f101d">steaming process</a></li>
+<li><a href="#org8ba17e8">Stream Computation Platform</a></li>
+<li><a href="#org0aaf8e2">Hadoop</a></li>
+<li><a href="#orgef1f801">HDFS</a></li>
+<li><a href="#org543734f">YARN</a></li>
+<li><a href="#orgb51faf4">Apache Kafka</a></li>
+<li><a href="#org07fde85">Data management cycle</a></li>
+</ul>
+</li>
+<li><a href="#orgbd34553">Data Grid Data Management</a>
+<ul>
+<li><a href="#org6bb1af3">Data Lake</a>
+<ul>
+<li><a href="#orge022e47">Challenges</a></li>
+<li><a href="#org04b0fe4">Zones</a></li>
+</ul>
+</li>
+<li><a href="#orgec1530b">ETL</a></li>
+<li><a href="#org2e958fe">Storage data in Multiable locations</a></li>
+<li><a href="#orga1e8cfe">Storage data in remote data center</a></li>
+<li><a href="#org4a9f4ab">code storage</a></li>
+<li><a href="#org62fad07">fair data management</a></li>
+</ul>
+</li>
+<li><a href="#org29cb2e8">ITIL &amp;SLA</a>
+<ul>
+<li><a href="#orgc800716">non functional service</a></li>
+<li><a href="#org6532e19">ITIL Information Technology Infrastructure Library</a>
+<ul>
+<li><a href="#orgb06f4b5">service value system SVS</a></li>
+<li><a href="#org03d20b6">the four dimensions model</a></li>
+</ul>
+</li>
+<li><a href="#org78aa9c7">SLA Service Level Agreement Life cycle</a></li>
+<li><a href="#orgb7ae9af">SLA components include</a></li>
+</ul>
+</li>
+<li><a href="#orgeb0a134">Security</a>
+<ul>
+<li><a href="#orgb48042a">Confidentiality</a></li>
+<li><a href="#orgfee3216">Integrity</a></li>
+<li><a href="#org273cadc">Availablity</a></li>
+<li><a href="#orgbf7a77d">Asymmetric Encrytion RSA</a></li>
+<li><a href="#org4b2aadd">security benefits</a></li>
+<li><a href="#org7dc277f">symmetric encryption</a></li>
+<li><a href="#org9066ba6">asymmetic encryption</a></li>
+<li><a href="#orgd4e05b0">Digital Signiture</a></li>
+<li><a href="#orgb5508f4">how Certificate is trusted</a></li>
+<li><a href="#orge3930e0">Authentication</a></li>
+<li><a href="#orga518101">Authorization</a></li>
+<li><a href="#org7b26369">Confusion and Diffusion</a></li>
+</ul>
+</li>
+<li><a href="#org42bb0e8">Paraiell computation</a>
+<ul>
+<li><a href="#org07c63e5">Von Nroven</a></li>
+<li><a href="#org820f885">memory mode</a></li>
+<li><a href="#org344c118">evaluation performance</a></li>
+<li><a href="#org34c8622">shared memory</a></li>
+<li><a href="#org4ce7f82">distribution memory</a></li>
+</ul>
+</li>
+<li><a href="#orgf74ecbd">AWS</a></li>
+<li><a href="#org333c684">Alibaba</a></li>
+<li><a href="#orgf7b8de0">GWDG</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8876f7a" class="outline-2">
+<h2 id="org8876f7a">Platform Virtualization</h2>
+<div class="outline-text-2" id="text-org8876f7a">
+</div>
+<div id="outline-container-orge30a486" class="outline-3">
+<h3 id="orge30a486">Defination of Virtualization</h3>
+<div class="outline-text-3" id="text-orge30a486">
+<p>
+the processes of creating software-based version of resources.
+</p>
+</div>
+</div>
+<div id="outline-container-orge212e41" class="outline-3">
+<h3 id="orge212e41">The reasons for applying virtualization</h3>
+<div class="outline-text-3" id="text-orge212e41">
+<ul class="org-ul">
+<li><b>Utilization</b>: Server consolidation</li>
+<li><b>Isolation</b>: Implication of errors is restricted in virtual resource only</li>
+<li><b>Flexiblity</b>: many Application access the same physical Hardware</li>
+<li><b>On-demand</b>: virtual resource is created/destoryed on request</li>
+<li><b>Migration</b>: Fault tolerance, live update, optimization of performance</li>
+<li>New reaserch:new OS new technology</li>
+<li>Encapsulation: current stats can be saved  copied and loaded</li>
+<li>Minimal downtime</li>
+<li>Fast provisioning</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgdda40f7" class="outline-3">
+<h3 id="orgdda40f7">Full virtualization (Hypervisor system, Bare matal)</h3>
+<div class="outline-text-3" id="text-orgdda40f7">
+<ul class="org-ul">
+<li>Translation of instructions</li>
+<li>implantation: Virtual Box</li>
+<li>Hypervisor receive the IO from application,and translate to HW</li>
+<li>Hypervisor translate the request from Guest OS to HW</li>
+<li>no need special HW support</li>
+<li>no need modified OS</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6b2d534" class="outline-3">
+<h3 id="org6b2d534">Hardware-assisted virtualization (Hypervisor system, Bare matal)</h3>
+<div class="outline-text-3" id="text-org6b2d534">
+<ul class="org-ul">
+<li>implantation: VMware Workstation</li>
+<li>can install many virtual machine</li>
+<li>need special HW support</li>
+<li>no need modified OS</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgcda8864" class="outline-3">
+<h3 id="orgcda8864">Para virtualization (Hypervisor system, Bare matal)</h3>
+<div class="outline-text-3" id="text-orgcda8864">
+<ul class="org-ul">
+<li>VM(modified OS) runs on Host</li>
+<li>Host on hypervisor</li>
+<li>implantation: linux kernel</li>
+
+<li>need modified OS</li>
+<li>need Host OS level on hypervisor</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4560779" class="outline-3">
+<h3 id="org4560779">Host OS virtualization (Hypervisor system, Hosted)</h3>
+<div class="outline-text-3" id="text-org4560779">
+<ul class="org-ul">
+<li>Guest OS on Hypervisor</li>
+<li>Hypervisor on Host OS</li>
+<li>Host on HW</li>
+</ul>
+
+
+<ul class="org-ul">
+<li>no need modified OS</li>
+<li>need Hypervisor on Host OS</li>
+<li>inter VM communication is difficult</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org41ef843" class="outline-3">
+<h3 id="org41ef843">OS-level virtualization (Container system)</h3>
+<div class="outline-text-3" id="text-org41ef843">
+<ul class="org-ul">
+<li>no hypervisor</li>
+<li>multiple useer instances(light-weight) run on a host OS</li>
+<li>implantation: Docker</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgbb5f7c9" class="outline-3">
+<h3 id="orgbb5f7c9">Memory virtualization</h3>
+<div class="outline-text-3" id="text-orgbb5f7c9">
+<ul class="org-ul">
+<li>shadow page table on Guest OS</li>
+<li>Extended Page table in Host</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3ae1a21" class="outline-3">
+<h3 id="org3ae1a21">Network virtualization</h3>
+<div class="outline-text-3" id="text-org3ae1a21">
+<p>
+hypervisor provide virtual switch, offering every VM a ip address
+</p>
+</div>
+</div>
+<div id="outline-container-org0dea8e0" class="outline-3">
+<h3 id="org0dea8e0">Feathers</h3>
+<div class="outline-text-3" id="text-org0dea8e0">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Encapsulation</td>
+</tr>
+
+<tr>
+<td class="org-left">solation</td>
+</tr>
+
+<tr>
+<td class="org-left">Hardware abstraction</td>
+</tr>
+
+<tr>
+<td class="org-left">Migration</td>
+</tr>
+
+<tr>
+<td class="org-left">Partation</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4ce6fa2" class="outline-2">
+<h2 id="org4ce6fa2">Docker</h2>
+<div class="outline-text-2" id="text-org4ce6fa2">
+</div>
+<div id="outline-container-orgf60005e" class="outline-3">
+<h3 id="orgf60005e">old note</h3>
+<div class="outline-text-3" id="text-orgf60005e">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">comands</th>
+<th scope="col" class="org-left">expains</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">docker images</td>
+<td class="org-left">查看容器</td>
+</tr>
+
+<tr>
+<td class="org-left">docker pull nginx  <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></td>
+<td class="org-left">新增</td>
+</tr>
+
+<tr>
+<td class="org-left">docker run -d -p 80:80 nginx <sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></td>
+<td class="org-left">开始，id， 后台</td>
+</tr>
+
+<tr>
+<td class="org-left">docker exec -it xxxxxx bash</td>
+<td class="org-left">前台进入，</td>
+</tr>
+
+<tr>
+<td class="org-left">docker commit xxxxxx newname</td>
+<td class="org-left">生成新容器</td>
+</tr>
+
+<tr>
+<td class="org-left">docker kill -s KILL xxxxxx</td>
+<td class="org-left">关闭</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org8b5be0a" class="outline-3">
+<h3 id="org8b5be0a">commands</h3>
+<div class="outline-text-3" id="text-org8b5be0a">
+<ul class="org-ul">
+<li>docker pull NAME</li>
+
+<li>docker images</li>
+<li>docker images -a</li>
+
+<li>docker run NAME</li>
+<li>docker run NAME:VERSION</li>
+<li>docker run -d NAME</li>
+<li>docker run -p6000:6379 -d redis</li>
+<li>docker run -p6000:6379 -d  &#x2013;name redis-older redis</li>
+
+<li>docker exec -it ID /bin/bash</li>
+<li>docker exec -it NAME /bin/bash</li>
+</ul>
+
+
+<ul class="org-ul">
+<li>docker ps</li>
+<li>docker ps -a2</li>
+
+<li>docker start ID</li>
+<li>docker stop ID</li>
+
+<li>docker logs ID</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org109df9b" class="outline-3">
+<h3 id="org109df9b">discripation</h3>
+<div class="outline-text-3" id="text-org109df9b">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">fast delivery</td>
+</tr>
+
+<tr>
+<td class="org-left">easy deploy and scale</td>
+</tr>
+
+<tr>
+<td class="org-left">run more workloads</td>
+</tr>
+
+<tr>
+<td class="org-left">easy management</td>
+</tr>
+
+<tr>
+<td class="org-left">lightweight image</td>
+</tr>
+
+<tr>
+<td class="org-left">No guest OS</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li>Disadvanage: can not change kernel</li>
+<li>Less secure than VM</li>
+
+<li>Docker Registry hold Docker Images</li>
+<li>Docker Images create Docker Container(run as instance)</li>
+<li>Docker Container runs applications</li>
+<li>the shared levels are readonly, and containers communicate with sockets or Restful API</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcc7c668" class="outline-2">
+<h2 id="orgcc7c668">Kubernetes</h2>
+<div class="outline-text-2" id="text-orgcc7c668">
+<p>
+Container-Orchestration System 
+</p>
+<ul class="org-ul">
+<li>Cluster</li>
+<li>Control Plane</li>
+<li>Workload:application on Kubernetes</li>
+<li>Pod: many containers share the same volume</li>
+<li>Deployment</li>
+<li>Service</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgfd5adee" class="outline-2">
+<h2 id="orgfd5adee">Virtual Machine</h2>
+<div class="outline-text-2" id="text-orgfd5adee">
+<ul class="org-ul">
+<li>Partition</li>
+<li>Isolation</li>
+<li>Encapsulation</li>
+<li>Hardware abstraction</li>
+<li>Live Migration</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8dd9203" class="outline-2">
+<h2 id="org8dd9203">Storage Virtualization</h2>
+<div class="outline-text-2" id="text-org8dd9203">
+</div>
+<div id="outline-container-org742a093" class="outline-3">
+<h3 id="org742a093">SSD advantage and disadvanage over HDD</h3>
+<div class="outline-text-3" id="text-org742a093">
+<ul class="org-ul">
+<li>Reliablity</li>
+<li>Fast</li>
+<li>small Size</li>
+
+<li>More expensive</li>
+<li>less Space</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0d735cc" class="outline-3">
+<h3 id="org0d735cc">Storage virtualization advantage</h3>
+<div class="outline-text-3" id="text-org0d735cc">
+<ul class="org-ul">
+<li>Faster access: because you can have multiple data sources for the same data</li>
+<li>Independence of logic storage resources</li>
+<li>improvement of management: Moving data easy, in multiple localaction</li>
+<li>High reliablity:  because of Redundancy</li>
+<li>High effience: Replication and Duplication</li>
+<li>compression, compaction</li>
+<li>increasing volume if needed</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb86f921" class="outline-3">
+<h3 id="orgb86f921">Provisioning:</h3>
+<div class="outline-text-3" id="text-orgb86f921">
+<ul class="org-ul">
+<li>allocate disk space to user on demand</li>
+<li>give a mount of Storage, but not really allocated so much</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8bdcbd8" class="outline-3">
+<h3 id="org8bdcbd8">Deduplication</h3>
+<div class="outline-text-3" id="text-org8bdcbd8">
+<p>
+Single instance Storage: 
+if the hash value of a datablock is the same with one we already stored,
+dann save its link
+</p>
+<ul class="org-ul">
+<li>checksum with hash value</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7ff3d80" class="outline-3">
+<h3 id="org7ff3d80">Compression:</h3>
+<div class="outline-text-3" id="text-org7ff3d80">
+<p>
+compacting the data so that it comsumes less space
+</p>
+</div>
+</div>
+<div id="outline-container-orgb275edf" class="outline-3">
+<h3 id="orgb275edf">Cloning</h3>
+<div class="outline-text-3" id="text-orgb275edf">
+<p>
+Consuming no storage except what is required for metadata until changes
+are written to the copy
+</p>
+</div>
+</div>
+<div id="outline-container-org8c0b40c" class="outline-3">
+<h3 id="org8c0b40c">Snapshotting Copies</h3>
+<div class="outline-text-3" id="text-org8c0b40c">
+<p>
+a read-only, point-in-time image of a volume
+</p>
+</div>
+</div>
+<div id="outline-container-orgf91a59a" class="outline-3">
+<h3 id="orgf91a59a">increasing the proformance</h3>
+<div class="outline-text-3" id="text-orgf91a59a">
+<p>
+with more physical disks at the same time
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd641359" class="outline-2">
+<h2 id="orgd641359">Modern Datacenters</h2>
+<div class="outline-text-2" id="text-orgd641359">
+</div>
+<div id="outline-container-org33804fe" class="outline-3">
+<h3 id="org33804fe">automation</h3>
+<div class="outline-text-3" id="text-org33804fe">
+<ul class="org-ul">
+<li>scaling</li>
+<li>Inreases Repeatablity</li>
+<li>Make processes Faster</li>
+<li>imporve Reliablity</li>
+
+<li>disadvanage
+Additional Complexity
+illusion of Stability</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org17d0ee5" class="outline-3">
+<h3 id="org17d0ee5">Idempotent</h3>
+<div class="outline-text-3" id="text-org17d0ee5">
+<p>
+the same code generate the same result, without any change
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgac815b3" class="outline-3">
+<h3 id="orgac815b3">Infrastructure as code</h3>
+<div class="outline-text-3" id="text-orgac815b3">
+<ul class="org-ul">
+<li>Benefits:
+<ul class="org-ul">
+<li>Repeatablity</li>
+<li>Agility</li>
+<li>Disaster Recovery</li>
+<li>fast deploy</li>
+<li>live upgrade</li>
+</ul></li>
+
+<li>Imperative:describe the stes to get to desired state</li>
+<li>Declarative: describe the desired state</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb2aef1d" class="outline-3">
+<h3 id="orgb2aef1d">Foreman:</h3>
+<div class="outline-text-3" id="text-orgb2aef1d">
+<p>
+give the initial configuration to run an OS
+</p>
+</div>
+</div>
+<div id="outline-container-orgd6c1981" class="outline-3">
+<h3 id="orgd6c1981">Puppet</h3>
+<div class="outline-text-3" id="text-orgd6c1981">
+<ul class="org-ul">
+<li>Declarative description of resource states</li>
+<li>Client / server Architecture</li>
+<li>Security throgh cettificate</li>
+<li>OS abstraction</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org5ed8565" class="outline-2">
+<h2 id="org5ed8565">Monitor</h2>
+<div class="outline-text-2" id="text-org5ed8565">
+</div>
+<div id="outline-container-org3d1cfe5" class="outline-3">
+<h3 id="org3d1cfe5">challange</h3>
+<div class="outline-text-3" id="text-org3d1cfe5">
+<p>
+collecte data from large mount of servers
+Watch out the overhitting
+</p>
+</div>
+</div>
+<div id="outline-container-orgc051698" class="outline-3">
+<h3 id="orgc051698">Real time monitoring</h3>
+<div class="outline-text-3" id="text-orgc051698">
+<ul class="org-ul">
+<li>Availability Monitoring: altering of failure</li>
+<li>Capacity Monitoring: detect outages of resource</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org82d8754" class="outline-3">
+<h3 id="org82d8754">Historical Monitoring</h3>
+<div class="outline-text-3" id="text-org82d8754">
+<ul class="org-ul">
+<li>Long-term information</li>
+<li>Trend analysis</li>
+<li>Capacity planning</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgef615bb" class="outline-3">
+<h3 id="orgef615bb">Architecture</h3>
+<div class="outline-text-3" id="text-orgef615bb">
+<ul class="org-ul">
+<li>Measurement: Blackbox, Whitebot,Gauges, Conntes</li>
+<li>Collection: push, pull</li>
+<li>Analysis: real time, short term, long term, Anomaly detection with AI</li>
+<li>Alerting:</li>
+<li>Virtualization</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1f2accd" class="outline-2">
+<h2 id="org1f2accd">Cloud Computing Concepts</h2>
+<div class="outline-text-2" id="text-org1f2accd">
+</div>
+<div id="outline-container-orgfcb46e7" class="outline-3">
+<h3 id="orgfcb46e7">Cloud Defination</h3>
+<div class="outline-text-3" id="text-orgfcb46e7">
+<pre class="example">
+Cloud Computing is a model for enabling on-demand network
+access to a shared pool of configurable computing resource
+(network, server, storage, application, service) that can
+be rapidly provisioned and released with minimal management
+effort or service provider interaction
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org0d0a292" class="outline-3">
+<h3 id="org0d0a292">SOA</h3>
+<div class="outline-text-3" id="text-org0d0a292">
+<p>
+Servive Oriented Architecture
+SOA has become a core concept of service computing and provides the
+fundamental technologies for realizing service computing
+</p>
+</div>
+</div>
+<div id="outline-container-orgb8228d3" class="outline-3">
+<h3 id="orgb8228d3">Advantage</h3>
+<div class="outline-text-3" id="text-orgb8228d3">
+<ul class="org-ul">
+<li>No captial costs</li>
+<li>High scalability</li>
+<li>Highh Flexiblity</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org5148606" class="outline-3">
+<h3 id="org5148606">Network design</h3>
+<div class="outline-text-3" id="text-org5148606">
+<p>
+Different: SDN: software define Network
+New architectures have a detached control plane
+instead of heavy logic switching/routing in hardware
+</p>
+<ul class="org-ul">
+<li>hardware independent</li>
+<li>better shaping and Qos(Quit of service)</li>
+<li>Data Center Briding for local and remote network</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc125eb1" class="outline-3">
+<h3 id="orgc125eb1">GWDG feathers</h3>
+<div class="outline-text-3" id="text-orgc125eb1">
+<ul class="org-ul">
+<li>self service front-end</li>
+<li>SSH authenticate</li>
+<li>snapshotting</li>
+<li>using Openstack</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org5d9c5bc" class="outline-3">
+<h3 id="org5d9c5bc">Infrastructure as Service</h3>
+<div class="outline-text-3" id="text-org5d9c5bc">
+</div>
+<div id="outline-container-orge1fcc87" class="outline-4">
+<h4 id="orge1fcc87">Different deployment methode</h4>
+<div class="outline-text-4" id="text-orge1fcc87">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Private Cloud</td>
+</tr>
+
+<tr>
+<td class="org-left">community Cloud</td>
+</tr>
+
+<tr>
+<td class="org-left">public Cloud</td>
+</tr>
+
+<tr>
+<td class="org-left">Hybird Cloud</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org49161f4" class="outline-4">
+<h4 id="org49161f4">Storage</h4>
+<div class="outline-text-4" id="text-org49161f4">
+<p>
+CDMI: Cloud Data Management Interface
+File, Block Devices, Object Stores, Database Store
+example: AWS S3
+</p>
+</div>
+</div>
+<div id="outline-container-org4d79e07" class="outline-4">
+<h4 id="org4d79e07">Network</h4>
+</div>
+<div id="outline-container-org2e98b0a" class="outline-4">
+<h4 id="org2e98b0a">advantage</h4>
+<div class="outline-text-4" id="text-org2e98b0a">
+<ul class="org-ul">
+<li>quick implement of new project</li>
+<li>Flexiblity and scalability</li>
+<li>no hardware costs</li>
+<li>pay only what you need</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org78233dc" class="outline-4">
+<h4 id="org78233dc">disadvantage</h4>
+<div class="outline-text-4" id="text-org78233dc">
+<ul class="org-ul">
+<li>complicated to change provider</li>
+<li>dependency on provider</li>
+<li>internet access is essential</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge230e48" class="outline-3">
+<h3 id="orge230e48">Platform as a Service</h3>
+<div class="outline-text-3" id="text-orge230e48">
+<ul class="org-ul">
+<li>Rapid Time-to-Market</li>
+<li>Minimal Development</li>
+<li>Reduced Pressure on internal resources</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgeb7cdda" class="outline-3">
+<h3 id="orgeb7cdda">Software as a Service</h3>
+<div class="outline-text-3" id="text-orgeb7cdda">
+<p>
+based on IaaS, fouce on Applications
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgacb0d18" class="outline-2">
+<h2 id="orgacb0d18">Web services</h2>
+<div class="outline-text-2" id="text-orgacb0d18">
+</div>
+<div id="outline-container-org7fbd188" class="outline-3">
+<h3 id="org7fbd188">Benefits</h3>
+<div class="outline-text-3" id="text-org7fbd188">
+<ul class="org-ul">
+<li>Programmable access</li>
+<li>Distribution over internet</li>
+<li>Encapsulation of discrete functionality</li>
+<li>can offer stardartized Interface
+<ul class="org-ul">
+<li>TCP/IP prokotoll</li>
+<li>HTTP based</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3535c89" class="outline-3">
+<h3 id="org3535c89">SOAP</h3>
+<div class="outline-text-3" id="text-org3535c89">
+<p>
+Simple Object Access Protocol
+xml based
+RPC based
+</p>
+</div>
+</div>
+<div id="outline-container-org40e58c5" class="outline-3">
+<h3 id="org40e58c5">WSDL</h3>
+<div class="outline-text-3" id="text-org40e58c5">
+<p>
+Web Services Description Language
+xml based
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0d58751" class="outline-3">
+<h3 id="org0d58751">REST</h3>
+<div class="outline-text-3" id="text-org0d58751">
+<ul class="org-ul">
+<li>Everything is resource</li>
+<li>Every resource is identified by a unique Identifier</li>
+<li>Using simple and uniform interface</li>
+<li>Communication is done by representation</li>
+<li>be stateless</li>
+
+<li>more flexiblity</li>
+<li>less redundancy, raw message based</li>
+<li>URI and URL</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org507271e" class="outline-3">
+<h3 id="org507271e">API</h3>
+<div class="outline-text-3" id="text-org507271e">
+<p>
+Application Programming Interface
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge9bf7b2" class="outline-2">
+<h2 id="orge9bf7b2">Big Data Service</h2>
+<div class="outline-text-2" id="text-orge9bf7b2">
+</div>
+<div id="outline-container-org96382ff" class="outline-3">
+<h3 id="org96382ff">feathers</h3>
+<div class="outline-text-3" id="text-org96382ff">
+<ul class="org-ul">
+<li>Volume: Scale of data</li>
+<li>Velocity : spend of transfer data</li>
+<li>Variety: Different form of data</li>
+<li>Veracity: Uncertainty of data</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbc5b6c8" class="outline-3">
+<h3 id="orgbc5b6c8">processes</h3>
+<div class="outline-text-3" id="text-orgbc5b6c8">
+<ul class="org-ul">
+<li>Acquisition, Recording</li>
+<li>Extraction, Cleaning, Annotation</li>
+<li>Integration, Representation</li>
+<li>Analysis, Modeling</li>
+<li>Interpretation, Virtualization</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc3981a4" class="outline-3">
+<h3 id="orgc3981a4">Challenges</h3>
+<div class="outline-text-3" id="text-orgc3981a4">
+<ul class="org-ul">
+<li>Heterogeneity, Incompleteness</li>
+<li>Scale</li>
+<li>Timeliness</li>
+<li>Privacy</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcfd99cb" class="outline-2">
+<h2 id="orgcfd99cb">Mapreduce</h2>
+<div class="outline-text-2" id="text-orgcfd99cb">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">map</td>
+<td class="org-left">map the data into key-value-pairs according to our problem</td>
+</tr>
+
+<tr>
+<td class="org-left">reduce</td>
+<td class="org-left">key-value-pairs get accumlated</td>
+</tr>
+
+<tr>
+<td class="org-left">shuffling</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org3c0593e" class="outline-2">
+<h2 id="org3c0593e">Large Scale Data Analysis</h2>
+<div class="outline-text-2" id="text-org3c0593e">
+</div>
+<div id="outline-container-orgc42a1aa" class="outline-3">
+<h3 id="orgc42a1aa">batch process</h3>
+<div class="outline-text-3" id="text-orgc42a1aa">
+<p>
+disadvanage: views generated in batch may out of date
+</p>
+</div>
+</div>
+<div id="outline-container-org34f101d" class="outline-3">
+<h3 id="org34f101d">steaming process</h3>
+<div class="outline-text-3" id="text-org34f101d">
+<p>
+disadvanage: expensive and complex
+</p>
+</div>
+</div>
+<div id="outline-container-org8ba17e8" class="outline-3">
+<h3 id="org8ba17e8">Stream Computation Platform</h3>
+<div class="outline-text-3" id="text-org8ba17e8">
+<ul class="org-ul">
+<li>Apache Storm</li>
+<li>Spark Streaming</li>
+<li>Apache Flink</li>
+<li>Heron</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0aaf8e2" class="outline-3">
+<h3 id="org0aaf8e2">Hadoop</h3>
+</div>
+<div id="outline-container-orgef1f801" class="outline-3">
+<h3 id="orgef1f801">HDFS</h3>
+<div class="outline-text-3" id="text-orgef1f801">
+<p>
+Namenode vs DataNodes
+</p>
+</div>
+</div>
+<div id="outline-container-org543734f" class="outline-3">
+<h3 id="org543734f">YARN</h3>
+<div class="outline-text-3" id="text-org543734f">
+<p>
+Resource Manager vs NodeManager
+</p>
+</div>
+</div>
+<div id="outline-container-orgb51faf4" class="outline-3">
+<h3 id="orgb51faf4">Apache Kafka</h3>
+<div class="outline-text-3" id="text-orgb51faf4">
+<ul class="org-ul">
+<li>Fast, efficient IO</li>
+<li>Fault tolerant storage</li>
+<li>Publish and Subscribe to steams of records</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org07fde85" class="outline-3">
+<h3 id="org07fde85">Data management cycle</h3>
+<div class="outline-text-3" id="text-org07fde85">
+<ul class="org-ul">
+<li>Data</li>
+<li>Meta-data</li>
+<li>PID</li>
+<li>Search</li>
+<li>Disposition</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbd34553" class="outline-2">
+<h2 id="orgbd34553">Data Grid Data Management</h2>
+<div class="outline-text-2" id="text-orgbd34553">
+</div>
+<div id="outline-container-org6bb1af3" class="outline-3">
+<h3 id="org6bb1af3">Data Lake</h3>
+<div class="outline-text-3" id="text-org6bb1af3">
+<p>
+A data lake is a data storage, where raw data can be stored,
+whos structure is determined at the extraction from the lake
+</p>
+</div>
+<div id="outline-container-orge022e47" class="outline-4">
+<h4 id="orge022e47">Challenges</h4>
+<div class="outline-text-4" id="text-orge022e47">
+<ul class="org-ul">
+<li>Reliablity</li>
+<li>Slow Performance</li>
+<li>Lack of security</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org04b0fe4" class="outline-4">
+<h4 id="org04b0fe4">Zones</h4>
+<div class="outline-text-4" id="text-org04b0fe4">
+<ul class="org-ul">
+<li>Transient</li>
+<li>raw</li>
+<li>trusted</li>
+<li>refined</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgec1530b" class="outline-3">
+<h3 id="orgec1530b">ETL</h3>
+<div class="outline-text-3" id="text-orgec1530b">
+<p>
+Extract transform load
+</p>
+</div>
+</div>
+<div id="outline-container-org2e958fe" class="outline-3">
+<h3 id="org2e958fe">Storage data in Multiable locations</h3>
+<div class="outline-text-3" id="text-org2e958fe">
+<p>
+Redundancy for high-availability because of server falied and
+fast access of data
+</p>
+</div>
+</div>
+<div id="outline-container-orga1e8cfe" class="outline-3">
+<h3 id="orga1e8cfe">Storage data in remote data center</h3>
+<div class="outline-text-3" id="text-orga1e8cfe">
+<p>
+it is harder to acidentally delete something, such as because
+of disaster.
+</p>
+</div>
+</div>
+<div id="outline-container-org4a9f4ab" class="outline-3">
+<h3 id="org4a9f4ab">code storage</h3>
+<div class="outline-text-3" id="text-org4a9f4ab">
+<p>
+ssd
+</p>
+</div>
+</div>
+<div id="outline-container-org62fad07" class="outline-3">
+<h3 id="org62fad07">fair data management</h3>
+<div class="outline-text-3" id="text-org62fad07">
+<p>
+Find-able Accessable Interoperable Reproducible
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org29cb2e8" class="outline-2">
+<h2 id="org29cb2e8">ITIL &amp;SLA</h2>
+<div class="outline-text-2" id="text-org29cb2e8">
+</div>
+<div id="outline-container-orgc800716" class="outline-3">
+<h3 id="orgc800716">non functional service</h3>
+<div class="outline-text-3" id="text-orgc800716">
+<p>
+organizational Operation of server
+server quality like availability
+usability
+</p>
+
+<p>
+server
+value
+value co-creation
+IT service Management
+IT service Provider
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6532e19" class="outline-3">
+<h3 id="org6532e19">ITIL Information Technology Infrastructure Library</h3>
+<div class="outline-text-3" id="text-org6532e19">
+<p>
+a framework of best practices of IT service management and delivering 
+</p>
+</div>
+<div id="outline-container-orgb06f4b5" class="outline-4">
+<h4 id="orgb06f4b5">service value system SVS</h4>
+<div class="outline-text-4" id="text-orgb06f4b5">
+</div>
+<ul class="org-ul">
+<li><a id="orgd7a8197"></a>Guiding principles<br />
+<div class="outline-text-5" id="text-orgd7a8197">
+<ul class="org-ul">
+<li>focus on value</li>
+<li>start where you are</li>
+<li>progress iteratively with feedback</li>
+<li>collaborate and promote visibility</li>
+<li>think and work holistically</li>
+<li>keep in simple and practical</li>
+<li>optimize and automate</li>
+</ul>
+</div>
+</li>
+
+<li><a id="org5b5f68b"></a>Service Value Chain<br />
+<div class="outline-text-5" id="text-org5b5f68b">
+<ul class="org-ul">
+<li>plan</li>
+<li>improve</li>
+<li>engage</li>
+<li>design</li>
+<li>transition</li>
+<li>obtain</li>
+<li>deliver</li>
+</ul>
+</div>
+</li>
+
+<li><a id="org47e43db"></a>ITIL Practices<br /></li>
+</ul>
+</div>
+<div id="outline-container-org03d20b6" class="outline-4">
+<h4 id="org03d20b6">the four dimensions model</h4>
+<div class="outline-text-4" id="text-org03d20b6">
+<p>
+Organization&amp;People
+Information &amp; Technology
+Value streams&amp;Processes
+Partners&amp;suppliers
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org78aa9c7" class="outline-3">
+<h3 id="org78aa9c7">SLA Service Level Agreement Life cycle</h3>
+<div class="outline-text-3" id="text-org78aa9c7">
+<ul class="org-ul">
+<li>Development</li>
+<li>Negotiation</li>
+<li>Implementation</li>
+<li>Execution</li>
+<li>Assessment</li>
+<li>Termination</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb7ae9af" class="outline-3">
+<h3 id="orgb7ae9af">SLA components include</h3>
+<div class="outline-text-3" id="text-orgb7ae9af">
+<ul class="org-ul">
+<li>Parties,  terms,  conditions</li>
+<li>service defination include costs</li>
+<li>Performance parameters</li>
+<li>what is measured, how and when(monitoring)</li>
+<li>what is done to in case a SLA is voilated</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgeb0a134" class="outline-2">
+<h2 id="orgeb0a134">Security</h2>
+<div class="outline-text-2" id="text-orgeb0a134">
+</div>
+<div id="outline-container-orgb48042a" class="outline-3">
+<h3 id="orgb48042a">Confidentiality</h3>
+<div class="outline-text-3" id="text-orgb48042a">
+<p>
+The ability to hide the information from the unauthorized people
+</p>
+</div>
+</div>
+<div id="outline-container-orgfee3216" class="outline-3">
+<h3 id="orgfee3216">Integrity</h3>
+<div class="outline-text-3" id="text-orgfee3216">
+<p>
+The ability to ensure that data are unchanged and remain a correct representation of original data
+</p>
+</div>
+</div>
+<div id="outline-container-org273cadc" class="outline-3">
+<h3 id="org273cadc">Availablity</h3>
+<div class="outline-text-3" id="text-org273cadc">
+<p>
+data is available to authorized people
+</p>
+</div>
+</div>
+<div id="outline-container-orgbf7a77d" class="outline-3">
+<h3 id="orgbf7a77d">Asymmetric Encrytion RSA</h3>
+<div class="outline-text-3" id="text-orgbf7a77d">
+<pre class="example">
+Meassage: M
+Content: N
+Ciphertext: C
+Public key: E
+Encryption: E(x)
+private key: D
+Decryption: D(x)
+
+RSA Algorithm
+1. Select two prime number, p[13] and q[17]
+2. Generate Algorithm content N[221]: N = q*p
+3. calcalete the Eular function [192]: $\varphi(N)=(p-1)*(q-1)$
+4. Rondomly generate public key e[5]: and e is relatively prime with $\varphi(N)$
+5. calcalete the private key d[77]: so that $e*d =1$  mod $\varphi(N)$
+6. pack Public key E = (n, e) and publish to someone
+7. save Private key D =(n, d) 
+
+Someone want to some me Mesaage M: [12]
+Encryption: $C = M^{e}$ mod n  [207]
+send C [207] to me 
+
+I do the Decryption
+Message M: $M=C^{d}$ mod n  [207**77%221]
+get the Mesaage [12]
+</pre>
+</div>
+</div>
+<div id="outline-container-org4b2aadd" class="outline-3">
+<h3 id="org4b2aadd">security benefits</h3>
+<div class="outline-text-3" id="text-org4b2aadd">
+<ul class="org-ul">
+<li>Integrity</li>
+<li>authentify the sender</li>
+<li>non deniable for message</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7dc277f" class="outline-3">
+<h3 id="org7dc277f">symmetric encryption</h3>
+<div class="outline-text-3" id="text-org7dc277f">
+<ul class="org-ul">
+<li>challange of key exchange</li>
+<li>en/decryption with the same key</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9066ba6" class="outline-3">
+<h3 id="org9066ba6">asymmetic encryption</h3>
+<div class="outline-text-3" id="text-org9066ba6">
+<ul class="org-ul">
+<li>en/decryption need more resource</li>
+<li>safe key exchange</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd4e05b0" class="outline-3">
+<h3 id="orgd4e05b0">Digital Signiture</h3>
+<div class="outline-text-3" id="text-orgd4e05b0">
+<p>
+It's a certificate to identify the sender of message
+</p>
+</div>
+</div>
+<div id="outline-container-orgb5508f4" class="outline-3">
+<h3 id="orgb5508f4">how Certificate is trusted</h3>
+<div class="outline-text-3" id="text-orgb5508f4">
+<p>
+OS deliver a list of  already trusted accepted CAs, it's preconfigured
+</p>
+</div>
+</div>
+<div id="outline-container-orge3930e0" class="outline-3">
+<h3 id="orge3930e0">Authentication</h3>
+<div class="outline-text-3" id="text-orge3930e0">
+<p>
+verifies you are who you say you are
+</p>
+</div>
+</div>
+<div id="outline-container-orga518101" class="outline-3">
+<h3 id="orga518101">Authorization</h3>
+<div class="outline-text-3" id="text-orga518101">
+<p>
+verifies if you have the permission to access data
+</p>
+</div>
+</div>
+<div id="outline-container-org7b26369" class="outline-3">
+<h3 id="org7b26369">Confusion and Diffusion</h3>
+<div class="outline-text-3" id="text-org7b26369">
+<p>
+confusion is to create faint ciphertexts in crytoprahic
+Diffusion, if one place of plain text the modified, many places can be modified
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org42bb0e8" class="outline-2">
+<h2 id="org42bb0e8">Paraiell computation</h2>
+<div class="outline-text-2" id="text-org42bb0e8">
+</div>
+<div id="outline-container-org07c63e5" class="outline-3">
+<h3 id="org07c63e5">Von Nroven</h3>
+<div class="outline-text-3" id="text-org07c63e5">
+<p>
+cpu, interconnection, memory
+</p>
+</div>
+</div>
+<div id="outline-container-org820f885" class="outline-3">
+<h3 id="org820f885">memory mode</h3>
+<div class="outline-text-3" id="text-org820f885">
+<p>
+shared memory
+distributed memory
+</p>
+</div>
+</div>
+<div id="outline-container-org344c118" class="outline-3">
+<h3 id="org344c118">evaluation performance</h3>
+<div class="outline-text-3" id="text-org344c118">
+<p>
+CPI: cycles per instruction
+MIPS: Million Instructions per second
+FLOPS: Floating Point Operation per second
+</p>
+
+<p>
+Benchmark
+idle
+</p>
+
+<p>
+Does this also mean in a hundred percent parallel code ,
+the speed up is proportional to the number of threads?
+</p>
+<ul class="org-ul">
+<li>Yes</li>
+</ul>
+<p>
+fashion
+inductive
+</p>
+</div>
+</div>
+
+<div id="outline-container-org34c8622" class="outline-3">
+<h3 id="org34c8622">shared memory</h3>
+<div class="outline-text-3" id="text-org34c8622">
+<p>
+easy to build ,hard to large scare
+</p>
+</div>
+</div>
+<div id="outline-container-org4ce7f82" class="outline-3">
+<h3 id="org4ce7f82">distribution memory</h3>
+</div>
+</div>
+
+<div id="outline-container-orgf74ecbd" class="outline-2">
+<h2 id="orgf74ecbd">AWS</h2>
+</div>
+<div id="outline-container-org333c684" class="outline-2">
+<h2 id="org333c684">Alibaba</h2>
+</div>
+<div id="outline-container-orgf7b8de0" class="outline-2">
+<h2 id="orgf7b8de0">GWDG</h2>
+<div class="outline-text-2" id="text-orgf7b8de0">
+<ol class="org-ol">
+<li>as student of Göttingen send email to support@gwdg.de with uni email, asking for freischaltung of cloud server</li>
+<li>got <a href="https://gwdg.de">https://gwdg.de</a> Dienst-&gt; GWDG cloud server -&gt; self service create Instance
+if with my ssh, the connect can be without password, but still need to aktiv</li>
+<li>where the instance is created, use the VNS to aktiv the konto, remember to save the password
+ssh cloud@ip</li>
+</ol>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+对于新到手的项目可以直接放到容器的nginx根目录（快速部署 /usr/share/nginx/html），可以在映射的
+本机端口进入
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+to my case:
+</p>
+<pre class="example">
+sudo docker run -d -p 80:80 -v /home/sx/Documents/Java/ANANProject/layuimini/:/usr/share/nginx/html/ nginx
+</pre>
+
+<p class="footpara">
+Beispile
+</p>
+<pre class="example">
+
+sudo docker images
+sudo docker pull nginx
+sudo docker run -d -p 80:80 nginx -&gt; id:xxxxxxx
+sudo docker exec -it -v /....../project:/usr/share/nginx/html xxxxxxx
+build in - &gt; local host :80  
+</pre></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-11-28 Sun 10:35</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-11-28 Sun 10:35 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>From binary Heap to Fibonacci Heap</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css" />
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">From binary Heap to Fibonacci Heap</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgc3a0662">Binary Heap</a></li>
+<li><a href="#orge58ae68">Binomial-tree</a></li>
+<li><a href="#org1e91438">Binomial Heap</a></li>
+<li><a href="#org4281300">lazy Binomial Heap</a></li>
+<li><a href="#orga40bd17">Fibonacci Heap</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc3a0662" class="outline-2">
+<h2 id="orgc3a0662">Binary Heap</h2>
+<div class="outline-text-2" id="text-orgc3a0662">
+<p>
+Binary Heap example deviced by heap sort
+</p>
+<div class="org-src-container">
+<pre class="src src-typescript">let swap = function (left:number, right:number){
+  return [right, left]
+  }
+
+let heapfly =  function(list:number[], length:number, index:number){
+      var leftchild = index*2+1
+      var rightchild = index*2+2
+      var maxindex = index
+      if (leftchild &lt; length &amp;&amp; list[leftchild] &gt;list[maxindex]) {
+	  [leftchild, maxindex] = swap(leftchild, maxindex)
+      }
+
+    if (rightchild &lt; length &amp;&amp; list[rightchild]&gt;list[maxindex]) {
+	[rightchild, maxindex] = swap(rightchild, maxindex)
+      }
+      if (maxindex != index) {
+	  [list[maxindex], list[index]] = swap(list[maxindex], list[index])
+	  heapfly(list, length, maxindex)
+      }
+  }
+ let build_heap = function (list:number[], lenght:number){
+      var lastperent = Math.floor((length-1-1) / 2);
+      for (var i = lastperent; i &gt;= 0; i--) {
+	  heapfly(list, length, i);
+      }
+  }
+  var list: number[] = [2, 1, 3, 4, 5, 3, 5, 7, 8, 45,  9, 25, 34, 23, 345, 546, 20, 23465, 90, 19];
+  console.log(list)
+  var length: number = list.length;
+  build_heap(list, length)
+
+  for (var i = length-1; i &gt;= 0; i--) {
+      [list[i], list[0]]= swap(list[i], list[0])
+      heapfly(list, i, 0)
+  }
+  console.log(list)
+
+</pre>
+</div>
+
+<pre class="example">
+[
+    2,  1,     3,  4,   5,
+    3,  5,     7,  8,  45,
+    9, 25,    34, 23, 345,
+  546, 20, 23465, 90,  19
+]
+[
+   1,  2,   3,   3,     4,
+   5,  5,   7,   8,     9,
+  19, 20,  23,  25,    34,
+  45, 90, 345, 546, 23465
+]
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-orge58ae68" class="outline-2">
+<h2 id="orge58ae68">Binomial-tree</h2>
+<div class="outline-text-2" id="text-orge58ae68">
+<p>
+Definition: if k &gt; 0, \(B_{k} = {B_{0}, B_{1}, B_{2}....B_{k-1}}\).
+</p>
+<div class="org-src-container">
+<pre class="src src-dot">digraph diagramm {
+A0;
+B0 -&gt; B1;
+C0 -&gt; C1;
+C0 -&gt; C2;
+C2 -&gt; C3;
+D0 -&gt; D1;       
+D0 -&gt; D2;
+D0 -&gt; D3;
+D2 -&gt; D4;
+D3-&gt;D5;
+D3 -&gt; D6;
+D6 -&gt; D7;
+
+}         
+</pre>
+</div>
+<p>
+1, 2, 4, 8, 16&#x2026;., node of each tree in foto
+k order of Binomial Tree has \(2^{k}\) nodes
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1e91438" class="outline-2">
+<h2 id="org1e91438">Binomial Heap</h2>
+<div class="outline-text-2" id="text-org1e91438">
+<p>
+all different order Binomial Tree consist Binomial Heap
+</p>
+<div class="org-src-container">
+<pre class="src src-dot">digraph diagramm {
+A0;
+A0 -&gt; B0;
+B0 -&gt; B1;
+
+B0 -&gt; C0;
+C0 -&gt; C1;
+C0 -&gt; C2;
+C2 -&gt; C3;
+
+C0 -&gt; D0;
+D0 -&gt; D1;       
+D0 -&gt; D2;
+D0 -&gt; D3;
+D2 -&gt; D4;
+D3-&gt;D5;
+D3 -&gt; D6;
+D6 -&gt; D7;
+
+}         
+</pre>
+</div>
+
+<p>
+Each order has only one Binomial Tree, conlidataion is required at each min-extract, merge
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4281300" class="outline-2">
+<h2 id="org4281300">lazy Binomial Heap</h2>
+<div class="outline-text-2" id="text-org4281300">
+<p>
+Min-extra, Merge the conlidataion will not be executed, until it's needed
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga40bd17" class="outline-2">
+<h2 id="orga40bd17">Fibonacci Heap</h2>
+<div class="outline-text-2" id="text-orga40bd17">
+<p>
+key-decrease is also lazy, just cut it off, and add to rootlist
+amortised operation reduce Min-extra to \(O(log n)\), With  Fibonacci array .
+For all perents, if one child is loss, will be marked as red, 
+if the second also loss, the perent will be cut off, and add to rootlist.
+Max-damaged-Fibonacci-Heap has Fibonacci number nodes
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-11-28 Sun 10:35</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>

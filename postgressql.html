@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-11-28 Sun 10:35 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Postgresql</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css" />
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Postgresql</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org1aadf1d">basic OP</a>
+<ul>
+<li><a href="#orge5314c0">install</a></li>
+<li><a href="#org1cca330">root terminal</a></li>
+<li><a href="#orgfcae022">root login into database</a></li>
+<li><a href="#orgaea2cec">user login</a></li>
+<li><a href="#org74d90f9">set password</a></li>
+<li><a href="#org74b489f">change database</a></li>
+<li><a href="#org14a9e2f">list all users</a></li>
+<li><a href="#org0f2891d">login out</a></li>
+</ul>
+</li>
+<li><a href="#org11bdc9c">src block</a>
+<ul>
+<li><a href="#orgad8e5e5">with header</a></li>
+<li><a href="#orge9bc8dc">with session</a></li>
+</ul>
+</li>
+<li><a href="#orgb9bc260">hpda solution</a>
+<ul>
+<li><a href="#org88e201d">03-01</a></li>
+<li><a href="#orgc456264">03-02</a></li>
+<li><a href="#org05a7011">04-01</a>
+<ul>
+<li><a href="#org55c4946">mapper and reducer in own</a></li>
+<li><a href="#orgf8726d0">sql</a></li>
+<li><a href="#org3aea9a1">select</a></li>
+<li><a href="#orga32ce87">summation</a></li>
+<li><a href="#org23bf346">join</a></li>
+</ul>
+</li>
+<li><a href="#org72096e8">04-02</a>
+<ul>
+<li><a href="#orgc4b2bd9">01</a></li>
+<li><a href="#org0fee01d">02</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1aadf1d" class="outline-2">
+<h2 id="org1aadf1d">basic OP</h2>
+<div class="outline-text-2" id="text-org1aadf1d">
+</div>
+<div id="outline-container-orge5314c0" class="outline-3">
+<h3 id="orge5314c0">install</h3>
+<div class="outline-text-3" id="text-orge5314c0">
+<p>
+sudo apt install postgresql postgresql-contrib
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1cca330" class="outline-3">
+<h3 id="org1cca330">root terminal</h3>
+<div class="outline-text-3" id="text-org1cca330">
+<p>
+this terminal ist not sufficient to program, but basic shell command can be executed
+login into terminal: 
+sudo -i -u postgres
+terminal to psql:
+psql
+</p>
+</div>
+</div>
+<div id="outline-container-orgfcae022" class="outline-3">
+<h3 id="orgfcae022">root login into database</h3>
+<div class="outline-text-3" id="text-orgfcae022">
+<p>
+sudo -i -u postgres psql(postgres:  default user)
+psql, login into psql user
+if we login, we will be located in a table, which have the same name with user
+</p>
+</div>
+</div>
+<div id="outline-container-orgaea2cec" class="outline-3">
+<h3 id="orgaea2cec">user login</h3>
+<div class="outline-text-3" id="text-orgaea2cec">
+<p>
+psql -d test -U si -W
+</p>
+</div>
+</div>
+<div id="outline-container-org74d90f9" class="outline-3">
+<h3 id="org74d90f9">set password</h3>
+<div class="outline-text-3" id="text-org74d90f9">
+<p>
+in database set password for user
+\password user
+</p>
+</div>
+</div>
+<div id="outline-container-org74b489f" class="outline-3">
+<h3 id="org74b489f">change database</h3>
+<div class="outline-text-3" id="text-org74b489f">
+<p>
+\c database
+</p>
+</div>
+</div>
+<div id="outline-container-org14a9e2f" class="outline-3">
+<h3 id="org14a9e2f">list all users</h3>
+<div class="outline-text-3" id="text-org14a9e2f">
+<p>
+\du
+</p>
+</div>
+</div>
+<div id="outline-container-org0f2891d" class="outline-3">
+<h3 id="org0f2891d">login out</h3>
+<div class="outline-text-3" id="text-org0f2891d">
+<p>
+\q
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org11bdc9c" class="outline-2">
+<h2 id="org11bdc9c">src block</h2>
+<div class="outline-text-2" id="text-org11bdc9c">
+</div>
+<div id="outline-container-orgad8e5e5" class="outline-3">
+<h3 id="orgad8e5e5">with header</h3>
+<div class="outline-text-3" id="text-orgad8e5e5">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="font-weight: bold;">create</span> <span style="font-weight: bold;">table</span> <span style="font-weight: bold;">personv</span> (
+ id <span style="font-weight: bold; text-decoration: underline;">int</span>, 
+ firstname <span style="font-weight: bold; text-decoration: underline;">varchar</span>(50),
+ lastname <span style="font-weight: bold; text-decoration: underline;">varchar</span>(50),
+ gender <span style="font-weight: bold; text-decoration: underline;">varchar</span>(6),
+ dataofbirth <span style="font-weight: bold; text-decoration: underline;">DATE</span>
+) ;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge9bc8dc" class="outline-3">
+<h3 id="orge9bc8dc">with session</h3>
+<div class="outline-text-3" id="text-orge9bc8dc">
+<div class="org-src-container">
+<pre class="src src-sql">\l
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-sql">\d 
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb9bc260" class="outline-2">
+<h2 id="orgb9bc260">hpda solution</h2>
+<div class="outline-text-2" id="text-orgb9bc260">
+</div>
+<div id="outline-container-org88e201d" class="outline-3">
+<h3 id="org88e201d">03-01</h3>
+<div class="outline-text-3" id="text-org88e201d">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="font-weight: bold;">drop</span> <span style="font-weight: bold;">table</span> <span style="font-weight: bold;">if</span> <span style="font-weight: bold;">exists</span> WikipediaArticles ;
+<span style="font-weight: bold;">create</span> <span style="font-weight: bold;">table</span> <span style="font-weight: bold;">WikipediaArticles</span> (
+id <span style="font-weight: bold; text-decoration: underline;">int</span>,
+title <span style="font-weight: bold; text-decoration: underline;">varchar</span>(50), 
+text <span style="font-weight: bold; text-decoration: underline;">varchar</span>(50),
+category <span style="font-weight: bold; text-decoration: underline;">varchar</span>(50),
+link <span style="font-weight: bold; text-decoration: underline;">int</span>
+) ;
+\d wikipediaarticles;
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="font-weight: bold;">drop</span> <span style="font-weight: bold;">table</span> <span style="font-weight: bold;">if</span> <span style="font-weight: bold;">exists</span> linkarticles ;
+    <span style="font-weight: bold;">create</span> <span style="font-weight: bold;">table</span> <span style="font-weight: bold;">linkarticles</span> (
+    id <span style="font-weight: bold; text-decoration: underline;">int</span>,
+    linked <span style="font-weight: bold; text-decoration: underline;">int</span>
+ ) ;
+</pre>
+</div>
+
+
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="font-weight: bold;">delete</span> <span style="font-weight: bold;">from</span> wikipediaarticles <span style="font-weight: bold;">where</span> id = 1;
+<span style="font-weight: bold;">insert</span> <span style="font-weight: bold;">into</span> WikipediaArticles (id, title, text, category, link) <span style="font-weight: bold;">values</span> (1, <span style="font-style: italic;">'math'</span>, <span style="font-style: italic;">'mathematics and nature and nature'</span>, <span style="font-style: italic;">'nature'</span>, 1) ;
+<span style="font-weight: bold;">delete</span> <span style="font-weight: bold;">from</span> wikipediaarticles <span style="font-weight: bold;">where</span> id = 2;
+<span style="font-weight: bold;">insert</span> <span style="font-weight: bold;">into</span> WikipediaArticles (id, title, text, category, link) <span style="font-weight: bold;">values</span> (2, <span style="font-style: italic;">'phy'</span>, <span style="font-style: italic;">'physics'</span>, <span style="font-style: italic;">'nature'</span>, 2) ;
+<span style="font-weight: bold;">delete</span> <span style="font-weight: bold;">from</span> wikipediaarticles <span style="font-weight: bold;">where</span> id = 3;
+<span style="font-weight: bold;">insert</span> <span style="font-weight: bold;">into</span> WikipediaArticles (id, title, text, category, link) <span style="font-weight: bold;">values</span> (3, <span style="font-style: italic;">'chemie'</span>, <span style="font-style: italic;">'chemistry'</span>, <span style="font-style: italic;">'science'</span>, 3) ;
+<span style="font-weight: bold;">delete</span> <span style="font-weight: bold;">from</span> wikipediaarticles <span style="font-weight: bold;">where</span> id = 4;
+<span style="font-weight: bold;">insert</span> <span style="font-weight: bold;">into</span> WikipediaArticles (id, title, text, category, link) <span style="font-weight: bold;">values</span> (4, <span style="font-style: italic;">'bio'</span>, <span style="font-style: italic;">'biology'</span>, <span style="font-style: italic;">'science'</span>, 4) ;
+<span style="font-weight: bold;">select</span> * <span style="font-weight: bold;">from</span> wikipediaarticles ;
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="font-weight: bold;">delete</span> <span style="font-weight: bold;">from</span> linkarticles <span style="font-weight: bold;">where</span> id = 1;
+<span style="font-weight: bold;">insert</span> <span style="font-weight: bold;">into</span> Linkarticles (id, linked) <span style="font-weight: bold;">values</span> (1, 2) ;
+<span style="font-weight: bold;">insert</span> <span style="font-weight: bold;">into</span> Linkarticles (id, linked) <span style="font-weight: bold;">values</span> (1, 3) ;
+<span style="font-weight: bold;">delete</span> <span style="font-weight: bold;">from</span> linkarticles <span style="font-weight: bold;">where</span> id = 2;
+<span style="font-weight: bold;">insert</span> <span style="font-weight: bold;">into</span> Linkarticles (id, linked) <span style="font-weight: bold;">values</span> (2, 3) ;
+<span style="font-weight: bold;">delete</span> <span style="font-weight: bold;">from</span> linkarticles <span style="font-weight: bold;">where</span> id = 3;
+<span style="font-weight: bold;">insert</span> <span style="font-weight: bold;">into</span> Linkarticles (id, linked) <span style="font-weight: bold;">values</span> (3, 4) ;
+<span style="font-weight: bold;">delete</span> <span style="font-weight: bold;">from</span> linkarticles <span style="font-weight: bold;">where</span> id = 4;
+<span style="font-weight: bold;">insert</span> <span style="font-weight: bold;">into</span> Linkarticles (id, linked) <span style="font-weight: bold;">values</span> (4, 1) ;
+<span style="font-weight: bold;">select</span> * <span style="font-weight: bold;">from</span> linkarticles ;
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="font-weight: bold;">select</span> * <span style="font-weight: bold;">from</span> wikipediaarticles <span style="font-weight: bold;">where</span> title = <span style="font-style: italic;">'phy'</span>;
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="font-weight: bold;">select</span> * <span style="font-weight: bold;">from</span> wikipediaarticles <span style="font-weight: bold;">where</span> id <span style="font-weight: bold;">in</span>
+ (<span style="font-weight: bold;">select</span> linked <span style="font-weight: bold;">from</span> linkarticles <span style="font-weight: bold;">where</span> id <span style="font-weight: bold;">in</span>
+  (<span style="font-weight: bold;">select</span> id <span style="font-weight: bold;">from</span> wikipediaarticles <span style="font-weight: bold;">where</span> title = <span style="font-style: italic;">'math'</span>)
+);
+
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="font-weight: bold;">select</span> <span style="font-weight: bold;">count</span>(*) , linked <span style="font-weight: bold;">from</span> linkarticles <span style="font-weight: bold;">group</span> <span style="font-weight: bold;">by</span> linked;
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="font-weight: bold;">select</span> <span style="font-weight: bold;">unnest</span>(string_to_array(<span style="font-style: italic;">'this is is is a test'</span>, <span style="font-style: italic;">' '</span>))
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="font-weight: bold;">select</span> id,  <span style="font-weight: bold;">unnest</span>(string_to_array(text , <span style="font-style: italic;">' '</span>)) <span style="font-weight: bold;">as</span> word, <span style="font-weight: bold;">count</span>(*) <span style="font-weight: bold;">from</span> WikipediaArticles <span style="font-weight: bold;">group</span> <span style="font-weight: bold;">by</span> id, word
+</pre>
+</div>
+
+
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="font-weight: bold;">select</span> * <span style="font-weight: bold;">from</span> wikipediaarticles <span style="font-weight: bold;">where</span> category = <span style="font-style: italic;">'science'</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc456264" class="outline-3">
+<h3 id="orgc456264">03-02</h3>
+<div class="outline-text-3" id="text-orgc456264">
+<div class="org-src-container">
+<pre class="src src-dot">digraph diagramm {
+  WikipediaArticles  -&gt; id
+  WikipediaArticles  -&gt; Title
+  WikipediaArticles  -&gt; Text
+  WikipediaArticles  -&gt; Category
+  WikipediaArticles  -&gt; Links
+  Links  -&gt; linkarticles
+  linkarticles -&gt; lid
+  linkarticles -&gt; linked
+}
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org05a7011" class="outline-3">
+<h3 id="org05a7011">04-01</h3>
+<div class="outline-text-3" id="text-org05a7011">
+</div>
+<div id="outline-container-org55c4946" class="outline-4">
+<h4 id="org55c4946">mapper and reducer in own</h4>
+<div class="outline-text-4" id="text-org55c4946">
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">def</span> <span style="font-weight: bold;">mapper</span>(key, value):
+  <span style="font-weight: bold; font-style: italic;">words</span> = key.split()
+  <span style="font-weight: bold;">for</span> word <span style="font-weight: bold;">in</span> words:
+    Wmr.emit(word, 1)
+
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">mapper</span>(key, value):
+  <span style="font-weight: bold; font-style: italic;">words</span> = key.split()
+  <span style="font-weight: bold;">for</span> word <span style="font-weight: bold;">in</span> words:
+    Wmr.emit(<span style="font-style: italic;">"s"</span>, stem(word), 1)
+  <span style="font-weight: bold;">for</span> word <span style="font-weight: bold;">in</span> words:
+    Wmr.emit(<span style="font-style: italic;">"l"</span>, lemmatize(word), 1)
+
+
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">reducer</span>(key, values):
+  <span style="font-weight: bold; font-style: italic;">count</span> = 0
+  <span style="font-weight: bold;">for</span> value <span style="font-weight: bold;">in</span> values:
+    <span style="font-weight: bold; font-style: italic;">count</span> += <span style="font-weight: bold;">int</span>(value)
+    Wmr.emit(key, count)
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf8726d0" class="outline-4">
+<h4 id="orgf8726d0">sql</h4>
+<div class="outline-text-4" id="text-orgf8726d0">
+<div class="org-src-container">
+<pre class="src src-sh">cat ~/Documents/hpda0404.csv 
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="font-weight: bold;">drop</span> <span style="font-weight: bold;">table</span> <span style="font-weight: bold;">if</span> <span style="font-weight: bold;">exists</span> hpda0401 ;
+
+<span style="font-weight: bold;">create</span> <span style="font-weight: bold;">table</span> <span style="font-weight: bold;">hpda0401</span> (
+num <span style="font-weight: bold; text-decoration: underline;">int</span>,
+germany <span style="font-weight: bold; text-decoration: underline;">varchar</span>(10),
+english <span style="font-weight: bold; text-decoration: underline;">varchar</span>(10),
+chinese <span style="font-weight: bold; text-decoration: underline;">varchar</span>(10),
+listed <span style="font-weight: bold; text-decoration: underline;">int</span>
+) ;
+
+<span style="font-weight: bold;">insert</span> <span style="font-weight: bold;">into</span> hpda0401 (num, germany, english, chinese, listed) <span style="font-weight: bold;">values</span> (1, <span style="font-style: italic;">'eins'</span>, <span style="font-style: italic;">'one'</span>,<span style="font-style: italic;">'&#19968;'</span>, 1);
+<span style="font-weight: bold;">insert</span> <span style="font-weight: bold;">into</span> hpda0401 (num, germany, english, chinese, listed) <span style="font-weight: bold;">values</span> (2, <span style="font-style: italic;">'zwei'</span>, <span style="font-style: italic;">'two'</span>,<span style="font-style: italic;">'&#20108;'</span>, 1);
+<span style="font-weight: bold;">insert</span> <span style="font-weight: bold;">into</span> hpda0401 (num, germany, english, chinese, listed) <span style="font-weight: bold;">values</span> (3, <span style="font-style: italic;">'drei'</span>, <span style="font-style: italic;">'three'</span>,<span style="font-style: italic;">'&#19977;'</span>, 2);
+<span style="font-weight: bold;">insert</span> <span style="font-weight: bold;">into</span> hpda0401 (num, germany, english, chinese, listed) <span style="font-weight: bold;">values</span> (6, <span style="font-style: italic;">'sechs'</span>, <span style="font-style: italic;">'six'</span>,<span style="font-style: italic;">'&#20845;'</span>, 2);
+
+<span style="font-weight: bold;">select</span> germany <span style="font-weight: bold;">from</span> hpda0401 <span style="font-weight: bold;">where</span>  germany = <span style="font-style: italic;">'zwei'</span>;
+
+<span style="font-weight: bold;">select</span> listed, <span style="font-weight: bold;">sum</span>(num) <span style="font-weight: bold;">as</span> mysum <span style="font-weight: bold;">from</span> hpda0401 <span style="font-weight: bold;">group</span> <span style="font-weight: bold;">by</span> listed;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3aea9a1" class="outline-4">
+<h4 id="org3aea9a1">select</h4>
+<div class="outline-text-4" id="text-org3aea9a1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">import</span> csv
+<span style="font-weight: bold;">from</span> functools <span style="font-weight: bold;">import</span> <span style="font-weight: bold;">reduce</span>
+<span style="font-weight: bold; font-style: italic;">path</span> = <span style="font-style: italic;">"/home/si/Documents/hpda0404.csv"</span>
+<span style="font-weight: bold; font-style: italic;">data</span> = []
+<span style="font-weight: bold;">with</span> <span style="font-weight: bold;">open</span>(path) <span style="font-weight: bold;">as</span> f:
+    <span style="font-weight: bold; font-style: italic;">records</span> = csv.DictReader(f)
+    <span style="font-weight: bold;">for</span> row <span style="font-weight: bold;">in</span> records:
+        data.append(row)
+    <span style="font-weight: bold;">print</span>(data)
+
+
+<span style="font-weight: bold; font-style: italic;">mapiter</span> = <span style="font-weight: bold;">map</span>(<span style="font-weight: bold;">lambda</span> x: x[<span style="font-style: italic;">"germany"</span>], data)
+<span style="font-weight: bold; font-style: italic;">maplist</span> = [ele <span style="font-weight: bold;">for</span> ele <span style="font-weight: bold;">in</span> mapiter]
+<span style="font-weight: bold;">print</span>(maplist)    
+
+<span style="font-weight: bold; font-style: italic;">filteriter</span> = <span style="font-weight: bold;">filter</span>(<span style="font-weight: bold;">lambda</span> x: x==<span style="font-style: italic;">"zwei"</span>, maplist)
+<span style="font-weight: bold; font-style: italic;">filterlist</span> = [ele <span style="font-weight: bold;">for</span> ele <span style="font-weight: bold;">in</span> filteriter]
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"select germany WHERE germany == zwei :"</span>, filterlist)
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga32ce87" class="outline-4">
+<h4 id="orga32ce87">summation</h4>
+<div class="outline-text-4" id="text-orga32ce87">
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">import</span> csv
+<span style="font-weight: bold;">from</span> functools <span style="font-weight: bold;">import</span> <span style="font-weight: bold;">reduce</span>
+<span style="font-weight: bold; font-style: italic;">path</span> = <span style="font-style: italic;">"/home/si/Documents/hpda0404.csv"</span>
+<span style="font-weight: bold; font-style: italic;">data</span> = []
+<span style="font-weight: bold;">with</span> <span style="font-weight: bold;">open</span>(path) <span style="font-weight: bold;">as</span> f:
+    <span style="font-weight: bold; font-style: italic;">records</span> = csv.DictReader(f)
+    <span style="font-weight: bold;">for</span> row <span style="font-weight: bold;">in</span> records:
+        data.append(row)
+    <span style="font-weight: bold;">print</span>(data)
+
+
+<span style="font-weight: bold; font-style: italic;">iters</span> = <span style="font-weight: bold;">map</span>(<span style="font-weight: bold;">lambda</span> x: x[<span style="font-style: italic;">"listed"</span>], data)
+<span style="font-weight: bold; font-style: italic;">iterslist</span> = [ele <span style="font-weight: bold;">for</span> ele <span style="font-weight: bold;">in</span> iters]
+<span style="font-weight: bold; font-style: italic;">iterset</span> = <span style="font-weight: bold;">set</span>(iterslist)
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"grouped by "</span>, iterset)
+
+<span style="font-weight: bold; font-style: italic;">dic</span> = {}
+<span style="font-weight: bold;">for</span> i <span style="font-weight: bold;">in</span> iterset:
+    <span style="font-weight: bold; font-style: italic;">temp</span> = []
+    <span style="font-weight: bold;">for</span> d <span style="font-weight: bold;">in</span> data:
+        <span style="font-weight: bold;">for</span> (j, n) <span style="font-weight: bold;">in</span> [b <span style="font-weight: bold;">for</span> b <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">map</span>(<span style="font-weight: bold;">lambda</span> x: (x[<span style="font-style: italic;">"listed"</span>],x[<span style="font-style: italic;">"num"</span>]), [d])]:
+            <span style="font-weight: bold;">if</span> i == j:
+                temp.append(<span style="font-weight: bold;">int</span>(n))
+    <span style="font-weight: bold; font-style: italic;">reduer</span> = <span style="font-weight: bold;">reduce</span>(<span style="font-weight: bold;">lambda</span> x, y:x+y, temp)
+    <span style="font-weight: bold; font-style: italic;">dic</span>[i]= reduer
+
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"sum (num) GROUP) BY listed : "</span>, dic)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org23bf346" class="outline-4">
+<h4 id="org23bf346">join</h4>
+<div class="outline-text-4" id="text-org23bf346">
+<div class="org-src-container">
+<pre class="src src-sh">cat ~/Documents/hpda0404a.csv 
+cat ~/Documents/hpda0404b.csv
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">import</span> csv
+<span style="font-weight: bold;">from</span> functools <span style="font-weight: bold;">import</span> <span style="font-weight: bold;">reduce</span>
+<span style="font-weight: bold; font-style: italic;">path1</span> = <span style="font-style: italic;">"/home/si/Documents/hpda0404a.csv"</span>
+<span style="font-weight: bold; font-style: italic;">path2</span> = <span style="font-style: italic;">"/home/si/Documents/hpda0404b.csv"</span>
+<span style="font-weight: bold; font-style: italic;">data1</span> = []
+<span style="font-weight: bold;">with</span> <span style="font-weight: bold;">open</span>(path1) <span style="font-weight: bold;">as</span> f:
+    <span style="font-weight: bold; font-style: italic;">records</span> = csv.DictReader(f)
+    <span style="font-weight: bold;">for</span> row <span style="font-weight: bold;">in</span> records:
+        data1.append(row)
+    <span style="font-weight: bold;">print</span>(data1)
+
+<span style="font-weight: bold; font-style: italic;">data2</span> = []
+<span style="font-weight: bold;">with</span> <span style="font-weight: bold;">open</span>(path2) <span style="font-weight: bold;">as</span> f:
+    <span style="font-weight: bold; font-style: italic;">records</span> = csv.DictReader(f)
+    <span style="font-weight: bold;">for</span> row <span style="font-weight: bold;">in</span> records:
+        data2.append(row)
+    <span style="font-weight: bold;">print</span>(data2)    
+
+
+<span style="font-weight: bold;">for</span> a <span style="font-weight: bold;">in</span> data1:
+    <span style="font-weight: bold; font-style: italic;">aid</span> = [y <span style="font-weight: bold;">for</span> y <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">map</span>(<span style="font-weight: bold;">lambda</span> x: x[<span style="font-style: italic;">"id"</span>], [a])]
+    <span style="font-weight: bold;">for</span> b <span style="font-weight: bold;">in</span> data2:
+        <span style="font-weight: bold; font-style: italic;">bid</span> = [y <span style="font-weight: bold;">for</span> y <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">map</span>(<span style="font-weight: bold;">lambda</span> x: x[<span style="font-style: italic;">"id"</span>], [b])]
+        <span style="font-weight: bold;">if</span> aid == bid:
+            (af1, bf2) = ([y <span style="font-weight: bold;">for</span> y <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">map</span>(<span style="font-weight: bold;">lambda</span> x: x[<span style="font-style: italic;">"germany"</span>], [a])], [y <span style="font-weight: bold;">for</span> y <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">map</span>(<span style="font-weight: bold;">lambda</span> x: x[<span style="font-style: italic;">"fan"</span>], [b])])
+            <span style="font-weight: bold;">print</span>(af1, bf2)
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org72096e8" class="outline-3">
+<h3 id="org72096e8">04-02</h3>
+<div class="outline-text-3" id="text-org72096e8">
+</div>
+<div id="outline-container-orgc4b2bd9" class="outline-4">
+<h4 id="orgc4b2bd9">01</h4>
+<div class="outline-text-4" id="text-orgc4b2bd9">
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">from</span> nltk.stem.snowball <span style="font-weight: bold;">import</span> SnowballStemmer
+<span style="font-weight: bold;">from</span> nltk.stem <span style="font-weight: bold;">import</span> WordNetLemmatizer
+
+<span style="font-weight: bold; font-style: italic;">stemmer</span> = SnowballStemmer(<span style="font-style: italic;">"english"</span>)
+<span style="font-weight: bold; font-style: italic;">lemmatizer</span> = WordNetLemmatizer()
+
+<span style="font-weight: bold;">file</span> = <span style="font-style: italic;">"/home/si/Documents/hpda0402wordscount.txt"</span>
+<span style="font-weight: bold; font-style: italic;">sdict</span> = {}
+<span style="font-weight: bold; font-style: italic;">ldict</span> = {}
+<span style="font-weight: bold;">with</span> <span style="font-weight: bold;">open</span>(<span style="font-weight: bold;">file</span>, <span style="font-style: italic;">"r"</span>) <span style="font-weight: bold;">as</span> data:
+    <span style="font-weight: bold; font-style: italic;">datas</span> = data.read()
+    <span style="font-weight: bold; font-style: italic;">words</span> = datas.split(<span style="font-style: italic;">' '</span>)
+    <span style="font-weight: bold;">for</span> word <span style="font-weight: bold;">in</span> words:
+        <span style="font-weight: bold; font-style: italic;">sword</span> = stemmer.stem(word)
+        <span style="font-weight: bold; font-style: italic;">lword</span> = lemmatizer.lemmatize(word)
+        <span style="font-weight: bold;">if</span> sword <span style="font-weight: bold;">in</span> sdict:
+            <span style="font-weight: bold; font-style: italic;">sdict</span>[sword] += 1
+        <span style="font-weight: bold;">else</span>:
+            <span style="font-weight: bold; font-style: italic;">sdict</span>[sword] = 1
+
+        <span style="font-weight: bold;">if</span> lword <span style="font-weight: bold;">in</span> ldict:
+            <span style="font-weight: bold; font-style: italic;">ldict</span>[lword] += 1
+        <span style="font-weight: bold;">else</span>:
+            <span style="font-weight: bold; font-style: italic;">ldict</span>[lword] = 1
+
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"---------sdict----------------------"</span>)
+    <span style="font-weight: bold;">for</span> (item, key) <span style="font-weight: bold;">in</span> sdict.items():
+          <span style="font-weight: bold;">print</span>(item, key)
+
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"---------ldict----------------------"</span>)
+    <span style="font-weight: bold;">for</span> (item, key) <span style="font-weight: bold;">in</span> sdict.items():
+        <span style="font-weight: bold;">print</span>(item, key)
+
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0fee01d" class="outline-4">
+<h4 id="org0fee01d">02</h4>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-11-28 Sun 10:35</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>

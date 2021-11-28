@@ -1,0 +1,1122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-11-28 Sun 10:35 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Data Science</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css" />
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Data Science</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org4df05ce">Association Rule Minning</a></li>
+<li><a href="#org07e524b">sensor Fusion</a>
+<ul>
+<li><a href="#org9c2145f">Sensor Dataverarbeitung</a></li>
+<li><a href="#org55401f0">concepts</a></li>
+</ul>
+</li>
+<li><a href="#org4c2466d">data analysis</a>
+<ul>
+<li><a href="#org563dbb8">statistical mothode</a></li>
+<li><a href="#org74058b4">confidence level interval determinate</a></li>
+<li><a href="#org43e66d6">a complete ploted distribution of confidence level on t mode</a></li>
+<li><a href="#org5cccf8d">a complete ploted distribution</a></li>
+<li><a href="#orgc7913b4">a complete ploted distribution on between region</a></li>
+<li><a href="#orgcdeac2a">a example from internet</a></li>
+<li><a href="#org43d73e3">1 2 3 order and gauss fitting</a></li>
+<li><a href="#orga48e169">linear fitting</a></li>
+<li><a href="#org91e6c55">linear fitting with ployfit</a></li>
+</ul>
+</li>
+<li><a href="#org966c3e1">Data Exploration</a></li>
+<li><a href="#orgd4b98e9">Time Series Analysis</a>
+<ul>
+<li><a href="#org522a74a">Descripation</a></li>
+<li><a href="#orgb595972">Box-Jenkins for stationary</a>
+<ul>
+<li><a href="#orgc89155e">stationary</a></li>
+<li><a href="#org42246a6">Trend and Series Effects</a></li>
+<li><a href="#org2e93bd7">Regession and Seasonal Means</a></li>
+</ul>
+</li>
+<li><a href="#org1e53604">Differencing for not stationary</a></li>
+<li><a href="#org9c20e84">Correlation</a></li>
+<li><a href="#orgce49ec1">ARIMA</a>
+<ul>
+<li><a href="#org3937288">AR: atuoregressive</a></li>
+<li><a href="#org5cae254">MA: Moving average</a></li>
+<li><a href="#orgebe833b">ARMA: autoregressive and Moving average</a></li>
+<li><a href="#orgba8219d">select p and q</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org4f8d4d4">Hadoop</a>
+<ul>
+<li><a href="#org17fe28e">inital</a></li>
+<li><a href="#orgdbad40a">command</a></li>
+<li><a href="#orgf08105b">map()</a></li>
+<li><a href="#org99ff18a">Schuffle</a></li>
+<li><a href="#org1c8860c">reduce</a></li>
+<li><a href="#org66cb8d4">Limitation</a></li>
+</ul>
+</li>
+<li><a href="#org14e63d6">HDFS</a></li>
+<li><a href="#org7cdf605">YARN</a></li>
+<li><a href="#orgeecc791">Spark</a>
+<ul>
+<li><a href="#org3825153">pyspark</a></li>
+</ul>
+</li>
+<li><a href="#org2798ee2">Text minning</a>
+<ul>
+<li><a href="#org32bee92">Preprocessing</a>
+<ul>
+<li><a href="#org309595b">Creation of a Corpus</a></li>
+<li><a href="#orgaf1309d">remove the irrelevant content,</a></li>
+<li><a href="#orgc5000ad">Punctuation and Cases</a></li>
+<li><a href="#orge0c8451">Stop words</a></li>
+<li><a href="#orgc7f7990">Stemming and Lemmatization</a></li>
+</ul>
+</li>
+<li><a href="#org850e67e">Visualiztation</a>
+<ul>
+<li><a href="#orgcd6801d">bag-of-words with wordclouds</a></li>
+<li><a href="#orge297eac">Term frequency(TF)</a></li>
+<li><a href="#orge600239">Inverse Document Frequency(IDF)</a></li>
+<li><a href="#org4f2bcef">TFIDF</a></li>
+<li><a href="#org2d1e94d">beyond the bag-of-words</a></li>
+</ul>
+</li>
+<li><a href="#org03b089a">challages</a>
+<ul>
+<li><a href="#org3002348">dimensionality</a></li>
+<li><a href="#orgf831655">Ambiguities</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org2c0d7e4">High performance Data Analysis</a></li>
+<li><a href="#orgbb308b7">Paralle compuation</a>
+<ul>
+<li><a href="#org8405ada">performance</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4df05ce" class="outline-2">
+<h2 id="org4df05ce">Association Rule Minning</h2>
+<div class="outline-text-2" id="text-org4df05ce">
+<ul class="org-ul">
+<li>Transaction: T, one behavior, which accomplished a lot of things(items)
+-transaction instances t,</li>
+<li>Item : I, which stands for the smallest unit, that can be done.</li>
+<li>Our task is to find out, the relationship between items</li>
+</ul>
+
+<p>
+<b>Support</b>
+the probabilty of a itemset occurs
+\[Support (IS) = \frac{|t \in T: IS \subseteq t |}{|T|}\]
+All IS bigger than a setted value is called frequent itemset,
+but how to set the value is self-define
+</p>
+
+
+
+<p>
+<b>Confidence</b>
+\[C(a->b) = P(b|a) = \frac{P(ab)}{P(a)}\]
+</p>
+<pre class="example">
+the Probabilities  If a is done, b will also be done.
+</pre>
+
+<p>
+<b>Support</b>
+\[S(a->b)=P(a\cap b) = P(ab)\]
+</p>
+<pre class="example">
+a and b be done together from all Transaction, identify the special Transaction case
+</pre>
+
+<p>
+\[X -> Y(C=c, S=s)\]
+</p>
+
+<p>
+<b>practicability</b> (Lift)
+\[L(a->b)=\frac{Confidence(a->b)}{P(b)} =\frac{P(ab)}{P(a)P(b)}\]
+</p>
+<pre class="example">
+The impact of a on b to be done
+</pre>
+
+
+<p>
+<b>Aprioir</b> <b>algorithm</b>
+</p>
+
+<p>
+1.(with support level(S) )
+</p>
+<ul class="org-ul">
+<li>find the frequently itemset(L)</li>
+<li>the subsets of frequently itemset is also frequently itemset</li>
+<li>collect the total Transaction set(T), and set the the support level</li>
+<li>find all \(L_{1}\), which satisfied S,</li>
+<li>find all \(L_{2}\), which come from all 2-items combinations, which satisfied S</li>
+<li>&#x2026;..to only one left, \(L_{k}\).</li>
+</ul>
+
+<p>
+2.(with Confidence (C) )find all subsets of \(L_{k}\), which satisfied C.
+</p>
+
+<p>
+<b>Note</b> all the operations in this 2 step is done in the whole Transaction sets
+</p>
+</div>
+</div>
+
+<div id="outline-container-org07e524b" class="outline-2">
+<h2 id="org07e524b">sensor Fusion</h2>
+<div class="outline-text-2" id="text-org07e524b">
+</div>
+<div id="outline-container-org9c2145f" class="outline-3">
+<h3 id="org9c2145f">Sensor Dataverarbeitung</h3>
+<div class="outline-text-3" id="text-org9c2145f">
+<p>
+Tensor Fehler, Präzision: stochastisch
+Richtigkeit: systematisch
+</p>
+</div>
+</div>
+<div id="outline-container-org55401f0" class="outline-3">
+<h3 id="org55401f0">concepts</h3>
+<div class="outline-text-3" id="text-org55401f0">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">competitive</td>
+<td class="org-left">many sensor for the same place für higher accuracy</td>
+</tr>
+
+<tr>
+<td class="org-left">complementary</td>
+<td class="org-left">many sensor for many places für higher completeness</td>
+</tr>
+
+<tr>
+<td class="org-left">dead reckoning</td>
+<td class="org-left">errors accumulation over previous knowlegde</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+\[ y = H x + e \]
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">measurement equation</td>
+<td class="org-left">projects the state onto the measurement space</td>
+</tr>
+
+<tr>
+<td class="org-left">y</td>
+<td class="org-left">measurement</td>
+</tr>
+
+<tr>
+<td class="org-left">x</td>
+<td class="org-left">state</td>
+</tr>
+
+<tr>
+<td class="org-left">H</td>
+<td class="org-left">measurement matrix</td>
+</tr>
+
+<tr>
+<td class="org-left">e</td>
+<td class="org-left">measurement error</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+<b>Jacobian Matrix</b> one order
+</p>
+
+<p>
+<b>Hessian Matrix</b>  two order
+</p>
+
+<p>
+<b>Partial Matrix</b>
+</p>
+<ul class="org-ul">
+<li>\[ \frac{\partial}{\partial x}c^{T}x = \frac{\partial}{\partial x}x^{T}c  = c \]</li>
+<li>\[ \frac{\partial}{\partial x}x^{T}Ax = 2 Ax \]</li>
+<li>\[ \frac{\partial}{\partial x}Ax = \frac{\partial}{\partial x}x^{T}A = A \]</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4c2466d" class="outline-2">
+<h2 id="org4c2466d">data analysis</h2>
+<div class="outline-text-2" id="text-org4c2466d">
+</div>
+<div id="outline-container-org563dbb8" class="outline-3">
+<h3 id="org563dbb8">statistical mothode</h3>
+<div class="outline-text-3" id="text-org563dbb8">
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">from</span> scipy <span style="font-weight: bold;">import</span> stats
+<span style="font-weight: bold;">from</span> scipy.stats <span style="font-weight: bold;">import</span> norm
+<span style="font-weight: bold;">import</span> numpy <span style="font-weight: bold;">as</span> np
+<span style="font-weight: bold;">import</span> scipy <span style="font-weight: bold;">as</span> sp
+<span style="font-weight: bold;">print</span>(sp.stats.t.ppf(0.95,6))
+<span style="font-weight: bold;">print</span>(norm.cdf([-1,0,1]))
+<span style="font-weight: bold;">print</span>(norm.cdf(np.array([-1,0,1])))
+<span style="font-weight: bold;">print</span>(norm.mean(), norm.std(), norm.var() )
+<span style="font-weight: bold;">print</span>(norm.pdf(0))
+<span style="font-weight: bold;">print</span>(norm.cdf(1.96))
+<span style="font-weight: bold;">print</span>(norm.ppf(0.975))
+<span style="font-weight: bold;">print</span>(norm.cdf(1))
+<span style="font-weight: bold;">print</span>(norm.ppf(0.841344746090))
+<span style="font-weight: bold;">print</span>(norm.sf(1-norm.cdf(1)))
+<span style="font-weight: bold;">print</span>(norm.ppf(0.9))
+<span style="font-weight: bold;">print</span>(stats.t.ppf(0.975,3))
+<span style="font-weight: bold;">print</span>(stats.t.ppf(0.975,3))
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org74058b4" class="outline-3">
+<h3 id="org74058b4">confidence level interval determinate</h3>
+<div class="outline-text-3" id="text-org74058b4">
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">import</span> numpy <span style="font-weight: bold;">as</span> np
+<span style="font-weight: bold;">import</span> scipy <span style="font-weight: bold;">as</span> sp
+<span style="font-weight: bold;">import</span> scipy.stats
+
+<span style="font-weight: bold; font-style: italic;">b</span> = [8*x**0 <span style="font-weight: bold;">for</span> x <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(200)] + np.random.normal(0, 0.05, (200))
+
+
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">t_stastik</span>(data, confidence):
+    <span style="font-weight: bold; font-style: italic;">m</span>, <span style="font-weight: bold; font-style: italic;">se</span> = np.mean(data), sp.stats.sem(data)
+    <span style="font-weight: bold; font-style: italic;">h</span> = se*sp.stats.t.isf((1-confidence)/2. , df = (<span style="font-weight: bold;">len</span>(data)-1) )
+    <span style="font-weight: bold;">return</span> m, m-h, m+h
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">" For given data sete we have their mean  with 95% confidence level of region :"</span>,t_stastik(b,0.95))
+
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">mean_confidence_interval</span>(data, confidence):
+    <span style="font-weight: bold; font-style: italic;">m</span>, <span style="font-weight: bold; font-style: italic;">se</span> = np.mean(data), sp.stats.sem(data)
+    <span style="font-weight: bold; font-style: italic;">h</span> = se*sp.stats.t.ppf((1+confidence)/2.,<span style="font-weight: bold;">len</span>(data)-1)
+    <span style="font-weight: bold;">return</span> m, m-h, m+h
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'For data the mean  can also  be calcaleted as at 95% confidence level is :'</span>, mean_confidence_interval(b, 0.95))
+
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org43e66d6" class="outline-3">
+<h3 id="org43e66d6">a complete ploted distribution of confidence level on t mode</h3>
+<div class="outline-text-3" id="text-org43e66d6">
+<div class="org-src-container">
+<pre class="src src-python">  <span style="font-weight: bold;">import</span> numpy <span style="font-weight: bold;">as</span> np
+<span style="font-weight: bold; font-style: italic;">#  </span><span style="font-weight: bold; font-style: italic;">import seaborn as sns</span>
+  <span style="font-weight: bold;">from</span> scipy <span style="font-weight: bold;">import</span> stats
+  <span style="font-weight: bold;">import</span> matplotlib.pyplot <span style="font-weight: bold;">as</span> plt
+
+  np.random.seed(3)
+  <span style="font-weight: bold; font-style: italic;">MU</span> = 64
+  <span style="font-weight: bold; font-style: italic;">sigma</span> = 5
+  <span style="font-weight: bold; font-style: italic;">size</span> = 10
+  <span style="font-weight: bold; font-style: italic;">heights</span> = np.random.normal(MU, sigma,size)
+  <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"accoding to the mean and deviation we have a example of 10 rondom number : "</span>, heights)
+
+  <span style="font-weight: bold; font-style: italic;">mean_heights</span> = np.mean(heights)
+  <span style="font-weight: bold; font-style: italic;">deviation_heights</span> = np.std(heights)
+  <span style="font-weight: bold; font-style: italic;">SE</span> = np.std(heights)/np.sqrt(size)
+
+  <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'99% confidence interval is :'</span>, stats.t.interval(0.99, df = size-1 , loc = mean_heights, scale=SE))
+  <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'90% confidence interval is :'</span>, stats.t.interval(0.90, df = size-1 , loc = mean_heights, scale=SE))
+  <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'80% confidence interval is :'</span>, stats.t.interval(0.80, df = size-1 , loc = mean_heights, scale=SE)) 
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org5cccf8d" class="outline-3">
+<h3 id="org5cccf8d">a complete ploted distribution</h3>
+<div class="outline-text-3" id="text-org5cccf8d">
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">import</span> numpy <span style="font-weight: bold;">as</span> np
+
+<span style="font-weight: bold; font-style: italic;">sample_size</span> = 1000
+<span style="font-weight: bold; font-style: italic;">heights</span> = np.random.normal(MU, sigma, sample_size)
+<span style="font-weight: bold; font-style: italic;">SE</span> = np.std(heights)/np.sqrt(sample_size)
+(l,u) = stats.norm.interval(0.95, loc = np.mean(heights), scale = SE)
+<span style="font-weight: bold;">print</span>(l,u)
+plt.hist(heights, bins = 20)
+<span style="font-weight: bold; font-style: italic;">y_height</span> = 5
+plt.plot([l,u], [y_height, y_height], <span style="font-style: italic;">'_'</span>, color=<span style="font-style: italic;">'r'</span>)
+plt.plot(np.mean(heights), y_height, <span style="font-style: italic;">'o'</span>, color= <span style="font-style: italic;">'b'</span>)
+plt.show()
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc7913b4" class="outline-3">
+<h3 id="orgc7913b4">a complete ploted distribution on between region</h3>
+<div class="outline-text-3" id="text-orgc7913b4">
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">x</span> = np.linspace(-5,5,100)
+<span style="font-weight: bold; font-style: italic;">y</span> = stats.norm.pdf(x,0,1)
+plt.plot(x,y)
+plt.vlines(-1.96,0,1,colors=<span style="font-style: italic;">'r'</span>,linestyles=<span style="font-style: italic;">'dashed'</span>)
+plt.vlines(1.96,0,1,colors=<span style="font-style: italic;">'r'</span>,linestyles=<span style="font-style: italic;">'dashed'</span>)
+<span style="font-weight: bold; font-style: italic;">fill_x</span> = np.linspace(-1.96,1.96,500)
+<span style="font-weight: bold; font-style: italic;">fill_y</span> = stats.norm.pdf(fill_x, 0,1)
+plt.fill_between(fill_x,fill_y)
+plt.show()
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcdeac2a" class="outline-3">
+<h3 id="orgcdeac2a">a example from internet</h3>
+<div class="outline-text-3" id="text-orgcdeac2a">
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">import</span> pandas <span style="font-weight: bold;">as</span> pd
+<span style="font-weight: bold;">from</span> scipy <span style="font-weight: bold;">import</span> stats <span style="font-weight: bold;">as</span> ss
+<span style="font-weight: bold; font-style: italic;">data_url</span> = <span style="font-style: italic;">"https://raw.githubusercontent.com/alstat/Analysis-with-Programming/master/2014/Python/Numerical-Descriptions-of-the-Data/data.csv"</span>
+<span style="font-weight: bold; font-style: italic;">df</span> = pd.read_csv(data_url)
+<span style="font-weight: bold;">print</span>(df.describe())
+<span style="font-weight: bold;">import</span> matplotlib.pyplot <span style="font-weight: bold;">as</span> plt
+<span style="font-weight: bold; font-style: italic;">pd.options.display.mpl_style</span> = <span style="font-style: italic;">'default'</span> 
+plt.show(df.plot(kind = <span style="font-style: italic;">'box'</span>))
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org43d73e3" class="outline-3">
+<h3 id="org43d73e3">1 2 3 order and gauss fitting</h3>
+<div class="outline-text-3" id="text-org43d73e3">
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">import</span> numpy <span style="font-weight: bold;">as</span> np
+<span style="font-weight: bold;">import</span> matplotlib.pyplot <span style="font-weight: bold;">as</span> plt
+<span style="font-weight: bold;">from</span> scipy <span style="font-weight: bold;">import</span> optimize
+<span style="font-weight: bold;">from</span> scipy.optimize <span style="font-weight: bold;">import</span> curve_fit
+
+
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">f_1_degree</span>(x,A,B):
+    <span style="font-weight: bold;">return</span> A*x + B
+
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">f_2_degree</span>(x,A,B,C):
+    <span style="font-weight: bold;">return</span> A*x**2 + B*x + C
+
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">f_3_degree</span>(x,A,B,C,D):
+    <span style="font-weight: bold;">return</span> A*x**3 + B*x**2 + C*x + D
+
+
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">f_gauss</span>(x,A,B,sigma):
+    <span style="font-weight: bold;">return</span> A*np.exp(-(x-B)**2/(2*sigma**2))
+
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">plot_figure</span>():
+    plt.figure()
+
+    <span style="font-weight: bold; font-style: italic;">x0</span> = [1,2,3,4,5]
+    <span style="font-weight: bold; font-style: italic;">y0</span> = [1,3,8,18,36]
+
+    <span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">plot original data</span>
+    plt.scatter(x0,y0,25,<span style="font-style: italic;">"red"</span>)
+
+    <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">plot f1</span>
+    <span style="font-weight: bold; font-style: italic;">params_1</span>, <span style="font-weight: bold; font-style: italic;">pcovariance_1</span> = optimize.curve_fit(f_1_degree,x0,y0)
+
+    <span style="font-weight: bold; font-style: italic;">params_f_1</span>, <span style="font-weight: bold; font-style: italic;">pcovariance_f_1</span> = curve_fit(f_1_degree,x0,y0)
+    <span style="font-weight: bold; font-style: italic;">x1</span> = np.arange(0,6,0.01)
+    <span style="font-weight: bold; font-style: italic;">y1</span> = params_1[0]*x1+params_1[1]
+    plt.plot(x1,y1,<span style="font-style: italic;">"blue"</span>)
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"The liear fitting for date is : y = "</span>,params_1[1],<span style="font-style: italic;">"*x + "</span>,params_1[0])
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"The params uncertainies are:"</span>)
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"a ="</span>, params_1[0], <span style="font-style: italic;">"+/-"</span>, <span style="font-weight: bold;">round</span>(pcovariance_1[0,0]**0.5,3))
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"b ="</span>, params_1[1], <span style="font-style: italic;">"+/-"</span>, <span style="font-weight: bold;">round</span>(pcovariance_1[1,1]**0.5,3))
+
+
+    <span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">plot f2</span>
+    <span style="font-weight: bold; font-style: italic;">params_2</span>, <span style="font-weight: bold; font-style: italic;">pcovariance_2</span> = curve_fit(f_2_degree,x0,y0)
+    <span style="font-weight: bold; font-style: italic;">x2</span> = np.arange(0,6,0.01)
+    <span style="font-weight: bold; font-style: italic;">y2</span> = params_2[0]*x1**2+params_2[1]*x1 + params_2[2]
+    plt.plot(x2,y2,<span style="font-style: italic;">"green"</span>)
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"The second order curve fitting for date is : y = "</span> ,params_2[2],<span style="font-style: italic;">"*x&#178; + "</span> ,params_2[1],<span style="font-style: italic;">"*x + "</span>,params_2[0])
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"The params uncertainies are:"</span>)
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"a ="</span>, params_2[0], <span style="font-style: italic;">"+/-"</span>, <span style="font-weight: bold;">round</span>(pcovariance_2[0,0]**0.5,3))
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"a ="</span>, params_2[0], <span style="font-style: italic;">"+/-"</span>, <span style="font-weight: bold;">round</span>(pcovariance_2[0,0]**0.5,3))
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"b ="</span>, params_2[1], <span style="font-style: italic;">"+/-"</span>, <span style="font-weight: bold;">round</span>(pcovariance_2[1,1]**0.5,3))
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"c ="</span>, params_2[2], <span style="font-style: italic;">"+/-"</span>, <span style="font-weight: bold;">round</span>(pcovariance_2[2,2]**0.5,3))
+
+    <span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">plot f3</span>
+    <span style="font-weight: bold; font-style: italic;">params_3</span>, <span style="font-weight: bold; font-style: italic;">pcovariance_3</span> = curve_fit(f_3_degree,x0,y0)
+    <span style="font-weight: bold; font-style: italic;">x3</span> = np.arange(0,6,0.01)
+    <span style="font-weight: bold; font-style: italic;">y3</span> = params_3[0]*x1**3+params_3[1]*x1**2 + params_3[2]*x1 + params_3[3]
+    plt.plot(x3,y3,<span style="font-style: italic;">"purple"</span>)
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"The second order curve fitting for date is:y ="</span>,params_3[3],<span style="font-style: italic;">"*x&#179;+"</span>,params_2[2],<span style="font-style: italic;">"*x&#178; + "</span> ,params_2[1],<span style="font-style: italic;">"*x + "</span>,params_2[0])
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"The params uncertainies are:"</span>)
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"a ="</span>, params_3[0], <span style="font-style: italic;">"+/-"</span>, <span style="font-weight: bold;">round</span>(pcovariance_3[0,0]**0.5,3))
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"b ="</span>, params_3[1], <span style="font-style: italic;">"+/-"</span>, <span style="font-weight: bold;">round</span>(pcovariance_3[1,1]**0.5,3))
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"c ="</span>, params_3[2], <span style="font-style: italic;">"+/-"</span>, <span style="font-weight: bold;">round</span>(pcovariance_3[2,2]**0.5,3))
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"d ="</span>, params_3[3], <span style="font-style: italic;">"+/-"</span>, <span style="font-weight: bold;">round</span>(pcovariance_3[3,3]**0.5,3))
+
+    <span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">plot gauss</span>
+    <span style="font-weight: bold; font-style: italic;">params_gauss</span>, <span style="font-weight: bold; font-style: italic;">pcovariance_gauss</span> = curve_fit(f_gauss,x0,y0)
+    <span style="font-weight: bold; font-style: italic;">xgauss</span> = np.arange(0,6,0.01)
+    <span style="font-weight: bold; font-style: italic;">ygauss</span> = params_gauss[0]*np.exp(-(xgauss-params_gauss[1])**2/(2*params_gauss[2]**2))
+    plt.plot(xgauss,ygauss,<span style="font-style: italic;">"black"</span>)
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"The gauss function curve fitting for date is : y = "</span>,params_gauss[2],<span style="font-style: italic;">"*exp{-(x-"</span>,params_gauss[1],<span style="font-style: italic;">")&#178;/(2*sigma&#178;) +"</span>,params_gauss[0])
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"The params uncertainies are:"</span>)
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"a ="</span>, params_gauss[0], <span style="font-style: italic;">"+/-"</span>, <span style="font-weight: bold;">round</span>(pcovariance_gauss[0,0]**0.5,3))
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"mean ="</span>, params_gauss[1], <span style="font-style: italic;">"+/-"</span>, <span style="font-weight: bold;">round</span>(pcovariance_gauss[1,1]**0.5,3))
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"std ="</span>, params_gauss[2], <span style="font-style: italic;">"+/-"</span>, <span style="font-weight: bold;">round</span>(pcovariance_gauss[2,2]**0.5,3))
+
+
+
+    plt.title(<span style="font-style: italic;">"plot for different fittign"</span>)
+    plt.xlabel(<span style="font-style: italic;">"x"</span>)
+    plt.ylabel(<span style="font-style: italic;">"y"</span>)
+    plt.show()
+    <span style="font-weight: bold;">return</span>
+
+plot_figure()
+
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga48e169" class="outline-3">
+<h3 id="orga48e169">linear fitting</h3>
+<div class="outline-text-3" id="text-orga48e169">
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">matplotlib inline</span>
+<span style="font-weight: bold;">import</span> matplotlib.pyplot <span style="font-weight: bold;">as</span> plt;
+<span style="font-weight: bold;">import</span> numpy <span style="font-weight: bold;">as</span> np;
+<span style="font-weight: bold;">from</span> scipy <span style="font-weight: bold;">import</span> integrate
+<span style="font-weight: bold;">from</span> scipy.optimize <span style="font-weight: bold;">import</span> curve_fit
+<span style="font-weight: bold;">import</span> math
+
+<span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">1. x axis coordinnat for 10 points data</span>
+<span style="font-weight: bold; font-style: italic;">xmin</span>=0.01; <span style="font-weight: bold; font-style: italic;">xmax</span>=2; <span style="font-weight: bold; font-style: italic;">pts</span> = 10;
+<span style="font-weight: bold; font-style: italic;">xx</span> = np.linspace(xmin, xmax, pts);
+
+<span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">2. y axis coordinnat for 10 points data</span>
+<span style="font-weight: bold; font-style: italic;">rho</span> = np.sqrt(1/xx) + 0.5*np.exp(xx)*xx**2;
+
+<span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">plot the original data</span>
+plt.plot(xx, rho, <span style="font-style: italic;">'bo'</span>, label=<span style="font-style: italic;">'Original data'</span>)
+
+<span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">3. x axis coordinnat for 200 points fitting</span>
+<span style="font-weight: bold; font-style: italic;">x_fine</span> = np.linspace(xmin, xmax, 200);
+
+<span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">fiting</span>
+<span style="font-weight: bold; font-style: italic;">params</span>, <span style="font-weight: bold; font-style: italic;">cov</span> = np.polyfit(xx, rho, 1, cov=<span style="font-weight: bold; text-decoration: underline;">True</span>)
+
+<span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">to reconstruct the linear function</span>
+<span style="font-weight: bold; font-style: italic;">bestfit_rho</span> = params[0]*x_fine + params[1]
+plt.plot(x_fine, bestfit_rho, <span style="font-style: italic;">'r-'</span>, lw=2, label=<span style="font-style: italic;">'One order of linear fit'</span>);
+
+<span style="font-weight: bold;">print</span>(params)
+
+
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org91e6c55" class="outline-3">
+<h3 id="org91e6c55">linear fitting with ployfit</h3>
+<div class="outline-text-3" id="text-org91e6c55">
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">matplotlib inline</span>
+<span style="font-weight: bold;">import</span> matplotlib.pyplot <span style="font-weight: bold;">as</span> plt;
+<span style="font-weight: bold;">import</span> numpy <span style="font-weight: bold;">as</span> np;
+<span style="font-weight: bold;">from</span> scipy <span style="font-weight: bold;">import</span> integrate
+<span style="font-weight: bold;">from</span> scipy.optimize <span style="font-weight: bold;">import</span> curve_fit
+<span style="font-weight: bold;">import</span> math
+
+<span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">1. x axis coordinnat for 10 points data</span>
+<span style="font-weight: bold; font-style: italic;">xmin</span>=0.01; <span style="font-weight: bold; font-style: italic;">xmax</span>=2; <span style="font-weight: bold; font-style: italic;">pts</span> = 10;
+<span style="font-weight: bold; font-style: italic;">xx</span> = np.linspace(xmin, xmax, pts);
+
+<span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">2. y axis coordinnat for 10 points data</span>
+<span style="font-weight: bold; font-style: italic;">rho</span> = np.sqrt(1/xx) + 0.5*np.exp(xx)*xx**2;
+
+<span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">plot the original data</span>
+plt.plot(xx, rho, <span style="font-style: italic;">'bo'</span>, label=<span style="font-style: italic;">'Original data'</span>)
+
+<span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">3. x axis coordinnat for 200 points fitting</span>
+<span style="font-weight: bold; font-style: italic;">x_fine</span> = np.linspace(xmin, xmax, 200);
+
+<span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">fiting  it can be any order </span>
+<span style="font-weight: bold; font-style: italic;">params</span>, <span style="font-weight: bold; font-style: italic;">cov</span> = np.polyfit(xx, rho, 4, cov=<span style="font-weight: bold; text-decoration: underline;">True</span>);
+<span style="font-weight: bold; font-style: italic;">p</span> = np.poly1d(params)
+plt.plot(x_fine, p(x_fine), <span style="font-style: italic;">'g-'</span>, lw=2, label=<span style="font-style: italic;">'The Best poly1d fit'</span>);
+
+<span style="font-weight: bold;">print</span>(params)
+plt.xlabel(<span style="font-style: italic;">'$x$'</span>);
+plt.ylabel(r<span style="font-style: italic;">'$\rho$'</span>);
+plt.legend(fontsize=13);
+plt.show()
+
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org966c3e1" class="outline-2">
+<h2 id="org966c3e1">Data Exploration</h2>
+<div class="outline-text-2" id="text-org966c3e1">
+<p>
+Singal feather: histogram density, rug, Box-Whisker
+Box-Whisker: low quartile to high quartile is interquartile range (IQR)
+</p>
+
+<p>
+low boundary: low quartile - IQR
+high boundary: high quartile + IQR
+</p>
+
+<p>
+pair-wise scatterplot
+</p>
+
+<p>
+hexbin plot
+</p>
+
+<p>
+correlation heatmap
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd4b98e9" class="outline-2">
+<h2 id="orgd4b98e9">Time Series Analysis</h2>
+<div class="outline-text-2" id="text-orgd4b98e9">
+</div>
+<div id="outline-container-org522a74a" class="outline-3">
+<h3 id="org522a74a">Descripation</h3>
+<div class="outline-text-3" id="text-org522a74a">
+<p>
+Discrete values  {\(x_1\),&#x2026;.,\(x_T\)} = \((x_t)_{t=1}^T\)
+A core  assumpation is the time difference between \(x_{t}\) and \(x_{t+1}\) is equal for \(t \in (1...T)\).
+\(x_{t}\) can be decomposed into 3 components:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">1.</td>
+<td class="org-left">trend component</td>
+<td class="org-left">T</td>
+<td class="org-left">change over all time</td>
+</tr>
+
+<tr>
+<td class="org-right">2.</td>
+<td class="org-left">seasonality</td>
+<td class="org-left">S</td>
+<td class="org-left">the results of seasons effect</td>
+</tr>
+
+<tr>
+<td class="org-right">3.</td>
+<td class="org-left">autocorrelation</td>
+<td class="org-left">R</td>
+<td class="org-left">how the values depends on  prior values</td>
+</tr>
+</tbody>
+</table>
+<p>
+so   \[X = T + S + R\]
+</p>
+</div>
+</div>
+<div id="outline-container-orgb595972" class="outline-3">
+<h3 id="orgb595972">Box-Jenkins for stationary</h3>
+<div class="outline-text-3" id="text-orgb595972">
+</div>
+<div id="outline-container-orgc89155e" class="outline-4">
+<h4 id="orgc89155e">stationary</h4>
+<div class="outline-text-4" id="text-orgc89155e">
+<p>
+Time series is stationary
+Mean  and Variance of  the trend and seasonality  are constant and can be removed
+so the autocorrelation is stochastic process, 
+</p>
+</div>
+</div>
+<div id="outline-container-org42246a6" class="outline-4">
+<h4 id="org42246a6">Trend and Series Effects</h4>
+<div class="outline-text-4" id="text-org42246a6">
+<ol class="org-ol">
+<li>model the trend \(T_{t}\) on the  time series \(x_{t}\)</li>
+<li>detrended time series \(\hat{x}=x_{t}-T_{t}\)</li>
+<li>model the seasonality  \(S_{t}\) on the time series \(x_{t}\)</li>
+<li>get the seasonality adjusted time series \(\hat{\hat{x_{t}}}=\hat{x}-S_{t}\)</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org2e93bd7" class="outline-4">
+<h4 id="org2e93bd7">Regession and Seasonal Means</h4>
+<div class="outline-text-4" id="text-org2e93bd7">
+<p>
+In this context we can only use linear regession to fit the all time series, get \(\hat{x}\).
+</p>
+
+<p>
+and then substract the seasonal Means: \(\hat{\hat{x}}= \hat{x}-(Mean(\hat x^{´}_{t})-Mean(\hat x_{t}))\)
+\(Mean(\hat x^{´}_{t})\) is special for mod(t, s), in the recursive seasonal effect,
+only the same time slot element will be calculated, this happens if
+the last season is not complete.
+</p>
+
+<p>
+<b>Cons</b> only works for linear trends and with seasonal effects that have no trend. 
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1e53604" class="outline-3">
+<h3 id="org1e53604">Differencing for not stationary</h3>
+<div class="outline-text-3" id="text-org1e53604">
+<p>
+for \(y=f(x)\) for two points(\(x_1\), \(y_1\)) and (\(x_2, y_2\)),
+the first-order difference to detrended time series:  \(\hat x_{t} = \Delta x^{1}_{t}=x_{t}-x_{t-1}\).
+or if you want, you can get the second-order-difference
+\(\Delta^{2}x_{}{t} = \Delta^{1}x_{t}-\Delta^{1}x_{t-1} = x_{t}-2x_{t-1}+x_{t-2}\)
+</p>
+
+<p>
+using difference to adjust the seasonal effect:
+using  the difference  between two consecutive points in time during the season.
+\(\hat{\hat{x}} = \Delta_{s} \hat x_{t} = \hat x_{t} - \hat x_{t-s}\)
+</p>
+
+<p>
+<b>pro</b> it can deal with both changes in the mean, as well as changes in the movement of the mean
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9c20e84" class="outline-3">
+<h3 id="org9c20e84">Correlation</h3>
+<div class="outline-text-3" id="text-org9c20e84">
+<p>
+Autocorrelation is the direct relationship of the values
+of the time series at different points in time, for two adjacent points
+</p>
+
+<p>
+Partial autocorrelation is the autocorrelation without the carryover,
+i.e., only the direct correlation, not  for two adjacent points
+</p>
+
+<p>
+for Authentication and Partial authentication we can see the
+residual seasonal effect for regession and seasonal means
+</p>
+</div>
+</div>
+<div id="outline-container-orgce49ec1" class="outline-3">
+<h3 id="orgce49ec1">ARIMA</h3>
+<div class="outline-text-3" id="text-orgce49ec1">
+<p>
+three ways to model correlation
+</p>
+</div>
+<div id="outline-container-org3937288" class="outline-4">
+<h4 id="org3937288">AR: atuoregressive</h4>
+<div class="outline-text-4" id="text-org3937288">
+<p>
+model the direct influence of the past p points on time series
+\(c + \epsilon_{t} + \sum_{i=1}^{p}a_{i}x_{t-i}\)
+c :constant over all time
+\(\epsilon_{t}\): white noise, mean of 0, normal distribution
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5cae254" class="outline-4">
+<h4 id="org5cae254">MA: Moving average</h4>
+<div class="outline-text-4" id="text-org5cae254">
+<p>
+model the random effect on time series
+\(c + \epsilon_{t} + \sum_{j=1}^{q}b_{j}\epsilon_{t-j}\)
+the difference is the random influence of the past noise to next value 
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgebe833b" class="outline-4">
+<h4 id="orgebe833b">ARMA: autoregressive and Moving average</h4>
+<div class="outline-text-4" id="text-orgebe833b">
+<p>
+\(c + \epsilon_{t} + \sum_{i=1}^{p}a_{i}x_{t-i} + \sum_{j=1}^{q}b_{j}\epsilon_{t-j}\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgba8219d" class="outline-4">
+<h4 id="orgba8219d">select p and q</h4>
+<div class="outline-text-4" id="text-orgba8219d">
+<p>
+partial authentication estimate the p for AR, but if p can cover all the season,
+but if p is too big, it can lead to overfitting.
+</p>
+
+<p>
+autocorrelation can estimate the q for MA, using q as the steps for autocorrelation
+to be 0, so we look at when the autocorrelation goes towards zero and use this for q.
+at the same time the effect of AR should also be counted for determinate q.
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4f8d4d4" class="outline-2">
+<h2 id="org4f8d4d4">Hadoop</h2>
+<div class="outline-text-2" id="text-org4f8d4d4">
+</div>
+<div id="outline-container-org17fe28e" class="outline-3">
+<h3 id="org17fe28e">inital</h3>
+<div class="outline-text-3" id="text-org17fe28e">
+<p>
+hdfs namenode -format
+cd ~/hadoop-3-3.1/sbin
+./start-dfs.sh
+./start-yarn.sh
+jps
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdbad40a" class="outline-3">
+<h3 id="orgdbad40a">command</h3>
+<div class="outline-text-3" id="text-orgdbad40a">
+<p>
+hdfs dfs -ls /
+hdfs dfs -chmod 777 /testFolder
+hdfs dfs -cat /tesFolder/text.txt
+hdfs dfs -get hdfspath localpath
+hdfs dfs -put localpath hdfspath
+hdfs dfsadmin -report
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgf08105b" class="outline-3">
+<h3 id="orgf08105b">map()</h3>
+<div class="outline-text-3" id="text-orgf08105b">
+<p>
+map(fun &lt;key1, val1&gt;) -&gt; list(&lt;key2, val2&gt;)
+to a list of key-value pairs
+all elemenet in list must have the same type
+</p>
+</div>
+</div>
+<div id="outline-container-org99ff18a" class="outline-3">
+<h3 id="org99ff18a">Schuffle</h3>
+<div class="outline-text-3" id="text-org99ff18a">
+<p>
+schuffle(list(&lt;key2, val2&gt;)) -&gt; list(&lt;key2, list(val2)&gt;)
+</p>
+</div>
+</div>
+<div id="outline-container-org1c8860c" class="outline-3">
+<h3 id="org1c8860c">reduce</h3>
+<div class="outline-text-3" id="text-org1c8860c">
+<p>
+reduce (fun, list(&lt;key2, list(val2)&gt;)) -&gt; list(val3)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org66cb8d4" class="outline-3">
+<h3 id="org66cb8d4">Limitation</h3>
+<div class="outline-text-3" id="text-org66cb8d4">
+<p>
+1, multiple map() and reduce() must be manually specified
+2, intermediary results has to be written to  the HDFS, not on memory
+iterative algorithms are not very efficient with Hadoop.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org14e63d6" class="outline-2">
+<h2 id="org14e63d6">HDFS</h2>
+<div class="outline-text-2" id="text-org14e63d6">
+<p>
+Hadoop distributed file system
+Namenode vs Datanodes
+</p>
+
+<p>
+1, high throughout with low latency
+2, support large file
+3, locally computation in Node, less transfer zwischen Nodes
+4, resilient design for hardware failurs
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7cdf605" class="outline-2">
+<h2 id="org7cdf605">YARN</h2>
+<div class="outline-text-2" id="text-org7cdf605">
+<p>
+Yet Another Resource Negotiator
+Resource Manager vs NodeManager
+Resource Manager avoid overutilization and underutilization
+The NodeManager execute tasks on the local resources
+1, Client send a requirement to Resource Manager
+2, Resource manager allocate container in Node Manager
+3, Container in Node Manager start the application Master
+4, Application Master require Resource from Resoure Manager
+5, as the required Resoure is allocated, application master start the Application
+</p>
+</div>
+</div>
+<div id="outline-container-orgeecc791" class="outline-2">
+<h2 id="orgeecc791">Spark</h2>
+<div class="outline-text-2" id="text-orgeecc791">
+<p>
+results do not  need to save in HDFS, it support in memory  executation.
+Resilient Distributed Datasets RDDS
+DataFrame from SparkSQL
+</p>
+</div>
+
+<div id="outline-container-org3825153" class="outline-3">
+<h3 id="org3825153">pyspark</h3>
+<div class="outline-text-3" id="text-org3825153">
+<pre class="example">
+cd spark
+bin/spark-submit examples/src/main/python/wordcount.py testtext.txt &amp;&gt; output.txt
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2798ee2" class="outline-2">
+<h2 id="org2798ee2">Text minning</h2>
+<div class="outline-text-2" id="text-org2798ee2">
+</div>
+<div id="outline-container-org32bee92" class="outline-3">
+<h3 id="org32bee92">Preprocessing</h3>
+<div class="outline-text-3" id="text-org32bee92">
+</div>
+<div id="outline-container-org309595b" class="outline-4">
+<h4 id="org309595b">Creation of a Corpus</h4>
+<div class="outline-text-4" id="text-org309595b">
+<p>
+contains all text to analysis
+</p>
+</div>
+</div>
+<div id="outline-container-orgaf1309d" class="outline-4">
+<h4 id="orgaf1309d">remove the irrelevant content,</h4>
+<div class="outline-text-4" id="text-orgaf1309d">
+<p>
+links, timestamps
+</p>
+</div>
+</div>
+<div id="outline-container-orgc5000ad" class="outline-4">
+<h4 id="orgc5000ad">Punctuation and Cases</h4>
+<div class="outline-text-4" id="text-orgc5000ad">
+<p>
+remove all Punctuation, and all use small cases
+a problem is about acronyms
+</p>
+</div>
+</div>
+<div id="outline-container-orge0c8451" class="outline-4">
+<h4 id="orge0c8451">Stop words</h4>
+<div class="outline-text-4" id="text-orge0c8451">
+<p>
+commons words should be removed, auch as I, to ,a
+</p>
+</div>
+</div>
+<div id="outline-container-orgc7f7990" class="outline-4">
+<h4 id="orgc7f7990">Stemming and Lemmatization</h4>
+<div class="outline-text-4" id="text-orgc7f7990">
+<p>
+first Lemmatization, and then Stemming
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org850e67e" class="outline-3">
+<h3 id="org850e67e">Visualiztation</h3>
+<div class="outline-text-3" id="text-org850e67e">
+</div>
+<div id="outline-container-orgcd6801d" class="outline-4">
+<h4 id="orgcd6801d">bag-of-words with wordclouds</h4>
+</div>
+<div id="outline-container-orge297eac" class="outline-4">
+<h4 id="orge297eac">Term frequency(TF)</h4>
+<div class="outline-text-4" id="text-orge297eac">
+<p>
+is the count of a words within document
+</p>
+</div>
+</div>
+<div id="outline-container-orge600239" class="outline-4">
+<h4 id="orge600239">Inverse Document Frequency(IDF)</h4>
+<div class="outline-text-4" id="text-orge600239">
+<p>
+is to weight words by their uniqueness within the corpus
+\[IDF_{t} = \log \frac{N}{D_{t}}\]
+t: word(term)
+N: the number of document in corpus
+\(D_{t}\): the number of document in corpus, which contains word t
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4f2bcef" class="outline-4">
+<h4 id="org4f2bcef">TFIDF</h4>
+<div class="outline-text-4" id="text-org4f2bcef">
+<p>
+\[TFIDF = TF \cdot IDF \]
+</p>
+</div>
+</div>
+<div id="outline-container-org2d1e94d" class="outline-4">
+<h4 id="org2d1e94d">beyond the bag-of-words</h4>
+<div class="outline-text-4" id="text-org2d1e94d">
+<p>
+ignore the structure of document
+ignore simiarity of words
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org03b089a" class="outline-3">
+<h3 id="org03b089a">challages</h3>
+<div class="outline-text-3" id="text-org03b089a">
+</div>
+<div id="outline-container-org3002348" class="outline-4">
+<h4 id="org3002348">dimensionality</h4>
+</div>
+<div id="outline-container-orgf831655" class="outline-4">
+<h4 id="orgf831655">Ambiguities</h4>
+</div>
+</div>
+</div>
+<div id="outline-container-org2c0d7e4" class="outline-2">
+<h2 id="org2c0d7e4">High performance Data Analysis</h2>
+</div>
+<div id="outline-container-orgbb308b7" class="outline-2">
+<h2 id="orgbb308b7">Paralle compuation</h2>
+<div class="outline-text-2" id="text-orgbb308b7">
+</div>
+<div id="outline-container-org8405ada" class="outline-3">
+<h3 id="org8405ada">performance</h3>
+<div class="outline-text-3" id="text-org8405ada">
+<p>
+\[ S_{total} = \frac{1}{1-p+\frac{p}{s}} \]
+\[N = \frac{s}{s-P_{B}-P_{D} + \frac{P_{B}}{N_{B}} + \frac{P_{D}}{N_{D}}} \]
+normaly  \(s = 1\) for Andel's law
+if s is changed, Gostafan's law,
+\[ s_{g} = \frac{T_{s} + p T_{p}}{T_{s} + T_{p}} \]
+Effectivy: \[ E = \frac{S}{P}\]
+\[ S = \frac{T_{s}}{T_{p}} = \frac{n}{\frac{n}{p}+ \log_{2} p}\]
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-11-28 Sun 10:35</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-11-28 Sun 10:35 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Haskell</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css" />
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Haskell</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org8e17e08">commands</a>
+<ul>
+<li><a href="#org2d4170c">in file.hs</a></li>
+<li><a href="#org676ef5a">C-c C-c call in src</a></li>
+<li><a href="#orgc622902">send to haskell/org-src-block</a></li>
+</ul>
+</li>
+<li><a href="#orgde1c05f">Functional Programm</a>
+<ul>
+<li><a href="#org621bb88">Grundlage</a></li>
+<li><a href="#org754cd7c">Pattern Matching</a></li>
+<li><a href="#orgb2ccea3">Alternativen</a></li>
+<li><a href="#orgc77f462">Recursion</a></li>
+<li><a href="#org8e46ac0">Type conversion1</a></li>
+<li><a href="#org90eff0c">Factorial</a></li>
+<li><a href="#org519e066">Stern Brocot Floge</a></li>
+</ul>
+</li>
+<li><a href="#orga9b2662">List</a>
+<ul>
+<li><a href="#orgf33c415">List  add</a></li>
+</ul>
+</li>
+<li><a href="#org72a5929">Symbol</a></li>
+<li><a href="#org61e62af">Functional Programm of Haskell</a>
+<ul>
+<li><a href="#org356e82a">Grundlage</a></li>
+<li><a href="#org8830dc7">Pattern Matching</a></li>
+<li><a href="#orge8bbeb0">Alternativen</a></li>
+<li><a href="#org6666fba">Recursion</a></li>
+<li><a href="#org7dc898e">type conversion</a></li>
+<li><a href="#org9b2eb05">Factorial</a></li>
+<li><a href="#orgf5339b3">Stern Brocot Floge</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8e17e08" class="outline-2">
+<h2 id="org8e17e08">commands</h2>
+<div class="outline-text-2" id="text-org8e17e08">
+</div>
+<div id="outline-container-org2d4170c" class="outline-3">
+<h3 id="org2d4170c">in file.hs</h3>
+<div class="outline-text-3" id="text-org2d4170c">
+<p>
+C-c C-l  to execute file.hs and go to interactive environment 
+Seeing ./black.hs
+</p>
+</div>
+</div>
+<div id="outline-container-org676ef5a" class="outline-3">
+<h3 id="org676ef5a">C-c C-c call in src</h3>
+<div class="outline-text-3" id="text-org676ef5a">
+<div class="org-src-container">
+<pre class="src src-haskell">log2 :: Float -&gt; Float
+  log2 = logBase 2
+  log2 43
+
+</pre>
+</div>
+
+<p>
+with  :results value :eval (inferior-haskell-start-process)
+</p>
+
+<p>
+in src can multi functions be defined. and the last call will be printed
+</p>
+
+<p>
+with follow extension, can be easy C-c C-c executed, but not in send
+to haskell log file, but only output the last result
+</p>
+
+
+<p>
+Seeing Literatur Programm Grundlage
+</p>
+</div>
+</div>
+<div id="outline-container-orgc622902" class="outline-3">
+<h3 id="orgc622902">send to haskell/org-src-block</h3>
+<div class="outline-text-3" id="text-orgc622902">
+<div class="org-src-container">
+<pre class="src src-haskell">log2 :: Float -&gt; Float
+  log2 = logBase 2
+  log2 43
+
+</pre>
+</div>
+
+
+
+
+<p>
+#+end<sub>src</sub>
+</p>
+
+<p>
+first to load file. ~/.emacs.d/packages/orgmode-babal-haskell.el
+in one of src block M-x : send to haskell/org-src-block
+</p>
+
+<p>
+in src block  without any extension can be load in send buffer(after
+_src haskell), and the be called function can be many type.
+</p>
+
+<p>
+important : in src block the calling syntax is NOT allowed
+</p>
+
+<p>
+Seeing Literatur Programm Alternativen
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgde1c05f" class="outline-2">
+<h2 id="orgde1c05f">Functional Programm</h2>
+<div class="outline-text-2" id="text-orgde1c05f">
+</div>
+<div id="outline-container-org621bb88" class="outline-3">
+<h3 id="org621bb88">Grundlage</h3>
+<div class="outline-text-3" id="text-org621bb88">
+<p>
+basic function call
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">log2 :: Float -&gt; Float
+  log2 = logBase 2
+  log2 43
+
+</pre>
+</div>
+<p>
+implication
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">(==&gt;):: Bool -&gt; Bool -&gt; Bool
+a ==&gt; b = not a || not b
+Flase ==&gt; True
+False==&gt; False
+True ==&gt; True
+
+</pre>
+</div>
+
+
+<p>
+&#x2013;euler numbers
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">e:: Float
+e = exp 1
+e 
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org754cd7c" class="outline-3">
+<h3 id="org754cd7c">Pattern Matching</h3>
+<div class="outline-text-3" id="text-org754cd7c">
+<p>
+one of the calling must match one case of pattern
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+  (&lt;#&gt;) False False = False
+  (&lt;#&gt;) False True = True
+  (&lt;#&gt;) True False = True
+  (&lt;#&gt;) True True = True
+
+
+True &lt;#&gt; True
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-haskell">
+(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+  (&lt;#&gt;) True True = True
+  (&lt;#&gt;) _ _ = False
+
+(&lt;#&gt;) True True
+(&lt;#&gt;) False True
+
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-haskell">(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+  (&lt;#&gt;) True True 
+
+</pre>
+</div>
+
+<p>
+case : this can only be executed in a .hs file,
+ in orgmode can NOT be imported, I don't know what is going on
+ in Terminal can NOT also
+</p>
+
+<p>
+Here I made above mistake, this is no sense.
+so long the indentation is correct, so works
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell">(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+(&lt;#&gt;) a b
+  | a == b = False
+  | otherwise = True
+
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb2ccea3" class="outline-3">
+<h3 id="orgb2ccea3">Alternativen</h3>
+<div class="outline-text-3" id="text-orgb2ccea3">
+<p>
+if else then
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">absolute :: Int -&gt; Int
+absolute x = if x &lt; 0 then -x else x
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc77f462" class="outline-3">
+<h3 id="orgc77f462">Recursion</h3>
+<div class="outline-text-3" id="text-orgc77f462">
+<p>
+easy fib
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">heronA ::(Int, Double) -&gt; Double
+heronA (n,a)
+  | n &gt; 0     = (heronA(n-1,a) + a/heronA(n-1, a))/2
+  | otherwise = a
+
+absolute :: Int -&gt; Int
+absolute x = if x &lt; 0 then -x else x
+
+heronB :: Int -&gt; Double -&gt; Double
+heronB n a
+  | n &gt; 0     = (heronB (n-1) a + a/heronB(n-1) a)/2
+  | otherwise = a
+
+</pre>
+</div>
+
+
+<p>
+where 
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">heronC :: Int -&gt; Double -&gt; Double
+heronC n a
+  |n &gt; 0      = (x + a/x)/2
+  |otherwise  = a
+  where x = heronC (n-1) a
+</pre>
+</div>
+
+<p>
+fib &amp; where
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell">fibA :: Int -&gt; Int
+fibA n
+  |n == 0    = 0
+  |n == 1    = 1
+  |otherwise = x +y
+  where
+    x = fibA (n-1)
+    y = fibA (n-2)
+
+</pre>
+</div>
+
+<p>
+fib &amp; where &amp; pattern matching
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell">fibB :: Int -&gt; Int
+fibB 0 = 0
+fibB 1 = 1
+fibB n = fibB (n-1) + fibB (n-2)
+
+
+fibC :: Int -&gt; Int
+fibC 0 = 0
+fibC 1 = 1
+fibC n
+  | n &lt; 0      = error "illegal arguement"
+  | otherwise  = fibB (n-1) + fibB (n-2)
+
+
+(&lt;##&gt;) :: Int -&gt; Double -&gt; Double
+0 &lt;##&gt; a   = a
+n &lt;##&gt; a  
+  | n &gt; 0  = (x + a/x)/2
+  | otherwise  = error "illegal arguement"
+  where x = (n-1) &lt;##&gt; a
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8e46ac0" class="outline-3">
+<h3 id="org8e46ac0">Type conversion1</h3>
+<div class="outline-text-3" id="text-org8e46ac0">
+<p>
+Guides
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">vielleichtdreifach :: Bool -&gt; Bool -&gt; Integer -&gt; Integer
+vielleichtdreifach verdreifach nochmal n
+  | verdreifach &amp;&amp; nochmal = maldrei ( maldrei n)
+  | verdreifach            = maldrei n
+  | otherwise              = n
+  where maldrei n = 3*n 
+
+dreifach :: Integer -&gt; Integer
+dreifach = vielleichtdreifach True False 
+
+neudreifach :: Integer -&gt; Integer
+neudreifach = vielleichtdreifach True True
+
+</pre>
+</div>
+
+<p>
+vielleichtdreifach Bool Bool -&gt; Integer
+</p>
+</div>
+</div>
+
+<div id="outline-container-org90eff0c" class="outline-3">
+<h3 id="org90eff0c">Factorial</h3>
+<div class="outline-text-3" id="text-org90eff0c">
+<div class="org-src-container">
+<pre class="src src-haskell">fac :: Integer -&gt; Integer
+fac n
+  | n == 0  = 1
+  | otherwise = fac (n-1) * n
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org519e066" class="outline-3">
+<h3 id="org519e066">Stern Brocot Floge</h3>
+<div class="outline-text-3" id="text-org519e066">
+<p>
+\(\\s_{0} = 0 \\ s_{1} = 1 \\ s_{2n} = s_{n} \\ s_{2n+1} = s_{n} + s_{n+1}\)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell">(*/*) :: Integer -&gt; Integer -&gt; Integer
+(*/*) = div
+
+(*%*) :: Integer -&gt; Integer -&gt; Integer
+(*%*) = rem
+
+sternBrocot :: Integer -&gt; Integer
+sternBrocot n
+  | n == 0      = 0
+  | n == 1      = 1
+  | n *%* 2 == 0 = sternBrocot half
+  | otherwise    = sternBrocot half + sternBrocot (half + 1)
+  where half = n */* 2
+
+suche :: Integer -&gt; Integer -&gt; Integer
+suche suchziel postionziel
+  | sternBrocot postionziel &gt; suchziel = postionziel
+  | otherwise                          = suche suchziel (postionziel +1)
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orga9b2662" class="outline-2">
+<h2 id="orga9b2662">List</h2>
+<div class="outline-text-2" id="text-orga9b2662">
+<p>
+字符串就是单一字符的列表
+</p>
+</div>
+<div id="outline-container-orgf33c415" class="outline-3">
+<h3 id="orgf33c415">List  add</h3>
+<div class="outline-text-3" id="text-orgf33c415">
+<p>
+in prelude
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">[1,2,3] ++ [3,4,5]
+2 : [3,4]
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org72a5929" class="outline-2">
+<h2 id="org72a5929">Symbol</h2>
+<div class="outline-text-2" id="text-org72a5929">
+<p>
+需要时刻谨记是用  .  来做函数组合的，$ 是用来降低函数执行优先级的。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org61e62af" class="outline-2">
+<h2 id="org61e62af">Functional Programm of Haskell</h2>
+<div class="outline-text-2" id="text-org61e62af">
+</div>
+<div id="outline-container-org356e82a" class="outline-3">
+<h3 id="org356e82a">Grundlage</h3>
+<div class="outline-text-3" id="text-org356e82a">
+<p>
+basic function call
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">  log2 :: Float -&gt; Float
+  log2 = logBase 2
+log2 43
+
+</pre>
+</div>
+
+<p>
+implication
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">
+(==&gt;):: Bool -&gt; Bool -&gt; Bool
+a ==&gt; b = not a || not b
+Flase ==&gt; True
+False==&gt; False
+True ==&gt; True
+
+</pre>
+</div>
+
+<p>
+&#x2013;euler numbers
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">
+  e:: Float
+    e = exp 1
+e 
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8830dc7" class="outline-3">
+<h3 id="org8830dc7">Pattern Matching</h3>
+<div class="outline-text-3" id="text-org8830dc7">
+<p>
+one of the calling must match one case of pattern
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+  (&lt;#&gt;) False False = False
+  (&lt;#&gt;) False True = True
+  (&lt;#&gt;) True False = True
+  (&lt;#&gt;) True True = True
+
+
+True &lt;#&gt; True
+</pre>
+</div>
+
+
+
+<div class="org-src-container">
+<pre class="src src-haskell">(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+  (&lt;#&gt;) True True = True
+  (&lt;#&gt;) _ _ = False
+
+(&lt;#&gt;) True True
+(&lt;#&gt;) False True
+
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-haskell">(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+  (&lt;#&gt;) True True = True
+
+</pre>
+</div>
+
+<p>
+case : this can only be executed in a .hs file,
+ in orgmode can NOT be imported, I don't know what is going on
+ in Terminal can NOT also
+</p>
+
+<p>
+Here I made above mistake, this is no sense.
+so long the indentation is correct, so works
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell">(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+(&lt;#&gt;) a b
+  | a == b = False
+  | otherwise = True
+
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge8bbeb0" class="outline-3">
+<h3 id="orge8bbeb0">Alternativen</h3>
+<div class="outline-text-3" id="text-orge8bbeb0">
+<p>
+if else then
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">absolute :: Int -&gt; Int
+absolute x = if x &lt; 0 then -x else x
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6666fba" class="outline-3">
+<h3 id="org6666fba">Recursion</h3>
+<div class="outline-text-3" id="text-org6666fba">
+<p>
+easy fib
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">heronA ::(Int, Double) -&gt; Double
+heronA (n,a)
+  | n &gt; 0     = (heronA(n-1,a) + a/heronA(n-1, a))/2
+  | otherwise = a
+
+absolute :: Int -&gt; Int
+absolute x = if x &lt; 0 then -x else x
+
+heronB :: Int -&gt; Double -&gt; Double
+heronB n a
+  | n &gt; 0     = (heronB (n-1) a + a/heronB(n-1) a)/2
+  | otherwise = a
+
+</pre>
+</div>
+
+
+<p>
+where 
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">heronC :: Int -&gt; Double -&gt; Double
+heronC n a
+  |n &gt; 0      = (x + a/x)/2
+  |otherwise  = a
+  where x = heronC (n-1) a
+</pre>
+</div>
+
+<p>
+fib &amp; where
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell">fibA :: Int -&gt; Int
+fibA n
+  |n == 0    = 0
+  |n == 1    = 1
+  |otherwise = x +y
+  where
+    x = fibA (n-1)
+    y = fibA (n-2)
+
+</pre>
+</div>
+
+<p>
+fib &amp; where &amp; pattern matching
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell">fibB :: Int -&gt; Int
+fibB 0 = 0
+fibB 1 = 1
+fibB n = fibB (n-1) + fibB (n-2)
+
+
+fibC :: Int -&gt; Int
+fibC 0 = 0
+fibC 1 = 1
+fibC n
+  | n &lt; 0      = error "illegal arguement"
+  | otherwise  = fibB (n-1) + fibB (n-2)
+
+
+(&lt;##&gt;) :: Int -&gt; Double -&gt; Double
+0 &lt;##&gt; a   = a
+n &lt;##&gt; a  
+  | n &gt; 0  = (x + a/x)/2
+  | otherwise  = error "illegal arguement"
+  where x = (n-1) &lt;##&gt; a
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7dc898e" class="outline-3">
+<h3 id="org7dc898e">type conversion</h3>
+<div class="outline-text-3" id="text-org7dc898e">
+<p>
+Guides
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">vielleichtdreifach :: Bool -&gt; Bool -&gt; Integer -&gt; Integer
+vielleichtdreifach verdreifach nochmal n
+  | verdreifach &amp;&amp; nochmal = maldrei ( maldrei n)
+  | verdreifach            = maldrei n
+  | otherwise              = n
+  where maldrei n = 3*n 
+
+dreifach :: Integer -&gt; Integer
+dreifach = vielleichtdreifach True False 
+
+neudreifach :: Integer -&gt; Integer
+neudreifach = vielleichtdreifach True True
+
+</pre>
+</div>
+<p>
+vielleichtdreifach Bool Bool -&gt; Integer
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9b2eb05" class="outline-3">
+<h3 id="org9b2eb05">Factorial</h3>
+<div class="outline-text-3" id="text-org9b2eb05">
+<div class="org-src-container">
+<pre class="src src-haskell">fac :: Integer -&gt; Integer
+fac n
+  | n == 0  = 1
+  | otherwise = fac (n-1) * n
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf5339b3" class="outline-3">
+<h3 id="orgf5339b3">Stern Brocot Floge</h3>
+<div class="outline-text-3" id="text-orgf5339b3">
+<p>
+\(\\s_{0} = 0 \\ s_{1} = 1 \\ s_{2n} = s_{n} \\ s_{2n+1} = s_{n} + s_{n+1}\)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell">(*/*) :: Integer -&gt; Integer -&gt; Integer
+(*/*) = div
+
+(*%*) :: Integer -&gt; Integer -&gt; Integer
+(*%*) = rem
+
+sternBrocot :: Integer -&gt; Integer
+sternBrocot n
+  | n == 0      = 0
+  | n == 1      = 1
+  | n *%* 2 == 0 = sternBrocot half
+  | otherwise    = sternBrocot half + sternBrocot (half + 1)
+  where half = n */* 2
+
+suche :: Integer -&gt; Integer -&gt; Integer
+suche suchziel postionziel
+  | sternBrocot postionziel &gt; suchziel = postionziel
+  | otherwise                          = suche suchziel (postionziel +1)
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-11-28 Sun 10:35</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>

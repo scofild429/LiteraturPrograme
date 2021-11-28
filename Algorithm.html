@@ -1,0 +1,4667 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-11-28 Sun 10:35 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Algorithm</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css" />
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Algorithm</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org50d7182">Bubble</a>
+<ul>
+<li><a href="#orgc69d610">Algorithm</a></li>
+<li><a href="#orge871b11">Python</a></li>
+<li><a href="#org5b42e6e">java</a></li>
+<li><a href="#org3a6ae86">C/C++</a></li>
+</ul>
+</li>
+<li><a href="#org87b3114">Select</a>
+<ul>
+<li><a href="#org819d6b5">Algorithm</a></li>
+<li><a href="#orgcbcfe38">Python</a></li>
+<li><a href="#org80e1d56">Java</a></li>
+<li><a href="#org6006936">C/C++</a></li>
+</ul>
+</li>
+<li><a href="#orgb3bedd0">Insert</a>
+<ul>
+<li><a href="#orgf9a762e">Algorithm</a></li>
+<li><a href="#org5924b77">Python</a></li>
+<li><a href="#org1a47134">Java</a></li>
+<li><a href="#orgbc53526">C/C++</a></li>
+</ul>
+</li>
+<li><a href="#org1de0000">merge</a>
+<ul>
+<li><a href="#org9cb56a6">Algorithm</a></li>
+<li><a href="#orga36d91b">Python</a></li>
+<li><a href="#org541ead6">Java</a></li>
+<li><a href="#orgf8d77dc">C/C++</a></li>
+</ul>
+</li>
+<li><a href="#org8900379">quick</a>
+<ul>
+<li><a href="#org0eb4306">Algorithm</a></li>
+<li><a href="#orgcf66914">Python</a></li>
+<li><a href="#org8909a57">Java</a></li>
+<li><a href="#orge9c9dfc">C/C++</a></li>
+</ul>
+</li>
+<li><a href="#org457e567">heap</a>
+<ul>
+<li><a href="#orgdca0217">Algorithm</a></li>
+<li><a href="#orgb099517">python</a></li>
+<li><a href="#org7ec08a5">Java</a></li>
+<li><a href="#orga828fb0">C/C++</a></li>
+<li><a href="#orgf57b5fe">Typescript</a></li>
+</ul>
+</li>
+<li><a href="#org24e7785">Shell Sort</a>
+<ul>
+<li><a href="#orgfc29bc7">Algorithm</a></li>
+<li><a href="#org5c4e0da">Python</a></li>
+<li><a href="#orgd02772f">Java</a></li>
+<li><a href="#orgc229460">C/C++</a></li>
+</ul>
+</li>
+<li><a href="#org70976f6">Redix</a>
+<ul>
+<li><a href="#org3daaef7">Description</a></li>
+<li><a href="#org148438c">Algorithmu</a></li>
+</ul>
+</li>
+<li><a href="#orgc3a8678">Bucket Sort</a>
+<ul>
+<li><a href="#orgf4e26ef">Algorithm</a></li>
+</ul>
+</li>
+<li><a href="#org4dd11f3">Count Sort</a>
+<ul>
+<li><a href="#orgfc7a626">Algorithm</a></li>
+<li><a href="#org944ac17">Python</a></li>
+</ul>
+</li>
+<li><a href="#org2c902dc">Dichotomy</a>
+<ul>
+<li><a href="#orgbccae51">C/C++</a></li>
+</ul>
+</li>
+<li><a href="#orgbd6651b">HoffmannCode</a>
+<ul>
+<li><a href="#org63fe609">C/C++</a></li>
+</ul>
+</li>
+<li><a href="#org8e35119">JosephusRing</a>
+<ul>
+<li><a href="#orgd894f95">C/C++</a></li>
+</ul>
+</li>
+<li><a href="#org87cd13f">KMPmachting</a>
+<ul>
+<li><a href="#org7ac153d">C/C++</a></li>
+<li><a href="#orgc21e57e">C/C++</a></li>
+</ul>
+</li>
+<li><a href="#orgb2b5956">Longest Substring Without Repeating Characters</a>
+<ul>
+<li><a href="#orgb80a8f4">python</a></li>
+</ul>
+</li>
+<li><a href="#org9a374de">k-way Merge</a>
+<ul>
+<li><a href="#org1b7124e">description</a></li>
+<li><a href="#org2eaf381">Naive merge</a></li>
+<li><a href="#org86b60ad">rund merge</a></li>
+<li><a href="#org59a5e97">Heap merge</a></li>
+</ul>
+</li>
+<li><a href="#org64c3f32">Dynamic program</a>
+<ul>
+<li><a href="#orgbfd9c1a">Description</a></li>
+</ul>
+</li>
+<li><a href="#orgc939701">Maximum subarray</a>
+<ul>
+<li><a href="#org6a549b5">blunt force \(O(n^{3})\)</a></li>
+<li><a href="#orgcfe0254">iterative based \(O(n^{2})\)</a></li>
+<li><a href="#org2acb288">dynamic programmierung \(O(n)\)</a>
+<ul>
+<li><a href="#org4d34109">Algorithm</a></li>
+<li><a href="#orge488219">C/C++</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org431552a">maximum submatrix</a>
+<ul>
+<li><a href="#org9e2fbe0">Brute force solution</a></li>
+<li><a href="#orgcc37314">dynamic programmierung</a></li>
+</ul>
+</li>
+<li><a href="#org0e1278e">Find the sum of a specific value in a list</a>
+<ul>
+<li><a href="#org500922a">Python</a>
+<ul>
+<li><a href="#orgc6a0d6d">with recursive</a></li>
+<li><a href="#org19bf031">without rekursive</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org102065b">Langest increasing subsequence (LIS)</a>
+<ul>
+<li><a href="#org63a18ef">Python</a></li>
+</ul>
+</li>
+<li><a href="#orgc5dba1d">packsack</a>
+<ul>
+<li><a href="#org8a42855">0-1 sack</a></li>
+<li><a href="#org5c42ad7">complete sack</a></li>
+<li><a href="#orgcac6643">bund sack</a></li>
+</ul>
+</li>
+<li><a href="#org5692dab">Order Statistics</a>
+<ul>
+<li><a href="#org3e45ac3">description</a></li>
+<li><a href="#orgc4de603">for minimun and maximum</a></li>
+<li><a href="#org62efbaf">linear approach</a></li>
+<li><a href="#org4b0d7e3">complexity</a></li>
+</ul>
+</li>
+<li><a href="#org15a2de7">Range Minimun Query</a>
+<ul>
+<li><a href="#org748fa6a">description</a></li>
+<li><a href="#orgfc7dd8c">naiv approach</a></li>
+<li><a href="#org8b618a4">DP naiv approach</a></li>
+<li><a href="#org9c36d87">addation M approach</a></li>
+<li><a href="#org890ed18">partional approach</a></li>
+<li><a href="#org0ba1319">(\(\pm 1\))RMQ</a></li>
+<li><a href="#org3488950">(\(\pm 1\))RMQ for LCA in rooted tree</a></li>
+<li><a href="#orgcebd525">Cartesian tree</a></li>
+<li><a href="#org82e3003">LCA and RMQ</a></li>
+</ul>
+</li>
+<li><a href="#orga552825">Computional Geometry</a>
+<ul>
+<li><a href="#org563bb9b">Convex combinations</a></li>
+<li><a href="#org27a5948">Cross Product</a>
+<ul>
+<li><a href="#org0a97991">Application of intersection</a></li>
+<li><a href="#orgbec37b9">Application of Polar Angle</a></li>
+</ul>
+</li>
+<li><a href="#orgb131baa">Sweeping</a></li>
+<li><a href="#orgd854a4d">Convex Hull</a>
+<ul>
+<li><a href="#org7ea9897">Graham's Scan</a></li>
+<li><a href="#org4c0f5a4">Jarvis's march</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org50d7182" class="outline-2">
+<h2 id="org50d7182">Bubble</h2>
+<div class="outline-text-2" id="text-org50d7182">
+</div>
+<div id="outline-container-orgc69d610" class="outline-3">
+<h3 id="orgc69d610">Algorithm</h3>
+<div class="outline-text-3" id="text-orgc69d610">
+<p>
+each time compare itself with the next, if smaller, exchange them
+after each epoch, the biggest will be right localed.
+with the cursor moving, always with the so far biggest 
+</p>
+<pre class="example">
+A[a] for a -&gt; 0, 1, 2, 3....l
+FOR i -&gt; 0, 1, 2...l-2:
+    FOR j -&gt; 0, 1, 2...l-2-i:
+	IF A[j] &gt; A[j+1]:
+	    exchange A[j]:A[j+1]
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orge871b11" class="outline-3">
+<h3 id="orge871b11">Python</h3>
+<div class="outline-text-3" id="text-orge871b11">
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">A</span> = [2,5,6,8,45,68,98,42,12,7,156,158,9]
+<span style="font-weight: bold; font-style: italic;">lang</span> = <span style="font-weight: bold;">len</span>(A)
+<span style="font-weight: bold;">for</span> i <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(lang-2):
+    <span style="font-weight: bold;">for</span> j <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(lang-i-1):
+        <span style="font-weight: bold;">if</span> A[j] &gt; A[j+1]:
+            A[j], <span style="font-weight: bold; font-style: italic;">A</span>[j+1] = A[j+1], A[j]
+<span style="font-weight: bold;">print</span>(A)            
+</pre>
+</div>
+
+<pre class="example">
+[2, 5, 6, 7, 8, 9, 12, 42, 45, 68, 98, 156, 158]
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org5b42e6e" class="outline-3">
+<h3 id="org5b42e6e">java</h3>
+<div class="outline-text-3" id="text-org5b42e6e">
+<div class="org-src-container">
+<pre class="src src-java"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">BubbleSorting</span>
+{
+    <span style="font-weight: bold;">public</span> <span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">String</span>[] <span style="font-weight: bold; font-style: italic;">args</span>)
+    {
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">A</span>[] = {2,5,6,8,45,68,98,42,12,7,156,158,9};
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">langdu</span> = A.length;
+
+        <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt;= langdu-2; i++) {
+            <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">j</span> = 0; j &lt;= langdu-2-i; j++) {
+                <span style="font-weight: bold;">if</span> (A[j] &gt; A[j+1]) {
+                    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">tmp</span> = A[j+1];
+                    A[j+1] = A[j];
+                    A[j] = tmp;
+                }
+            }
+        }
+        <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">a</span>:A){
+            System.out.printf(<span style="font-style: italic;">"%d "</span>, a);
+        }
+    }
+}
+
+</pre>
+</div>
+
+<pre class="example">
+2 5 6 7 8 9 12 42 45 68 98 156 158 
+
+</pre>
+</div>
+</div>
+<div id="outline-container-org3a6ae86" class="outline-3">
+<h3 id="org3a6ae86">C/C++</h3>
+<div class="outline-text-3" id="text-org3a6ae86">
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>[])
+{
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">list</span>[] = {2,5,6,8,45,68,98,42,12,7,156,158,9};
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">langdu</span> = <span style="font-weight: bold;">sizeof</span>(list) / <span style="font-weight: bold;">sizeof</span>(<span style="font-weight: bold; text-decoration: underline;">int</span>);
+
+  <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">swap</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">a</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">b</span>){
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">tmp</span> = *b;
+    *b = *a;
+    *a = tmp;
+  }
+
+  <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt;= langdu-2; ++i) {
+    <span style="font-weight: bold;">for</span> ( <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">j</span>=0; j &lt;= langdu-2-i;++j) {
+      <span style="font-weight: bold;">if</span> (list[j] &gt; list[j+1]) {
+        swap(&amp;list[j], &amp;list[j+1]);
+      }
+    }
+  };
+
+  <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">k</span> = 0; k &lt; langdu; ++k) {
+    printf(<span style="font-style: italic;">"%d  "</span>,*(list+k));
+  }
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+</pre>
+</div>
+
+<pre class="example">
+2  5  6  7  8  9  12  42  45  68  98  156  158
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org87b3114" class="outline-2">
+<h2 id="org87b3114">Select</h2>
+<div class="outline-text-2" id="text-org87b3114">
+</div>
+<div id="outline-container-org819d6b5" class="outline-3">
+<h3 id="org819d6b5">Algorithm</h3>
+<div class="outline-text-3" id="text-org819d6b5">
+<p>
+find the  sofar biggest or smallest one of each epoch at the front of list, 
+after each epoch put it to the right place.
+</p>
+<pre class="example">
+A[a] for a -&gt; 0, 1, 2....l
+FOR i -&gt; 0, 1, 2...l-1:
+    FOR j -&gt; 0, 1, 2....l-1-i:
+	IF A[j] &gt; A[0]:
+	    exchange(A[j], A[0])
+    exchange(A[0], A[l-1-i])
+</pre>
+</div>
+</div>
+<div id="outline-container-orgcbcfe38" class="outline-3">
+<h3 id="orgcbcfe38">Python</h3>
+<div class="outline-text-3" id="text-orgcbcfe38">
+<div class="org-src-container">
+<pre class="src src-ipython">A = [2,5,6,8,45,68,98,42,12,7,156,158,9]
+lang = len(A)
+for i in range(lang):
+    for j in range(lang-i):
+	if A[j] &gt; A[0]:
+	    A[j], A[0] = A[0], A[j]
+    A[0], A[lang-1-i] = A[lang-1-i], A[0]
+print(A)
+
+</pre>
+</div>
+
+<pre class="example">
+[2, 5, 6, 7, 8, 9, 12, 42, 45, 68, 98, 156, 158]
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org80e1d56" class="outline-3">
+<h3 id="org80e1d56">Java</h3>
+<div class="outline-text-3" id="text-org80e1d56">
+<div class="org-src-container">
+<pre class="src src-java"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">SelectSorting</span>
+{
+    <span style="font-weight: bold;">public</span> <span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">String</span>[] <span style="font-weight: bold; font-style: italic;">args</span>)
+    {
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">A</span>[] = {2,5,6,8,45,68,98,42,12,7,156,158,9};
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">langdu</span> = A.length;
+        <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt;= langdu-1; i++) {
+            <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">j</span> = 0; j &lt;= langdu-1-i; j++) {
+                <span style="font-weight: bold;">if</span> (A[j] &gt; A[0]) {
+                    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">tmp</span> = A[j];
+                    A[j] = A[0];
+                    A[0] = tmp;
+                }
+            }
+            <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">tmp</span> = A[langdu-1-i];
+            A[langdu-1-i] = A[0];
+            A[0] = tmp;
+        }
+        <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">var</span> : A) {
+            System.out.printf(<span style="font-style: italic;">"%d "</span>, var);
+        }
+    }
+}
+
+</pre>
+</div>
+
+<pre class="example">
+2 5 6 7 8 9 12 42 45 68 98 156 158 
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org6006936" class="outline-3">
+<h3 id="org6006936">C/C++</h3>
+<div class="outline-text-3" id="text-org6006936">
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>[])
+{
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">list</span>[] = {2,5,6,8,45,68,98,42,12,7,156,158,9};
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">langdu</span> = <span style="font-weight: bold;">sizeof</span>(list) / <span style="font-weight: bold;">sizeof</span>(<span style="font-weight: bold; text-decoration: underline;">int</span>);
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span>, <span style="font-weight: bold; font-style: italic;">j</span>;
+  <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">swap</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">a</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">b</span>){
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">tmp</span> = *b;
+    *b = *a;
+    *a = tmp;
+  }
+  <span style="font-weight: bold;">for</span> (i = 0; i &lt;= langdu -1; ++i) {
+    <span style="font-weight: bold;">for</span> (j = 0; j &lt;= langdu-1-i; ++j) {
+      <span style="font-weight: bold;">if</span> (list[j] &gt; list[0]) {
+        swap(&amp;list[j], &amp;list[0]);
+      }
+    }
+    swap(&amp;list[0], &amp;list[langdu-1-i]);
+  }
+  <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">k</span> = 0; k &lt; langdu; ++k) {
+    printf(<span style="font-style: italic;">"%d "</span>,*(list+k));
+  }
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+
+</pre>
+</div>
+
+<pre class="example">
+2 5 6 7 8 9 12 42 45 68 98 156 158
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb3bedd0" class="outline-2">
+<h2 id="orgb3bedd0">Insert</h2>
+<div class="outline-text-2" id="text-orgb3bedd0">
+</div>
+<div id="outline-container-orgf9a762e" class="outline-3">
+<h3 id="orgf9a762e">Algorithm</h3>
+<div class="outline-text-3" id="text-orgf9a762e">
+<pre class="example">
+A[a] for a -&gt; 0, 1, 2....l-1
+for i -&gt; 1, 2...l-1:
+    value &lt;- A[i]
+    index &lt;- i
+    while(A[index-1] &gt; value &amp;&amp; index &gt; 0)
+	A[index] = A[index-1]
+	index--        
+    A[index] &lt;- value
+</pre>
+</div>
+</div>
+<div id="outline-container-org5924b77" class="outline-3">
+<h3 id="org5924b77">Python</h3>
+<div class="outline-text-3" id="text-org5924b77">
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">list1</span> = [2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 19]
+<span style="font-weight: bold; font-style: italic;">langdu</span> = <span style="font-weight: bold;">len</span>(list1)
+<span style="font-weight: bold;">for</span> i <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(1, langdu):
+    <span style="font-weight: bold; font-style: italic;">value</span> = list1[i]
+    <span style="font-weight: bold; font-style: italic;">index</span> = i
+    <span style="font-weight: bold;">while</span>(index &gt; 0 <span style="font-weight: bold;">and</span> list1[index-1] &gt; value):
+        <span style="font-weight: bold; font-style: italic;">list1</span>[index] = list1[index-1]
+        <span style="font-weight: bold; font-style: italic;">index</span> -= 1
+    <span style="font-weight: bold; font-style: italic;">list1</span>[index] = value
+<span style="font-weight: bold;">print</span>(list1)
+</pre>
+</div>
+
+<pre class="example">
+[1, 2, 3, 3, 4, 4, 5, 6, 7, 8, 9, 9, 19, 20, 23, 34, 45, 90, 345, 546, 23465]
+
+</pre>
+</div>
+</div>
+<div id="outline-container-org1a47134" class="outline-3">
+<h3 id="org1a47134">Java</h3>
+<div class="outline-text-3" id="text-org1a47134">
+<div class="org-src-container">
+<pre class="src src-java"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Inserting</span>
+{
+    <span style="font-weight: bold;">public</span> <span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">String</span>[] <span style="font-weight: bold; font-style: italic;">args</span>)
+    {
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">list1</span> [] = {2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 19};
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">langdu</span> = list1.length;
+        <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 1; i &lt; <span style="font-weight: bold; text-decoration: underline;">langdu</span>; i++) {
+            <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">value</span> = list1[i];
+            <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">index</span> = i;
+            <span style="font-weight: bold;">while</span>(index &gt; 0 &amp;&amp; list1[index-1] &gt; value) {
+                list1[index] = list1[index-1];
+                index--;
+            }
+            list1[index] = value;
+        }
+        <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">var</span> :list1) {
+            System.out.printf(<span style="font-style: italic;">"%d "</span>, var);          
+        }
+    }
+}
+</pre>
+</div>
+
+<pre class="example">
+1 2 3 3 4 4 5 6 7 8 9 9 19 20 23 34 45 90 345 546 23465 
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgbc53526" class="outline-3">
+<h3 id="orgbc53526">C/C++</h3>
+<div class="outline-text-3" id="text-orgbc53526">
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>[])
+{
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">A</span>[] = {2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 19};
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">langdu</span> = <span style="font-weight: bold;">sizeof</span>(A)/<span style="font-weight: bold;">sizeof</span>(<span style="font-weight: bold; text-decoration: underline;">int</span>);
+  <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 1; i &lt; langdu; ++i) {
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">value</span> = A[i];
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">index</span> = i;
+    <span style="font-weight: bold;">while</span> (index &gt; 0 &amp;&amp; A[index-1] &gt; value) {
+      A[index] = A[index-1];
+      index--;
+    }
+    A[index] = value;
+  }
+  <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; langdu; ++i) {
+    printf(<span style="font-style: italic;">"%d "</span>,A[i] );
+  }
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+</pre>
+</div>
+
+<pre class="example">
+1 2 3 3 4 4 5 6 7 8 9 9 19 20 23 34 45 90 345 546 23465
+
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>[])
+{
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">A</span>[] = {2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 19};
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">langdu</span> = <span style="font-weight: bold;">sizeof</span>(A)/<span style="font-weight: bold;">sizeof</span>(<span style="font-weight: bold; text-decoration: underline;">int</span>);
+  insert(A, langdu);
+  <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; langdu; ++i) {
+    printf(<span style="font-style: italic;">"%d "</span>,A[i] );
+  }
+  <span style="font-weight: bold;">return</span> 0;
+}
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">insert</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">A</span>[], <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">langdu</span>){
+  <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 1; i &lt; langdu; ++i) {
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">value</span> = A[i];
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">index</span> = i;
+    <span style="font-weight: bold;">while</span> (index &gt; 0 &amp;&amp; A[index-1] &gt; value) {
+      A[index] = A[index-1];
+      index--;
+    }
+    A[index] = value;
+  }
+  <span style="font-weight: bold;">return</span>;
+
+}
+
+</pre>
+</div>
+
+<pre class="example">
+1 2 3 3 4 4 5 6 7 8 9 9 19 20 23 34 45 90 345 546 23465
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1de0000" class="outline-2">
+<h2 id="org1de0000">merge</h2>
+<div class="outline-text-2" id="text-org1de0000">
+</div>
+<div id="outline-container-org9cb56a6" class="outline-3">
+<h3 id="org9cb56a6">Algorithm</h3>
+<div class="outline-text-3" id="text-org9cb56a6">
+<pre class="example">
+A[a] for a -&gt; 0, 1, 2.....l-1
+ll = 0
+rr = l-1
+mergersort(A, ll, rr)
+
+mergersort(A, ll, rr)
+  solang ll &lt; rr
+    dd = (ll+rr)/2
+    A1[a] for a-&gt; ll...dd
+    A2[a] for a -&gt; dd+1..rr
+    mergersort(A1, ll, dd)
+    mergersort(A2, dd+1, rr)
+    merge(A1, ll, dd, A2, dd+1, rr)
+  else return
+
+merge(A1, A2)
+  A1[i] for i -&gt; 0...I
+  A2[j] for j -&gt; 0...J
+  C[k]  for k -&gt; 0....I+J
+  if A1[i] &gt; A2[j] &amp;&amp; i &lt; I &amp;&amp; j &lt; J
+    C[k] &lt;- A2[j]
+    k++
+    j++
+  if i &lt; I
+  C[k...k+(I-i)] &lt;- A1[i...I]
+  if J &lt; J
+  C[k...k+(J-j)] &lt;- A2[j...J]
+</pre>
+
+<pre class="example">
+A[a] for a -&gt; 0, 1, 2....l-1
+mergersort(A)
+
+mergersort(A):
+  if len(A) &gt; 1:
+    A1, A2 &lt;- A
+    A1 =  mergersort(A1)
+    A2 =  mergersort(A2)
+    return  merge(A1, A2)
+  else return A
+merge(A1, A2):
+  A1[i] for i -&gt; 0...I
+  A2[j] for j -&gt; 0...J
+  C[k] for k -&gt; 0...I+J
+  while i &lt; I and j &lt; J:
+    if A1[i] &gt; A2[j]:
+      C[k] &lt;- A2[j]
+      j++
+    else C[k] &lt;- A1[i]
+      i++
+    k++
+  while i &lt;= I
+   C[k] &lt;- A1[i]
+  while j &lt;= J
+  C[k] &lt;- A2[j]
+ return C
+
+</pre>
+</div>
+</div>
+<div id="outline-container-orga36d91b" class="outline-3">
+<h3 id="orga36d91b">Python</h3>
+<div class="outline-text-3" id="text-orga36d91b">
+<div class="org-src-container">
+<pre class="src src-ipython">def mergesort(list1):
+    if len(list1) &lt;= 1:
+	return list1
+    mid = int(len(list1)/2)
+    lista = list1[:mid]
+    listb = list1[mid:]
+    lista = mergesort(lista)
+    listb = mergesort(listb)
+    return merge(lista, listb)
+
+def merge(lista, listb):
+    result = []
+    i = 0
+    j = 0
+    while(i &lt; len(lista) and j &lt; len(listb)):
+	if lista[i] &gt; listb[j]:
+	    result.append(listb[j])
+	    j += 1
+	else:
+	    result.append(lista[i])
+	    i += 1
+    result += lista[i:]
+    result += listb[j:]
+    return result
+list1 = [2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 19]
+langdu = len(list1)
+list1 = mergesort(list1)
+print(list1)
+</pre>
+</div>
+
+<pre class="example">
+[1, 2, 3, 3, 4, 4, 5, 6, 7, 8, 9, 9, 19, 20, 23, 34, 45, 90, 345, 546, 23465]
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org541ead6" class="outline-3">
+<h3 id="org541ead6">Java</h3>
+<div class="outline-text-3" id="text-org541ead6">
+<p>
+mit index augenment
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="font-weight: bold;">import</span> <span style="font-weight: bold; text-decoration: underline;">java</span>.<span style="font-weight: bold; text-decoration: underline;">util</span>.*;
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Merging</span>
+{
+    <span style="font-weight: bold;">public</span> <span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">String</span>[] <span style="font-weight: bold; font-style: italic;">args</span>)
+    {
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">a</span> [] = {2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 19};
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">langdu</span> = a.length-1;
+        mergsort(a, 0, langdu );
+        <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">var</span> : a){
+            System.out.printf(<span style="font-style: italic;">"%d "</span>, var);
+        }
+    }
+    <span style="font-weight: bold;">private</span> <span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">mergsort</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> [] <span style="font-weight: bold; font-style: italic;">a</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">lo</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">hi</span>){
+        <span style="font-weight: bold;">if</span> (lo &gt;= hi) {
+            <span style="font-weight: bold;">return</span>;
+        }
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">mid</span> = lo + (hi-lo)/2;
+        mergsort(a, lo, mid);
+        mergsort(a, mid+1, hi);
+        merge(a, lo, mid, hi);
+    }
+    <span style="font-weight: bold;">private</span> <span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">merge</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> [] <span style="font-weight: bold; font-style: italic;">a</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">lo</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">mid</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">hi</span>){
+        <span style="font-weight: bold; text-decoration: underline;">int</span> [] <span style="font-weight: bold; font-style: italic;">news</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">int</span> [hi-lo+1];
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">p</span> = lo;
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">q</span> = mid+1;
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">index</span> = 0;
+        <span style="font-weight: bold;">while</span>(p &lt;= mid &amp;&amp; q &lt;= hi){
+            <span style="font-weight: bold;">if</span> (a[p] &gt; a[q]) {
+                news[index++] = a[q++];
+            }<span style="font-weight: bold;">else</span>{
+                news[index++] = a[p++];
+            }
+        }
+        <span style="font-weight: bold;">while</span>(p &lt;= mid){
+            news[index++] = a[p++];
+        }
+
+        <span style="font-weight: bold;">while</span>(q &lt;= hi){
+            news[index++] = a[q++];
+        }
+        System.arraycopy(news, 0, a, lo, hi-lo+1);
+    }
+}
+
+</pre>
+</div>
+
+<pre class="example">
+1 2 3 3 4 4 5 6 7 8 9 9 19 20 23 34 45 90 345 546 23465 
+
+</pre>
+<p>
+without index augenment
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="font-weight: bold;">import</span> <span style="font-weight: bold; text-decoration: underline;">java</span>.<span style="font-weight: bold; text-decoration: underline;">util</span>.*;
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Merginge</span>
+{
+    <span style="font-weight: bold;">public</span> <span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">String</span>[] <span style="font-weight: bold; font-style: italic;">args</span>)
+    {
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">a</span> [] = {2, 1, 3, 4, 5, 9, 7, 8, 6, 10, 2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 19};
+        <span style="font-weight: bold; text-decoration: underline;">int</span> [] <span style="font-weight: bold; font-style: italic;">result</span> = mergsort(a);
+        <span style="font-weight: bold;">for</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">var</span> : result){
+            System.out.printf(<span style="font-style: italic;">"%d "</span>, var);
+        }
+    }
+    <span style="font-weight: bold;">private</span> <span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">int</span> [] <span style="font-weight: bold;">mergsort</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> [] <span style="font-weight: bold; font-style: italic;">a</span>){
+        <span style="font-weight: bold;">if</span> (a.length &lt;= 1) {
+            <span style="font-weight: bold;">return</span> a;
+        }
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">mid</span> = a.length/2;
+        <span style="font-weight: bold; text-decoration: underline;">int</span> [] <span style="font-weight: bold; font-style: italic;">left</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">int</span> [mid];
+        <span style="font-weight: bold; text-decoration: underline;">int</span> [] <span style="font-weight: bold; font-style: italic;">right</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">int</span> [a.length - mid];
+        <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; <span style="font-weight: bold; text-decoration: underline;">mid</span>; i++) {
+            left[i] = a[i];
+                }
+        <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = mid; i &lt; a.<span style="font-weight: bold; text-decoration: underline;">length</span>; i++) {
+            right[i-mid] = a[i];
+                }
+        left = mergsort(left);
+        right = mergsort(right);
+        <span style="font-weight: bold;">return</span> merge(left, right);
+    }
+    <span style="font-weight: bold;">private</span> <span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">int</span>[] <span style="font-weight: bold;">merge</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> [] <span style="font-weight: bold; font-style: italic;">left</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> [] <span style="font-weight: bold; font-style: italic;">right</span>){
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">lenleft</span> = left.length-1;
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">leftindex</span> = 0;
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">lenright</span> = right.length-1;
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">rightindex</span> = 0;
+        <span style="font-weight: bold; text-decoration: underline;">int</span> [] <span style="font-weight: bold; font-style: italic;">result</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">int</span>[lenleft+lenright+2];
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">index</span> = 0;
+        <span style="font-weight: bold;">while</span>(leftindex &lt;= lenleft &amp;&amp; rightindex &lt;= lenright){
+            <span style="font-weight: bold;">if</span> (left[leftindex] &gt; right[rightindex]) {
+                result[index++] = right[rightindex++];
+            }<span style="font-weight: bold;">else</span>{
+                result[index++] = left[leftindex++];
+            }
+        }
+        <span style="font-weight: bold;">while</span>(leftindex &lt;= lenleft){
+            result[index++] = left[leftindex++];
+        }
+        <span style="font-weight: bold;">while</span>(rightindex &lt;= lenright){
+            result[index++] = right[rightindex++];
+        }
+        <span style="font-weight: bold;">return</span> result;
+    }
+}
+
+</pre>
+</div>
+
+<pre class="example">
+1 1 2 2 3 3 3 4 4 4 5 5 6 6 7 7 8 8 9 9 9 10 19 20 23 34 45 90 345 546 23465 
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgf8d77dc" class="outline-3">
+<h3 id="orgf8d77dc">C/C++</h3>
+<div class="outline-text-3" id="text-orgf8d77dc">
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdlib.h&gt;</span>
+<span style="font-weight: bold;">#define</span> <span style="font-weight: bold; font-style: italic;">N</span> 7
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">merge</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">arr</span>[], <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">low</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">mid</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">high</span>){
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span>, <span style="font-weight: bold; font-style: italic;">k</span>;
+    <span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">tmp</span> = (<span style="font-weight: bold; text-decoration: underline;">int</span> *)malloc((high-low+1)*<span style="font-weight: bold;">sizeof</span>(<span style="font-weight: bold; text-decoration: underline;">int</span>));
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">left_low</span> = low;
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">left_high</span> = mid;
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">right_low</span> = mid + 1;
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">right_high</span> = high;
+    <span style="font-weight: bold;">for</span>(k=0; left_low&lt;=left_high &amp;&amp; right_low&lt;=right_high; k++){
+        <span style="font-weight: bold;">if</span>(arr[left_low]&lt;=arr[right_low]){
+            tmp[k] = arr[left_low++];
+        }<span style="font-weight: bold;">else</span>{
+            tmp[k] = arr[right_low++];
+        }
+    }
+    <span style="font-weight: bold;">if</span>(left_low &lt;= left_high){  
+      <span style="font-weight: bold;">for</span>(i=left_low;i&lt;=left_high;i++)
+        tmp[k++] = arr[i];
+    }
+    <span style="font-weight: bold;">if</span>(right_low &lt;= right_high){
+      <span style="font-weight: bold;">for</span>(i=right_low; i&lt;=right_high; i++)
+        tmp[k++] = arr[i];
+    }
+    <span style="font-weight: bold;">for</span>(i=0; i&lt;high-low+1; i++)
+        arr[low+i] = tmp[i];
+    free(tmp);
+    <span style="font-weight: bold;">return</span>;
+}
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">merge_sort</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">arr</span>[], <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">first</span>, <span style="font-weight: bold; text-decoration: underline;">unsigned</span> <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">last</span>){
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">mid</span> = 0;
+    <span style="font-weight: bold;">if</span>(first&lt;last){
+        mid = (first+last)/2; <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">&#27880;&#24847;&#38450;&#27490;&#28322;&#20986; </span><span style="font-weight: bold; font-style: italic;">*/</span>
+        merge_sort(arr, first, mid);
+        merge_sort(arr, mid+1,last);
+        merge(arr,first,mid,last);
+    }
+    <span style="font-weight: bold;">return</span>;
+}
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(){
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span>;
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">a</span>[N]={32,12,56,78,76,45,36};
+    printf (<span style="font-style: italic;">"&#25490;&#24207;&#21069; \n"</span>);
+    <span style="font-weight: bold;">for</span>(i=0;i&lt;N;i++)
+        printf(<span style="font-style: italic;">"%d\t"</span>,a[i]);
+    merge_sort(a,0,N-1);  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#25490;&#24207;</span>
+    printf (<span style="font-style: italic;">"\n &#25490;&#24207;&#21518; \n"</span>);
+    <span style="font-weight: bold;">for</span>(i=0;i&lt;N;i++)
+        printf(<span style="font-style: italic;">"%d\t"</span>,a[i]); printf(<span style="font-style: italic;">"\n"</span>);
+    system(<span style="font-style: italic;">"pause"</span>);
+    <span style="font-weight: bold;">return</span> 0;
+}
+
+</pre>
+</div>
+
+<pre class="example">
+排序前 
+32	12	56	78	76	45	36	
+ 排序后 
+12	32	36	45	56	76	78
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8900379" class="outline-2">
+<h2 id="org8900379">quick</h2>
+<div class="outline-text-2" id="text-org8900379">
+</div>
+<div id="outline-container-org0eb4306" class="outline-3">
+<h3 id="org0eb4306">Algorithm</h3>
+<div class="outline-text-3" id="text-org0eb4306">
+<pre class="example">
+A[a] for a -&gt; 0, 1, 2...l-1:
+quicksort(A, 0, l-1)
+
+quicksort(A, start, end):
+  if  start &gt;= end:
+    return;
+  else:
+    pivot = A[start]
+    int i = start
+    int j = end
+    while(i != j):
+      whil (j &gt; i &amp;&amp; A[j] &gt; pivot):
+	  j--
+      exchange(A[i], A[j])
+      while(i &lt; j &amp;&amp; A[i] &lt; pivot):
+	  i++
+      exchange(A[i], A[j])
+
+    quicksort(A, start, i+1)
+    quicksort(A, i+1, end)
+
+</pre>
+</div>
+</div>
+<div id="outline-container-orgcf66914" class="outline-3">
+<h3 id="orgcf66914">Python</h3>
+<div class="outline-text-3" id="text-orgcf66914">
+<div class="org-src-container">
+<pre class="src src-ipython">def quicksort(A, start, end):
+    if start &gt;= end:
+	return
+    pivot = A[start]
+    i = start
+    j = end
+    while i != j:
+	while j &gt; i and A[j] &gt;= pivot:
+	    j -= 1
+	A[i], A[j] = A[j], A[i]
+	while i &lt; j and A[i] &lt;= pivot:
+	    i += 1
+	A[i], A[j] = A[j], A[i]
+    quicksort(A, start, j-1)
+    quicksort(A, i+1, end)
+    return
+
+
+
+list1 = [2, 1, 3, 4, 5, 3, 5, 7, 8, 45,  9, 25,
+	 34, 23, 345, 546, 20, 23465, 90, 19]
+langdu = len(list1)
+quicksort(list1, 0, langdu-1)
+print(list1)
+</pre>
+</div>
+
+<pre class="example">
+[1, 2, 3, 3, 4, 5, 5, 7, 8, 9, 19, 20, 23, 25, 34, 45, 90, 345, 546, 23465]
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org8909a57" class="outline-3">
+<h3 id="org8909a57">Java</h3>
+<div class="outline-text-3" id="text-org8909a57">
+<div class="org-src-container">
+<pre class="src src-java"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Quicking</span>
+{
+    <span style="font-weight: bold;">public</span> <span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">String</span>[] <span style="font-weight: bold; font-style: italic;">args</span>)
+    {
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">a</span> [] = {2, 1, 3, 4, 5,9087, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 19};
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">langdu</span> = a.length-1;
+        quicksort(a, 0, langdu);
+        <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">var</span>: a) {
+            System.out.printf(<span style="font-style: italic;">"%d "</span>, var);
+        }
+    }
+    <span style="font-weight: bold;">private</span> <span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">quicksort</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> [] <span style="font-weight: bold; font-style: italic;">a</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">start</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">end</span> ){
+        <span style="font-weight: bold;">if</span> (start &gt;= end) {
+            <span style="font-weight: bold;">return</span>;
+        }
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">pivot</span> = a[start];
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = start;
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">j</span> = end;
+        <span style="font-weight: bold;">while</span>(i != j){
+            <span style="font-weight: bold;">while</span>(j &gt; i &amp;&amp; a[j] &gt;= pivot){
+                j--;
+            }
+            <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">tmp</span> = a[j];
+            a[j] = a[i];
+            a[i] = tmp;
+            <span style="font-weight: bold;">while</span>(i &lt; <span style="font-weight: bold; text-decoration: underline;">j</span> &amp;&amp; a[i] &lt;= pivot){
+                i++;
+            }
+            tmp = a[j];
+            a[j] = a[i];
+            a[i] = tmp;
+        }
+        quicksort(a, start, i-1);
+        quicksort(a, i+1, end);
+    }
+}
+
+</pre>
+</div>
+
+<pre class="example">
+1 2 3 3 4 4 5 6 7 8 9 9 19 20 23 34 45 90 345 546 9087 23465 
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orge9c9dfc" class="outline-3">
+<h3 id="orge9c9dfc">C/C++</h3>
+<div class="outline-text-3" id="text-orge9c9dfc">
+<div class="org-src-container">
+<pre class="src src-C">  <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">swap</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">a</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">b</span>){
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">tmp</span> = *b;
+    *b = *a;
+    *a = tmp;
+  }
+
+  <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">quicksort</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">a</span>[], <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">start</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">end</span>){
+    <span style="font-weight: bold;">if</span> (start &gt;= end) {
+      <span style="font-weight: bold;">return</span>;
+    }
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">pivot</span> = a[start];
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = start;
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">j</span> = end;
+    <span style="font-weight: bold;">while</span> (i != j) {
+      <span style="font-weight: bold;">while</span> (j &gt; i &amp;&amp; a[j] &gt; pivot) 
+        j--;
+      swap(&amp;a[i], &amp;a[j]);
+      <span style="font-weight: bold;">while</span> (i &lt; j &amp;&amp; a[i] &lt; pivot) 
+        i++;
+      swap(&amp;a[i], &amp;a[j]);
+      quicksort(a, start, i-1);
+      quicksort(a, i+1, end);
+      <span style="font-weight: bold;">return</span>;
+    }
+  }
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>[])
+{
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">A</span>[] = {2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 190};
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">langdu</span> = <span style="font-weight: bold;">sizeof</span>(A)/<span style="font-weight: bold;">sizeof</span>(<span style="font-weight: bold; text-decoration: underline;">int</span>);
+  quicksort(A, 0, langdu-1);
+  <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; langdu; ++i) {
+    printf(<span style="font-style: italic;">"%d "</span>, A[i]);
+  }
+  <span style="font-weight: bold;">return</span> 0;
+}
+</pre>
+</div>
+
+<pre class="example">
+1 2 3 4 3 4 5 6 7 8 9 9 20 23 34 45 190 345 546 90 23465
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org457e567" class="outline-2">
+<h2 id="org457e567">heap</h2>
+<div class="outline-text-2" id="text-org457e567">
+</div>
+<div id="outline-container-orgdca0217" class="outline-3">
+<h3 id="orgdca0217">Algorithm</h3>
+<div class="outline-text-3" id="text-orgdca0217">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">build<sub>heap</sub>()</td>
+<td class="org-left">build all the data to heap</td>
+</tr>
+
+<tr>
+<td class="org-left">heapify(list, n, i)</td>
+<td class="org-left">from i on, can only grante that, the frist is the biggest</td>
+</tr>
+</tbody>
+</table>
+<p>
+at frist build the heap, and then each time take the biggest one
+n:length, i the startup
+</p>
+<pre class="example">
+heapify(list, n, i){  
+  leftchild = 2i+1
+  rightchild = 2i+2
+  maxindex = i
+  if leftchild &lt; n &amp;&amp; list[leftchild] &gt; list[maxindex]:
+    maxindex = leftchild
+  if rightchild &lt; n &amp;&amp; list[rightchild] &gt; list[maxindex]:
+    maxindex = rightchild
+  if maxindex != i:
+    exchange(list[maxindex], list[i])
+    heapify(list, n, maxindex)
+  }
+build_heap(list, n){
+  last_parent = (n-1)/2
+  for i -&gt; last_parent....0:
+    heapify(list, n, i) 
+  }
+
+
+build_heap(list, n)
+for i -&gt; n-1....0:
+  swap(list, i, 0)
+  heapify(list, i, 0)
+
+</pre>
+</div>
+</div>
+<div id="outline-container-orgb099517" class="outline-3">
+<h3 id="orgb099517">python</h3>
+<div class="outline-text-3" id="text-orgb099517">
+<div class="org-src-container">
+<pre class="src src-ipython">def heapify(list1, n, i):
+    leftchild = 2*i+1
+    rightchild = 2*i +2
+    maxindex = i
+    if leftchild &lt; n and list1[leftchild] &gt; list1[maxindex]:
+	maxindex = leftchild
+    if rightchild &lt; n and list1[rightchild] &gt; list1[maxindex]:
+	maxindex = rightchild
+    if maxindex != i:
+	list1[maxindex], list1[i] = list1[i], list1[maxindex]
+	heapify(list1, n, maxindex)
+
+def heap_build(list1, n):
+    last_parent = (n-1)//2
+    for i in range(last_parent+1):
+	j = last_parent-i
+	heapify(list1, n, j)
+
+
+list1 = [2, 1, 3, 4, 5, 3, 5, 7, 8, 45,  9, 25, 34, 23, 345, 546, 20, 23465, 90, 19]
+langdu = len(list1)
+heap_build(list1, langdu)
+print(list1)
+for i in range(langdu):
+    j = langdu-1-i
+    list1[0], list1[j] = list1[j], list1[0]
+    heapify(list1, j, 0)
+
+print(list1)
+
+</pre>
+</div>
+
+<pre class="example">
+[23465, 546, 345, 90, 45, 34, 23, 20, 8, 19, 9, 25, 3, 3, 5, 7, 1, 2, 4, 5]
+[1, 2, 3, 3, 4, 5, 5, 7, 8, 9, 19, 20, 23, 25, 34, 45, 90, 345, 546, 23465]
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org7ec08a5" class="outline-3">
+<h3 id="org7ec08a5">Java</h3>
+<div class="outline-text-3" id="text-org7ec08a5">
+<div class="org-src-container">
+<pre class="src src-java"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">HeapSorting</span>
+{
+    <span style="font-weight: bold;">public</span> <span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">String</span>[] <span style="font-weight: bold; font-style: italic;">args</span>)
+    {
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">a</span> [] = {2, 1, 3, 4, 5,9087, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 190};
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">langdu</span> = a.length;
+        build_heap(a, langdu);
+        <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = langdu-1; i &gt;= 0; i--) {
+            <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">tmp</span> = a[0];
+            a[0] = a[i];
+            a[i] = tmp;
+            heapify(a, i, 0);
+        }
+        <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; <span style="font-weight: bold; text-decoration: underline;">langdu</span>; i++) {
+            System.out.printf(<span style="font-style: italic;">"%d "</span>, a[i]);
+        }
+    }
+    <span style="font-weight: bold;">private</span> <span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">heapify</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">a</span>[], <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">n</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span>){
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">leftchild</span> = i*2+1;
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">rightchild</span> = i*2+2;
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">maxindex</span> = i;
+        <span style="font-weight: bold;">if</span> (leftchild &lt; <span style="font-weight: bold; text-decoration: underline;">n</span> &amp;&amp; a[leftchild] &gt; a[maxindex] ) {
+            maxindex = leftchild;
+        }
+        <span style="font-weight: bold;">if</span> (rightchild &lt; <span style="font-weight: bold; text-decoration: underline;">n</span> &amp;&amp; a[rightchild] &gt; a[maxindex]) {
+            maxindex = rightchild;
+        }
+        <span style="font-weight: bold;">if</span> (maxindex != i) {
+            <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">tmp</span> = a[maxindex];
+            a[maxindex] = a[i];
+            a[i] = tmp;
+            heapify(a, n, maxindex);
+        }
+    }
+    <span style="font-weight: bold;">private</span> <span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">build_heap</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">a</span>[], <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">n</span>){
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">last_parent</span> = (n-1-1)/2;
+        <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = last_parent; i &gt;= 0; i--) {
+            heapify(a, n, i);
+        }
+    }
+}
+</pre>
+</div>
+
+<pre class="example">
+1 2 3 3 4 4 5 6 7 8 9 9 20 23 34 45 90 190 345 546 9087 23465 
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orga828fb0" class="outline-3">
+<h3 id="orga828fb0">C/C++</h3>
+<div class="outline-text-3" id="text-orga828fb0">
+<div class="org-src-container">
+<pre class="src src-C">  <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">swap</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">a</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">b</span>){
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">tmp</span> = *a;
+    *a = *b;
+    *b = tmp;
+  }
+  <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">heapify</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">A</span>[], <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">N</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span>){
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">leftchild</span> = i*2+1;
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">rightchild</span> = i*2+2;
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">maxindex</span> = i;
+    <span style="font-weight: bold;">if</span> (leftchild &lt; N &amp;&amp; A[leftchild] &gt; A[maxindex]) {
+      maxindex = leftchild;
+    }
+    <span style="font-weight: bold;">if</span> (rightchild &lt; N &amp;&amp; A[rightchild] &gt; A[maxindex]) {
+      maxindex = rightchild;
+    }
+    <span style="font-weight: bold;">if</span> (maxindex != i) {
+      swap(&amp;A[maxindex], &amp;A[i]);
+      heapify(A, N, maxindex);
+    }
+  }
+
+  <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">build_heap</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">A</span>[], <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">N</span>){
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">last_parent</span> = (N-1-1)/2;
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span>;
+    <span style="font-weight: bold;">for</span> (i = last_parent; i &gt;= 0; i--) {
+      heapify(A, N, i);
+    }
+  }
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>[])
+{
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">A</span>[] = {2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 190};
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">N</span> = <span style="font-weight: bold;">sizeof</span>(A)/<span style="font-weight: bold;">sizeof</span>(<span style="font-weight: bold; text-decoration: underline;">int</span>);
+  build_heap(A, N);
+  <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = N-1; i &gt;= 0; i--) {
+    swap(&amp;A[i], &amp;A[0]);
+    heapify(A, i, 0);
+  }
+
+  <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">j</span> = 0; j &lt; N; ++j) {
+    printf(<span style="font-style: italic;">"%d "</span>,A[j]);
+  }
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+
+</pre>
+</div>
+
+<pre class="example">
+1 2 3 3 4 4 5 6 7 8 9 9 20 23 34 45 90 190 345 546 23465
+
+</pre>
+</div>
+</div>
+<div id="outline-container-orgf57b5fe" class="outline-3">
+<h3 id="orgf57b5fe">Typescript</h3>
+<div class="outline-text-3" id="text-orgf57b5fe">
+<p>
+swap in-place
+</p>
+<div class="org-src-container">
+<pre class="src src-typescript">// let swap = function (left:number, right:number){
+//       var temp = left
+//       left = right
+//       right = temp
+//   }
+
+let heapfly =  function(list:number[], length:number, index:number){
+      var leftchild = index*2+1
+      var rightchild = index*2+2
+      var maxindex = index
+      if (leftchild &lt; length &amp;&amp; list[leftchild] &gt;list[maxindex]) {
+	  let temp = leftchild
+	  leftchild = maxindex
+	  maxindex = temp
+//          swap(leftchild, minindex)
+      }
+
+    if (rightchild &lt; length &amp;&amp; list[rightchild]&gt;list[maxindex]) {
+	let tmp = rightchild
+	rightchild = maxindex
+	maxindex = tmp
+	//  swap(leftchild, minindex)
+      }
+      if (maxindex != index) {
+	  let tp = list[maxindex]
+	  list[maxindex] = list[index]
+	  list[index] = tp
+	  heapfly(list, length, maxindex)
+      }
+  }
+
+ let build_heap = function (list:number[], lenght:number){
+      var lastperent = Math.floor((length-1-1) / 2);
+      for (var i = lastperent; i &gt;= 0; i--) {
+	  heapfly(list, length, i);
+      }
+  }
+
+  var list: number[] = [2, 1, 3, 4, 5, 3, 5, 7, 8, 45,  9, 25, 34, 23, 345, 546, 20, 23465, 90, 19];
+  console.log(list)
+  var length: number = list.length;
+  build_heap(list, length)
+
+  for (var i = length-1; i &gt;= 0; i--) {
+      let temp = list[i]
+      list[i] = list[0]
+      list[0] = temp
+      heapfly(list, i, 0)
+  }
+
+  console.log(list)
+
+</pre>
+</div>
+<p>
+swap in function
+</p>
+<div class="org-src-container">
+<pre class="src src-typescript">let swap = function (left:number, right:number){
+  return [right, left]
+  }
+
+let heapfly =  function(list:number[], length:number, index:number){
+      var leftchild = index*2+1
+      var rightchild = index*2+2
+      var maxindex = index
+      if (leftchild &lt; length &amp;&amp; list[leftchild] &gt;list[maxindex]) {
+	  [leftchild, maxindex] = swap(leftchild, maxindex)
+      }
+
+    if (rightchild &lt; length &amp;&amp; list[rightchild]&gt;list[maxindex]) {
+	[rightchild, maxindex] = swap(rightchild, maxindex)
+      }
+      if (maxindex != index) {
+	  [list[maxindex], list[index]] = swap(list[maxindex], list[index])
+	  heapfly(list, length, maxindex)
+      }
+  }
+ let build_heap = function (list:number[], lenght:number){
+      var lastperent = Math.floor((length-1-1) / 2);
+      for (var i = lastperent; i &gt;= 0; i--) {
+	  heapfly(list, length, i);
+      }
+  }
+  var list: number[] = [2, 1, 3, 4, 5, 3, 5, 7, 8, 45,  9, 25, 34, 23, 345, 546, 20, 23465, 90, 19];
+  console.log(list)
+  var length: number = list.length;
+  build_heap(list, length)
+
+  for (var i = length-1; i &gt;= 0; i--) {
+      [list[i], list[0]]= swap(list[i], list[0])
+      heapfly(list, i, 0)
+  }
+  console.log(list)
+
+</pre>
+</div>
+
+<pre class="example">
+[
+    2,  1,     3,  4,   5,
+    3,  5,     7,  8,  45,
+    9, 25,    34, 23, 345,
+  546, 20, 23465, 90,  19
+]
+[
+   1,  2,   3,   3,     4,
+   5,  5,   7,   8,     9,
+  19, 20,  23,  25,    34,
+  45, 90, 345, 546, 23465
+]
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org24e7785" class="outline-2">
+<h2 id="org24e7785">Shell Sort</h2>
+<div class="outline-text-2" id="text-org24e7785">
+</div>
+<div id="outline-container-orgfc29bc7" class="outline-3">
+<h3 id="orgfc29bc7">Algorithm</h3>
+<div class="outline-text-3" id="text-orgfc29bc7">
+<pre class="example">
+A[a] for a -&gt; 0, 1, 2....l-1
+for G[g] for g -&gt; 0, 1, ...m
+for j -&gt; 0, 1, 2...m-1:
+  d = G[j]
+  for i -&gt; d, 2d, 3d   
+    value &lt;- A[i]
+    index &lt;- i
+    while(A[index-d] &gt; value &amp;&amp; index &gt; 0)
+	A[index] = A[index-d]
+	index -= d        
+    A[index] &lt;- value
+</pre>
+</div>
+</div>
+<div id="outline-container-org5c4e0da" class="outline-3">
+<h3 id="org5c4e0da">Python</h3>
+<div class="outline-text-3" id="text-org5c4e0da">
+<div class="org-src-container">
+<pre class="src src-ipython">def shellsort(list1, N):
+    G = [7, 5, 3, 1]
+    for d in G:
+	i = d
+	while i &lt; N:
+	    value = list1[i]
+	    index = i
+	    while index &gt; 0 and list1[index-d] &gt; value:
+		list1[index] = list1[index-d]
+		index -= d
+	    i += d
+	    list1[index] = value
+
+list1 = [2, 1, 3, 4, 5, 3, 5, 7, 8, 45,  9, 25, 34, 23, 345, 546, 20, 23465, 90, 19, 900]
+langdu = len(list1)
+shellsort(list1, langdu)
+print(list1)
+</pre>
+</div>
+
+<pre class="example">
+[1, 2, 3, 3, 4, 5, 5, 7, 8, 9, 19, 20, 23, 25, 34, 45, 90, 345, 546, 900, 23465]
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgd02772f" class="outline-3">
+<h3 id="orgd02772f">Java</h3>
+<div class="outline-text-3" id="text-orgd02772f">
+<div class="org-src-container">
+<pre class="src src-java"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">ShellSorting</span>
+{
+    <span style="font-weight: bold;">public</span> <span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">String</span>[] <span style="font-weight: bold; font-style: italic;">args</span>)
+    {
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">a</span> [] = {2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 19};
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">langdu</span> = a.length;
+        shellsort(a, langdu);
+        <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; <span style="font-weight: bold; text-decoration: underline;">langdu</span>; i++) {
+            System.out.printf(<span style="font-style: italic;">"%d "</span>, a[i]);
+        }
+    }
+    <span style="font-weight: bold;">private</span> <span style="font-weight: bold;">static</span> <span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">shellsort</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> []<span style="font-weight: bold; font-style: italic;">A</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">N</span>){
+        <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">Grap</span> [] = {7, 5, 3, 1};
+        <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; Grap.<span style="font-weight: bold; text-decoration: underline;">length</span>; i++) {
+            <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">d</span> = Grap[i];
+            <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">j</span> = d; j &lt; <span style="font-weight: bold; text-decoration: underline;">N</span>; j+=d) {
+                <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">value</span> = A[j];
+                <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">index</span> = j;
+                <span style="font-weight: bold;">while</span>(index &gt; 0 &amp;&amp; A[index-d] &gt; value){
+                    A[index] = A[index-d];
+                    index -= d;
+                }
+                A[index] = value;
+            }
+        }
+    }
+}
+
+</pre>
+</div>
+
+<pre class="example">
+1 2 3 3 4 4 5 6 7 8 9 9 19 20 23 34 45 90 345 546 23465 
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgc229460" class="outline-3">
+<h3 id="orgc229460">C/C++</h3>
+<div class="outline-text-3" id="text-orgc229460">
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>[])
+{
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">A</span>[] = {2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 19, 23, 45,78};
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">langdu</span> = <span style="font-weight: bold;">sizeof</span>(A)/<span style="font-weight: bold;">sizeof</span>(<span style="font-weight: bold; text-decoration: underline;">int</span>);
+  shellsort(A, langdu);
+  <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; i &lt; langdu; ++i) {
+    printf(<span style="font-style: italic;">"%d "</span>,A[i] );
+  }
+  <span style="font-weight: bold;">return</span> 0;
+}
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">shellsort</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">A</span>[], <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">langdu</span>){
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">grap</span>[] ={7, 5, 3, 1};
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">N</span> = <span style="font-weight: bold;">sizeof</span>(grap) / <span style="font-weight: bold;">sizeof</span>(<span style="font-weight: bold; text-decoration: underline;">int</span>);
+  <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">j</span> = 0; j &lt; N; ++j) {
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">d</span> = grap[j];
+    <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = d; i &lt; langdu; i=i+d) {
+      <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">value</span> = A[i];
+      <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">index</span> = i;
+      <span style="font-weight: bold;">while</span> (index &gt; 0 &amp;&amp; A[index-d] &gt; value) {
+        A[index] = A[index-d];
+        index -= d;
+      }
+      A[index] = value;
+    }
+  }
+  <span style="font-weight: bold;">return</span>;
+}
+
+</pre>
+</div>
+
+<pre class="example">
+1 2 3 3 4 4 5 6 7 8 9 9 19 20 23 23 34 45 45 78 90 345 546 23465
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org70976f6" class="outline-2">
+<h2 id="org70976f6">Redix</h2>
+<div class="outline-text-2" id="text-org70976f6">
+</div>
+<div id="outline-container-org3daaef7" class="outline-3">
+<h3 id="org3daaef7">Description</h3>
+<div class="outline-text-3" id="text-org3daaef7">
+<pre class="example">
+N numbers are waiting to be sorted,
+each number has maxmum d digit,
+and each digit is from 0 to k
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org148438c" class="outline-3">
+<h3 id="org148438c">Algorithmu</h3>
+<div class="outline-text-3" id="text-org148438c">
+<pre class="example">
+Least significant digital OR Most significant digital
+
+LSD: from right to left, only sort all numbers according to the last digit(better with conut sort)
+and then move  to left on the second digit, do it again
+Time complexity  $\Theta (d(n+k))$
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc3a8678" class="outline-2">
+<h2 id="orgc3a8678">Bucket Sort</h2>
+<div class="outline-text-2" id="text-orgc3a8678">
+</div>
+<div id="outline-container-orgf4e26ef" class="outline-3">
+<h3 id="orgf4e26ef">Algorithm</h3>
+<div class="outline-text-3" id="text-orgf4e26ef">
+<pre class="example">
+all data are uniformly distributed in a range
+spilt the range into n equal-sized intervals
+independently chosen data and put them into corresponding interval
+sort each interval(better with insert sort)
+output by list in order of all buckets
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4dd11f3" class="outline-2">
+<h2 id="org4dd11f3">Count Sort</h2>
+<div class="outline-text-2" id="text-org4dd11f3">
+</div>
+<div id="outline-container-orgfc7a626" class="outline-3">
+<h3 id="orgfc7a626">Algorithm</h3>
+<div class="outline-text-3" id="text-orgfc7a626">
+<pre class="example">
+A[n] for n from 1 to N will be sorted
+using additional array C[k]
+where k from min(A) to max(A)
+output B[n] for n from 1 to N
+</pre>
+
+<pre class="example">
+for i from 1 to n: C[i] &lt;- 0
+for n from 1 to N: C[A[n]]++
+for i from 2 to n: C[i] = C[i]+C[i-1]
+for n from N to 1: B[C[A[n]]] = A[n], C[A[n]]--
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org944ac17" class="outline-3">
+<h3 id="org944ac17">Python</h3>
+<div class="outline-text-3" id="text-org944ac17">
+<div class="org-src-container">
+<pre class="src src-ipython">A = [1,4,2,5,3,6,2,5,3,6,3,4,7,8,4]
+print(A)
+lengthA = len(A)
+minA = min(A)
+maxA = max(A)
+lengthC = maxA-minA+1
+
+C = [0]*lengthC
+
+for n in range(lengthA):
+  C[A[n]-1] = C[A[n]-1]+1
+print(C)
+
+for i in range(1, lengthC,1):
+  C[i] = C[i]+C[i-1]
+print(C)
+
+B = [0]*lengthA
+for n in range(lengthA-1,-1,-1):
+  B[C[A[n]-1]-1] = A[n]
+  C[A[n]-1] = C[A[n]-1]-1
+
+print(B)
+
+
+</pre>
+</div>
+
+<pre class="example">
+[1, 4, 2, 5, 3, 6, 2, 5, 3, 6, 3, 4, 7, 8, 4]
+[1, 2, 3, 3, 2, 2, 1, 1]
+[1, 3, 6, 9, 11, 13, 14, 15]
+[1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7, 8]
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2c902dc" class="outline-2">
+<h2 id="org2c902dc">Dichotomy</h2>
+<div class="outline-text-2" id="text-org2c902dc">
+</div>
+<div id="outline-container-orgbccae51" class="outline-3">
+<h3 id="orgbccae51">C/C++</h3>
+<div class="outline-text-3" id="text-orgbccae51">
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdlib.h&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;string.h&gt;</span>
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">dichotomy</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> **<span style="font-weight: bold; font-style: italic;">p</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">start</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">end</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">x</span>){
+  <span style="font-weight: bold;">if</span> (*p == <span style="font-weight: bold; text-decoration: underline;">NULL</span>) {
+    printf(<span style="font-style: italic;">" This array is empty !\n"</span>);
+    <span style="font-weight: bold;">return</span> -1;
+  }
+  <span style="font-weight: bold;">if</span> (x &lt; *start || x &gt; *end) {
+    printf(<span style="font-style: italic;">"this element is not in the array\n"</span>);
+    <span style="font-weight: bold;">return</span> -1;
+  }
+  <span style="font-weight: bold;">if</span> (x == *start || x == *end) {
+    <span style="font-weight: bold;">return</span> x;
+  }
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">len</span> = 0;
+  <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">temp</span> = *p; *temp != *end; temp++) {
+    len++;
+  }
+
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">mid</span> = *(*p+len/2);
+  <span style="font-weight: bold;">if</span> (mid == *start || x == *end) {
+    <span style="font-weight: bold;">return</span> -1;
+  }
+
+  <span style="font-weight: bold;">if</span> (mid &gt;= x) {
+    <span style="font-weight: bold;">return</span> dichotomy(p, start, &amp;mid, x);
+  }<span style="font-weight: bold;">else</span> {
+    <span style="font-weight: bold; text-decoration: underline;">int</span> * <span style="font-weight: bold; font-style: italic;">newp</span> = *p+len/2;
+    <span style="font-weight: bold;">return</span> dichotomy(&amp;newp, &amp;mid, end, x);
+  }
+}
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>[])
+{
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">array</span>[] = {1,3,7,12,45,78,234,678,5678};
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">x</span> = 690;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">p</span> = array;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">start</span> = array;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">end1</span> = &amp;array[8];
+  <span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">end</span> = (<span style="font-weight: bold; text-decoration: underline;">int</span> *)(&amp;array+1);
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">a</span> = dichotomy(&amp;p, start, (end-1), x);
+  <span style="font-weight: bold;">if</span> (a == x) {
+      printf(<span style="font-style: italic;">"the element is found !\n"</span>);
+  }<span style="font-weight: bold;">else</span> {
+      printf(<span style="font-style: italic;">"the element is not found !\n"</span>);
+  }
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+
+</pre>
+</div>
+
+<p>
+Using (int *)(&amp;list+1)-1 to find the last elemenet of list[]
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">isinarray</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> **<span style="font-weight: bold; font-style: italic;">p</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">start</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">end</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">x</span>){
+  <span style="font-weight: bold;">if</span> (*p == <span style="font-weight: bold; text-decoration: underline;">NULL</span>) {
+    <span style="font-weight: bold;">return</span> 0;
+  }
+  <span style="font-weight: bold;">if</span> (x &lt; *start || x &gt; *end) {
+    <span style="font-weight: bold;">return</span> 0;
+  }
+
+  <span style="font-weight: bold;">if</span> (x == *start || x == *end) {
+    <span style="font-weight: bold;">return</span> 1;
+  }
+
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0;
+  <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">temp</span> = *p; *temp != *end; temp++) {
+    i++;
+  }
+  <span style="font-weight: bold;">if</span> (i == 1 &amp;&amp; (x != *start || x != *end)) {
+    <span style="font-weight: bold;">return</span> 0;
+  }
+
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">medium</span> = *(*p+i/2);
+  <span style="font-weight: bold;">if</span> (medium &gt;= x) {
+    <span style="font-weight: bold;">return</span> isinarray(p, start, &amp;medium, x);
+  }<span style="font-weight: bold;">else</span> {
+    <span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">m</span> = *p+i/2;
+    <span style="font-weight: bold;">return</span> isinarray(&amp;m, &amp;medium, end , x);
+  }
+}
+
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>[])
+{
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">list</span> [] = {1,3,6,9,12,34,56,78,90,123,456,789};
+  <span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">p</span> = list;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">x</span> = 39;
+  <span style="font-weight: bold;">if</span> (isinarray(&amp;p, list, (<span style="font-weight: bold; text-decoration: underline;">int</span> *)(&amp;list+1)-1, x)) {
+    printf(<span style="font-style: italic;">"IN"</span>);
+  }<span style="font-weight: bold;">else</span> {
+    printf(<span style="font-style: italic;">"NOT IN"</span>);
+  }
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+</pre>
+</div>
+
+<pre class="example">
+NOT IN
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbd6651b" class="outline-2">
+<h2 id="orgbd6651b">HoffmannCode</h2>
+<div class="outline-text-2" id="text-orgbd6651b">
+</div>
+<div id="outline-container-org63fe609" class="outline-3">
+<h3 id="org63fe609">C/C++</h3>
+<div class="outline-text-3" id="text-org63fe609">
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdlib.h&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;string.h&gt;</span>
+<span style="font-weight: bold;">typedef</span> <span style="font-weight: bold;">struct</span> {
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">data</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">parent</span>, <span style="font-weight: bold; font-style: italic;">lboy</span>, <span style="font-weight: bold; font-style: italic;">rboy</span>;
+}<span style="font-weight: bold; text-decoration: underline;">HTNode</span>, *<span style="font-weight: bold; text-decoration: underline;">HoffmanTree</span>;
+<span style="font-weight: bold;">typedef</span> <span style="font-weight: bold; text-decoration: underline;">char</span> ** <span style="font-weight: bold; text-decoration: underline;">HoffmanCode</span>;
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">Select</span>(<span style="font-weight: bold; text-decoration: underline;">HoffmanTree</span> <span style="font-weight: bold; font-style: italic;">HT</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">s1</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">s2</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">end</span>){
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">min1</span>, <span style="font-weight: bold; font-style: italic;">min2</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 1;
+  <span style="font-weight: bold;">while</span> (HT[i].parent != 0 &amp;&amp; i &lt;= end) {
+    i++;
+  }
+  min1 =  HT[i].data;
+  *s1 = i;
+  i++;
+  <span style="font-weight: bold;">while</span> (HT[i].parent != 0 &amp;&amp; i &lt;= end) {
+    i++;
+  }
+  <span style="font-weight: bold;">if</span> (HT[i].data &lt;= min1) {
+    min2 = min1;
+    *s2 = *s1;
+    min1 = HT[i].data;
+    *s1 = i;
+  }<span style="font-weight: bold;">else</span> {
+    min2 = HT[i].data;
+    *s2 = i;
+  }
+  <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">j</span> = i+1; j &lt;= end; j++) {
+    <span style="font-weight: bold;">if</span> (HT[j].parent != 0) {
+      <span style="font-weight: bold;">continue</span>;
+    }
+    <span style="font-weight: bold;">if</span> (HT[j].data &lt;= min1) {
+      min2 = min1;
+      *s2 = *s1;
+      min1 = HT[j].data;
+      *s1 = j;
+    }<span style="font-weight: bold;">else</span> {
+      min1 = HT[j].data;
+      *s2 = j;
+    }
+  }
+}
+
+
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">CreateHoffman</span>(<span style="font-weight: bold; text-decoration: underline;">HoffmanTree</span> *<span style="font-weight: bold; font-style: italic;">HT</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">list</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">length</span>){
+  <span style="font-weight: bold;">if</span> (length &lt;= 1) {
+    <span style="font-weight: bold;">return</span>;
+  }
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">m</span> = 2*length-1;
+  *HT = (<span style="font-weight: bold; text-decoration: underline;">HoffmanTree</span>)malloc(<span style="font-weight: bold;">sizeof</span>(HTNode) * m);
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span>;
+  <span style="font-weight: bold;">for</span> (i = 1; i &lt;= length; i++) {
+    (*HT+i)-&gt;data = *(list+i-1);
+    (*HT+i)-&gt;parent = 0;
+    (*HT+i)-&gt;lboy = 0;
+    (*HT+i)-&gt;rboy = 0;
+  }
+  <span style="font-weight: bold;">for</span> (i = length+1; i &lt;= m; i++) {
+    (*HT+i)-&gt;data = 0;
+    (*HT+i)-&gt;parent = 0;
+    (*HT+i)-&gt;lboy = 0;
+    (*HT+i)-&gt;rboy = 0;
+  }
+
+  <span style="font-weight: bold;">for</span> (i = length+1; i &lt;=m; i++) {
+      <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">s1</span>, <span style="font-weight: bold; font-style: italic;">s2</span>;
+      Select(*HT, &amp;s1, &amp;s2, i-1);
+      (*HT)[s1].parent = (*HT)[s2].parent = i;
+      (*HT)[i].lboy = s1;
+      (*HT)[i].rboy = s2;
+      (*HT)[i].data = (*HT)[s1].data + (*HT)[s2].data;
+  }
+}
+
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">CreateHoffmanCode</span>(<span style="font-weight: bold; text-decoration: underline;">HoffmanCode</span> *<span style="font-weight: bold; font-style: italic;">hcode</span>, <span style="font-weight: bold; text-decoration: underline;">HoffmanTree</span> <span style="font-weight: bold; font-style: italic;">HT</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">length</span>){
+  *hcode = (<span style="font-weight: bold; text-decoration: underline;">HoffmanCode</span>)malloc(<span style="font-weight: bold;">sizeof</span>(<span style="font-weight: bold; text-decoration: underline;">char</span> * ) * length+1);
+  <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">cd</span> = (<span style="font-weight: bold; text-decoration: underline;">char</span> *)malloc(<span style="font-weight: bold;">sizeof</span>(<span style="font-weight: bold; text-decoration: underline;">char</span>) * length);
+  cd[length-1] = <span style="font-style: italic;">'\n'</span>;
+  <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span>  = 1; i &lt;= length; i++) {
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">start</span> = length -1;
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">c</span> = i;
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">j</span> = HT[c].parent;
+    <span style="font-weight: bold;">while</span> (j != 0) {
+      <span style="font-weight: bold;">if</span> (HT[j].lboy == c) {
+        cd[--start] = <span style="font-style: italic;">'1'</span>;
+      }
+      <span style="font-weight: bold;">else</span> {
+        cd[--start] = <span style="font-style: italic;">'0'</span>;
+      }
+      c = j;
+      j = HT[j].parent;
+    }
+    (*hcode)[i] = (<span style="font-weight: bold; text-decoration: underline;">char</span> *)malloc(<span style="font-weight: bold;">sizeof</span>(<span style="font-weight: bold; text-decoration: underline;">char</span> )*length-start);
+    strcpy((*hcode)[i], &amp;cd[start]);
+  }
+  free(cd);
+}
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">showHoffmanCode</span>(<span style="font-weight: bold; text-decoration: underline;">HoffmanCode</span> <span style="font-weight: bold; font-style: italic;">hcode</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">list</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">length</span>){
+  printf(<span style="font-style: italic;">"Here we go\n"</span>);
+  <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 1; i &lt;= length; i++) {
+    printf(<span style="font-style: italic;">"%d : is %s\n"</span>,list[i-1], hcode[i]);
+  }
+}
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>[])
+{
+  <span style="font-weight: bold; text-decoration: underline;">HoffmanTree</span> <span style="font-weight: bold; font-style: italic;">htree</span>;
+  <span style="font-weight: bold; text-decoration: underline;">HoffmanCode</span> <span style="font-weight: bold; font-style: italic;">hcode</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">list</span>[] = {1,18,2,56,3,4, 44,5,7,34,78,90,234,789};
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">length</span> = <span style="font-weight: bold;">sizeof</span>(list)/<span style="font-weight: bold;">sizeof</span>(<span style="font-weight: bold; text-decoration: underline;">int</span>);
+  CreateHoffman(&amp;htree, list, length);
+  CreateHoffmanCode(&amp;hcode, htree, length);
+  showHoffmanCode(hcode, list, length);
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+
+</pre>
+</div>
+
+<pre class="example">
+Here we go
+1 : is 0000001
+
+18 : is 00001
+
+2 : is 000001
+
+56 : is 0001
+
+3 : is 0000000001
+
+4 : is 000000001
+
+44 : is 00000001
+
+5 : is 0000000000001
+
+7 : is 000000000001
+
+34 : is 00000000001
+
+78 : is 001
+
+90 : is 01
+
+234 : is 0
+
+789 : is 0000000000000
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8e35119" class="outline-2">
+<h2 id="org8e35119">JosephusRing</h2>
+<div class="outline-text-2" id="text-org8e35119">
+</div>
+<div id="outline-container-orgd894f95" class="outline-3">
+<h3 id="orgd894f95">C/C++</h3>
+<div class="outline-text-3" id="text-orgd894f95">
+<div class="org-src-container">
+<pre class="src src-C++"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdlib.h&gt;</span>
+<span style="font-weight: bold;">typedef</span> <span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">node</span>{
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">number</span>;
+  <span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">node</span> * <span style="font-weight: bold; font-style: italic;">next</span>;
+}<span style="font-weight: bold; text-decoration: underline;">person</span>;
+<span style="font-weight: bold; text-decoration: underline;">person</span> * <span style="font-weight: bold;">initLink</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">n</span>){
+  <span style="font-weight: bold; text-decoration: underline;">person</span> * <span style="font-weight: bold; font-style: italic;">head</span>=(<span style="font-weight: bold; text-decoration: underline;">person</span>*)malloc(<span style="font-weight: bold;">sizeof</span>(person));
+  head-&gt;number=1;
+  head-&gt;next=<span style="font-weight: bold; text-decoration: underline;">NULL</span>;
+  <span style="font-weight: bold; text-decoration: underline;">person</span> * <span style="font-weight: bold; font-style: italic;">cyclic</span>=head;
+  <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span>=2; i&lt;=n; i++) {
+    <span style="font-weight: bold; text-decoration: underline;">person</span> * <span style="font-weight: bold; font-style: italic;">body</span>=(<span style="font-weight: bold; text-decoration: underline;">person</span>*)malloc(<span style="font-weight: bold;">sizeof</span>(person));
+    body-&gt;number=i;
+    body-&gt;next=<span style="font-weight: bold; text-decoration: underline;">NULL</span>; 
+    cyclic-&gt;next=body;
+    cyclic=cyclic-&gt;next;
+  }
+  cyclic-&gt;next=head;<span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">&#39318;&#23614;&#30456;&#36830;</span>
+  <span style="font-weight: bold;">return</span> head;
+}
+
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">findAndKillK</span>(<span style="font-weight: bold; text-decoration: underline;">person</span> * <span style="font-weight: bold; font-style: italic;">head</span>,<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">k</span>,<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">m</span>){
+
+  <span style="font-weight: bold; text-decoration: underline;">person</span> * <span style="font-weight: bold; font-style: italic;">tail</span>=head;
+  <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">&#25214;&#21040;&#38142;&#34920;&#31532;&#19968;&#20010;&#32467;&#28857;&#30340;&#19978;&#19968;&#20010;&#32467;&#28857;&#65292;&#20026;&#21024;&#38500;&#25805;&#20316;&#20570;&#20934;&#22791;</span>
+  <span style="font-weight: bold;">while</span> (tail-&gt;next!=head) {
+    tail=tail-&gt;next;
+  }
+  <span style="font-weight: bold; text-decoration: underline;">person</span> * <span style="font-weight: bold; font-style: italic;">p</span>=head;
+  <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">&#25214;&#21040;&#32534;&#21495;&#20026;k&#30340;&#20154;</span>
+  <span style="font-weight: bold;">while</span> (p-&gt;number!=k) {
+    tail=p;
+    p=p-&gt;next;
+  }
+  <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">&#20174;&#32534;&#21495;&#20026;k&#30340;&#20154;&#24320;&#22987;&#65292;&#21482;&#26377;&#31526;&#21512;p-&gt;next==p&#26102;&#65292;&#35828;&#26126;&#38142;&#34920;&#20013;&#38500;&#20102;p&#32467;&#28857;&#65292;&#25152;&#26377;&#32534;&#21495;&#37117;&#20986;&#21015;&#20102;&#65292;</span>
+  <span style="font-weight: bold;">while</span> (p-&gt;next!=p) {
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">&#25214;&#21040;&#20174;p&#25253;&#25968;1&#24320;&#22987;&#65292;&#25253;m&#30340;&#20154;&#65292;&#24182;&#19988;&#36824;&#35201;&#30693;&#36947;&#25968;m-1de&#20154;&#30340;&#20301;&#32622;tail&#65292;&#26041;&#20415;&#20570;&#21024;&#38500;&#25805;&#20316;&#12290;</span>
+    <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span>=1; i&lt;m; i++) {
+      tail=p;
+      p=p-&gt;next;
+    }
+    tail-&gt;next=p-&gt;next;<span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">&#20174;&#38142;&#34920;&#19978;&#23558;p&#32467;&#28857;&#25688;&#19979;&#26469;</span>
+    printf(<span style="font-style: italic;">"&#20986;&#21015;&#20154;&#30340;&#32534;&#21495;&#20026;:%d\n"</span>,p-&gt;number);
+    free(p);
+    p=tail-&gt;next;<span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">&#32487;&#32493;&#20351;&#29992;p&#25351;&#38024;&#25351;&#21521;&#20986;&#21015;&#32534;&#21495;&#30340;&#19979;&#19968;&#20010;&#32534;&#21495;&#65292;&#28216;&#25103;&#32487;&#32493;</span>
+  }
+  printf(<span style="font-style: italic;">"&#20986;&#21015;&#20154;&#30340;&#32534;&#21495;&#20026;:%d\n"</span>,p-&gt;number);
+  free(p);
+}
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>() {
+  printf(<span style="font-style: italic;">"&#36755;&#20837;&#22278;&#26700;&#19978;&#30340;&#20154;&#25968;n:"</span>);
+  <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">int n; */</span>
+  <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">scanf("%d",&amp;n); */</span>
+  <span style="font-weight: bold; text-decoration: underline;">person</span> * <span style="font-weight: bold; font-style: italic;">head</span>=initLink(n);
+  printf(<span style="font-style: italic;">"&#20174;&#31532;k&#20154;&#24320;&#22987;&#25253;&#25968;(k&gt;1&#19988;k&lt;%d)&#65306;"</span>,n);
+  <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">int k; */</span>
+  <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">scanf("%d",&amp;k); */</span>
+  printf(<span style="font-style: italic;">"&#25968;&#21040;m&#30340;&#20154;&#20986;&#21015;&#65306;"</span>);
+  <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">int m; */</span>
+  <span style="font-weight: bold; font-style: italic;">/* </span><span style="font-weight: bold; font-style: italic;">scanf("%d",&amp;m); */</span>
+  findAndKillK(head, k, m);
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+
+</pre>
+</div>
+
+<pre class="example">
+输入圆桌上的人数n:从第k人开始报数(k&gt;1且k&lt;20)：数到m的人出列：出列人的编号为:5
+出列人的编号为:10
+出列人的编号为:15
+出列人的编号为:20
+出列人的编号为:6
+出列人的编号为:12
+出列人的编号为:18
+出列人的编号为:4
+出列人的编号为:13
+出列人的编号为:1
+出列人的编号为:9
+出列人的编号为:19
+出列人的编号为:11
+出列人的编号为:3
+出列人的编号为:17
+出列人的编号为:16
+出列人的编号为:2
+出列人的编号为:8
+出列人的编号为:14
+出列人的编号为:7
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org87cd13f" class="outline-2">
+<h2 id="org87cd13f">KMPmachting</h2>
+<div class="outline-text-2" id="text-org87cd13f">
+</div>
+<div id="outline-container-org7ac153d" class="outline-3">
+<h3 id="org7ac153d">C/C++</h3>
+<div class="outline-text-3" id="text-org7ac153d">
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdlib.h&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;string.h&gt;</span>
+
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">genertarray</span>(<span style="font-weight: bold; text-decoration: underline;">char</span> <span style="font-weight: bold; font-style: italic;">pattern</span>[], <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">prefix</span>[], <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">n</span>){
+  prefix[0] = 0;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">len</span> = 0;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> =1;
+  <span style="font-weight: bold;">while</span> (i &lt; n) {
+    <span style="font-weight: bold;">if</span> (pattern[i] == pattern[len]) {
+      len++;
+      prefix[i] = len;
+      i++;
+    }<span style="font-weight: bold;">else</span> {
+      <span style="font-weight: bold;">if</span> (len &gt; 0) {
+        len = prefix[len-1];   <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">go the preious len, and matching again</span>
+      }<span style="font-weight: bold;">else</span> {
+        prefix[i] = len;        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">in case len &lt;= 0, bzw, the first and second is not matching</span>
+        i++;
+      }
+    }
+  }
+}
+
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">move_array</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">prefix</span> [], <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">n</span>){
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span>;
+  <span style="font-weight: bold;">for</span> ( i = n-1; i &gt; 0; i--) {
+    prefix[i] = prefix[i-1];
+  }
+  prefix[0] = -1;
+}
+
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">kmp_search</span>(<span style="font-weight: bold; text-decoration: underline;">char</span> <span style="font-weight: bold; font-style: italic;">text</span>[], <span style="font-weight: bold; text-decoration: underline;">char</span> <span style="font-weight: bold; font-style: italic;">pattern</span>[]){
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">k</span> = strlen(pattern);
+  <span style="font-weight: bold; text-decoration: underline;">int</span>* <span style="font-weight: bold; font-style: italic;">prefix</span> =(<span style="font-weight: bold; text-decoration: underline;">int</span> *) (malloc(<span style="font-weight: bold;">sizeof</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> )* k));
+  genertarray(pattern, prefix, k);
+  move_array(prefix, k);
+
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">text    index i, max n</span>
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">pattern index j, max m</span>
+
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0; <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">j</span> = 0;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">n</span> = strlen(text);
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">m</span> = strlen(pattern);
+  <span style="font-weight: bold;">while</span> (i &lt; n) {
+    <span style="font-weight: bold;">if</span> (j == m-1 &amp;&amp; text[i] == pattern[j]) { <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">if found</span>
+      printf(<span style="font-style: italic;">"Fonund at %d \n"</span>, i-j);
+      j = prefix[j];                         <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">still go forward</span>
+    }
+    <span style="font-weight: bold;">if</span> (text[i] == pattern[j]) {            
+      i++;j++;
+    }<span style="font-weight: bold;">else</span> {
+      j = prefix[j];                        <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">if not matching</span>
+      <span style="font-weight: bold;">if</span> (j == -1) {                        <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">if the first is not matching</span>
+        i++;j++;
+      }
+    }
+  }
+}
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>[])
+{
+  <span style="font-weight: bold; text-decoration: underline;">char</span> <span style="font-weight: bold; font-style: italic;">pattern</span>[] = <span style="font-style: italic;">"ABABBBA"</span>; 
+  <span style="font-weight: bold; text-decoration: underline;">char</span> <span style="font-weight: bold; font-style: italic;">text</span>[]    = <span style="font-style: italic;">"JUHkSABABBBABABA"</span>;
+  kmp_search(text, pattern);
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+</pre>
+</div>
+
+<pre class="example">
+Fonund at 5
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgc21e57e" class="outline-3">
+<h3 id="orgc21e57e">C/C++</h3>
+<div class="outline-text-3" id="text-orgc21e57e">
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;string.h&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdlib.h&gt;</span>
+
+<span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">sort only the pure given numbers, and change each time the sort direction</span>
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">recSort</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">start</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> *<span style="font-weight: bold; font-style: italic;">end</span>, <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">reverse</span>){
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">count</span> = 0;
+
+  <span style="font-weight: bold;">if</span> (start == <span style="font-weight: bold; text-decoration: underline;">NULL</span> || end == <span style="font-weight: bold; text-decoration: underline;">NULL</span>) {
+    <span style="font-weight: bold;">return</span> 0;
+  }
+
+  <span style="font-weight: bold;">if</span> (start == end || start +1 == end) {
+    <span style="font-weight: bold;">return</span> 0;
+  }
+
+
+  <span style="font-weight: bold; text-decoration: underline;">int</span>* <span style="font-weight: bold; font-style: italic;">p</span>;
+  <span style="font-weight: bold;">if</span> (reverse) 
+    p = end -1;
+  <span style="font-weight: bold;">else</span>
+    p = start+1;
+
+
+  <span style="font-weight: bold;">while</span> (p &lt; end &amp;&amp; p &gt; start ) {
+    <span style="font-weight: bold;">if</span> (*(p-1) &lt; *p) {
+      <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">temp</span> = *(p-1);
+      *(p-1) = *p;
+      *p = temp;
+      count++;
+    }
+
+    <span style="font-weight: bold;">if</span> (reverse)
+      p--;
+    <span style="font-weight: bold;">else</span>
+      p++;
+  }
+
+  <span style="font-weight: bold;">if</span> (reverse)
+    <span style="font-weight: bold;">return</span> count +  recSort(start+1, end, 0);
+  <span style="font-weight: bold;">else</span>
+    <span style="font-weight: bold;">return</span> count +  recSort(start, end-1, 1);
+
+}
+
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>[]) {
+
+  <span style="font-weight: bold;">if</span> (argc &lt; 1) {
+    recSort(<span style="font-weight: bold; text-decoration: underline;">NULL</span>, <span style="font-weight: bold; text-decoration: underline;">NULL</span>, 0);
+    <span style="font-weight: bold;">return</span> -2;
+  }
+
+  <span style="font-weight: bold; text-decoration: underline;">int</span>* <span style="font-weight: bold; font-style: italic;">f</span> = malloc(<span style="font-weight: bold;">sizeof</span>(<span style="font-weight: bold; text-decoration: underline;">int</span>) * (argc-1));
+  <span style="font-weight: bold;">if</span> (f == <span style="font-weight: bold; text-decoration: underline;">NULL</span>) {
+    <span style="font-weight: bold;">return</span> -3;
+  }
+
+  <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 1; i &lt; argc; i++) {
+    f[i-1] =atoi(argv[i]);
+  }
+
+  printf(<span style="font-style: italic;">"before the sort \n"</span>);
+  <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> =1 ; i &lt; argc; i++) {
+    printf(<span style="font-style: italic;">"%d\n"</span>,f[i-1]);
+  }
+
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span>=  recSort(f, &amp;f[argc-1] , 0);
+  printf(<span style="font-style: italic;">"alles in allem, %d times change  \n"</span>,i);
+
+  printf(<span style="font-style: italic;">"after the sort \n"</span>);
+  <span style="font-weight: bold;">for</span> (<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> =1 ; i &lt; argc; i++) {
+    printf(<span style="font-style: italic;">"%d\n"</span>,f[i-1]);
+ }
+
+
+  free(f);
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb2b5956" class="outline-2">
+<h2 id="orgb2b5956">Longest Substring Without Repeating Characters</h2>
+<div class="outline-text-2" id="text-orgb2b5956">
+</div>
+<div id="outline-container-orgb80a8f4" class="outline-3">
+<h3 id="orgb80a8f4">python</h3>
+<div class="outline-text-3" id="text-orgb80a8f4">
+<div class="org-src-container">
+<pre class="src src-ipython">class Solution:
+    def lengthOfLongestSubstring(self, s):
+	hashmap = {}
+	lastindex = 0
+	maxlen = 0
+	for i in range(len(s)):
+	    if s[i] in hashmap:
+		lastindex = max(lastindex, hashmap[s[i]]+1)
+	    maxlen = max(maxlen, i-lastindex+1)
+	    hashmap[s[i]] = i
+	return maxlen
+
+ss = Solution()
+
+print(ss.lengthOfLongestSubstring("abcabcbb"))
+print(ss.lengthOfLongestSubstring("abcdefkj"))
+print(ss.lengthOfLongestSubstring("abc"))
+print(ss.lengthOfLongestSubstring("pwwkew"))
+print(ss.lengthOfLongestSubstring("abb"))
+print(ss.lengthOfLongestSubstring("abba"))
+</pre>
+</div>
+
+<pre class="example">
+3
+8
+3
+3
+2
+2
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9a374de" class="outline-2">
+<h2 id="org9a374de">k-way Merge</h2>
+<div class="outline-text-2" id="text-org9a374de">
+</div>
+<div id="outline-container-org1b7124e" class="outline-3">
+<h3 id="org1b7124e">description</h3>
+<div class="outline-text-3" id="text-org1b7124e">
+<p>
+L1, L2&#x2026;Lk are all sorted array with n elements,
+will be mereged into one sorted array
+</p>
+</div>
+</div>
+<div id="outline-container-org2eaf381" class="outline-3">
+<h3 id="org2eaf381">Naive merge</h3>
+<div class="outline-text-3" id="text-org2eaf381">
+<pre class="example">
+
+merge L1 with L2 get l2
+merge l2 with L3 get l3
+...
+Time Compexity $$\Theta(n \cdot logk)$$
+</pre>
+</div>
+</div>
+<div id="outline-container-org86b60ad" class="outline-3">
+<h3 id="org86b60ad">rund merge</h3>
+<div class="outline-text-3" id="text-org86b60ad">
+<pre class="example">
+L1 with L2 for l2
+L3 with L4 for l4
+...
+L2 with L4 for l4
+...
+</pre>
+</div>
+</div>
+<div id="outline-container-org59a5e97" class="outline-3">
+<h3 id="org59a5e97">Heap merge</h3>
+<div class="outline-text-3" id="text-org59a5e97">
+<p>
+build a heap with k element, which are from
+each array L,
+extract Max-Heap, and rebuild the Heap, in 
+removed array L with new (next) element
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org64c3f32" class="outline-2">
+<h2 id="org64c3f32">Dynamic program</h2>
+<div class="outline-text-2" id="text-org64c3f32">
+</div>
+<div id="outline-container-orgbfd9c1a" class="outline-3">
+<h3 id="orgbfd9c1a">Description</h3>
+<div class="outline-text-3" id="text-orgbfd9c1a">
+<p>
+变量类型， 坐标， 限标
+都可以是一维或者多维
+在状态转移函数中自己影响自己
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc939701" class="outline-2">
+<h2 id="orgc939701">Maximum subarray</h2>
+<div class="outline-text-2" id="text-orgc939701">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">A1.</th>
+<th scope="col" class="org-left">\(O(n^3)\)</th>
+<th scope="col" class="org-left">Erschöpfende Suche/ Brute-Force-Suche/ Exhaustive Search</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">A2.</td>
+<td class="org-left">\(O(n^2)\)</td>
+<td class="org-left">Zwischen Prozessen mehr anwenden</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">A3.</td>
+<td class="org-left">\(O(n \log n)\)</td>
+<td class="org-left">Rekursive</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">A4.</td>
+<td class="org-left">\(O(n)\)</td>
+<td class="org-left">Max Maxsuffix</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-org6a549b5" class="outline-3">
+<h3 id="org6a549b5">blunt force \(O(n^{3})\)</h3>
+<div class="outline-text-3" id="text-org6a549b5">
+<pre class="example">
+A[a] for = 0 to n-1
+max -&gt; -Infty
+for i = 1 to n
+  for j = i to n
+    for k = i to j
+      sum = sum+A[k]
+    if sum &gt; max:
+      max = sum
+return max
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgcfe0254" class="outline-3">
+<h3 id="orgcfe0254">iterative based \(O(n^{2})\)</h3>
+<div class="outline-text-3" id="text-orgcfe0254">
+<pre class="example">
+A[a] for a = 0 to n-1
+max = -Infty
+for i = 1 to n:
+  sum = 0
+  for j = i to n:
+    sum = sum + A[j]
+  if sum &gt; max:
+    max = sum
+return max
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org2acb288" class="outline-3">
+<h3 id="org2acb288">dynamic programmierung \(O(n)\)</h3>
+<div class="outline-text-3" id="text-org2acb288">
+<pre class="example">
+A[a] for a = 0 to n-1
+max = - Infty
+init array S with n elemenets 0
+S[0] = A[0]
+for i = 1 to n-1:
+  S[i] = max{S[i-1]+A[i], A[i]}
+  if S[i] &gt; max:
+    max = S[i]
+return max
+</pre>
+</div>
+<div id="outline-container-org4d34109" class="outline-4">
+<h4 id="org4d34109">Algorithm</h4>
+<div class="outline-text-4" id="text-org4d34109">
+<pre class="example">
+A[a] for a = 0 to n-1
+max = 0
+Stmp = 0
+for i = 1 to n-1:
+  Stmp = max{Stmp+A[i], A[i]}
+  if Stmp &gt; max:
+    max = Stmp
+return max
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orge488219" class="outline-4">
+<h4 id="orge488219">C/C++</h4>
+<div class="outline-text-4" id="text-orge488219">
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>[])
+{
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">MaxSubArray</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">A</span>[], <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">N</span>){
+    <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span>, <span style="font-weight: bold; font-style: italic;">b</span> = 0, <span style="font-weight: bold; font-style: italic;">maxsum</span> = 0;
+    <span style="font-weight: bold;">for</span> (i = 0; i &lt; N; ++i) {
+      <span style="font-weight: bold;">if</span> (b &gt; 0) {
+        b += A[i];
+      }<span style="font-weight: bold;">else</span>{
+        b = A[i];
+      }
+      <span style="font-weight: bold;">if</span> (b &gt; maxsum) {
+        maxsum = b;
+      }
+    }
+    <span style="font-weight: bold;">return</span> maxsum;
+  }
+
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">A</span>[] = {2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 19, 23, 45,78};
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">length</span> = <span style="font-weight: bold;">sizeof</span>(A)/<span style="font-weight: bold;">sizeof</span>(<span style="font-weight: bold; text-decoration: underline;">int</span>);
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">max</span> = MaxSubArray(A, length);
+  printf(<span style="font-style: italic;">"%d \n"</span>,max);
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+</pre>
+</div>
+
+<pre class="example">
+24794
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org431552a" class="outline-2">
+<h2 id="org431552a">maximum submatrix</h2>
+<div class="outline-text-2" id="text-org431552a">
+</div>
+<div id="outline-container-org9e2fbe0" class="outline-3">
+<h3 id="org9e2fbe0">Brute force solution</h3>
+<div class="outline-text-3" id="text-org9e2fbe0">
+<pre class="example">
+list all submatrix,
+sum = 0 
+for xstart -&gt; 0,1...l:
+    for xstop -&gt; xstart+1, xstart+2...l:
+	for ystart -&gt; 0, 1, 2....l:
+	    for ystop -&gt; ystart+1, ystart+2...l:
+		for x -&gt; xstart .... xstop:
+		    for y -&gt; ystart .... ystop:
+		       sumsub += A[x][y]
+		if sumsub &gt; sum:
+		   sum = sumsub
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-ipython">import random
+import numpy
+def maxsublist(arr, n):
+    b = 0
+    sumlist = 0
+    for j in range(n):
+	if b &gt; 0:
+	    b += arr[j]
+	else:
+	    b = arr[j]
+	if b &gt; sumlist:
+	    sumlist = b
+    return sumlist
+
+
+def maxsubmatrix(A, l):
+    Acolmun = np.zeros(l)
+    summaxtrix = 0
+    for i in range(l):
+	if summaxtrix &gt; 0:
+	    Acolmun += A[i,:]
+	    sumlist = maxsublist(Acolmun, l)
+	    print(Acolmun)
+	    print("the maximum sublist is: {}".format(sumlist))
+	    print("the maximum submatrix is: {}".format(summaxtrix))
+	else:
+	    Acolmun = A[i,:]
+	    sumlist = maxsublist(Acolmun, l)
+	    print(Acolmun)
+	    print("the maximum sublist is: {}".format(sumlist))
+	    print("the maximum submatrix is: {}".format(summaxtrix))
+	if sumlist &gt; summaxtrix:
+	    summaxtrix = sumlist
+    return summaxtrix
+
+import random
+l = 8
+a = [[]]*l
+gsm = [[]]*l
+#initialization a random matrix with shape of 8x8
+for i in range(l):
+    a[i] = [random.randint(-5, 5) for x in range(l)]
+
+print("Original random matrix  \n")
+a = np.array(a)
+print(a)
+max = 0
+for i in range(1, l):
+    for xstart in range(i-1, l):                            # x start  of submatrix
+	for xstop in range(i+xstart, l+1-i+1):              # x stop    of submatrix
+	    for j in range(1, l):
+		for ystart in range(j-1, l):                 # y start of submatrix
+		    for ystop in range(j+ystart, l+1-j+1):   # y stop of submatrix
+			lip = [[] for x in range(l)]
+			count = 0
+			for x in range(xstart, xstop):
+			    for y in range(ystart, ystop):
+				lip[x].append(a[x][y])
+				count += a[x][y]
+			# if (xstart ==6 and xstop == 8 and ystart == 6 and ystop == 8): #test small submatrix
+			#     print (count);
+
+			if count &gt; max:
+			    lipmax = [[] for x in range(l)]
+			    max = count
+			    lipmax = lip
+print("maximux submatrix :\n")
+lipmax = np.array(lipmax)
+for i in range(len(lipmax)):
+    print("\n")
+    for j in lipmax[i]:
+	print("{:&gt;4d}".format(j), end="")
+
+print("\n")
+print("The summary is ", max)
+print("with dynamic programmierung is {}".format(maxsubmatrix(a, l)))
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcc37314" class="outline-3">
+<h3 id="orgcc37314">dynamic programmierung</h3>
+<div class="outline-text-3" id="text-orgcc37314">
+<div class="org-src-container">
+<pre class="src src-ipython">import random
+import numpy as np
+
+def maxsublist(arr, n):
+    b = 0
+    sumlist = 0
+    for j in range(n):
+	if b &gt; 0:
+	    b += arr[j]
+	else:
+	    b = arr[j]
+	if b &gt; sumlist:
+	    sumlist = b
+    return sumlist
+
+def maxsubmatrix(A, l):
+    Acolmun = np.zeros(l)
+    summaxtrix = 0
+    for i in range(l):
+	if summaxtrix &gt; 0:
+	    Acolmun += A[i,:]
+	    sumlist = maxsublist(Acolmun, l)
+	else:
+	    Acolmun = A[i,:]
+	    sumlist = maxsublist(Acolmun, l)
+	if sumlist &gt; summaxtrix:
+	    summaxtrix = sumlist
+    return summaxtrix
+l = 8
+A = [[]]*l
+for i in range(l):
+    A[i] = [random.randint(-5, 5) for x in range(l)]
+A = np.array(A)
+print(A)
+print(maxsubmatrix(A, l))    
+</pre>
+</div>
+
+<pre class="example">
+[[ 5 -2  3  4 -1  4 -3  4]
+ [ 2 -1  1 -2 -1  2 -4 -5]
+ [ 2 -4  0  5 -4  5  3  4]
+ [ 3 -5 -2 -2  1 -4  4 -3]
+ [ 5 -2  5  4 -2  4 -3  0]
+ [ 5 -2  0  4 -4 -1  3  4]
+ [-3 -4 -3  1  1 -3 -5  4]
+ [ 4  3  5 -5  0 -3 -2  0]]
+29
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0e1278e" class="outline-2">
+<h2 id="org0e1278e">Find the sum of a specific value in a list</h2>
+<div class="outline-text-2" id="text-org0e1278e">
+<p>
+在一个列表中找到一个特定数值的和
+</p>
+</div>
+<div id="outline-container-org500922a" class="outline-3">
+<h3 id="org500922a">Python</h3>
+<div class="outline-text-3" id="text-org500922a">
+</div>
+<div id="outline-container-orgc6a0d6d" class="outline-4">
+<h4 id="orgc6a0d6d">with recursive</h4>
+<div class="outline-text-4" id="text-orgc6a0d6d">
+<div class="org-src-container">
+<pre class="src src-ipython"> arr = [3, 34, 4, 12, 5, 2]
+ def res_subset(arr, i, s):
+     if s == 0:
+	 return True
+     elif i == 0:
+	 return arr[0] == s
+     elif arr[i] &gt; s:
+	 return res_subset(arr, i-1, s)
+     else:
+	 A = res_subset(arr, i-1, s-arr[i])
+	 B = res_subset(arr, i-1, s)
+	 return A or B
+print(res_subset(arr, len(arr)-1, 9))
+print(res_subset(arr, len(arr)-1, 10))
+print(res_subset(arr, len(arr)-1, 11))
+print(res_subset(arr, len(arr)-1, 12))
+print(res_subset(arr, len(arr)-1, 13))
+
+</pre>
+</div>
+
+<pre class="example">
+True
+True
+True
+True
+False
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org19bf031" class="outline-4">
+<h4 id="org19bf031">without rekursive</h4>
+<div class="outline-text-4" id="text-org19bf031">
+<div class="org-src-container">
+<pre class="src src-ipython">import numpy as np
+arr = [3, 34, 4, 12, 5, 2]
+target = 13
+result = np.zeros((len(arr), target+1), dtype = bool)
+result[: , 0] = True
+result[0 , :] = False
+result[0 , arr[0]] = True
+for i in range(1, len(arr)):
+    for j in range(1, target+1):
+	if arr[i] &gt; j:
+	    result[i, j] = result[i-1, j]
+	else:
+	    A = result[i-1, j-arr[i]]
+	    B = result[i-1, j]
+	    result[i, j] = A or B
+print(result[-1][-1])            
+
+</pre>
+</div>
+
+<pre class="example">
+False
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org102065b" class="outline-2">
+<h2 id="org102065b">Langest increasing subsequence (LIS)</h2>
+<div class="outline-text-2" id="text-org102065b">
+</div>
+<div id="outline-container-org63a18ef" class="outline-3">
+<h3 id="org63a18ef">Python</h3>
+<div class="outline-text-3" id="text-org63a18ef">
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">list1</span> = [2, 1, 3, 45, 76, 89, 457, 54, 4, 5, 3, 6, 7, 8, 4, 9]
+<span style="font-weight: bold; font-style: italic;">l</span> = <span style="font-weight: bold;">len</span>(list1)
+<span style="font-weight: bold; font-style: italic;">a</span> = [1]*l
+<span style="font-weight: bold; font-style: italic;">b</span> = [[] <span style="font-weight: bold;">for</span> x <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(l)]
+
+<span style="font-weight: bold;">for</span> i <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(l):
+    <span style="font-weight: bold;">for</span> j <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(i):
+        <span style="font-weight: bold;">if</span> (list1[i] &gt; list1[j]) <span style="font-weight: bold;">and</span> (a[i] &lt; (a[j] + 1)):
+            <span style="font-weight: bold; font-style: italic;">a</span>[i] = a[j]+1
+            b[i].append(list1[j])
+    b[i].append(list1[i])
+
+<span style="font-weight: bold;">print</span>(a)
+<span style="font-weight: bold; font-style: italic;">maxa</span> = a.index(<span style="font-weight: bold;">max</span>(a))
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"the maximun length of LIS of list1 is {}"</span>.<span style="font-weight: bold;">format</span>(<span style="font-weight: bold;">max</span>(a)))
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"the LIS is {}"</span>.<span style="font-weight: bold;">format</span>(b[maxa]))
+
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">list1</span> = [2, 1, 3, 45, 76, 89, 457, 54, 4, 5, 3, 6, 7, 8, 4, 9]
+<span style="font-weight: bold; font-style: italic;">l</span> = <span style="font-weight: bold;">len</span>(list1)
+<span style="font-weight: bold; font-style: italic;">a</span> = [1]*l
+
+<span style="font-weight: bold;">for</span> i <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(l):
+    <span style="font-weight: bold;">for</span> j <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(i):
+        <span style="font-weight: bold;">if</span> (list1[i] &gt; list1[j]):
+            <span style="font-weight: bold; font-style: italic;">a</span>[i] = <span style="font-weight: bold;">max</span>(a[i], a[j]+1)
+<span style="font-weight: bold;">print</span>(a)
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"the maximun length of LIS of list1 is {}"</span>.<span style="font-weight: bold;">format</span>(<span style="font-weight: bold;">max</span>(a)))
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc5dba1d" class="outline-2">
+<h2 id="orgc5dba1d">packsack</h2>
+<div class="outline-text-2" id="text-orgc5dba1d">
+</div>
+<div id="outline-container-org8a42855" class="outline-3">
+<h3 id="org8a42855">0-1 sack</h3>
+<div class="outline-text-3" id="text-org8a42855">
+<p>
+\(dp[i][j] = max(dp[i-1][j], dp[i-1][j-A[i]] + V[i])\)
+</p>
+</div>
+</div>
+<div id="outline-container-org5c42ad7" class="outline-3">
+<h3 id="org5c42ad7">complete sack</h3>
+<div class="outline-text-3" id="text-org5c42ad7">
+<p>
+k is the total number, if 背包全放每一种时的最大份数
+\(dp[i][j] = max(dp[i-1][j], dp[i-1][j-k*A[i]] + k*V[i])\)
+</p>
+</div>
+</div>
+<div id="outline-container-orgcac6643" class="outline-3">
+<h3 id="orgcac6643">bund sack</h3>
+<div class="outline-text-3" id="text-orgcac6643">
+<p>
+n is the bunded number for each variante
+\(dp[i][j] = max(dp[i-1][j], dp[i-1][j-n*A[i]] + n*V[i])\)
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5692dab" class="outline-2">
+<h2 id="org5692dab">Order Statistics</h2>
+<div class="outline-text-2" id="text-org5692dab">
+</div>
+<div id="outline-container-org3e45ac3" class="outline-3">
+<h3 id="org3e45ac3">description</h3>
+<div class="outline-text-3" id="text-org3e45ac3">
+<pre class="example">
+For Array a[i], i from 0 to n-1
+we want to find the the k-th biggest element in linear time
+1-th biggest is the minimun
+n-1-th biggest is the maximum
+</pre>
+</div>
+</div>
+<div id="outline-container-orgc4de603" class="outline-3">
+<h3 id="orgc4de603">for minimun and maximum</h3>
+<div class="outline-text-3" id="text-orgc4de603">
+<p>
+normal iterative:  need 2n-2, each n-1
+2 terms iterative:
+</p>
+<pre class="example">
+(min_1, max_1) &lt;- (a[0],a[1])
+(min_2, max_2) &lt;- (a[2],a[3])
+(min_3, max_3) &lt;- (a[4],a[5])
+...
+(min_n/2, max_n/2) &lt;- (a[n-2],a[n-1])
+
+min = min_1, max = max_1
+for i from 2 to n/2:
+    if min_i &lt; min:
+	min = min_i
+    if max_i &gt; max:
+	max = max_i
+return min, max
+</pre>
+</div>
+</div>
+<div id="outline-container-org62efbaf" class="outline-3">
+<h3 id="org62efbaf">linear approach</h3>
+<div class="outline-text-3" id="text-org62efbaf">
+<p>
+index: i
+</p>
+<!-- This HTML table template is generated by emacs 26.3 -->
+<table border="1">
+  <tr>
+    <td align="left" valign="top">
+      1&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      2&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      3&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      4&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      5&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      6&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      7&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      8&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      9&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      10&nbsp;
+    </td>
+    <td align="left" valign="top">
+      11&nbsp;
+    </td>
+    <td align="left" valign="top">
+      12&nbsp;
+    </td>
+    <td align="left" valign="top">
+      13&nbsp;
+    </td>
+    <td align="left" valign="top">
+      14&nbsp;
+    </td>
+    <td align="left" valign="top">
+      15&nbsp;
+    </td>
+    <td align="left" valign="top">
+      16&nbsp;
+    </td>
+    <td align="left" valign="top">
+      17&nbsp;
+    </td>
+    <td align="left" valign="top">
+      18&nbsp;
+    </td>
+    <td align="left" valign="top">
+      19&nbsp;
+    </td>
+    <td align="left" valign="top">
+      20&nbsp;
+    </td>
+    <td align="left" valign="top">
+      21&nbsp;
+    </td>
+    <td align="left" valign="top">
+      22&nbsp;
+    </td>
+    <td align="left" valign="top">
+      23&nbsp;
+    </td>
+    <td align="left" valign="top">
+      24&nbsp;
+    </td>
+  </tr>
+</table>
+
+<p>
+array a[]:
+</p>
+<!-- This HTML table template is generated by emacs 26.3 -->
+<table border="1">
+  <tr>
+    <td align="left" valign="top">
+      2&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      14&nbsp;
+    </td>
+    <td align="left" valign="top">
+      6&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      27&nbsp;
+    </td>
+    <td align="left" valign="top">
+      4&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      67&nbsp;
+    </td>
+    <td align="left" valign="top">
+      24&nbsp;
+    </td>
+    <td align="left" valign="top">
+      9&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      16&nbsp;
+    </td>
+    <td align="left" valign="top">
+      45&nbsp;
+    </td>
+    <td align="left" valign="top">
+      26&nbsp;
+    </td>
+    <td align="left" valign="top">
+      17&nbsp;
+    </td>
+    <td align="left" valign="top">
+      20&nbsp;
+    </td>
+    <td align="left" valign="top">
+      8&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      41&nbsp;
+    </td>
+    <td align="left" valign="top">
+      23&nbsp;
+    </td>
+    <td align="left" valign="top">
+      34&nbsp;
+    </td>
+    <td align="left" valign="top">
+      5&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      36&nbsp;
+    </td>
+    <td align="left" valign="top">
+      77&nbsp;
+    </td>
+    <td align="left" valign="top">
+      44&nbsp;
+    </td>
+    <td align="left" valign="top">
+      3&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      25&nbsp;
+    </td>
+    <td align="left" valign="top">
+      22&nbsp;
+    </td>
+  </tr>
+</table>
+<p>
+looking for the k-th biggest elemenet
+</p>
+
+
+<p>
+divide array a[] into length/5 groups, each group has 5 elemenets, and the last is not required to be 5
+</p>
+
+<p>
+<del>---</del>    <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">67</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">26</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">23</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">44</td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>---</del>    <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">14</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">24</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">17</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">34</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">3</td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>---</del>    <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">6</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">9</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">20</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">5</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">25</td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>---</del>    <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">27</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">16</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">8</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">36</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">22</td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>---</del>    <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">4</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">45</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">41</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">77</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>---</del>    <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+
+<p>
+sort all group with insert sorting
+</p>
+
+<p>
+<del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">9</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">8</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">5</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">3</td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">4</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">16</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">17</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">23</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">22</td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">6</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">24</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">20</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">34</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">25</td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">14</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">45</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">26</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">36</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">44</td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">27</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">67</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">41</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">77</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+
+
+<p>
+get  the mediums of each group
+</p>
+
+<!-- This HTML table template is generated by emacs 26.3 -->
+<table border="1">
+  <tr>
+    <td align="left" valign="top">
+      6&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      24&nbsp;
+    </td>
+    <td align="left" valign="top">
+      20&nbsp;
+    </td>
+    <td align="left" valign="top">
+      34&nbsp;
+    </td>
+    <td align="left" valign="top">
+      25&nbsp;
+    </td>
+  </tr>
+</table>
+
+<p>
+if at this step, the number of elemenets are more than 5, recursive spilt again
+</p>
+
+<p>
+sort group
+</p>
+
+<!-- This HTML table template is generated by emacs 26.3 -->
+<table border="1">
+  <tr>
+    <td align="left" valign="top">
+      6&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      20&nbsp;
+    </td>
+    <td align="left" valign="top">
+      24&nbsp;
+    </td>
+    <td align="left" valign="top">
+      25&nbsp;
+    </td>
+    <td align="left" valign="top">
+      34&nbsp;
+    </td>
+  </tr>
+</table>
+
+<p>
+get the medium 24. at spilt the array a[] with this element a[7]=24.
+</p>
+
+<p>
+if k==7 return 24
+</p>
+
+<p>
+if k&lt; 7 looking for k-th biggest elemenet in
+</p>
+<!-- This HTML table template is generated by emacs 26.3 -->
+<table border="1">
+  <tr>
+    <td align="left" valign="top">
+      2&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      14&nbsp;
+    </td>
+    <td align="left" valign="top">
+      6&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      27&nbsp;
+    </td>
+    <td align="left" valign="top">
+      4&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      67&nbsp;
+    </td>
+  </tr>
+</table>
+
+<p>
+if k&gt; 7 looking for the (k-16)-th biggest elemenet in
+</p>
+<!-- This HTML table template is generated by emacs 26.3 -->
+<table border="1">
+  <tr>
+    <td align="left" valign="top">
+      9&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      16&nbsp;
+    </td>
+    <td align="left" valign="top">
+      45&nbsp;
+    </td>
+    <td align="left" valign="top">
+      26&nbsp;
+    </td>
+    <td align="left" valign="top">
+      17&nbsp;
+    </td>
+    <td align="left" valign="top">
+      20&nbsp;
+    </td>
+    <td align="left" valign="top">
+      8&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      41&nbsp;
+    </td>
+    <td align="left" valign="top">
+      23&nbsp;
+    </td>
+    <td align="left" valign="top">
+      34&nbsp;
+    </td>
+    <td align="left" valign="top">
+      5&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      36&nbsp;
+    </td>
+    <td align="left" valign="top">
+      77&nbsp;
+    </td>
+    <td align="left" valign="top">
+      44&nbsp;
+    </td>
+    <td align="left" valign="top">
+      3&nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      25&nbsp;
+    </td>
+    <td align="left" valign="top">
+      22&nbsp;
+    </td>
+  </tr>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org4b0d7e3" class="outline-3">
+<h3 id="org4b0d7e3">complexity</h3>
+<div class="outline-text-3" id="text-org4b0d7e3">
+<p>
+no matter for k &gt; i (i = 7, a[7]=24), we can exculsive the black position
+<del>---</del>   <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">8</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">9</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">3</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">5</td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>---</del>   <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">4</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">17</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">16</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">22</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">23</td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>---</del>   <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">6</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">20</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">24</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">25</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">34</td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>---</del>   <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">14</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">26</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">45</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">44</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">36</td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>---</del>   <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">27</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">41</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">67</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">77</td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>---</del>   <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+
+<p>
+<del>---</del>   <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">3</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">5</td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>---</del>   <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">22</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">23</td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>---</del>   <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">25</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">34</td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>---</del>   <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">14</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">26</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">45</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">44</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">36</td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>---</del>   <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">27</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">41</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">67</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">77</td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>---</del>   <del>---</del>  <del>---</del>  <del>---</del>  <del>---</del>
+</p>
+
+<p>
+\[ \frac{3}{5} \cdot \frac{n}{2} + O(1) = \frac{3n}{10} + O(1)\] elements are definitely excluded
+</p>
+
+<p>
+The recursive format is
+\[ T(n) = T(\frac{n}{5}) + T(\frac{7n}{10}+6) + O(n)\]
+\[T(n) = O(n)\]
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org15a2de7" class="outline-2">
+<h2 id="org15a2de7">Range Minimun Query</h2>
+<div class="outline-text-2" id="text-org15a2de7">
+</div>
+<div id="outline-container-org748fa6a" class="outline-3">
+<h3 id="org748fa6a">description</h3>
+<div class="outline-text-3" id="text-org748fa6a">
+<pre class="example">
+array A[i] for i from 0 to n-1
+given two number j, k, so 0 &lt; i&lt; j&lt;n-1
+return the minimun elements of range A[j]...A[k]
+</pre>
+</div>
+</div>
+<div id="outline-container-orgfc7dd8c" class="outline-3">
+<h3 id="orgfc7dd8c">naiv approach</h3>
+<div class="outline-text-3" id="text-orgfc7dd8c">
+<pre class="example">
+min = A[0]
+for n from 0 to n-2:
+  for m from 1 to n-1:
+    for o from n to m:
+      if A[o] &lt; min:
+	min = A[o]
+</pre>
+<p>
+obviously the time compexity is \(O(n^{3})\)
+</p>
+</div>
+</div>
+<div id="outline-container-org8b618a4" class="outline-3">
+<h3 id="org8b618a4">DP naiv approach</h3>
+<div class="outline-text-3" id="text-org8b618a4">
+<p>
+with Dynamic Program to iterative scan.
+</p>
+<pre class="example">
+set M[n][n] as empty matrix to save RMQ of array A[n].
+M[i][i] = A[i]
+for i from 0 to n-2:
+  M[i][j] = A[i]        if A[i] &lt; M[i-1][j]
+	  = M[i-1][j]   otherwise
+  for j from 1 to n-1:
+    M[i][j] = A[j]        if A[j] &lt; M[i][j-1]
+	    = M[i][j-1]   otherwise
+</pre>
+<p>
+obviously the time compexity is \(O(n^{2})\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9c36d87" class="outline-3">
+<h3 id="org9c36d87">addation M approach</h3>
+<div class="outline-text-3" id="text-org9c36d87">
+<p>
+set K=ceiling (\(log_2^n\))
+</p>
+
+<p>
+set M´[i][k] = RMQ(i, i+2<sup>k</sup>-1)
+</p>
+
+
+<p>
+&#x2014;o--------------&#x2013;&#x2014;oo-------------------&#x2013;&#x2014;o-&#x2013;&#x2014;
+</p>
+
+<p>
+&#x2014;+i
+</p>
+
+<p>
+------------------&#x2013;&#x2014;+\(i+2^{k-1}-1\)
+</p>
+
+<p>
+-------------------&#x2013;&#x2014;+\(i+2^{k-1}\)
+</p>
+
+<p>
+---------------------------------------------&#x2013;&#x2014;+\(i+2^k-1\)
+</p>
+
+<pre class="example">
+M´[*][1] = RMQ(i, i+1)
+for i from 0 to n-1:
+  for k from 2 to K:
+    M´[i][k] = M´[i][k-1]           if A[M´[i][k-1]] &lt; A[M´[i+2^{k-1}][k-1]] 
+	     = M´[i+2^{k-1}][k-1]   otherwise
+</pre>
+
+<p>
+get RMQ(i,j)
+</p>
+
+<p>
+s = floor(log<sup>j-i</sup>)
+</p>
+
+<p>
+&#x2014;o-------&#x2013;&#x2014;0--&#x2013;&#x2014;o-------------------&#x2013;&#x2014;o-&#x2013;&#x2014;
+</p>
+
+<p>
+&#x2014;i
+</p>
+
+<p>
+-----------&#x2013;&#x2014;j-2<sup>s</sup>+1
+</p>
+
+<p>
+-------------------&#x2013;&#x2014;i+2<sup>s</sup>-1
+</p>
+
+<p>
+--------------------------------------------&#x2013;&#x2014;j
+</p>
+<pre class="example">
+for i to i+2^s-1: M´[i][s]
+for j-2^s-1 to j: M´[j-2^s-1][s]
+RMQ(i,j)= A[M´[i][s]]      if  A[M´[i][s]] &lt; A[M´[j-2^s-1][s]]
+	= M´[j-2^s-1][s]   otherwise
+</pre>
+<p>
+the time compexity is \(O(n \cdot log^{n})\)
+</p>
+</div>
+</div>
+<div id="outline-container-org890ed18" class="outline-3">
+<h3 id="org890ed18">partional approach</h3>
+<div class="outline-text-3" id="text-org890ed18">
+<p>
+Array A[n]
+</p>
+
+<!-- This HTML table template is generated by emacs 26.3 -->
+<table border="1">
+  <tr>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+  </tr>
+</table>
+
+<p>
+spilt Array A into block size of  \(s = floor(\frac{log^n}{2})\)
+we have n/s blocks
+<del>--</del>--<del>--</del>&#x2013;+   <del>--</del>--<del>--</del>&#x2013;+  <del>--</del>--<del>--</del>&#x2013;+  <del>--</del>--<del>--</del>&#x2013;+  <del>--</del>--<del>--</del>&#x2013;+
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+<p>
+<del>--</del>--<del>--</del>&#x2013;+   <del>--</del>--<del>--</del>&#x2013;+  <del>--</del>--<del>--</del>&#x2013;+  <del>--</del>--<del>--</del>&#x2013;+  <del>--</del>--<del>--</del>&#x2013;+
+</p>
+
+<p>
+we build 2 array h[n/s] and pos[n/s]
+h[n/s]:  contains the minimum element of each block
+</p>
+<!-- This HTML table template is generated by emacs 26.3 -->
+<table border="1">
+  <tr>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+  </tr>
+</table>
+
+<p>
+pos[n/s]: contains the position of the corresponding elements in h when it is still in A.
+</p>
+<!-- This HTML table template is generated by emacs 26.3 -->
+<table border="1">
+  <tr>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+    <td align="left" valign="top">
+      &nbsp;&nbsp;
+    </td>
+  </tr>
+</table>
+
+
+<pre class="example">
+For RMQ(i, j)
+i´ = i/s+1
+j´ = j/s
+l = RMQ_h(i´, j´)
+pos[l] = RMQ(i´s, j´s-1)
+
+but the RMQ can still be in [i...i´s] or [j´s...j]
+so l´ = RMQ[i, i´s] and
+l´´ = RMQ[j´s, j]
+return min(l, l´, l´´)
+</pre>
+
+<p>
+Now comes the question, how to get l´ and l´´ in constant time (in a block)?
+this can only be solved in special situation
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0ba1319" class="outline-3">
+<h3 id="org0ba1319">(\(\pm 1\))RMQ</h3>
+<div class="outline-text-3" id="text-org0ba1319">
+<p>
+it called Normalisation.
+</p>
+
+<p>
+normalise all block  (x,[&#x2026;.]) to (0,x) where \(x \in (-1, +1)^{s}\)
+</p>
+
+<p>
+for one block, there are \(2^{s}\) permutation of -1 and +1,
+</p>
+
+<p>
+this have time compexity \(O(2^{s}) = O(\sqrt{n})\)
+</p>
+
+<p>
+and we compute all permutation probability into a sxs matrix.
+</p>
+
+<p>
+for all RMQ query in this block can be saved in this matrix.
+</p>
+
+<p>
+this have time compexity of \(s^{2}\)
+</p>
+
+<p>
+all together we habe \(O(2^{s} \cdot s^{2}) = O(n)\)
+</p>
+
+
+<p>
+oooo---&#x2013;&#x2014;ooooo---&#x2013;&#x2014;ooooo&#x2013;&#x2014;ooooo-&#x2013;&#x2014;oooooo-&#x2013;&#x2014;ooooooo
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+<p>
+(0, \(x_1\))     (0,\(x_2\))       (0, \(x_3\))                           (0,\(x_{n/s}\))
+\(m_x_{1}\)         \(m_{x_{2}}\)         \(m_{x_{3}}\)                               \(m_{x_{n/s}}\)
+\(M_x_{1}\)         \(M_{x_{2}}\)         \(M_{x_{3}}\)                               \(M_{x_{n/s}}\)
+</p>
+
+<p>
+(0,x) normalisation
+\(m_x\): performance
+\(M_x\): sxs matrix for permutation
+</p>
+
+<p>
+for query of RMQ in a block, auch as for l´ = RMQ[i, i´s], we find the
+representation of i, i´s in \(m_x\), we can get the corresponding RMQ
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3488950" class="outline-3">
+<h3 id="org3488950">(\(\pm 1\))RMQ for LCA in rooted tree</h3>
+<div class="outline-text-3" id="text-org3488950">
+<pre class="example">
+for a rooted tree, we want to find the Lowest Common Ancestor.
+for two node u and v, we want to find the common ancestor of u and v
+and most far away from its root.
+</pre>
+
+<pre class="example">
+for the rooted tree, we do the preprcess to get the following 3 array
+E[*] (Euler tour) list all the node in tree with DFS, (2n-1) elements
+L[*] the level of each element in E, this comply with the $\pm$1 property
+R[*] each element position when they are first time occur in E R[i]= min(E[j]=i|1&lt;j&lt;2n)
+</pre>
+
+<pre class="example">
+find the u and v in R,
+in R get the corresponding positions in E, get the range from u position to v position
+find the min in L with the same range  we get in E, and return the position of minimum in L
+get the LCA in E with the position we get in L
+</pre>
+
+<p>
+LCA(u, v) -&gt; RMQ<sub>L</sub>(E[R[u]], E[R[v]])
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcebd525" class="outline-3">
+<h3 id="orgcebd525">Cartesian tree</h3>
+<div class="outline-text-3" id="text-orgcebd525">
+<pre class="example">
+this tree has two property,
+1, it's a heap, which mean, the parents are all smaller than their childen
+2, we can get the original array with the IN-order scan of the tree
+</pre>
+
+<pre class="example">
+How to build cartesian tree
+for inserting a new node, we compare it to the root and the rightest edge,
+if it is smaller than the root, trun the all(include the root) to be new node's left child
+if it is bigger, go down to the next node, if go to the leaf, add it just as right child
+if it is bigger, go down to the next node, if it is smaller than one node,
+					   trun all to be the left child, and new node as right chilc
+</pre>
+<p>
+this can be done in \(O(n)\) time compexity
+</p>
+</div>
+</div>
+<div id="outline-container-org82e3003" class="outline-3">
+<h3 id="org82e3003">LCA and RMQ</h3>
+<div class="outline-text-3" id="text-org82e3003">
+<p>
+\[RMQ_{A}(i, j) = LCA_{T_{A}}(i,j)\]
+where \(T_{A}\) is the cartesian tree of A
+the root of subtree, which contains i and j, is the RMQ(i,j)
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga552825" class="outline-2">
+<h2 id="orga552825">Computional Geometry</h2>
+<div class="outline-text-2" id="text-orga552825">
+</div>
+<div id="outline-container-org563bb9b" class="outline-3">
+<h3 id="org563bb9b">Convex combinations</h3>
+<div class="outline-text-3" id="text-org563bb9b">
+<p>
+all points p(x, y) between  \(p_{1} (x_{1}, y_{1})\) and \(p_{2}(x_{2}, y_{2})\),
+x1&lt; x &lt; x2 and y1 &lt; y &lt; y2
+</p>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-org27a5948" class="outline-3">
+<h3 id="org27a5948">Cross Product</h3>
+<div class="outline-text-3" id="text-org27a5948">
+<p>
+\(p_{1} \times p_{2} = det\) \(\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\) \(=x_{1}y_{2} - x_{2}y_{1}\)
+cross Product = (sign) * (Aera of Parallelogram）
+</p>
+
+<p>
+sign is +: p1 is clockweise from p2 with respect of their common origin, from p1 to (p2-p1) trun to right 
+sign is -: p1 is connterclockweise from p2 with respect of their common origin, from p1 to (p2-p1) trun to left
+</p>
+</div>
+
+
+<div id="outline-container-org0a97991" class="outline-4">
+<h4 id="org0a97991">Application of intersection</h4>
+<div class="outline-text-4" id="text-org0a97991">
+<p>
+Direction: \(d (p_{i}, p_{j}, p_{k}) = (p_{k}-p_{i}) \times (p_{j}-p_{i})\)
+On-Segment: if one end-point of one Segment is convex combinations of the other Segment
+</p>
+
+<p>
+Algorithm:  first check if  two segments straddles, \(d1 \cdot d2 < 0\) and \(d3 \cdot d4 < 0\)
+                        else if any d = 0, check if On-segment
+                        otherwise return No
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgbec37b9" class="outline-4">
+<h4 id="orgbec37b9">Application of Polar Angle</h4>
+<div class="outline-text-4" id="text-orgbec37b9">
+<p>
+\(p_{1} \times p_{2} = det\) \(\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\) \(=x_{1}y_{2} - x_{2}y_{1} > 0\)
+the sign is positive, p1 to p2 have right trun,
+</p>
+
+<p>
+The Polar Angle is p1 &lt; p2
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb131baa" class="outline-3">
+<h3 id="orgb131baa">Sweeping</h3>
+<div class="outline-text-3" id="text-orgb131baa">
+<p>
+Check if any two Segments intersect in a Segments Set
+</p>
+
+<p>
+sort endpoints of the segments in S from left to right, breaking ties by putting left
+endpoints before right endpoints, and then by y -coordinates.
+</p>
+<pre class="example">
+T = ∅;
+for each point p in the sorted list of endpoints:
+    if p is the left endpoint of a segment s
+	Insert(s, T )
+	if (Above(s, T ) exists and intersects s) or  (Below(s, T ) exists and intersects s)
+	    return TRUE
+
+    if p is the right endpoint of a segment s
+	if both Above(s, T ) and Below(s, T ) exist and Above(s, T ) and Below(s, T ) intersect
+	    return TRUE
+
+     Delete(s, T )
+return FALSE
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgd854a4d" class="outline-3">
+<h3 id="orgd854a4d">Convex Hull</h3>
+<div class="outline-text-3" id="text-orgd854a4d">
+<p>
+For a Set of points &lt;p0&#x2026;pn&gt;, we want to find the small Hull, to cover all points.
+</p>
+</div>
+<div id="outline-container-org7ea9897" class="outline-4">
+<h4 id="org7ea9897">Graham's Scan</h4>
+<div class="outline-text-4" id="text-org7ea9897">
+<p>
+let p0 is the smallest y value in set, and Sorted all other points counterclockweise
+with their polar angle: \(O(n logn)\)
+</p>
+<pre class="example">
+let S = empty stack
+push (p0, S), Push(p1, S), Push(p2, S)
+for i from 3 to n:
+    while from nextTop(S), Top(S) to pi trun left:
+	pop (S)
+    push(pi)
+return S
+</pre>
+<p>
+This take \(O(n)\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4c0f5a4" class="outline-4">
+<h4 id="org4c0f5a4">Jarvis's march</h4>
+<div class="outline-text-4" id="text-org4c0f5a4">
+<p>
+We roll the Paper until we find the point with smallest polar angle,
+Build a Sequence H, start with p0 just like in Graham's Scan(with smallest y value in Set
+</p>
+<pre class="example">
+start with p0, find the next vertex p1 with smallest polar angle with respect to p0
+start with p1, find the next vertex p2 with smallest polar angle with respect to p1
+start with p2, find the next vertex p3 with smallest polar angle with respect to p2
+...
+when we reach the highest y-value vertex,left chain is finished, start to right chain,
+But from the negative x-axis, until we come back to p0
+
+</pre>
+<p>
+This take \(O(nh)\)
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-11-28 Sun 10:35</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>

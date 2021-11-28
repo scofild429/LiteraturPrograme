@@ -1,0 +1,3403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-11-28 Sun 10:35 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Linux</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css" />
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Linux</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orged9f5b7">Install</a>
+<ul>
+<li><a href="#org01bd01d">ISO installation</a></li>
+<li><a href="#orgded3c0a">Recover the  fastplatte in windows</a></li>
+<li><a href="#org675bd66">write images in USB</a></li>
+<li><a href="#org89dc668">reboot</a></li>
+<li><a href="#org8302620">Update nvidia drivers for linux</a></li>
+<li><a href="#org52fd77c">chinese</a></li>
+</ul>
+</li>
+<li><a href="#org3619671">System configuration collection</a>
+<ul>
+<li><a href="#org94d261b">open fire wall  for port</a></li>
+<li><a href="#org6f0d6c4">firewall</a></li>
+<li><a href="#orgd3ae9fd">Shutdown Keyboard default</a></li>
+<li><a href="#org4305d80">autostart</a></li>
+<li><a href="#org9d6ad82">exchange Control Key and Caps Key</a></li>
+<li><a href="#org31c0870">right key no response</a></li>
+<li><a href="#org0e413a8">hotkey</a></li>
+<li><a href="#org3a9a802">clear caches</a></li>
+</ul>
+</li>
+<li><a href="#orgcadd73c">commands</a>
+<ul>
+<li><a href="#org07660fd">sammary</a></li>
+<li><a href="#org61f8579">file management</a></li>
+<li><a href="#org3010b77">directory operation</a></li>
+<li><a href="#orge17c2c5">find uninstall and remove software</a></li>
+<li><a href="#org58c8970">su password config</a></li>
+<li><a href="#org2bb2fc0">get IP address</a></li>
+<li><a href="#org16831fb">grep sort</a></li>
+<li><a href="#org6eb6f7b">link</a></li>
+<li><a href="#orgf5ff339">cd to program with which</a></li>
+<li><a href="#org8f5be89">awk</a></li>
+<li><a href="#orge8d3b14">less</a></li>
+<li><a href="#orgf713090">link</a>
+<ul>
+<li><a href="#org5ed882c">静态库的制作</a></li>
+<li><a href="#org7390768">动态库的制作</a></li>
+</ul>
+</li>
+<li><a href="#org9871159">sshpass login</a></li>
+<li><a href="#org5063746">Login without password</a></li>
+</ul>
+</li>
+<li><a href="#org5593f88">Useful Software</a>
+<ul>
+<li><a href="#org05e2243">tar</a></li>
+<li><a href="#org4c32915">fcitx for sougou</a></li>
+<li><a href="#org5b2419f">eog</a></li>
+<li><a href="#orgb5af4da">Okular</a></li>
+<li><a href="#org7a395dc">xournal</a></li>
+<li><a href="#org66c294b">evince</a></li>
+<li><a href="#orgaa64b81">stardict</a></li>
+<li><a href="#org914af90">kmplayer</a></li>
+<li><a href="#orgb2d28c8">simplescreenrecorder</a></li>
+<li><a href="#org2665f7a">Cvim</a></li>
+<li><a href="#org73ed1ed">hotopea</a></li>
+<li><a href="#org0b42133">manual png create png</a></li>
+<li><a href="#org4b43de0">gpg for secret</a></li>
+<li><a href="#orgb6157de">ranger</a></li>
+<li><a href="#orgc0e1278">pdftk</a></li>
+<li><a href="#orgd039d53">Linux connect to Android</a></li>
+<li><a href="#org53a581d">gs</a></li>
+<li><a href="#org5d3f56a">mpv player</a></li>
+<li><a href="#org9383a27">mellplayer</a></li>
+<li><a href="#orge19367b">thunderbird</a></li>
+<li><a href="#org1900719">EverSync</a></li>
+<li><a href="#orge52f1fb">IPFS</a></li>
+<li><a href="#org6ed9d4f">GPG</a></li>
+<li><a href="#orgf74911f">Zulip Rocket Chat</a></li>
+</ul>
+</li>
+<li><a href="#orga933b42">System control</a>
+<ul>
+<li><a href="#org3de4023">system backup</a></li>
+<li><a href="#org5d78e2a">system performance</a></li>
+</ul>
+</li>
+<li><a href="#orgcdb6b68">chinese config</a>
+<ul>
+<li><a href="#org73f3ee4">emacs chinese input</a></li>
+<li><a href="#org0edeaac">chinese output pdf</a></li>
+</ul>
+</li>
+<li><a href="#orgfbd3db3">Makefile</a>
+<ul>
+<li><a href="#orgfaa9973">格式</a></li>
+<li><a href="#org0131466">1example</a></li>
+<li><a href="#org76a9253">2修改后只编译改动后的文件</a></li>
+<li><a href="#orga16881f">3使用自动变量</a></li>
+<li><a href="#orga2701f0">4增加可移植性</a></li>
+<li><a href="#org420d79f">5清洁中间的生成的不必要保存文件</a></li>
+</ul>
+</li>
+<li><a href="#orgc5b65e7">BetreibenSystem</a>
+<ul>
+<li><a href="#orge955b3f">Program execution level</a></li>
+<li><a href="#org58d666f">Multi Process</a>
+<ul>
+<li><a href="#orge173441">queue communication</a></li>
+<li><a href="#orgc379ab9">pipe communication</a></li>
+<li><a href="#org592006a">signal communication</a></li>
+<li><a href="#org7c53bc7">semaphore communication</a></li>
+</ul>
+</li>
+<li><a href="#org0d31edd">Multi Thread</a>
+<ul>
+<li><a href="#org9c9d037">1 pthread<sub>create.c</sub></a></li>
+<li><a href="#orgf8d25b5">2 pthread<sub>id.c</sub></a></li>
+<li><a href="#org5905138">3 pthread<sub>jion.c</sub></a></li>
+<li><a href="#org172ea8e">4 pthread<sub>cancel.c</sub></a></li>
+<li><a href="#org3b2b77a">5 pthread<sub>rwlock.c</sub></a></li>
+<li><a href="#orge6bb760">6 pthread<sub>attr.c</sub></a></li>
+<li><a href="#orgf674516">7 pthread<sub>mutex.c</sub></a></li>
+<li><a href="#orga2ee894">8 pthread<sub>interpeter</sub><sub>controll.c</sub></a></li>
+<li><a href="#orgf3da391">9 pthread<sub>pass</sub><sub>struct.c</sub></a></li>
+<li><a href="#orgbc9f315">10 pthread<sub>stack</sub><sub>attr.c</sub></a></li>
+</ul>
+</li>
+<li><a href="#orgb93c234">Stoket</a></li>
+</ul>
+</li>
+<li><a href="#org23116c7">Git</a>
+<ul>
+<li><a href="#orgf0b0b9b">tips</a></li>
+<li><a href="#orgee8ca26">Git installation in Linux</a></li>
+<li><a href="#org54093ce">Webconfig</a></li>
+<li><a href="#orgceffd8e">Connection</a></li>
+<li><a href="#org19b0e9b">Magit</a></li>
+<li><a href="#orgdd92216">Git branch</a>
+<ul>
+<li><a href="#org96d5bb0">git branch  创建development分支</a></li>
+<li><a href="#orgb0644ca">git merge 可以 merge mybranch分支到master分支</a></li>
+<li><a href="#orgc1f2934">删除mybranch分支</a></li>
+<li><a href="#org4b24d8f">git rm</a></li>
+<li><a href="#orgb82870d">git multi commit</a></li>
+</ul>
+</li>
+<li><a href="#org6327da4">commands to recover</a>
+<ul>
+<li><a href="#orgdea39dc">after only save</a></li>
+<li><a href="#org67b7700">after git add file</a></li>
+<li><a href="#orgbca3340">after git commit file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org4768f05">Problem</a>
+<ul>
+<li><a href="#orgc10ef44">System limit for number of file watchers reached</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orged9f5b7" class="outline-2">
+<h2 id="orged9f5b7">Install</h2>
+<div class="outline-text-2" id="text-orged9f5b7">
+</div>
+<div id="outline-container-org01bd01d" class="outline-3">
+<h3 id="org01bd01d">ISO installation</h3>
+<div class="outline-text-3" id="text-org01bd01d">
+<p>
+from windows: Rufus
+Disk can delete all partation in linux 
+lsblk -f
+from Linux:
+sudo dd if=~/Downloads/ubuntu-20.04.3-desktop-amd64.iso of=/dev/sda bs=4M status=progress &amp;&amp; sync
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgded3c0a" class="outline-3">
+<h3 id="orgded3c0a">Recover the  fastplatte in windows</h3>
+<div class="outline-text-3" id="text-orgded3c0a">
+<pre class="example">
+1. WIN+R diskpart
+2. select disk (Disk)
+3. clean
+4. new add 
+</pre>
+</div>
+</div>
+<div id="outline-container-org675bd66" class="outline-3">
+<h3 id="org675bd66">write images in USB</h3>
+<div class="outline-text-3" id="text-org675bd66">
+<ol class="org-ol">
+<li>下载ubuntu</li>
+<li>下载USBwriter并安装</li>
+<li>写入系</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org89dc668" class="outline-3">
+<h3 id="org89dc668">reboot</h3>
+<div class="outline-text-3" id="text-org89dc668">
+<pre class="example">
+my computer : F12
+</pre>
+</div>
+</div>
+<div id="outline-container-org8302620" class="outline-3">
+<h3 id="org8302620">Update nvidia drivers for linux</h3>
+<div class="outline-text-3" id="text-org8302620">
+<pre class="example">
+sudo add-apt-repository ppa:graphics-drivers/ppa
+sudo apt update 
+ubuntu-drivers devices
+sudo apt-get --reinstall install nvidia-430
+    1.  will be asked for password
+    2.  reboot
+    3.  select Enroll MOK -&gt; continue -&gt; Yes -&gt; Roboot
+nvidia-sim
+watch -n 1 nvidia-smi
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org52fd77c" class="outline-3">
+<h3 id="org52fd77c">chinese</h3>
+<div class="outline-text-3" id="text-org52fd77c">
+<p>
+export LC<sub>CTYPE</sub>=zh<sub>CN.UTF</sub>-8
+sudo apt-get -y install language-pack-zh-hans
+此应用压制中英文的同步变化, 尽量避免使用中文
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org3619671" class="outline-2">
+<h2 id="org3619671">System configuration collection</h2>
+<div class="outline-text-2" id="text-org3619671">
+</div>
+<div id="outline-container-org94d261b" class="outline-3">
+<h3 id="org94d261b">open fire wall  for port</h3>
+<div class="outline-text-3" id="text-org94d261b">
+<p>
+sudo apt install firewalld
+add port :
+sudo firewall-cmd &#x2013;add-port=80/tcp &#x2013;permanent
+sudo firewall-cmd &#x2013;remove-port=80/tcp &#x2013;permanent
+restart firewall:
+sudo  firewall-cmd &#x2013;reload
+check port:
+sudo  firewall-cmd &#x2013;list-all
+</p>
+</div>
+</div>
+<div id="outline-container-org6f0d6c4" class="outline-3">
+<h3 id="org6f0d6c4">firewall</h3>
+<div class="outline-text-3" id="text-org6f0d6c4">
+<p>
+systemctl status firewalld
+systemctl stop firewalld
+systemctl disable firewalld
+systemctl enable firewalld
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd3ae9fd" class="outline-3">
+<h3 id="orgd3ae9fd">Shutdown Keyboard default</h3>
+<div class="outline-text-3" id="text-orgd3ae9fd">
+<pre class="example">
+
+1. $ xinput list 
+   Find the Touchpad and its NAME and ID
+2. $ xinput set-prop 'NAME' 'Device Enabled' 0
+   to close the Touchpad
+3. but with following can be named as tpOn and tpOff in ./bashrc
+alias tpOff="xinput set-prop 'SYNA1D31:00 06CB:CD48 Touchpad' 'Device Enabled' 0"
+alias tpOn="xinput set-prop 'SYNA1D31:00 06CB:CD48 Touchpad' 'Device Enabled' 1"
+4. Close Touchpad default in boost system
+   the following in ~/.config/autostart/xinput.desktop
+</pre>
+
+<pre class="example">
+[Desktop Entry]
+Type=Application
+Exec=xinput set-prop 'SYNA1D31:00 06CB:CD48 Touchpad' 'Device Enabled' 0
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[zh_CN]=touchpad enable
+Name=touchpad enable
+</pre>
+</div>
+</div>
+<div id="outline-container-org4305d80" class="outline-3">
+<h3 id="org4305d80">autostart</h3>
+<div class="outline-text-3" id="text-org4305d80">
+<p>
+Thunderbird
+</p>
+<pre class="example">
+[Desktop Entry]
+Type=Application
+Exec=/usr/bin/thunderbird
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=thunderbird
+Name=thunderbird
+Comment[en_US]=thunderbird
+Comment=thunderbird
+
+</pre>
+</div>
+</div>
+<div id="outline-container-org9d6ad82" class="outline-3">
+<h3 id="org9d6ad82">exchange Control Key and Caps Key</h3>
+<div class="outline-text-3" id="text-org9d6ad82">
+<p>
+在/etc/default/keyboard文件中添加:
+</p>
+<pre class="example">
+XKBOPTIONS="ctrl:nocaps
+</pre>
+<p>
+or
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">setxkbmap -option ctrl:nocaps
+</pre>
+</div>
+<p>
+setting for 右键没反应
+$ sudo add-apt-repository universe
+$ sudo apt install gnome-tweak-tool
+</p>
+</div>
+</div>
+
+<div id="outline-container-org31c0870" class="outline-3">
+<h3 id="org31c0870">right key no response</h3>
+<div class="outline-text-3" id="text-org31c0870">
+<pre class="example">
+gsettings set org.gnome.desktop.peripherals.touchpad click-method areas
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org0e413a8" class="outline-3">
+<h3 id="org0e413a8">hotkey</h3>
+<div class="outline-text-3" id="text-org0e413a8">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">C-M- t</td>
+<td class="org-left">terminal</td>
+</tr>
+
+<tr>
+<td class="org-left">C-M- p</td>
+<td class="org-left">thunderbird</td>
+</tr>
+
+<tr>
+<td class="org-left">C-M- e</td>
+<td class="org-left">emacs</td>
+</tr>
+
+<tr>
+<td class="org-left">C-M- f</td>
+<td class="org-left">firefox</td>
+</tr>
+
+<tr>
+<td class="org-left">C-M- j</td>
+<td class="org-left">emacs windows switch</td>
+</tr>
+
+<tr>
+<td class="org-left">C-M- t</td>
+<td class="org-left">terminal</td>
+</tr>
+
+<tr>
+<td class="org-left">C-M- w</td>
+<td class="org-left">emacs worterbuch</td>
+</tr>
+
+<tr>
+<td class="org-left">C-M- t</td>
+<td class="org-left">terminal</td>
+</tr>
+
+<tr>
+<td class="org-left">C-M- t</td>
+<td class="org-left">terminal</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Switch application</td>
+<td class="org-left">Alt + Tab</td>
+</tr>
+
+<tr>
+<td class="org-left">Switch window of an application</td>
+<td class="org-left">Alt + Spc</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Alt Ctrl Del</td>
+<td class="org-left">退出用户</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+in Einstellung, the executable command can be used in command for customized hotkey
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3a9a802" class="outline-3">
+<h3 id="org3a9a802">clear caches</h3>
+<div class="outline-text-3" id="text-org3a9a802">
+<p>
+this command has been added to the .bashrc of the /root. 
+only root user can call this command
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">alias <span style="font-weight: bold; font-style: italic;">freemem</span>=<span style="font-style: italic;">"sync; echo 3 &gt; /proc/sys/vm/drop_caches &amp;&amp; swapoff -a &amp;&amp; swapon -a &amp;&amp; printf '\n%s\n' 'Ram-cache and Swap Cleared' "</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcadd73c" class="outline-2">
+<h2 id="orgcadd73c">commands</h2>
+<div class="outline-text-2" id="text-orgcadd73c">
+</div>
+<div id="outline-container-org07660fd" class="outline-3">
+<h3 id="org07660fd">sammary</h3>
+<div class="outline-text-3" id="text-org07660fd">
+<pre class="example">
+fdisk -l
+
+fdisk /dev/nvme0n1p4 (m, p, n, ...)
+mkfs.ext4 /dev/nvme0n1p4
+sudo emacs /etc/fstab
+/dev/nvme0n1p4 /home/silin/4GB ext4 defaults 0 0
+</pre>
+<p>
+in /etc/fstab, the command must be correct, otherwise the system can't booted.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">cat &lt; source1.c &gt;&gt; source2.c (add source1.c to the end of source2.c)
+</pre>
+</div>
+
+<p>
+echo $PATH | tr \: \\n
+</p>
+</div>
+</div>
+
+<div id="outline-container-org61f8579" class="outline-3">
+<h3 id="org61f8579">file management</h3>
+<div class="outline-text-3" id="text-org61f8579">
+<p>
+在~内找filename的文件
+find ~ -name filename
+</p>
+
+<p>
+找到.bash<sub>history内带有</sub>"install"的内容
+grep -n  "install" .bash<sub>history</sub>
+</p>
+
+<p>
+copy 110.txt to 111.txt
+echo | cat 110.txt &gt; 111.txt
+</p>
+
+
+<p>
+&gt; 擦除再写
+&gt;&gt; 追加写入
+</p>
+
+<p>
+读取.sdsv<sub>history的不重复内容</sub>，再写入到.sdsv
+echo | sort -n .sdsv<sub>history</sub> |uniq &gt; .sdsv
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3010b77" class="outline-3">
+<h3 id="org3010b77">directory operation</h3>
+<div class="outline-text-3" id="text-org3010b77">
+<pre class="example">
+tree -L 2
+alias open='nautilus'
+open .
+</pre>
+</div>
+</div>
+<div id="outline-container-orge17c2c5" class="outline-3">
+<h3 id="orge17c2c5">find uninstall and remove software</h3>
+<div class="outline-text-3" id="text-orge17c2c5">
+<pre class="example">
+sudo apt list --installed | grep software
+whereis software
+sudo apt-get --purge remove software
+sudo apt-get autoremove
+</pre>
+</div>
+</div>
+<div id="outline-container-org58c8970" class="outline-3">
+<h3 id="org58c8970">su password config</h3>
+<div class="outline-text-3" id="text-org58c8970">
+<p>
+sudo passwd :to configure the password of root user
+</p>
+</div>
+</div>
+<div id="outline-container-org2bb2fc0" class="outline-3">
+<h3 id="org2bb2fc0">get IP address</h3>
+<div class="outline-text-3" id="text-org2bb2fc0">
+<p>
+curl ifconfig.me
+</p>
+</div>
+</div>
+<div id="outline-container-org16831fb" class="outline-3">
+<h3 id="org16831fb">grep sort</h3>
+<div class="outline-text-3" id="text-org16831fb">
+<p>
+grep -n "xxx" ./test.txt
+sort (&#x2013;reverse -t " " -k 3 ) test.csv
+</p>
+</div>
+</div>
+<div id="outline-container-org6eb6f7b" class="outline-3">
+<h3 id="org6eb6f7b">link</h3>
+<div class="outline-text-3" id="text-org6eb6f7b">
+<p>
+softlink 
+</p>
+<pre class="example">
+ln -s filename linkname // 快捷方式
+ln -s sourcefile softlinkname
+filename加上绝对路径，linkname被移动后，仍能访问访问文件
+</pre>
+<p>
+hard link
+</p>
+<pre class="example">
+ln filename linkname   //硬链接
+不占用磁盘空间，重复连接到文件的inode点。
+可以在不同地方通过硬连接对文件进行操作
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgf5ff339" class="outline-3">
+<h3 id="orgf5ff339">cd to program with which</h3>
+<div class="outline-text-3" id="text-orgf5ff339">
+<p>
+cd $(dirname $(which cling))
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8f5be89" class="outline-3">
+<h3 id="org8f5be89">awk</h3>
+<div class="outline-text-3" id="text-org8f5be89">
+<p>
+delete the repeat : awk '!a[$0]++' file.txt
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge8d3b14" class="outline-3">
+<h3 id="orge8d3b14">less</h3>
+<div class="outline-text-3" id="text-orge8d3b14">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">J</td>
+<td class="org-left">down</td>
+</tr>
+
+<tr>
+<td class="org-left">K</td>
+<td class="org-left">up</td>
+</tr>
+
+<tr>
+<td class="org-left">Space</td>
+<td class="org-left">next page</td>
+</tr>
+
+<tr>
+<td class="org-left">b</td>
+<td class="org-left">previous page</td>
+</tr>
+
+<tr>
+<td class="org-left">n</td>
+<td class="org-left">next mark</td>
+</tr>
+
+<tr>
+<td class="org-left">N</td>
+<td class="org-left">previous mark</td>
+</tr>
+
+<tr>
+<td class="org-left">q</td>
+<td class="org-left">quit</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgf713090" class="outline-3">
+<h3 id="orgf713090">link</h3>
+<div class="outline-text-3" id="text-orgf713090">
+</div>
+<div id="outline-container-org5ed882c" class="outline-4">
+<h4 id="org5ed882c">静态库的制作</h4>
+<div class="outline-text-4" id="text-org5ed882c">
+</div>
+<ul class="org-ul">
+<li><a id="org02b5559"></a>库方<br />
+<div class="outline-text-5" id="text-org02b5559">
+<p>
+include/head.h  lib/  src/
+将在src/中编写要实现的文件
+并编译这些文件             $ gcc *.c -c -I ../include/
+-I :链接头文件
+再将这些编译后的打包       $ ar rcs libtest.a *.o
+ar : -archive 打包
+检测 : nm libtest.a
+前缀lib 和后缀.a 不能更改，实际名字是test
+</p>
+
+<p>
+最后将生成的libtest.a放到上级目录lib中，
+可以将lib和include目录发送给甲方
+</p>
+</div>
+</li>
+
+<li><a id="org0748776"></a>甲方<br />
+<div class="outline-text-5" id="text-org0748776">
+<p>
+根据include/head.h 的头文件编写自己的应用文件main.c
+编译main.c并链接头文件和库 
+  $ gcc main.c -I  ./include/ -L ./lib/ -ltest -o app
+-I : 连接头文件
+-L : 链接库
+-ltest : 链接库文件，去头lib 去尾.a
+-o: 指点生成的应用名
+</p>
+</div>
+</li>
+
+<li><a id="orgaab7ff2"></a>特点<br />
+<div class="outline-text-5" id="text-orgaab7ff2">
+<p>
+优点： 加载块，移植方便
+缺点 ：部署更新麻烦，引用的重复文件重复储存，浪费空间
+</p>
+</div>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-org7390768" class="outline-4">
+<h4 id="org7390768">动态库的制作</h4>
+<div class="outline-text-4" id="text-org7390768">
+<p>
+编译    $ gcc *.c -c -fpic -I ../include
+-fpic 或者 fPIC : 特殊命令
+打包    $ gcc -shared *.o -o libxxx.so
+头lib 尾.so 
+</p>
+
+<p>
+使用和静态库相似， 根据头文件编写应用文件main.c
+$ gcc main.c -I ./inculde/ -L ./lib/ -lxxx -o app
+</p>
+
+<p>
+对于linux生成的文件都是elf格式，并由ld-libc.so动态加载,需要让app能别找
+到可以用环境变量或者配置文件
+</p>
+</div>
+
+<ul class="org-ul">
+<li><a id="org982ecff"></a>环境变量<br />
+<div class="outline-text-5" id="text-org982ecff">
+<p>
+临时设置   
+  $ export LD<sub>LIBRARY</sub><sub>PATH</sub>=./lib
+或者新增   
+  $ export LD<sub>LIBRARY</sub><sub>PATH</sub>=./lib:LD<sub>LIBRARY</sub><sub>PATH</sub>
+</p>
+
+<p>
+临时设置可以使用相对路径，
+</p>
+
+<p>
+永久设置 用户
+$ cat " LD<sub>LIBRARY</sub><sub>PATH</sub>=./lib:LD<sub>LIBRARY</sub><sub>PATH</sub>" &gt;&gt; ~/.bashrc
+$ source ~./bashrc
+</p>
+
+<p>
+永久设置 系统
+$ sudo cat "LD<sub>LIBRARY</sub><sub>PATH</sub>=./lib:LD<sub>LIBRARY</sub><sub>PATH</sub>" &gt;&gt; /etc/profile
+$ source /etc/profile
+</p>
+</div>
+</li>
+
+<li><a id="org9766f9d"></a>修改配置文件<br />
+<div class="outline-text-5" id="text-org9766f9d">
+<p>
+配置文件/etc/ld.so.conf
+$ sudo cat "绝对路径/lib" &gt;&gt; /etc/ld.so.conf
+$ sudo ldconfig -v 激活配置
+</p>
+</div>
+</li>
+
+<li><a id="orgea0d5fe"></a>通过函数加载<br />
+<div class="outline-text-5" id="text-orgea0d5fe">
+<p>
+dlopen dlclose dlsym
+</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9871159" class="outline-3">
+<h3 id="org9871159">sshpass login</h3>
+<div class="outline-text-3" id="text-org9871159">
+<p>
+ssh user@ip
+sshpass -p password ssh user@ip
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5063746" class="outline-3">
+<h3 id="org5063746">Login without password</h3>
+<div class="outline-text-3" id="text-org5063746">
+<p>
+ssh-keygen -r rsa and drei mal enter
+ssh-copy-id cloud@ip
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org5593f88" class="outline-2">
+<h2 id="org5593f88">Useful Software</h2>
+<div class="outline-text-2" id="text-org5593f88">
+</div>
+<div id="outline-container-org05e2243" class="outline-3">
+<h3 id="org05e2243">tar</h3>
+<div class="outline-text-3" id="text-org05e2243">
+<pre class="example">
+tar -zvcf xxx.tar.gz xxx
+tar -zvxf xxx.tar.gz
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org4c32915" class="outline-3">
+<h3 id="org4c32915">fcitx for sougou</h3>
+<div class="outline-text-3" id="text-org4c32915">
+<pre class="example">
+1. sudo apt install fcitx
+download sougou
+2. sudo apt  --fix-broken install(after download)
+3. export LC_CTYPE=zh_CN.UTF-8 (for Emacs)
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org5b2419f" class="outline-3">
+<h3 id="org5b2419f">eog</h3>
+<div class="outline-text-3" id="text-org5b2419f">
+<pre class="example">
+eog xxx.png to view png with bluit in software eog
+</pre>
+</div>
+</div>
+<div id="outline-container-orgb5af4da" class="outline-3">
+<h3 id="orgb5af4da">Okular</h3>
+<div class="outline-text-3" id="text-orgb5af4da">
+<pre class="example">
+sudo apt-get install okular
+F2 to constimizer
+F7 mode view
+C-gg to the page
+C-n page down
+C-p page up
+M-n scroll down
+M-p scroll up
+C-b C-b add Annoation, 1 to note
+SPC-b add bookmark
+SPC-SPC rename bookmark
+SPC-n bookmark down
+SPC-p bookmark up
+
+</pre>
+</div>
+</div>
+<div id="outline-container-org7a395dc" class="outline-3">
+<h3 id="org7a395dc">xournal</h3>
+<div class="outline-text-3" id="text-org7a395dc">
+<pre class="example">
+sudo apt install xournal
+</pre>
+</div>
+</div>
+<div id="outline-container-org66c294b" class="outline-3">
+<h3 id="org66c294b">evince</h3>
+<div class="outline-text-3" id="text-org66c294b">
+<pre class="example">
+evince xxx.pdf to view pdf file
+
+</pre>
+</div>
+</div>
+<div id="outline-container-orgaa64b81" class="outline-3">
+<h3 id="orgaa64b81">stardict</h3>
+<div class="outline-text-3" id="text-orgaa64b81">
+<pre class="example">
+sudo apt install  stardict 
+sudo apt install  sdcv 
+download dictionaries from
+http://download.huzheng.org/ 
+http://download.huzheng.org/zh_TW/
+extract, and put them in /usr/share/stardict/dic/ 
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org914af90" class="outline-3">
+<h3 id="org914af90">kmplayer</h3>
+<div class="outline-text-3" id="text-org914af90">
+<p>
+sudo apt install kmplayer
+</p>
+</div>
+</div>
+<div id="outline-container-orgb2d28c8" class="outline-3">
+<h3 id="orgb2d28c8">simplescreenrecorder</h3>
+<div class="outline-text-3" id="text-orgb2d28c8">
+<pre class="example">
+
+sudo apt install simplescreenrecorder
+alias ssr='simplescreenrecorder'
+$ ssr
+Ctrl + Shift + Alt + V start or pause 
+
+</pre>
+</div>
+</div>
+<div id="outline-container-org2665f7a" class="outline-3">
+<h3 id="org2665f7a">Cvim</h3>
+<div class="outline-text-3" id="text-org2665f7a">
+<pre class="example">
+C-j moive to left 
+C-k moive to right
+
+</pre>
+</div>
+</div>
+<div id="outline-container-org73ed1ed" class="outline-3">
+<h3 id="org73ed1ed">hotopea</h3>
+<div class="outline-text-3" id="text-org73ed1ed">
+<p>
+登陆photopea网站后，新建并上传图片
+设置白色背景：图像 -&gt; 调整 -&gt; 色阶  点击下面的白色 后点击要处理的图片区域
+去背景 ： 魔术棒 ， 点击去连续， 再直接delete
+</p>
+</div>
+</div>
+<div id="outline-container-org0b42133" class="outline-3">
+<h3 id="org0b42133">manual png create png</h3>
+<div class="outline-text-3" id="text-org0b42133">
+<p>
+after edit a file.dot
+</p>
+
+<p>
+dot -Tpng -O file.dot
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4b43de0" class="outline-3">
+<h3 id="org4b43de0">gpg for secret</h3>
+<div class="outline-text-3" id="text-org4b43de0">
+<pre class="example">
+gpg --list-secret-keys
+gpg -r user -e xxx.file
+gpg -d xxx.file.gpg
+after change xxx.file :gpg --verify xxx.file.gpg
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgb6157de" class="outline-3">
+<h3 id="orgb6157de">ranger</h3>
+<div class="outline-text-3" id="text-orgb6157de">
+<p>
+apt install
+</p>
+</div>
+</div>
+<div id="outline-container-orgc0e1278" class="outline-3">
+<h3 id="orgc0e1278">pdftk</h3>
+<div class="outline-text-3" id="text-orgc0e1278">
+<p>
+<a href="http://www.pdflabs.com/docs/install-pdftk/">official web link</a>
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">合并</td>
+<td class="org-left">pdftk 1.pdf 2.pdf 3.pdf output 123.pdf</td>
+</tr>
+
+<tr>
+<td class="org-left">多个不同页面合并</td>
+<td class="org-left">pdftk A=1.pdf B=2.pdf C=pdf cat A1-2 B2-3 C3 output abc.pdf</td>
+</tr>
+
+<tr>
+<td class="org-left">旋转第一页</td>
+<td class="org-left">pdftk in.pdf cat 1E 2-end output out.pdf</td>
+</tr>
+
+<tr>
+<td class="org-left">加密（128位）</td>
+<td class="org-left">pdftk a.pdf output b.pdf owner<sub>pw</sub> pass</td>
+</tr>
+
+<tr>
+<td class="org-left">加访问密码</td>
+<td class="org-left">pdftk a.pdf output b.pdf user<sub>pw</sub> pass</td>
+</tr>
+
+<tr>
+<td class="org-left">解密</td>
+<td class="org-left">pdftk a.pdf input<sub>pw</sub> pass output b.pdf</td>
+</tr>
+
+<tr>
+<td class="org-left">解压</td>
+<td class="org-left">pdftk a.pdf output b.pdf uncompress</td>
+</tr>
+
+<tr>
+<td class="org-left">压缩</td>
+<td class="org-left">pdftk a.pdf output b.pdf compress</td>
+</tr>
+
+<tr>
+<td class="org-left">修复</td>
+<td class="org-left">pdftk a.pdf output b.pdf</td>
+</tr>
+
+<tr>
+<td class="org-left">切割</td>
+<td class="org-left">pdftk a.pdf cat 1-end output b.pdf</td>
+</tr>
+
+<tr>
+<td class="org-left">分解成单页</td>
+<td class="org-left">pdftk a.pdf burst</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgd039d53" class="outline-3">
+<h3 id="orgd039d53">Linux connect to Android</h3>
+<div class="outline-text-3" id="text-orgd039d53">
+<pre class="example">
+kedconnect on linux
+kedconnect on android
+with  the same internet connection can be found each other, and communication
+
+</pre>
+
+<pre class="example">
+The file can be found in Download folder of each devices
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org53a581d" class="outline-3">
+<h3 id="org53a581d">gs</h3>
+<div class="outline-text-3" id="text-org53a581d">
+<p>
+remove active content from pdf 
+gs -dNOPAUSE -sDEVICE=pdfwrite -sOUTPUTFILE=CV.pdf -dBATCH CV.pdf
+</p>
+</div>
+</div>
+<div id="outline-container-org5d3f56a" class="outline-3">
+<h3 id="org5d3f56a">mpv player</h3>
+<div class="outline-text-3" id="text-org5d3f56a">
+<p>
+sudo apt install mpv
+</p>
+
+<p>
+mpv.conf
+</p>
+<pre class="example">
+no-osd-bar # 去掉白色进度条
+save-position-on-quit # 关闭时记住文件播放位置
+no-border # 去掉边框
+
+# 解码-字幕
+vo=opengl:gamma-auto:icc-profile-auto
+hwdec=auto
+autofit-larger=92%
+playcache=8192
+lang=zh,chi
+video-sync=display-resample
+
+sub-codepage=enca:zh:utf8
+sub-auto=fuzzy
+sub-text-font-size=40
+sub-text-shadow-offset=0
+sub-text-color="#ffffffff"
+sub-text-font="STZhongsong"
+sub-codepage=utf8:gb18030
+
+screenshot-template=mpv-screenshot-%f-%p
+screenshot-format=png
+
+osd-font="STZhongsong"
+osd-font-size=36
+
+--script=/Users/yourname/.config/mpv/autoload.lua
+
+</pre>
+
+<p>
+autoload.lua
+</p>
+<pre class="example">
+-- This script automatically loads playlist entries before and after the
+-- the currently played file. It does so by scanning the directory a file is
+-- located in when starting playback. It sorts the directory entries
+-- alphabetically, and adds entries before and after the current file to
+-- the internal playlist. (It stops if the it would add an already existing
+-- playlist entry at the same position - this makes it "stable".)
+-- Add at most 5000 * 2 files when starting a file (before + after).
+MAXENTRIES = 5000
+
+function Set (t)
+    local set = {}
+    for _, v in pairs(t) do set[v] = true end
+    return set
+end
+
+EXTENSIONS = Set {
+    'mkv', 'avi', 'mp4', 'ogv', 'webm', 'rmvb', 'flv', 'wmv', 'mpeg', 'mpg', 'm4v', '3gp',
+    'mp3', 'wav', 'ogv', 'flac', 'm4a', 'wma',
+}
+
+mputils = require 'mp.utils'
+
+function add_files_at(index, files)
+    index = index - 1
+    local oldcount = mp.get_property_number("playlist-count", 1)
+    for i = 1, #files do
+	mp.commandv("loadfile", files[i], "append")
+	mp.commandv("playlist-move", oldcount + i - 1, index + i - 1)
+    end
+end
+
+function get_extension(path)
+    match = string.match(path, "%.([^%.]+)$" )
+    if match == nil then
+	return "nomatch"
+    else
+	return match
+    end
+end
+
+table.filter = function(t, iter)
+    for i = #t, 1, -1 do
+	if not iter(t[i]) then
+	    table.remove(t, i)
+	end
+    end
+end
+
+function find_and_add_entries()
+    local path = mp.get_property("path", "")
+    local dir, filename = mputils.split_path(path)
+    if #dir == 0 then
+	return
+    end
+    local pl_count = mp.get_property_number("playlist-count", 1)
+    if (pl_count &gt; 1 and autoload == nil) or
+       (pl_count == 1 and EXTENSIONS[string.lower(get_extension(filename))] == nil) then
+	return
+    else
+	autoload = true
+    end
+
+    local files = mputils.readdir(dir, "files")
+    if files == nil then
+	return
+    end
+    table.filter(files, function (v, k)
+	local ext = get_extension(v)
+	if ext == nil then
+	    return false
+	end
+	return EXTENSIONS[string.lower(ext)]
+    end)
+    table.sort(files, function (a, b)
+	local len = string.len(a) - string.len(b)
+	if len ~= 0 then -- case for ordering filename ending with such as X.Y.Z
+	    local ext = string.len(get_extension(a)) + 1
+	    return string.sub(a, 1, -ext) &lt; string.sub(b, 1, -ext)
+	end
+	return string.lower(a) &lt; string.lower(b)
+    end)
+
+    if dir == "." then
+	dir = ""
+    end
+
+    local pl = mp.get_property_native("playlist", {})
+    local pl_current = mp.get_property_number("playlist-pos", 0) + 1
+    -- Find the current pl entry (dir+"/"+filename) in the sorted dir list
+    local current
+    for i = 1, #files do
+	if files[i] == filename then
+	    current = i
+	    break
+	end
+    end
+    if current == nil then
+	return
+    end
+
+    local append = {[-1] = {}, [1] = {}}
+    for direction = -1, 1, 2 do -- 2 iterations, with direction = -1 and +1
+	for i = 1, MAXENTRIES do
+	    local file = files[current + i * direction]
+	    local pl_e = pl[pl_current + i * direction]
+	    if file == nil or file[1] == "." then
+		break
+	    end
+
+	    local filepath = dir .. file
+	    if pl_e then
+		-- If there's a playlist entry, and it's the same file, stop.
+		if pl_e.filename == filepath then
+		    break
+		end
+	    end
+
+	    if direction == -1 then
+		if pl_current == 1 then -- never add additional entries in the middle
+		    mp.msg.info("Prepending " .. file)
+		    table.insert(append[-1], 1, filepath)
+		end
+	    else
+		mp.msg.info("Adding " .. file)
+		table.insert(append[1], filepath)
+	    end
+	end
+    end
+
+    add_files_at(pl_current + 1, append[1])
+    add_files_at(pl_current, append[-1])
+end
+
+mp.register_event("start-file", find_and_add_entries)
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org9383a27" class="outline-3">
+<h3 id="org9383a27">mellplayer</h3>
+<div class="outline-text-3" id="text-org9383a27">
+<p>
+sudo apt-get install libmpv-dev mpv
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge19367b" class="outline-3">
+<h3 id="orge19367b">thunderbird</h3>
+<div class="outline-text-3" id="text-orge19367b">
+<pre class="example">
+Alt to open the menubar,
+Ansicht Anpassen to setting ungelesen
+</pre>
+
+<pre class="example">
+For Filter:
+cd ~/.thunderbird/4r373mm9.default-release/ImapMail/imap.gmail.com
+import msgFilterRules.dat to Gmail
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org1900719" class="outline-3">
+<h3 id="org1900719">EverSync</h3>
+<div class="outline-text-3" id="text-org1900719">
+<p>
+Eversync sync all bookmarks between chrome and firefox with G Konten
+</p>
+</div>
+</div>
+<div id="outline-container-orge52f1fb" class="outline-3">
+<h3 id="orge52f1fb">IPFS</h3>
+<div class="outline-text-3" id="text-orge52f1fb">
+<pre class="example">
+
+download go-ipfs and untar
+cp ipfs /usr/local/bin and sudo ./install.sh
+
+sudo apt install ipfs
+
+ipfs init
+export EDITOR=/usr/bin/emacs
+ipfs config edit
+ipfs id
+ipfs  help
+</pre>
+
+
+<pre class="example">
+
+mkdir IPFS
+echo "balabalu" &gt; hallo.org
+ipfs add hallo.org  :get file_hash
+ipfs cat file_hash
+ipfs.io/ipfs/file_hash
+</pre>
+
+<p>
+push
+</p>
+
+<pre class="example">
+
+ipfs add -r . (we get all file_hash(s), and a folder_hash(IPFS))
+ipfs name publish folder_hash  (: to IDHASH)
+
+in Webborser: ipfs.io/ipns/IDHASH
+
+
+ipfs name resolve IDHASH : to HASH_file
+
+特殊加密，暂时不用
+ipfs key gen --type=rsa --size=2048 IPFS
+ipfs name publish --key=IPFS folder_hash
+</pre>
+
+
+<pre class="example">
+ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods '["PUT", "GET", "POST","OPTIONS"]'
+
+ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin '["*"]'
+
+ipfs config --json API.HTTPHeaders.Access-Control-Allow-Credentials '["true"]'
+
+ipfs config --json API.HTTPHeaders.Access-Control-Allow-Headers '["Authorization"]'
+
+ipfs config --json API.HTTPHeaders.Access-Control-Expose-Headers '["Location"]'
+
+
+http://localhost:5001/webui
+
+</pre>
+
+<pre class="example">
+
+ipfs files mkdir /Docu
+
+ipfs files ls /Docu
+
+ipfs file cp /ipfs/HASH
+</pre>
+</div>
+</div>
+<div id="outline-container-org6ed9d4f" class="outline-3">
+<h3 id="org6ed9d4f">GPG</h3>
+<div class="outline-text-3" id="text-org6ed9d4f">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">terminal encrypt</td>
+<td class="org-left">gpg &#x2013;recipient ID &#x2013;output en.org &#x2013;encrypt source.org</td>
+</tr>
+
+<tr>
+<td class="org-left">terminal decrypt</td>
+<td class="org-left">gpg  en.org</td>
+</tr>
+
+<tr>
+<td class="org-left">emacs encrypt</td>
+<td class="org-left">epa-encrypt-file</td>
+</tr>
+
+<tr>
+<td class="org-left">emacs decrypt</td>
+<td class="org-left">epa-decrypt-file</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+encrypt by terminal, once decrypt by emacs, just as normal file, can be edited anytime
+encrypt by emacs with password, passwd will be ask every time by after edit
+if epa-file-select-key is t
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf74911f" class="outline-3">
+<h3 id="orgf74911f">Zulip Rocket Chat</h3>
+</div>
+</div>
+
+<div id="outline-container-orga933b42" class="outline-2">
+<h2 id="orga933b42">System control</h2>
+<div class="outline-text-2" id="text-orga933b42">
+</div>
+<div id="outline-container-org3de4023" class="outline-3">
+<h3 id="org3de4023">system backup</h3>
+<div class="outline-text-3" id="text-org3de4023">
+<p>
+mount rsync
+</p>
+
+<p>
+查看系统的磁盘 :lsblk
+再将磁盘(也可以是某个分区)挂载到某个点 :
+</p>
+
+<p>
+该磁盘可以是正在使用的磁盘或者分区  
+</p>
+<pre class="example">
+ mount /dev/disk /media/Linux
+sudo mount /dev/sda1 /media/Backup
+
+rsync -aAXv --delete --exclude=media target backup/LinuxBackUp20200316
+my opera 
+
+rsync -aAXv /home/sx/ /media/sx/A672BA1B72B9EFE3/linuxbackup/home/
+
+</pre>
+<p>
+如果要恢复，重复上面的过程，再将target backup 交换
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5d78e2a" class="outline-3">
+<h3 id="org5d78e2a">system performance</h3>
+<div class="outline-text-3" id="text-org5d78e2a">
+<ol class="org-ol">
+<li>dependence</li>
+</ol>
+<p>
+sudo apt-get install gir1.2-gtop-2.0 gir1.2-networkmanager-1.0
+gir1.2-clutter-1.0
+</p>
+
+<ol class="org-ol">
+<li>Ubuntu Software</li>
+</ol>
+<p>
+search for : system moniter extension
+</p>
+
+<ol class="org-ol">
+<li>install and configure performance</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcdb6b68" class="outline-2">
+<h2 id="orgcdb6b68">chinese config</h2>
+<div class="outline-text-2" id="text-orgcdb6b68">
+</div>
+<div id="outline-container-org73f3ee4" class="outline-3">
+<h3 id="org73f3ee4">emacs chinese input</h3>
+<div class="outline-text-3" id="text-org73f3ee4">
+<p>
+sudo apt install fcitx
+download sougou for linux
+sudo dpkg -i sougou&#x2026;&#x2026;
+fcitx set global
+restart configuration to add sougou chinese
+</p>
+
+
+<p>
+$ local -a |grep zh
+sudo apt-get -y install language-pack-zh-hans
+$ local -a |grep zh 
+to see zh is installed
+</p>
+
+<p>
+export LC<sub>CTYPE</sub>=zh<sub>CN.UTF</sub>-8
+to language configuration and auto install drivers to zh<sub>CN.UTF</sub>-8
+so in emacs can input sougou, here we go
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0edeaac" class="outline-3">
+<h3 id="org0edeaac">chinese output pdf</h3>
+<div class="outline-text-3" id="text-org0edeaac">
+<p>
+for a orgmode file with 汉字
+pandoc xxxx.org -o xxxx.pdf
+pandoc xxxx.org -o xxxx.pdf &#x2013;pdf-engine=xelatex
+如果没有汉字支持
+</p>
+<pre class="example">
+fc-list -f "%{family}\n"  :lang=zh
+pandoc test.org -o test.pdf --pdf-engine=xelatex -V mainfont="AR PL KaitiM GB"
+</pre>
+<p>
+找到支持的格式，再指明
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfbd3db3" class="outline-2">
+<h2 id="orgfbd3db3">Makefile</h2>
+<div class="outline-text-2" id="text-orgfbd3db3">
+<p>
+gcc 调用 make 来构造
+</p>
+</div>
+
+<div id="outline-container-orgfaa9973" class="outline-3">
+<h3 id="orgfaa9973">格式</h3>
+<div class="outline-text-3" id="text-orgfaa9973">
+<p>
+目标 ： 依赖
+Tab 命令
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0131466" class="outline-3">
+<h3 id="org0131466">1example</h3>
+<div class="outline-text-3" id="text-org0131466">
+<p>
+实列文件：add.c  head.h   main.c   maul.c  sub.c  
+直接在terminal 用gcc ：$ gcc add.c main.c sub.c -o app
+</p>
+
+<p>
+Makefile :
+$ touch Makefile
+</p>
+<div class="org-src-container">
+<pre class="src src-txt">app: main.c add.c sub.c mul.c
+    gcc main.c add.c sub.c mul.c 
+</pre>
+</div>
+<p>
+$ make
+</p>
+</div>
+</div>
+
+<div id="outline-container-org76a9253" class="outline-3">
+<h3 id="org76a9253">2修改后只编译改动后的文件</h3>
+<div class="outline-text-3" id="text-org76a9253">
+<p>
+Makefile :
+$ touch Makefile
+</p>
+<div class="org-src-container">
+<pre class="src src-txt">app: main.o add.o sub.o mul.o
+    gcc main.o add.o sub.o mul.o -o app
+
+main.o: main.c
+    gcc -c main.c -o main.o
+
+add.o: add.c
+    gcc -c add.c -o add.o
+
+sub.o: sub.c
+    gcc -c sub.c -o sub.o
+
+mul.o: mul.c
+    gcc -c mul.c -o mul.o
+
+</pre>
+</div>
+<p>
+$ make
+所有源文件的修改过，即时间戳晚于生成的目标文件，则重新编译
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga16881f" class="outline-3">
+<h3 id="orga16881f">3使用自动变量</h3>
+<div class="outline-text-3" id="text-orga16881f">
+<p>
+$@ :目标
+$&lt; :第一个依赖 
+$^ :所有依赖
+Makefile :
+$ touch Makefile
+</p>
+
+<div class="org-src-container">
+<pre class="src src-txt">obj =   main.o add.o sub.o mul.o
+target = app
+
+$(target):$(obj)
+    gcc $(obj) -o $(target)  // gcc $^ -o $@
+
+%.o:%.c
+    gcc -c $&lt; -o $@
+
+</pre>
+</div>
+<p>
+$ make
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga2701f0" class="outline-3">
+<h3 id="orga2701f0">4增加可移植性</h3>
+<div class="outline-text-3" id="text-orga2701f0">
+<p>
+wildcard :查找指定目录下的指定类型文件
+src = $(wildcard ./*.c)
+将当前目录下所有的.c 找到，并赋给src
+</p>
+
+<p>
+patsubst :匹配替换
+obj = $(patsubst %.c, %.o, $(src))
+将src中的所有.c替换为.o
+</p>
+
+<p>
+Makefile :
+$ touch Makefile
+</p>
+
+<div class="org-src-container">
+<pre class="src src-txt">src = $(wildcard ./*.c)
+obj = $(patsubst %.c, %.o $(src))
+target = app
+
+$(target):$(obj)
+    gcc $^ -o $@
+
+%.o:%.c
+    gcc -c $&lt; -o $@
+
+</pre>
+</div>
+<p>
+$ make
+此文件在别的目录下也能使用
+</p>
+</div>
+</div>
+
+<div id="outline-container-org420d79f" class="outline-3">
+<h3 id="org420d79f">5清洁中间的生成的不必要保存文件</h3>
+<div class="outline-text-3" id="text-org420d79f">
+<p>
+make 一般直接执行终结目标，但是可以直接指定make的函数
+clean : 删除不必要的文件，-f : 强制删除，不管有没有该文件，- : 前置-后，遇到错误执行，直接跳过
+</p>
+
+<div class="org-src-container">
+<pre class="src src-txt">src = $(wildcard ./*.c)
+obj = $(patsubst %.c, %.o $(src))
+target = app
+
+$(target):$(obj)
+    gcc $^ -o $@
+
+%.o:%.c
+    gcc -c $&lt; -o $@
+
+clean:
+    rm $(obj) $(target)
+    rm $(obj) $(target) -f
+    -rm $(obj) $(target) -f
+
+</pre>
+</div>
+
+<p>
+$ make
+$ make clean
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc5b65e7" class="outline-2">
+<h2 id="orgc5b65e7">BetreibenSystem</h2>
+<div class="outline-text-2" id="text-orgc5b65e7">
+</div>
+<div id="outline-container-orge955b3f" class="outline-3">
+<h3 id="orge955b3f">Program execution level</h3>
+<div class="outline-text-3" id="text-orge955b3f">
+<p>
+Multi Process : Parallel
+single Process has more thread : Concurrency
+single thread can work in Synchronous or Asynchronous
+</p>
+</div>
+</div>
+<div id="outline-container-org58d666f" class="outline-3">
+<h3 id="org58d666f">Multi Process</h3>
+<div class="outline-text-3" id="text-org58d666f">
+</div>
+<div id="outline-container-orge173441" class="outline-4">
+<h4 id="orge173441">queue communication</h4>
+<div class="outline-text-4" id="text-orge173441">
+</div>
+<ul class="org-ul">
+<li><a id="orgb6d31d2"></a>one way communication server to client<br />
+<div class="outline-text-5" id="text-orgb6d31d2">
+<p>
+Server.c
+</p>
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"unistd.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"sys/types.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"stdlib.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"signal.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"sys/msg.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"string.h"</span>
+
+<span style="font-weight: bold;">#define</span> <span style="font-weight: bold; font-style: italic;">messagelen</span> 124
+
+
+<span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">messqueue</span>
+{
+  <span style="font-weight: bold; text-decoration: underline;">long</span> <span style="font-weight: bold; font-style: italic;">type</span>;
+  <span style="font-weight: bold; text-decoration: underline;">char</span> <span style="font-weight: bold; font-style: italic;">message</span>[messagelen];
+  <span style="font-weight: bold; text-decoration: underline;">char</span> <span style="font-weight: bold; font-style: italic;">ID</span>[4];
+};
+
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>[])
+{
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">msgid</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">key</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">receivelen</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">conut</span> = 0;
+  <span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">messqueue</span> <span style="font-weight: bold; font-style: italic;">sendbuffer</span>;
+  sendbuffer.type = 100;
+
+  key = ftok(<span style="font-style: italic;">"./a.c"</span>, <span style="font-style: italic;">'a'</span>);
+  <span style="font-weight: bold;">if</span> (key &lt; 0) {
+    printf(<span style="font-style: italic;">"create key for server failed \n"</span>);
+    <span style="font-weight: bold;">return</span> -1;
+  }
+
+  <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">create the massage queue</span>
+  msgid= msgget(key, IPC_CREAT | 0777);
+  <span style="font-weight: bold;">if</span> (msgid &lt; 0) {
+    printf(<span style="font-style: italic;">"creat massage queue failed .\n"</span>);
+    <span style="font-weight: bold;">return</span> -1;
+  }
+  printf(<span style="font-style: italic;">"create massage queue success  with msgid %d.\n"</span>,  msgid);
+
+
+  <span style="font-weight: bold;">do</span> {
+    memset(sendbuffer.message, 0, messagelen);
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">input your massage</span>
+    printf(<span style="font-style: italic;">"please input your massage you want to send to massage queue \n"</span>);
+    scanf(<span style="font-style: italic;">"%s"</span>, sendbuffer.message);
+
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">wirte the massage(which is now in your struct messqueue) into massage queue msgid</span>
+    msgsnd(msgid, (<span style="font-weight: bold; text-decoration: underline;">void</span> *)&amp;sendbuffer, strlen(sendbuffer.message), 0);
+    conut++;
+  }<span style="font-weight: bold;">while</span> (conut &lt; 3);
+
+  msgctl(msgid, IPC_RMID, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+
+  system(<span style="font-style: italic;">"ipcs -q"</span>);
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+</pre>
+</div>
+
+<p>
+Client.C
+</p>
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"unistd.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"sys/types.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"stdlib.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"signal.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"sys/msg.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"string.h"</span>
+
+<span style="font-weight: bold;">#define</span> <span style="font-weight: bold; font-style: italic;">messagelen</span> 124
+
+
+<span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">messqueue</span>
+{
+  <span style="font-weight: bold; text-decoration: underline;">long</span> <span style="font-weight: bold; font-style: italic;">type</span>;
+  <span style="font-weight: bold; text-decoration: underline;">char</span> <span style="font-weight: bold; font-style: italic;">message</span>[messagelen];
+  <span style="font-weight: bold; text-decoration: underline;">char</span> <span style="font-weight: bold; font-style: italic;">ID</span>[4];
+};
+
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>[])
+{
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">msgid</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">key</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">receivelen</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">conut</span> = 0;
+  <span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">messqueue</span> <span style="font-weight: bold; font-style: italic;">sendbuffer</span>;
+  sendbuffer.type = 100;
+
+  key = ftok(<span style="font-style: italic;">"./a.c"</span>, <span style="font-style: italic;">'a'</span>);
+  <span style="font-weight: bold;">if</span> (key &lt; 0) {
+    printf(<span style="font-style: italic;">"create key for server failed \n"</span>);
+    <span style="font-weight: bold;">return</span> -1;
+  }
+
+  <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">create the massage queue</span>
+  msgid= msgget(key, IPC_CREAT | 0777);
+  <span style="font-weight: bold;">if</span> (msgid &lt; 0) {
+    printf(<span style="font-style: italic;">"creat massage queue failed .\n"</span>);
+    <span style="font-weight: bold;">return</span> -1;
+  }
+  printf(<span style="font-style: italic;">"create massage queue success  with msgid %d.\n"</span>,  msgid);
+
+
+  <span style="font-weight: bold;">do</span> {
+    memset(sendbuffer.message, 0, messagelen);
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">input your massage</span>
+    printf(<span style="font-style: italic;">"please input your massage you want to send to massage queue \n"</span>);
+    scanf(<span style="font-style: italic;">"%s"</span>, sendbuffer.message);
+
+    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">wirte the massage(which is now in your struct messqueue) into massage queue msgid</span>
+    msgsnd(msgid, (<span style="font-weight: bold; text-decoration: underline;">void</span> *)&amp;sendbuffer, strlen(sendbuffer.message), 0);
+    conut++;
+  }<span style="font-weight: bold;">while</span> (conut &lt; 3);
+
+  msgctl(msgid, IPC_RMID, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+
+  system(<span style="font-style: italic;">"ipcs -q"</span>);
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="org0aaa598"></a>two ways communication server vs client<br />
+<div class="outline-text-5" id="text-org0aaa598">
+<p>
+Server.c
+</p>
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"unistd.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"sys/types.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"stdlib.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"signal.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"sys/msg.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"string.h"</span>
+
+<span style="font-weight: bold;">#define</span> <span style="font-weight: bold; font-style: italic;">messagelen</span> 124
+
+
+<span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">messqueue</span>
+{
+  <span style="font-weight: bold; text-decoration: underline;">long</span> <span style="font-weight: bold; font-style: italic;">type</span>;
+  <span style="font-weight: bold; text-decoration: underline;">char</span> <span style="font-weight: bold; font-style: italic;">message</span>[messagelen];
+  <span style="font-weight: bold; text-decoration: underline;">char</span> <span style="font-weight: bold; font-style: italic;">ID</span>[4];
+};
+
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>[])
+{
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">msgid</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">key</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">receivelen</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">conut</span> = 0;
+  <span style="font-weight: bold; text-decoration: underline;">pid_t</span> <span style="font-weight: bold; font-style: italic;">pid</span>;
+  <span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">messqueue</span> <span style="font-weight: bold; font-style: italic;">sendbuffer</span>, <span style="font-weight: bold; font-style: italic;">receiverbuffer</span>;
+
+
+  key = ftok(<span style="font-style: italic;">"./b.c"</span>, <span style="font-style: italic;">'a'</span>);
+  <span style="font-weight: bold;">if</span> (key &lt; 0) {
+    printf(<span style="font-style: italic;">"create key for server failed \n"</span>);
+    <span style="font-weight: bold;">return</span> -1;
+  }
+
+  <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">create the massage queue</span>
+  msgid= msgget(key, IPC_CREAT | 0777);
+  <span style="font-weight: bold;">if</span> (msgid &lt; 0) {
+    printf(<span style="font-style: italic;">"creat massage queue failed .\n"</span>);
+    <span style="font-weight: bold;">return</span> -1;
+  }
+  printf(<span style="font-style: italic;">"create massage queue success  with msgid %d.\n"</span>,  msgid);
+
+  pid = fork();
+
+  <span style="font-weight: bold;">if</span> (pid &gt; 0) {   <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">server father process write tpye 100</span>
+    sendbuffer.type = 100;
+
+    <span style="font-weight: bold;">while</span>(1) {
+      memset(sendbuffer.message, 0, messagelen);
+      <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">input your massage</span>
+      printf(<span style="font-style: italic;">"please input your massage you want to send to massage queue \n"</span>);
+      scanf(<span style="font-style: italic;">"%s"</span>, sendbuffer.message);
+
+      <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">wirte the massage(which is now in your struct messqueue) into massage queue msgid</span>
+      msgsnd(msgid, (<span style="font-weight: bold; text-decoration: underline;">void</span> *)&amp;sendbuffer, strlen(sendbuffer.message), 0);
+      conut++;
+    }
+  }
+
+  <span style="font-weight: bold;">if</span> (pid == 0) {    <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">server child process read tpye 200</span>
+    <span style="font-weight: bold;">while</span> (1) {
+      memset(receiverbuffer.message, 0, messagelen);
+      msgrcv(msgid, (<span style="font-weight: bold; text-decoration: underline;">void</span> *)&amp;receiverbuffer, messagelen, 200, 0);
+      printf(<span style="font-style: italic;">"the receive massage of massage queue in server is %s \n"</span>, receiverbuffer.message);
+    }
+
+  }
+
+  msgctl(msgid, IPC_RMID, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+
+  system(<span style="font-style: italic;">"ipcs -q"</span>);
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+</pre>
+</div>
+
+<p>
+Client.c
+</p>
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"unistd.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"sys/types.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"stdlib.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"signal.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"sys/msg.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"string.h"</span>
+
+<span style="font-weight: bold;">#define</span> <span style="font-weight: bold; font-style: italic;">messagelen</span> 124
+
+
+<span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">messqueue</span>
+{
+  <span style="font-weight: bold; text-decoration: underline;">long</span> <span style="font-weight: bold; font-style: italic;">type</span>;
+  <span style="font-weight: bold; text-decoration: underline;">char</span> <span style="font-weight: bold; font-style: italic;">message</span>[messagelen];
+  <span style="font-weight: bold; text-decoration: underline;">char</span> <span style="font-weight: bold; font-style: italic;">ID</span>[4];
+};
+
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>[])
+{
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">msgid</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">key</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">receivelen</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">conut</span> = 0;
+  <span style="font-weight: bold; text-decoration: underline;">pid_t</span> <span style="font-weight: bold; font-style: italic;">pid</span>;
+  <span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">messqueue</span> <span style="font-weight: bold; font-style: italic;">sendbuffer</span>, <span style="font-weight: bold; font-style: italic;">receiverbuffer</span>;
+
+
+  key = ftok(<span style="font-style: italic;">"./b.c"</span>, <span style="font-style: italic;">'a'</span>);
+  <span style="font-weight: bold;">if</span> (key &lt; 0) {
+    printf(<span style="font-style: italic;">"create key for server failed \n"</span>);
+    <span style="font-weight: bold;">return</span> -1;
+  }
+
+  <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">create the massage queue</span>
+  msgid= msgget(key, IPC_CREAT | 0777);
+  <span style="font-weight: bold;">if</span> (msgid &lt; 0) {
+    printf(<span style="font-style: italic;">"creat massage queue failed .\n"</span>);
+    <span style="font-weight: bold;">return</span> -1;
+  }
+  printf(<span style="font-style: italic;">"create massage queue success  with msgid %d.\n"</span>,  msgid);
+
+  pid = fork();
+
+  <span style="font-weight: bold;">if</span> (pid == 0) { <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">client child process for write tpye 200</span>
+    sendbuffer.type = 200;
+
+    <span style="font-weight: bold;">while</span>(1) {
+      memset(sendbuffer.message, 0, messagelen);
+      <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">input your massage</span>
+      printf(<span style="font-style: italic;">"please input your massage you want to send to massage queue \n"</span>);
+      scanf(<span style="font-style: italic;">"%s"</span>, sendbuffer.message);
+
+      <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">wirte the massage(which is now in your struct messqueue) into massage queue msgid</span>
+      msgsnd(msgid, (<span style="font-weight: bold; text-decoration: underline;">void</span> *)&amp;sendbuffer, strlen(sendbuffer.message), 0);
+      conut++;
+    }
+  }
+
+  <span style="font-weight: bold;">if</span> (pid &gt; 0) {  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">client child process read type 100</span>
+    <span style="font-weight: bold;">while</span>(1){
+      memset(receiverbuffer.message, 0, messagelen);
+      msgrcv(msgid, (<span style="font-weight: bold; text-decoration: underline;">void</span> *)&amp;receiverbuffer, messagelen, 100, 0);
+      printf(<span style="font-style: italic;">"the receive massage of massage queue in server is %s \n"</span>, receiverbuffer.message);
+    }
+  }
+
+  msgctl(msgid, IPC_RMID, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+
+  system(<span style="font-style: italic;">"ipcs -q"</span>);
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+
+</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-orgc379ab9" class="outline-4">
+<h4 id="orgc379ab9">pipe communication</h4>
+<div class="outline-text-4" id="text-orgc379ab9">
+</div>
+<ul class="org-ul">
+<li><a id="org496f140"></a>named<br />
+<div class="outline-text-5" id="text-org496f140">
+<ol class="org-ol">
+<li>In current directory:   mkfifo("./myfifo", 0777);</li>
+</ol>
+<p>
+with mkfifo creat a file, so that other unrelated process can commu  
+</p>
+
+<ol class="org-ol">
+<li>In one process : fd = open("./myfifo", O<sub>WRONGLY</sub>);</li>
+</ol>
+<p>
+open the file,  and :
+write(fd, &amp;process<sub>inter,1</sub>);
+change the pipe variable.
+</p>
+
+<ol class="org-ol">
+<li>In other process :   fd = open("./myfifo",O<sub>RDONLY</sub>);</li>
+</ol>
+<p>
+open the file, and : while(process<sub>inter</sub> == 0);
+can be controled by pipe variable 
+</p>
+</div>
+</li>
+
+<li><a id="orgc23a7f4"></a>unnamed<br />
+<div class="outline-text-5" id="text-orgc23a7f4">
+<ol class="org-ol">
+<li><p>
+In one process diff threads
+creat place for pipe : int fd[2]; one for main thread, one for new thread
+creat pipe : int ret = pipe(fd);
+</p>
+
+<p>
+in new thread : read(fd[0], &amp;process<sub>inter</sub> 1); if nothing to read, sleep
+in main thread do its stuff, 
+after finish : write(fd[1], &amp;process<sub>inter</sub>, 1); let new pthread run
+</p>
+
+<p>
+remeber: wirte at frist in fd[1], and then read at fd[0]
+</p></li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+
+<div id="outline-container-org592006a" class="outline-4">
+<h4 id="org592006a">signal communication</h4>
+<div class="outline-text-4" id="text-org592006a">
+</div>
+<ul class="org-ul">
+<li><a id="orgf77f837"></a>alarm<br />
+<div class="outline-text-5" id="text-orgf77f837">
+<p>
+alarm(10);   wait for 10 seconds and kill itself
+send signal as 14 to itself
+</p>
+</div>
+</li>
+
+<li><a id="org0324ff5"></a>kill<br />
+<div class="outline-text-5" id="text-org0324ff5">
+<p>
+kill(pid, 9);
+send signal 9 to pid process
+</p>
+</div>
+</li>
+
+<li><a id="org0b69b6f"></a>raise<br />
+<div class="outline-text-5" id="text-org0b69b6f">
+<p>
+raise(9);  == kill(getpid(), 9);
+</p>
+</div>
+</li>
+
+<li><a id="orgad76dd9"></a>pause<br />
+<div class="outline-text-5" id="text-orgad76dd9">
+<p>
+pause(); stoped for ever
+</p>
+</div>
+</li>
+
+<li><a id="org63eb2b1"></a>signal<br />
+<div class="outline-text-5" id="text-org63eb2b1">
+<p>
+signal(signal<sub>ID</sub>, self<sub>function</sub>); self function or SIG<sub>ING</sub> or SIG<sub>DFL</sub>
+</p>
+</div>
+</li>
+
+<li><a id="org59785f1"></a>exit<br />
+<div class="outline-text-5" id="text-org59785f1">
+<p>
+exit(0) will also send signal 17 (SIGCHID) to its father thread;
+</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="outline-container-org7c53bc7" class="outline-4">
+<h4 id="org7c53bc7">semaphore communication</h4>
+<div class="outline-text-4" id="text-org7c53bc7">
+</div>
+<ul class="org-ul">
+<li><a id="orgcb130fb"></a>key<br />
+<div class="outline-text-5" id="text-orgcb130fb">
+<p>
+key can be 2 differ
+</p>
+
+<ol class="org-ol">
+<li>For father and son process : IPC<sub>PRIVATE</sub> :</li>
+<li>For unrelated process : self<sub>def</sub> key</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-C">
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">key</span>;
+key = ftok(<span style="font-style: italic;">"./a.c"</span>, <span style="font-style: italic;">'a'</span>);
+<span style="font-weight: bold;">if</span> (key &lt; 0) {
+  printf(<span style="font-style: italic;">"create key for server failed \n"</span>);
+  <span style="font-weight: bold;">return</span> -1;
+}
+printf(<span style="font-style: italic;">"create key for server success \n"</span>);
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="org3311315"></a>memcpy<br />
+<div class="outline-text-5" id="text-org3311315">
+<p>
+memcpy(p, "niao",4);
+</p>
+</div>
+</li>
+<li><a id="org3471648"></a>shmget<br />
+<div class="outline-text-5" id="text-org3471648">
+<p>
+shmid = shmget(IPC<sub>PRIVATE</sub>, 128, 0777);
+shmid = shmget(key, 128, IPC<sub>CREAT</sub> | 0777);
+</p>
+</div>
+</li>
+
+<li><a id="org401bcac"></a>shmat<br />
+<div class="outline-text-5" id="text-org401bcac">
+<p>
+char *p  = (char *) shmat(shmid, NULL, 0);
+after mapping to p : can be manipulated
+scanf("%s", p);
+printf("%s", p);
+</p>
+</div>
+</li>
+
+<li><a id="org7639790"></a>shmdt<br />
+<div class="outline-text-5" id="text-org7639790">
+<p>
+delete the mapping of p to shared memory 
+shmdt(p); 
+after that, the manipulation of p is not allowed, and well be
+segmention fault
+</p>
+</div>
+</li>
+
+<li><a id="org9414936"></a>shmctl<br />
+<div class="outline-text-5" id="text-org9414936">
+<p>
+delete the created shared memory
+shmctl(shmid, IPC<sub>RMID</sub>, NULL); == iprcm -m shmid
+</p>
+</div>
+</li>
+
+<li><a id="org2b34352"></a>IPC manipulation<br />
+<div class="outline-text-5" id="text-org2b34352">
+<p>
+show : ipcs -m(shared memory) -q(message queue) -s(semaphores) 
+delete : ipcrm -m shmid /-q msgid /-s semid
+</p>
+</div>
+</li>
+
+<li><a id="org9c5a597"></a>msgget<br />
+<div class="outline-text-5" id="text-org9c5a597">
+<p>
+msgid= msgget(IPC<sub>PRIVATE</sub>, 0777);
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"unistd.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"sys/types.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"stdlib.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"signal.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"sys/msg.h"</span>
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>[])
+{
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">msgid</span>;
+
+  msgid= msgget(IPC_PRIVATE, 0777);
+  <span style="font-weight: bold;">if</span> (msgid &lt; 0) {
+    printf(<span style="font-style: italic;">"creat massage queue failed .\n"</span>);
+    <span style="font-weight: bold;">return</span> -1;
+  }
+
+  printf(<span style="font-style: italic;">"create massage queue success  with msgid %d.\n"</span>,  msgid);
+
+  system(<span style="font-style: italic;">"ipcs -q"</span>);
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+</pre>
+</div>
+
+<pre class="example">
+
+------ Nachrichtenwarteschlangen --------
+Schlüssel msqid      Besitzer   Rechte     Benutzt-Bytes Nachrichten 
+0x61091797 2          silin      777        0            0           
+0x00000000 4          silin      777        0            0           
+0x00000000 5          silin      777        0            0           
+0x00000000 6          silin      777        0            0           
+0x00000000 7          silin      777        0            0           
+0x00000000 8          silin      777        0            0           
+0x00000000 9          silin      777        0            0           
+0x00000000 10         silin      777        0            0           
+0x00000000 11         silin      777        0            0           
+0x00000000 12         silin      777        0            0           
+
+create massage queue success  with msgid 12.
+</pre>
+</div>
+</li>
+
+<li><a id="org1eedb19"></a>msgctl<br />
+<div class="outline-text-5" id="text-org1eedb19">
+<p>
+msgctl(msgid, IPC<sub>RMID</sub>, NULL); == ipcrm -q msgid
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"unistd.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"sys/types.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"stdlib.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"signal.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"sys/msg.h"</span>
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>[])
+{
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">msgid</span>;
+
+  msgid= msgget(IPC_PRIVATE, 0777);
+  <span style="font-weight: bold;">if</span> (msgid &lt; 0) {
+    printf(<span style="font-style: italic;">"creat massage queue failed .\n"</span>);
+    <span style="font-weight: bold;">return</span> -1;
+  }
+
+  printf(<span style="font-style: italic;">"create massage queue success  with msgid %d.\n"</span>,  msgid);
+
+  system(<span style="font-style: italic;">"ipcs -q"</span>);
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+</pre>
+</div>
+</div>
+</li>
+
+
+<li><a id="orge895379"></a>msgsnd &amp;  msgrcv<br />
+<div class="outline-text-5" id="text-orge895379">
+<p>
+msgsnd(msgid, (void *)&amp;sendbuffer, strlen(sendbuffer.message), 0);
+</p>
+
+<p>
+receivelen = msgrcv(msgid, (void *)&amp;receiverbuffer, messagelen, 100, 0);
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"unistd.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"sys/types.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"stdlib.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"signal.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"sys/msg.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"string.h"</span>
+
+<span style="font-weight: bold;">#define</span> <span style="font-weight: bold; font-style: italic;">messagelen</span> 124
+
+
+<span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">messqueue</span>
+{
+  <span style="font-weight: bold; text-decoration: underline;">long</span> <span style="font-weight: bold; font-style: italic;">type</span>;
+  <span style="font-weight: bold; text-decoration: underline;">char</span> <span style="font-weight: bold; font-style: italic;">message</span>[messagelen];
+  <span style="font-weight: bold; text-decoration: underline;">char</span> <span style="font-weight: bold; font-style: italic;">ID</span>[4];
+};
+
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>[])
+{
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">msgid</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">receivelen</span>;
+  <span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">messqueue</span> <span style="font-weight: bold; font-style: italic;">sendbuffer</span>, <span style="font-weight: bold; font-style: italic;">receiverbuffer</span>;
+  sendbuffer.type = 100;
+  receiverbuffer.type = 100;
+
+  <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">create the massage queue</span>
+  msgid= msgget(IPC_PRIVATE, 0777);
+  <span style="font-weight: bold;">if</span> (msgid &lt; 0) {
+    printf(<span style="font-style: italic;">"creat massage queue failed .\n"</span>);
+    <span style="font-weight: bold;">return</span> -1;
+  }
+  printf(<span style="font-style: italic;">"create massage queue success  with msgid %d.\n"</span>,  msgid);
+
+  <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">input your massage</span>
+  printf(<span style="font-style: italic;">"please input your massage you want to send to massage queue \n"</span>);
+  scanf(<span style="font-style: italic;">"%s"</span>, sendbuffer.message);
+
+  <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">wirte the massage(which is now in your struct messqueue) into massage queue msgid</span>
+  msgsnd(msgid, (<span style="font-weight: bold; text-decoration: underline;">void</span> *)&amp;sendbuffer, strlen(sendbuffer.message), 0);
+
+  <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">clear receiverbuffer.massage</span>
+  memset(receiverbuffer.message, 0, messagelen);
+  <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">read massage to receiverbuffer from massage queue msgid</span>
+  receivelen = msgrcv(msgid, (<span style="font-weight: bold; text-decoration: underline;">void</span> *)&amp;receiverbuffer, messagelen, 100, 0);
+
+  printf(<span style="font-style: italic;">"the receiverbuffer massage have %s .\n"</span>, receiverbuffer.message);
+  printf(<span style="font-style: italic;">"the long is %d .\n"</span>, receivelen);
+
+
+  msgctl(msgid, IPC_RMID, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+
+  system(<span style="font-style: italic;">"ipcs -q"</span>);
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+</pre>
+</div>
+
+<pre class="example">
+
+------ Nachrichtenwarteschlangen --------
+Schlüssel msqid      Besitzer   Rechte     Benutzt-Bytes Nachrichten 
+0x61091797 2          silin      777        0            0           
+0x00000000 4          silin      777        0            0           
+0x00000000 5          silin      777        0            0           
+0x00000000 6          silin      777        0            0           
+0x00000000 7          silin      777        0            0           
+0x00000000 8          silin      777        0            0           
+0x00000000 9          silin      777        0            0           
+0x00000000 10         silin      777        0            0           
+0x00000000 11         silin      777        0            0           
+0x00000000 12         silin      777        0            0           
+
+create massage queue success  with msgid 14.
+please input your massage you want to send to massage queue 
+the receiverbuffer massage have
+the long is 6 .
+</pre>
+</div>
+</li>
+
+<li><a id="orga0bf942"></a>semget<br />
+<div class="outline-text-5" id="text-orga0bf942">
+<p>
+semid = semget(IPC<sub>PRIVATE,3</sub> ,  0777);
+</p>
+</div>
+</li>
+
+<li><a id="orgd1cdd25"></a>semctl<br />
+<div class="outline-text-5" id="text-orgd1cdd25">
+<p>
+semctl(semid, 0, IPC<sub>RMID</sub>, NULL);
+</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0d31edd" class="outline-3">
+<h3 id="org0d31edd">Multi Thread</h3>
+<div class="outline-text-3" id="text-org0d31edd">
+</div>
+<div id="outline-container-org9c9d037" class="outline-4">
+<h4 id="org9c9d037">1 pthread<sub>create.c</sub></h4>
+<div class="outline-text-4" id="text-org9c9d037">
+<p>
+using pthread<sub>create</sub> create new thread(thread<sub>fun</sub>) with
+arguements("new thread"). In new thread call function print<sub>id</sub> with
+giving arguements.
+</p>
+
+
+<p>
+This programm can't compiled in Babel, please save this as a .c file, 
+and compile with <b>-pthread</b>
+</p>
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"apue.h"</span>
+
+<span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">print_id</span>(<span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">s</span>)
+{
+  <span style="font-weight: bold; text-decoration: underline;">pid_t</span> <span style="font-weight: bold; font-style: italic;">pid</span>;
+  <span style="font-weight: bold; text-decoration: underline;">pthread_t</span> <span style="font-weight: bold; font-style: italic;">tid</span>;
+
+  pid = getpid();
+  tid = pthread_self();
+
+  printf(<span style="font-style: italic;">"%s pid is %u, and tid is 0x%x\n"</span>, s, pid, (<span style="font-weight: bold; text-decoration: underline;">int</span>) tid);
+}
+
+<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold;">thread_fun</span>(<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold; font-style: italic;">arg</span>)
+{
+  printf(<span style="font-style: italic;">"In son thread, can't get the father tid \n"</span>);
+
+  print_id(arg);
+  <span style="font-weight: bold;">return</span> (<span style="font-weight: bold; text-decoration: underline;">void</span> *)0;
+}
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>( )
+{
+  <span style="font-weight: bold; text-decoration: underline;">pthread_t</span> <span style="font-weight: bold; font-style: italic;">ntid</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">err</span>;
+  err = pthread_create(&amp;ntid, <span style="font-weight: bold; text-decoration: underline;">NULL</span>, thread_fun, <span style="font-style: italic;">"new thread"</span>);
+
+  <span style="font-weight: bold;">if</span> (err != 0) {
+    printf(<span style="font-style: italic;">"create new thread is failed\n"</span>);
+    <span style="font-weight: bold;">return</span> 0;
+  }
+  printf(<span style="font-style: italic;">"In father thread, the new THREAS is 0x%x \n"</span>, (<span style="font-weight: bold; text-decoration: underline;">int</span>)ntid );
+
+  print_id(<span style="font-style: italic;">"main thread"</span>);
+  sleep(2);
+
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf8d25b5" class="outline-4">
+<h4 id="orgf8d25b5">2 pthread<sub>id.c</sub></h4>
+<div class="outline-text-4" id="text-orgf8d25b5">
+<p>
+using pid = getpid() to get pid of current pthread
+</p>
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"unistd.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"sys/types.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"stdlib.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"signal.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"sys/msg.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"string.h"</span>
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>( )
+{
+  <span style="font-weight: bold; text-decoration: underline;">pid_t</span> <span style="font-weight: bold; font-style: italic;">pid</span>;
+  <span style="font-weight: bold; text-decoration: underline;">pthread_t</span> <span style="font-weight: bold; font-style: italic;">tid</span>;
+
+  pid = getpid();
+  tid = pthread_self();
+
+  printf(<span style="font-style: italic;">"pid is %d , and tid is %x\n"</span>, pid, (<span style="font-weight: bold; text-decoration: underline;">int</span>)tid );
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+
+</pre>
+</div>
+
+<pre class="example">
+pid is 3406 , and tid is 960c4c0
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org5905138" class="outline-4">
+<h4 id="org5905138">3 pthread<sub>jion.c</sub></h4>
+<div class="outline-text-4" id="text-org5905138">
+<p>
+pthread<sub>jion</sub>(tid, &amp;reval) 可以回收主线程发起的副线程tid，并由
+副线程指定返回值给reval.但是副线程如自己调用了
+pthread<sub>detach</sub>(pthread-self()) 可以阻止主线程的jion
+</p>
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"apue.h"</span>
+
+<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold;">thread_fun1</span>(<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold; font-style: italic;">arg</span>){
+  printf(<span style="font-style: italic;">"New thread out with return\n"</span>);
+  <span style="font-weight: bold;">return</span> (<span style="font-weight: bold; text-decoration: underline;">void</span> *)1;
+}
+
+<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold;">thread_fun2</span>(<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold; font-style: italic;">arg</span>){
+  printf(<span style="font-style: italic;">"New thread out with pthread_exit\n"</span>);
+  pthread_detach(pthread_self()); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">detach it self</span>
+  pthread_exit((<span style="font-weight: bold; text-decoration: underline;">void</span> *)2);
+}
+
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>( )
+{
+  <span style="font-weight: bold; text-decoration: underline;">pthread_t</span> <span style="font-weight: bold; font-style: italic;">tid1</span>, <span style="font-weight: bold; font-style: italic;">tid2</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">err1</span>, <span style="font-weight: bold; font-style: italic;">err2</span>;
+  <span style="font-weight: bold; text-decoration: underline;">void</span>  *<span style="font-weight: bold; font-style: italic;">reval1</span>, *<span style="font-weight: bold; font-style: italic;">reval2</span>;
+
+  err1 = pthread_create(&amp;tid1, <span style="font-weight: bold; text-decoration: underline;">NULL</span>, thread_fun1, <span style="font-weight: bold; text-decoration: underline;">NULL</span>); 
+  err2 = pthread_create(&amp;tid2, <span style="font-weight: bold; text-decoration: underline;">NULL</span>, thread_fun2, <span style="font-weight: bold; text-decoration: underline;">NULL</span>); 
+
+  <span style="font-weight: bold;">if</span> (err1 || err2) {
+    printf(<span style="font-style: italic;">"The create of new thread is failed\n"</span>);
+  }
+
+  printf(<span style="font-style: italic;">"the thread 1 has return as %d\n"</span>, pthread_join(tid1, &amp;reval1) );
+  printf(<span style="font-style: italic;">"the thread 2 has return as %d\n"</span>, pthread_join(tid2, &amp;reval2) );
+
+  printf(<span style="font-style: italic;">"the thread 1 has return code %d\n"</span>,(<span style="font-weight: bold; text-decoration: underline;">int</span>*)reval1 );
+  printf(<span style="font-style: italic;">"the thread 2 has return code %d\n"</span>,(<span style="font-weight: bold; text-decoration: underline;">int</span>*)reval2 );
+
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org172ea8e" class="outline-4">
+<h4 id="org172ea8e">4 pthread<sub>cancel.c</sub></h4>
+<div class="outline-text-4" id="text-org172ea8e">
+<p>
+从主线程来的pthread<sub>cancel</sub>(tid)作用到tid的副线程时，
+如果副线程设置为pthread<sub>setcancelstate</sub>(PTHREAD<sub>CANCEL</sub><sub>DISABLE</sub>, NULL)
+则取消请求被忽视
+</p>
+
+<p>
+如果副线程设置为pthread<sub>setcancelstate</sub>(PTHREAD<sub>CANCEL</sub><sub>ENABLE</sub>, NULL);
+则取消请求在下一个取消点被执行
+</p>
+
+<p>
+如果副线程设置为pthread<sub>setcanceltype</sub>(PTHREAD<sub>CANCEL</sub><sub>ASYNCHRONOUS</sub>, NULL);
+则取消请求被立即执行
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"apue.h"</span>
+
+<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold;">thread_fun</span>(<span style="font-weight: bold; text-decoration: underline;">void</span> * <span style="font-weight: bold; font-style: italic;">arg</span>){
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">stateval</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">typeval</span>;
+
+  <span style="font-weight: bold; font-style: italic;">//  </span><span style="font-weight: bold; font-style: italic;">set cancel to be disable</span>
+  stateval = pthread_setcancelstate(PTHREAD_CANCEL_DISABLE, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+  <span style="font-weight: bold;">if</span> (stateval != 0) {
+    printf(<span style="font-style: italic;">"set cancel state to disable is failed\n"</span>);
+  }
+  printf(<span style="font-style: italic;">"I'm New thread here !\n"</span>);
+  sleep(4);
+
+
+  <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">set cancel to be enable, will be canceled at the first cancel point</span>
+  stateval = pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+  <span style="font-weight: bold;">if</span> (stateval != 0)
+    printf(<span style="font-style: italic;">"set cancel state to enable is failed\n"</span>);
+  <span style="font-weight: bold;">else</span>
+    printf(<span style="font-style: italic;">"about to set cancel enable\n"</span>);   <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">print is a cancel point</span>
+
+  <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">set cancel to be enable and immediately</span>
+  typeval = pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+  <span style="font-weight: bold;">if</span> (typeval != 0) {
+    printf(<span style="font-style: italic;">"set cancel state to immediately failed\n"</span>);
+  }
+
+  <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">cancel points</span>
+  printf(<span style="font-style: italic;">"first place to cancel:\n"</span>);
+  printf(<span style="font-style: italic;">"second place to cancel:\n"</span>);
+  <span style="font-weight: bold;">return</span> (<span style="font-weight: bold; text-decoration: underline;">void</span> *)20;
+}
+
+
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>( )
+{
+  <span style="font-weight: bold; text-decoration: underline;">pthread_t</span> <span style="font-weight: bold; font-style: italic;">tid</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">err</span>, <span style="font-weight: bold; font-style: italic;">cval</span>, <span style="font-weight: bold; font-style: italic;">jval</span>;
+  <span style="font-weight: bold; text-decoration: underline;">void</span> * <span style="font-weight: bold; font-style: italic;">rval</span>;
+
+  err = pthread_create(&amp;tid, <span style="font-weight: bold; text-decoration: underline;">NULL</span>, thread_fun, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+  <span style="font-weight: bold;">if</span> (err != 0) {
+    printf(<span style="font-style: italic;">"creat new thread is failed\n"</span>);
+    <span style="font-weight: bold;">return</span> 0;
+  }
+  sleep(2);
+
+  cval = pthread_cancel(tid);
+  <span style="font-weight: bold;">if</span> (cval != 0) {
+    printf(<span style="font-style: italic;">"cancel the new thread is failed\n"</span>);
+    <span style="font-weight: bold;">return</span> 0;
+  }
+
+  jval = pthread_join(tid, &amp;rval);
+  <span style="font-weight: bold;">if</span> (jval != 0) {
+    printf(<span style="font-style: italic;">"join thread  is failed\n"</span>);
+    <span style="font-weight: bold;">return</span> 0;
+  }
+  printf(<span style="font-style: italic;">"new thread has return code of %d\n"</span>, (<span style="font-weight: bold; text-decoration: underline;">int</span>) rval );
+
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org3b2b77a" class="outline-4">
+<h4 id="org3b2b77a">5 pthread<sub>rwlock.c</sub></h4>
+<div class="outline-text-4" id="text-org3b2b77a">
+<p>
+pthread<sub>rwlock</sub><sub>t</sub> rwlock;         声明
+pthread<sub>rwlock</sub><sub>init</sub>(&amp;rwlock);    初始化
+pthread<sub>rwlock</sub><sub>wrlock</sub>(&amp;rwlock);  写锁
+pthread<sub>rwlock</sub><sub>rdlock</sub>(&amp;rwlock);  读锁
+pthread<sub>rwlock</sub><sub>unlock</sub>(&amp;rwlock);  解锁
+pthread<sub>rwlock</sub><sub>destroy</sub>(&amp;rwlock); 销锁
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"apue.h"</span>
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">num</span>;
+<span style="font-weight: bold; text-decoration: underline;">pthread_rwlock_t</span> <span style="font-weight: bold; font-style: italic;">rwlock</span>;
+
+<span style="font-weight: bold; text-decoration: underline;">void</span> * <span style="font-weight: bold;">thread_fun1</span>(<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold; font-style: italic;">arg</span>){
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">err</span>;
+  sleep(1);
+  pthread_rwlock_wrlock(&amp;rwlock);  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">write mode lock</span>
+  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">pthread_rwlock_rdlock(&amp;rwlock);   // read mode lock</span>
+
+  printf(<span style="font-style: italic;">"thread 1 print num as %d\n"</span>,num );
+  sleep(5);
+  printf(<span style="font-style: italic;">"thread 1 is over \n"</span>);
+
+  pthread_rwlock_unlock(&amp;rwlock);
+  <span style="font-weight: bold;">return</span> (<span style="font-weight: bold; text-decoration: underline;">void</span> *)0;
+}
+
+<span style="font-weight: bold; text-decoration: underline;">void</span> * <span style="font-weight: bold;">thread_fun2</span>(<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold; font-style: italic;">arg</span>){
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">err</span>;
+  pthread_rwlock_wrlock(&amp;rwlock);
+  <span style="font-weight: bold; font-style: italic;">//  </span><span style="font-weight: bold; font-style: italic;">pthread_rwlock_rdlock(&amp;rwlock);</span>
+
+  printf(<span style="font-style: italic;">"thread 2 print num as %d\n"</span>,num );
+  sleep(5);
+  printf(<span style="font-style: italic;">"thread 2 is over \n"</span>);
+
+  pthread_rwlock_unlock(&amp;rwlock);
+  <span style="font-weight: bold;">return</span> (<span style="font-weight: bold; text-decoration: underline;">void</span> *)0;
+}
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>( )
+{
+  <span style="font-weight: bold; text-decoration: underline;">pthread_t</span> <span style="font-weight: bold; font-style: italic;">tid1</span>, <span style="font-weight: bold; font-style: italic;">tid2</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">err</span>;
+
+  err = pthread_rwlock_init(&amp;rwlock, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+  <span style="font-weight: bold;">if</span> (err) {
+    printf(<span style="font-style: italic;">"init failed\n"</span>);
+    <span style="font-weight: bold;">return</span> 0;
+  }
+
+  err = pthread_create(&amp;tid1, <span style="font-weight: bold; text-decoration: underline;">NULL</span> ,thread_fun1, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+  <span style="font-weight: bold;">if</span> (err) {
+    printf(<span style="font-style: italic;">"create of the first thread fail\n"</span>);
+    <span style="font-weight: bold;">return</span> 0;
+  }
+
+  err = pthread_create(&amp;tid2, <span style="font-weight: bold; text-decoration: underline;">NULL</span> ,thread_fun2, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+  <span style="font-weight: bold;">if</span> (err) {
+    printf(<span style="font-style: italic;">"create of the second thread failed\n"</span>);
+    <span style="font-weight: bold;">return</span> 0;
+  }
+
+  pthread_join(tid1, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+  pthread_join(tid2, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+
+  pthread_rwlock_destroy(&amp;rwlock);
+
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+
+
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge6bb760" class="outline-4">
+<h4 id="orge6bb760">6 pthread<sub>attr.c</sub></h4>
+<div class="outline-text-4" id="text-orge6bb760">
+<p>
+seeing pthread<sub>attr.c</sub> 
+pthread<sub>attr</sub><sub>init</sub>(&amp;attr) using :  pthread<sub>attr</sub><sub>setdetachstate</sub>(&amp;attr, PTHREAD<sub>CREATE</sub><sub>DETACHED</sub>);
+OR:  pthread<sub>attr</sub><sub>setdetachstate</sub>(&amp;attr, PTHREAD<sub>CREATE</sub><sub>JOINABLE</sub>);  
+决定该线程是否可以被jion.
+</p>
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"apue.h"</span>
+
+<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold;">thread_fun1</span>(<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold; font-style: italic;">arg</span>)
+{
+  printf(<span style="font-style: italic;">"I am new thread  1\n"</span>);
+  <span style="font-weight: bold;">return</span> (<span style="font-weight: bold; text-decoration: underline;">void</span> *)1;
+}
+
+
+<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold;">thread_fun2</span>(<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold; font-style: italic;">arg</span>)
+{
+  printf(<span style="font-style: italic;">"I am new thread  2 \n"</span>);
+  <span style="font-weight: bold;">return</span> (<span style="font-weight: bold; text-decoration: underline;">void</span> *)2;
+}
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>[])
+{
+  <span style="font-weight: bold; text-decoration: underline;">pthread_t</span> <span style="font-weight: bold; font-style: italic;">tid1</span>, <span style="font-weight: bold; font-style: italic;">tid2</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">err</span>;
+
+  <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">def attr and init and set to be spreate</span>
+  <span style="font-weight: bold; text-decoration: underline;">pthread_attr_t</span> <span style="font-weight: bold; font-style: italic;">attr</span>;
+  pthread_attr_init(&amp;attr);
+  <span style="font-weight: bold; font-style: italic;">//  </span><span style="font-weight: bold; font-style: italic;">pthread_attr_setdetachstate(&amp;attr, PTHREAD_CREATE_DETACHED);</span>
+  pthread_attr_setdetachstate(&amp;attr, PTHREAD_CREATE_JOINABLE);  
+
+  err = pthread_create(&amp;tid1, &amp;attr, thread_fun1, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+  <span style="font-weight: bold;">if</span> (err) {
+    printf(<span style="font-style: italic;">"create new thread 1 failed \n"</span>);
+    <span style="font-weight: bold;">return</span> 0;
+  }
+
+  err = pthread_create(&amp;tid2, <span style="font-weight: bold; text-decoration: underline;">NULL</span>, thread_fun2, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+  <span style="font-weight: bold;">if</span> (err) {
+    printf(<span style="font-style: italic;">"create new thread 2 failed \n"</span>);
+    <span style="font-weight: bold;">return</span> 0;
+  }
+
+  err = pthread_join(tid1, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+  <span style="font-weight: bold;">if</span> (!err) 
+    printf(<span style="font-style: italic;">"join thread 1 success \n"</span>);
+  <span style="font-weight: bold;">else</span> 
+    printf(<span style="font-style: italic;">"jion thread 1 failed \n"</span>);
+
+
+  err = pthread_join(tid2, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+  <span style="font-weight: bold;">if</span> (!err) 
+    printf(<span style="font-style: italic;">"join thread 2 success \n"</span>);
+  <span style="font-weight: bold;">else</span> 
+    printf(<span style="font-style: italic;">"jion thread 2 failed \n"</span>);
+
+  pthread_attr_destroy(&amp;attr);
+
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf674516" class="outline-4">
+<h4 id="orgf674516">7 pthread<sub>mutex.c</sub></h4>
+<div class="outline-text-4" id="text-orgf674516">
+<p>
+pthread<sub>mutex</sub><sub>lock</sub>(&amp;mutex) 和 pthread<sub>mutex</sub><sub>unlock</sub>(&amp;mutex)
+可以锁住之间的的任何变量， 所以不同线程之间的访问和赋值只能错开时间，
+这样就不会造成线程之间变量值不受控制的错误
+</p>
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"apue.h"</span>
+
+<span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">student</span>{
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">age</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">size</span>;
+} <span style="font-weight: bold; font-style: italic;">stu</span>;
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span>;
+<span style="font-weight: bold; text-decoration: underline;">pthread_mutex_t</span> <span style="font-weight: bold; font-style: italic;">mutex</span>;
+
+<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold;">thread_fun1</span>(<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold; font-style: italic;">arg</span>){
+  <span style="font-weight: bold;">while</span>(1){
+    <span style="font-weight: bold; font-style: italic;">//    </span><span style="font-weight: bold; font-style: italic;">pthread_mutex_lock(&amp;mutex);</span>
+    stu.age = i;
+    stu.size = i;
+    i++;
+    <span style="font-weight: bold;">if</span> (stu.age != stu.size) {
+      printf(<span style="font-style: italic;">"thread 1 %d, %d,\n"</span>, stu.age, stu.size);
+      <span style="font-weight: bold;">break</span>;
+    }
+    <span style="font-weight: bold; font-style: italic;">//    </span><span style="font-weight: bold; font-style: italic;">pthread_mutex_unlock(&amp;mutex);</span>
+  }
+  <span style="font-weight: bold;">return</span> (<span style="font-weight: bold; text-decoration: underline;">void</span> *)0;
+}
+
+
+<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold;">thread_fun2</span>(<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold; font-style: italic;">arg</span>){
+  <span style="font-weight: bold;">while</span> (1) {
+    <span style="font-weight: bold; font-style: italic;">//    </span><span style="font-weight: bold; font-style: italic;">pthread_mutex_lock(&amp;mutex);</span>
+    stu.age = i;
+    stu.size = i;
+    i++;
+    <span style="font-weight: bold;">if</span> (stu.age != stu.size) {
+      printf(<span style="font-style: italic;">"thread 2 %d, %d,\n"</span>, stu.age, stu.size);
+    }
+    <span style="font-weight: bold; font-style: italic;">//    </span><span style="font-weight: bold; font-style: italic;">pthread_mutex_unlock(&amp;mutex);</span>
+  }
+  <span style="font-weight: bold;">return</span>(<span style="font-weight: bold; text-decoration: underline;">void</span> *)0;
+}
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>( )
+{
+  <span style="font-weight: bold; text-decoration: underline;">pthread_t</span> <span style="font-weight: bold; font-style: italic;">tid1</span>, <span style="font-weight: bold; font-style: italic;">tid2</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">err1</span>, <span style="font-weight: bold; font-style: italic;">err2</span>;
+
+  err1 = pthread_create(&amp;tid1, <span style="font-weight: bold; text-decoration: underline;">NULL</span>, thread_fun1, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+  err2 = pthread_create(&amp;tid2, <span style="font-weight: bold; text-decoration: underline;">NULL</span>, thread_fun2, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);  
+  <span style="font-weight: bold;">if</span> (err1 || err2) {
+    printf(<span style="font-style: italic;">"the create o pthread 1 and pthread 2 failed\n"</span>);
+  }
+
+  pthread_join(tid1, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+  pthread_join(tid2, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga2ee894" class="outline-4">
+<h4 id="orga2ee894">8 pthread<sub>interpeter</sub><sub>controll.c</sub></h4>
+<div class="outline-text-4" id="text-orga2ee894">
+<p>
+用主线程给一个可交换变量赋值，来控制副进程的执行，
+only if in main thread, parameter interpeter be assigned to 1, in 
+side thread can start to run.
+</p>
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"stdlib.h"</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;unistd.h&gt;</span>
+<span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"pthread.h"</span>
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">interpeter</span> = 0;
+
+<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold;">mythread</span>(<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold; font-style: italic;">num</span>){
+  <span style="font-weight: bold;">while</span>(interpeter == 0);
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0;
+  <span style="font-weight: bold;">for</span> (i = 0; i &lt; 10; ++i) {
+    printf(<span style="font-style: italic;">"In my thread there is %d\n"</span>, i);
+    usleep(100);
+  }
+  <span style="font-weight: bold;">return</span> (<span style="font-weight: bold; text-decoration: underline;">void</span> *)0;
+}
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>[])
+{
+  <span style="font-weight: bold; text-decoration: underline;">pthread_t</span> <span style="font-weight: bold; font-style: italic;">tid</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">err</span>;
+  err = pthread_create(&amp;tid, <span style="font-weight: bold; text-decoration: underline;">NULL</span>, mythread, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+  <span style="font-weight: bold;">if</span> (err &lt; 0) {
+    printf(<span style="font-style: italic;">"create my thread failed\n"</span>);
+    <span style="font-weight: bold;">return</span> -1;
+  }
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">i</span> = 0;
+  <span style="font-weight: bold;">for</span> (i = 0; i &lt; 10; ++i) {
+    printf(<span style="font-style: italic;">"In main thread there is %d\n"</span>, i);
+    usleep(100);
+  }
+  interpeter = 1;
+  sleep(10);
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf3da391" class="outline-4">
+<h4 id="orgf3da391">9 pthread<sub>pass</sub><sub>struct.c</sub></h4>
+<div class="outline-text-4" id="text-orgf3da391">
+<p>
+将一个结构体通过pthread<sub>create</sub>()的参数传给副进程，注意在副进程中的
+结构体转化
+</p>
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"apue.h"</span>
+
+<span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">student</span> {
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">age</span>;
+  <span style="font-weight: bold; text-decoration: underline;">char</span> <span style="font-weight: bold; font-style: italic;">name</span>[10];
+  <span style="font-weight: bold; text-decoration: underline;">char</span> <span style="font-weight: bold; font-style: italic;">subject</span>[10];
+};
+
+<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold;">thread_fun</span>(<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold; font-style: italic;">stu</span>)
+{
+  printf(<span style="font-style: italic;">"In the constuction we have age : %d, name : %s, and subject %s.\n"</span>, ((<span style="font-weight: bold;">struct</span>  <span style="font-weight: bold; text-decoration: underline;">student</span> *)stu)-&gt;age,((<span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">student</span> *)stu)-&gt;name, ((<span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">student</span> *)stu)-&gt;subject);
+  <span style="font-weight: bold;">return</span> (<span style="font-weight: bold; text-decoration: underline;">void</span> *)0;
+}
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>( )
+{
+  <span style="font-weight: bold; text-decoration: underline;">pthread_t</span> <span style="font-weight: bold; font-style: italic;">tid</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">err</span>;
+  <span style="font-weight: bold; text-decoration: underline;">void</span> * <span style="font-weight: bold; font-style: italic;">val</span>;
+
+  <span style="font-weight: bold;">struct</span> <span style="font-weight: bold; text-decoration: underline;">student</span> <span style="font-weight: bold; font-style: italic;">stu</span>;
+  stu.age = 20;
+  memcpy(stu.name, <span style="font-style: italic;">"xiang"</span>, 10);
+  memcpy(stu.subject, <span style="font-style: italic;">"phyics"</span>, 10);
+
+  err = pthread_create(&amp;tid, <span style="font-weight: bold; text-decoration: underline;">NULL</span>, thread_fun, (<span style="font-weight: bold; text-decoration: underline;">void</span> *)&amp;stu);
+  <span style="font-weight: bold;">if</span> (err != 0) {
+    printf(<span style="font-style: italic;">"the new thread is failed to create\n"</span>);
+    <span style="font-weight: bold;">return</span>  0;
+  }
+  pthread_exit(val);
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+
+
+
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbc9f315" class="outline-4">
+<h4 id="orgbc9f315">10 pthread<sub>stack</sub><sub>attr.c</sub></h4>
+<div class="outline-text-4" id="text-orgbc9f315">
+<p>
+在系统支持的条件下，获取栈的大小，并作出调整
+</p>
+<div class="org-src-container">
+<pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">"apue.h"</span>
+
+<span style="font-weight: bold; text-decoration: underline;">pthread_attr_t</span> <span style="font-weight: bold; font-style: italic;">attr</span>;
+
+<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold;">thread_fun</span>(<span style="font-weight: bold; text-decoration: underline;">void</span> *<span style="font-weight: bold; font-style: italic;">arg</span>){
+
+  <span style="font-weight: bold; text-decoration: underline;">size_t</span> <span style="font-weight: bold; font-style: italic;">stacksize</span>;
+
+<span style="font-weight: bold;">#ifdef</span> _POSIX_THREAD_ATTR_STACKSIZE
+  pthread_attr_getstacksize(&amp;attr, &amp;stacksize);
+  printf(<span style="font-style: italic;">"new thread stack size is %d \n"</span>, (<span style="font-weight: bold; text-decoration: underline;">int</span>)stacksize );  <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">&#33719;&#21462;&#40664;&#35748;&#26632;&#22823;&#23567;</span>
+  <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">&#26356;&#25913; has to be greater than 16384, otherwise will be default</span>
+  pthread_attr_setstacksize(&amp;attr, 100000);
+  pthread_attr_getstacksize(&amp;attr, &amp;stacksize);
+  printf(<span style="font-style: italic;">"new thread stack size is %d \n"</span>, (<span style="font-weight: bold; text-decoration: underline;">int</span>)stacksize );  <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">&#33719;&#21462;&#35774;&#32622;&#26632;&#22823;&#23567;</span>
+<span style="font-weight: bold;">#endif</span> <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">_POSIX_THREAD_ATTR_STACKSIZE</span>
+
+
+  <span style="font-weight: bold;">return</span> (<span style="font-weight: bold; text-decoration: underline;">void</span> *)1;
+}
+
+
+<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>[])
+{
+  <span style="font-weight: bold; text-decoration: underline;">pthread_t</span> <span style="font-weight: bold; font-style: italic;">tid</span>;
+  <span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">err</span>;
+
+  pthread_attr_init(&amp;attr);
+
+  <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">&#35774;&#32622;&#20026;&#21487;&#36830;&#25509;&#30340;&#20998;&#31163;&#23646;&#24615;</span>
+  pthread_attr_setdetachstate(&amp;attr, PTHREAD_CREATE_JOINABLE);
+
+  <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">check if system support this</span>
+<span style="font-weight: bold;">#ifdef</span> _POSIX_THREAD_ATTR_STACKSIZE
+  pthread_attr_setstacksize(&amp;attr, PTHREAD_STACK_MIN);
+<span style="font-weight: bold;">#endif</span> <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">_POSIX_THREAD_ATTR_STACKSIZE</span>
+
+  err = pthread_create(&amp;tid, &amp;attr, thread_fun, <span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+  <span style="font-weight: bold;">if</span> (err) {
+    printf(<span style="font-style: italic;">"create new thread failed \n"</span>);
+    <span style="font-weight: bold;">return</span> 0;
+  }
+  pthread_join(tid ,<span style="font-weight: bold; text-decoration: underline;">NULL</span>);
+  <span style="font-weight: bold;">return</span> 0;
+}
+
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb93c234" class="outline-3">
+<h3 id="orgb93c234">Stoket</h3>
+</div>
+</div>
+
+<div id="outline-container-org23116c7" class="outline-2">
+<h2 id="org23116c7">Git</h2>
+<div class="outline-text-2" id="text-org23116c7">
+</div>
+<div id="outline-container-orgf0b0b9b" class="outline-3">
+<h3 id="orgf0b0b9b">tips</h3>
+<div class="outline-text-3" id="text-orgf0b0b9b">
+<p>
+Raw 文件
+</p>
+</div>
+</div>
+<div id="outline-container-orgee8ca26" class="outline-3">
+<h3 id="orgee8ca26">Git installation in Linux</h3>
+<div class="outline-text-3" id="text-orgee8ca26">
+<ol class="org-ol">
+<li>sudo apt install git</li>
+
+<li>local configuration</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-sh">git  config --global user.name <span style="font-style: italic;">"username1"</span>
+git  config --global user.email <span style="font-style: italic;">"email1"</span>
+</pre>
+</div>
+<p>
+git  config &#x2013;list
+</p>
+
+<ol class="org-ol">
+<li>in local terminal</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-sh">ssh-keygen -t rsa -C <span style="font-style: italic;">"email2"</span>
+</pre>
+</div>
+
+<p>
+and then just all enter as default
+   warming: email1 == email2
+</p>
+</div>
+</div>
+
+<div id="outline-container-org54093ce" class="outline-3">
+<h3 id="org54093ce">Webconfig</h3>
+<div class="outline-text-3" id="text-org54093ce">
+<pre class="example">
+1. go to Fold Docu1, and in terminal git init to create local  repository
+2. apply github count with:
+   Email: email3
+   Username: username3
+   Password:xxxx
+3. in setting add ssh key from local document: ./ssh/id_rsa.pub
+4. create web repository with name Docu2
+   Warming: Docu1 == Docu2
+</pre>
+</div>
+</div>
+<div id="outline-container-orgceffd8e" class="outline-3">
+<h3 id="orgceffd8e">Connection</h3>
+<div class="outline-text-3" id="text-orgceffd8e">
+<pre class="example">
+
+1. in local computer Docu1, create our files and prepare to push to
+   Github
+2. git add &amp;&amp; git commit -m ""
+3. git remote add origin HTTPS/SSH(of the created web repository)
+   warming: with  HTTPS will be ask the Username:username3 and
+   password:xxxx every time for the push, but SSH note
+4. git push -u origin master
+5. username3 and xxxx if necessary
+6. later push it only use git push origin master
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org19b0e9b" class="outline-3">
+<h3 id="org19b0e9b">Magit</h3>
+<div class="outline-text-3" id="text-org19b0e9b">
+<pre class="example">
+C-x g  : open the git buffer
+S or s : to stage
+C      : to commit 
+C-c C-c : to finish commit
+P and p to push
+</pre>
+</div>
+</div>
+<div id="outline-container-orgdd92216" class="outline-3">
+<h3 id="orgdd92216">Git branch</h3>
+<div class="outline-text-3" id="text-orgdd92216">
+</div>
+<div id="outline-container-org96d5bb0" class="outline-4">
+<h4 id="org96d5bb0">git branch  创建development分支</h4>
+<div class="outline-text-4" id="text-org96d5bb0">
+<pre class="example">
+branch 创建 新分支
+创建新的分支： git branch development
+带着全部家当去新的分支： git checkout development
+git add -A 
+git commit -m "development"
+git push -u origin development
+</pre>
+</div>
+</div>
+<div id="outline-container-orgb0644ca" class="outline-4">
+<h4 id="orgb0644ca">git merge 可以 merge mybranch分支到master分支</h4>
+<div class="outline-text-4" id="text-orgb0644ca">
+<pre class="example">
+merge 融合分支
+如果此时只有development分支改变，可以直接回到master, 把development分支
+merge 过来   git merge development
+
+git checkout master
+git pull origin master
+git branch --merged
+git merge development
+git push origin master
+</pre>
+</div>
+</div>
+<div id="outline-container-orgc1f2934" class="outline-4">
+<h4 id="orgc1f2934">删除mybranch分支</h4>
+<div class="outline-text-4" id="text-orgc1f2934">
+<pre class="example">
+
+git branch --merged
+git branch -d mybrauch
+git branch -a 
+git push origin --delete mybrauch
+</pre>
+</div>
+</div>
+<div id="outline-container-org4b24d8f" class="outline-4">
+<h4 id="org4b24d8f">git rm</h4>
+<div class="outline-text-4" id="text-org4b24d8f">
+</div>
+<ul class="org-ul">
+<li><a id="org5a17cac"></a>git rm &#x2013;cached file<br />
+<div class="outline-text-5" id="text-org5a17cac">
+<pre class="example">
+编辑当前文件后，已提交(已 add),想撤出索引 ：    git rm --cached  file
+after that, I can check the delete file with git status or git diff --cached.
+</pre>
+</div>
+</li>
+<li><a id="org5373995"></a>recover after git rm<br />
+<div class="outline-text-5" id="text-org5373995">
+<pre class="example">
+if I want , I can git add * to call all back again, but nothing to commit
+</pre>
+</div>
+</li>
+<li><a id="org89ab2f9"></a>confirm to delete file in local directory<br />
+<div class="outline-text-5" id="text-org89ab2f9">
+<pre class="example">
+if I ready want to delete this,
+using rm file  delete the file in local directory, 
+but git status and diff --cached remands this still, 
+only after commit, there's no signal for the deleted file anymore.
+</pre>
+</div>
+</li>
+<li><a id="org625f146"></a>recover after delete in local directory<br />
+<div class="outline-text-5" id="text-org625f146">
+<pre class="example">
+git reflog
+git reset --hard ID
+</pre>
+</div>
+</li>
+</ul>
+</div>
+<div id="outline-container-orgb82870d" class="outline-4">
+<h4 id="orgb82870d">git multi commit</h4>
+<div class="outline-text-4" id="text-orgb82870d">
+<p>
+commit 添加提交
+和上次commit提交融合，不产生新的提交记录：  git commit &#x2013;amend
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6327da4" class="outline-3">
+<h3 id="org6327da4">commands to recover</h3>
+<div class="outline-text-3" id="text-org6327da4">
+</div>
+<div id="outline-container-orgdea39dc" class="outline-4">
+<h4 id="orgdea39dc">after only save</h4>
+<div class="outline-text-4" id="text-orgdea39dc">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">git diff</td>
+<td class="org-left">can see the different comparing to last time commit</td>
+</tr>
+
+<tr>
+<td class="org-left">git checkout &#x2013; file</td>
+<td class="org-left">git diff: NULL, file has been recovered</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org67b7700" class="outline-4">
+<h4 id="org67b7700">after git add file</h4>
+<div class="outline-text-4" id="text-org67b7700">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">git diff</td>
+<td class="org-left">dit diff :NULL</td>
+</tr>
+
+<tr>
+<td class="org-left">git diff &#x2013;cached</td>
+<td class="org-left">can see the different comparing to the last time commit</td>
+</tr>
+
+<tr>
+<td class="org-left">git reset HEAD file</td>
+<td class="org-left">git diff &#x2013; cached : NULL</td>
+</tr>
+
+<tr>
+<td class="org-left">git checkout &#x2013; file</td>
+<td class="org-left">file has been recovered</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgbca3340" class="outline-4">
+<h4 id="orgbca3340">after git commit file</h4>
+<div class="outline-text-4" id="text-orgbca3340">
+<pre class="example">
+
+编辑后，强制回到最近一次添加索引的版本：        git reset --hard HEAD
+编辑后，强制回到最近倒数第二次添加索引的版本：   git reset --hard HEAD~
+编辑后，强制回到最近倒数第n次添加索引的版本：    git reset --hard HEAD~n
+
+如果将HEAD换成对应的ID， 也可以回到之前相应的版本。 但是如果想再回去，
+又没有记住之前的ID， 可以用，       git reflog 查询.
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4768f05" class="outline-2">
+<h2 id="org4768f05">Problem</h2>
+<div class="outline-text-2" id="text-org4768f05">
+</div>
+<div id="outline-container-orgc10ef44" class="outline-3">
+<h3 id="orgc10ef44">System limit for number of file watchers reached</h3>
+<div class="outline-text-3" id="text-orgc10ef44">
+<p>
+sudo sysctl -w fs.inotify.max<sub>user</sub><sub>watches</sub>=100000
+reboot
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-11-28 Sun 10:35</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>

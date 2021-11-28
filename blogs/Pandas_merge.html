@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-11-28 Sun 10:35 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pandas merge &amp; SQL join</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">Pandas merge &amp; SQL join</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org77a6764">pandas DataFrame</a></li>
+</ul>
+</div>
+</div>
+<p>
+merge in pandas DataFrame is very similar like join in SQL.
+</p>
+<div id="outline-container-org77a6764" class="outline-2">
+<h2 id="org77a6764">pandas DataFrame</h2>
+<div class="outline-text-2" id="text-org77a6764">
+<div class="org-src-container">
+<pre class="src src-ipython">DataFrame.merge(right,
+		how='inner', 
+		on=None,
+		left_on=None,
+		right_on=None, 
+		left_index=False,
+		right_index=False, 
+		sort=False,
+		suffixes=('_x', '_y'),
+		copy=True,
+		indicator=False, 
+		validate=None)[source]
+</pre>
+</div>
+<p>
+how = 'inner', 'outer', 'left', 'right' default is 'inner'
+inner: interaction set
+output: union set
+left : all left 
+right : all right
+</p>
+
+
+
+<p>
+if right<sub>on</sub>, left<sub>on</sub>, and on is not given, the merge is on the index(row).
+we use the frist column from  left and right dataframe to merge, just like the example.
+left: 'one' has 0, 1
+right: 'one' has 1, 2, 3
+the interaction set is only 1 
+all columns will be just added together
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ipython">import pandas as pd
+dd = {'one':[0, 1 ], 'two':[0, 0], 'three':[1, 1]}
+a = pd.DataFrame(data= dd)
+b = pd.DataFrame({'zero':[0,0,0], 'one':[1,2,3 ], 'two':[0,0,0 ]})
+print(a)
+print(b)
+print(a.merge(b))
+</pre>
+</div>
+
+<pre class="example">
+   one  two  three
+0    0    0      1
+1    1    0      1
+   zero  one  two
+0     0    1    0
+1     0    2    0
+2     0    3    0
+   one  two  three  zero
+0    1    0      1     0
+
+</pre>
+
+<p>
+the can also be merge on columns, for each compare elemenet 
+in column with out repeated key
+</p>
+<div class="org-src-container">
+<pre class="src src-ipython">dd = {'one':[0, 1 ], 'two':[0, 0], 'three':[1, 1]}
+a = pd.DataFrame(data= dd)
+b = pd.DataFrame({'zero':[0,0,0], 'one':[1,2,3 ], 'two':[0,0,0 ]})
+print(a)
+print(b)
+print(a.merge(b, on='one', how='inner'))
+
+</pre>
+</div>
+
+<pre class="example">
+   one  two  three
+0    0    0      1
+1    1    0      1
+   zero  one  two
+0     0    1    0
+1     0    2    0
+2     0    3    0
+   one  two_x  three  zero  two_y
+0    1      0      1     0      0
+
+</pre>
+
+<p>
+if with repeated key, the number will be multipy by its occurrence,
+</p>
+<div class="org-src-container">
+<pre class="src src-ipython">dd = {'one':[0, 1 ], 'two':[0, 0], 'three':[1, 1]}
+a = pd.DataFrame(data= dd)
+b = pd.DataFrame({'zero':[0,0,0], 'one':[1,2,3 ], 'two':[0,0,0 ]})
+print(a)
+print(b)
+print(a.merge(b, on='two', how='inner'))
+</pre>
+</div>
+
+<pre class="example">
+   one  two  three
+0    0    0      1
+1    1    0      1
+   zero  one  two
+0     0    1    0
+1     0    2    0
+2     0    3    0
+   one_x  two  three  zero  one_y
+0      0    0      1     0      1
+1      0    0      1     0      2
+2      0    0      1     0      3
+3      1    0      1     0      1
+4      1    0      1     0      2
+5      1    0      1     0      3
+</pre>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-11-28 Sun 10:35</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>

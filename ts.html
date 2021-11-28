@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-11-28 Sun 10:35 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Typescript</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">Typescript</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org6b3790e">basic</a></li>
+<li><a href="#org17bd9eb">callback</a></li>
+<li><a href="#org9cf69e8">Generic</a>
+<ul>
+<li><a href="#org96dffc4">withour generic</a></li>
+<li><a href="#org624fd52">with generic</a></li>
+<li><a href="#org3276765">advanced example</a></li>
+<li><a href="#orgb855577">interface</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6b3790e" class="outline-2">
+<h2 id="org6b3790e">basic</h2>
+<div class="outline-text-2" id="text-org6b3790e">
+<div class="org-src-container">
+<pre class="src src-typescript">function greeter(person: string) {
+    return "Hello, " + person
+}
+let user = "Yee"
+console.log(greeter(user))
+</pre>
+</div>
+
+<pre class="example">
+Hello, Yee
+
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-typescript">function greeter(person: string) {
+    return "Hello, " + person
+}
+"use strict";
+let user = [2, 39]
+console.log(greeter(user))
+</pre>
+</div>
+
+<pre class="example">
+../../../../tmp/babel-cIibwh/ts-src-IRbM7W.ts(6,21): error TS2345: Argument of type 'number[]' is not assignable to parameter of type 'string'.
+Hello, 2,39
+
+</pre>
+
+
+<div class="org-src-container">
+<pre class="src src-typescript">class User{
+    Fristname:string
+    Lastname:string
+    Fullname:string
+
+    constructor(firstname:string, lastname:string){
+	this.Fristname = firstname
+	this.Lastname = lastname
+	this.Fullname = this.Fristname+this.Lastname
+    }
+}
+interface Person{
+    Fristname:string
+    Lastname:string
+}
+
+function Greeter(Person){
+    return "hello, "+Person.Fristname + Person.Lastname
+}
+var user = new User("li", "san")
+
+console.log(Greeter(user))
+
+</pre>
+</div>
+
+<pre class="example">
+../../../../tmp/babel-cIibwh/ts-src-DPsbOA.ts(17,18): error TS7006: Parameter 'Person' implicitly has an 'any' type.
+hello, lisan
+
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org17bd9eb" class="outline-2">
+<h2 id="org17bd9eb">callback</h2>
+<div class="outline-text-2" id="text-org17bd9eb">
+<div class="org-src-container">
+<pre class="src src-typescript">const n: number = 10
+let qual = n =&gt; n*n;  
+let m = (() =&gt; {
+    console.log('nidh', n, qual(4))
+    return 9
+})()
+console.log(m)
+
+</pre>
+</div>
+
+<pre class="example">
+../../../../tmp/babel-KUfP9t/ts-src-HiNQhf.ts(2,12): error TS7006: Parameter 'n' implicitly has an 'any' type.
+nidh 10 16
+9
+
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-typescript">let jj = (
+    (msg , didi) =&gt; {
+	console.log(msg);
+	didi(msg);
+	return 9
+    }
+)
+( "kdiikkjkjk",
+  msg =&gt; {
+      console.log(msg);
+  }
+)
+
+console.log(jj)
+</pre>
+</div>
+
+<pre class="example">
+../../../../tmp/babel-KUfP9t/ts-src-SG7pDT.ts(11,3): error TS7006: Parameter 'msg' implicitly has an 'any' type.
+kdiikkjkjk
+kdiikkjkjk
+9
+
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org9cf69e8" class="outline-2">
+<h2 id="org9cf69e8">Generic</h2>
+<div class="outline-text-2" id="text-org9cf69e8">
+</div>
+<div id="outline-container-org96dffc4" class="outline-3">
+<h3 id="org96dffc4">withour generic</h3>
+<div class="outline-text-3" id="text-org96dffc4">
+<div class="org-src-container">
+<pre class="src src-typescript">function createArray(value: any, count: number): any[] {
+  const arr: any[] = []
+  for (let index = 0; index &lt; count; index++) {
+    arr.push(value)
+  }
+  return arr
+}
+
+const arr1 = createArray(11, 3)
+const arr2 = createArray('aa', 3)
+console.log(arr1)
+console.log(arr2)
+console.log(arr1[0].toFixed(), arr2[0].split(''))
+</pre>
+</div>
+
+<pre class="example">
+[ 11, 11, 11 ]
+[ 'aa', 'aa', 'aa' ]
+11 [ 'a', 'a' ]
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org624fd52" class="outline-3">
+<h3 id="org624fd52">with generic</h3>
+<div class="outline-text-3" id="text-org624fd52">
+<div class="org-src-container">
+<pre class="src src-typescript">function createArray2 &lt;T&gt; (value: T, count: number):T[] {
+  const arr: Array&lt;T&gt; = []
+  for (let index = 0; index &lt; count; index++) {
+    arr.push(value)
+  }
+  return arr
+}
+const arr3 = createArray2&lt;number&gt;(11, 3)
+console.log(arr3[0].toFixed())
+// console.log(arr3[0].split('')) // error
+const arr4 = createArray2&lt;string&gt;('aa', 3)
+console.log(arr4[0].split(''))
+// console.log(arr4[0].toFixed()) // error
+</pre>
+</div>
+
+<pre class="example">
+11
+[ 'a', 'a' ]
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org3276765" class="outline-3">
+<h3 id="org3276765">advanced example</h3>
+<div class="outline-text-3" id="text-org3276765">
+<div class="org-src-container">
+<pre class="src src-typescript">interface IbaseCRUD &lt;T&gt; {
+  data: T[]
+  add: (t: T) =&gt; void
+  getById: (id: number) =&gt; T
+
+}
+
+class User {
+  id?: number; //id主键自增
+  name: string; //姓名
+  age: number; //年龄
+
+  constructor (name, age) {
+    this.name = name
+    this.age = age
+  }
+}
+
+class UserCRUD implements IbaseCRUD &lt;User&gt; {
+  data: User[] = []
+
+  add(user: User): void {
+    user = {...user, id: Date.now()}
+    this.data.push(user)
+    console.log('保存user', user.id)
+  }
+
+  getById(id: number): User {
+    return this.data.find(item =&gt; item.id===id)
+  }
+}
+
+
+const userCRUD = new UserCRUD()
+userCRUD.add(new User('tom', 12))
+userCRUD.add(new User('tom2', 13))
+console.log(userCRUD.data)
+</pre>
+</div>
+
+<pre class="example">
+../../../../tmp/babel-VDC0rp/ts-src-ub8Ktp.ts(13,16): error TS7006: Parameter 'name' implicitly has an 'any' type.
+../../../../tmp/babel-VDC0rp/ts-src-ub8Ktp.ts(13,22): error TS7006: Parameter 'age' implicitly has an 'any' type.
+保存user 1629717666420
+保存user 1629717666424
+[
+  { name: 'tom', age: 12, id: 1629717666420 },
+  { name: 'tom2', age: 13, id: 1629717666424 }
+]
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgb855577" class="outline-3">
+<h3 id="orgb855577">interface</h3>
+<div class="outline-text-3" id="text-orgb855577">
+<div class="org-src-container">
+<pre class="src src-typescript">class User{
+    Fristname:string
+    Lastname:string
+    Fullname:string
+
+    constructor(firstname:string, lastname:string){
+	this.Fristname = firstname
+	this.Lastname = lastname
+	this.Fullname = this.Fristname+this.Lastname
+    }
+}
+interface Person{
+    Fristname:string
+    Lastname:string
+}
+
+function Greeter(Person){
+    return "hello, "+Person.Fristname + Person.Lastname
+}
+var user = new User("li", "san")
+
+console.log(Greeter(user))
+
+</pre>
+</div>
+
+<pre class="example">
+../../../../tmp/babel-VDC0rp/ts-src-kkk0v4.ts(17,18): error TS7006: Parameter 'Person' implicitly has an 'any' type.
+hello, lisan
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-11-28 Sun 10:35</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>

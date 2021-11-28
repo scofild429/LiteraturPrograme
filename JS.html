@@ -1,0 +1,2140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-11-28 Sun 10:35 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>JS</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css" />
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">JS</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org1a149fc">Array</a></li>
+<li><a href="#org5f3ceab">set array 去重 求交</a></li>
+<li><a href="#org6efb9c0">Class</a>
+<ul>
+<li><a href="#orgf838b65">ES5</a></li>
+<li><a href="#orgecd1580">ES6</a></li>
+</ul>
+</li>
+<li><a href="#org13add8e">setTimeout</a></li>
+<li><a href="#org1edfb84">no name function</a></li>
+<li><a href="#org4229d1a">构造函数也是类</a></li>
+<li><a href="#orga4f7ef4">let</a>
+<ul>
+<li><a href="#orgbf5a3db">不能重复赋值</a></li>
+<li><a href="#org9747408">有块级作用域</a></li>
+<li><a href="#org593aec6">没有变量提升</a></li>
+</ul>
+</li>
+<li><a href="#org5cf7eba">const</a>
+<ul>
+<li><a href="#orgeac5126">注意</a></li>
+<li><a href="#orgea5ce36">对象和复合型的可以修改</a></li>
+<li><a href="#orge624afb">数组和对象可以被解构的赋值</a></li>
+</ul>
+</li>
+<li><a href="#orgb32dcaa">模板字符串可以换行，拼接</a></li>
+<li><a href="#orgcd3a003">简化对象</a></li>
+<li><a href="#org47cb733">箭头函数</a></li>
+<li><a href="#orgf68bcf1">rest</a>
+<ul>
+<li><a href="#org672b611">ES5</a></li>
+<li><a href="#org4044123">ES6</a></li>
+</ul>
+</li>
+<li><a href="#org9be0097">扩展运算符&#x2026;</a>
+<ul>
+<li><a href="#orgd7684e0">Beispiel 将内容转化为数组</a></li>
+<li><a href="#orgeb18f2f">Anwendung</a></li>
+</ul>
+</li>
+<li><a href="#orgd24f342">Symbol</a>
+<ul>
+<li><a href="#org6a0ea37">唯一性, 不能运算, 用for表唯一</a></li>
+<li><a href="#org1f5b22f">给对象添加属性和方法</a></li>
+</ul>
+</li>
+<li><a href="#orgd02255b">迭代器</a></li>
+<li><a href="#org6876b08">生成器</a></li>
+<li><a href="#orgfdb838f">type vaildation</a>
+<ul>
+<li><a href="#org7388534">basic</a></li>
+<li><a href="#org661581f">class</a></li>
+</ul>
+</li>
+<li><a href="#orgc598d42">multi assigment</a></li>
+<li><a href="#orgaf12cbc">call</a></li>
+<li><a href="#orga840d3d">IIFE Immediately Invoked Function Expression</a>
+<ul>
+<li><a href="#orgdb55161">Beispiel</a></li>
+<li><a href="#org0c517db">浏览器端列子</a></li>
+<li><a href="#org044e172">服务器端列子</a></li>
+</ul>
+</li>
+<li><a href="#org7c0e9e2">this</a></li>
+<li><a href="#orgebc6716">括号</a></li>
+<li><a href="#org10b3fa5">callback</a>
+<ul>
+<li><a href="#orgd33bad3">callback named function</a></li>
+<li><a href="#org044c066">callback no named function</a></li>
+<li><a href="#orgb86b40f">no named function callback no named function</a></li>
+</ul>
+</li>
+<li><a href="#org8dba5eb">promise</a>
+<ul>
+<li><a href="#org021fcd6">resolve and reject</a></li>
+<li><a href="#org2f74c99">resolve and reject with recusive</a></li>
+<li><a href="#org2e4d7f2">resolve and reject with recusive with return</a></li>
+</ul>
+</li>
+<li><a href="#org3a41e04">Closure</a>
+<ul>
+<li><a href="#orgc2e3cb7">conuter将函数作为另一个函数的返回值</a></li>
+<li><a href="#org9c078a0">将函数作为实参传给另一个函数调用</a></li>
+<li><a href="#org19cd59e">multi return</a></li>
+</ul>
+</li>
+<li><a href="#orgf1e6489">Prototype</a>
+<ul>
+<li><a href="#org23c226d">new note</a></li>
+<li><a href="#orgbd1a875">alte note</a></li>
+</ul>
+</li>
+<li><a href="#orgc030f5d">event loop事件循环</a></li>
+<li><a href="#orgfac8c2a">async/await</a>
+<ul>
+<li><a href="#org85c02eb">执行async函数， 返回的是Promise</a></li>
+<li><a href="#org6e7ee7c">await 相当于 Promise + then</a>
+<ul>
+<li><a href="#org1826ac9">await 后面跟数值也会自动封装</a></li>
+<li><a href="#orgc740118">await 跟Promise</a></li>
+<li><a href="#orgdfaa855">await跟async函数</a></li>
+</ul>
+</li>
+<li><a href="#org33b3ba8">try catch 捕获异常,代替Promise+catch</a></li>
+<li><a href="#org5294aee">包装长时耗的异步函数</a></li>
+</ul>
+</li>
+<li><a href="#org9a0d669">js in Dom</a></li>
+<li><a href="#org06e6f56">&#x2026;rests</a></li>
+<li><a href="#orgfe77dc3">add function to window</a></li>
+<li><a href="#orga700453">change this with call  apply bind</a>
+<ul>
+<li><a href="#org87db3a7">call function</a></li>
+<li><a href="#org2a63c53">apply function</a></li>
+<li><a href="#org35fd092">bind function</a></li>
+</ul>
+</li>
+<li><a href="#orgaf0ee43">Jest</a>
+<ul>
+<li><a href="#orgfbdef93">init</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1a149fc" class="outline-2">
+<h2 id="org1a149fc">Array</h2>
+<div class="outline-text-2" id="text-org1a149fc">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">push</td>
+<td class="org-left">unshift</td>
+<td class="org-left">pop</td>
+<td class="org-left">shift</td>
+</tr>
+</tbody>
+</table>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">arrayy</span> = [<span style="font-style: italic;">"Apple"</span>, <span style="font-style: italic;">"Banane"</span>, <span style="font-style: italic;">"Orange"</span>]
+console.log(<span style="font-style: italic;">"push Krisch"</span>);
+arrayy.push(<span style="font-style: italic;">"Krisch"</span>)
+console.log(arrayy);
+console.log(<span style="font-style: italic;">"unshift Biren"</span>);
+arrayy.unshift(<span style="font-style: italic;">"Biren"</span>)
+console.log(arrayy);
+console.log(<span style="font-style: italic;">"pop"</span>);
+arrayy.pop();  
+console.log(arrayy);
+console.log(<span style="font-style: italic;">"shift"</span>);
+arrayy.shift();  
+console.log(arrayy);  
+
+</pre>
+</div>
+
+<pre class="example">
+push Krisch
+[ 'Apple', 'Banane', 'Orange', 'Krisch' ]
+unshift Biren
+[ 'Biren', 'Apple', 'Banane', 'Orange', 'Krisch' ]
+pop
+[ 'Biren', 'Apple', 'Banane', 'Orange' ]
+shift
+[ 'Apple', 'Banane', 'Orange' ]
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org5f3ceab" class="outline-2">
+<h2 id="org5f3ceab">set array 去重 求交</h2>
+<div class="outline-text-2" id="text-org5f3ceab">
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">arr</span> = [1,2,3,4,5,6,7,4,5,6];
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">arr2</span> = [2,4,6];
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">result</span> = [...<span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Set</span>(arr)].filter( item =&gt; <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Set</span>(arr2).has(item));
+console.log(result);
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6efb9c0" class="outline-2">
+<h2 id="org6efb9c0">Class</h2>
+<div class="outline-text-2" id="text-org6efb9c0">
+</div>
+<div id="outline-container-orgf838b65" class="outline-3">
+<h3 id="orgf838b65">ES5</h3>
+<div class="outline-text-3" id="text-orgf838b65">
+<p>
+class mit generate function
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">Phone</span>(<span style="font-weight: bold; font-style: italic;">brand</span>, <span style="font-weight: bold; font-style: italic;">price</span>){
+    <span style="font-weight: bold; text-decoration: underline;">this</span>.brand = brand;
+    <span style="font-weight: bold; text-decoration: underline;">this</span>.price = price;
+}
+
+Phone.<span style="font-weight: bold; text-decoration: underline;">prototype</span>.call = <span style="font-weight: bold;">function</span>(){
+    console.log(<span style="font-style: italic;">"I want to make a phone"</span>);
+}
+
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">Huawei</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Phone</span>(<span style="font-style: italic;">"HuAwei"</span>, 5998);
+
+console.log(Huawei)
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgecd1580" class="outline-3">
+<h3 id="orgecd1580">ES6</h3>
+<div class="outline-text-3" id="text-orgecd1580">
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">class</span> Phone{
+    constructor(brand, price){
+        <span style="font-weight: bold; text-decoration: underline;">this</span>.brand = brand;
+        <span style="font-weight: bold; text-decoration: underline;">this</span>.price = price;
+    }
+
+    call(){
+        console.log(<span style="font-style: italic;">"I will make a call"</span>);
+    }
+}
+
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">onePlus</span> = <span style="font-weight: bold;">new</span>  <span style="font-weight: bold; text-decoration: underline;">Phone</span>(<span style="font-style: italic;">"1+"</span>, 2000);
+console.log(onePlus);
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org13add8e" class="outline-2">
+<h2 id="org13add8e">setTimeout</h2>
+<div class="outline-text-2" id="text-org13add8e">
+<div class="org-src-container">
+<pre class="src src-js">
+setTimeout(  <span style="font-weight: bold;">function</span>(){console.log(<span style="font-style: italic;">"1090kjk0"</span>)}    , 2000);
+setTimeout(  ()=&gt;{console.log(<span style="font-style: italic;">"10900"</span>)}             , 2000);
+
+setTimeout(  ()=&gt;{      } , 2000);
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org1edfb84" class="outline-2">
+<h2 id="org1edfb84">no name function</h2>
+<div class="outline-text-2" id="text-org1edfb84">
+<div class="org-src-container">
+<pre class="src src-js">(()=&gt;{console.log(<span style="font-style: italic;">"testtest"</span>) })();
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-js">(<span style="font-weight: bold;">function</span>(){console.log(<span style="font-style: italic;">"testtest"</span>)})()
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4229d1a" class="outline-2">
+<h2 id="org4229d1a">构造函数也是类</h2>
+<div class="outline-text-2" id="text-org4229d1a">
+<div class="org-src-container">
+<pre class="src src-js">  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">Person</span>(<span style="font-weight: bold; font-style: italic;">name</span>, <span style="font-weight: bold; font-style: italic;">age</span>){
+      <span style="font-weight: bold; text-decoration: underline;">this</span>.name = name;
+      <span style="font-weight: bold; text-decoration: underline;">this</span>.age = age;
+      <span style="font-weight: bold; text-decoration: underline;">this</span>.sagenhallo = <span style="font-weight: bold;">function</span>(){
+          console.log(<span style="font-style: italic;">"hallo"</span>);
+      }
+    <span style="font-weight: bold;">return</span> {a:<span style="font-weight: bold; text-decoration: underline;">this</span>.age};
+  }
+
+  <span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">xiaoming</span> =  Person(<span style="font-style: italic;">"xiaoming"</span>, 20);
+  console.log(xiaoming);
+  console.log(xiaoming.name);
+<span style="font-weight: bold; font-style: italic;">//  </span><span style="font-weight: bold; font-style: italic;">xiaoming.sagenhallo();</span>
+
+
+
+</pre>
+</div>
+
+<pre class="example">
+{ a: 20 }
+undefined
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orga4f7ef4" class="outline-2">
+<h2 id="orga4f7ef4">let</h2>
+<div class="outline-text-2" id="text-orga4f7ef4">
+</div>
+<div id="outline-container-orgbf5a3db" class="outline-3">
+<h3 id="orgbf5a3db">不能重复赋值</h3>
+<div class="outline-text-3" id="text-orgbf5a3db">
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">a</span> = 1;
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">b</span> = [];
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">c</span> = <span style="font-style: italic;">"kdjfie"</span>;
+console.log(c)
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">a</span> = 3;
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9747408" class="outline-3">
+<h3 id="org9747408">有块级作用域</h3>
+<div class="outline-text-3" id="text-org9747408">
+<div class="org-src-container">
+<pre class="src src-js">{
+    <span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">girls</span> = <span style="font-style: italic;">"meimei"</span>;
+
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">fnnn</span>(){
+        console.log(girls);
+    }
+
+    fnnn();
+}
+
+console.log(girls);
+</pre>
+</div>
+
+<pre class="example">
+meimei
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org593aec6" class="outline-3">
+<h3 id="org593aec6">没有变量提升</h3>
+<div class="outline-text-3" id="text-org593aec6">
+<div class="org-src-container">
+<pre class="src src-js">console.log(song)
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">song</span> = <span style="font-style: italic;">"kaka"</span>
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5cf7eba" class="outline-2">
+<h2 id="org5cf7eba">const</h2>
+<div class="outline-text-2" id="text-org5cf7eba">
+</div>
+<div id="outline-container-orgeac5126" class="outline-3">
+<h3 id="orgeac5126">注意</h3>
+<div class="outline-text-3" id="text-orgeac5126">
+<p>
+初始一定要赋值
+一般使用大写
+不能修改
+有块级作用域
+</p>
+</div>
+</div>
+<div id="outline-container-orgea5ce36" class="outline-3">
+<h3 id="orgea5ce36">对象和复合型的可以修改</h3>
+<div class="outline-text-3" id="text-orgea5ce36">
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">name</span> = [<span style="font-style: italic;">"wangba"</span>, <span style="font-style: italic;">"wuqing"</span>, <span style="font-style: italic;">"tiankong"</span>]
+name.push(<span style="font-style: italic;">"gousi"</span>)
+console.log(name)
+
+</pre>
+</div>
+
+<pre class="example">
+[ 'wangba', 'wuqing', 'tiankong', 'gousi' ]
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orge624afb" class="outline-3">
+<h3 id="orge624afb">数组和对象可以被解构的赋值</h3>
+<div class="outline-text-3" id="text-orge624afb">
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">F4</span> = [<span style="font-style: italic;">"zhangsan"</span>, <span style="font-style: italic;">"lisi"</span>, <span style="font-style: italic;">"wangwu"</span>, <span style="font-style: italic;">"zhaoliu"</span>];
+<span style="font-weight: bold;">let</span> [<span style="font-weight: bold; font-style: italic;">f1</span>, <span style="font-weight: bold; font-style: italic;">f2</span>, <span style="font-weight: bold; font-style: italic;">f3</span>, <span style="font-weight: bold; font-style: italic;">f4</span>] = F4
+console.log(f2)
+
+</pre>
+</div>
+
+<pre class="example">
+lisi
+
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">zhao</span> = {
+    name: <span style="font-style: italic;">"benshan"</span>,
+    age:<span style="font-style: italic;">"unkownen"</span>,
+    <span style="font-weight: bold;">xiaoping</span> :<span style="font-weight: bold;">function</span>(){
+        console.log(<span style="font-style: italic;">"I K y"</span>);
+    }
+};
+<span style="font-weight: bold;">let</span> {name, age, xiaoping} = zhao;
+console.log(age);
+console.log(xiaoping);
+xiaoping();
+
+</pre>
+</div>
+
+<pre class="example">
+unkownen
+[Function: xiaoping]
+I K y
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb32dcaa" class="outline-2">
+<h2 id="orgb32dcaa">模板字符串可以换行，拼接</h2>
+<div class="outline-text-2" id="text-orgb32dcaa">
+<p>
+´${}´ 可以拼接变量 
+可以换行
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcd3a003" class="outline-2">
+<h2 id="orgcd3a003">简化对象</h2>
+<div class="outline-text-2" id="text-orgcd3a003">
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">name</span> = <span style="font-style: italic;">"sangguigu"</span>;
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">change</span> = <span style="font-weight: bold;">function</span>(){
+    console.log(<span style="font-style: italic;">"I can make it"</span>);
+};
+
+<span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">school</span> = {
+    name,
+    change,
+    improve(){
+        console.log(<span style="font-style: italic;">"We can help you"</span>);
+    }
+};
+
+console.log(school.name);
+console.log(school.change);
+school.change()
+school.improve()
+
+</pre>
+</div>
+
+<pre class="example">
+sangguigu
+[Function: change]
+I can make it
+We can help you
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org47cb733" class="outline-2">
+<h2 id="org47cb733">箭头函数</h2>
+<div class="outline-text-2" id="text-org47cb733">
+<p>
+静态的this, 当前作用域的this，call都不能改变
+不能构造对象实例化
+不能使用arguments
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">qual</span> = n =&gt; n*n;
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">fn</span> = (a,b) =&gt; { <span style="font-weight: bold;">return</span> a*b};
+console.log(qual(3))
+console.log(fn(2,5));
+</pre>
+</div>
+
+<pre class="example">
+9
+10
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgf68bcf1" class="outline-2">
+<h2 id="orgf68bcf1">rest</h2>
+<div class="outline-text-2" id="text-orgf68bcf1">
+</div>
+<div id="outline-container-org672b611" class="outline-3">
+<h3 id="org672b611">ES5</h3>
+<div class="outline-text-3" id="text-org672b611">
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">data</span>(){
+    console.log(<span style="font-weight: bold; text-decoration: underline;">arguments</span>);
+}
+data(<span style="font-style: italic;">"nihao"</span>, <span style="font-style: italic;">"niyehao"</span>);
+
+</pre>
+</div>
+
+<pre class="example">
+[Arguments] { '0': 'nihao', '1': 'niyehao' }
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org4044123" class="outline-3">
+<h3 id="org4044123">ES6</h3>
+<div class="outline-text-3" id="text-org4044123">
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">data</span>(...args){
+    console.log(args);
+}
+data(1,2,3,4);
+
+</pre>
+</div>
+
+<pre class="example">
+[ 1, 2, 3, 4 ]
+
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">data</span>(<span style="font-weight: bold; font-style: italic;">a</span>, <span style="font-weight: bold; font-style: italic;">b</span>, ...<span style="font-weight: bold; font-style: italic;">args</span>){
+    console.log(a);
+    console.log(b);
+    console.log(args);
+}
+data(1,2,3,4,5,6);
+
+</pre>
+</div>
+
+<pre class="example">
+1
+2
+[ 3, 4, 5, 6 ]
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9be0097" class="outline-2">
+<h2 id="org9be0097">扩展运算符&#x2026;</h2>
+<div class="outline-text-2" id="text-org9be0097">
+</div>
+<div id="outline-container-orgd7684e0" class="outline-3">
+<h3 id="orgd7684e0">Beispiel 将内容转化为数组</h3>
+<div class="outline-text-3" id="text-orgd7684e0">
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">name</span> = [<span style="font-style: italic;">"wangyi"</span>, <span style="font-style: italic;">"wanger"</span>,<span style="font-style: italic;">"wangsan"</span>];
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">putname</span> = <span style="font-weight: bold;">function</span>(){
+    console.log(<span style="font-weight: bold; text-decoration: underline;">arguments</span>);
+};
+putname(...name);
+
+</pre>
+</div>
+
+<pre class="example">
+[Arguments] { '0': 'wangyi', '1': 'wanger', '2': 'wangsan' }
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgeb18f2f" class="outline-3">
+<h3 id="orgeb18f2f">Anwendung</h3>
+<div class="outline-text-3" id="text-orgeb18f2f">
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">kuaizi</span> = [<span style="font-style: italic;">"&#29579;&#22826;&#21033;"</span>,<span style="font-style: italic;">"&#32918;&#25196;"</span>];
+<span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">fenghuang</span> = [<span style="font-style: italic;">"&#20911;&#22372;"</span>, <span style="font-style: italic;">"&#26469;&#29992;"</span>];
+console.log(kuaizi.concat(fenghuang));
+console.log([...kuaizi, ...fenghuang])
+
+</pre>
+</div>
+
+<pre class="example">
+[ '王太利', '肖扬', '冯坤', '来用' ]
+[ '王太利', '肖扬', '冯坤', '来用' ]
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd24f342" class="outline-2">
+<h2 id="orgd24f342">Symbol</h2>
+<div class="outline-text-2" id="text-orgd24f342">
+</div>
+<div id="outline-container-org6a0ea37" class="outline-3">
+<h3 id="org6a0ea37">唯一性, 不能运算, 用for表唯一</h3>
+<div class="outline-text-3" id="text-org6a0ea37">
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">s</span> = Symbol();
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">ss</span> = Symbol(<span style="font-style: italic;">"shanggui"</span>);
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">sss</span> = Symbol(<span style="font-style: italic;">"shanggui"</span>);
+console.log(ss === sss);
+
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">ss1</span> = Symbol.<span style="font-weight: bold;">for</span>(<span style="font-style: italic;">"shanggui"</span>);
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">sss1</span> = Symbol.<span style="font-weight: bold;">for</span>(<span style="font-style: italic;">"shanggui"</span>);
+console.log(ss1 === sss1);
+
+</pre>
+</div>
+
+<pre class="example">
+false
+true
+
+</pre>
+</div>
+</div>
+<div id="outline-container-org1f5b22f" class="outline-3">
+<h3 id="org1f5b22f">给对象添加属性和方法</h3>
+<div class="outline-text-3" id="text-org1f5b22f">
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">youxi</span> = {
+    name:<span style="font-style: italic;">"&#29436;&#20154;&#26432;"</span>,
+    [Symbol(<span style="font-style: italic;">"say"</span>)]: <span style="font-weight: bold;">function</span>(){
+        console.log(<span style="font-style: italic;">"&#21457;&#35328;"</span>);
+    },
+    [Symbol(<span style="font-style: italic;">"nosay"</span>)]: <span style="font-weight: bold;">function</span>(){
+        console.log(<span style="font-style: italic;">"&#38381;&#30524;"</span>);
+    }
+};
+
+console.log(youxi);
+
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">addmethod</span> = {
+    up: Symbol(),
+    down:Symbol()
+};
+
+youxi[addmethod.up] = <span style="font-weight: bold;">function</span>(){
+    console.log(<span style="font-style: italic;">"up"</span>);
+};
+
+youxi[addmethod.down] = <span style="font-weight: bold;">function</span>(){
+    console.log(<span style="font-style: italic;">"down"</span>);
+};
+
+console.log(youxi);
+</pre>
+</div>
+
+<pre class="example">
+{
+  name: '狼人杀',
+  [Symbol(say)]: [Function: [say]],
+  [Symbol(nosay)]: [Function: [nosay]]
+}
+{
+  name: '狼人杀',
+  [Symbol(say)]: [Function: [say]],
+  [Symbol(nosay)]: [Function: [nosay]],
+  [Symbol()]: [Function (anonymous)],
+  [Symbol()]: [Function (anonymous)]
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd02255b" class="outline-2">
+<h2 id="orgd02255b">迭代器</h2>
+<div class="outline-text-2" id="text-orgd02255b">
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">xiyou</span> = [<span style="font-style: italic;">"&#21776;&#20711;"</span>, <span style="font-style: italic;">"&#23385;&#24735;&#31354;"</span>, <span style="font-style: italic;">"&#29482;&#20843;&#25106;"</span>, <span style="font-style: italic;">"&#27801;&#20711;"</span>]
+<span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">v</span> <span style="font-weight: bold;">in</span> xiyou){
+    console.log(v);
+}
+
+<span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">v</span> of xiyou){
+    console.log(v);
+}
+
+</pre>
+</div>
+
+<pre class="example">
+0
+1
+2
+3
+唐僧
+孙悟空
+猪八戒
+沙僧
+
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">cluster</span> = {
+    name:<span style="font-style: italic;">"tiankong"</span>,
+    age: [1,2,3,5,7,9],
+    [Symbol.iterator]() {
+        <span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">index</span> = 0;
+        <span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">_that</span> = <span style="font-weight: bold; text-decoration: underline;">this</span>;
+        <span style="font-weight: bold;">return</span> {
+            <span style="font-weight: bold;">next</span>: <span style="font-weight: bold;">function</span>(){
+                <span style="font-weight: bold;">if</span> (index &lt; _that.age.length) {
+                    <span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">result</span> = {value:_that.age[index], done:<span style="font-weight: bold; text-decoration: underline;">false</span> };
+                    index++;
+                    <span style="font-weight: bold;">return</span> result;
+                }<span style="font-weight: bold;">else</span>{
+                    <span style="font-weight: bold;">return</span> {value:<span style="font-weight: bold; text-decoration: underline;">undefined</span>, done:<span style="font-weight: bold; text-decoration: underline;">true</span>};
+                }
+            }
+        };
+    }
+}
+
+<span style="font-weight: bold;">for</span>(<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">v</span> of cluster){
+    console.log(v);
+}
+
+</pre>
+</div>
+
+<pre class="example">
+1
+2
+3
+5
+7
+9
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org6876b08" class="outline-2">
+<h2 id="org6876b08">生成器</h2>
+<div class="outline-text-2" id="text-org6876b08">
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">function</span> *<span style="font-weight: bold;">gen</span>(){
+    console.log(<span style="font-style: italic;">"1"</span>);
+    <span style="font-weight: bold;">yield</span> <span style="font-style: italic;">"&#19968;"</span>;
+    console.log(<span style="font-style: italic;">"2"</span>);
+    <span style="font-weight: bold;">yield</span> <span style="font-style: italic;">"&#20108;"</span>;
+}
+
+<span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">v</span> of gen()){
+    console.log(v);
+}
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">iter</span> = gen();
+
+
+iter.next();
+<span style="font-weight: bold;">for</span> (<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">v</span> of iter){
+    console.log(v);
+}
+
+</pre>
+</div>
+
+<pre class="example">
+1
+一
+2
+二
+1
+2
+二
+
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">function</span> *<span style="font-weight: bold;">gen</span>(args){
+    console.log(args);   <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">can only be passed once at first</span>
+    console.log(<span style="font-style: italic;">"1"</span>);
+    <span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">mmm</span> = <span style="font-weight: bold;">yield</span> <span style="font-style: italic;">"&#19968;"</span>; <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">each step can be passed</span>
+    console.log(mmm);
+    console.log(<span style="font-style: italic;">"2"</span>);
+    <span style="font-weight: bold;">yield</span> <span style="font-style: italic;">"&#20108;"</span>;
+    console.log(<span style="font-style: italic;">"3"</span>);
+    <span style="font-weight: bold;">yield</span> <span style="font-style: italic;">"&#19977;"</span>;
+
+}
+
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">iter</span> = gen(<span style="font-style: italic;">"aaa"</span>);
+
+iter.next();
+iter.next(<span style="font-style: italic;">"MMM"</span>)
+iter.next();
+
+</pre>
+</div>
+
+<pre class="example">
+aaa
+1
+MMM
+2
+3
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgfdb838f" class="outline-2">
+<h2 id="orgfdb838f">type vaildation</h2>
+<div class="outline-text-2" id="text-orgfdb838f">
+</div>
+<div id="outline-container-org7388534" class="outline-3">
+<h3 id="org7388534">basic</h3>
+<div class="outline-text-3" id="text-org7388534">
+<p>
+tpyeof: the rest
+<code>=</code> : null, undefined
+开始： let a = null; 说明a后来要被赋值为object
+结束： a = null; 释放b的内存
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">a</span>;
+console.log()
+console.log(<span style="font-weight: bold;">typeof</span>(a))
+console.log(<span style="font-weight: bold;">typeof</span> a)
+console.log(<span style="font-weight: bold;">typeof</span> a===<span style="font-style: italic;">"undefined"</span> )
+console.log(a===<span style="font-weight: bold; text-decoration: underline;">undefined</span> )
+</pre>
+</div>
+
+<pre class="example">
+
+undefined
+undefined
+true
+true
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org661581f" class="outline-3">
+<h3 id="org661581f">class</h3>
+<div class="outline-text-3" id="text-org661581f">
+<p>
+instanceof
+typeof 不能区分数组和函数和对象
+</p>
+<div class="org-src-container">
+<pre class="src src-js">  <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">bb</span> = {
+    bb1 : [1, <span style="font-style: italic;">"niaho"</span>, console.log],
+    <span style="font-weight: bold;">bb2</span> : <span style="font-weight: bold;">function</span>(){
+      console.log(<span style="font-style: italic;">"nidf"</span>);
+    }
+  }
+
+console.log(bb <span style="font-weight: bold;">instanceof</span> <span style="font-weight: bold; text-decoration: underline;">Object</span>);
+console.log(bb.bb1 <span style="font-weight: bold;">instanceof</span> <span style="font-weight: bold; text-decoration: underline;">Array</span>);
+console.log(bb.bb1 <span style="font-weight: bold;">instanceof</span> <span style="font-weight: bold; text-decoration: underline;">Object</span>);
+console.log(bb.bb2 <span style="font-weight: bold;">instanceof</span> <span style="font-weight: bold; text-decoration: underline;">Function</span>);
+console.log(bb.bb2 <span style="font-weight: bold;">instanceof</span> <span style="font-weight: bold; text-decoration: underline;">Object</span>);
+console.log( <span style="font-weight: bold;">typeof</span> bb.bb1[2] === <span style="font-style: italic;">"function"</span>)
+bb.bb1[2](4)
+
+</pre>
+</div>
+
+<pre class="example">
+true
+true
+true
+true
+true
+true
+4
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc598d42" class="outline-2">
+<h2 id="orgc598d42">multi assigment</h2>
+<div class="outline-text-2" id="text-orgc598d42">
+<p>
+如果两个变量指向一个引用地址，修改其中一个，修改结果另一个可见
+如果一个重新指向（例如某个函数赋值），另一个内容不变
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgaf12cbc" class="outline-2">
+<h2 id="orgaf12cbc">call</h2>
+<div class="outline-text-2" id="text-orgaf12cbc">
+<p>
+对于obj没有test()方法， 临时调用
+test.call(obj) <code>=</code> obj.test()
+test.apply(obj) <code>=</code> obj.test()
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga840d3d" class="outline-2">
+<h2 id="orga840d3d">IIFE Immediately Invoked Function Expression</h2>
+<div class="outline-text-2" id="text-orga840d3d">
+</div>
+<div id="outline-container-orgdb55161" class="outline-3">
+<h3 id="orgdb55161">Beispiel</h3>
+<div class="outline-text-3" id="text-orgdb55161">
+<p>
+1: 不影响全局命名空间
+2：可以暴露
+</p>
+<div class="org-src-container">
+<pre class="src src-js">(<span style="font-weight: bold;">function</span> (){
+    <span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">a</span> = 34;
+    console.log(<span style="font-style: italic;">"kk!!!!"</span>);
+    console.log(a*34);
+})();
+
+</pre>
+</div>
+
+<pre class="example">
+kk!!!!
+1156
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org0c517db" class="outline-3">
+<h3 id="org0c517db">浏览器端列子</h3>
+<div class="outline-text-3" id="text-org0c517db">
+<p>
+这里不能执行
+</p>
+<div class="org-src-container">
+<pre class="src src-js">(
+    <span style="font-weight: bold;">function</span>(){
+        <span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">aa</span> = 1;
+        <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">test</span>(){
+            console.log(++aa);
+        };
+        window.$ = <span style="font-weight: bold;">function</span>(){
+            <span style="font-weight: bold;">return</span> {
+                test:test
+            };
+        };
+    }
+)();
+
+$().test();
+
+
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org044e172" class="outline-3">
+<h3 id="org044e172">服务器端列子</h3>
+<div class="outline-text-3" id="text-org044e172">
+<div class="org-src-container">
+<pre class="src src-js">(
+    <span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">window</span>){
+        <span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">aa</span> = 1;
+        <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">test</span>(){
+            console.log(++aa);
+        };
+        window.$ = <span style="font-weight: bold;">function</span>(){
+            <span style="font-weight: bold;">return</span> {
+                test:test
+            };
+        };
+    }
+)(<span style="font-weight: bold; text-decoration: underline;">this</span>);
+
+<span style="font-weight: bold; text-decoration: underline;">this</span>.$().test();
+
+
+
+</pre>
+</div>
+
+<pre class="example">
+2
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7c0e9e2" class="outline-2">
+<h2 id="org7c0e9e2">this</h2>
+<div class="outline-text-2" id="text-org7c0e9e2">
+<p>
+任何函数本质都是通过对象来调用的，
+如果没有指定调用者，那么就是window
+</p>
+</div>
+</div>
+<div id="outline-container-orgebc6716" class="outline-2">
+<h2 id="orgebc6716">括号</h2>
+<div class="outline-text-2" id="text-orgebc6716">
+<p>
+小括弧(IIFE)和中括弧(Beispiel untern)前面的语句后必须加分号，
+否则分号全部可以省略
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">[1,2,3,4].forEach(<span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">a</span>){console.log(a)})
+;[1,2,3,4].forEach(a =&gt;console.log(a))
+
+</pre>
+</div>
+
+<pre class="example">
+1
+2
+3
+4
+1
+2
+3
+4
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org10b3fa5" class="outline-2">
+<h2 id="org10b3fa5">callback</h2>
+<div class="outline-text-2" id="text-org10b3fa5">
+</div>
+<div id="outline-container-orgd33bad3" class="outline-3">
+<h3 id="orgd33bad3">callback named function</h3>
+<div class="outline-text-3" id="text-orgd33bad3">
+<div class="org-src-container">
+<pre class="src src-js"> <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">test</span> = <span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">msg</span>, <span style="font-weight: bold; font-style: italic;">callback</span>){
+     setTimeout(<span style="font-weight: bold;">function</span>(){ console.log(msg);   }, 2000);
+     <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">console.log(msg);</span>
+     callback(); 
+ }
+<span style="font-weight: bold;">function</span>  <span style="font-weight: bold;">justcall</span>(){
+     console.log(<span style="font-style: italic;">"juskjktcallkkjk to i "</span>);
+ }
+<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">just</span> = <span style="font-weight: bold;">function</span>(){
+     console.log(<span style="font-style: italic;">"juskjktcallkkjk to i "</span>);
+ }
+ test(<span style="font-style: italic;">"nisho 0p"</span>, justcall)
+ test(<span style="font-style: italic;">"nisho 0p"</span>, just)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org044c066" class="outline-3">
+<h3 id="org044c066">callback no named function</h3>
+<div class="outline-text-3" id="text-org044c066">
+<div class="org-src-container">
+<pre class="src src-js">  <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">test</span> = <span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">msg</span> , <span style="font-weight: bold; font-style: italic;">didi</span>){
+<span style="font-weight: bold; font-style: italic;">//      </span><span style="font-weight: bold; font-style: italic;">setTimeout( ()=&gt;{   console.log(msg);   } , 2000);</span>
+      console.log(msg);
+      didi(msg);
+  }
+
+  test(<span style="font-style: italic;">"kdjfi"</span>, msg =&gt; {
+      console.log(msg);
+  });
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb86b40f" class="outline-3">
+<h3 id="orgb86b40f">no named function callback no named function</h3>
+<div class="outline-text-3" id="text-orgb86b40f">
+<div class="org-src-container">
+<pre class="src src-js">(
+    (msg , didi) =&gt; {
+        console.log(msg);
+        <span style="font-weight: bold; font-style: italic;">//          </span><span style="font-weight: bold; font-style: italic;">setTimeout(  ()=&gt;{    didi(msg);  } , 2000);  // can only be used in  function body</span>
+        didi(msg); 
+    }
+)
+( <span style="font-style: italic;">"kdiikkjkjk"</span>,
+  msg =&gt; {
+      console.log(msg);
+  }
+)
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org8dba5eb" class="outline-2">
+<h2 id="org8dba5eb">promise</h2>
+<div class="outline-text-2" id="text-org8dba5eb">
+</div>
+<div id="outline-container-org021fcd6" class="outline-3">
+<h3 id="org021fcd6">resolve and reject</h3>
+<div class="outline-text-3" id="text-org021fcd6">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">resolve 触发 then 回调</td>
+</tr>
+
+<tr>
+<td class="org-left">reject 触发 catch 回调</td>
+</tr>
+</tbody>
+</table>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">sentSuccess</span> = <span style="font-weight: bold; text-decoration: underline;">false</span>;
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">p</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Promise</span>(<span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">resolve</span>, <span style="font-weight: bold; font-style: italic;">reject</span>) {
+  <span style="font-weight: bold;">if</span>(sentSuccess){
+    resolve(<span style="font-style: italic;">"Successed"</span>);
+  } <span style="font-weight: bold;">else</span> {
+    reject(<span style="font-style: italic;">"Failed"</span>);
+  }
+});
+
+p.then(<span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">message</span>) {
+  console.log(<span style="font-style: italic;">`${message} is coming`</span>);
+}).<span style="font-weight: bold;">catch</span>(<span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">message</span>){
+  console.log(<span style="font-style: italic;">`${message} is coming`</span>);
+})
+
+</pre>
+</div>
+
+<pre class="example">
+Failed is coming
+
+</pre>
+</div>
+</div>
+<div id="outline-container-org2f74c99" class="outline-3">
+<h3 id="org2f74c99">resolve and reject with recusive</h3>
+<div class="outline-text-3" id="text-org2f74c99">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">then 执行后正常返回 resolved状态， 出错返回rejected 状态</td>
+</tr>
+
+<tr>
+<td class="org-left">catch 执行后正常返回 resolved状态， 出错返回rejected 状态</td>
+</tr>
+</tbody>
+</table>
+
+<div class="org-src-container">
+<pre class="src src-js">Promise.resolve().then( ()=&gt; {
+    console.log(1);
+}).<span style="font-weight: bold;">catch</span>(()=&gt; {
+    console.log(2);
+}).then(()=&gt; {
+    console.log(3);
+});
+
+</pre>
+</div>
+
+<pre class="example">
+1
+3
+
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-js">Promise.resolve().then( ()=&gt; {
+    console.log(1);
+    <span style="font-weight: bold;">throw</span> <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Error</span> (<span style="font-style: italic;">'Error'</span>);
+}).<span style="font-weight: bold;">catch</span>(()=&gt; {
+    console.log(2);
+}).then(()=&gt; {
+    console.log(3);
+});
+
+</pre>
+</div>
+
+<pre class="example">
+1
+2
+3
+
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-js">Promise.resolve().then( ()=&gt; {
+    console.log(1);
+    <span style="font-weight: bold;">throw</span> <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Error</span> (<span style="font-style: italic;">'Error'</span>);
+}).<span style="font-weight: bold;">catch</span>(()=&gt; {
+    console.log(2);
+}).<span style="font-weight: bold;">catch</span>(()=&gt; {
+    console.log(3);
+});
+
+</pre>
+</div>
+
+<pre class="example">
+1
+2
+
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">sentSuccess</span> = <span style="font-weight: bold; text-decoration: underline;">true</span>;
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">p</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Promise</span>(<span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">resolve</span>, <span style="font-weight: bold; font-style: italic;">reject</span>) {
+  <span style="font-weight: bold;">if</span>(sentSuccess){
+    resolve(<span style="font-style: italic;">"Successed"</span>);
+  } <span style="font-weight: bold;">else</span> {
+    reject(<span style="font-style: italic;">"Failed"</span>);
+  }
+});
+
+p.then(<span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">message</span>) {
+  console.log(<span style="font-style: italic;">`${message} is coming`</span>);
+  console.log(1);
+  <span style="font-weight: bold;">throw</span> <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Error</span> (<span style="font-style: italic;">'Error'</span>);
+}).<span style="font-weight: bold;">catch</span>(()=&gt; {
+  console.log(2);
+}).<span style="font-weight: bold;">catch</span>(()=&gt; {
+  console.log(3);
+}).<span style="font-weight: bold;">catch</span>(<span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">message</span>){
+  console.log(<span style="font-style: italic;">`${message} is coming`</span>);
+}).then(() =&gt; {
+  console.log(4);  
+});
+
+</pre>
+</div>
+
+<pre class="example">
+Successed is coming
+1
+2
+4
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org2e4d7f2" class="outline-3">
+<h3 id="org2e4d7f2">resolve and reject with recusive with return</h3>
+<div class="outline-text-3" id="text-org2e4d7f2">
+<p>
+#+begin<sub>src</sub> js :results output :exports both
+  let sentSuccess = false;
+  let p = new Promise(function(resolve, reject) {
+    if(sentSuccess){
+      resolve("Successed");
+    } else {
+      reject("Failed");
+    }
+  });
+</p>
+
+<p>
+p.then(function(message) {
+  console.log(`\({message} is coming`);
+    return "niaho";
+  }).then(function(massage) {
+    console.log(massage)
+  }).catch(function(message){
+    console.log(`\){message} is coming`);
+  return "nibuaho";
+}).then(function(massage) {
+  console.log(massage)
+})
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3a41e04" class="outline-2">
+<h2 id="org3a41e04">Closure</h2>
+<div class="outline-text-2" id="text-org3a41e04">
+</div>
+<div id="outline-container-orgc2e3cb7" class="outline-3">
+<h3 id="orgc2e3cb7">conuter将函数作为另一个函数的返回值</h3>
+<div class="outline-text-3" id="text-orgc2e3cb7">
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">f1</span>(){
+    <span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">a</span> = 0;
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">f2</span>(){
+        a++;
+        console.log(a);
+    }
+    <span style="font-weight: bold;">return</span> f2;
+}
+
+<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">f</span> = f1();
+f()
+f()
+f();
+
+</pre>
+</div>
+
+<pre class="example">
+1
+2
+3
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org9c078a0" class="outline-3">
+<h3 id="org9c078a0">将函数作为实参传给另一个函数调用</h3>
+<div class="outline-text-3" id="text-org9c078a0">
+<p>
+实际上，这和回调函数是一样的
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">print</span>(<span style="font-weight: bold; font-style: italic;">fn</span>){
+    <span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">a</span> = 200;
+    fn();
+}
+
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">a</span> = 100;
+<span style="font-weight: bold;">function</span> <span style="font-weight: bold;">fn</span>(){
+    console.log(a);
+}
+print(fn);
+
+</pre>
+</div>
+
+<pre class="example">
+100
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org19cd59e" class="outline-3">
+<h3 id="org19cd59e">multi return</h3>
+<div class="outline-text-3" id="text-org19cd59e">
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">myModule</span>(){
+    <span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">msg</span> = <span style="font-style: italic;">"My Massage"</span>;
+
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">doSomething</span>(){
+        console.log(<span style="font-style: italic;">"do Something..."</span>+msg);
+    }
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">doOtherthing</span>(){
+        console.log(<span style="font-style: italic;">"do Otherthing..."</span> + msg);
+    }
+
+    <span style="font-weight: bold;">return</span> {
+        Something:doSomething,
+        Otherthing:doOtherthing
+    };
+}
+
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">F</span> = myModule();
+F.Something()
+F.Otherthing()
+
+</pre>
+</div>
+
+<pre class="example">
+do Something...My Massage
+do Otherthing...My Massage
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf1e6489" class="outline-2">
+<h2 id="orgf1e6489">Prototype</h2>
+<div class="outline-text-2" id="text-orgf1e6489">
+</div>
+<div id="outline-container-org23c226d" class="outline-3">
+<h3 id="org23c226d">new note</h3>
+<div class="outline-text-3" id="text-org23c226d">
+<p>
+每一个函数都有一个prototpye属性&amp;，默认是个对象， 即原型对象
+该prototype原型对象有constructor属性和_<sub>proto</sub>_<sub>属性</sub>
+constructor指向函数对象（回去了）
+fun.prototype = &amp;, &amp;.constructor = fun
+</p>
+
+<p>
+<b>constructor</b>
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">Fun</span>(){  }
+<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">yuanxing</span> = Fun.<span style="font-weight: bold; text-decoration: underline;">prototype</span>
+<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">yuanhanshu</span> = yuanxing.constructor
+console.log(yuanhanshu == Fun)
+console.log(Fun.<span style="font-weight: bold; text-decoration: underline;">prototype</span>.constructor == Fun)
+</pre>
+</div>
+
+<pre class="example">
+true
+true
+
+</pre>
+
+<p>
+<b>prototype</b> <b>显式原型</b> <b>函数类</b> <b>定义时被生成</b>
+<b>添加方法给类的原型对象</b>
+还可以对原型对象添加自定义的属性和方法，让原型对象的函数的实列来使用
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">Fun</span>(){  }
+Fun.<span style="font-weight: bold; text-decoration: underline;">prototype</span>.test = <span style="font-weight: bold;">function</span>(){console.log(<span style="font-style: italic;">"prototype for test"</span>)}
+<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">fun</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Fun</span>()
+fun.test()
+</pre>
+</div>
+
+<pre class="example">
+prototype for test
+
+</pre>
+
+<p>
+<b>_<sub>proto</sub>__</b> <b>隐式原型</b> <b>实列</b> <b>实列化时生成</b>
+</p>
+
+<p>
+类的显式原型等于实列的隐式原型
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">Fun</span>(){}
+<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">fun</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Fun</span>()
+console.log(Fun.<span style="font-weight: bold; text-decoration: underline;">prototype</span>)
+console.log(fun.__proto__)
+console.log(Fun.<span style="font-weight: bold; text-decoration: underline;">prototype</span> == fun.__proto__)
+</pre>
+</div>
+
+<pre class="example">
+{}
+{}
+true
+
+</pre>
+
+<p>
+<b>_<sub>proto</sub>__</b> 原型链*
+如果为被复制，则默认为系统Object空对象
+</p>
+<div class="org-src-container">
+<pre class="src src-js">    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">Fun</span>(){}
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">fun</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Fun</span>()
+
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">FFun</span> (){}
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">ffun</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">FFun</span>()
+
+  FFun.<span style="font-weight: bold; text-decoration: underline;">prototype</span>.__proto__ = fun
+<span style="font-weight: bold; font-style: italic;">//  </span><span style="font-weight: bold; font-style: italic;">ffun.__proto__.__proto__ = fun</span>
+
+    console.log(ffun.__proto__.__proto__)
+</pre>
+</div>
+
+<pre class="example">
+Fun {}
+
+</pre>
+</div>
+</div>
+
+
+
+
+
+<div id="outline-container-orgbd1a875" class="outline-3">
+<h3 id="orgbd1a875">alte note</h3>
+<div class="outline-text-3" id="text-orgbd1a875">
+<p>
+对象的隐式原型(<span class="underline"><span class="underline">proto</span></span>)等于对应的构造函数的显式原型(prototype)的值
+<a href="file:///home/runner/Dropbox/subjects/foto/JS_Obj_Fuck_prototype.png">photolink</a>
+对象的属性组成：
+1：本身的声明
+2：_<sub>proto</sub>_<sub>隐式原型链属性</sub>
+3：系统Object的原型对象，其_<sub>proto</sub>__ = null
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">Fn</span> (){
+}
+<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">fn</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Fn</span>();
+
+Fn.<span style="font-weight: bold; text-decoration: underline;">prototype</span>.test = <span style="font-weight: bold;">function</span>(){
+    console.log(<span style="font-style: italic;">"from prototype"</span>);
+}
+
+fn.test();  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">=== fn.__proto__.test();</span>
+fn.__proto__.test();
+
+</pre>
+</div>
+
+<pre class="example">
+from prototype
+from prototype
+
+</pre>
+<div class="org-src-container">
+<pre class="src src-js">console.log(Object.<span style="font-weight: bold; text-decoration: underline;">prototype</span> <span style="font-weight: bold;">instanceof</span> <span style="font-weight: bold; text-decoration: underline;">Object</span>)
+console.log(Function.<span style="font-weight: bold; text-decoration: underline;">prototype</span> <span style="font-weight: bold;">instanceof</span> <span style="font-weight: bold; text-decoration: underline;">Object</span>)
+console.log(Function.__proto__ === Function.<span style="font-weight: bold; text-decoration: underline;">prototype</span>)
+</pre>
+</div>
+
+<pre class="example">
+false
+true
+true
+
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">A</span>(){};
+A.<span style="font-weight: bold; text-decoration: underline;">prototype</span>.n = 1;
+<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">b</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">A</span>();
+<span style="font-weight: bold; text-decoration: underline;">A</span>.<span style="font-weight: bold; text-decoration: underline;">prototype</span> = {
+    n:2,
+    m:3
+};
+<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">c</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">A</span>();
+console.log(b.n, b.m, c.n, c.m);
+</pre>
+</div>
+
+<pre class="example">
+1 undefined 2 3
+
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">F</span>(){}
+
+Object.<span style="font-weight: bold; text-decoration: underline;">prototype</span>.a = <span style="font-weight: bold;">function</span>(){
+    console.log(<span style="font-style: italic;">"a"</span>)
+}
+Function.<span style="font-weight: bold; text-decoration: underline;">prototype</span>.b = <span style="font-weight: bold;">function</span>(){
+    console.log(<span style="font-style: italic;">"b"</span>)
+}
+<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">f</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">F</span>();
+f.a()
+f.b()
+F.a()
+F.b()
+
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc030f5d" class="outline-2">
+<h2 id="orgc030f5d">event loop事件循环</h2>
+<div class="outline-text-2" id="text-orgc030f5d">
+<ul class="org-ul">
+<li>browser interpreter</li>
+<li>Call stack</li>
+<li>Web API</li>
+<li>Call query</li>
+<li>event loop</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgfac8c2a" class="outline-2">
+<h2 id="orgfac8c2a">async/await</h2>
+<div class="outline-text-2" id="text-orgfac8c2a">
+<div class="org-center">
+<p>
+用同步语法编写异步代码
+</p>
+</div>
+</div>
+
+<div id="outline-container-org85c02eb" class="outline-3">
+<h3 id="org85c02eb">执行async函数， 返回的是Promise</h3>
+<div class="outline-text-3" id="text-org85c02eb">
+<p>
+如果没有Promise的调用，也会自动封装为Promise
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">async</span> <span style="font-weight: bold;">function</span> fn1(){
+    <span style="font-weight: bold;">return</span> 1000;
+}
+fn1().then(data =&gt; {
+    console.log(<span style="font-style: italic;">"data :"</span>, data);
+});
+</pre>
+</div>
+
+<pre class="example">
+data : 1000
+
+</pre>
+
+<p>
+如果有，则直接返回该Promise
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">async</span> <span style="font-weight: bold;">function</span> fn1(){
+    <span style="font-weight: bold;">return</span> Promise.resolve(200);
+}
+<span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">res1</span> = fn1();
+res1.then(data =&gt; {
+    console.log(<span style="font-style: italic;">"data :"</span>, data);
+});
+</pre>
+</div>
+
+<pre class="example">
+data : 200
+
+</pre>
+</div>
+</div>
+<div id="outline-container-org6e7ee7c" class="outline-3">
+<h3 id="org6e7ee7c">await 相当于 Promise + then</h3>
+<div class="outline-text-3" id="text-org6e7ee7c">
+</div>
+<div id="outline-container-org1826ac9" class="outline-4">
+<h4 id="org1826ac9">await 后面跟数值也会自动封装</h4>
+<div class="outline-text-4" id="text-org1826ac9">
+<div class="org-src-container">
+<pre class="src src-js">(<span style="font-weight: bold;">async</span> <span style="font-weight: bold;">function</span> (){
+    <span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">data</span> = <span style="font-weight: bold;">await</span> 300;
+    console.log(data);
+})();
+</pre>
+</div>
+
+<pre class="example">
+300
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgc740118" class="outline-4">
+<h4 id="orgc740118">await 跟Promise</h4>
+<div class="outline-text-4" id="text-orgc740118">
+<div class="org-src-container">
+<pre class="src src-js">(<span style="font-weight: bold;">async</span> <span style="font-weight: bold;">function</span> (){
+    <span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">p1</span> = Promise.resolve(200);
+    <span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">data</span> = <span style="font-weight: bold;">await</span> p1;
+    console.log(data);
+} )();
+</pre>
+</div>
+
+<pre class="example">
+200
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgdfaa855" class="outline-4">
+<h4 id="orgdfaa855">await跟async函数</h4>
+<div class="outline-text-4" id="text-orgdfaa855">
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">async</span> <span style="font-weight: bold;">function</span> fn1(){
+    <span style="font-weight: bold;">return</span> 300;
+}
+
+(<span style="font-weight: bold;">async</span> <span style="font-weight: bold;">function</span> (){
+    <span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">data</span> = <span style="font-weight: bold;">await</span> fn1();
+    console.log(data);  <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#27492;&#26102;await&#21518;&#38754;&#30340;&#21629;&#20196;&#30456;&#24403;&#19982;setTimeout&#30340;&#31532;&#20108;&#20010;&#21442;&#25968;&#65292;&#21363;&#26032;&#30340;&#24322;&#27493;&#20998;&#25903;</span>
+} )();
+</pre>
+</div>
+
+<pre class="example">
+300
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org33b3ba8" class="outline-3">
+<h3 id="org33b3ba8">try catch 捕获异常,代替Promise+catch</h3>
+<div class="outline-text-3" id="text-org33b3ba8">
+<div class="org-src-container">
+<pre class="src src-js">(<span style="font-weight: bold;">async</span> <span style="font-weight: bold;">function</span> (){
+    <span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">p4</span> = Promise.reject(<span style="font-style: italic;">'Error'</span>);
+    <span style="font-weight: bold;">try</span> {
+        <span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">res</span> = <span style="font-weight: bold;">await</span> p4;
+        console.log(res); <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">reject for Promise + then, this will not be executed</span>
+    } <span style="font-weight: bold;">catch</span> (err) {
+        console.log(err);
+    } <span style="font-weight: bold;">finally</span> {
+        console.log(<span style="font-style: italic;">"It's done"</span>);
+    }
+})();
+</pre>
+</div>
+
+<pre class="example">
+Error
+It's done
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org5294aee" class="outline-3">
+<h3 id="org5294aee">包装长时耗的异步函数</h3>
+<div class="outline-text-3" id="text-org5294aee">
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">sendRequest</span>(){
+  <span style="font-weight: bold;">return</span> <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Promise</span>(<span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">resolve</span>, <span style="font-weight: bold; font-style: italic;">reject</span>) {
+    setTimeout( <span style="font-weight: bold;">function</span>(){
+      reject(<span style="font-style: italic;">"Request reject"</span>);
+    }, 2000);
+  });
+}
+
+<span style="font-weight: bold;">async</span> <span style="font-weight: bold;">function</span> getUsername() {
+  <span style="font-weight: bold;">try</span> {
+    <span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">username</span> =  <span style="font-weight: bold;">await</span> sendRequest();
+    console.log(username);
+  } <span style="font-weight: bold;">catch</span> (err) {
+    console.log(<span style="font-style: italic;">`Error: ${err}`</span>);
+  } <span style="font-weight: bold;">finally</span> {
+    console.log(<span style="font-style: italic;">"Gut"</span>);
+  }
+}
+
+getUsername()
+
+</pre>
+</div>
+
+<pre class="example">
+Error: Request reject
+Gut
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9a0d669" class="outline-2">
+<h2 id="org9a0d669">js in Dom</h2>
+<div class="outline-text-2" id="text-org9a0d669">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span style="font-weight: bold;">li</span>&gt;&lt;<span style="font-weight: bold;">a</span> <span style="font-weight: bold; font-style: italic;">onclick</span>=<span style="font-style: italic;">"emacs()"</span> <span style="font-weight: bold; font-style: italic;">href</span>=<span style="font-style: italic;">"#"</span>&gt;Emacs&lt;/<span style="font-weight: bold;">a</span>&gt;&lt;/<span style="font-weight: bold;">li</span>&gt;
+&lt;<span style="font-weight: bold;">iframe</span> <span style="font-weight: bold; font-style: italic;">src</span>=<span style="font-style: italic;">"emacs.html"</span> <span style="font-weight: bold; font-style: italic;">id</span>=<span style="font-style: italic;">"emacs"</span> <span style="font-weight: bold; font-style: italic;">class</span>=<span style="font-style: italic;">"hidden"</span> ; <span style="font-weight: bold; font-style: italic;">style</span>=<span style="font-style: italic;">"position:fixed; top:50px; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"</span> &gt;&lt;/<span style="font-weight: bold;">iframe</span>&gt;
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-js">document.querySelectorAll(<span style="font-style: italic;">'iframe'</span>).forEach( item =&gt; item.setAttribute(<span style="font-style: italic;">'class'</span>,<span style="font-style: italic;">'hidden'</span>))
+document.getElementById(<span style="font-style: italic;">"UniversalHashing"</span>).setAttribute(<span style="font-style: italic;">'class'</span>,<span style="font-style: italic;">'showing'</span>)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org06e6f56" class="outline-2">
+<h2 id="org06e6f56">&#x2026;rests</h2>
+<div class="outline-text-2" id="text-org06e6f56">
+<p>
+使用在一个表达式前，表示整个表达式的值， 例如整个数组或者对象
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">test</span> = {a:0, b:1, c:2}
+<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">testall</span> = {...test, d:5}
+console.log(testall)
+
+<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">parts</span> = [<span style="font-style: italic;">'0'</span>, <span style="font-style: italic;">'1'</span>,<span style="font-style: italic;">'2'</span>]
+<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">alles</span> = [...parts, <span style="font-style: italic;">'3'</span>]
+console.log(alles)
+
+
+</pre>
+</div>
+
+<pre class="example">
+{ a: 0, b: 1, c: 2, d: 5 }
+[ '0', '1', '2', '3' ]
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgfe77dc3" class="outline-2">
+<h2 id="orgfe77dc3">add function to window</h2>
+<div class="outline-text-2" id="text-orgfe77dc3">
+<p>
+with $ this example is special for now, virtual DOM 
+</p>
+<div class="org-src-container">
+<pre class="src src-js">( <span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">window</span>){
+    <span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">aa</span> = 9;
+    <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">test</span>(){
+        console.log(++aa);
+    };
+    window.$ = <span style="font-weight: bold;">function</span>(){
+        <span style="font-weight: bold;">return</span> {
+            test:test,
+            aa:aa
+        };
+    };
+}
+)(<span style="font-weight: bold; text-decoration: underline;">this</span>);
+
+console.log(<span style="font-weight: bold; text-decoration: underline;">this</span>);
+console.log(<span style="font-weight: bold; text-decoration: underline;">this</span>.$);
+console.log(<span style="font-weight: bold; text-decoration: underline;">this</span>.$());
+console.log(<span style="font-weight: bold; text-decoration: underline;">this</span>.$().aa);
+<span style="font-weight: bold; text-decoration: underline;">this</span>.$().test();
+</pre>
+</div>
+
+<pre class="example">
+{ '$': [Function (anonymous)] }
+[Function (anonymous)]
+{ test: [Function: test], aa: 9 }
+9
+10
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orga700453" class="outline-2">
+<h2 id="orga700453">change this with call  apply bind</h2>
+<div class="outline-text-2" id="text-orga700453">
+</div>
+<div id="outline-container-org87db3a7" class="outline-3">
+<h3 id="org87db3a7">call function</h3>
+<div class="outline-text-3" id="text-org87db3a7">
+<p>
+改变函数运行的this值，即指向, 并得到运行后的结果, 通过增加方法并事后删除的方式完成
+let the <b>this</b> attribution of call function be banded with another instance,
+and calculate the result.
+</p>
+
+<p>
+if the another instance is null or undefined, in ES11, globalThis will 
+replace this instance with window
+</p>
+<div class="org-src-container">
+<pre class="src src-js">  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">call</span>(<span style="font-weight: bold; font-style: italic;">Fn</span>, <span style="font-weight: bold; font-style: italic;">obj</span>, ...<span style="font-weight: bold; font-style: italic;">args</span>){
+      <span style="font-weight: bold;">if</span> (obj == <span style="font-weight: bold; text-decoration: underline;">undefined</span> || obj == <span style="font-weight: bold; text-decoration: underline;">null</span>) {
+          obj = globalThis;
+      }
+      obj.temp = Fn;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">resulte</span> = obj.temp(...args);
+      <span style="font-weight: bold;">delete</span>  obj.temp;
+      <span style="font-weight: bold;">return</span> resulte;
+  }
+
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">add</span>(<span style="font-weight: bold; font-style: italic;">a</span>, <span style="font-weight: bold; font-style: italic;">b</span>){
+      console.log(<span style="font-weight: bold; text-decoration: underline;">this</span>);
+      <span style="font-weight: bold;">return</span> a+b+<span style="font-weight: bold; text-decoration: underline;">this</span>.c;
+  }
+  <span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">obj</span> ={
+      c:2
+  };
+
+  console.log(call(add, obj, 10, 10));
+<span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">&#23558;add&#30340;this&#20540;&#31561;&#20110;obj&#30340;this</span>
+
+  <span style="font-weight: bold; font-style: italic;">//  </span><span style="font-weight: bold; font-style: italic;">window.c = 10;</span>
+globalThis.c = 2;
+console.log(call(add, <span style="font-weight: bold; text-decoration: underline;">null</span>, 10, 10));
+
+</pre>
+</div>
+
+<pre class="example">
+{ c: 2, temp: [Function: add] }
+22
+&lt;ref *1&gt; Object [global] {
+  global: [Circular *1],
+  clearInterval: [Function: clearInterval],
+  clearTimeout: [Function: clearTimeout],
+  setInterval: [Function: setInterval],
+  setTimeout: [Function: setTimeout] {
+    [Symbol(nodejs.util.promisify.custom)]: [Function (anonymous)]
+  },
+  queueMicrotask: [Function: queueMicrotask],
+  clearImmediate: [Function: clearImmediate],
+  setImmediate: [Function: setImmediate] {
+    [Symbol(nodejs.util.promisify.custom)]: [Function (anonymous)]
+  },
+  a: 3,
+  c: 2,
+  temp: [Function: add]
+}
+22
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org2a63c53" class="outline-3">
+<h3 id="org2a63c53">apply function</h3>
+<div class="outline-text-3" id="text-org2a63c53">
+<p>
+唯一和call不同是: apply的第三个开始的数据参数是一个整体，比如数组
+</p>
+<div class="org-src-container">
+<pre class="src src-js">  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">apply</span>(<span style="font-weight: bold; font-style: italic;">Fn</span>, <span style="font-weight: bold; font-style: italic;">obj</span>, <span style="font-weight: bold; font-style: italic;">args</span>){
+      <span style="font-weight: bold;">if</span> (obj == <span style="font-weight: bold; text-decoration: underline;">undefined</span> || obj == <span style="font-weight: bold; text-decoration: underline;">null</span>) {
+          obj = globalThis;
+      }
+      obj.temp = Fn;
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">resulte</span> = obj.temp( ...args);
+      <span style="font-weight: bold;">delete</span>  obj.temp;
+      <span style="font-weight: bold;">return</span> resulte;
+  }
+  <span style="font-weight: bold;">function</span> <span style="font-weight: bold;">add</span>(<span style="font-weight: bold; font-style: italic;">a</span>, <span style="font-weight: bold; font-style: italic;">b</span>){
+      console.log(<span style="font-weight: bold; text-decoration: underline;">this</span>);
+      <span style="font-weight: bold;">return</span> a+b+<span style="font-weight: bold; text-decoration: underline;">this</span>.c;
+  }
+  <span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">obj</span> ={
+      c:2
+  };
+  global.a = 3;
+  console.log(apply(add, obj, [2,4]));
+<span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">&#23558;add&#30340;this&#20540;&#31561;&#20110;obj&#30340;this</span>
+  <span style="font-weight: bold; font-style: italic;">//  </span><span style="font-weight: bold; font-style: italic;">window.c = 10;</span>
+globalThis.c = 2;
+console.log(apply(add, <span style="font-weight: bold; text-decoration: underline;">null</span>, [2, 4]));
+</pre>
+</div>
+
+<pre class="example">
+{ c: 2, temp: [Function: add] }
+8
+&lt;ref *1&gt; Object [global] {
+  global: [Circular *1],
+  clearInterval: [Function: clearInterval],
+  clearTimeout: [Function: clearTimeout],
+  setInterval: [Function: setInterval],
+  setTimeout: [Function: setTimeout] {
+    [Symbol(nodejs.util.promisify.custom)]: [Function (anonymous)]
+  },
+  queueMicrotask: [Function: queueMicrotask],
+  clearImmediate: [Function: clearImmediate],
+  setImmediate: [Function: setImmediate] {
+    [Symbol(nodejs.util.promisify.custom)]: [Function (anonymous)]
+  },
+  a: 3,
+  c: 2,
+  temp: [Function: add]
+}
+8
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org35fd092" class="outline-3">
+<h3 id="org35fd092">bind function</h3>
+<div class="outline-text-3" id="text-org35fd092">
+<p>
+do the same thing as call, but do not execute,
+return a function which can be executed.
+<b>注意传值</b>
+</p>
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">function</span> <span style="font-weight: bold;">call</span>(<span style="font-weight: bold; font-style: italic;">Fn</span>, <span style="font-weight: bold; font-style: italic;">obj</span>, ...<span style="font-weight: bold; font-style: italic;">args</span>){
+    <span style="font-weight: bold;">if</span> (obj == <span style="font-weight: bold; text-decoration: underline;">undefined</span> || obj == <span style="font-weight: bold; text-decoration: underline;">null</span>) {
+        obj = globalThis;
+    }
+    obj.temp = Fn;
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">resulte</span> = obj.temp(...args);
+    <span style="font-weight: bold;">delete</span> obj.temp;
+    <span style="font-weight: bold;">return</span> resulte;
+};
+
+<span style="font-weight: bold;">function</span> <span style="font-weight: bold;">bind</span>(<span style="font-weight: bold; font-style: italic;">Fn</span>, <span style="font-weight: bold; font-style: italic;">obj</span>, ...<span style="font-weight: bold; font-style: italic;">args</span>){
+    <span style="font-weight: bold;">return</span> <span style="font-weight: bold;">function</span>(...arg){
+        <span style="font-weight: bold;">return</span> call(Fn, obj, ...args, ...arg);
+    };
+
+}
+
+globalThis.c = 2;
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">obj</span> = {c:2};
+
+<span style="font-weight: bold;">function</span> <span style="font-weight: bold;">add</span>(<span style="font-weight: bold; font-style: italic;">a</span>, <span style="font-weight: bold; font-style: italic;">b</span>){
+    <span style="font-weight: bold;">return</span> a+b+<span style="font-weight: bold; text-decoration: underline;">this</span>.c;
+}
+<span style="font-weight: bold;">let</span> <span style="font-weight: bold; font-style: italic;">fff</span> =bind(add, obj, 2);
+console.log(fff(1));
+
+</pre>
+</div>
+
+<pre class="example">
+5
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgaf0ee43" class="outline-2">
+<h2 id="orgaf0ee43">Jest</h2>
+<div class="outline-text-2" id="text-orgaf0ee43">
+</div>
+<div id="outline-container-orgfbdef93" class="outline-3">
+<h3 id="orgfbdef93">init</h3>
+<div class="outline-text-3" id="text-orgfbdef93">
+<ul class="org-ul">
+<li>init</li>
+</ul>
+<p>
+npx jest &#x2013;init  
+npx jest &#x2013;coverage / npm run coverage
+</p>
+
+<ul class="org-ul">
+<li>autodetect</li>
+</ul>
+<p>
+packages.json-&gt;"scripts":
+"test":"jest", -&#x2014;&gt;&gt;&gt;&gt; "test":"jest &#x2013;watchAll",
+</p>
+
+<ul class="org-ul">
+<li>babel</li>
+</ul>
+<p>
+npm install @bable/core@7.4.5 @bable/preset-env@7.4.5 -D
+touch .babelrc
+</p>
+
+<ul class="org-ul">
+<li>model</li>
+</ul>
+<p>
+a model
+o model
+f model 
+p model
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-11-28 Sun 10:35</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>

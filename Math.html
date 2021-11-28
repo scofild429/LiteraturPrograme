@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-11-28 Sun 10:35 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Math</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css" />
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Math</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org7861a69">Statistic</a>
+<ul>
+<li><a href="#org2da945f">Gauss distribution</a></li>
+<li><a href="#org20f37db">Co-variance matrix 协方差矩阵</a></li>
+<li><a href="#org51dcb38">Maximun likelihood</a></li>
+</ul>
+</li>
+<li><a href="#orgc67952e">linear Argebra</a>
+<ul>
+<li><a href="#org96727d3">Matrix</a>
+<ul>
+<li><a href="#orgee17c2e">Graph</a></li>
+<li><a href="#org304c03d">transpose Matrix</a></li>
+<li><a href="#orgae22a62">Conjugate transpose Matrix</a></li>
+<li><a href="#org5d5770e">Normal Matrix</a></li>
+<li><a href="#org6b647a8">Unitary Matrix</a></li>
+<li><a href="#org1d332c2">orthogonal matrix</a></li>
+<li><a href="#org24e7e92">Hermitian matrix</a></li>
+</ul>
+</li>
+<li><a href="#org849b300">Transform</a>
+<ul>
+<li><a href="#org7c528ed">Jacobin matrix</a></li>
+</ul>
+</li>
+<li><a href="#org243678f">Eigenwertzerlegung</a></li>
+<li><a href="#orgcdf18ae">Einzelwertzerlegung</a></li>
+</ul>
+</li>
+<li><a href="#org2c00d63">Advanced Math Methode</a>
+<ul>
+<li><a href="#orgda84515">Transfromation</a>
+<ul>
+<li><a href="#org6b73c5c">Fourier Transfromation</a></li>
+<li><a href="#org1d1dd30">Laplace Transfromation</a></li>
+</ul>
+</li>
+<li><a href="#org12c1b32">Convolution law</a></li>
+<li><a href="#orgf34f9bd">Grope Unvolstandige Theorie</a>
+<ul>
+<li><a href="#org08880de">Maxwell's Equations</a></li>
+<li><a href="#orgd1aaab2">sammlungen von Grope</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgb394d30">Kalman Filter</a>
+<ul>
+<li><a href="#org3267f95">descripation</a></li>
+<li><a href="#org47c26b8">kalman filter process</a></li>
+<li><a href="#org5153096">python code</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7861a69" class="outline-2">
+<h2 id="org7861a69">Statistic</h2>
+<div class="outline-text-2" id="text-org7861a69">
+</div>
+<div id="outline-container-org2da945f" class="outline-3">
+<h3 id="org2da945f">Gauss distribution</h3>
+<div class="outline-text-3" id="text-org2da945f">
+<p>
+标准高斯分布的积分包含了高斯积分
+</p>
+</div>
+</div>
+<div id="outline-container-org20f37db" class="outline-3">
+<h3 id="org20f37db">Co-variance matrix 协方差矩阵</h3>
+<div class="outline-text-3" id="text-org20f37db">
+<p>
+<a id="org8d0a235"></a>
+for i = {1&#x2026;n}, \(x_{i}\) is a random variable, which belong to
+Gaussian distribution
+</p>
+
+<p>
+set 
+ \[ X = \left( \begin{aligned}  x_{1} \\ x_{2}\\ . \\. \\x_{n}  \end{aligned}\right) \]
+</p>
+
+
+<p>
+\[ \bar{X} = \left( \begin{aligned}  \bar{x}_{1}
+\\ \bar{x}_{2}\\ . \\. \\ \bar{x}_{n}  \end{aligned} \right) \]
+co-variance matrix \(\Sigma = E [(X-\bar{X})(X-\bar{X})^{T} ]\)
+</p>
+
+\begin{equation}
+\Sigma = 
+  \left(
+  \begin{array}{c}
+          x_{1}-\bar{x}_{1} \\
+          x_{2}-\bar{x}_{2} \\
+          x_{3}-\bar{x}_{3} \\
+          ..                \\
+          x_{n}-\bar{x}_{n} 
+ \end{array}
+ \right)
+   \left(
+  \begin{array}{ccccc}
+          x_{1}-\bar{x}_{1} &
+          x_{2}-\bar{x}_{2} &
+          x_{3}-\bar{x}_{3} &
+          ..                &
+          x_{n}-\bar{x}_{n} 
+  \end{array}
+  \right)
+\end{equation}
+<p>
+对角线上是对应元素的方差，其他是相对于两个元素的协方差
+</p>
+</div>
+</div>
+
+<div id="outline-container-org51dcb38" class="outline-3">
+<h3 id="org51dcb38">Maximun likelihood</h3>
+<div class="outline-text-3" id="text-org51dcb38">
+<pre class="example">
+
+according to the given example finding the most likely distribution model
+1, assign each instance a probability to be happen
+2, descripte the the probability of all such instance happens
+3, logarithm the probability
+4, partial derivative the logarithm
+5, set the partial derivative to be 0, get the probability in 1 step
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc67952e" class="outline-2">
+<h2 id="orgc67952e">linear Argebra</h2>
+<div class="outline-text-2" id="text-orgc67952e">
+</div>
+<div id="outline-container-org96727d3" class="outline-3">
+<h3 id="org96727d3">Matrix</h3>
+<div class="outline-text-3" id="text-org96727d3">
+</div>
+<div id="outline-container-orgee17c2e" class="outline-4">
+<h4 id="orgee17c2e">Graph</h4>
+<div class="outline-text-4" id="text-orgee17c2e">
+<div class="org-src-container">
+<pre class="src src-dot">digraph diagramm {
+
+Symmetry  [shape=box,color=red]
+Normalit&#228;t  [shape=box,color=red]
+Diagroal [shape=box,color=red]
+
+SymmetricalMatrix -&gt; Symmetry[label= <span style="font-style: italic;">"A=A^{T}"</span>] ;
+Symmetry -&gt; HermitianMatrix [label= <span style="font-style: italic;">"A=A^{*}"</span>];
+
+orthogonalMatrix -&gt; Normalit&#228;t[label = <span style="font-style: italic;">"only real"</span>];
+Normalit&#228;t -&gt;  UnitaryMatrix[label = <span style="font-style: italic;">"|A|=|A^{*}|=1"</span>] ;
+
+
+Einzelwertzerlegung -&gt; Diagroal [label = <span style="font-style: italic;">"SVD"</span>] ;
+Eigenwertzerlegung -&gt; Diagroal [label = <span style="font-style: italic;">"for real and symmetrisch"</span>];
+Diagroal -&gt;  Unitaryzerlegung [label =<span style="font-style: italic;">"A=VIV*,I:identity"</span>];
+
+}
+</pre>
+</div>
+
+
+<div class="figure">
+<p><img src="./foto/Matrix_Connection.png" alt="Matrix_Connection.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org304c03d" class="outline-4">
+<h4 id="org304c03d">transpose Matrix</h4>
+<div class="outline-text-4" id="text-org304c03d">
+<p>
+\(A^{T}\)
+</p>
+</div>
+</div>
+<div id="outline-container-orgae22a62" class="outline-4">
+<h4 id="orgae22a62">Conjugate transpose Matrix</h4>
+<div class="outline-text-4" id="text-orgae22a62">
+<p>
+\[ A^{*} = (\bar{A})^{T} = \bar{A^{T}}\]
+共轭转置矩阵, 先共轭再转置，还是先转置再共轭都可以。
+</p>
+</div>
+</div>
+<div id="outline-container-org5d5770e" class="outline-4">
+<h4 id="org5d5770e">Normal Matrix</h4>
+<div class="outline-text-4" id="text-org5d5770e">
+<p>
+\[ A^{*}A = A A^{*}\]
+正定矩阵, 是转置和本身满足交换律
+\[ A = URDU^{-1} \]
+可酉变换
+</p>
+</div>
+</div>
+<div id="outline-container-org6b647a8" class="outline-4">
+<h4 id="org6b647a8">Unitary Matrix</h4>
+<div class="outline-text-4" id="text-org6b647a8">
+<p>
+\[ A^{*}A = A A^{*} = I \]
+ 酉矩阵，是正定矩阵, 即转置和本身满足交换律，而且等于 I 
+</p>
+</div>
+</div>
+<div id="outline-container-org1d332c2" class="outline-4">
+<h4 id="org1d332c2">orthogonal matrix</h4>
+<div class="outline-text-4" id="text-org1d332c2">
+<p>
+实数酉矩阵
+\[
+{\displaystyle Q^{T}=Q^{-1}\Leftrightarrow Q^{T}Q=QQ^{T}=I}
+\]
+得该矩阵的转置矩阵为其逆矩阵
+</p>
+</div>
+</div>
+
+<div id="outline-container-org24e7e92" class="outline-4">
+<h4 id="org24e7e92">Hermitian matrix</h4>
+<div class="outline-text-4" id="text-org24e7e92">
+<p>
+\[ A = A^{H}\], \(a_{i,j} = \bar{a_{j,i}}\)
+共轭对称
+埃尔米特矩阵，厄米特矩阵，厄米矩阵,所有元素对称出共轭
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org849b300" class="outline-3">
+<h3 id="org849b300">Transform</h3>
+<div class="outline-text-3" id="text-org849b300">
+</div>
+<div id="outline-container-org7c528ed" class="outline-4">
+<h4 id="org7c528ed">Jacobin matrix</h4>
+<div class="outline-text-4" id="text-org7c528ed">
+<p>
+wikipedia
+<a href="https://zh.wikipedia.org/wiki/%E9%9B%85%E5%8F%AF%E6%AF%94%E7%9F%A9%E9%98%B5">chinese link</a>
+<a href="https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant">englich link</a>
+</p>
+
+<p>
+for \[ Y_{m} = f(X_{n}), Y =(y_{1}, y_{2}, y_{3}....y_{m}), X = (x_{1}
+,x_{2}....x_{n}) \]
+\[ d_{Y} = J d_{x}\],
+\[
+{\displaystyle \mathbf {J} ={\begin{bmatrix}{\dfrac {\partial \mathbf
+{f} }{\partial x_{1}}}&\cdots &{\dfrac {\partial \mathbf {f}
+}{\partial x_{n}}}\end{bmatrix}}={\begin{bmatrix}{\dfrac {\partial
+f_{1}}{\partial x_{1}}}&\cdots &{\dfrac {\partial f_{1}}{\partial
+x_{n}}}\\\vdots &\ddots &\vdots \\{\dfrac {\partial f_{m}}{\partial
+x_{1}}}&\cdots &{\dfrac {\partial f_{m}}{\partial
+x_{n}}}\end{bmatrix}}} 
+\]
+由球坐标系到直角坐标系的转化由 F: ℝ+ × [0, π] × [0, 2π) → ℝ3 函数给出，
+其分量为：
+\[
+{\displaystyle {\begin{aligned}x&=r\sin \theta \cos \varphi
+;\\y&=r\sin \theta \sin \varphi ;\\z&=r\cos \theta
+.\end{aligned}}}
+\]
+此坐标变换的雅可比矩阵是
+\[
+{\displaystyle \mathbf {J} _{\mathbf {F} }(r,\theta ,\varphi
+)={\begin{bmatrix}{\dfrac {\partial x}{\partial r}}&{\dfrac {\partial
+x}{\partial \theta }}&{\dfrac {\partial x}{\partial \varphi
+}}\\[1em]{\dfrac {\partial y}{\partial r}}&{\dfrac {\partial
+y}{\partial \theta }}&{\dfrac {\partial y}{\partial \varphi
+}}\\[1em]{\dfrac {\partial z}{\partial r}}&{\dfrac {\partial
+z}{\partial \theta }}&{\dfrac {\partial z}{\partial \varphi
+}}\end{bmatrix}}={\begin{bmatrix}\sin \theta \cos \varphi &r\cos
+\theta \cos \varphi &-r\sin \theta \sin \varphi \\\sin \theta \sin
+\varphi &r\cos \theta \sin \varphi &r\sin \theta \cos \varphi \\\cos
+\theta &-r\sin \theta &0\end{bmatrix}}.}
+\]
+其雅可比行列式为 r2 sin θ，由于 dV = dx dy dz，如果做变数变换的话其体
+积元(Volume element)，dV，会变成：dV = r2 sin θ dr dθ dφ。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org243678f" class="outline-3">
+<h3 id="org243678f">Eigenwertzerlegung</h3>
+<div class="outline-text-3" id="text-org243678f">
+<p>
+对于矩阵求特征值特征向量，特征值分解，但是要求必须是方阵，如果不是，先
+要转换： A = a*a.T
+</p>
+
+<p>
+\[ A=UBU^T \] 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">import</span> numpy <span style="font-weight: bold;">as</span> np
+<span style="font-weight: bold; font-style: italic;">a</span> = np.mat([[1,2,3,4],[1,1,1,1]])
+<span style="font-weight: bold; font-style: italic;">A</span> = a*a.T
+<span style="font-weight: bold; font-style: italic;">B</span>, <span style="font-weight: bold; font-style: italic;">U</span> = np.linalg.eig(A)
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"eigenvalue of A : "</span>)
+<span style="font-weight: bold;">print</span>(B)
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"eigenvalue of a :(should be equal to the following) "</span>)
+<span style="font-weight: bold;">print</span>(np.sqrt(B))
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"eigenvactor : "</span>)
+<span style="font-weight: bold;">print</span>(U)
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcdf18ae" class="outline-3">
+<h3 id="orgcdf18ae">Einzelwertzerlegung</h3>
+<div class="outline-text-3" id="text-orgcdf18ae">
+<p>
+但是对于一般矩阵，不是方阵，可以奇异值分解：
+\[ a = UBV^T , a^{t} = VBU^{T} \]
+\[ A = aa^{T} = UB^{2}U^{T}\]
+\[ A^{'}=a^{T}a=VB^{2}V^{T}\]
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">import</span> numpy <span style="font-weight: bold;">as</span> np
+<span style="font-weight: bold; font-style: italic;">a</span> = np.mat([[1,2,3,4],[1,1,1,1]])
+<span style="font-weight: bold; font-style: italic;">U</span>, <span style="font-weight: bold; font-style: italic;">B</span>, <span style="font-weight: bold; font-style: italic;">Vt</span> = np.linalg.svd(a)
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"left eigenvalue : "</span>)
+<span style="font-weight: bold;">print</span>(U)
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"eigenvactor of a : "</span>)
+<span style="font-weight: bold;">print</span>(B)
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"right eigenvalue : "</span>)
+<span style="font-weight: bold;">print</span>(Vt)
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2c00d63" class="outline-2">
+<h2 id="org2c00d63">Advanced Math Methode</h2>
+<div class="outline-text-2" id="text-org2c00d63">
+</div>
+<div id="outline-container-orgda84515" class="outline-3">
+<h3 id="orgda84515">Transfromation</h3>
+<div class="outline-text-3" id="text-orgda84515">
+</div>
+<div id="outline-container-org6b73c5c" class="outline-4">
+<h4 id="org6b73c5c">Fourier Transfromation</h4>
+<div class="outline-text-4" id="text-org6b73c5c">
+<p>
+periodical function \(f(t) = \sum \sin(\omega t)\) or \(f(t)=\sum
+\cos(\omega t)\).
+</p>
+
+
+<p>
+so  \(f(t) = \frac{a_{0}}{2}+\sum_{n=0}^{\infty } a_{n}\sin(n\omega
+t+\phi_n)\)
+</p>
+
+<p>
+or  \(f(t) = \frac{a_{0}}{2}+\sum_{n=0}^{\infty } a_{n}\sin(n\omega
+t) + \sum_{n=0}^{\infty } a_{n}\cos(n\omega t)\) 
+</p>
+
+<p>
+And There is series orthometric basis (1, \(\sin(n \omega_t)\), \(\cos(n
+\omega_t)\)).
+</p>
+
+
+<p>
+set \(\omega t = \theta\), we use \(e^{\theta j}= \cos\theta +
+j\sin\theta= e^{ \omega t j}\)  to multipy all terms in \(f(x)\), 
+which invokes factor \(\omega\).
+</p>
+
+<p>
+SO \(f(t) \rightarrow F(\omega) = \int_{-\infty}^{+\infty} f(t) e^{-j
+\omega t}dt\)
+and its inverse transfromation: \(F(\omega) \rightarrow f(t) = 
+\int_{-\infty}^{+\infty}F(\omega)e^{j\omega t} d\omega\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1d1dd30" class="outline-4">
+<h4 id="org1d1dd30">Laplace Transfromation</h4>
+<div class="outline-text-4" id="text-org1d1dd30">
+<p>
+If \(f(x)\rightarrow \infty |_{x\rightarrow\infty}\) ,we can use \(e^{-\sigma t}\) to eliminate divergence.
+</p>
+
+<p>
+Laplace transfromation : \(f(t) \rightarrow L(w) = \int_{-\infty}^{\infty}f(t)e^{-\sigma t}e^{-j\omega t} dt\)
+</p>
+
+<p>
+or \(f(t)\rightarrow L(w) =\int_{-\infty}^{\infty}f(w)e^{-st}dt\), where \(s=\sigma + j \omega\)
+</p>
+
+<p>
+note: firstly force to convergence, then fourier transfromed.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org12c1b32" class="outline-3">
+<h3 id="org12c1b32">Convolution law</h3>
+<div class="outline-text-3" id="text-org12c1b32">
+<p>
+Green function propagate function
+ segment \(f(x)\)
+\(f(x) = \int_{-\infty}^{\infty} f(t)\delta(x-t)dt\) 
+</p>
+
+<p>
+convolution
+\((g \ast f)(x) = \int_{-\infty}^{\infty}f(t)g(x-t)dt\) 
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf34f9bd" class="outline-3">
+<h3 id="orgf34f9bd">Grope Unvolstandige Theorie</h3>
+<div class="outline-text-3" id="text-orgf34f9bd">
+</div>
+<div id="outline-container-org08880de" class="outline-4">
+<h4 id="org08880de">Maxwell's Equations</h4>
+<div class="outline-text-4" id="text-org08880de">
+\begin{align}
+\nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} & = \frac{4\pi}{c}\vec{\mathbf{j}} \\
+\nabla \cdot \vec{\mathbf{E}} & = 4 \pi \rho \\
+\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} & = \vec{\mathbf{0}} \\
+\nabla \cdot \vec{\mathbf{B}} & = 0
+\end{align}
+</div>
+</div>
+
+<div id="outline-container-orgd1aaab2" class="outline-4">
+<h4 id="orgd1aaab2">sammlungen von Grope</h4>
+<div class="outline-text-4" id="text-orgd1aaab2">
+<ol class="org-ol">
+<li>G本身和单位元称为G的平凡子集</li>
+<li>群的元素个数称为群的阶</li>
+<li>群的阶数是素数，则该群一定是循环群</li>
+<li>有限群的子集的阶数是该有限群的阶数的约数</li>
+<li>在置换群中，任何一个轮换都可以用其他的对换组合来实现</li>
+<li>在置换群中，如果一个置换能通过奇（偶）数次对换得到，那么它只能有奇
+（偶）数次对换得到</li>
+<li>在一个置换群中，可以奇置换和偶置换的个数应给相等</li>
+<li>由偶置换可以得到一个交错群（包括与单元群的置换）</li>
+<li>阿贝尔群</li>
+<li>\(\beta_1 \times H\) 元素\(\beta_1\) 左乘H的每一个元素得到的就叫: 元素
+\(\beta_1\) 关于H的左陪集</li>
+<li>右陪集亦然， 左右陪集可以不相等</li>
+<li>子群H中每个元素作用于群G,得到的左右陪集都相等，则称H为G的正规子群</li>
+<li>G本身和单位元{e}肯定都是正规子集，但是成为平凡正规子群</li>
+<li>只有群中有正规子集，这该群中肯定存在一个相应的对称</li>
+<li>阿贝尔群的子群肯定是正规子群</li>
+<li>只有当H是正规子群是，商群G/H才是一个群，否则只是一个空间</li>
+<li>单群，没有正规子群的群，是群论中的最小单元</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-orgb394d30" class="outline-2">
+<h2 id="orgb394d30">Kalman Filter</h2>
+<div class="outline-text-2" id="text-orgb394d30">
+</div>
+<div id="outline-container-org3267f95" class="outline-3">
+<h3 id="org3267f95">descripation</h3>
+<div class="outline-text-3" id="text-org3267f95">
+<p>
+For a continus system we can estimate the next predict state
+based on current optimized (best, precise) state and its uncertainies.
+if there is next observe state, we can combine them to a next optimized state
+and get its uncertainies, and ready for next iterative.
+</p>
+
+<p>
+Estimatation Function:
+</p>
+
+
+<p>
+\[X_{k} = FX_{k-1} + B \mu_{k} + \omega_{k}\]
+</p>
+
+
+<p>
+\(X\) stands for the state, with \(n\times a\)
+\(F\) stands for the state Operator with \(n\times n\)
+\(B\) stands for contoller operator
+\(\omega\) is the current system uncertainies and \(Cov(\omega) = Q\) with \(n \times n\)
+</p>
+
+<p>
+Revise Function:
+\[Z_{k} = HX_{k} + \nu_{k}\]
+</p>
+
+<p>
+\(Z\) stands for the observe state, with \(a\times a\)
+\(H\) stands for Observe Operator with \(a \times n\)
+\(\nu\) is the observation uncertainies and \(Cov(\nu) = R\) with \(a \times a\)
+H = \[ \frac{H}{\partial x_{1}}\], \[ \frac{H}{\partial x_{2}}\], \[ \frac{H}{\partial v}\], \[ \frac{H}{\partial \alpha}\],
+</p>
+</div>
+</div>
+
+
+
+
+
+
+<div id="outline-container-org47c26b8" class="outline-3">
+<h3 id="org47c26b8">kalman filter process</h3>
+<div class="outline-text-3" id="text-org47c26b8">
+<p>
+assumpation: we know current state \(X_{k}\), and its uncertainies \(\Sigma_{k}\)
+</p>
+<ol class="org-ol">
+<li>estimatation</li>
+</ol>
+<p>
+\[X_{k+1}^{p} = F X_{k} \]
+\[ \Sigma^{p}_{k+1} = F \Sigma_{k}F^{T} + Q_{k}\]
+\(\Sigma_{k}^{p}, \Sigma_{k+1}^{p}, Q_{k}\) all with \(n \times n\)
+</p>
+
+<p>
+2, kalman filter calcaletation
+\[KF = \frac{ \Sigma_{k}^{p}H^{T}} {(H \Sigma_{k}^{p}H^{T} + R_{k})}\]
+with \(n \times a\):  because Numerator has \(n \times a\) and denominator has \(a \times a\)
+</p>
+
+<p>
+3, Revise resulte
+\[X_{k+1} = X_{k+1}^{p} + KF(Z_{k} -HX_{k+1}^{p})\]
+</p>
+
+<p>
+\[\Sigma_{k+1} = (I-KF * H) \Sigma_{k+1}^{p}\]
+</p>
+</div>
+</div>
+<div id="outline-container-org5153096" class="outline-3">
+<h3 id="org5153096">python code</h3>
+<div class="outline-text-3" id="text-org5153096">
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">_*_ coding:utf-8 _*_</span>
+<span style="font-weight: bold;">import</span> numpy <span style="font-weight: bold;">as</span> np
+<span style="font-weight: bold;">import</span> matplotlib.pyplot <span style="font-weight: bold;">as</span> plt
+
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#21019;&#24314;&#19968;&#20010;0-99&#30340;&#19968;&#32500;&#30697;&#38453;</span>
+<span style="font-weight: bold; font-style: italic;">z</span> = [i <span style="font-weight: bold;">for</span> i <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(100)]
+<span style="font-weight: bold; font-style: italic;">z_watch</span> = np.mat(z)
+<span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">print(np.array(z).shape)</span>
+<span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">print(np.array(z_watch).shape)</span>
+
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#21019;&#24314;&#19968;&#20010;&#26041;&#24046;&#20026;1&#30340;&#39640;&#26031;&#22122;&#22768;&#65292;&#31934;&#30830;&#21040;&#23567;&#25968;&#28857;&#21518;&#20004;&#20301;</span>
+<span style="font-weight: bold; font-style: italic;">noise</span> = np.<span style="font-weight: bold;">round</span>(np.random.normal(0, 1, 100), 2)
+<span style="font-weight: bold; font-style: italic;">noise_mat</span> = np.mat(noise)
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">print(noise_mat)</span>
+
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#23558;z&#30340;&#35266;&#27979;&#20540;&#21644;&#22122;&#22768;&#30456;&#21152;</span>
+<span style="font-weight: bold; font-style: italic;">z_mat</span> = z_watch + noise_mat
+<span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">print(z_mat)</span>
+
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#23450;&#20041;x&#30340;&#21021;&#22987;&#29366;&#24577;</span>
+<span style="font-weight: bold; font-style: italic;">x_mat</span> = np.mat([[0, ], [0, ]])
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">print(x_mat)</span>
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#23450;&#20041;&#21021;&#22987;&#29366;&#24577;&#21327;&#26041;&#24046;&#30697;&#38453;</span>
+<span style="font-weight: bold; font-style: italic;">p_mat</span> = np.mat([[1, 0], [0, 1]])
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#23450;&#20041;&#29366;&#24577;&#36716;&#31227;&#30697;&#38453;&#65292;&#22240;&#20026;&#27599;&#31186;&#38047;&#37319;&#19968;&#27425;&#26679;&#65292;&#25152;&#20197;delta_t = 1</span>
+<span style="font-weight: bold; font-style: italic;">f_mat</span> = np.mat([[1, 1], [0, 1]])
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#23450;&#20041;&#29366;&#24577;&#36716;&#31227;&#21327;&#26041;&#24046;&#30697;&#38453;&#65292;&#36825;&#37324;&#25105;&#20204;&#25226;&#21327;&#26041;&#24046;&#35774;&#32622;&#30340;&#24456;&#23567;&#65292;&#22240;&#20026;&#35273;&#24471;&#29366;&#24577;&#36716;&#31227;&#30697;&#38453;&#20934;&#30830;&#24230;&#39640;</span>
+<span style="font-weight: bold; font-style: italic;">q_mat</span> = np.mat([[0.0001, 0], [0, 0.0001]])
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#23450;&#20041;&#35266;&#27979;&#30697;&#38453;</span>
+<span style="font-weight: bold; font-style: italic;">h_mat</span> = np.mat([1, 0])
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#23450;&#20041;&#35266;&#27979;&#22122;&#22768;&#21327;&#26041;&#24046;</span>
+<span style="font-weight: bold; font-style: italic;">r_mat</span> = np.mat([1])
+
+<span style="font-weight: bold;">for</span> i <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(100):
+    <span style="font-weight: bold; font-style: italic;">x_predict</span> = f_mat * x_mat
+    <span style="font-weight: bold; font-style: italic;">p_predict</span> = f_mat * p_mat * f_mat.T + q_mat
+    <span style="font-weight: bold; font-style: italic;">kalman</span> = p_predict * h_mat.T / (h_mat * p_predict * h_mat.T + r_mat)
+    <span style="font-weight: bold; font-style: italic;">x_mat</span> = x_predict + kalman * (z_mat[0, i] - h_mat * x_predict)
+    <span style="font-weight: bold; font-style: italic;">p_mat</span> = (np.eye(2) - kalman * h_mat) * p_predict
+    plt.plot(x_mat[0, 0], x_mat[1, 0], <span style="font-style: italic;">'ro'</span>, markersize=1)
+plt.show()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2021-11-28 Sun 10:35</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>
