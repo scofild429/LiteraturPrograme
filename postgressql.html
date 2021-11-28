@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-11-28 Sun 10:35 -->
+<!-- 2021-11-28 Sun 10:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Postgresql</title>
@@ -39,41 +39,41 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1aadf1d">basic OP</a>
+<li><a href="#orga443b4a">basic OP</a>
 <ul>
-<li><a href="#orge5314c0">install</a></li>
-<li><a href="#org1cca330">root terminal</a></li>
-<li><a href="#orgfcae022">root login into database</a></li>
-<li><a href="#orgaea2cec">user login</a></li>
-<li><a href="#org74d90f9">set password</a></li>
-<li><a href="#org74b489f">change database</a></li>
-<li><a href="#org14a9e2f">list all users</a></li>
-<li><a href="#org0f2891d">login out</a></li>
+<li><a href="#orgd71d1ce">install</a></li>
+<li><a href="#org4e211ad">root terminal</a></li>
+<li><a href="#orga45d605">root login into database</a></li>
+<li><a href="#orgb65c8fd">user login</a></li>
+<li><a href="#org818a8e9">set password</a></li>
+<li><a href="#orge1968a7">change database</a></li>
+<li><a href="#org5ea9ea6">list all users</a></li>
+<li><a href="#org59156e4">login out</a></li>
 </ul>
 </li>
-<li><a href="#org11bdc9c">src block</a>
+<li><a href="#orgd5b1f47">src block</a>
 <ul>
-<li><a href="#orgad8e5e5">with header</a></li>
-<li><a href="#orge9bc8dc">with session</a></li>
+<li><a href="#orgf56627f">with header</a></li>
+<li><a href="#org04e9e68">with session</a></li>
 </ul>
 </li>
-<li><a href="#orgb9bc260">hpda solution</a>
+<li><a href="#org188d612">hpda solution</a>
 <ul>
-<li><a href="#org88e201d">03-01</a></li>
-<li><a href="#orgc456264">03-02</a></li>
-<li><a href="#org05a7011">04-01</a>
+<li><a href="#org831e230">03-01</a></li>
+<li><a href="#org742478d">03-02</a></li>
+<li><a href="#org870ece2">04-01</a>
 <ul>
-<li><a href="#org55c4946">mapper and reducer in own</a></li>
-<li><a href="#orgf8726d0">sql</a></li>
-<li><a href="#org3aea9a1">select</a></li>
-<li><a href="#orga32ce87">summation</a></li>
-<li><a href="#org23bf346">join</a></li>
+<li><a href="#org9f9c05f">mapper and reducer in own</a></li>
+<li><a href="#org1ad7247">sql</a></li>
+<li><a href="#org13846d2">select</a></li>
+<li><a href="#org2faa677">summation</a></li>
+<li><a href="#org2331ef8">join</a></li>
 </ul>
 </li>
-<li><a href="#org72096e8">04-02</a>
+<li><a href="#org767a1e6">04-02</a>
 <ul>
-<li><a href="#orgc4b2bd9">01</a></li>
-<li><a href="#org0fee01d">02</a></li>
+<li><a href="#org8b328c0">01</a></li>
+<li><a href="#org4a671be">02</a></li>
 </ul>
 </li>
 </ul>
@@ -81,22 +81,22 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org1aadf1d" class="outline-2">
-<h2 id="org1aadf1d">basic OP</h2>
-<div class="outline-text-2" id="text-org1aadf1d">
+<div id="outline-container-orga443b4a" class="outline-2">
+<h2 id="orga443b4a">basic OP</h2>
+<div class="outline-text-2" id="text-orga443b4a">
 </div>
-<div id="outline-container-orge5314c0" class="outline-3">
-<h3 id="orge5314c0">install</h3>
-<div class="outline-text-3" id="text-orge5314c0">
+<div id="outline-container-orgd71d1ce" class="outline-3">
+<h3 id="orgd71d1ce">install</h3>
+<div class="outline-text-3" id="text-orgd71d1ce">
 <p>
 sudo apt install postgresql postgresql-contrib
 </p>
 </div>
 </div>
 
-<div id="outline-container-org1cca330" class="outline-3">
-<h3 id="org1cca330">root terminal</h3>
-<div class="outline-text-3" id="text-org1cca330">
+<div id="outline-container-org4e211ad" class="outline-3">
+<h3 id="org4e211ad">root terminal</h3>
+<div class="outline-text-3" id="text-org4e211ad">
 <p>
 this terminal ist not sufficient to program, but basic shell command can be executed
 login into terminal: 
@@ -106,9 +106,9 @@ psql
 </p>
 </div>
 </div>
-<div id="outline-container-orgfcae022" class="outline-3">
-<h3 id="orgfcae022">root login into database</h3>
-<div class="outline-text-3" id="text-orgfcae022">
+<div id="outline-container-orga45d605" class="outline-3">
+<h3 id="orga45d605">root login into database</h3>
+<div class="outline-text-3" id="text-orga45d605">
 <p>
 sudo -i -u postgres psql(postgres:  default user)
 psql, login into psql user
@@ -116,42 +116,42 @@ if we login, we will be located in a table, which have the same name with user
 </p>
 </div>
 </div>
-<div id="outline-container-orgaea2cec" class="outline-3">
-<h3 id="orgaea2cec">user login</h3>
-<div class="outline-text-3" id="text-orgaea2cec">
+<div id="outline-container-orgb65c8fd" class="outline-3">
+<h3 id="orgb65c8fd">user login</h3>
+<div class="outline-text-3" id="text-orgb65c8fd">
 <p>
 psql -d test -U si -W
 </p>
 </div>
 </div>
-<div id="outline-container-org74d90f9" class="outline-3">
-<h3 id="org74d90f9">set password</h3>
-<div class="outline-text-3" id="text-org74d90f9">
+<div id="outline-container-org818a8e9" class="outline-3">
+<h3 id="org818a8e9">set password</h3>
+<div class="outline-text-3" id="text-org818a8e9">
 <p>
 in database set password for user
 \password user
 </p>
 </div>
 </div>
-<div id="outline-container-org74b489f" class="outline-3">
-<h3 id="org74b489f">change database</h3>
-<div class="outline-text-3" id="text-org74b489f">
+<div id="outline-container-orge1968a7" class="outline-3">
+<h3 id="orge1968a7">change database</h3>
+<div class="outline-text-3" id="text-orge1968a7">
 <p>
 \c database
 </p>
 </div>
 </div>
-<div id="outline-container-org14a9e2f" class="outline-3">
-<h3 id="org14a9e2f">list all users</h3>
-<div class="outline-text-3" id="text-org14a9e2f">
+<div id="outline-container-org5ea9ea6" class="outline-3">
+<h3 id="org5ea9ea6">list all users</h3>
+<div class="outline-text-3" id="text-org5ea9ea6">
 <p>
 \du
 </p>
 </div>
 </div>
-<div id="outline-container-org0f2891d" class="outline-3">
-<h3 id="org0f2891d">login out</h3>
-<div class="outline-text-3" id="text-org0f2891d">
+<div id="outline-container-org59156e4" class="outline-3">
+<h3 id="org59156e4">login out</h3>
+<div class="outline-text-3" id="text-org59156e4">
 <p>
 \q
 </p>
@@ -159,13 +159,13 @@ in database set password for user
 </div>
 </div>
 
-<div id="outline-container-org11bdc9c" class="outline-2">
-<h2 id="org11bdc9c">src block</h2>
-<div class="outline-text-2" id="text-org11bdc9c">
+<div id="outline-container-orgd5b1f47" class="outline-2">
+<h2 id="orgd5b1f47">src block</h2>
+<div class="outline-text-2" id="text-orgd5b1f47">
 </div>
-<div id="outline-container-orgad8e5e5" class="outline-3">
-<h3 id="orgad8e5e5">with header</h3>
-<div class="outline-text-3" id="text-orgad8e5e5">
+<div id="outline-container-orgf56627f" class="outline-3">
+<h3 id="orgf56627f">with header</h3>
+<div class="outline-text-3" id="text-orgf56627f">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="font-weight: bold;">create</span> <span style="font-weight: bold;">table</span> <span style="font-weight: bold;">personv</span> (
  id <span style="font-weight: bold; text-decoration: underline;">int</span>, 
@@ -178,9 +178,9 @@ in database set password for user
 </div>
 </div>
 </div>
-<div id="outline-container-orge9bc8dc" class="outline-3">
-<h3 id="orge9bc8dc">with session</h3>
-<div class="outline-text-3" id="text-orge9bc8dc">
+<div id="outline-container-org04e9e68" class="outline-3">
+<h3 id="org04e9e68">with session</h3>
+<div class="outline-text-3" id="text-org04e9e68">
 <div class="org-src-container">
 <pre class="src src-sql">\l
 </pre>
@@ -193,13 +193,13 @@ in database set password for user
 </div>
 </div>
 </div>
-<div id="outline-container-orgb9bc260" class="outline-2">
-<h2 id="orgb9bc260">hpda solution</h2>
-<div class="outline-text-2" id="text-orgb9bc260">
+<div id="outline-container-org188d612" class="outline-2">
+<h2 id="org188d612">hpda solution</h2>
+<div class="outline-text-2" id="text-org188d612">
 </div>
-<div id="outline-container-org88e201d" class="outline-3">
-<h3 id="org88e201d">03-01</h3>
-<div class="outline-text-3" id="text-org88e201d">
+<div id="outline-container-org831e230" class="outline-3">
+<h3 id="org831e230">03-01</h3>
+<div class="outline-text-3" id="text-org831e230">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="font-weight: bold;">drop</span> <span style="font-weight: bold;">table</span> <span style="font-weight: bold;">if</span> <span style="font-weight: bold;">exists</span> WikipediaArticles ;
 <span style="font-weight: bold;">create</span> <span style="font-weight: bold;">table</span> <span style="font-weight: bold;">WikipediaArticles</span> (
@@ -296,9 +296,9 @@ link <span style="font-weight: bold; text-decoration: underline;">int</span>
 </div>
 </div>
 
-<div id="outline-container-orgc456264" class="outline-3">
-<h3 id="orgc456264">03-02</h3>
-<div class="outline-text-3" id="text-orgc456264">
+<div id="outline-container-org742478d" class="outline-3">
+<h3 id="org742478d">03-02</h3>
+<div class="outline-text-3" id="text-org742478d">
 <div class="org-src-container">
 <pre class="src src-dot">digraph diagramm {
   WikipediaArticles  -&gt; id
@@ -316,13 +316,13 @@ link <span style="font-weight: bold; text-decoration: underline;">int</span>
 </div>
 </div>
 
-<div id="outline-container-org05a7011" class="outline-3">
-<h3 id="org05a7011">04-01</h3>
-<div class="outline-text-3" id="text-org05a7011">
+<div id="outline-container-org870ece2" class="outline-3">
+<h3 id="org870ece2">04-01</h3>
+<div class="outline-text-3" id="text-org870ece2">
 </div>
-<div id="outline-container-org55c4946" class="outline-4">
-<h4 id="org55c4946">mapper and reducer in own</h4>
-<div class="outline-text-4" id="text-org55c4946">
+<div id="outline-container-org9f9c05f" class="outline-4">
+<h4 id="org9f9c05f">mapper and reducer in own</h4>
+<div class="outline-text-4" id="text-org9f9c05f">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">def</span> <span style="font-weight: bold;">mapper</span>(key, value):
   <span style="font-weight: bold; font-style: italic;">words</span> = key.split()
@@ -348,9 +348,9 @@ link <span style="font-weight: bold; text-decoration: underline;">int</span>
 </div>
 </div>
 
-<div id="outline-container-orgf8726d0" class="outline-4">
-<h4 id="orgf8726d0">sql</h4>
-<div class="outline-text-4" id="text-orgf8726d0">
+<div id="outline-container-org1ad7247" class="outline-4">
+<h4 id="org1ad7247">sql</h4>
+<div class="outline-text-4" id="text-org1ad7247">
 <div class="org-src-container">
 <pre class="src src-sh">cat ~/Documents/hpda0404.csv 
 </pre>
@@ -380,9 +380,9 @@ listed <span style="font-weight: bold; text-decoration: underline;">int</span>
 </div>
 </div>
 
-<div id="outline-container-org3aea9a1" class="outline-4">
-<h4 id="org3aea9a1">select</h4>
-<div class="outline-text-4" id="text-org3aea9a1">
+<div id="outline-container-org13846d2" class="outline-4">
+<h4 id="org13846d2">select</h4>
+<div class="outline-text-4" id="text-org13846d2">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">import</span> csv
 <span style="font-weight: bold;">from</span> functools <span style="font-weight: bold;">import</span> <span style="font-weight: bold;">reduce</span>
@@ -408,9 +408,9 @@ listed <span style="font-weight: bold; text-decoration: underline;">int</span>
 </div>
 </div>
 
-<div id="outline-container-orga32ce87" class="outline-4">
-<h4 id="orga32ce87">summation</h4>
-<div class="outline-text-4" id="text-orga32ce87">
+<div id="outline-container-org2faa677" class="outline-4">
+<h4 id="org2faa677">summation</h4>
+<div class="outline-text-4" id="text-org2faa677">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">import</span> csv
 <span style="font-weight: bold;">from</span> functools <span style="font-weight: bold;">import</span> <span style="font-weight: bold;">reduce</span>
@@ -444,9 +444,9 @@ listed <span style="font-weight: bold; text-decoration: underline;">int</span>
 </div>
 </div>
 
-<div id="outline-container-org23bf346" class="outline-4">
-<h4 id="org23bf346">join</h4>
-<div class="outline-text-4" id="text-org23bf346">
+<div id="outline-container-org2331ef8" class="outline-4">
+<h4 id="org2331ef8">join</h4>
+<div class="outline-text-4" id="text-org2331ef8">
 <div class="org-src-container">
 <pre class="src src-sh">cat ~/Documents/hpda0404a.csv 
 cat ~/Documents/hpda0404b.csv
@@ -487,13 +487,13 @@ cat ~/Documents/hpda0404b.csv
 </div>
 </div>
 
-<div id="outline-container-org72096e8" class="outline-3">
-<h3 id="org72096e8">04-02</h3>
-<div class="outline-text-3" id="text-org72096e8">
+<div id="outline-container-org767a1e6" class="outline-3">
+<h3 id="org767a1e6">04-02</h3>
+<div class="outline-text-3" id="text-org767a1e6">
 </div>
-<div id="outline-container-orgc4b2bd9" class="outline-4">
-<h4 id="orgc4b2bd9">01</h4>
-<div class="outline-text-4" id="text-orgc4b2bd9">
+<div id="outline-container-org8b328c0" class="outline-4">
+<h4 id="org8b328c0">01</h4>
+<div class="outline-text-4" id="text-org8b328c0">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">from</span> nltk.stem.snowball <span style="font-weight: bold;">import</span> SnowballStemmer
 <span style="font-weight: bold;">from</span> nltk.stem <span style="font-weight: bold;">import</span> WordNetLemmatizer
@@ -533,14 +533,14 @@ cat ~/Documents/hpda0404b.csv
 </div>
 </div>
 </div>
-<div id="outline-container-org0fee01d" class="outline-4">
-<h4 id="org0fee01d">02</h4>
+<div id="outline-container-org4a671be" class="outline-4">
+<h4 id="org4a671be">02</h4>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2021-11-28 Sun 10:35</p>
+<p class="date">Created: 2021-11-28 Sun 10:54</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
 <p class="validation"></p>
 </div>
