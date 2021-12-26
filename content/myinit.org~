@@ -425,9 +425,6 @@ C-c , jedi: go to definition pop marker
 
 ** eamcs notebook
 *** Install
-
-sudo apt install jupyter-notebook
-
 official link [[https://tkf.github.io/emacs-ipython-notebook/#][document]]
 emacs ipython notebook [[https://github.com/millejoh/emacs-ipython-notebook][github link]]
 
@@ -482,25 +479,21 @@ C-c C-o ( open the the ipython mode)
 
 ** emacs-jupyter lab 
 #+begin_src emacs-lisp
-    (use-package jupyter
-      :ensure )
+  (use-package jupyter
+    :ensure )
+    ;; (let ((client (jupyter-kernel-client)))
+    ;;   (jupyter-comm-initialize client "kernel1234.json")
+    ;;   (jupyter-start-channels client))
 
-  ;; (add-to-list 'load-path "/snap/bin/jupyter")
-  ;; (require 'jupyter)
+    ;; (use-package simple-httpd)
+    ;;   (require 'simple-httpd)
+    ;;   (setq httpd-root "/var/www")
+    ;;   (httpd-start)
 
-      ;; (let ((client (jupyter-kernel-client)))
-      ;;   (jupyter-comm-initialize client "kernel1234.json")
-      ;;   (jupyter-start-channels client))
-
-      ;; (use-package simple-httpd)
-      ;;   (require 'simple-httpd)
-      ;;   (setq httpd-root "/var/www")
-      ;;   (httpd-start)
-
-      ;; (use-package edit-server)
-      ;;   (require 'edit-server)
-      ;;   (edit-server-start)
-      ;;   (load-file "~/.emacs.d/packages/jupyterlab_emacs/edit_server_jupyterlab.el")
+    ;; (use-package edit-server)
+    ;;   (require 'edit-server)
+    ;;   (edit-server-start)
+    ;;   (load-file "~/.emacs.d/packages/jupyterlab_emacs/edit_server_jupyterlab.el")
 
 #+end_src
 
@@ -933,15 +926,15 @@ M-x echo-keys-mode
 install cnfonts
 M-x cnfonts-edit-profile
 #+begin_src emacs-lisp
-  ;; (use-package cnfonts
-  ;; :ensure t
-  ;; :config )
+  (use-package cnfonts
+  :ensure t
+  :config )
 
   ;;(require 'cnfonts)
    ;; 让 cnfonts 随着 Emacs 自动生效。
-;;   (cnfonts-enable)
+   (cnfonts-enable)
    ;; 让 spacemacs mode-line 中的 Unicode 图标正确显示。
-  ;;(cnfonts-set-spacemacs-fallback-fonts)
+  (cnfonts-set-spacemacs-fallback-fonts)
 
 #+end_src
 
@@ -2266,31 +2259,31 @@ $\mathcal{B}$
 #+END_SRC
 ** execute Program
 #+BEGIN_SRC emacs-lisp
-  (setq org-confirm-babel-evaluate nil
-        org-src-fontify-natively t
-        org-src-tab-acts-natively t)
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((python . t)
-     (ipython . t)
-     (emacs-lisp . t)
-     (java . t)
-     (shell . t)
-     (sql . t)
-     (C . t)
-     (js . t)
-     (dot . t)
-     (plantuml . t)
-     (ditaa . t)
-     (haskell . t)
-     (dot . t)
-     (org . t)
-     (latex . t )
-     (typescript . t)
-;;     (scala . t)
-     (mongo . t)
-     ))
-  (with-eval-after-load 'org)
+    (setq org-confirm-babel-evaluate nil
+          org-src-fontify-natively t
+          org-src-tab-acts-natively t)
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((python . t)
+       (ipython . t)
+       (emacs-lisp . t)
+       (java . t)
+       (shell . t)
+       (sql . t)
+       (C . t)
+       (js . t)
+       (dot . t)
+       (plantuml . t)
+       (ditaa . t)
+       (haskell . t)
+       (dot . t)
+       (org . t)
+       (latex . t )
+       (typescript . t)
+  ;;     (scala . t)
+       ))
+
+    (with-eval-after-load 'org)
 
 #+END_SRC
 #+RESULTS:
@@ -2331,78 +2324,72 @@ so the comands from Emacs wiki works
 
 * Scala
 #+begin_src emacs-lisp
-    (use-package scala-mode
-      :interpreter
-      ("scala" . scala-mode))
+  (use-package scala-mode
+    :interpreter
+    ("scala" . scala-mode))
+
+  ;; (use-package sbt-mode
+  ;;   :commands sbt-start sbt-command
+  ;;   :config
+  ;;   ;; WORKAROUND: allows using SPACE when in the minibuffer
+  ;;   (substitute-key-definition
+  ;;    'minibuffer-complete-word
+  ;;    'self-insert-command
+  ;;    minibuffer-local-completion-map))
 
 
   ;; (use-package scala-mode
   ;;   :mode "\\.s\\(cala\\|bt\\)$"
   ;;   :config
-  ;;     (load-file "~/.emacs.d/packages/ob-scala.el"))
-
-    ;; (use-package sbt-mode
-    ;;   :commands sbt-start sbt-command
-    ;;   :config
-    ;;   ;; WORKAROUND: allows using SPACE when in the minibuffer
-    ;;   (substitute-key-definition
-    ;;    'minibuffer-complete-word
-    ;;    'self-insert-command
-    ;;    minibuffer-local-completion-map))
+  ;;   (load-file "~/.emacs.d/loadpath/ob-scala.el"))
 
 
-    ;; (use-package scala-mode
-    ;;   :mode "\\.s\\(cala\\|bt\\)$"
-    ;;   :config
-    ;;   (load-file "~/.emacs.d/loadpath/ob-scala.el"))
-
-
-    ;; (use-package ob-ammonite
-    ;;   :ensure-system-package (amm . "sudo sh -c '(echo \"#!/usr/bin/env sh\" && curl -L https://github.com/lihaoyi/Ammonite/releases/download/2.0.4/2.13-2.0.4) > /usr/local/bin/amm && chmod +x /usr/local/bin/amm' && amm")
-    ;;   :defer 1
-    ;;   :config
-    ;;   (use-package ammonite-term-repl)
-    ;;   (setq ammonite-term-repl-auto-detect-predef-file nil)
-    ;;   (setq ammonite-term-repl-program-args '("--no-remote-logging" "--no-default-predef" "--no-home-predef"))
-    ;;   (defun my/substitute-sbt-deps-with-ammonite ()
-    ;;     "Substitute sbt-style dependencies with ammonite ones."
-    ;;     (interactive)
-    ;;     (apply 'narrow-to-region (if (region-active-p) (my/cons-cell-to-list (region-bounds)) `(,(point-min) ,(point-max))))
-    ;;     (goto-char (point-min))
-    ;;     (let ((regex "\"\\(.+?\\)\"[ ]+%\\{1,2\\}[ ]+\"\\(.+?\\)\"[ ]+%\\{1,2\\}[ ]+\"\\(.+?\\)\"")
-    ;;           (res))
-    ;;       (while (re-search-forward regex nil t)
-    ;;         (let* ((e (point))
-    ;;                (b (search-backward "\"" nil nil 6))
-    ;;                (s (buffer-substring-no-properties b e))
-    ;;                (s-without-percent (apply 'concat (split-string s "%")))
-    ;;                (s-without-quotes (remove-if (lambda (x) (eq x ?" ;"
-    ;;                                                             ))
-    ;;                                             s-without-percent))
-    ;;                (s-as-list (split-string s-without-quotes)))
-    ;;           (delete-region b e)
-    ;;           (goto-char b)
-    ;;           (insert (format "import $ivy.`%s::%s:%s`" (first s-as-list) (second s-as-list) (third s-as-list)))
-    ;;           )
-    ;;         )
-    ;;       res)
-    ;;     (widen)))
+  ;; (use-package ob-ammonite
+  ;;   :ensure-system-package (amm . "sudo sh -c '(echo \"#!/usr/bin/env sh\" && curl -L https://github.com/lihaoyi/Ammonite/releases/download/2.0.4/2.13-2.0.4) > /usr/local/bin/amm && chmod +x /usr/local/bin/amm' && amm")
+  ;;   :defer 1
+  ;;   :config
+  ;;   (use-package ammonite-term-repl)
+  ;;   (setq ammonite-term-repl-auto-detect-predef-file nil)
+  ;;   (setq ammonite-term-repl-program-args '("--no-remote-logging" "--no-default-predef" "--no-home-predef"))
+  ;;   (defun my/substitute-sbt-deps-with-ammonite ()
+  ;;     "Substitute sbt-style dependencies with ammonite ones."
+  ;;     (interactive)
+  ;;     (apply 'narrow-to-region (if (region-active-p) (my/cons-cell-to-list (region-bounds)) `(,(point-min) ,(point-max))))
+  ;;     (goto-char (point-min))
+  ;;     (let ((regex "\"\\(.+?\\)\"[ ]+%\\{1,2\\}[ ]+\"\\(.+?\\)\"[ ]+%\\{1,2\\}[ ]+\"\\(.+?\\)\"")
+  ;;           (res))
+  ;;       (while (re-search-forward regex nil t)
+  ;;         (let* ((e (point))
+  ;;                (b (search-backward "\"" nil nil 6))
+  ;;                (s (buffer-substring-no-properties b e))
+  ;;                (s-without-percent (apply 'concat (split-string s "%")))
+  ;;                (s-without-quotes (remove-if (lambda (x) (eq x ?" ;"
+  ;;                                                             ))
+  ;;                                             s-without-percent))
+  ;;                (s-as-list (split-string s-without-quotes)))
+  ;;           (delete-region b e)
+  ;;           (goto-char b)
+  ;;           (insert (format "import $ivy.`%s::%s:%s`" (first s-as-list) (second s-as-list) (third s-as-list)))
+  ;;           )
+  ;;         )
+  ;;       res)
+  ;;     (widen)))
 
 
 
 
 
-    ;; (use-package sbt-mode
-    ;;   :commands sbt-start sbt-command
-    ;;   :custom
-    ;;   (sbt:default-command "testQuick")
-    ;;   :config
-    ;;   ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
-    ;;   ;; allows using SPACE when in the minibuffer
-    ;;   (substitute-key-definition
-    ;;    'minibuffer-complete-word
-    ;;    'self-insert-command
-    ;;    minibuffer-local-completion-map))
+  ;; (use-package sbt-mode
+  ;;   :commands sbt-start sbt-command
+  ;;   :custom
+  ;;   (sbt:default-command "testQuick")
+  ;;   :config
+  ;;   ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
+  ;;   ;; allows using SPACE when in the minibuffer
+  ;;   (substitute-key-definition
+  ;;    'minibuffer-complete-word
+  ;;    'self-insert-command
+  ;;    minibuffer-local-completion-map))
 
 #+end_src
 

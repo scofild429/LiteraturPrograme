@@ -253,7 +253,8 @@ isolation:
 M-x :dap-debug
 
 * MongoDB
-** open the mongodb service
+** install
+go to official seit and stetp by step
 
 |-------------+-----------|
 | commonds    | functions |
@@ -279,10 +280,11 @@ M-x :dap-debug
 sudo systemctl start mongod
 #+end_src
 
+#+RESULTS:
+
 ** create database, collections, and drops 
 :admin  at the first step, we must login into one  database
-
-#+begin_src mongo  :db admin
+#+begin_src mongo  :db testdatabase 
   show dbs;
   use xiaoma;
   db.createCollection("posts");
@@ -291,9 +293,21 @@ sudo systemctl start mongod
   db.dropDatabase();
 #+end_src
 
+#+RESULTS:
+: admin         0.000GB
+: config        0.000GB
+: local         0.000GB
+: testdatabase  0.000GB
+: switched to db xiaoma
+: { "ok" : 1 }
+: posts
+: true
+: { "ok" : 1 }
+
 ** create database, collections, and documents
 
-#+begin_src mongo  :db admin
+#+begin_src mongo  :db testdatabase 
+
   use xiaoma;
   db.createCollection("posts");
   show collections;
@@ -317,6 +331,30 @@ sudo systemctl start mongod
   db.posts.drop();
   db.dropDatabase();
 #+end_src
+
+#+RESULTS:
+#+begin_example
+switched to db xiaoma
+{ "ok" : 1 }
+posts
+WriteResult({ "nInserted" : 1 })
+WriteResult({ "nInserted" : 1 })
+WriteResult({ "nInserted" : 1 })
+{ "_id" : ObjectId("61ade9b376bfe974bdf52778"), "title" : "my first blog", "content" : "can be start" }
+{ "_id" : ObjectId("61ade9b376bfe974bdf52779"), "title" : "my second blog", "content" : "can be start now", "tag" : [ "unknow type" ] }
+{ "_id" : ObjectId("61ade9b376bfe974bdf5277a"), "title" : "this is my 3th blog" }
+{ "_id" : ObjectId("61ade9b376bfe974bdf5277b"), "title" : "this is my 4th blog" }
+{ "_id" : ObjectId("61ade9b376bfe974bdf5277c"), "title" : "this is my 5th blog" }
+{ "_id" : ObjectId("61ade9b376bfe974bdf5277d"), "title" : "this is my 6th blog" }
+{ "_id" : ObjectId("61ade9b376bfe974bdf5277e"), "title" : "this is my 7th blog" }
+{ "_id" : ObjectId("61ade9b376bfe974bdf5277f"), "title" : "this is my 8th blog" }
+{ "_id" : ObjectId("61ade9b376bfe974bdf52780"), "title" : "this is my 9th blog" }
+{ "_id" : ObjectId("61ade9b376bfe974bdf52781"), "title" : "this is my 10th blog" }
+10
+WriteResult({ "nRemoved" : 10 })
+true
+{ "ok" : 1 }
+#+end_example
 
 ** backup and restore
 mongo xiaoma  : can just get in xiaoma database
@@ -578,6 +616,18 @@ sudo npm i json-server
 list all installed packages
 npm list -g --depth=0
 npm uninstall reveal.js
+
+* nvm
+#+begin_src 
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+nvm ls-remote
+nvm install node (the least version)
+nvm ls
+nvm install v16.13.1
+nvm ls
+nvm install v17.2.0
+nvm ls
+#+end_src
 
 * Vue
 ** 数据绑定

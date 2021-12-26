@@ -58,7 +58,7 @@
 ;;open myinit.org file  with f2
 (defun open-my-init-org-file()
   (interactive)
-  (find-file "~/Dropbox/sammelungen/content/myinit.org"))
+  (find-file "~/Dropbox/LiteraturPrograme/content/myinit.org"))
 (global-set-key (kbd "<f2>") 'open-my-init-org-file)
 
 ;;open .bashrc file with f3
@@ -276,20 +276,24 @@
 ;; :hook (python-mode . lsp-deferred))
 
 (use-package jupyter
-  :ensure )
-  ;; (let ((client (jupyter-kernel-client)))
-  ;;   (jupyter-comm-initialize client "kernel1234.json")
-  ;;   (jupyter-start-channels client))
+    :ensure )
 
-  ;; (use-package simple-httpd)
-  ;;   (require 'simple-httpd)
-  ;;   (setq httpd-root "/var/www")
-  ;;   (httpd-start)
+;; (add-to-list 'load-path "/snap/bin/jupyter")
+;; (require 'jupyter)
 
-  ;; (use-package edit-server)
-  ;;   (require 'edit-server)
-  ;;   (edit-server-start)
-  ;;   (load-file "~/.emacs.d/packages/jupyterlab_emacs/edit_server_jupyterlab.el")
+    ;; (let ((client (jupyter-kernel-client)))
+    ;;   (jupyter-comm-initialize client "kernel1234.json")
+    ;;   (jupyter-start-channels client))
+
+    ;; (use-package simple-httpd)
+    ;;   (require 'simple-httpd)
+    ;;   (setq httpd-root "/var/www")
+    ;;   (httpd-start)
+
+    ;; (use-package edit-server)
+    ;;   (require 'edit-server)
+    ;;   (edit-server-start)
+    ;;   (load-file "~/.emacs.d/packages/jupyterlab_emacs/edit_server_jupyterlab.el")
 
 (use-package haskell-mode
 :ensure t
@@ -590,15 +594,15 @@ With one universal prefix argument, only tangle the block at point."
 
 (provide 'echo-keys)
 
-(use-package cnfonts
-:ensure t
-:config )
+;; (use-package cnfonts
+  ;; :ensure t
+  ;; :config )
 
-;;(require 'cnfonts)
- ;; 让 cnfonts 随着 Emacs 自动生效。
- (cnfonts-enable)
- ;; 让 spacemacs mode-line 中的 Unicode 图标正确显示。
-(cnfonts-set-spacemacs-fallback-fonts)
+  ;;(require 'cnfonts)
+   ;; 让 cnfonts 随着 Emacs 自动生效。
+;;   (cnfonts-enable)
+   ;; 让 spacemacs mode-line 中的 Unicode 图标正确显示。
+  ;;(cnfonts-set-spacemacs-fallback-fonts)
 
 (use-package evil
   :ensure t
@@ -895,7 +899,7 @@ With one universal prefix argument, only tangle the block at point."
   (setq url-automatic-caching t)
 
   ;; Example Key binding
-  (global-set-key (kbd "C-M-w") 'youdao-dictionary-search-at-point)
+  (global-set-key (kbd "C-M-w") 'youdao-dictionary-search-at-point+)
 
   ;; Integrate with popwin-el (https://github.com/m2ym/popwin-el)
   ;; (push "*Youdao Dictionary*" popwin:special-display-config)
@@ -1232,8 +1236,8 @@ With one universal prefix argument, only tangle the block at point."
      (latex . t )
      (typescript . t)
 ;;     (scala . t)
+     (mongo . t)
      ))
-
   (with-eval-after-load 'org)
 
 (use-package atomic-chrome
@@ -1254,71 +1258,77 @@ With one universal prefix argument, only tangle the block at point."
 ;; (global-set-key (kbd "C-M-a") 'mc/mark-all-like-this)
 
 (use-package scala-mode
-  :interpreter
-  ("scala" . scala-mode))
-
-;; (use-package sbt-mode
-;;   :commands sbt-start sbt-command
-;;   :config
-;;   ;; WORKAROUND: allows using SPACE when in the minibuffer
-;;   (substitute-key-definition
-;;    'minibuffer-complete-word
-;;    'self-insert-command
-;;    minibuffer-local-completion-map))
+    :interpreter
+    ("scala" . scala-mode))
 
 
 ;; (use-package scala-mode
 ;;   :mode "\\.s\\(cala\\|bt\\)$"
 ;;   :config
-;;   (load-file "~/.emacs.d/loadpath/ob-scala.el"))
+;;     (load-file "~/.emacs.d/packages/ob-scala.el"))
+
+  ;; (use-package sbt-mode
+  ;;   :commands sbt-start sbt-command
+  ;;   :config
+  ;;   ;; WORKAROUND: allows using SPACE when in the minibuffer
+  ;;   (substitute-key-definition
+  ;;    'minibuffer-complete-word
+  ;;    'self-insert-command
+  ;;    minibuffer-local-completion-map))
 
 
-;; (use-package ob-ammonite
-;;   :ensure-system-package (amm . "sudo sh -c '(echo \"#!/usr/bin/env sh\" && curl -L https://github.com/lihaoyi/Ammonite/releases/download/2.0.4/2.13-2.0.4) > /usr/local/bin/amm && chmod +x /usr/local/bin/amm' && amm")
-;;   :defer 1
-;;   :config
-;;   (use-package ammonite-term-repl)
-;;   (setq ammonite-term-repl-auto-detect-predef-file nil)
-;;   (setq ammonite-term-repl-program-args '("--no-remote-logging" "--no-default-predef" "--no-home-predef"))
-;;   (defun my/substitute-sbt-deps-with-ammonite ()
-;;     "Substitute sbt-style dependencies with ammonite ones."
-;;     (interactive)
-;;     (apply 'narrow-to-region (if (region-active-p) (my/cons-cell-to-list (region-bounds)) `(,(point-min) ,(point-max))))
-;;     (goto-char (point-min))
-;;     (let ((regex "\"\\(.+?\\)\"[ ]+%\\{1,2\\}[ ]+\"\\(.+?\\)\"[ ]+%\\{1,2\\}[ ]+\"\\(.+?\\)\"")
-;;           (res))
-;;       (while (re-search-forward regex nil t)
-;;         (let* ((e (point))
-;;                (b (search-backward "\"" nil nil 6))
-;;                (s (buffer-substring-no-properties b e))
-;;                (s-without-percent (apply 'concat (split-string s "%")))
-;;                (s-without-quotes (remove-if (lambda (x) (eq x ?" ;"
-;;                                                             ))
-;;                                             s-without-percent))
-;;                (s-as-list (split-string s-without-quotes)))
-;;           (delete-region b e)
-;;           (goto-char b)
-;;           (insert (format "import $ivy.`%s::%s:%s`" (first s-as-list) (second s-as-list) (third s-as-list)))
-;;           )
-;;         )
-;;       res)
-;;     (widen)))
+  ;; (use-package scala-mode
+  ;;   :mode "\\.s\\(cala\\|bt\\)$"
+  ;;   :config
+  ;;   (load-file "~/.emacs.d/loadpath/ob-scala.el"))
+
+
+  ;; (use-package ob-ammonite
+  ;;   :ensure-system-package (amm . "sudo sh -c '(echo \"#!/usr/bin/env sh\" && curl -L https://github.com/lihaoyi/Ammonite/releases/download/2.0.4/2.13-2.0.4) > /usr/local/bin/amm && chmod +x /usr/local/bin/amm' && amm")
+  ;;   :defer 1
+  ;;   :config
+  ;;   (use-package ammonite-term-repl)
+  ;;   (setq ammonite-term-repl-auto-detect-predef-file nil)
+  ;;   (setq ammonite-term-repl-program-args '("--no-remote-logging" "--no-default-predef" "--no-home-predef"))
+  ;;   (defun my/substitute-sbt-deps-with-ammonite ()
+  ;;     "Substitute sbt-style dependencies with ammonite ones."
+  ;;     (interactive)
+  ;;     (apply 'narrow-to-region (if (region-active-p) (my/cons-cell-to-list (region-bounds)) `(,(point-min) ,(point-max))))
+  ;;     (goto-char (point-min))
+  ;;     (let ((regex "\"\\(.+?\\)\"[ ]+%\\{1,2\\}[ ]+\"\\(.+?\\)\"[ ]+%\\{1,2\\}[ ]+\"\\(.+?\\)\"")
+  ;;           (res))
+  ;;       (while (re-search-forward regex nil t)
+  ;;         (let* ((e (point))
+  ;;                (b (search-backward "\"" nil nil 6))
+  ;;                (s (buffer-substring-no-properties b e))
+  ;;                (s-without-percent (apply 'concat (split-string s "%")))
+  ;;                (s-without-quotes (remove-if (lambda (x) (eq x ?" ;"
+  ;;                                                             ))
+  ;;                                             s-without-percent))
+  ;;                (s-as-list (split-string s-without-quotes)))
+  ;;           (delete-region b e)
+  ;;           (goto-char b)
+  ;;           (insert (format "import $ivy.`%s::%s:%s`" (first s-as-list) (second s-as-list) (third s-as-list)))
+  ;;           )
+  ;;         )
+  ;;       res)
+  ;;     (widen)))
 
 
 
 
 
-;; (use-package sbt-mode
-;;   :commands sbt-start sbt-command
-;;   :custom
-;;   (sbt:default-command "testQuick")
-;;   :config
-;;   ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
-;;   ;; allows using SPACE when in the minibuffer
-;;   (substitute-key-definition
-;;    'minibuffer-complete-word
-;;    'self-insert-command
-;;    minibuffer-local-completion-map))
+  ;; (use-package sbt-mode
+  ;;   :commands sbt-start sbt-command
+  ;;   :custom
+  ;;   (sbt:default-command "testQuick")
+  ;;   :config
+  ;;   ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
+  ;;   ;; allows using SPACE when in the minibuffer
+  ;;   (substitute-key-definition
+  ;;    'minibuffer-complete-word
+  ;;    'self-insert-command
+  ;;    minibuffer-local-completion-map))
 
 ;; (use-package leetcode
 ;;   :ensure t

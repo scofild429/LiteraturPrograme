@@ -720,25 +720,23 @@ M-x package-install RET ein RET
 emacs xxx.ipynb 
 C-c C-l/o
 ** commands
-|---------+---------------------------------------------+--------------------|
-| C-c C-a | ein:worksheet-insert-cell-above-km          | 向上插入cell       |
-| C-c C-b | ein:worksheet-insert-cell-below-km          | 向下插入cell       |
-| C-c C-c | ein:worksheet-execute-cell-km               | 执行cell           |
-| C-c C-k | ein:worksheet-kill-cell-km                  | kill cell          |
-| C-c C-s | ein:worksheet-split-cell-at-point-km        | 划分cell           |
-| C-c C-w | ein:worksheet-copy-cell-km                  | 复制cell           |
-| C-c C-l | ein:worksheet-clear-output-km               | 清除结果           |
-| C-c C-u | ein:worksheet-change-cell-type-km           | 更换属性cell       |
-| C-c C-z | ein:notebook-kernel-interrupt-command-km    | 中断cell           |
-| C-c C-y | ein:worksheet-yank-cell-km                  | yank cell          |
-| C-c RET | ein:worksheet-merge-cell-km                 | 向上融合cell       |
-| C-c C-f | ein:file-open-km                            | 打开文件           |
-| M-Ent   | ein:worksheet-execute-cell-and-goto-next-km | execute, goto next |
-|         |                                             |                    |
-|---------+---------------------------------------------+--------------------|
-<C-down>     ein:worksheet-goto-next-input-km
-<C-up>               ein:worksheet-goto-prev-input-km
-
+|---------+---------------------------------------------+---------------------|
+| C-c C-a | ein:worksheet-insert-cell-above-km          | 向上插入cell        |
+| C-c C-b | ein:worksheet-insert-cell-below-km          | 向下插入cell        |
+| C-c C-c | ein:worksheet-execute-cell-km               | 执行cell            |
+| C-c C-k | ein:worksheet-kill-cell-km                  | kill cell           |
+| C-c C-s | ein:worksheet-split-cell-at-point-km        | 划分cell            |
+| C-c C-w | ein:worksheet-copy-cell-km                  | 复制cell            |
+| C-c C-l | ein:worksheet-clear-output-km               | 清除结果            |
+| C-c C-u | ein:worksheet-change-cell-type-km           | 更换属性cell        |
+| C-c C-z | ein:notebook-kernel-interrupt-command-km    | 中断cell            |
+| C-c C-y | ein:worksheet-yank-cell-km                  | yank cell           |
+| C-c RET | ein:worksheet-merge-cell-km                 | 向上融合cell        |
+| C-c C-f | ein:file-open-km                            | 打开文件            |
+| C-c C-p | ein:worksheet-goto-next-input-km            | previous(<C-down>)  |
+| C-c C-n | ein:worksheet-goto-prev-input-km            | Next    (<C-up>)    |
+| M-Ent   | ein:worksheet-execute-cell-and-goto-next-km | execute, goto next  |
+|---------+---------------------------------------------+---------------------|
 
 |-------------+------------------------------------------------|
 | C-u C-c C-c | ein:worksheet-execute-all-cells                |
@@ -752,55 +750,3 @@ C-c C-l/o
 | C-c C-v     | ein:worksheet-set-output-visibility-all-km     |
 | C-c C-x     | Prefix Command                                 |
 |-------------+------------------------------------------------|
-* notebook-jupyter
-
-conda activate tf
-emacs xxx.ipynb
-C-c C-o
-
-official link [[https://tkf.github.io/emacs-ipython-notebook/#][document]]
-emacs ipython notebook [[https://github.com/millejoh/emacs-ipython-notebook][github link]]
-
-** Install
-M-x package-refresh-contents RET
-M-x package-install RET ein RET
-
-emacs xxx.ipynb 
-C-c C-l/o
-** commands
-|----------+---------------------------------------------+--------------------|
-| C-c C-a  | ein:worksheet-insert-cell-above-km          | 向上插入cell       |
-| C-c C-b  | ein:worksheet-insert-cell-below-km          | 向下插入cell       |
-| C-c C-c  | ein:worksheet-execute-cell-km               | 执行cell           |
-| C-c C-k  | ein:worksheet-kill-cell-km                  | kill cell          |
-| C-c C-s  | ein:worksheet-split-cell-at-point-km        | 划分cell           |
-| C-c C-w  | ein:worksheet-copy-cell-km                  | 复制cell           |
-| C-c C-l  | ein:worksheet-clear-output-km               | 清除结果           |
-| C-c C-u  | ein:worksheet-change-cell-type-km           | 更换属性cell       |
-| C-c C-z  | ein:notebook-kernel-interrupt-command-km    | 中断cell           |
-| C-c C-y  | ein:worksheet-yank-cell-km                  | yank cell          |
-| C-c RET  | ein:worksheet-merge-cell-km                 | 向上融合cell       |
-| C-c C-f  | ein:file-open-km                            | 打开文件           |
-| M-Ent    | ein:worksheet-execute-cell-and-goto-next-km | execute, goto next |
-|          |                                             |                    |
-|----------+---------------------------------------------+--------------------|
-| <C-down> | ein:worksheet-goto-next-input-km            |                    |
-| <C-up>   | ein:worksheet-goto-prev-input-km            |                    |
-| C-c down | pull cell down                              |                    |
-| C-c up   | pull cell up                                |                    |
-
-|-------------+------------------------------------------------|
-| C-u C-c C-c | ein:worksheet-execute-all-cells                |
-| C-c C-e     | ein:worksheet-toggle-output-km                 |
-| C-c C-n     | ein:worksheet-goto-next-input-km               |
-| C-c C-o     | ein:notebook-open-km                           |
-| C-c C-p     | ein:worksheet-goto-prev-input-km               |
-| C-c C-q     | ein:notebook-kill-kernel-then-close-command-km |
-| C-c C-r     | ein:notebook-reconnect-session-command-km      |
-| C-c C-t     | ein:worksheet-toggle-cell-type-km              |
-| C-c C-v     | ein:worksheet-set-output-visibility-all-km     |
-| C-c C-x     | Prefix Command                                 |
-|-------------+------------------------------------------------|
-
-
-
