@@ -1,6 +1,6 @@
 #+TITLE:  python
 #+OPTIONS: num:nil
-#+SETUPFILE: /home/silin/.emacs.d/org-html-themes/org/theme-readtheorg.setup
+#+SETUPFILE: /home/si/.emacs.d/org-html-themes/org/theme-readtheorg.setup
 #+STARTUP: overview
 * Install
 ** prerequirement
@@ -26,6 +26,9 @@ deactivate
 sudo apt install python3-venv
 python3 -m venv django
 
+** pip
+pip freeze > requirement.txt
+pip install -r requirement.txt
 * GPU Driver for linux
 ** install  driver 418-server, cuda 10.1, cudnn 7.6.1 
 #+begin_src 
@@ -276,7 +279,7 @@ use yield stead of return
   print(numg)
   numg1 = ( x*x for x in range(8))
   print(numg1)
-        
+
 
 
 #+end_src
@@ -284,8 +287,9 @@ use yield stead of return
 #+RESULTS:
 : [0, 1, 4, 9, 16, 25, 36, 49]
 : [0, 1, 4, 9, 16, 25, 36, 49]
-: <generator object funcg at 0x7f6b248da4d0>
-: <generator object <genexpr> at 0x7f6b248dac50>
+: <generator object funcg at 0x7f654ba98190>
+: <generator object <genexpr> at 0x7f654bb09d20>
+
 ** List
  this can not be execute, otherweise it will dead,rekursive of position 0
 #+BEGIN_SRC python
@@ -620,10 +624,6 @@ and all funtions and parameters can just be called.
   now()
 #+END_SRC
 
-#+RESULTS:
-: kkcall function now with exit():
-: now to start
-
 ** functools
 #+BEGIN_SRC python :results output
 import functools
@@ -764,6 +764,11 @@ step by step with n,
 
 2. import pdb 
 pdb.set_trace() 设置断点
+
+** Copy
+copying fundmental vaiable will creat a new id for assigned varible, 
+copy = [:] for object will create also a new id for new object, but not for nested object
+deepcopy will also creat id for nested object in copyed object
 
 ** Decorator
 decorator just rewrite the function, using call function as argument
@@ -1323,7 +1328,6 @@ print(torch.max(i, 1))
 : indices=tensor([2, 2, 2]))
 
 
-
 ** exsample 3 ploy
 #+begin_src ipython :results output
   import torch
@@ -1655,7 +1659,7 @@ print(torch.max(i, 1))
   print (result_multpl)
 #+END_SRC
 
-*** multiply
+*** mpppultiply
 
 #+BEGIN_SRC python   :results output :session
 
@@ -3873,6 +3877,11 @@ open development and debug mode
 | gg | document begin      |
 | G  | document end        |
 |----+---------------------|
+
+
+
+
+
 
 
 

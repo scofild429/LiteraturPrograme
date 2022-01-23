@@ -5,7 +5,6 @@
 * Install
 ** ISO installation
 
-
 lsblk
 sudo umount....
 sudo mkfs -t ext4 /dev/sda1
@@ -16,7 +15,7 @@ resize the host
 ....
 sudo mkfs -t ext4 /dev/sda
 sudo fdisk -l
-sudo fdisk -l /dev/sda -> m, g, n, 1, Enter, w
+sudo fdisk  /dev/sda -> m, g, n, 1, Enter, w
 
 sudo dd if=/dev/nvm..p1 of=/dev/sda1
 sudo dd if=/dev/nvm..p3 of=/dev/sda2
@@ -31,6 +30,30 @@ lsblk -f
 sudo mkfs -t ext4 /dev/sda
 from Linux:
 sudo dd if=~/Downloads/ubuntu-20.04.3-desktop-amd64.iso of=/dev/sda bs=4M status=progress && sync
+
+** backup and restore
+insert SSD usb
+$ lsblk
+: check the partition of whole disk
+$ sudo fdisk -l
+: check the detail partation
+$ sudo mkfs -t ext4 /dev/sda
+: format sda  disk (can also for partition )
+$ sudo fdisk /dev/sda
+: make new partiation distribation for backup
+$ sudo dd if=/dev/nvmxx2 of=/dev/sda2 bs=4M status=progress && sync
+: backup the whole system disk into sda2 backup partition
+$ disk resize the restore partation
+: this step can open the Disks in APP, and resize the system disk,
+: better if the system disk is 10GB bigger than the backup partition.
+: Later for backup again, don't forget resize it back to backup again
+$ sudo  mkfs -t ext4 /dev/nvmxxx2
+: clean the system partition
+$ sudo dd  if=/dev/sda2 of=/dev/nvmxx2 bs=4M status=progress && sync
+: should be just fine
+
+
+
 
 ** Recover the  fastplatte in windows
 #+BEGIN_SRC 

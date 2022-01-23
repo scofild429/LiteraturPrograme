@@ -86,117 +86,131 @@ input the mapped command
 
 * global settings
 #+BEGIN_SRC emacs-lisp
-  (setq colon-double-space t)
-  ;; tell the Emacs fill commands to insert two spaces after a colon:
+      (setq colon-double-space t)
+      ;; tell the Emacs fill commands to insert two spaces after a colon:
 
-  ;; Rebind 'C-x C-b' for 'buffer-menu'
-  (global-set-key "\C-x\C-b" 'buffer-menu)
-  ;; which not only lists the buffers, but moves point into that window
+      ;; Rebind 'C-x C-b' for 'buffer-menu'
+      (global-set-key "\C-x\C-b" 'buffer-menu)
+      ;; which not only lists the buffers, but moves point into that window
 
-  ;; Set cursor color
-  (set-cursor-color "white")
+      ;; Set cursor color
+      (set-cursor-color "white")
 
-  ;; Set mouse color
-  (set-mouse-color "white")
+      ;; Set mouse color
+      (set-mouse-color "white")
 
-  ;;(setq make-backup-files nil)
+      ;;(setq make-backup-files nil)
 
-  ;;close tool bar 
-  (setq inhibit-startup-message t)
-  (tool-bar-mode -1)
+      ;;close tool bar 
+      (setq inhibit-startup-message t)
+      (tool-bar-mode -1)
 
-  ;;close menu bar
-  (menu-bar-mode -1)
+      ;;close menu bar
+      (menu-bar-mode -1)
 
-  ;;close toggle sroll bar
-  (toggle-scroll-bar -1)
-  ;; parse
-  (show-paren-mode t)
+      ;;close toggle sroll bar
+      (toggle-scroll-bar -1)
+      ;; parse
+      (show-paren-mode t)
 
-  ;; user y and n instead of yes and no 
-  (fset 'yes-or-no-p 'y-or-n-p)
+      ;; user y and n instead of yes and no 
+      (fset 'yes-or-no-p 'y-or-n-p)
 
-  ;; open line number at left side
-  ;;  (global-linum-mode 1)
+      ;; open line number at left side
+      ;;  (global-linum-mode 1)
 
-  ;; emacsclient -a "" -c
-  ;; shortcut to open emacsclient settings in terminal
+      ;; emacsclient -a "" -c
+      ;; shortcut to open emacsclient settings in terminal
 
-  ;; set the meta-key to be super key
-  ;; (setq  x-meta-keysym 'super
-  ;;        x-super-keysym 'meta)
+      ;; set the meta-key to be super key
+      ;; (setq  x-meta-keysym 'super
+      ;;        x-super-keysym 'meta)
 
-  ;; open terminal 
-  (global-set-key "\C-\M-x" 'term)
+      ;; open terminal 
+      (global-set-key "\C-\M-x" 'term)
 
-  ;; open  eshell
-  (global-set-key "\C-x\ \C-x" 'shell)
+      ;; open  eshell
+      (global-set-key "\C-x\ \C-x" 'shell)
 
-  ;;open init.el file with f1
-  (defun open-my-init-file()
-    (interactive)
-    (find-file "~/.emacs.d/init.el"))
-  (global-set-key (kbd "<f1>") 'open-my-init-file)
+      ;;open init.el file with f1
+      (defun open-my-init-file()
+        (interactive)
+        (find-file "~/.emacs.d/init.el"))
+      (global-set-key (kbd "<f1>") 'open-my-init-file)
 
-  ;;open myinit.org file  with f2
-  (defun open-my-init-org-file()
-    (interactive)
-    (find-file "~/Dropbox/LiteraturPrograme/content/myinit.org"))
-  (global-set-key (kbd "<f2>") 'open-my-init-org-file)
+      ;;open myinit.org file  with f2
+      (defun open-my-init-org-file()
+        (interactive)
+        (find-file "~/Dropbox/LiteraturPrograme/content/myinit.org"))
+      (global-set-key (kbd "<f2>") 'open-my-init-org-file)
 
-  ;;open .bashrc file with f3
-  (defun open-my-bash-file()
-    (interactive)
-    (find-file "~/.bashrc"))
-  (global-set-key (kbd "<f3>") 'open-my-bash-file)
+      ;;open .bashrc file with f3
+      (defun open-my-bash-file()
+        (interactive)
+        (find-file "~/.bashrc"))
+      (global-set-key (kbd "<f3>") 'open-my-bash-file)
 
-  ;;open .bashrc file with f4
-  (defun open-my-tagsnote-file()
-    (interactive)
-    (find-file "~/Dropbox/Note/Note.org.gpg"))
-  (global-set-key (kbd "<f4>") 'open-my-tagsnote-file)
-
-
-  ;; trun off cl warning
-  (setq byte-compile-warnings '(cl-functions))
-
-  ;; backup oder
-  (setq backup-directory-alist `(("." . "~/.emacs.d/backup")))
-  (setq backup-by-copying t)
-
-  ;;M-x toggle-truncate-line
-  ;; off the word wrap 是否移动换行
-  (toggle-truncate-lines 1)
-
-  ;; open window horizontally default
-  (setq split-height-threshold nil)
-  (setq split-width-threshold 0 )
+      ;;open .bashrc file with f4
+      (defun open-my-tagsnote-file()
+        (interactive)
+        (find-file "~/Dropbox/Note/Note.org.gpg"))
+      (global-set-key (kbd "<f4>") 'open-my-tagsnote-file)
 
 
-  ;; automatically update file
-  (global-auto-revert-mode t)
+      ;; trun off cl warning
+      (setq byte-compile-warnings '(cl-functions))
 
-  ;;M-n select-current-line
-  (defun select-current-line ()
-    "Select the current line"
-    (interactive)
-    (end-of-line) ; move to end of line
-    (set-mark (line-beginning-position)))
-  (global-set-key (kbd "M-n") 'select-current-line)
+      ;; backup oder
+      (setq backup-directory-alist `(("." . "~/.emacs.d/backup")))
+      (setq backup-by-copying t)
 
-  ;; read only file
-  (global-set-key (kbd "C-M-o") 'read-only-mode)
+      ;;M-x toggle-truncate-line
+      ;; off the word wrap 是否移动换行
+      (toggle-truncate-lines 1)
 
-  ;;add load path
-  (add-to-list 'exec-path "/usr/bin/")
-  (add-to-list 'load-path "~/.emacs.d/loadpath/")
+      ;; open window horizontally default
+      (setq split-height-threshold nil)
+      (setq split-width-threshold 0 )
 
-  ;; this is a interrupt for shell in babel  
-  (setq org-babel-sh-eoe-indicator nil)
+
+      ;; automatically update file
+      (global-auto-revert-mode t)
+
+      ;;M-n select-current-line
+      (defun select-current-line ()
+        "Select the current line"
+        (interactive)
+        (end-of-line) ; move to end of line
+        (set-mark (line-beginning-position)))
+      (global-set-key (kbd "M-n") 'select-current-line)
+
+      ;; read only file
+      (global-set-key (kbd "C-M-o") 'read-only-mode)
+
+      ;;add load path
+      (add-to-list 'exec-path "/usr/bin/")
+      (add-to-list 'load-path "~/.emacs.d/loadpath/")
+
+      ;; this is a interrupt for shell in babel  
+      (setq org-babel-sh-eoe-indicator nil)
+
+
+      ;; toggle the hi lock mode to highlight with command
+       (global-hi-lock-mode 1)
+
+
 #+END_SRC
 
 #+RESULTS:
 : open-my-bash-file
+
+* rainbow mode
+ rainbow to nested parentheses
+#+begin_src emacs-lisp
+  (use-package rainbow-delimiters)
+  (rainbow-delimiters-mode 1)
+#+end_src
+
 * eglot
 #+begin_src emacs-lisp
   (use-package eglot
@@ -210,67 +224,8 @@ input the mapped command
   (add-hook 'vue-mode-hook 'eglot-ensure)
   (add-hook ' python-mode-hook 'eglot-ensure)    
 #+end_src
-* C/C++
-** Rtags
-#+BEGIN_SRC emacs-lisp
-  (use-package yasnippet-snippets
-    :ensure t
-    :config)
-
-  ;; (use-package rtags
-  ;;   :ensure t
-  ;;   :config
-  ;;   (rtags-enable-standard-keybindings)
-  ;;  (setq rtags-autostart-diagnostics t)
-  ;;  (rtags-diagnostics)
-  ;;  (setq rtags-completion-enabled t)
-  ;;  (define-key c-mode-base-map (kbd "M-.")
-  ;;    (function rtags-find-symbol-at-point))
-  ;;  (define-key c-mode-base-map (kbd "M-,")
-  ;;    (function rtags-find-references-at-point))
-  ;;  )
-
-  ;; (use-package cmake-ide
-  ;;   :ensure t
-  ;;   :config
-  ;;   (cmake-ide-setup))
-
-
-#+END_SRC
-** ctags
-#+begin_src emacs-lisp
-   (setq path-to-ctags "/usr/local/bin/ctags")
-   (defun create-tags (dir-name)
-     "Create tags file."
-     (interactive "DDirectory: ")
-     (shell-command
-      (format "%s -f TAGS -e -R %s" path-to-ctags (directory-file-name dir-name)))
-   )
-  (defadvice find-tag (around refresh-etags activate)
-    "Rerun etags and reload tags if tag not found and redo find-tag.              
-    If buffer is modified, ask about save before running etags."
-   (let ((extension (file-name-extension (buffer-file-name))))
-     (condition-case err
-     ad-do-it
-       (error (and (buffer-modified-p)
-           (not (ding))
-           (y-or-n-p "Buffer is modified, save it? ")
-           (save-buffer))
-          (er-refresh-etags extension)
-          ad-do-it))))
-
-  (defun er-refresh-etags (&optional extension)
-  "Run etags on all peer files in current dir and reload them silently."
-  (interactive)
-  (shell-command (format "etags *.%s" (or extension "el")))
-  (let ((tags-revert-without-query t))  ; don't query, revert silently          
-    (visit-tags-table default-directory nil)))
- 
-
-
-#+end_src
-** Irony
-sudo apt install: cmake, clang, (or libclang), libclang-dev
+* Irony
+sudo apt install: cmake, clangd, (or libclang), libclang-dev
 M-x: irnoy-server-install
 #+BEGIN_SRC emacs-lisp
   (use-package irony
@@ -309,8 +264,6 @@ M-x: irnoy-server-install
 #+RESULTS:
 : t
 
-** bear
-sudo apt install bear
 * Python
 src python is python2
 src ipython is python3
@@ -954,6 +907,7 @@ M-x cnfonts-edit-profile
     )
 #+end_src
 * Ranger
+not necessary
 #+begin_src 
 $ sudo apt-get install ranger     # ranger 的主程序
 $ sudo apt-get install caca-utils # img2txt 图片
@@ -962,7 +916,26 @@ $ sudo apt-get install atool　    # 存档预览
 $ sudo apt-get install w3m        # html页面预览
 $ sudo apt-get install poppler    # pdf预览
 $ sudo apt-get install mediainfo  # 多媒体文件预览
+
+customize Ranger group: ranger-show-literal to nil 
+customize Ranger group: ranger-show-hidden t
 #+end_src
+
+
+|-------+------------------------|
+| C-M-r | ranger                 |
+| f     | find                   |
+| +     | create folder          |
+| D     | delete                 |
+| Q     | quit                   |
+| R     | rename                 |
+| I     | insert subdirectory    |
+| tab   | mark                   |
+| ;u/U  | unmark/all             |
+| ;C    | copy to                |
+| ;d    | mark to delete         |
+| ;x    | delete the marked file |
+
 
 #+begin_src emacs-lisp
   (setq helm-descbinds-window-style 'same-window)
@@ -974,16 +947,6 @@ $ sudo apt-get install mediainfo  # 多媒体文件预览
   (setq ranger-preview-file t)
   (global-set-key (kbd "C-M-r") 'ranger)
 #+end_src
-
-#+begin_src
-customize Ranger group: ranger-show-literal to nil 
-customize Ranger group: ranger-show-hidden t
-#+end_src
-|-------+---------------|
-| Q     | quit          |
-| C-M-r | ranger        |
-| +     | create folder |
-| f     | find file     |
 
 * ielm
 |-------+---------------------------------------|
@@ -1159,6 +1122,9 @@ C-c ! v to check the flycheck checkers
     :config
     (add-to-list 'yas-snippet-dirs (locate-user-emacs-file "snippets")))
 
+  (use-package yasnippet-snippets
+    :ensure t
+    :config)
 
 #+END_SRC
 
@@ -1683,7 +1649,7 @@ link define options
 #+RESULTS:
 : /usr/share/ditaa/ditaa.jar
 
-** ToDo
+** Todo
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords
         '((type  "Work(w)" "Study(s)" "forFun(f)" "|")
@@ -1700,90 +1666,6 @@ link define options
 
 
 #+END_SRC
-** Agenda  
-#+begin_src emacs-lisp
-  (global-set-key "\C-ca" 'org-agenda)
-   (setq org-agenda-start-on-weekday nil)
-   (setq org-agenda-custom-commands
-         '(("c" "Simple agenda view"
-            ((agenda "")
-             (alltodo "")))))
-
-   (global-set-key (kbd "C-c c") 'org-capture)
-
-   (setq org-agenda-files (list 
-                           "~/Dropbox/Note/Appointment.org"
-                           ))
-
-#+end_src
-
-|-----------------+----------------------------------+---------------|
-| comands         | explain                          | function      |
-|-----------------+----------------------------------+---------------|
-| C-c c           | add new capture                  | capture       |
-| C-c C-s [fn:01] | add new scheduling to  items     | agenda        |
-| C-c C-t [fn:02] | add new TODO to  items           | todo          |
-| C-c C-d         | add new deadline to items        | agenda        |
-| C-c a           | check  agenda function           | agenda        |
-| C-c a a         | check all agenda items           | f, b          |
-| S-f             | from capture list to file        | agenda        |
-| C-'     [fn:03] | switch in all agenda file        | agenda        |
-| C-c C-x C-c     | view todo, pri and tags of items | summary       |
-| C-c C-c(q)      | add tags in items                | must in items |
-|                 |                                  |               |
-|-----------------+----------------------------------+---------------|
-
-[fn:01]  在任何的item上，C-c C-s都可以增加scheduling,可以个性的指定加入的
-日期和时间。如果该item有TODO 特性，增加 ++1w 在时间后面，可以多次更新
-
-[fn:02] 在上次更新的-State "DONE"之前加上本次的完成情况，然后不管TODO
-的标签是什么，C-c C-t d (done)， 该item的scheduling将会被自动更新到下
-一次的设定时间(一周后)。在时间轴上显示历次完成情况.
-
-
-[fn:03] shift + f can dynamical view the agenda items. and Tab goto
-the linked agenda file.
-** capture 
-#+begin_src emacs-lisp
-
-
-  (setq org-capture-templates
-  '(
-    ;; ("a" "Appointment" entry (file+headline "~/Dropbox/Note/Appointment.org"     "Appointment")  "* %u %? " :prepend t)
-    ;;("n" "TagsNote"    entry (file+headline "~/Dropbox/Note/Note.org.gpg"        "TagsNote")     "* %u %? " :prepend t)
-    ("n" "TagsNote"    entry (file+headline "~/Dropbox/Note/Appointment.org"        "TagsNote")     "* %u %? " :prepend t)
-  ;; ("m" "Math"          entry (file+headline "~/Dropbox/Sprache/Math/Math.org"           "Math")  "* %u %? " :prepend t)
-  ;; ("p" "Physik"        entry (file+headline "~/Dropbox/Sprache/Physik/Physik.org"      "Physik")  "* %u %? " :prepend t)
-  ;; ("r" "ROS"           entry (file+headline "~/Dropbox/Sprache/ROS/ROS.org"               "ROS")  "* %u %? " :prepend t)
-  ;; ("i" "Inf"           entry (file+headline "~/Dropbox/Sprache/Inf/Inf.org"               "Inf")  "* %u %? " :prepend t)
-  ))
-  (defadvice org-capture-finalize
-      (after delete-capture-frame activate)
-    "Advise capture-finalize to close the frame"
-    (if (equal "capture" (frame-parameter nil 'name))
-        (delete-frame)))
-  (defadvice org-capture-destroy
-      (after delete-capture-frame activate)
-    "Advise capture-destroy to close the frame"
-    (if (equal "capture" (frame-parameter nil 'name))
-        (delete-frame)))
-  (use-package noflet
-    :ensure t )
-  (defun make-capture-frame ()
-    "Create a new frame and run org-capture."
-    (interactive)
-    (make-frame '((name . "capture")))
-    (select-frame-by-name "capture")
-    (delete-other-windows)
-    (noflet ((switch-to-buffer-other-window (buf) (switch-to-buffer buf)))
-      (org-capture)))
-      ;; (require 'ox-beamer)
-      ;; for inserting inactive dates
-      (define-key org-mode-map (kbd "C-c >") (lambda () (interactive (org-time-stamp-inactive))))
-
-#+end_src
-** tags
-C-c C-q
 ** org encrypt
 #+begin_src 
 using: (epa-encrypt-file) pass the passwd, and  then delete the source file
@@ -1818,9 +1700,138 @@ for the encrypt file. remember, remember!!
   (setq org-crypt-key nil)
 #+end_src
 
+** org-emphasis-alist
+#+begin_src emacs-lisp
+  ;; (setq org-emphasis-alist
+  ;;       '(("*" bold)
+  ;;         ("/" italic)
+  ;;         ("_" underline)
+  ;;         ("=" org-verbatim verbatim)
+  ;;         ("~" org-code verbatim)
+  ;;         ("+" (:strike-through t))))
+
+    (setq org-emphasis-alist
+          '(("*"  my-org-emphasis-bold)
+            ("/"  my-org-emphasis-italic)
+            ("_"  my-org-emphasis-underline)
+            ("="  org-verbatim verbatim)
+            ("~"  org-code verbatim)
+            ("+"  my-org-emphasis-strike-through)))
+
+    (defface my-org-emphasis-bold
+      '((default :inherit bold)
+        (((class color) (min-colors 88) (background light))
+         :foreground "#a60000")
+        (((class color) (min-colors 88) (background dark))
+         :foreground "#ff8059"))
+      "My bold emphasis for Org.")
+
+    (defface my-org-emphasis-italic
+      '((default :inherit italic)
+        (((class color) (min-colors 88) (background light))
+         :foreground "#005e00")
+        (((class color) (min-colors 88) (background dark))
+         :foreground "#44bc44"))
+      "My italic emphasis for Org.")
+
+    (defface my-org-emphasis-underline
+      '((default :inherit underline)
+        (((class color) (min-colors 88) (background light))
+         :foreground "#813e00")
+        (((class color) (min-colors 88) (background dark))
+         :foreground "#d0bc00"))
+      "My underline emphasis for Org.")
+
+    (defface my-org-emphasis-strike-through
+      '((((class color) (min-colors 88) (background light))
+         :strike-through "#972500" :foreground "#505050")
+        (((class color) (min-colors 88) (background dark))
+         :strike-through "#ef8b50" :foreground "#a8a8a8"))
+      "My strike-through emphasis for Org.")
+  #+end_src
+* capture 
+#+begin_src emacs-lisp
+  (setq org-capture-templates
+  '(
+    ;; ("a" "Appointment" entry (file+headline "~/Dropbox/Note/Appointment.org"     "Appointment")  "* %u %? " :prepend t)
+    ;;("n" "TagsNote"    entry (file+headline "~/Dropbox/Note/Note.org.gpg"        "TagsNote")     "* %u %? " :prepend t)
+    ("n" "TagsNote"    entry (file+headline "~/Dropbox/Note/Appointment.org"        "TagsNote")     "* %u %? " :prepend t)
+  ;; ("m" "Math"          entry (file+headline "~/Dropbox/Sprache/Math/Math.org"           "Math")  "* %u %? " :prepend t)
+  ;; ("p" "Physik"        entry (file+headline "~/Dropbox/Sprache/Physik/Physik.org"      "Physik")  "* %u %? " :prepend t)
+  ;; ("r" "ROS"           entry (file+headline "~/Dropbox/Sprache/ROS/ROS.org"               "ROS")  "* %u %? " :prepend t)
+  ;; ("i" "Inf"           entry (file+headline "~/Dropbox/Sprache/Inf/Inf.org"               "Inf")  "* %u %? " :prepend t)
+  ))
+  (defadvice org-capture-finalize
+      (after delete-capture-frame activate)
+    "Advise capture-finalize to close the frame"
+    (if (equal "capture" (frame-parameter nil 'name))
+        (delete-frame)))
+  (defadvice org-capture-destroy
+      (after delete-capture-frame activate)
+    "Advise capture-destroy to close the frame"
+    (if (equal "capture" (frame-parameter nil 'name))
+        (delete-frame)))
+  (use-package noflet
+    :ensure t )
+  (defun make-capture-frame ()
+    "Create a new frame and run org-capture."
+    (interactive)
+    (make-frame '((name . "capture")))
+    (select-frame-by-name "capture")
+    (delete-other-windows)
+    (noflet ((switch-to-buffer-other-window (buf) (switch-to-buffer buf)))
+      (org-capture)))
+      ;; (require 'ox-beamer)
+      ;; for inserting inactive dates
+      (define-key org-mode-map (kbd "C-c >") (lambda () (interactive (org-time-stamp-inactive))))
+
+  (global-set-key (kbd "C-c c") 'org-capture)
+
+#+end_src
+* Agenda  
+#+begin_src emacs-lisp
+        (global-set-key "\C-ca" 'org-agenda)
+         (setq org-agenda-files (list 
+                                 "~/Dropbox/Note/Appointment.org"
+                                 ))
+         (setq org-agenda-start-on-weekday nil)
+         (setq org-agenda-custom-commands
+               '(("c" "Simple agenda view"
+                  ((agenda "")
+                   (alltodo "")))))
+ 
+(setq org-agenda-include-diary t)
+
+#+end_src
+
+|-----------------+----------------------------------+---------------|
+| comands         | explain                          | function      |
+|-----------------+----------------------------------+---------------|
+| C-c c           | add new capture                  | capture       |
+| C-c C-s [fn:01] | add new scheduling to  items     | agenda        |
+| C-c C-t [fn:02] | add new TODO to  items           | todo          |
+| C-c C-d         | add new deadline to items        | agenda        |
+| C-c a           | check  agenda function           | agenda        |
+| C-c a a         | check all agenda items           | f, b          |
+| S-f             | from capture list to file        | agenda        |
+| C-'     [fn:03] | switch in all agenda file        | agenda        |
+| C-c C-x C-c     | view todo, pri and tags of items | summary       |
+| C-c C-c(q)      | add tags in items                | must in items |
+|                 |                                  |               |
+|-----------------+----------------------------------+---------------|
+
+[fn:01]  在任何的item上，C-c C-s都可以增加scheduling,可以个性的指定加入的
+日期和时间。如果该item有TODO 特性，增加 ++1w 在时间后面，可以多次更新
+
+[fn:02] 在上次更新的-State "DONE"之前加上本次的完成情况，然后不管TODO
+的标签是什么，C-c C-t d (done)， 该item的scheduling将会被自动更新到下
+一次的设定时间(一周后)。在时间轴上显示历次完成情况.
+
+
+[fn:03] shift + f can dynamical view the agenda items. and Tab goto
+the linked agenda file.
 * org-roam
 sudo apt install sqlite
-
 Note:
 as if install org-roam. look if org-roam--sqlite-available-p is t,
 this stands for complete installation
@@ -1832,18 +1843,34 @@ because the definition has been changed
 
 commands:
 org-id-get-create  create a id at the headline, which can also be treated as a node
+org-roam-alias-add is for the cast when you have more than two nodes conficts
 
-|---------+---+-----------------------------|
-| C-c C-h | n | add note for today          |
-|         | Y | add note for yesterday      |
-|         | T | add note for tomorrow       |
-|         | v | add note for a selcting day |
-|         | y | go to note of yesterday     |
-|         | t | go te note of tomorrow      |
-|         | c | go to note of selecting day |
-|         | f | go to note of next day      |
-|         | b | go to note of previous day  |
-|         |   |                             |
+[[id:430c01f6-489e-49aa-b668-a69476aa67db][GWDG HPC related]] here iis
+[[id:782197b6-08b3-489b-a1f7-b1c3115a63a1][2022-01-04]]
+[[id:75a629cf-206f-474a-9106-1c0331c5e1d2][HPDA]] here I used once
+[[id:4a929262-8b84-486c-b54d-7479bb22cb51][test]]
+[[id:196ea31d-dfb5-45b8-8f20-2c6cc5566967][Lisp emacs]]
+
+|---------+---+------------------------------------|
+| C-c C-h | n | add note for today                 |
+|         | Y | add note for yesterday             |
+|         | T | add note for tomorrow              |
+|         | v | add note for a selcting day        |
+|         | y | go to note of yesterday            |
+|         | t | go te note of tomorrow             |
+|         | c | go to note of selecting day        |
+|         | f | go to note of next day             |
+|         | b | go to note of previous day         |
+|         |   |                                    |
+|         |   |                                    |
+| C-c n   | f | org-roam-node-find(find or create) |
+|         | i | org-roam-node-insert               |
+|         | I | org-roam completion-at-point       |
+|         | l | backlists                          |
+|         |   |                                    |
+|         |   |                                    |
+
+
 #+begin_src emacs-lisp
   (use-package org-roam
     :ensure t
@@ -1859,7 +1886,7 @@ org-id-get-create  create a id at the headline, which can also be treated as a n
            ("C-c n f" . org-roam-node-find)
            ("C-c n i" . org-roam-node-insert)
            :map org-mode-map
-           ("C-M-i" . completion-at-point)
+           ("C-c n I" . completion-at-point)
            :map org-roam-dailies-map
            ("Y" . org-roam-dailies-capture-yesterday)
            ("T" . org-roam-dailies-capture-tomorrow))
@@ -1868,7 +1895,6 @@ org-id-get-create  create a id at the headline, which can also be treated as a n
     :config
     (require 'org-roam-dailies) ;; Ensure the keymap is available
     (org-roam-setup))
-  
   
   ;;Journal
   (setq org-roam-dailies-directory "journal/")
@@ -2266,31 +2292,32 @@ $\mathcal{B}$
 #+END_SRC
 ** execute Program
 #+BEGIN_SRC emacs-lisp
-  (setq org-confirm-babel-evaluate nil
-        org-src-fontify-natively t
-        org-src-tab-acts-natively t)
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((python . t)
-     (ipython . t)
-     (emacs-lisp . t)
-     (java . t)
-     (shell . t)
-     (sql . t)
-     (C . t)
-     (js . t)
-     (dot . t)
-     (plantuml . t)
-     (ditaa . t)
-     (haskell . t)
-     (dot . t)
-     (org . t)
-     (latex . t )
-     (typescript . t)
-;;     (scala . t)
-     (mongo . t)
-     ))
-  (with-eval-after-load 'org)
+    (setq org-confirm-babel-evaluate nil
+          org-src-fontify-natively t
+          org-src-tab-acts-natively t)
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((python . t)
+       (ipython . t)
+       (emacs-lisp . t)
+       (java . t)
+       (shell . t)
+       (sql . t)
+       (C . t)
+       (js . t)
+       (dot . t)
+       (plantuml . t)
+       (ditaa . t)
+       (haskell . t)
+       (dot . t)
+       (org . t)
+       (latex . t )
+       (typescript . t)
+  ;;     (scala . t)
+       (mongo . t)
+       (julia-vterm . t )
+       ))
+    (with-eval-after-load 'org)
 
 #+END_SRC
 #+RESULTS:
@@ -2719,6 +2746,37 @@ After we install dap-mode we will also install ~dap-java~.
   
 #+end_src
 
+* Julia
+#+begin_src emacs-lisp
+    (package-install 'julia-mode)
+    (require 'julia-mode)
+    (package-install 'lsp-julia)
+    (use-package lsp-julia
+      :config
+      (setq lsp-julia-default-environment "~/.julia/environments/v1.7"))
+    (add-hook 'ess-julia-mode-hook #'lsp-mode)
+
+#+end_src
+
+install julia-vterm and Suppressor
+- sudo apt-get install libtool-bin
+or / and sudo apt-get install libtool
+
+- $ julia
+>>> use Pkg
+>>> Pkg.add("Suppressor")
+
+#+begin_src emacs-lisp
+  (package-install 'julia-vterm)
+  (add-hook 'julia-mode-hook #'julia-vterm-mode)
+#+end_src
+
+* hi-lock-mode
+hi-lock-file-patterns-policy  to be nil
+| C-x w | h | give regexp and select color          |
+|       | . | highlight near word randomly color    |
+|       | b | save highlight config in comment form |
+|       | i | execute highlight config in buffer    |
 * Initination
 #+begin_src 
 (require 'package)

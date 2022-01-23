@@ -840,6 +840,158 @@ bin/spark-submit examples/src/main/python/wordcount.py testtext.txt &> output.tx
 #+end_src
 
 * High performance Data Analysis
+** concepts
+High performance Data Analysis:
+with parallel processing to quickly find the insights from extremely large data sets
+
+** Chap01 overview
+*** Distributed System
+1. Definiation:
+- Components separate located
+- communicatation through passing massage between components
+
+Characteristics:
+- own memory
+- concurrency
+- locks
+
+Applcation:
+- cloud compuation
+- internet of Things
+
+Algorithm:
+Consensus, Repication
+
+Challages:
+- Programm
+- resource sharing
+
+*** Levels of parallelism
+Bit-level, Instruction level, Data level, Task level
+
+*** Name typical applications for high-performance data analytics
+1. weather forecast
+2. Simulating a  kernel fusion,  tokamak reactor
+
+*** Distinguish HPDA from D/P/S computing and how these topics blend
+Stricter than distributed system( strongly scalling: weak scalling)
+
+*** Describe use-cases and challenges in the domain of D/P/S computing
+Big Data 5 Vs
+
+*** Describe how the scientific method relies on D/P/S computing
+Simulation models real systems to gain new insight
+Big Data Analytics extracts insight from data
+*** Name big data challenges and the typical workflow
+how to deal with big data(5Vs)
+Raw-> Descriptive -> Diagnostics-> Predictive-> Prescriptive
+
+*** Recite system characteristics for distributed/parallel/computational science
+*** Sketch generic D/P system architectures
+
+** Chap02  DataModels & Data Processing Strategies
+*** Define important terminology for data handling and data processing
+Raw data, semantic normalization, Data management plan, Data life cycle,
+data governance,  data provenance...
+
+*** Sketch the ETL process used in data warehouses
+extract from a source database,
+transform with controlling, error and missing treatment
+loading, integrate them into data warehouses for user
+*** Sketch a typical HPDA data analysis workflow
+classical: discovery, integration, exploitation
+in high level,  with  SQL, java, scala, Python, with parallelism for data Exploration
+
+*** Sketch the lambda architecture
+Lambda architecture is a concept for enabling real-time processing and batch methods together.
+batch layer(large scala) + serving layer
+speed layer(read time)
+
+*** Construct suitable data models for a given use-case and discuss their pro/cons
+*** Define relevant semantics for data
+*** data models
+Concurrency, Durability, Consensus,
+- relational model
+- Clumnar Model (combinded relational model)
+- key-value model (json)
+- Documents model (xml)
+- Graph
+** Chap03 Databases and DataWarehouses
+*** relatation model 
+**** Cardinality
+- one to one
+- one to many
+- many to many
+**** Normalization Form
+reduces dependencies, prevents inconsistency, save space
+- 1NF:  no collections in row tuples
+- 2NF: no redundancy
+- 3NF: no dependence between columns
+- 4NF: no multiplie relationships in one table(not good for big data)
+**** group by
+it's done with Aggregatation(in sql or in python, both)
+**** join
+cross join: Cartesian product of two tables
+inner join: only all condition satisfied
+left join: condition strict on left
+right join: condition strict on right
+full join
+**** Transactions
+
+
+
+*** Define Database, DBMS, and Data Warehouse
+- an organized collection of data
+- software application for user to use the collected data
+- a system used for reporting and data analysis,  with multidimensional data cube
+  
+
+
+
+*** Create a relational model for a given problem
+*** Draw an ER(Entity Relational) diagram for a given relational model (and vice versa)
+*** Normalize a small relational model into a redundant-free model
+*** List the result of an inner join of two tables to resolve relationships
+*** Formulate SQL queries for a relational model
+*** Create a Star-Schema from a relational model (and formulate queries)
+*** Sketch the operations for an OLAP cube
+- Slice
+- Dice
+- Roll up
+- Pivot
+*** Appraise the pro/cons of OLAP vs. traditional relational model
+*** Describe DBMS optimizations: index, bulk loading, garbage cleaning
+  
+
+** Chap04 Distributed Storage and Processing with Hadoop
+*** hadoop
+map: filter and convert all input into key-value tuples
+reduce: receives all tuples with the same keys, accumulated
+
+
+*** Describe the architecture and features of Apache Hadoop
+*** Formulate simple algorithms using the MapReduce programming model
+*** Justify architectural decisions made in Apache Hadoop
+*** Sketch the execution phases of MapReduce and describe their behavior
+1. distributed code
+2. determine fiels
+3. map
+4. combine
+5. shuffle
+6. partition
+7. reduce
+8. output
+*** Describe limitations of Hadoop1 and the benefits of Hadoop2 with TEZ
+- Directed acyclic graph (DAG) of tasks
+- Task and resource aware scheduling
+- Pre-launch and re-use containers and caching intermediate results
+*** Sketch the parallel file access performed by MapReduce jobs
+
+
+** Chap05 Big Data SQL using Hive
+
+
+
 ** 03-01
 #+begin_src sql :engine postgresql :dbhost localhost :dbuser postgres :dbpassword du :database postgres :dbport 5432
     drop table if exists WikipediaArticles ;
@@ -2208,7 +2360,6 @@ MongoDB
 #+RESULTS:
 : switched to db testdatabase
 : true
-
 
 
 

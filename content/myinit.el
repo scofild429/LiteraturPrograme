@@ -111,6 +111,13 @@
 ;; this is a interrupt for shell in babel  
 (setq org-babel-sh-eoe-indicator nil)
 
+
+;; toggle the hi lock mode to highlight with command
+ (global-hi-lock-mode 1)
+
+(use-package rainbow-delimiters)
+(rainbow-delimiters-mode 1)
+
 (use-package eglot
   :ensure t
  )
@@ -121,55 +128,6 @@
 (add-hook 'web-mode-hook 'eglot-ensure)
 (add-hook 'vue-mode-hook 'eglot-ensure)
 (add-hook ' python-mode-hook 'eglot-ensure)
-
-(use-package yasnippet-snippets
-  :ensure t
-  :config)
-
-;; (use-package rtags
-;;   :ensure t
-;;   :config
-;;   (rtags-enable-standard-keybindings)
-;;  (setq rtags-autostart-diagnostics t)
-;;  (rtags-diagnostics)
-;;  (setq rtags-completion-enabled t)
-;;  (define-key c-mode-base-map (kbd "M-.")
-;;    (function rtags-find-symbol-at-point))
-;;  (define-key c-mode-base-map (kbd "M-,")
-;;    (function rtags-find-references-at-point))
-;;  )
-
-;; (use-package cmake-ide
-;;   :ensure t
-;;   :config
-;;   (cmake-ide-setup))
-
-(setq path-to-ctags "/usr/local/bin/ctags")
- (defun create-tags (dir-name)
-   "Create tags file."
-   (interactive "DDirectory: ")
-   (shell-command
-    (format "%s -f TAGS -e -R %s" path-to-ctags (directory-file-name dir-name)))
- )
-(defadvice find-tag (around refresh-etags activate)
-  "Rerun etags and reload tags if tag not found and redo find-tag.              
-  If buffer is modified, ask about save before running etags."
- (let ((extension (file-name-extension (buffer-file-name))))
-   (condition-case err
-   ad-do-it
-     (error (and (buffer-modified-p)
-         (not (ding))
-         (y-or-n-p "Buffer is modified, save it? ")
-         (save-buffer))
-        (er-refresh-etags extension)
-        ad-do-it))))
-
-(defun er-refresh-etags (&optional extension)
-"Run etags on all peer files in current dir and reload them silently."
-(interactive)
-(shell-command (format "etags *.%s" (or extension "el")))
-(let ((tags-revert-without-query t))  ; don't query, revert silently          
-  (visit-tags-table default-directory nil)))
 
 (use-package irony
   :ensure t
@@ -720,6 +678,10 @@ With one universal prefix argument, only tangle the block at point."
   :config
   (add-to-list 'yas-snippet-dirs (locate-user-emacs-file "snippets")))
 
+(use-package yasnippet-snippets
+  :ensure t
+  :config)
+
 (use-package auto-yasnippet
 :ensure t)
 
@@ -1034,18 +996,12 @@ With one universal prefix argument, only tangle the block at point."
         ("DONE" .       (:foreground "green" :weight bold))
         ))
 
-(global-set-key "\C-ca" 'org-agenda)
- (setq org-agenda-start-on-weekday nil)
- (setq org-agenda-custom-commands
-       '(("c" "Simple agenda view"
-          ((agenda "")
-           (alltodo "")))))
-
- (global-set-key (kbd "C-c c") 'org-capture)
-
- (setq org-agenda-files (list 
-                         "~/Dropbox/Note/Appointment.org"
-                         ))
+(require 'epa-file)
+(setq epa-file-select-key 0)
+(require 'org-crypt)
+(org-crypt-use-before-save-magic)
+(setq org-tags-exclude-from-inheritance (quote ("crypt")))
+(setq org-crypt-key nil)
 
 (setq org-capture-templates
 '(
@@ -1081,12 +1037,19 @@ With one universal prefix argument, only tangle the block at point."
     ;; for inserting inactive dates
     (define-key org-mode-map (kbd "C-c >") (lambda () (interactive (org-time-stamp-inactive))))
 
-(require 'epa-file)
-(setq epa-file-select-key 0)
-(require 'org-crypt)
-(org-crypt-use-before-save-magic)
-(setq org-tags-exclude-from-inheritance (quote ("crypt")))
-(setq org-crypt-key nil)
+(global-set-key (kbd "C-c c") 'org-capture)
+
+(global-set-key "\C-ca" 'org-agenda)
+         (setq org-agenda-files (list 
+                                 "~/Dropbox/Note/Appointment.org"
+                                 ))
+         (setq org-agenda-start-on-weekday nil)
+         (setq org-agenda-custom-commands
+               '(("c" "Simple agenda view"
+                  ((agenda "")
+                   (alltodo "")))))
+ 
+(setq org-agenda-include-diary t)
 
 (use-package org-roam
   :ensure t
@@ -1102,7 +1065,7 @@ With one universal prefix argument, only tangle the block at point."
          ("C-c n f" . org-roam-node-find)
          ("C-c n i" . org-roam-node-insert)
          :map org-mode-map
-         ("C-M-i" . completion-at-point)
+         ("C-c n I" . completion-at-point)
          :map org-roam-dailies-map
          ("Y" . org-roam-dailies-capture-yesterday)
          ("T" . org-roam-dailies-capture-tomorrow))
@@ -1111,7 +1074,6 @@ With one universal prefix argument, only tangle the block at point."
   :config
   (require 'org-roam-dailies) ;; Ensure the keymap is available
   (org-roam-setup))
-
 
 ;;Journal
 (setq org-roam-dailies-directory "journal/")
@@ -1237,6 +1199,7 @@ With one universal prefix argument, only tangle the block at point."
      (typescript . t)
 ;;     (scala . t)
      (mongo . t)
+     (julia-vterm . t )
      ))
   (with-eval-after-load 'org)
 
@@ -1567,5 +1530,16 @@ With one universal prefix argument, only tangle the block at point."
   :hook (python-mode . lsp-deferred)
   :custom
   (python-shell-interpreter "python"))
+
+(package-install 'julia-mode)
+(require 'julia-mode)
+(package-install 'lsp-julia)
+(use-package lsp-julia
+  :config
+  (setq lsp-julia-default-environment "~/.julia/environments/v1.7"))
+(add-hook 'ess-julia-mode-hook #'lsp-mode)
+
+(package-install 'julia-vterm)
+(add-hook 'julia-mode-hook #'julia-vterm-mode)
 
 (require 'ctable)
