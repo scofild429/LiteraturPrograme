@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-12-26 Sun 20:03 -->
+<!-- 2022-01-23 Sun 14:25 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Summary of  Universal Hashing</title>
@@ -39,24 +39,24 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8d077fc">Definition</a></li>
-<li><a href="#org71c80de">Carter-Wegman hash function</a></li>
-<li><a href="#orgbaf0da2">Python example</a></li>
-<li><a href="#org9241c78">universal hash with reproducible</a>
+<li><a href="#org09a9d56">Definition</a></li>
+<li><a href="#org46f69fa">Carter-Wegman hash function</a></li>
+<li><a href="#org6d2c540">Python example</a></li>
+<li><a href="#orgb2bcad6">universal hash with reproducible</a>
 <ul>
-<li><a href="#org811ced0">check the input data from 100000 to 100100</a></li>
-<li><a href="#orgf4d4563">check randint from 1 to 10000</a></li>
-<li><a href="#org681b560">check 100 special  input  data</a></li>
-<li><a href="#orge80ec5a">search key</a></li>
+<li><a href="#org9cc5062">check the input data from 100000 to 100100</a></li>
+<li><a href="#org3f00b6e">check randint from 1 to 10000</a></li>
+<li><a href="#org354412d">check 100 special  input  data</a></li>
+<li><a href="#org8db9e93">search key</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org8d077fc" class="outline-2">
-<h2 id="org8d077fc">Definition</h2>
-<div class="outline-text-2" id="text-org8d077fc">
+<div id="outline-container-org09a9d56" class="outline-2">
+<h2 id="org09a9d56">Definition</h2>
+<div class="outline-text-2" id="text-org09a9d56">
 <p>
 We want to save a dataset A  localy into dataset B, with has m slots in B
 and fast access to search, insert, delete operation,
@@ -95,9 +95,9 @@ one example of h can be Carter-Wegman hash function
 </div>
 </div>
 
-<div id="outline-container-org71c80de" class="outline-2">
-<h2 id="org71c80de">Carter-Wegman hash function</h2>
-<div class="outline-text-2" id="text-org71c80de">
+<div id="outline-container-org46f69fa" class="outline-2">
+<h2 id="org46f69fa">Carter-Wegman hash function</h2>
+<div class="outline-text-2" id="text-org46f69fa">
 <p>
 Carter-Wegman hash function is :
 </p>
@@ -165,9 +165,9 @@ So we can guarantee that the distribution of elements in B can be very randomly 
 </div>
 </div>
 
-<div id="outline-container-orgbaf0da2" class="outline-2">
-<h2 id="orgbaf0da2">Python example</h2>
-<div class="outline-text-2" id="text-orgbaf0da2">
+<div id="outline-container-org6d2c540" class="outline-2">
+<h2 id="org6d2c540">Python example</h2>
+<div class="outline-text-2" id="text-org6d2c540">
 <p>
 this example is from <a href="https://github.com/zydeon/universal-hashing/blob/master/main.py">zydeon github</a>
 </p>
@@ -282,9 +282,9 @@ otherwise we can't find it again in hashtable, even we never know if it still in
 </div>
 </div>
 
-<div id="outline-container-org9241c78" class="outline-2">
-<h2 id="org9241c78">universal hash with reproducible</h2>
-<div class="outline-text-2" id="text-org9241c78">
+<div id="outline-container-orgb2bcad6" class="outline-2">
+<h2 id="orgb2bcad6">universal hash with reproducible</h2>
+<div class="outline-text-2" id="text-orgb2bcad6">
 <p>
 So we want to overcome this problem with reproducible porperty.
 We fix the a and b, in our following assumpation we set a = b = p-1
@@ -310,9 +310,9 @@ the hashtable, all elements will be computed again in new hashtable, this take a
 </p>
 </div>
 </div>
-<div id="outline-container-org811ced0" class="outline-3">
-<h3 id="org811ced0">check the input data from 100000 to 100100</h3>
-<div class="outline-text-3" id="text-org811ced0">
+<div id="outline-container-org9cc5062" class="outline-3">
+<h3 id="org9cc5062">check the input data from 100000 to 100100</h3>
+<div class="outline-text-3" id="text-org9cc5062">
 <div class="org-src-container">
 <pre class="src src-ipython">from math import ceil, log2
 from primesieve import nth_prime
@@ -386,9 +386,9 @@ x :100010 is in hashtable
 </div>
 
 
-<div id="outline-container-orgf4d4563" class="outline-3">
-<h3 id="orgf4d4563">check randint from 1 to 10000</h3>
-<div class="outline-text-3" id="text-orgf4d4563">
+<div id="outline-container-org3f00b6e" class="outline-3">
+<h3 id="org3f00b6e">check randint from 1 to 10000</h3>
+<div class="outline-text-3" id="text-org3f00b6e">
 <div class="org-src-container">
 <pre class="src src-ipython">from math import ceil, log2
 from primesieve import nth_prime
@@ -465,9 +465,9 @@ x :100010 is not in hashtable
 </div>
 
 
-<div id="outline-container-org681b560" class="outline-3">
-<h3 id="org681b560">check 100 special  input  data</h3>
-<div class="outline-text-3" id="text-org681b560">
+<div id="outline-container-org354412d" class="outline-3">
+<h3 id="org354412d">check 100 special  input  data</h3>
+<div class="outline-text-3" id="text-org354412d">
 <p>
 we use       
 </p>
@@ -658,9 +658,9 @@ x :100010 is not in hashtable
 </div>
 
 
-<div id="outline-container-orge80ec5a" class="outline-3">
-<h3 id="orge80ec5a">search key</h3>
-<div class="outline-text-3" id="text-orge80ec5a">
+<div id="outline-container-org8db9e93" class="outline-3">
+<h3 id="org8db9e93">search key</h3>
+<div class="outline-text-3" id="text-org8db9e93">
 <p>
 we also used the check function to check if the data is already in hashtable,
 the check can be done for with and without collision input data.
@@ -746,7 +746,7 @@ x :10300 is not in hashtable
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2021-12-26 Sun 20:03</p>
+<p class="date">Created: 2022-01-23 Sun 14:25</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
 <p class="validation"></p>
 </div>
