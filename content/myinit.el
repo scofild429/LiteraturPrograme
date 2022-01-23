@@ -1003,6 +1003,53 @@ With one universal prefix argument, only tangle the block at point."
 (setq org-tags-exclude-from-inheritance (quote ("crypt")))
 (setq org-crypt-key nil)
 
+;; (setq org-emphasis-alist
+;;       '(("*" bold)
+;;         ("/" italic)
+;;         ("_" underline)
+;;         ("=" org-verbatim verbatim)
+;;         ("~" org-code verbatim)
+;;         ("+" (:strike-through t))))
+
+  (setq org-emphasis-alist
+        '(("*"  my-org-emphasis-bold)
+          ("/"  my-org-emphasis-italic)
+          ("_"  my-org-emphasis-underline)
+          ("="  org-verbatim verbatim)
+          ("~"  org-code verbatim)
+          ("+"  my-org-emphasis-strike-through)))
+
+  (defface my-org-emphasis-bold
+    '((default :inherit bold)
+      (((class color) (min-colors 88) (background light))
+       :foreground "#a60000")
+      (((class color) (min-colors 88) (background dark))
+       :foreground "#ff8059"))
+    "My bold emphasis for Org.")
+
+  (defface my-org-emphasis-italic
+    '((default :inherit italic)
+      (((class color) (min-colors 88) (background light))
+       :foreground "#005e00")
+      (((class color) (min-colors 88) (background dark))
+       :foreground "#44bc44"))
+    "My italic emphasis for Org.")
+
+  (defface my-org-emphasis-underline
+    '((default :inherit underline)
+      (((class color) (min-colors 88) (background light))
+       :foreground "#813e00")
+      (((class color) (min-colors 88) (background dark))
+       :foreground "#d0bc00"))
+    "My underline emphasis for Org.")
+
+  (defface my-org-emphasis-strike-through
+    '((((class color) (min-colors 88) (background light))
+       :strike-through "#972500" :foreground "#505050")
+      (((class color) (min-colors 88) (background dark))
+       :strike-through "#ef8b50" :foreground "#a8a8a8"))
+    "My strike-through emphasis for Org.")
+
 (setq org-capture-templates
 '(
   ;; ("a" "Appointment" entry (file+headline "~/Dropbox/Note/Appointment.org"     "Appointment")  "* %u %? " :prepend t)
