@@ -117,6 +117,8 @@
 
 (use-package rainbow-delimiters)
 (rainbow-delimiters-mode 1)
+(add-hook 'web-mode-hook #'rainbow-delimiters-mode)
+(add-hook 'org-mode-hook #'rainbow-delimiters-mode)
 
 (use-package eglot
   :ensure t
@@ -672,18 +674,20 @@ With one universal prefix argument, only tangle the block at point."
     )
 
 (use-package yasnippet
-  :ensure t
-  :init
-  (yas-global-mode 1)
-  :config
-  (add-to-list 'yas-snippet-dirs (locate-user-emacs-file "snippets")))
+   :ensure t
+   :init
+   (yas-global-mode 1)
+   :config
+   (add-to-list 'yas-snippet-dirs (locate-user-emacs-file "snippets")))
 
-(use-package yasnippet-snippets
-  :ensure t
-  :config)
+ (use-package yasnippet-snippets
+   :ensure t
+   :config)
 
-(use-package auto-yasnippet
-:ensure t)
+ (use-package auto-yasnippet
+   :ensure t)
+
+(define-key yas-minor-mode-map (kbd "C-c y") #'yas-expand)
 
 (use-package undo-tree
   :ensure t
@@ -816,32 +820,37 @@ With one universal prefix argument, only tangle the block at point."
 :bind (("C-x g" . magit-status)))
 
 (global-set-key "\C-\M-l" 'latex-math-preview-insert-mathematical-symbol)
-;; bigger latex fragment: put this into the init.el, otherweise this will not be executed
-(plist-put org-format-latex-options :scale 3.0)
+  ;; bigger latex fragment: put this into the init.el, otherweise this will not be executed
+  (plist-put org-format-latex-options :scale 3.0)
 
-(require 'org)
-(setq org-format-latex-options (plist-put org-format-latex-options :scale 4))
-(setq org-latex-create-formula-image-program 'dvipng)
+  (require 'org)
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 4))
+  (setq org-latex-create-formula-image-program 'dvipng)
 
-(use-package tex
-  :ensure auctex)
+  (use-package tex
+    :ensure auctex)
 
-(setq Tex-auto-save t)
-(setq Tex-parse-self t)
-(setq-default Tex-master nil)
+  (setq Tex-auto-save t)
+  (setq Tex-parse-self t)
+  (setq-default Tex-master nil)
 
-(setq org-latex-compiler "xelatex")
+  (setq org-latex-compiler "xelatex")
 
-;;enable cdlatex
-(use-package cdlatex
-  :ensure t
-  )
+  ;;enable cdlatex
+  (use-package cdlatex
+    :ensure t
+    )
 
-(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+  (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 
-(add-hook 'LaTeX-mode-hook
-          (lambda ()
-            (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex --synctex=1%(mode)%' %t" TeX-run-TeX nil t))))
+  (add-hook 'LaTeX-mode-hook
+            (lambda ()
+              (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex --synctex=1%(mode)%' %t" TeX-run-TeX nil t))))
+
+;; (use-package org-fragtog
+;;   :after org
+;;   :hook
+;;   (org-mode . org-fragtog-mode))
 
 ;;  (use-package json-mode)
 
@@ -1052,7 +1061,7 @@ With one universal prefix argument, only tangle the block at point."
 
 (setq org-capture-templates
 '(
-  ;; ("a" "Appointment" entry (file+headline "~/Dropbox/Note/Appointment.org"     "Appointment")  "* %u %? " :prepend t)
+  ("a" "Appointment" entry (file+headline "~/Dropbox/Note/gcal.org"     "Appointment")  "* %u %? " :prepend t)
   ;;("n" "TagsNote"    entry (file+headline "~/Dropbox/Note/Note.org.gpg"        "TagsNote")     "* %u %? " :prepend t)
   ("n" "TagsNote"    entry (file+headline "~/Dropbox/Note/Appointment.org"        "TagsNote")     "* %u %? " :prepend t)
 ;; ("m" "Math"          entry (file+headline "~/Dropbox/Sprache/Math/Math.org"           "Math")  "* %u %? " :prepend t)
@@ -1089,13 +1098,14 @@ With one universal prefix argument, only tangle the block at point."
 (global-set-key "\C-ca" 'org-agenda)
          (setq org-agenda-files (list 
                                  "~/Dropbox/Note/Appointment.org"
+                                 "~/Dropbox/Note/gcal.org"
                                  ))
          (setq org-agenda-start-on-weekday nil)
          (setq org-agenda-custom-commands
                '(("c" "Simple agenda view"
                   ((agenda "")
                    (alltodo "")))))
- 
+
 (setq org-agenda-include-diary t)
 
 (use-package org-roam
@@ -1588,5 +1598,49 @@ With one universal prefix argument, only tangle the block at point."
 
 (package-install 'julia-vterm)
 (add-hook 'julia-mode-hook #'julia-vterm-mode)
+
+(defface my-comment-remap-style
+  '((default :inherit italic)
+    (((class color) (min-colors 88) (background light))
+     :foreground "#904200")
+    (((class color) (min-colors 88) (background dark))
+     :foreground "#fba849")
+    (t :foreground "yellow"))
+  "Yellow-tinted text with slanted font (italics).")
+
+(define-minor-mode my-comment-remap-mode
+  "Remap the face of comments."
+  :local t
+  :init-value nil
+  (if my-comment-remap-mode
+      (setq my-comment-remap-cookie
+            (face-remap-add-relative 'font-lock-comment-face 'my-comment-remap-style))
+    (face-remap-remove-relative my-comment-remap-cookie)))
+
+;; Or you can use a hook (this one targets the mode of the *scratch*
+;; buffer):
+(add-hook 'lisp-interaction-mode-hook #'my-comment-remap-mode)
+
+(define-minor-mode my-max-multi-toggle
+  "Toggle between multiple windows and single window.
+This is the equivalent of maximising a window.  Tiling window
+managers such as DWM, BSPWM refer to this state as 'monocle'."
+  :lighter " [M]"
+  :global nil
+  (if (one-window-p)
+      (when prot/window-configuration
+        (set-window-configuration prot/window-configuration))
+    (setq prot/window-configuration (current-window-configuration))
+    (delete-other-windows)))
+
+(setq package-check-signature nil)
+(use-package org-gcal
+  :ensure t
+  :config
+  (setq org-gcal-client-id "921003958407-21dlp5gjdfglf5efbdqgdcegoou3upcq.apps.googleusercontent.com"
+        org-gcal-client-secret "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"
+        org-gcal-file-alist '(("scofild429@gmail.com" .  "~/Dropbox/Note/gcal.org"))))
+(add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
+(add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
 
 (require 'ctable)

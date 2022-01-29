@@ -86,117 +86,117 @@ input the mapped command
 
 * global settings
 #+BEGIN_SRC emacs-lisp
-      (setq colon-double-space t)
-      ;; tell the Emacs fill commands to insert two spaces after a colon:
+  (setq colon-double-space t)
+  ;; tell the Emacs fill commands to insert two spaces after a colon:
 
-      ;; Rebind 'C-x C-b' for 'buffer-menu'
-      (global-set-key "\C-x\C-b" 'buffer-menu)
-      ;; which not only lists the buffers, but moves point into that window
+  ;; Rebind 'C-x C-b' for 'buffer-menu'
+  (global-set-key "\C-x\C-b" 'buffer-menu)
+  ;; which not only lists the buffers, but moves point into that window
 
-      ;; Set cursor color
-      (set-cursor-color "white")
+  ;; Set cursor color
+  (set-cursor-color "white")
 
-      ;; Set mouse color
-      (set-mouse-color "white")
+  ;; Set mouse color
+  (set-mouse-color "white")
 
-      ;;(setq make-backup-files nil)
+  ;;(setq make-backup-files nil)
 
-      ;;close tool bar 
-      (setq inhibit-startup-message t)
-      (tool-bar-mode -1)
+  ;;close tool bar 
+  (setq inhibit-startup-message t)
+  (tool-bar-mode -1)
 
-      ;;close menu bar
-      (menu-bar-mode -1)
+  ;;close menu bar
+  (menu-bar-mode -1)
 
-      ;;close toggle sroll bar
-      (toggle-scroll-bar -1)
-      ;; parse
-      (show-paren-mode t)
+  ;;close toggle sroll bar
+  (toggle-scroll-bar -1)
+  ;; parse
+  (show-paren-mode t)
 
-      ;; user y and n instead of yes and no 
-      (fset 'yes-or-no-p 'y-or-n-p)
+  ;; user y and n instead of yes and no 
+  (fset 'yes-or-no-p 'y-or-n-p)
 
-      ;; open line number at left side
-      ;;  (global-linum-mode 1)
+  ;; open line number at left side
+  ;;  (global-linum-mode 1)
 
-      ;; emacsclient -a "" -c
-      ;; shortcut to open emacsclient settings in terminal
+  ;; emacsclient -a "" -c
+  ;; shortcut to open emacsclient settings in terminal
 
-      ;; set the meta-key to be super key
-      ;; (setq  x-meta-keysym 'super
-      ;;        x-super-keysym 'meta)
+  ;; set the meta-key to be super key
+  ;; (setq  x-meta-keysym 'super
+  ;;        x-super-keysym 'meta)
 
-      ;; open terminal 
-      (global-set-key "\C-\M-x" 'term)
+  ;; open terminal 
+  (global-set-key "\C-\M-x" 'term)
 
-      ;; open  eshell
-      (global-set-key "\C-x\ \C-x" 'shell)
+  ;; open  eshell
+  (global-set-key "\C-x\ \C-x" 'shell)
 
-      ;;open init.el file with f1
-      (defun open-my-init-file()
-        (interactive)
-        (find-file "~/.emacs.d/init.el"))
-      (global-set-key (kbd "<f1>") 'open-my-init-file)
+  ;;open init.el file with f1
+  (defun open-my-init-file()
+    (interactive)
+    (find-file "~/.emacs.d/init.el"))
+  (global-set-key (kbd "<f1>") 'open-my-init-file)
 
-      ;;open myinit.org file  with f2
-      (defun open-my-init-org-file()
-        (interactive)
-        (find-file "~/Dropbox/LiteraturPrograme/content/myinit.org"))
-      (global-set-key (kbd "<f2>") 'open-my-init-org-file)
+  ;;open myinit.org file  with f2
+  (defun open-my-init-org-file()
+    (interactive)
+    (find-file "~/Dropbox/LiteraturPrograme/content/myinit.org"))
+  (global-set-key (kbd "<f2>") 'open-my-init-org-file)
 
-      ;;open .bashrc file with f3
-      (defun open-my-bash-file()
-        (interactive)
-        (find-file "~/.bashrc"))
-      (global-set-key (kbd "<f3>") 'open-my-bash-file)
+  ;;open .bashrc file with f3
+  (defun open-my-bash-file()
+    (interactive)
+    (find-file "~/.bashrc"))
+  (global-set-key (kbd "<f3>") 'open-my-bash-file)
 
-      ;;open .bashrc file with f4
-      (defun open-my-tagsnote-file()
-        (interactive)
-        (find-file "~/Dropbox/Note/Note.org.gpg"))
-      (global-set-key (kbd "<f4>") 'open-my-tagsnote-file)
-
-
-      ;; trun off cl warning
-      (setq byte-compile-warnings '(cl-functions))
-
-      ;; backup oder
-      (setq backup-directory-alist `(("." . "~/.emacs.d/backup")))
-      (setq backup-by-copying t)
-
-      ;;M-x toggle-truncate-line
-      ;; off the word wrap 是否移动换行
-      (toggle-truncate-lines 1)
-
-      ;; open window horizontally default
-      (setq split-height-threshold nil)
-      (setq split-width-threshold 0 )
+  ;;open .bashrc file with f4
+  (defun open-my-tagsnote-file()
+    (interactive)
+    (find-file "~/Dropbox/Note/Note.org.gpg"))
+  (global-set-key (kbd "<f4>") 'open-my-tagsnote-file)
 
 
-      ;; automatically update file
-      (global-auto-revert-mode t)
+  ;; trun off cl warning
+  (setq byte-compile-warnings '(cl-functions))
 
-      ;;M-n select-current-line
-      (defun select-current-line ()
-        "Select the current line"
-        (interactive)
-        (end-of-line) ; move to end of line
-        (set-mark (line-beginning-position)))
-      (global-set-key (kbd "M-n") 'select-current-line)
+  ;; backup oder
+  (setq backup-directory-alist `(("." . "~/.emacs.d/backup")))
+  (setq backup-by-copying t)
 
-      ;; read only file
-      (global-set-key (kbd "C-M-o") 'read-only-mode)
+  ;;M-x toggle-truncate-line
+  ;; off the word wrap 是否移动换行
+  (toggle-truncate-lines 1)
 
-      ;;add load path
-      (add-to-list 'exec-path "/usr/bin/")
-      (add-to-list 'load-path "~/.emacs.d/loadpath/")
-
-      ;; this is a interrupt for shell in babel  
-      (setq org-babel-sh-eoe-indicator nil)
+  ;; open window horizontally default
+  (setq split-height-threshold nil)
+  (setq split-width-threshold 0 )
 
 
-      ;; toggle the hi lock mode to highlight with command
-       (global-hi-lock-mode 1)
+  ;; automatically update file
+  (global-auto-revert-mode t)
+
+  ;;M-n select-current-line
+  (defun select-current-line ()
+    "Select the current line"
+    (interactive)
+    (end-of-line) ; move to end of line
+    (set-mark (line-beginning-position)))
+  (global-set-key (kbd "M-n") 'select-current-line)
+
+  ;; read only file
+  (global-set-key (kbd "C-M-o") 'read-only-mode)
+
+  ;;add load path
+  (add-to-list 'exec-path "/usr/bin/")
+  (add-to-list 'load-path "~/.emacs.d/loadpath/")
+
+  ;; this is a interrupt for shell in babel  
+  (setq org-babel-sh-eoe-indicator nil)
+
+
+  ;; toggle the hi lock mode to highlight with command
+  (global-hi-lock-mode 1)
 
 
 #+END_SRC
@@ -205,7 +205,7 @@ input the mapped command
 : open-my-bash-file
 
 * rainbow mode
- rainbow to nested parentheses
+rainbow to nested parentheses
 #+begin_src emacs-lisp
   (use-package rainbow-delimiters)
   (rainbow-delimiters-mode 1)
@@ -217,7 +217,7 @@ input the mapped command
 #+begin_src emacs-lisp
   (use-package eglot
     :ensure t
-   )
+    )
   (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
   (add-to-list 'eglot-server-programs '(web-mode "vls"))
   (add-hook 'c-mode-hook 'eglot-ensure)
@@ -360,23 +360,6 @@ C-c , jedi: go to definition pop marker
 #+RESULTS:
 : -i --simple-prompt
 
-** lsp-pyright
-#+begin_src emacs-lisp
-  ;; (use-package lsp-pyright
-  ;;   :ensure t
-  ;;   :hook (python-mode . (lambda ()
-  ;;                          (require 'lsp-pyright)
-  ;;                          (lsp))))  ; or lsp-deferred
-#+end_src
-** lsp-python
- pip install python-language-server[all]
- pip install jedi-language-server
- pip install pytest
- #+begin_src emacs-lisp
-   ;; (use-package python-mode
-   ;; :ensure t
-   ;; :hook (python-mode . lsp-deferred))
- #+end_src
 
 ** eamcs notebook
 *** Install
@@ -437,25 +420,25 @@ C-c C-o ( open the the ipython mode)
 
 ** emacs-jupyter lab 
 #+begin_src emacs-lisp
-    (use-package jupyter
-      :ensure )
+  (use-package jupyter
+    :ensure )
 
   ;; (add-to-list 'load-path "/snap/bin/jupyter")
   ;; (require 'jupyter)
 
-      ;; (let ((client (jupyter-kernel-client)))
-      ;;   (jupyter-comm-initialize client "kernel1234.json")
-      ;;   (jupyter-start-channels client))
+  ;; (let ((client (jupyter-kernel-client)))
+  ;;   (jupyter-comm-initialize client "kernel1234.json")
+  ;;   (jupyter-start-channels client))
 
-      ;; (use-package simple-httpd)
-      ;;   (require 'simple-httpd)
-      ;;   (setq httpd-root "/var/www")
-      ;;   (httpd-start)
+  ;; (use-package simple-httpd)
+  ;;   (require 'simple-httpd)
+  ;;   (setq httpd-root "/var/www")
+  ;;   (httpd-start)
 
-      ;; (use-package edit-server)
-      ;;   (require 'edit-server)
-      ;;   (edit-server-start)
-      ;;   (load-file "~/.emacs.d/packages/jupyterlab_emacs/edit_server_jupyterlab.el")
+  ;; (use-package edit-server)
+  ;;   (require 'edit-server)
+  ;;   (edit-server-start)
+  ;;   (load-file "~/.emacs.d/packages/jupyterlab_emacs/edit_server_jupyterlab.el")
 
 #+end_src
 
@@ -465,12 +448,12 @@ C-c C-o ( open the the ipython mode)
 ** haskell mode
 #+BEGIN_SRC emacs-lisp
   (use-package haskell-mode
-  :ensure t
-  :config
-  (require 'haskell-interactive-mode)
-  (require 'haskell-process)
-  (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-  )
+    :ensure t
+    :config
+    (require 'haskell-interactive-mode)
+    (require 'haskell-process)
+    (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+    )
 #+END_SRC
 ** jupyter ihaskell
 [[https://github.com/gibiansky/IHaskell][install step 1]]
@@ -581,10 +564,10 @@ C-c C-l  to execute file.hs and go to interactive environment
 Seeing ./black.hs
 *** C-c C-c call in src
 #+begin_src haskell   :results value 
-#+begin_src haskell  :results value :eval (inferior-haskell-start-process)
-  log2 :: Float -> Float
-    log2 = logBase 2
-    log2 43
+  ,#+begin_src haskell  :results value :eval (inferior-haskell-start-process)
+    log2 :: Float -> Float
+      log2 = logBase 2
+      log2 43
 
 #+end_src
 
@@ -601,10 +584,10 @@ Seeing Literatur Programm Grundlage
 *** send to haskell/org-src-block
 
 #+begin_src haskell
-#+begin_src haskell  :results value :eval (inferior-haskell-start-process)
-  log2 :: Float -> Float
-    log2 = logBase 2
-    log2 43
+  ,#+begin_src haskell  :results value :eval (inferior-haskell-start-process)
+    log2 :: Float -> Float
+      log2 = logBase 2
+      log2 43
 
 #+end_src
 
@@ -622,10 +605,10 @@ Seeing Literatur Programm Alternativen
 Shift + Ctrl + left right down up
 
 #+begin_src emacs-lisp
-    (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
-    (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
-    (global-set-key (kbd "S-C-<down>") 'shrink-window)
-    (global-set-key (kbd "S-C-<up>") 'enlarge-window)
+  (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
+  (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
+  (global-set-key (kbd "S-C-<down>") 'shrink-window)
+  (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 
 #+end_src
 
@@ -633,9 +616,9 @@ Shift + Ctrl + left right down up
 : enlarge-window
 
 * spacemacs-theme
-  M-x package-install  spacemacs-theme
-  M-x customize-themes
-  spacemacs dark
+M-x package-install  spacemacs-theme
+M-x customize-themes
+spacemacs dark
   
 * Paste with xsel
 sudo apt install xsel
@@ -666,63 +649,63 @@ sudo apt install xsel
 #+RESULTS:
 * Move-Text
 #+BEGIN_SRC emacs-lisp
-      (defun move-line (n)
-        "Move the current line up or down by N lines."
-        (interactive "p")
-        (setq col (current-column))
-        (beginning-of-line) (setq start (point))
-        (end-of-line) (forward-char) (setq end (point))
-        (let ((line-text (delete-and-extract-region start end)))
-          (forward-line n)
-          (insert line-text)
-          ;; restore point to original column in moved line
-          (forward-line -1)
-          (forward-char col)))
+  (defun move-line (n)
+    "Move the current line up or down by N lines."
+    (interactive "p")
+    (setq col (current-column))
+    (beginning-of-line) (setq start (point))
+    (end-of-line) (forward-char) (setq end (point))
+    (let ((line-text (delete-and-extract-region start end)))
+      (forward-line n)
+      (insert line-text)
+      ;; restore point to original column in moved line
+      (forward-line -1)
+      (forward-char col)))
 
-      (defun move-line-up (n)
-        "Move the current line up by N lines."
-        (interactive "p")
-        (move-line (if (null n) -1 (- n))))
+  (defun move-line-up (n)
+    "Move the current line up by N lines."
+    (interactive "p")
+    (move-line (if (null n) -1 (- n))))
 
-      (defun move-line-down (n)
-        "Move the current line down by N lines."
-        (interactive "p")
-        (move-line (if (null n) 1 n)))
-
-
-      (defun move-region (start end n)
-        "Move the current region up or down by N lines."
-        (interactive "r\np")
-        (let ((line-text (delete-and-extract-region start end)))
-          (forward-line n)
-          (let ((start (point)))
-            (insert line-text)
-            (setq deactivate-mark nil)
-            (set-mark start))))
-
-      (defun move-region-up (start end n)
-        "Move the current line up by N lines."
-        (interactive "r\np")
-        (move-region start end (if (null n) -1 (- n))))
-
-      (defun move-region-down (start end n)
-        "Move the current line down by N lines."
-        (interactive "r\np")
-        (move-region start end (if (null n) 1 n)))
+  (defun move-line-down (n)
+    "Move the current line down by N lines."
+    (interactive "p")
+    (move-line (if (null n) 1 n)))
 
 
-    (defun move-line-region-up (&optional start end n)
-      (interactive "r\np")
-      (if (use-region-p) (move-region-up start end n) (move-line-up n)))
+  (defun move-region (start end n)
+    "Move the current region up or down by N lines."
+    (interactive "r\np")
+    (let ((line-text (delete-and-extract-region start end)))
+      (forward-line n)
+      (let ((start (point)))
+        (insert line-text)
+        (setq deactivate-mark nil)
+        (set-mark start))))
 
-    (defun move-line-region-down (&optional start end n)
-      (interactive "r\np")
-      (if (use-region-p) (move-region-down start end n) (move-line-down n)))
+  (defun move-region-up (start end n)
+    "Move the current line up by N lines."
+    (interactive "r\np")
+    (move-region start end (if (null n) -1 (- n))))
+
+  (defun move-region-down (start end n)
+    "Move the current line down by N lines."
+    (interactive "r\np")
+    (move-region start end (if (null n) 1 n)))
+
+
+  (defun move-line-region-up (&optional start end n)
+    (interactive "r\np")
+    (if (use-region-p) (move-region-up start end n) (move-line-up n)))
+
+  (defun move-line-region-down (&optional start end n)
+    (interactive "r\np")
+    (if (use-region-p) (move-region-down start end n) (move-line-down n)))
 
   ;; don't work in SRC block
 
-    (global-set-key (kbd "M-<up>") 'move-line-region-up)
-    (global-set-key (kbd "M-<down>") 'move-line-region-down)
+  (global-set-key (kbd "M-<up>") 'move-line-region-up)
+  (global-set-key (kbd "M-<down>") 'move-line-region-down)
 
 
 #+END_SRC
@@ -731,14 +714,14 @@ sudo apt install xsel
 : move-line-region-down
 
 * Doom Theme
-   I tend to like *doom-themes* package. Below we will install doom theme. In addition, I will also install a package called *heaven-and-hell*. This allows us to toggle between two themes using a shortcut key. I will assign ~F6~ key to toggling the theme and ~C-c F6~ to set to default theme.
+I tend to like *doom-themes* package. Below we will install doom theme. In addition, I will also install a package called *heaven-and-hell*. This allows us to toggle between two themes using a shortcut key. I will assign ~F6~ key to toggling the theme and ~C-c F6~ to set to default theme.
 
 #+BEGIN_SRC emacs-lisp
   (use-package doom-themes
-  :ensure t 
-  :init 
-  (load-theme 'doom-palenight t))
-  
+    :ensure t 
+    :init 
+    (load-theme 'doom-palenight t))
+
 
   ;; (use-package heaven-and-hell
   ;;   :ensure t
@@ -760,28 +743,28 @@ If you press F6 key in your keyboard, it should switch between doom-palenight an
 #+begin_src emacs-lisp
   ;;  copy region or whole line
   (global-set-key "\M-w"
-    (lambda ()
-      (interactive)
-      (if mark-active
-          (kill-ring-save (region-beginning)
-          (region-end))
-        (progn
-         (kill-ring-save (line-beginning-position)
-         (line-end-position))
-         (message "copied line")))))
+                  (lambda ()
+                    (interactive)
+                    (if mark-active
+                        (kill-ring-save (region-beginning)
+                                        (region-end))
+                      (progn
+                        (kill-ring-save (line-beginning-position)
+                                        (line-end-position))
+                        (message "copied line")))))
 
 
-    ;; kill region or whole line
-    (global-set-key "\C-w"
-    (lambda ()
-      (interactive)
-      (if mark-active
-          (kill-region (region-beginning)
-       (region-end))
-        (progn
-         (kill-region (line-beginning-position)
-      (line-end-position))
-         (message "killed line")))))
+  ;; kill region or whole line
+  (global-set-key "\C-w"
+                  (lambda ()
+                    (interactive)
+                    (if mark-active
+                        (kill-region (region-beginning)
+                                     (region-end))
+                      (progn
+                        (kill-region (line-beginning-position)
+                                     (line-end-position))
+                        (message "killed line")))))
 #+end_src
 
 #+RESULTS:
@@ -828,59 +811,59 @@ C-. :flyspell-auto-correct-word (turn by turn)
       (message "Dictionary switched from %s to %s" dic change)
       ))
   (global-set-key (kbd "<f9>")   'fd-switch-dictionary)
-(setq flyspell-mode t)
+  (setq flyspell-mode t)
 #+end_src
 * echo-key
 
 M-x echo-keys-mode
 #+BEGIN_SRC emacs-lisp
 
-(defvar *echo-keys-last* nil "Last command processed by `echo-keys'.")
+  (defvar *echo-keys-last* nil "Last command processed by `echo-keys'.")
 
-(defun echo-keys-mode ()
-  (interactive)
-  (if (member 'echo-keys-hook pre-command-hook)
+  (defun echo-keys-mode ()
+    (interactive)
+    (if (member 'echo-keys-hook pre-command-hook)
+        (progn
+          (remove-hook 'pre-command-hook 'echo-keys-hook)
+          (dolist (window (window-list))
+            (when (eq (window-buffer window) (get-buffer "*echo-key*"))
+              (delete-window window))))
       (progn
-        (remove-hook 'pre-command-hook 'echo-keys-hook)
-        (dolist (window (window-list))
-          (when (eq (window-buffer window) (get-buffer "*echo-key*"))
-            (delete-window window))))
-    (progn
-      (add-hook 'pre-command-hook 'echo-keys-hook)
-      (delete-other-windows)
-      (split-window nil (- (window-width) 8) t)
-      (other-window 1)
-      (switch-to-buffer (get-buffer-create "*echo-key*"))
-      (set-window-dedicated-p (selected-window) t)
-      (other-window 1))))
+        (add-hook 'pre-command-hook 'echo-keys-hook)
+        (delete-other-windows)
+        (split-window nil (- (window-width) 8) t)
+        (other-window 1)
+        (switch-to-buffer (get-buffer-create "*echo-key*"))
+        (set-window-dedicated-p (selected-window) t)
+        (other-window 1))))
 
-(defun echo-keys-hook ()
-  (let ((deactivate-mark deactivate-mark))
-    (when (this-command-keys)
-      (with-current-buffer (get-buffer-create "*echo-key*")
-        (goto-char (point-max))
-        ;; self  self
-        ;; self  other \n
-        ;; other self  \n
-        ;; other other \n
-        (unless (and (eq 'self-insert-command *echo-keys-last*)
-                     (eq 'self-insert-command this-command))
-          (insert "\n"))
-        (if (eql this-command 'self-insert-command)
-            (let ((desc (key-description (this-command-keys))))
-              (if (= 1 (length desc))
-                  (insert desc)
-                (insert " " desc " ")))
-          (insert (key-description (this-command-keys)))
-          )
-        (setf *echo-keys-last* this-command)
-        (dolist (window (window-list))
-          (when (eq (window-buffer window) (current-buffer))
-            ;; We need to use both to get the effect.
-            (set-window-point window (point))
-            (end-of-buffer)))))))
+  (defun echo-keys-hook ()
+    (let ((deactivate-mark deactivate-mark))
+      (when (this-command-keys)
+        (with-current-buffer (get-buffer-create "*echo-key*")
+          (goto-char (point-max))
+          ;; self  self
+          ;; self  other \n
+          ;; other self  \n
+          ;; other other \n
+          (unless (and (eq 'self-insert-command *echo-keys-last*)
+                       (eq 'self-insert-command this-command))
+            (insert "\n"))
+          (if (eql this-command 'self-insert-command)
+              (let ((desc (key-description (this-command-keys))))
+                (if (= 1 (length desc))
+                    (insert desc)
+                  (insert " " desc " ")))
+            (insert (key-description (this-command-keys)))
+            )
+          (setf *echo-keys-last* this-command)
+          (dolist (window (window-list))
+            (when (eq (window-buffer window) (current-buffer))
+              ;; We need to use both to get the effect.
+              (set-window-point window (point))
+              (end-of-buffer)))))))
 
-(provide 'echo-keys)
+  (provide 'echo-keys)
 
 
 #+END_SRC
@@ -893,9 +876,9 @@ M-x cnfonts-edit-profile
   ;; :config )
 
   ;;(require 'cnfonts)
-   ;; 让 cnfonts 随着 Emacs 自动生效。
-;;   (cnfonts-enable)
-   ;; 让 spacemacs mode-line 中的 Unicode 图标正确显示。
+  ;; 让 cnfonts 随着 Emacs 自动生效。
+  ;;   (cnfonts-enable)
+  ;; 让 spacemacs mode-line 中的 Unicode 图标正确显示。
   ;;(cnfonts-set-spacemacs-fallback-fonts)
 
 #+end_src
@@ -957,29 +940,29 @@ customize Ranger group: ranger-show-hidden t
 |-------+---------------------------------------|
 
 #+begin_src emacs-lisp
-(defun efs/ielm-send-line-or-region ()
-  (interactive)
-  (unless (use-region-p)
-    (forward-line 0)
-    (set-mark-command nil)
-    (forward-line 1))
-  (backward-char 1)
-  (let ((text (buffer-substring-no-properties (region-beginning)
-                                              (region-end))))
-    (with-current-buffer "*ielm*"
-      (insert text)
-      (ielm-send-input))
+  (defun efs/ielm-send-line-or-region ()
+    (interactive)
+    (unless (use-region-p)
+      (forward-line 0)
+      (set-mark-command nil)
+      (forward-line 1))
+    (backward-char 1)
+    (let ((text (buffer-substring-no-properties (region-beginning)
+                                                (region-end))))
+      (with-current-buffer "*ielm*"
+        (insert text)
+        (ielm-send-input))
 
-    (deactivate-mark)))
+      (deactivate-mark)))
 
-(defun efs/show-ielm ()
-  (interactive)
-  (select-window (split-window-vertically -10))
-  (ielm)
-  (text-scale-set 1))
+  (defun efs/show-ielm ()
+    (interactive)
+    (select-window (split-window-vertically -10))
+    (ielm)
+    (text-scale-set 1))
 
-(define-key org-mode-map (kbd "C-c e") 'efs/ielm-send-line-or-region)
-(define-key org-mode-map (kbd "C-c E") 'efs/show-ielm)
+  (define-key org-mode-map (kbd "C-c e") 'efs/ielm-send-line-or-region)
+  (define-key org-mode-map (kbd "C-c E") 'efs/show-ielm)
 
 #+end_src
 
@@ -1010,10 +993,10 @@ M-x: pdf-view-mode to view es in pdf-tools mode
 * which key
 Brings up some help
 #+BEGIN_SRC emacs-lisp
-    (use-package which-key
-      :ensure t
-      :config
-      (which-key-mode))
+  (use-package which-key
+    :ensure t
+    :config
+    (which-key-mode))
 
 #+END_SRC
 * Rectangle
@@ -1026,24 +1009,24 @@ Brings up some help
 
 * Counsel
 #+BEGIN_SRC emacs-lisp
-   (use-package counsel
-  :ensure t
-  :bind
-  (("M-y" . counsel-yank-pop)
-   :map ivy-minibuffer-map
-   ("M-y" . ivy-next-line)))
-   #+end_src
+  (use-package counsel
+    :ensure t
+    :bind
+    (("M-y" . counsel-yank-pop)
+     :map ivy-minibuffer-map
+     ("M-y" . ivy-next-line)))
+#+end_src
 * ivy
 #+begin_src emacs-lisp
   (use-package ivy
-  :ensure t
-  :diminish (ivy-mode)
-  :bind (("C-x b" . ivy-switch-buffer))
-  :config
-  (ivy-mode 1)
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-count-format "%d/%d ")
-  (setq ivy-display-style 'fancy))
+    :ensure t
+    :diminish (ivy-mode)
+    :bind (("C-x b" . ivy-switch-buffer))
+    :config
+    (ivy-mode 1)
+    (setq ivy-use-virtual-buffers t)
+    (setq ivy-count-format "%d/%d ")
+    (setq ivy-display-style 'fancy))
 #+end_src
 
 * Swiper
@@ -1051,18 +1034,18 @@ Brings up some help
 
 
   (use-package swiper
-  :ensure t
-  :bind (("C-s" . swiper-isearch)
-         ("C-c C-r" . ivy-resume)
-         ("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file))
-  :config
-  (progn
-    (ivy-mode 1)
-    (setq ivy-use-virtual-buffers t)
-    (setq ivy-display-style 'fancy)
-    (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
-    ))
+    :ensure t
+    :bind (("C-s" . swiper-isearch)
+           ("C-c C-r" . ivy-resume)
+           ("M-x" . counsel-M-x)
+           ("C-x C-f" . counsel-find-file))
+    :config
+    (progn
+      (ivy-mode 1)
+      (setq ivy-use-virtual-buffers t)
+      (setq ivy-display-style 'fancy)
+      (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+      ))
 #+END_SRC
 
 #+RESULTS:
@@ -1073,7 +1056,7 @@ Now is flex-autopair
   (use-package flex-autopair
     :ensure t
     :init (global-flex-autopair-mode t)
-  )
+    )
 
 
 #+end_src
@@ -1082,8 +1065,8 @@ See https://github.com/abo-abo/avy for more info
 
 #+BEGIN_SRC emacs-lisp
   (use-package avy
-  :ensure t
-  :bind ("M-s" . avy-goto-word-1)) ;; changed from char as per jcs
+    :ensure t
+    :bind ("M-s" . avy-goto-word-1)) ;; changed from char as per jcs
 #+END_SRC
 * Autocomplete
 #+BEGIN_SRC emacs-lisp
@@ -1097,7 +1080,7 @@ See https://github.com/abo-abo/avy for more info
     )
   (define-key ac-complete-mode-map "\C-n" 'ac-next)
   (define-key ac-complete-mode-map "\C-p" 'ac-previous)
-  
+
 #+END_SRC
 
 #+RESULTS:
@@ -1109,7 +1092,7 @@ C-c ! v to check the flycheck checkers
     :ensure t
     :init
     (global-flycheck-mode t)
-;;    (setq-default flycheck-flake8-maximum-line-length 99)
+    ;;    (setq-default flycheck-flake8-maximum-line-length 99)
     )
 #+END_SRC
 
@@ -1118,19 +1101,19 @@ C-c ! v to check the flycheck checkers
 M-x yas-expand to call with  : C-c y
 
 #+BEGIN_SRC emacs-lisp
-   (use-package yasnippet
-     :ensure t
-     :init
-     (yas-global-mode 1)
-     :config
-     (add-to-list 'yas-snippet-dirs (locate-user-emacs-file "snippets")))
+  (use-package yasnippet
+    :ensure t
+    :init
+    (yas-global-mode 1)
+    :config
+    (add-to-list 'yas-snippet-dirs (locate-user-emacs-file "snippets")))
 
-   (use-package yasnippet-snippets
-     :ensure t
-     :config)
+  (use-package yasnippet-snippets
+    :ensure t
+    :config)
 
-   (use-package auto-yasnippet
-     :ensure t)
+  (use-package auto-yasnippet
+    :ensure t)
 
   (define-key yas-minor-mode-map (kbd "C-c y") #'yas-expand)
 #+END_SRC
@@ -1139,26 +1122,27 @@ M-x yas-expand to call with  : C-c y
 : t
 * Undo Tree
 #+BEGIN_SRC emacs-lisp
-    (use-package undo-tree
-      :ensure t
-      :init
-      (global-undo-tree-mode))
+  (use-package undo-tree
+    :ensure t
+    :init
+    (global-undo-tree-mode))
 #+END_SRC
 * general
 #+begin_src emacs-lisp
   (use-package general
-      :ensure t
-      :config)
+    :ensure t
+    :config)
   (general-define-key 
    "C-M-j" 'counsel-switch-buffer)
 
 #+end_src
+
 * command-log-mode
 C-c o (clm/toggle-comand-log-buffer) to open command-log and again to close
 #+begin_src emacs-lisp
   (use-package command-log-mode
-   :ensure t
-   )
+    :ensure t
+    )
   (global-command-log-mode t)
 #+end_src
 * EAF
@@ -1281,19 +1265,18 @@ eaf-proxy-caret
 
 #+end_src
 * Impatient Mode
- M-x package-install impatient-mode 
- M-x httpd-start
- M-x impatient-mode
+M-x package-install impatient-mode 
+M-x httpd-start
+M-x impatient-mode
 #+begin_src emacs-lisp
-(use-package impatient-mode
-:ensure t
-:config )
-(require 'impatient-mode)
+  (use-package impatient-mode
+    :ensure t
+    :config )
+  (require 'impatient-mode)
 #+end_src
 
 #+RESULTS:
 : impatient-mode
-
 * Projectile
 #+begin_src emacs-lisp
   ;; projectile
@@ -1309,9 +1292,9 @@ eaf-proxy-caret
 * fold this
 M-x : package install :  fold this
 #+BEGIN_SRC emacs-lisp
-;;(global-set-key (kbd "C-c C-f") 'fold-this-all)
-(global-set-key (kbd "C-M-f") 'fold-this)
-;;(global-set-key (kbd "C-c M-f") 'fold-this-unfold-all)
+  ;;(global-set-key (kbd "C-c C-f") 'fold-this-all)
+  (global-set-key (kbd "C-M-f") 'fold-this)
+  ;;(global-set-key (kbd "C-c M-f") 'fold-this-unfold-all)
 
 #+END_SRC
 
@@ -1322,18 +1305,19 @@ C-x C-f  :find files in dire mode
 C-l go back to the above directory
 #+begin_src emacs-lisp
   (use-package helm
-  :ensure t
-  :config )
+    :ensure t
+    :config )
 
   (helm-mode 1)
   (require 'helm-config)
   (global-set-key (kbd "M-x") 'helm-M-x)
   (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-;;  (global-set-key (kbd "C-x C-f") 'helm-find-files)
+  ;;  (global-set-key (kbd "C-x C-f") 'helm-find-files)
 #+end_src
 
 #+RESULTS:
 : helm-find-files
+
 * Magit
 C-x g
 s/S
@@ -1469,37 +1453,6 @@ https://github.com/nikclayton/ob-html-chrome
 
 #+RESULTS:
 : /usr/bin/google-chrome
-* company
-#+begin_src emacs-lisp
-  (use-package company
-    :ensure t
-    :after lsp-mode
-    :hook (lsp-mode . company-mode)
-    :bind (:map company-active-map
-                ("<tab>". company-complete-selection))
-          (:map lsp-mode-map
-                ("<tab>" . company-indent-or-complete-common))
-    :config
-    (setq company-idle-delay 0)
-    (setq company-minimum-prefix-length 1)
-    (global-company-mode t))
-  
-  
-  (with-eval-after-load 'company
-    (define-key company-active-map (kbd "M-n") nil)
-    (define-key company-active-map (kbd "M-p") nil)
-    (define-key company-active-map (kbd "C-n") 'company-select-next)
-    (define-key company-active-map (kbd "C-p") 'company-select-previous)
-    )
-  
-  (use-package autoinsert
-    :ensure t
-    :config
-    (setq auto-insert-query nil)
-    (add-hook 'find-file-hook 'auto-insert)
-    (auto-insert-mode t))
-  
-#+end_src
 * ispell-region
 mark all the region I want to check, and M-X ispell-region
 space for nothing and numbers for replace.
@@ -2568,26 +2521,6 @@ so the comands from Emacs wiki works
     )
   
 #+end_src
-** js
-#+begin_src emacs-lisp  
-  (use-package js2-mode
-    :ensure t
-    :mode (("\\.js\\'" . js2-mode)
-           ("\\.json\\'" . javascript-mode))
-    :hook (js2-mode . lsp-deferred)
-    :init
-    (setq indent-tabs-mode nil)
-    (setq js2-basic-offset 2)
-    (setq js-indent-level 2)
-  
-    (setq-default js2-global-externs '("module" "require" "assert" "setTimeout" "clearTimeout" "setInterval" "clearInterval" "location" "__d\
-          irname" "console" "JSON"))
-    (progn
-      (add-hook 'js-mode-hook 'js2-minor-mode)
-      )
-    )
-  
-#+end_src
 ** tide
 #+begin_src emacs-lisp  
   (use-package tide
@@ -2634,131 +2567,6 @@ so the comands from Emacs wiki works
                                ))
       )
   
-#+end_src
-
-* LSP
-** LSP server
-Let's install the main package for lsp. Here we will integrate lsp with which-key. This way, when we type the prefix key ~C-c l~ we get additional help for compliting the command. 
-
-You can start LSP server in a java project by using ~C-c l s s~.
-Once you type ~C-c l~ ~which-key~ package should guide you through rest of the options.
-In above setting I have added some memory management settings as suggested in [[https://emacs-lsp.github.io/lsp-mode/page/performance/][this guide]].
-Change them to higher numbers, if you find *lsp-mode* sluggish in your computer.
-
-#+begin_src emacs-lisp
-  (defun efs/lsp-mode-setup ()
-    (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
-    (lsp-headerline-breadcrumb-mode))
-  
-      (use-package lsp-mode
-    ;;    :straight t
-        :commands (lsp lsp-deferred)
-        :hook
-        ((typescript-mode js2-mode web-mode) . lsp)
-        (lsp-mdoe . efs/lsp-mode-setup)
-        :init
-        (setq lsp-keymap-prefix "C-c l")
-        :config
-        (lsp-enable-which-key-integration t)
-        :bind (:map lsp-mode-map
-                  ("TAB" . completion-at-point))
-        :custom (lsp-headerline-breadcrumb-enable nil))
-  
-#+end_src
-** lsp ui
-#+begin_src emacs-lisp
-  (use-package lsp-ui
-    :ensure t
-    :hook (lsp-mode . lsp-ui-mode)
-    :custom
-    (lsp-ui-doc-position 'bottom))
-
-  (setq lsp-ui-sideline-show-code-actions nil)
-  (setq lsp-headerline-breadcrumb-enable t)
-  (setq lsp-ui-sideline-enable nil)
-#+end_src
-
-** java configuation
-#+begin_src emacs-lisp
-  (setenv "JAVA_HOME" "/usr/lib/jvm/java-11-openjdk-amd64")
-#+end_src
-** lsp treemacs
-#+begin_src emacs-lisp
-(use-package lsp-treemacs
-:after lsp)
-#+end_src
-** dap Mode
-Emacs Debug Adapter Protocol aka DAP Mode allows us to debug your program.
-Below we will integrate ~dap-mode~ with ~dap-hydra~.
-~Dap-hydra~ shows keys you can use to enable various options and jump through code at runtime.
-After we install dap-mode we will also install ~dap-java~.
-
-#+begin_src emacs-lisp
-  ;; (use-package dap-mode
-  ;;   :ensure t
-  ;;   :after (lsp-mode)
-  ;;   :functions dap-hydra/nil
-  ;;   :config
-  ;;   (require 'dap-java)
-  ;;   :bind (:map lsp-mode-map
-  ;;          ("<f5>" . dap-debug)
-  ;;          ("M-<f5>" . dap-hydra))
-  ;;   :hook ((dap-mode . dap-ui-mode)
-  ;;     (dap-session-created . (lambda (&_rest) (dap-hydra)))
-  ;;     (dap-terminated . (lambda (&_rest) (dap-hydra/nil)))))
-
-  ;; (use-package dap-java :ensure nil)
-#+end_src
-
-** TS
-#+begin_src emacs-lisp
-  (use-package typescript-mode
-  :mode "\\.ts\\'"
-  :hook (typescript-mode . lsp-deferred)
-  :config
-  (setq typescript-indent-level 2))
-#+end_src
-
-
-#+begin_src emacs-lisp
-  (use-package ob-typescript
-  :ensure t
-  )
-#+end_src
-
-** python
-#+begin_src  emacs-lisp
-  (use-package python-mode
-    :ensure nil
-    :hook (python-mode . lsp-deferred)
-    :custom
-    (python-shell-interpreter "python"))
-  
-#+end_src
-
-* Julia
-#+begin_src emacs-lisp
-    (package-install 'julia-mode)
-    (require 'julia-mode)
-    (package-install 'lsp-julia)
-    (use-package lsp-julia
-      :config
-      (setq lsp-julia-default-environment "~/.julia/environments/v1.7"))
-    (add-hook 'ess-julia-mode-hook #'lsp-mode)
-
-#+end_src
-
-install julia-vterm and Suppressor
-- sudo apt-get install libtool-bin
-or / and sudo apt-get install libtool
-
-- $ julia
->>> use Pkg
->>> Pkg.add("Suppressor")
-
-#+begin_src emacs-lisp
-  (package-install 'julia-vterm)
-  (add-hook 'julia-mode-hook #'julia-vterm-mode)
 #+end_src
 
 * hi-lock-mode
