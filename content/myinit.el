@@ -1274,8 +1274,8 @@ With one universal prefix argument, only tangle the block at point."
          ("M-1" . mc/mark-all-like-this)
          )
   )
-;; (global-set-key (kbd "C-M-m") 'mc/edit-lines)
-;; (global-set-key (kbd "C-M-a") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-M-m") 'mc/edit-lines)
+(global-set-key (kbd "C-M-a") 'mc/mark-all-like-this)
 
 (use-package scala-mode
     :interpreter
@@ -1642,5 +1642,3 @@ managers such as DWM, BSPWM refer to this state as 'monocle'."
         org-gcal-file-alist '(("scofild429@gmail.com" .  "~/Dropbox/Note/gcal.org"))))
 (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
 (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
-
-(require 'ctable)
