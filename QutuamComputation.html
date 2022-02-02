@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-02-02 Wed 00:46 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Qutuam Computation</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css" />
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Qutuam Computation</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgceb27a0">Basic states and operations</a>
+<ul>
+<li><a href="#org44ed6a5">ketbra</a></li>
+<li><a href="#org6ad2f4b">states</a></li>
+<li><a href="#org300b2b0">Measurements</a></li>
+<li><a href="#orgd574859">Single Qutantum circuits</a></li>
+<li><a href="#orgc688884">Multipartite quantum states</a></li>
+<li><a href="#org37a14c5">XOR gate</a></li>
+<li><a href="#org0dc0b8c">Bell states</a></li>
+<li><a href="#orgae9e195">Teleportion</a></li>
+<li><a href="#org2acef90">Bit oracle</a></li>
+<li><a href="#org939118c">Hadamard on n qubits</a></li>
+</ul>
+</li>
+<li><a href="#org0b72d22">Deutsche-Jose  Algrithmus</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgceb27a0" class="outline-2">
+<h2 id="orgceb27a0">Basic states and operations</h2>
+<div class="outline-text-2" id="text-orgceb27a0">
+</div>
+<div id="outline-container-org44ed6a5" class="outline-3">
+<h3 id="org44ed6a5">ketbra</h3>
+<div class="outline-text-3" id="text-org44ed6a5">
+<ul class="org-ul">
+<li>Ket:  \[ |a\rangle = \begin{pmatrix} a_{1} \\ a_{2} \end{pmatrix} \]</li>
+<li>Bra: \[\langle b| = |b\rangle^+  = \begin{pmatrix} b_{1} \\ b_{2} \end{pmatrix}^+ = \begin{pmatrix} b_{1}^* & b_{2}^* \end{pmatrix} \]</li>
+
+<li>Production of Ket and Bra:</li>
+</ul>
+<p>
+\[  \langle b|a \rangle  = \begin{pmatrix} b_{1}^* & b_{2}^* \end{pmatrix} \cdot  \begin{pmatrix} a_{1} \\ a_{2} \end{pmatrix} = a_1b_1^* + a_2b_2^*\]
+</p>
+</div>
+</div>
+<div id="outline-container-org6ad2f4b" class="outline-3">
+<h3 id="org6ad2f4b">states</h3>
+<div class="outline-text-3" id="text-org6ad2f4b">
+<p>
+\[|0\rangle := \begin{pmatrix} 1 \\ 0 \end{pmatrix} \]
+</p>
+
+<p>
+\[|1\rangle := \begin{pmatrix} 0 \\ 1 \end{pmatrix} \]
+If a measurement will collapse either on |0&rang; or |1&rang;,
+which means |0&rang; or |1&rang; is its eigentstate, we call it as Z-measurement, and denote as \(\sigma_{z}\).
+</p>
+
+<p>
+\[|+\rangle := \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)\]
+</p>
+
+<p>
+\[|-\rangle := \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)\]
+If a measurement will collapse either on |+&rang; or |-&rang;,
+which means |+&rang; or |-&rang; is its eigentstate, we call it as Z-measurement, and denote as \(\sigma_{x}\).
+</p>
+
+<p>
+\[|+i\rangle := \frac{1}{\sqrt{2}}(|0\rangle + i|1\rangle)\]
+\(\langle  \rangle\)
+\[|-i\rangle := \frac{1}{\sqrt{2}}(|0\rangle - i|1\rangle)\]
+If a measurement will collapse either on |+i&rang; or |-i&rang;,
+which means |+i&rang; or |-i&rang; is its eigentstate, we call it as Z-measurement, and denote as \(\sigma_{y}\).
+</p>
+
+<p>
+The coefficient has to be \(\frac{1}{\sqrt{2}}\) because of normalisation\(\langle\phi|\phi\rangle = 1\).
+</p>
+</div>
+</div>
+<div id="outline-container-org300b2b0" class="outline-3">
+<h3 id="org300b2b0">Measurements</h3>
+<div class="outline-text-3" id="text-org300b2b0">
+<p>
+for states basis of{ \(x_1\) } and { \(x_2\) }, the measurement of state \(\phi\) on { \(x_{1}\) } is \(\langle x_{1}|\phi\rangle^2\).
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd574859" class="outline-3">
+<h3 id="orgd574859">Single Qutantum circuits</h3>
+<div class="outline-text-3" id="text-orgd574859">
+<ul class="org-ul">
+<li><p>
+bit flip: \(\sigma_{x}|0 \rangle = |1 \rangle\) :
+</p>
+
+<p>
+\[\sigma_{x} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \]
+</p></li>
+<li>phase flip:  \(\sigma_{z}|+ \rangle = |- \rangle\) :
+\[\sigma_{z} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \]</li>
+<li>bit &amp; phase filp:   \(\sigma_{y}|+i \rangle = |-i \rangle\) :
+\[\sigma_{y} = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} \]</li>
+
+<li>Hadamard gate: \(H|0\rangle = |+ \rangle\),  \(H|1\rangle = |- \rangle\),
+\[ H =\frac{1}{\sqrt{2}}  \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} \]</li>
+
+<li>Phase gate: \(S|+ \rangle = |+i\rangle\), \(S|- \rangle = |-i\rangle\)
+\[ S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix} \]</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc688884" class="outline-3">
+<h3 id="orgc688884">Multipartite quantum states</h3>
+<div class="outline-text-3" id="text-orgc688884">
+<p>
+we use tensor products to describe multiple states
+\[|a \rangle \oplus | b \rangle = \begin{pmatrix} a_{1} \\ a_{2} \end{pmatrix} \oplus \begin{pmatrix} b_{1} \\ b_{2} \end{pmatrix}  =
+\begin{pmatrix} a_{1}b_{1} \\ a_{1}b_{2} \\  a_{2}b_{1} \\a_{2}b_{2} \end{pmatrix} \]
+only such can to described by \(\oplus\) of other states are called uncorrelated,
+otherweise it's correlated, and  when some fully correlated are called entangled.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org37a14c5" class="outline-3">
+<h3 id="org37a14c5">XOR gate</h3>
+<div class="outline-text-3" id="text-org37a14c5">
+<p>
+\[CNOT = \begin{pmatrix} 1 & 0 & 0 & 0  \\ 0 & 1 & 0 & 0  \\ 0 & 0 & 1 & 0  \\ 0 & 0 & 0 & 1    \end{pmatrix} \]
+</p>
+
+<div class="org-src-container">
+<pre class="src src-latex"><span style="font-weight: bold;">\Qcircuit</span> @C=1em @R=1em {
+<span style="font-weight: bold;">\lstick</span>{<span style="font-weight: bold;">\ket</span>{x}} &amp; <span style="font-weight: bold;">\ctrl</span>{1} &amp; <span style="font-weight: bold;">\rstick</span>{<span style="font-weight: bold;">\ket</span>{x}} <span style="font-weight: bold;">\qw</span> <span style="font-weight: bold;">\\</span>
+<span style="font-weight: bold;">\lstick</span>{<span style="font-weight: bold;">\ket</span>{y}} &amp; <span style="font-weight: bold;">\targ</span>   &amp; <span style="font-weight: bold;">\rstick</span>{<span style="font-weight: bold;">\ket</span>{x <span style="font-weight: bold;">\oplus</span> y }} <span style="font-weight: bold;">\qw</span>
+}
+</pre>
+</div>
+
+<div class="figure">
+<p><img src="./foto/QCCNOT.png" alt="QCCNOT.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0dc0b8c" class="outline-3">
+<h3 id="org0dc0b8c">Bell states</h3>
+<div class="outline-text-3" id="text-org0dc0b8c">
+<p>
+Example of fully correlated states (maximally entangled),
+</p>
+
+<p>
+\[| \varphi^{00}  \rangle  = \frac{1}{\sqrt{2}}( |00 \rangle_{AB} + |11 \rangle_{AB})\]
+\[| \varphi^{01}  \rangle  = \frac{1}{\sqrt{2}}( |01 \rangle_{AB} + |10 \rangle_{AB})\]
+\[| \varphi^{10}  \rangle  = \frac{1}{\sqrt{2}}( |00 \rangle_{AB} -  |11 \rangle_{AB})\]
+\[| \varphi^{11}  \rangle  = \frac{1}{\sqrt{2}}( |01 \rangle_{AB} - |10 \rangle_{AB})\]
+</p>
+
+<p>
+Create Bell states
+</p>
+
+<div class="org-src-container">
+<pre class="src src-latex"><span style="font-weight: bold;">\Qcircuit</span> @C=1em @R=1em {
+<span style="font-weight: bold;">\lstick</span>{<span style="font-weight: bold;">\ket</span>{i}_A} &amp; <span style="font-weight: bold;">\gate</span>{H} &amp; <span style="font-weight: bold;">\ctrl</span>{1} &amp;  <span style="font-weight: bold;">\qw</span> <span style="font-weight: bold;">\\</span>
+<span style="font-weight: bold;">\lstick</span>{<span style="font-weight: bold;">\ket</span>{j}_B} &amp;  <span style="font-weight: bold;">\qw</span>    &amp;   <span style="font-weight: bold;">\targ</span>   &amp;  <span style="font-weight: bold;">\qw</span>
+  }
+</pre>
+</div>
+
+
+
+<div class="figure">
+<p><img src="./foto/QCBellstates.png" alt="QCBellstates.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgae9e195" class="outline-3">
+<h3 id="orgae9e195">Teleportion</h3>
+<div class="outline-text-3" id="text-orgae9e195">
+<p>
+If Alise and Bob share the same bell states \(| \varphi^{00}_{AB}  \rangle  = \frac{1}{\sqrt{2}}( |00 \rangle_{AB} + |11 \rangle_{AB})\),
+Now Alias want to send stetas \(|\phi \rangle_{S} = \alpha |0 \rangle_{S} + \beta|1 \rangle_{S}\) to Bob,
+</p>
+
+
+<p>
+\[ \varPhi =  |\phi \rangle_{S} \oplus \varphi^{00}_{AB} \rangle
+ =  (\alpha |0 \rangle_{S} + \beta|1 \rangle_{S})\oplus \frac{1}{\sqrt{2}}( |00 \rangle_{AB} + |11 \rangle_{AB})\]
+</p>
+
+<p>
+\[ \varPhi  = \frac{1}{\sqrt{2}} ( \alpha |000 \rangle_{SAB} + \alpha|011 \rangle_{SAB} + \beta|100 \rangle_{SAB} + \beta|111 \rangle_{SAB} ) \]
+\[ \varPhi = \frac{1}{2\sqrt{2}} ( \alpha |000 \rangle_{SAB} + \beta |001 \rangle_{SAB} + \alpha|110 \rangle_{SAB} + \beta|111 \rangle_{SAB} +
+\alpha |011 \rangle_{SAB} + \alpha |101 \rangle_{SAB} + \beta|010 \rangle_{SAB} +\beta|100 \rangle_{SAB} +
+\alpha |000 \rangle_{SAB} - \beta |001 \rangle_{SAB} - \alpha|110 \rangle_{SAB} + \beta|111 \rangle_{SAB} +
+\alpha |011 \rangle_{SAB} - \alpha |101 \rangle_{SAB} - \beta|010 \rangle_{SAB} +\beta|100 \rangle_{SAB}) \]
+\[ \varPhi  = \frac{1}{2\sqrt{2}} [(|00 \rangle_{SA} + |11\rangle_{SA}) ]\oplus (\alpha |0\rangle_B + \beta|1\rangle_B) +
+(|01 \rangle_{SA} + |10\rangle_{SA}) ]\oplus (\alpha |1\rangle_B + \beta|0\rangle_B) \\
+ +(|00 \rangle_{SA} - |11\rangle_{SA}) ]\oplus (\alpha |0\rangle_B - \beta|1\rangle_B)  +
+(|01 \rangle_{SA} - |10\rangle_{SA}) ]\oplus (\alpha |1\rangle_B - \beta|0\rangle_B) ] \]
+\[ \varPhi = \frac{1}{2\sqrt{2}} [| \varphi^{00}_{AB} \rangle \oplus |\phi \rangle_{B} + | \varphi^{01}_{AB} \rangle \oplus \sigma_x |\phi \rangle_{B}+ |\varphi^{10}_{AB} \rangle \oplus \sigma_z |\phi \rangle_{B} + | \varphi^{11}_{AB} \rangle \oplus \sigma_x  \sigma_z |\phi \rangle_{B}]  \]
+</p>
+
+<ul class="org-ul">
+<li>Alice preforms a measurement in the Bell basis</li>
+<li>she send her classical output (i,j) to Bob</li>
+<li>Bob apply \(\sigma_{z}^{i}\sigma_{x}^{j}\) to get the orignal \(|\phi\rangle\).</li>
+</ul>
+
+
+<div class="org-src-container">
+<pre class="src src-latex"><span style="font-weight: bold;">\Qcircuit</span> @C=1em @R=.7em {
+ <span style="font-weight: bold;">\lstick</span>{<span style="font-weight: bold;">\ket</span>{<span style="font-weight: bold;">\phi</span>_s}_A}          &amp; <span style="font-weight: bold;">\multigate</span>{1}{Bell Meas} &amp; <span style="font-weight: bold;">\cw</span> &amp; <span style="font-weight: bold;">\cw</span>    &amp; <span style="font-weight: bold;">\cwx</span>[2] <span style="font-weight: bold;">\\</span>
+ <span style="font-weight: bold;">\lstick</span>{<span style="font-weight: bold;">\ket</span>{<span style="font-weight: bold;">\varphi</span>^{00}_A}}    &amp; <span style="font-weight: bold;">\ghost</span>{Bell Meas}        &amp; <span style="font-weight: bold;">\cw</span> &amp; <span style="font-weight: bold;">\cwx</span>[1]   <span style="font-weight: bold;">\\</span>
+ <span style="font-weight: bold;">\lstick</span>{<span style="font-weight: bold;">\ket</span>{<span style="font-weight: bold;">\varphi</span>^{00}_B}}    &amp;  <span style="font-weight: bold;">\qw</span>                    &amp; <span style="font-weight: bold;">\qw</span> &amp; <span style="font-weight: bold;">\gate</span>{<span style="font-weight: bold;">\sigma</span>_x^j}&amp; <span style="font-weight: bold;">\gate</span>{<span style="font-weight: bold;">\sigma</span>_x^j }&amp; <span style="font-weight: bold;">\qw</span> &amp;  <span style="font-weight: bold;">\rstick</span>{<span style="font-weight: bold;">\ket</span>{<span style="font-weight: bold;">\phi</span>_s}_B} 
+}
+</pre>
+</div>
+
+
+
+
+<div class="figure">
+<p><img src="./foto/QCteleportation.png" alt="QCteleportation.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2acef90" class="outline-3">
+<h3 id="org2acef90">Bit oracle</h3>
+<div class="outline-text-3" id="text-org2acef90">
+
+<div class="figure">
+<p><img src="./foto/QCbitoracle.png" alt="QCbitoracle.png" />
+</p>
+</div>
+
+<p>
+\(O_{f}|x\rangle |y\rangle = |x\rangle |y \oplus f(x)\rangle\),  \(U_{f}\) : phase oracle, which is independt of y,
+\[U_{f}|x\rangle = (-1)^{f(x)}|x\rangle\].
+</p>
+</div>
+</div>
+
+<div id="outline-container-org939118c" class="outline-3">
+<h3 id="org939118c">Hadamard on n qubits</h3>
+<div class="outline-text-3" id="text-org939118c">
+<p>
+for \(x \in \{0, 1\}\),
+\[ |x\rangle -> H -> |y\rangle\] ,
+\[ |y\rangle = \frac{1}{\sqrt{2}} \sum_{k \in \{0, 1 \}} (-1)^{k \cdot x}|k\rangle\]
+</p>
+
+<p>
+for for \(x \in \{0, 1\}^{n}\),
+\[ |x_{0}\rangle -> H -> |y_{0}\rangle\] ,
+\[ |x_{1}\rangle -> H -> |y_{1}\rangle\] ,
+\[ |x_{2}\rangle -> H -> |y_{2}\rangle\] ,
+\[ |y\rangle  = H^{\otimes n} = \frac{1}{\sqrt{2^{n}}} \sum_{k \in \{0, 1 \}^{n}} (-1)^{k \cdot x}|k\rangle\]
+</p>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-org0b72d22" class="outline-2">
+<h2 id="org0b72d22">Deutsche-Jose  Algrithmus</h2>
+<div class="outline-text-2" id="text-org0b72d22">
+<div class="org-src-container">
+<pre class="src src-latex"><span style="font-weight: bold;">\Qcircuit</span> @C=1em @R=1em {
+<span style="font-weight: bold;">\lstick</span>{<span style="font-weight: bold;">\ket</span>{0}}  &amp; <span style="font-weight: bold;">\gate</span>{H} &amp; <span style="font-weight: bold;">\multigate</span>{2}{U_f} &amp; <span style="font-weight: bold;">\gate</span>{H} &amp; <span style="font-weight: bold;">\meter</span> &amp; <span style="font-weight: bold;">\cw</span>  &amp; <span style="font-weight: bold;">\rstick</span>{<span style="font-weight: bold;">\ket</span>{y_0}} <span style="font-weight: bold;">\\</span>
+<span style="font-weight: bold;">\lstick</span>{<span style="font-weight: bold;">\ket</span>{0}} &amp; <span style="font-weight: bold;">\gate</span>{H} &amp; <span style="font-weight: bold;">\ghost</span>{U_f} &amp; <span style="font-weight: bold;">\gate</span>{H} &amp; <span style="font-weight: bold;">\meter</span> &amp; <span style="font-weight: bold;">\cw</span>  &amp; <span style="font-weight: bold;">\rstick</span>{<span style="font-weight: bold;">\ket</span>{y_1}} <span style="font-weight: bold;">\\</span>
+<span style="font-weight: bold;">\lstick</span>{<span style="font-weight: bold;">\ket</span>{0}} &amp; <span style="font-weight: bold;">\gate</span>{H} &amp; <span style="font-weight: bold;">\ghost</span>{U_f} &amp; <span style="font-weight: bold;">\gate</span>{H} &amp; <span style="font-weight: bold;">\meter</span> &amp; <span style="font-weight: bold;">\cw</span>  &amp; <span style="font-weight: bold;">\rstick</span>{<span style="font-weight: bold;">\ket</span>{y_n}} 
+}
+</pre>
+</div>
+
+
+
+<div class="figure">
+<p><img src="./foto/QCDeutschJose.png" alt="QCDeutschJose.png" />
+</p>
+</div>
+
+
+<p>
+Proof:
+\[|\varphi_{0}\rangle = |0000.....0\rangle^{\otimes n}\]
+</p>
+
+<p>
+\[|\varphi_{1} \rangle = H^{\otimes n} |\varphi_{0}\rangle = \frac{1}{\sqrt{2^{n}}} \sum_{x \in \{0, 1 \}^{n}} (-1)^{x \cdot \varphi_{0}}|x\rangle\]
+because \(x \cdot \varphi_{0} = 0\), so ,
+\[|\varphi_{1} \rangle = \frac{1}{\sqrt{2^{n}}} \sum_{x \in \{0, 1 \}^{n}} |x\rangle\]
+</p>
+
+<p>
+\[ |\varphi_{2}\rangle = U_{f}|\varphi_{1} \rangle =    \frac{1}{\sqrt{2^{n}}} \sum_{x \in \{0, 1 \}^{n}} U_{f} |x\rangle =  \frac{1}{\sqrt{2^{n}}} \sum_{x \in \{0, 1 \}^{n}} (-1)^{f(x)} |x\rangle\]
+</p>
+
+<p>
+\[|\varphi_{3}  \rangle = H^{\otimes n}|\varphi_{2} \rangle = \frac{1}{\sqrt{2^{n}}} \sum_{x \in \{0, 1 \}^{n}} (-1)^{f(x)} H^{\otimes n} |x\rangle\]
+\[|\varphi_{3} \rangle = \frac{1}{2^{n}} \sum_{x \in \{0, 1 \}^{n}} (-1)^{f(x)} \sum_{k \in \{0, 1\}^{n}} (-1)^{k \cdot x}  |k\rangle\]
+\[ |\varphi_{3} \rangle =  = \sum_{k \in \{0, 1\}^{n}} [ \frac{1}{2^{n}} \sum_{x \in \{0, 1 \}^{n}} (-1)^{f(x) + k \cdot x}] \cdot |k\rangle =   \sum_{k \in \{0, 1\}^{n}} C_{k} |k\rangle\]
+</p>
+
+<p>
+The Probability to measure the Zero(
+\(\varphi_{0}\)) string is:
+\[P[y=|0000...0\rangle] = | \langle 00000...0|\varphi_{3}\rangle |^{2}  =| \sum_{k \in \{0, 1\}^{n}} C_{k} \langle 0000..0 |k\rangle|^{2} = |C_{000..0}|^{2}\]
+\[P =  | \frac{1}{2^{n}} \sum_{x \in \{0, 1\}^{n}} (-1)^{f(x)}|^{2}\]
+\(P=1\) if f is constant,
+and \(P=0\) if f is balanced
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2022-02-02 Wed 00:46</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>
