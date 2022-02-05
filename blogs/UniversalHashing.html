@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-02-02 Wed 00:46 -->
+<!-- 2022-02-05 Sat 12:09 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Summary of  Universal Hashing</title>
 <meta name="generator" content="Org mode" />
-<link rel="stylesheet" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css" />
+<link rel="stylesheet" href="https://fniessen.github.io/org-html-themes/src/bigblow_theme/css/bigblow.css" />
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         displayAlign: "center",
@@ -39,24 +39,24 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8125cad">Definition</a></li>
-<li><a href="#orgcecf034">Carter-Wegman hash function</a></li>
-<li><a href="#org389f268">Python example</a></li>
-<li><a href="#orgd3be523">universal hash with reproducible</a>
+<li><a href="#orgae8129a">Definition</a></li>
+<li><a href="#orgf6f5831">Carter-Wegman hash function</a></li>
+<li><a href="#org5586ab4">Python example</a></li>
+<li><a href="#org97a5b62">universal hash with reproducible</a>
 <ul>
-<li><a href="#org13adfe0">check the input data from 100000 to 100100</a></li>
-<li><a href="#orgd42c4d5">check randint from 1 to 10000</a></li>
-<li><a href="#org01a0a0e">check 100 special  input  data</a></li>
-<li><a href="#orgf802fab">search key</a></li>
+<li><a href="#org2ee0b62">check the input data from 100000 to 100100</a></li>
+<li><a href="#org7018653">check randint from 1 to 10000</a></li>
+<li><a href="#org158c04b">check 100 special  input  data</a></li>
+<li><a href="#org79aa7c8">search key</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org8125cad" class="outline-2">
-<h2 id="org8125cad">Definition</h2>
-<div class="outline-text-2" id="text-org8125cad">
+<div id="outline-container-orgae8129a" class="outline-2">
+<h2 id="orgae8129a">Definition</h2>
+<div class="outline-text-2" id="text-orgae8129a">
 <p>
 We want to save a dataset A  localy into dataset B, with has m slots in B
 and fast access to search, insert, delete operation,
@@ -95,9 +95,9 @@ one example of h can be Carter-Wegman hash function
 </div>
 </div>
 
-<div id="outline-container-orgcecf034" class="outline-2">
-<h2 id="orgcecf034">Carter-Wegman hash function</h2>
-<div class="outline-text-2" id="text-orgcecf034">
+<div id="outline-container-orgf6f5831" class="outline-2">
+<h2 id="orgf6f5831">Carter-Wegman hash function</h2>
+<div class="outline-text-2" id="text-orgf6f5831">
 <p>
 Carter-Wegman hash function is :
 </p>
@@ -165,9 +165,9 @@ So we can guarantee that the distribution of elements in B can be very randomly 
 </div>
 </div>
 
-<div id="outline-container-org389f268" class="outline-2">
-<h2 id="org389f268">Python example</h2>
-<div class="outline-text-2" id="text-org389f268">
+<div id="outline-container-org5586ab4" class="outline-2">
+<h2 id="org5586ab4">Python example</h2>
+<div class="outline-text-2" id="text-org5586ab4">
 <p>
 this example is from <a href="https://github.com/zydeon/universal-hashing/blob/master/main.py">zydeon github</a>
 </p>
@@ -282,9 +282,9 @@ otherwise we can't find it again in hashtable, even we never know if it still in
 </div>
 </div>
 
-<div id="outline-container-orgd3be523" class="outline-2">
-<h2 id="orgd3be523">universal hash with reproducible</h2>
-<div class="outline-text-2" id="text-orgd3be523">
+<div id="outline-container-org97a5b62" class="outline-2">
+<h2 id="org97a5b62">universal hash with reproducible</h2>
+<div class="outline-text-2" id="text-org97a5b62">
 <p>
 So we want to overcome this problem with reproducible porperty.
 We fix the a and b, in our following assumpation we set a = b = p-1
@@ -310,9 +310,9 @@ the hashtable, all elements will be computed again in new hashtable, this take a
 </p>
 </div>
 </div>
-<div id="outline-container-org13adfe0" class="outline-3">
-<h3 id="org13adfe0">check the input data from 100000 to 100100</h3>
-<div class="outline-text-3" id="text-org13adfe0">
+<div id="outline-container-org2ee0b62" class="outline-3">
+<h3 id="org2ee0b62">check the input data from 100000 to 100100</h3>
+<div class="outline-text-3" id="text-org2ee0b62">
 <div class="org-src-container">
 <pre class="src src-ipython">from math import ceil, log2
 from primesieve import nth_prime
@@ -386,9 +386,9 @@ x :100010 is in hashtable
 </div>
 
 
-<div id="outline-container-orgd42c4d5" class="outline-3">
-<h3 id="orgd42c4d5">check randint from 1 to 10000</h3>
-<div class="outline-text-3" id="text-orgd42c4d5">
+<div id="outline-container-org7018653" class="outline-3">
+<h3 id="org7018653">check randint from 1 to 10000</h3>
+<div class="outline-text-3" id="text-org7018653">
 <div class="org-src-container">
 <pre class="src src-ipython">from math import ceil, log2
 from primesieve import nth_prime
@@ -465,9 +465,9 @@ x :100010 is not in hashtable
 </div>
 
 
-<div id="outline-container-org01a0a0e" class="outline-3">
-<h3 id="org01a0a0e">check 100 special  input  data</h3>
-<div class="outline-text-3" id="text-org01a0a0e">
+<div id="outline-container-org158c04b" class="outline-3">
+<h3 id="org158c04b">check 100 special  input  data</h3>
+<div class="outline-text-3" id="text-org158c04b">
 <p>
 we use       
 </p>
@@ -658,9 +658,9 @@ x :100010 is not in hashtable
 </div>
 
 
-<div id="outline-container-orgf802fab" class="outline-3">
-<h3 id="orgf802fab">search key</h3>
-<div class="outline-text-3" id="text-orgf802fab">
+<div id="outline-container-org79aa7c8" class="outline-3">
+<h3 id="org79aa7c8">search key</h3>
+<div class="outline-text-3" id="text-org79aa7c8">
 <p>
 we also used the check function to check if the data is already in hashtable,
 the check can be done for with and without collision input data.
@@ -746,7 +746,7 @@ x :10300 is not in hashtable
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2022-02-02 Wed 00:46</p>
+<p class="date">Created: 2022-02-05 Sat 12:09</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
 <p class="validation"></p>
 </div>
