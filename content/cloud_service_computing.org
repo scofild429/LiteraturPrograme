@@ -1,10 +1,11 @@
 #+TITLE: Cloud Service Computing
 #+OPTIONS: num:nil
 #+STARTUP: overview
-* Platform Virtualization
-** Defination of Virtualization
+* Cloud computation
+** Platform Virtualization
+*** Defination of Virtualization
 the processes of creating software-based version of resources.
-** The reasons for applying virtualization
+*** The reasons for applying virtualization
 - *Utilization*: Server consolidation
 - *Isolation*: Implication of errors is restricted in virtual resource only
 - *Flexiblity*: many Application access the same physical Hardware
@@ -15,7 +16,7 @@ the processes of creating software-based version of resources.
 - Minimal downtime
 - Fast provisioning
   
-** Full virtualization (Hypervisor system, Bare matal)
+*** Full virtualization (Hypervisor system, Bare matal)
 - Translation of instructions
 - implantation: Virtual Box
 - Hypervisor receive the IO from application,and translate to HW
@@ -23,13 +24,13 @@ the processes of creating software-based version of resources.
 - no need special HW support  
 - no need modified OS
 
-** Hardware-assisted virtualization (Hypervisor system, Bare matal)
+*** Hardware-assisted virtualization (Hypervisor system, Bare matal)
 - implantation: VMware Workstation
 - can install many virtual machine
 - need special HW support
 - no need modified OS
 
-** Para virtualization (Hypervisor system, Bare matal)
+*** Para virtualization (Hypervisor system, Bare matal)
 
 - VM(modified OS) runs on Host
 - Host on hypervisor
@@ -38,7 +39,7 @@ the processes of creating software-based version of resources.
 - need modified OS
 - need Host OS level on hypervisor
 
-** Host OS virtualization (Hypervisor system, Hosted)
+*** Host OS virtualization (Hypervisor system, Hosted)
 - Guest OS on Hypervisor
 - Hypervisor on Host OS
 - Host on HW
@@ -49,25 +50,25 @@ the processes of creating software-based version of resources.
 - inter VM communication is difficult
 
 
-** OS-level virtualization (Container system)
+*** OS-level virtualization (Container system)
 - no hypervisor
 - multiple useer instances(light-weight) run on a host OS
 - implantation: Docker
 
-** Memory virtualization
+*** Memory virtualization
 - shadow page table on Guest OS 
 - Extended Page table in Host
-** Network virtualization
+*** Network virtualization
 hypervisor provide virtual switch, offering every VM a ip address
-** Feathers
+*** Feathers
 | Encapsulation        |
 | solation             |
 | Hardware abstraction |
 | Migration            |
 | Partation            |
 
-* Docker
-** old note
+** Docker
+*** old note
 |--------------------------------------------+-----------------|
 | comands                                    | expains         |
 |--------------------------------------------+-----------------|
@@ -98,7 +99,7 @@ sudo docker run -d -p 80:80 nginx -> id:xxxxxxx
 sudo docker exec -it -v /....../project:/usr/share/nginx/html xxxxxxx
 build in - > local host :80  
 #+end_src
-** commands
+*** commands
 
 - docker pull NAME
 
@@ -123,7 +124,7 @@ build in - > local host :80
 
 - docker logs ID
   
-** discripation
+*** discripation
 | fast delivery         |
 | easy deploy and scale |
 | run more workloads    |
@@ -138,7 +139,7 @@ build in - > local host :80
 - Docker Images create Docker Container(run as instance)
 - Docker Container runs applications
 - the shared levels are readonly, and containers communicate with sockets or Restful API
-* Kubernetes
+** Kubernetes
 Container-Orchestration System 
 - Cluster
 - Control Plane
@@ -147,15 +148,15 @@ Container-Orchestration System
 - Deployment
 - Service
 
-* Virtual Machine
+** Virtual Machine
 - Partition
 - Isolation
 - Encapsulation
 - Hardware abstraction
 - Live Migration
 
-* Storage Virtualization
-** SSD advantage and disadvanage over HDD
+** Storage Virtualization
+*** SSD advantage and disadvanage over HDD
 - Reliablity
 - Fast
 - small Size
@@ -163,7 +164,7 @@ Container-Orchestration System
 - More expensive
 - less Space
 
-** Storage virtualization advantage
+*** Storage virtualization advantage
 - Faster access: because you can have multiple data sources for the same data
 - Independence of logic storage resources
 - improvement of management: Moving data easy, in multiple localaction
@@ -172,27 +173,27 @@ Container-Orchestration System
 - compression, compaction
 - increasing volume if needed
 
-** Provisioning:
+*** Provisioning:
 - allocate disk space to user on demand
 - give a mount of Storage, but not really allocated so much
 
-** Deduplication
+*** Deduplication
   Single instance Storage: 
   if the hash value of a datablock is the same with one we already stored,
   dann save its link
   - checksum with hash value
    
-** Compression:
+*** Compression:
 compacting the data so that it comsumes less space
-** Cloning
+*** Cloning
 Consuming no storage except what is required for metadata until changes
 are written to the copy
-** Snapshotting Copies
+*** Snapshotting Copies
 a read-only, point-in-time image of a volume
-** increasing the proformance
+*** increasing the proformance
 with more physical disks at the same time
-* Modern Datacenters
-** automation
+** Modern Datacenters
+*** automation
 - scaling
 - Inreases Repeatablity
 - Make processes Faster
@@ -202,10 +203,10 @@ with more physical disks at the same time
   Additional Complexity
   illusion of Stability
 
-** Idempotent
+*** Idempotent
 the same code generate the same result, without any change
 
-** Infrastructure as code
+*** Infrastructure as code
 - Benefits:
   + Repeatablity
   + Agility
@@ -216,33 +217,33 @@ the same code generate the same result, without any change
 - Imperative:describe the stes to get to desired state
 - Declarative: describe the desired state
 
-** Foreman:
+*** Foreman:
 give the initial configuration to run an OS
-** Puppet
+*** Puppet
 - Declarative description of resource states
 - Client / server Architecture
 - Security throgh cettificate
 - OS abstraction
-* Monitor
-** challange
+** Monitor
+*** challange
 collecte data from large mount of servers
 Watch out the overhitting
-** Real time monitoring
+*** Real time monitoring
 - Availability Monitoring: altering of failure
 - Capacity Monitoring: detect outages of resource
-** Historical Monitoring
+*** Historical Monitoring
 - Long-term information
 - Trend analysis
 - Capacity planning
-** Architecture
+*** Architecture
 - Measurement: Blackbox, Whitebot,Gauges, Conntes
 - Collection: push, pull
 - Analysis: real time, short term, long term, Anomaly detection with AI
 - Alerting:
 - Virtualization
   
-* Cloud Computing Concepts
-** Cloud Defination
+** Cloud Computing Concepts
+*** Cloud Defination
 #+begin_src 
 Cloud Computing is a model for enabling on-demand network
 access to a shared pool of configurable computing resource
@@ -252,76 +253,76 @@ effort or service provider interaction
 #+end_src
 
 
-** SOA
+*** SOA
 Servive Oriented Architecture
 SOA has become a core concept of service computing and provides the
 fundamental technologies for realizing service computing
-** Advantage
+*** Advantage
 - No captial costs
 - High scalability
 - Highh Flexiblity
 
-** Network design
+*** Network design
 Different: SDN: software define Network
 New architectures have a detached control plane
 instead of heavy logic switching/routing in hardware
 - hardware independent
 - better shaping and Qos(Quit of service)
 - Data Center Briding for local and remote network
-** GWDG feathers
+*** GWDG feathers
 - self service front-end
 - SSH authenticate
 - snapshotting
 - using Openstack
 
 
-** Infrastructure as Service
-*** Different deployment methode
+*** Infrastructure as Service
+**** Different deployment methode
 | Private Cloud   |
 | community Cloud |
 | public Cloud    |
 | Hybird Cloud    |
-*** Storage
+**** Storage
 CDMI: Cloud Data Management Interface
 File, Block Devices, Object Stores, Database Store
 example: AWS S3
-*** Network
-*** advantage
+**** Network
+**** advantage
 - quick implement of new project
 - Flexiblity and scalability
 - no hardware costs
 - pay only what you need
-*** disadvantage
+**** disadvantage
 - complicated to change provider
 - dependency on provider
 - internet access is essential
 
-** Platform as a Service
+*** Platform as a Service
 - Rapid Time-to-Market
 - Minimal Development
 - Reduced Pressure on internal resources
 
 
-** Software as a Service
+*** Software as a Service
 based on IaaS, fouce on Applications
 
-* Web services
-** Benefits
+** Web services
+*** Benefits
 - Programmable access
 - Distribution over internet
 - Encapsulation of discrete functionality
 - can offer stardartized Interface
   + TCP/IP prokotoll
   + HTTP based
-** SOAP
+*** SOAP
 Simple Object Access Protocol
 xml based
 RPC based
-** WSDL
+*** WSDL
 Web Services Description Language
 xml based
 
-** REST
+*** REST
 + Everything is resource
 + Every resource is identified by a unique Identifier
 + Using simple and uniform interface
@@ -332,83 +333,83 @@ xml based
 - less redundancy, raw message based
 - URI and URL
 
-** API
+*** API
 Application Programming Interface
 
-* Big Data Service
-** feathers
+** Big Data Service
+*** feathers
 - Volume: Scale of data
 - Velocity : spend of transfer data
 - Variety: Different form of data
 - Veracity: Uncertainty of data
-** processes
+*** processes
 - Acquisition, Recording
 - Extraction, Cleaning, Annotation
 - Integration, Representation
 - Analysis, Modeling
 - Interpretation, Virtualization
-** Challenges
+*** Challenges
 - Heterogeneity, Incompleteness
 - Scale
 - Timeliness
 - Privacy
-* Mapreduce
+** Mapreduce
 | map       | map the data into key-value-pairs according to our problem |
 | reduce    | key-value-pairs get accumlated                             |
 | shuffling |                                                            |
-* Large Scale Data Analysis
-** batch process
+** Large Scale Data Analysis
+*** batch process
 disadvanage: views generated in batch may out of date
-** steaming process
+*** steaming process
 disadvanage: expensive and complex
-** Stream Computation Platform
+*** Stream Computation Platform
 - Apache Storm
 - Spark Streaming
 - Apache Flink
 - Heron
-** Hadoop
-** HDFS
+*** Hadoop
+*** HDFS
 Namenode vs DataNodes
-** YARN
+*** YARN
 Resource Manager vs NodeManager
-** Apache Kafka
+*** Apache Kafka
 - Fast, efficient IO
 - Fault tolerant storage
 - Publish and Subscribe to steams of records
-** Data management cycle
+*** Data management cycle
 - Data
 - Meta-data
 - PID
 - Search
 - Disposition
-* Data Grid Data Management
-** Data Lake
+** Data Grid Data Management
+*** Data Lake
 A data lake is a data storage, where raw data can be stored,
 whos structure is determined at the extraction from the lake
-*** Challenges
+**** Challenges
 - Reliablity
 - Slow Performance
 - Lack of security
-*** Zones
+**** Zones
 - Transient
 - raw
 - trusted
 - refined
-** ETL
+*** ETL
 Extract transform load
-** Storage data in Multiable locations
+*** Storage data in Multiable locations
 Redundancy for high-availability because of server falied and
 fast access of data
-** Storage data in remote data center
+*** Storage data in remote data center
 it is harder to acidentally delete something, such as because
 of disaster.
-** code storage
+*** code storage
 ssd
-** fair data management
+*** fair data management
 Find-able Accessable Interoperable Reproducible
 
-* ITIL &SLA
-** non functional service
+** ITIL &SLA
+*** non functional service
 organizational Operation of server
 server quality like availability
 usability
@@ -419,10 +420,10 @@ value co-creation
 IT service Management
 IT service Provider
 
-** ITIL Information Technology Infrastructure Library
+*** ITIL Information Technology Infrastructure Library
 a framework of best practices of IT service management and delivering 
-*** service value system SVS
-**** Guiding principles
+**** service value system SVS
+***** Guiding principles
 - focus on value
 - start where you are
 - progress iteratively with feedback
@@ -431,7 +432,7 @@ a framework of best practices of IT service management and delivering
 - keep in simple and practical
 - optimize and automate
   
-**** Service Value Chain
+***** Service Value Chain
   - plan
   - improve
   - engage
@@ -440,34 +441,34 @@ a framework of best practices of IT service management and delivering
   - obtain
   - deliver
 
-**** ITIL Practices
-*** the four dimensions model
+***** ITIL Practices
+**** the four dimensions model
 Organization&People
 Information & Technology
 Value streams&Processes
 Partners&suppliers
-** SLA Service Level Agreement Life cycle
+*** SLA Service Level Agreement Life cycle
 - Development
 - Negotiation
 - Implementation
 - Execution
 - Assessment 
 - Termination
-** SLA components include
+*** SLA components include
 - Parties,  terms,  conditions
 - service defination include costs
 - Performance parameters
 - what is measured, how and when(monitoring)
 - what is done to in case a SLA is voilated
 
-* Security
-** Confidentiality
+** Security
+*** Confidentiality
 The ability to hide the information from the unauthorized people
-** Integrity
+*** Integrity
 The ability to ensure that data are unchanged and remain a correct representation of original data
-** Availablity
+*** Availablity
 data is available to authorized people
-** Asymmetric Encrytion RSA
+*** Asymmetric Encrytion RSA
 #+begin_src 
 Meassage: M
 Content: N
@@ -494,36 +495,40 @@ I do the Decryption
 Message M: $M=C^{d}$ mod n  [207**77%221]
 get the Mesaage [12]
 #+end_src
-** security benefits
+*** security benefits
 - Integrity
 - authentify the sender
 - non deniable for message
-** symmetric encryption
+*** symmetric encryption
 - challange of key exchange
 - en/decryption with the same key
-** asymmetic encryption
+*** asymmetic encryption
 - en/decryption need more resource
 - safe key exchange
-** Digital Signiture
+*** Digital Signiture
 It's a certificate to identify the sender of message
-** how Certificate is trusted
+*** how Certificate is trusted
 OS deliver a list of  already trusted accepted CAs, it's preconfigured
-** Authentication
+*** Authentication
 verifies you are who you say you are
-** Authorization
+*** Authorization
 verifies if you have the permission to access data
-** Confusion and Diffusion
+*** Confusion and Diffusion
 confusion is to create faint ciphertexts in crytoprahic
 Diffusion, if one place of plain text the modified, many places can be modified
 
-
 * Paraiell computation
-** Von Nroven
+** Chap1: introduction
+*** Von Nroven
 cpu, interconnection, memory
-** memory mode
+
+*** memory mode
 shared memory
 distributed memory
-** evaluation performance
+*** shared memory
+easy to build ,hard to large scare
+*** distribution memory
+** Chap 2: Proformance
 CPI: cycles per instruction
 MIPS: Million Instructions per second
 FLOPS: Floating Point Operation per second
@@ -537,9 +542,30 @@ the speed up is proportional to the number of threads?
 fashion
 inductive
 
-** shared memory
-easy to build ,hard to large scare
-** distribution memory
+$$T_{serial}$$:  The Time for task which can't be parallelized.
+$$T_{parallel}$$: The Time for task which can be parallelized.
+$$p$$: number of processes
+$$P$$: Precent of Task, which can be parallelized
+
+*** single Process:
+$$T_{parallel} = \frac{T_{serial}}{p}$$
+speedup: $$S = \frac{T_{serial}}{T_{parallel}}$$.
+if the parallelized part are perfect parallelable, $S==p$.
+*** Multi processes
+$$T_{parallel} = (1-P)T_{serial} +  \frac{P \cdot T_{serial}}{p}$$
+
+speedup: $$S = \frac{T_{serial}}{T_{parallel}} = \frac{1}{(1-P)+ \frac{P}{p}}$$. 
+$$S = \lim_{p -> \infty}\frac{1}{(1-P)+ \frac{P}{p}} = \frac{1}{1-P}$$
+
+*** Efficient
+$$E = \frac{S}{p}$$
+
+*** Adaes-low
+*** Gustafon low
+$$ S_{p} = \frac{T_{serial} -p T_{paralle}}{T_{seria} + T_{parallel}}$$
+
+
+
 
 * AWS
 * Alibaba

@@ -1,0 +1,1056 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-02-05 Sa 12:58 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Math</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="si" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/bigblow_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/bigblow_theme/css/bigblow.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/bigblow_theme/css/hideshow.css"/>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/jquery-ui-1.10.2.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/jquery.localscroll-min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/jquery.zclip.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/bigblow.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/bigblow_theme/js/hideshow.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Math</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org868456b">Statistic</a>
+<ul>
+<li><a href="#org4120721">Gauss distribution</a></li>
+<li><a href="#orga39efff">Co-variance matrix 协方差矩阵</a></li>
+<li><a href="#org2429a60">Maximun likelihood</a></li>
+</ul>
+</li>
+<li><a href="#orgf2fc5d7">linear Argebra</a>
+<ul>
+<li><a href="#org09862ea">Matrix</a>
+<ul>
+<li><a href="#org109359f">Graph</a></li>
+<li><a href="#org70ee16e">transpose Matrix</a></li>
+<li><a href="#org5e4de4d">symmetry conjugate</a></li>
+<li><a href="#orgfddd4e0">Symmetry Matrix</a></li>
+<li><a href="#org94b3c3b">orthogonal matrix</a></li>
+<li><a href="#org0e46206">Hermitian matrix</a></li>
+<li><a href="#org2624b25">Conjugate transpose Matrix</a></li>
+<li><a href="#org6507a6c">Normal Matrix</a></li>
+<li><a href="#org2bf1338">Unitary Matrix</a></li>
+<li><a href="#orgdd4e44f">Eigenwertzerlegung</a></li>
+<li><a href="#org018b252">Einzelwertzerlegung</a></li>
+</ul>
+</li>
+<li><a href="#org9604ff6">Transform</a>
+<ul>
+<li><a href="#org22e597d">Jacobin matrix</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgf42ea6e">Advanced Math Method</a>
+<ul>
+<li><a href="#org7d66b9a">Fourier Problem</a>
+<ul>
+<li><a href="#org19913ba">Fourier Series</a></li>
+<li><a href="#org616751b">Fourier Transfromation</a></li>
+<li><a href="#orgcd417e2">Laplace Transfromation</a></li>
+<li><a href="#org17a44d2">Z-transform</a></li>
+<li><a href="#org125ca9a">Distinct Fourier Transform</a></li>
+<li><a href="#orgef5ffa7">Fast Fourier Transform</a></li>
+</ul>
+</li>
+<li><a href="#orgeefc0e2">Convolution law</a></li>
+<li><a href="#orgd9ffdd6">Kalman Filter</a>
+<ul>
+<li><a href="#org560de7b">descripation</a></li>
+<li><a href="#orgec59cfc">kalman filter process</a></li>
+<li><a href="#org49d69b3">python code</a></li>
+</ul>
+</li>
+<li><a href="#org3b52040">Grope  Theorie</a>
+<ul>
+<li><a href="#org58c4da9">sammlungen von Grope</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org868456b" class="outline-2">
+<h2 id="org868456b">Statistic</h2>
+<div class="outline-text-2" id="text-org868456b">
+</div>
+<div id="outline-container-org4120721" class="outline-3">
+<h3 id="org4120721">Gauss distribution</h3>
+<div class="outline-text-3" id="text-org4120721">
+<p>
+标准高斯分布的积分包含了高斯积分
+</p>
+</div>
+</div>
+<div id="outline-container-orga39efff" class="outline-3">
+<h3 id="orga39efff">Co-variance matrix 协方差矩阵</h3>
+<div class="outline-text-3" id="text-orga39efff">
+<p>
+<a id="orgfaceff6"></a>
+for i = {1&#x2026;n}, \(x_{i}\) is a random variable, which belong to
+Gaussian distribution
+</p>
+
+<p>
+set 
+ \[ X = \left( \begin{aligned}  x_{1} \\ x_{2}\\ . \\. \\x_{n}  \end{aligned}\right) \]
+</p>
+
+<p>
+\[ \bar{X} = \left( \begin{aligned}  \bar{x}_{1}
+\\ \bar{x}_{2}\\ . \\. \\ \bar{x}_{n}  \end{aligned} \right) \]
+co-variance matrix \(\Sigma = E [(X-\bar{X})(X-\bar{X})^{T} ]\)
+</p>
+
+\begin{equation}
+\Sigma = 
+  \left(
+  \begin{array}{c}
+          x_{1}-\bar{x}_{1} \\
+          x_{2}-\bar{x}_{2} \\
+          x_{3}-\bar{x}_{3} \\
+          ..                \\
+          x_{n}-\bar{x}_{n} 
+ \end{array}
+ \right)
+   \left(
+  \begin{array}{ccccc}
+          x_{1}-\bar{x}_{1} &
+          x_{2}-\bar{x}_{2} &
+          x_{3}-\bar{x}_{3} &
+          ..                &
+          x_{n}-\bar{x}_{n} 
+  \end{array}
+  \right)
+\end{equation}
+<p>
+对角线上是对应元素的方差，其他是相对于两个元素的协方差
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2429a60" class="outline-3">
+<h3 id="org2429a60">Maximun likelihood</h3>
+<div class="outline-text-3" id="text-org2429a60">
+<pre class="example">
+
+according to the given example finding the most likely distribution model
+1, assign each instance a probability to be happen
+2, descripte the the probability of all such instance happens
+3, logarithm the probability
+4, partial derivative the logarithm
+5, set the partial derivative to be 0, get the probability in 1 step
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf2fc5d7" class="outline-2">
+<h2 id="orgf2fc5d7">linear Argebra</h2>
+<div class="outline-text-2" id="text-orgf2fc5d7">
+</div>
+<div id="outline-container-org09862ea" class="outline-3">
+<h3 id="org09862ea">Matrix</h3>
+<div class="outline-text-3" id="text-org09862ea">
+</div>
+<div id="outline-container-org109359f" class="outline-4">
+<h4 id="org109359f">Graph</h4>
+<div class="outline-text-4" id="text-org109359f">
+<div class="org-src-container">
+<pre class="src src-dot">digraph diagramm {
+TransposeMatrix -&gt; orthogonalMatrix[label = <span style="color: #2aa198;">"A^TA = AA^T = 1"</span>];
+TransposeMatrix -&gt; SymmetryMatrix[label= <span style="color: #2aa198;">"A=A^{T}"</span>];
+SymmetryMatrix  -&gt; HermitianMatrix[label= <span style="color: #2aa198;">"A=A^{H}"</span>];
+HermitianMatrix -&gt; positivedefinitematrix;
+ConjugatetransposeMatrix -&gt; NormalMatrix[label = <span style="color: #2aa198;">"A*A = AA*"</span>];
+NormalMatrix  -&gt; UnitaryMatrix[label = <span style="color: #2aa198;">"A*A = AA* =1"</span>] ;
+
+Einzelwertzerlegung -&gt; Diagroal [label = <span style="color: #2aa198;">"SVD"</span>] ;
+Eigenwertzerlegung -&gt; Diagroal [label = <span style="color: #2aa198;">"for real and symmetrisch"</span>];
+Diagroal -&gt;  Unitaryzerlegung [label =<span style="color: #2aa198;">"A=VIV*,I:identity"</span>];
+
+}
+</pre>
+</div>
+
+
+<div id="org186e382" class="figure">
+<p><img src="foto/Matrix_Connections.png" alt="Matrix_Connections.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org70ee16e" class="outline-4">
+<h4 id="org70ee16e">transpose Matrix</h4>
+<div class="outline-text-4" id="text-org70ee16e">
+<p>
+\(A^{T}\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5e4de4d" class="outline-4">
+<h4 id="org5e4de4d">symmetry conjugate</h4>
+<div class="outline-text-4" id="text-org5e4de4d">
+<p>
+\[ A^{H}\]
+symmetry and complex conjugate matr
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfddd4e0" class="outline-4">
+<h4 id="orgfddd4e0">Symmetry Matrix</h4>
+<div class="outline-text-4" id="text-orgfddd4e0">
+<p>
+\[ A = A^{T}\]
+</p>
+</div>
+</div>
+<div id="outline-container-org94b3c3b" class="outline-4">
+<h4 id="org94b3c3b">orthogonal matrix</h4>
+<div class="outline-text-4" id="text-org94b3c3b">
+<p>
+实数酉矩阵
+\[ {\displaystyle Q^{T}=Q^{-1}\Leftrightarrow Q^{T}Q=QQ^{T}=I}\]
+得该矩阵的转置矩阵为其逆矩阵
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0e46206" class="outline-4">
+<h4 id="org0e46206">Hermitian matrix</h4>
+<div class="outline-text-4" id="text-org0e46206">
+<p>
+A = symmetry conjugate of A (共轭对称)
+\[ A = A^{H}\], \(a_{i,j} = \bar{a_{j,i}}\)
+</p>
+
+<p>
+埃尔米特矩阵，厄米特矩阵，厄米矩阵,所有元素对称出共轭
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2624b25" class="outline-4">
+<h4 id="org2624b25">Conjugate transpose Matrix</h4>
+<div class="outline-text-4" id="text-org2624b25">
+<p>
+\[ A^{*} = (\bar{A})^{T} = \bar{A^{T}}\]
+共轭转置矩阵, 先共轭再转置，还是先转置再共轭都可以。
+</p>
+</div>
+</div>
+<div id="outline-container-org6507a6c" class="outline-4">
+<h4 id="org6507a6c">Normal Matrix</h4>
+<div class="outline-text-4" id="text-org6507a6c">
+<p>
+\[ A^{*}A = A A^{*}\]
+正定矩阵, 是转置和本身满足交换律
+\[ A = URDU^{-1} \]
+可酉变换
+</p>
+</div>
+</div>
+<div id="outline-container-org2bf1338" class="outline-4">
+<h4 id="org2bf1338">Unitary Matrix</h4>
+<div class="outline-text-4" id="text-org2bf1338">
+<p>
+\[ A^{*}A = A A^{*} = I \]
+ 酉矩阵，是正定矩阵, 即转置和本身满足交换律，而且等于 I 
+</p>
+</div>
+</div>
+<div id="outline-container-orgdd4e44f" class="outline-4">
+<h4 id="orgdd4e44f">Eigenwertzerlegung</h4>
+<div class="outline-text-4" id="text-orgdd4e44f">
+<p>
+对于矩阵求特征值特征向量，特征值分解，但是要求必须是方阵，如果不是，先
+要转换： A = a*a.T
+</p>
+
+<p>
+\[ A=UBU^T \] 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #268bd2; font-weight: bold;">import</span> numpy <span style="color: #268bd2; font-weight: bold;">as</span> np
+<span style="color: #8787d7;">a</span> = np.mat([[1,2,3,4],[1,1,1,1]])
+<span style="color: #8787d7;">A</span> = a*a.T
+<span style="color: #8787d7;">B</span>, <span style="color: #8787d7;">U</span> = np.linalg.eig(A)
+<span style="color: #268bd2; font-weight: bold;">print</span>(<span style="color: #2aa198;">"eigenvalue of A : "</span>)
+<span style="color: #268bd2; font-weight: bold;">print</span>(B)
+<span style="color: #268bd2; font-weight: bold;">print</span>(<span style="color: #2aa198;">"eigenvalue of a :(should be equal to the following) "</span>)
+<span style="color: #268bd2; font-weight: bold;">print</span>(np.sqrt(B))
+<span style="color: #268bd2; font-weight: bold;">print</span>(<span style="color: #2aa198;">"eigenvactor : "</span>)
+<span style="color: #268bd2; font-weight: bold;">print</span>(U)
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org018b252" class="outline-4">
+<h4 id="org018b252">Einzelwertzerlegung</h4>
+<div class="outline-text-4" id="text-org018b252">
+<p>
+但是对于一般矩阵，不是方阵，可以奇异值分解：
+\[ a = UBV^T , a^{t} = VBU^{T} \]
+\[ A = aa^{T} = UB^{2}U^{T}\]
+\[ A^{'}=a^{T}a=VB^{2}V^{T}\]
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #268bd2; font-weight: bold;">import</span> numpy <span style="color: #268bd2; font-weight: bold;">as</span> np
+<span style="color: #8787d7;">a</span> = np.mat([[1,2,3,4],[1,1,1,1]])
+<span style="color: #8787d7;">U</span>, <span style="color: #8787d7;">B</span>, <span style="color: #8787d7;">Vt</span> = np.linalg.svd(a)
+<span style="color: #268bd2; font-weight: bold;">print</span>(<span style="color: #2aa198;">"left eigenvalue : "</span>)
+<span style="color: #268bd2; font-weight: bold;">print</span>(U)
+<span style="color: #268bd2; font-weight: bold;">print</span>(<span style="color: #2aa198;">"eigenvactor of a : "</span>)
+<span style="color: #268bd2; font-weight: bold;">print</span>(B)
+<span style="color: #268bd2; font-weight: bold;">print</span>(<span style="color: #2aa198;">"right eigenvalue : "</span>)
+<span style="color: #268bd2; font-weight: bold;">print</span>(Vt)
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org9604ff6" class="outline-3">
+<h3 id="org9604ff6">Transform</h3>
+<div class="outline-text-3" id="text-org9604ff6">
+</div>
+<div id="outline-container-org22e597d" class="outline-4">
+<h4 id="org22e597d">Jacobin matrix</h4>
+<div class="outline-text-4" id="text-org22e597d">
+<p>
+wikipedia
+<a href="https://zh.wikipedia.org/wiki/%E9%9B%85%E5%8F%AF%E6%AF%94%E7%9F%A9%E9%98%B5">chinese link</a>
+<a href="https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant">englich link</a>
+</p>
+
+<p>
+for \[ Y_{m} = f(X_{n}), Y =(y_{1}, y_{2}, y_{3}....y_{m}), X = (x_{1}
+,x_{2}....x_{n}) \]
+\[ d_{Y} = J d_{x}\],
+\[
+{\displaystyle \mathbf {J} ={\begin{bmatrix}{\dfrac {\partial \mathbf
+{f} }{\partial x_{1}}}&\cdots &{\dfrac {\partial \mathbf {f}
+}{\partial x_{n}}}\end{bmatrix}}={\begin{bmatrix}{\dfrac {\partial
+f_{1}}{\partial x_{1}}}&\cdots &{\dfrac {\partial f_{1}}{\partial
+x_{n}}}\\\vdots &\ddots &\vdots \\{\dfrac {\partial f_{m}}{\partial
+x_{1}}}&\cdots &{\dfrac {\partial f_{m}}{\partial
+x_{n}}}\end{bmatrix}}} 
+\]
+由球坐标系到直角坐标系的转化由 F: ℝ+ × [0, π] × [0, 2π) → ℝ3 函数给出，
+其分量为：
+\[
+{\displaystyle {\begin{aligned}x&=r\sin \theta \cos \varphi
+;\\y&=r\sin \theta \sin \varphi ;\\z&=r\cos \theta
+.\end{aligned}}}
+\]
+此坐标变换的雅可比矩阵是
+\[
+{\displaystyle \mathbf {J} _{\mathbf {F} }(r,\theta ,\varphi
+)={\begin{bmatrix}{\dfrac {\partial x}{\partial r}}&{\dfrac {\partial
+x}{\partial \theta }}&{\dfrac {\partial x}{\partial \varphi
+}}\\[1em]{\dfrac {\partial y}{\partial r}}&{\dfrac {\partial
+y}{\partial \theta }}&{\dfrac {\partial y}{\partial \varphi
+}}\\[1em]{\dfrac {\partial z}{\partial r}}&{\dfrac {\partial
+z}{\partial \theta }}&{\dfrac {\partial z}{\partial \varphi
+}}\end{bmatrix}}={\begin{bmatrix}\sin \theta \cos \varphi &r\cos
+\theta \cos \varphi &-r\sin \theta \sin \varphi \\\sin \theta \sin
+\varphi &r\cos \theta \sin \varphi &r\sin \theta \cos \varphi \\\cos
+\theta &-r\sin \theta &0\end{bmatrix}}.}
+\]
+其雅可比行列式为 r2 sin θ，由于 dV = dx dy dz，如果做变数变换的话其体
+积元(Volume element)，dV，会变成：dV = r2 sin θ dr dθ dφ。
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf42ea6e" class="outline-2">
+<h2 id="orgf42ea6e">Advanced Math Method</h2>
+<div class="outline-text-2" id="text-orgf42ea6e">
+</div>
+<div id="outline-container-org7d66b9a" class="outline-3">
+<h3 id="org7d66b9a">Fourier Problem</h3>
+<div class="outline-text-3" id="text-org7d66b9a">
+</div>
+<div id="outline-container-org19913ba" class="outline-4">
+<h4 id="org19913ba">Fourier Series</h4>
+<div class="outline-text-4" id="text-org19913ba">
+<p>
+任意周期函数都可以写成若干正余弦函数在不同频率的叠加，
+假设目标函数为\(f(t)\)
+so  \(f(t) = \frac{a_{0}}{2}+\sum_{n=0}^{\infty } a_{n}\sin(n\omega
+t+\phi_n)\)
+</p>
+
+<p>
+or  \(f(t) = \frac{a_{0}}{2}+\sum_{n=0}^{\infty } a_{n}\sin(n\omega
+t) + \sum_{n=0}^{\infty } a_{n}\cos(n\omega t)\) 
+</p>
+
+<p>
+And There is series orthometric basis (1, \(\sin(n \omega_t)\), \(\cos(n
+\omega_t)\)).
+</p>
+
+<p>
+f(x) can also be wrote with complex form,
+\(f(t) = \sum^{+\infty}_{k = -\infty}C_{k}e^{ikx}\), where \(C_{k} = \frac{1}{2\pi}\int^{\pi}_{-\pi}f(x)e^{-ikx}dx\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org616751b" class="outline-4">
+<h4 id="org616751b">Fourier Transfromation</h4>
+<div class="outline-text-4" id="text-org616751b">
+<p>
+set \(\omega t = \theta\), we use \(e^{\theta j} = e^{ \omega t j} = \cos\theta +
+j\sin\theta\)  to multipy all terms in \(f(x)\), 
+which invokes factor \(\omega\).
+</p>
+
+<p>
+SO \(f(t) \rightarrow F(\omega) = \int_{-\infty}^{+\infty} f(t) e^{-j
+\omega t}dt\)
+and its inverse transfromation: \(F(\omega) \rightarrow f(t) = 
+\int_{-\infty}^{+\infty}F(\omega)e^{j\omega t} d\omega\)
+</p>
+</div>
+</div>
+<div id="outline-container-orgcd417e2" class="outline-4">
+<h4 id="orgcd417e2">Laplace Transfromation</h4>
+<div class="outline-text-4" id="text-orgcd417e2">
+<p>
+If \(f(x)\rightarrow \infty |_{x\rightarrow\infty}\) ,we can use \(e^{-\sigma t}\) to eliminate divergence.
+</p>
+
+<p>
+Laplace transfromation : \(f(t) \rightarrow L(w) = \int_{-\infty}^{\infty}f(t)e^{-\sigma t}e^{-j\omega t} dt\)
+</p>
+
+<p>
+or \(f(t)\rightarrow L(w) =\int_{-\infty}^{\infty}f(w)e^{-st}dt\), where \(s=\sigma + j \omega\)
+</p>
+
+<p>
+note: firstly force to convergence, then fourier transfromed.
+</p>
+</div>
+</div>
+<div id="outline-container-org17a44d2" class="outline-4">
+<h4 id="org17a44d2">Z-transform</h4>
+<div class="outline-text-4" id="text-org17a44d2">
+<p>
+\[ X_{s}(t) = \sum^{+\infty}_{k=-\infty}\delta(t-kT)x(t)\]
+where \(x(t)\) is the extractly continue signal function,
+\(\delta(t-Kt)\) presents that we only measured at time Kt,
+\(X_{s}(t)\) shows us all the measurements at time of&#x2026;-2T, -T, 0,  T, 2T, 3T&#x2026;
+</p>
+
+<p>
+The Fourier Transform of the measurements are \(X_{F}\),
+\[X_{F} = \int^{\infty}_{-\infty} \sum^{\infty}_{-\infty} \delta(t-kT)x(t) e^{-j\omega t} dt = \sum^{\infty}_{-\infty}x[kT]e^{-jwkT}\]
+</p>
+
+<p>
+for \(Z =e^{iwT}\),  \(X_{F} = \sum^{\infty}_{\infty}x[k]Z^{-k}\) , this is  Z Transform
+aber \(\Omega = \omega T\), \(X_{F} = \sum^{\infty}_{-\infty} x[k]e^{-j\Omega k}\), this is Distinct Fourier Transform
+</p>
+</div>
+</div>
+
+<div id="outline-container-org125ca9a" class="outline-4">
+<h4 id="org125ca9a">Distinct Fourier Transform</h4>
+<div class="outline-text-4" id="text-org125ca9a">
+<p>
+for \(f(t) = \sum^{+\infty}_{k = -\infty}C_{k}e^{ikx}\), where \(C_{k} = \frac{1}{2\pi}\int^{\pi}_{-\pi}f(x)e^{-ikx}dx\),
+we only consider that, f(x) only has N items, from k=0, to N-1,
+\[f(x) = C_{0} + C_{1}e^{ix}+C_{i2x}+C_{i3x}+.....+C_{N-1}e^{i(N-1)x}\]
+and we has exactly N measurements points, \(f_{0}, f_{1}....f_{N-1}\),
+and we image that those N points is exactly in a period,which is from 0 to \(2\pi\), so&#x2026;
+set \(w = e^{\frac{2i\pi}{N}}\) 
+\[f(0\frac{2\pi}{N} ) = C_{0} + C_{1} + C_{2}+...+C_{N-1}\]
+\[f(1\frac{2\pi}{N} ) = C_{0} + C_{1}w + C_{2}w^{2}+...+C_{N-1}w^{N-1}\]
+\[f(2\frac{2\pi}{N} ) = C_{0} + C_{1}w^{2} + C_{2}w^{4}+...+C_{N-1}w^{2(N-1)}\]
+\[f(3\frac{2\pi}{N} ) = C_{0} + C_{1}w^{3} + C_{2}w^{6}+...+C_{N-1}w^{3(N-1)}\]
+\[f((N-1)\frac{2\pi}{N} ) = C_{0} + C_{1}w^{N-1} + C_{2}w^{2(N-1)}+...+C_{N-1}w^{(N-1)(N-1)}\]
+Here it is
+</p>
+
+\begin{equation}
+  \left(  \begin{array}{c}
+          f_{0} \\
+          f_{1} \\
+         f_{2} \\
+        ....\\
+        f_{N} 
+ \end{array} \right)
+=
+  \left(
+  \begin{array}{ccccc}
+          1 &  1 & 1 & ...& 1\\
+          1 &  w & w^{2} & ...& w^{N-1}\\
+          1 &  w^{2} & w^{4} & ...& w^{2(N-1)}\\
+          ...&...&...&...&...\\
+          1 &  w^{N-1} & w^{2(N-1)} & ...& w^{(N-1)(N-1)}\\
+  \end{array}
+  \right)
+  \left(
+  \begin{array}{c}
+          C_{0} \\
+          C_{1} \\
+         C_{2} \\
+        ....\\
+        C_{N} 
+ \end{array}
+ \right)
+\end{equation}
+<p>
+We can have exactly all coefficient of C.
+</p>
+
+
+<p>
+if we have only N measurements, but we want to have a general solution for all possible items of f(t),
+for \(f(t) = \sum^{+\infty}_{k = -\infty}C_{k}e^{ikx}\),
+</p>
+
+\begin{equation}
+  \left(  \begin{array}{c}
+          f_{0} \\
+          f_{1} \\
+         f_{2} \\
+        ....\\
+        f_{N} 
+ \end{array} \right)
+=
+  \left[
+  \begin{array}{ccccc}
+          1 &  1 & 1 & ...& 1\\
+          1 &  w & w^{2} & ...& w^{N-1}\\
+          1 &  w^{2} & w^{4} & ...& w^{2(N-1)}\\
+          ...&...&...&...&...\\
+          1 &  w^{N-1} & w^{2(N-1)} & ...& w^{(N-1)(N-1)}\\
+  \end{array}
+  \right]
+  \left(
+  \begin{array}{c}
+        ...+C_{-N} + C_{0}+C_{N}+... \\
+         ...+C_{-N+1}+ C_{1}+C_{N+1}+... \\
+         ...+C_{-N+2}+  C_{2}+C_{N+2}+... \\
+        ...\\
+         ...+C_{-1}+ C_{N-1}+C_{2N-1} +...
+ \end{array}
+ \right)
+\end{equation}
+
+<p>
+All possible solutions can be satisfied.
+denote matrix \(w\) as Fourier Matrix:  F,
+\[X = FC\] , \[C = F^{-1}X\]
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgef5ffa7" class="outline-4">
+<h4 id="orgef5ffa7">Fast Fourier Transform</h4>
+<div class="outline-text-4" id="text-orgef5ffa7">
+<p>
+we here only consider about \(F^{-1}\), so denote it as \(F\),
+</p>
+
+\begin{equation}
+F_{4} =
+\left[
+  \begin{array}{cccc}
+          1 &  1 & 1 & 1\\
+          1 &  w & w^{2} & w^{3}\\
+          1 &  w^{2} & w^{4}& w^{6)}\\
+          1 &  w^{3} & w^{6}& w^{9}\\
+  \end{array}
+  \right]
+  \end{equation}
+
+
+
+\begin{equation}
+\bar{F}_{4} =
+\left[
+  \begin{array}{cccc}
+          1 &  1 & 1 & 1\\
+          1 &  w^{2} & w & w^{3}\\
+          1 &  w^{4} & w^{2}& w^{6)}\\
+          1 &  w^{6} & w^{3}& w^{9}\\
+  \end{array}
+  \right]
+=
+\left[
+  \begin{array}{cc}
+         F_{2} & D_{2}F_{2}\\
+         F_{2} & -D_{2}F_{2}
+  \end{array}
+  \right]
+  \end{equation}
+
+
+<p>
+\[X = \begin{bmatrix} f_{0} \\ f_{1} \\....\\f_{N-1}  \end{bmatrix}\]
+</p>
+
+
+<p>
+\[F_{N}X = \bar{F}_{N}\begin{bmatrix} f_{0} \\ f_{2} \\f_{4}\\...\\f_{N-2} \\ f_{1} \\ f_{3}\\f_{5}\\...\\f_{N-1}  \end{bmatrix}
+=\begin{bmatrix} F_{N/2} & D_{N/2}F_{N/2} \\ F_{N/2} & -D_{N/2}F_{N/2} \end{bmatrix}  \begin{bmatrix} f_{0} \\ f_{2} \\f_{4}\\...\\f_{N-2} \\ f_{1} \\ f_{3}\\f_{5}\\...\\f_{N-1}  \end{bmatrix}
+= \begin{bmatrix} I & D_{N/2} \\ I & -D_{N/2} \end{bmatrix} \begin{bmatrix} F_{N/2} &  \\  & F_{N/2} \end{bmatrix} \begin{bmatrix} X_{even}   \\  X_{odd} \end{bmatrix} \]
+</p>
+
+<p>
+\[F_{N}X =
+ \begin{bmatrix} I & D_{N/2} \\ I & -D_{N/2} \end{bmatrix}  \begin{bmatrix} F_{N/2} X_{even}   \\  F_{N/2}X_{odd} \end{bmatrix} \]
+</p>
+
+<p>
+always recursive to \(D_2\), that is
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgeefc0e2" class="outline-3">
+<h3 id="orgeefc0e2">Convolution law</h3>
+<div class="outline-text-3" id="text-orgeefc0e2">
+<p>
+Green function propagate function
+ segment \[  f(x)  \]
+\[  f(x) = \int_{-\infty}^{\infty} f(t)\delta(x-t)dt  \]
+</p>
+
+<p>
+convolution
+\[  (g \ast f)(x) = \int_{-\infty}^{\infty}f(t)g(x-t)dt  \]
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd9ffdd6" class="outline-3">
+<h3 id="orgd9ffdd6">Kalman Filter</h3>
+<div class="outline-text-3" id="text-orgd9ffdd6">
+</div>
+<div id="outline-container-org560de7b" class="outline-4">
+<h4 id="org560de7b">descripation</h4>
+<div class="outline-text-4" id="text-org560de7b">
+<p>
+For a continus system we can estimate the next predict state
+based on current optimized (best, precise) state and its uncertainies.
+if there is next observe state, we can combine them to a next optimized state
+and get its uncertainies, and ready for next iterative.
+</p>
+
+<p>
+Estimatation Function:
+</p>
+
+
+<p>
+\[X_{k} = FX_{k-1} + B \mu_{k} + \omega_{k}\]
+</p>
+
+
+<p>
+\(X\) stands for the state, with \(n\times a\)
+\(F\) stands for the state Operator with \(n\times n\)
+\(B\) stands for contoller operator
+\(\omega\) is the current system uncertainies and \(Cov(\omega) = Q\) with \(n \times n\)
+</p>
+
+<p>
+Revise Function:
+\[Z_{k} = HX_{k} + \nu_{k}\]
+</p>
+
+<p>
+\(Z\) stands for the observe state, with \(a\times a\)
+\(H\) stands for Observe Operator with \(a \times n\)
+\(\nu\) is the observation uncertainies and \(Cov(\nu) = R\) with \(a \times a\)
+H = \[ \frac{H}{\partial x_{1}}\], \[ \frac{H}{\partial x_{2}}\], \[ \frac{H}{\partial v}\], \[ \frac{H}{\partial \alpha}\],
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgec59cfc" class="outline-4">
+<h4 id="orgec59cfc">kalman filter process</h4>
+<div class="outline-text-4" id="text-orgec59cfc">
+<p>
+assumpation: we know current state \(X_{k}\), and its uncertainies \(\Sigma_{k}\)
+</p>
+<ol class="org-ol">
+<li>estimatation</li>
+</ol>
+<p>
+\[X_{k+1}^{p} = F X_{k} \]
+\[ \Sigma^{p}_{k+1} = F \Sigma_{k}F^{T} + Q_{k}\]
+\(\Sigma_{k}^{p}, \Sigma_{k+1}^{p}, Q_{k}\) all with \(n \times n\)
+</p>
+
+<p>
+2, kalman filter calcaletation
+\[KF = \frac{ \Sigma_{k}^{p}H^{T}} {(H \Sigma_{k}^{p}H^{T} + R_{k})}\]
+with \(n \times a\):  because Numerator has \(n \times a\) and denominator has \(a \times a\)
+</p>
+
+<p>
+3, Revise resulte
+\[X_{k+1} = X_{k+1}^{p} + KF(Z_{k} -HX_{k+1}^{p})\]
+</p>
+
+<p>
+\[\Sigma_{k+1} = (I-KF * H) \Sigma_{k+1}^{p}\]
+</p>
+</div>
+</div>
+<div id="outline-container-org49d69b3" class="outline-4">
+<h4 id="org49d69b3">python code</h4>
+<div class="outline-text-4" id="text-org49d69b3">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #008787; background-color: #262626;"># </span><span style="color: #008787; background-color: #262626;">_*_ coding:utf-8 _*_</span>
+<span style="color: #268bd2; font-weight: bold;">import</span> numpy <span style="color: #268bd2; font-weight: bold;">as</span> np
+<span style="color: #268bd2; font-weight: bold;">import</span> matplotlib.pyplot <span style="color: #268bd2; font-weight: bold;">as</span> plt
+
+<span style="color: #008787; background-color: #262626;"># </span><span style="color: #008787; background-color: #262626;">&#21019;&#24314;&#19968;&#20010;0-99&#30340;&#19968;&#32500;&#30697;&#38453;</span>
+<span style="color: #8787d7;">z</span> = [i <span style="color: #268bd2; font-weight: bold;">for</span> i <span style="color: #268bd2; font-weight: bold;">in</span> <span style="color: #268bd2;">range</span>(100)]
+<span style="color: #8787d7;">z_watch</span> = np.mat(z)
+<span style="color: #008787; background-color: #262626;">#</span><span style="color: #008787; background-color: #262626;">print(np.array(z).shape)</span>
+<span style="color: #008787; background-color: #262626;">#</span><span style="color: #008787; background-color: #262626;">print(np.array(z_watch).shape)</span>
+
+<span style="color: #008787; background-color: #262626;"># </span><span style="color: #008787; background-color: #262626;">&#21019;&#24314;&#19968;&#20010;&#26041;&#24046;&#20026;1&#30340;&#39640;&#26031;&#22122;&#22768;&#65292;&#31934;&#30830;&#21040;&#23567;&#25968;&#28857;&#21518;&#20004;&#20301;</span>
+<span style="color: #8787d7;">noise</span> = np.<span style="color: #268bd2;">round</span>(np.random.normal(0, 1, 100), 2)
+<span style="color: #8787d7;">noise_mat</span> = np.mat(noise)
+<span style="color: #008787; background-color: #262626;"># </span><span style="color: #008787; background-color: #262626;">print(noise_mat)</span>
+
+<span style="color: #008787; background-color: #262626;"># </span><span style="color: #008787; background-color: #262626;">&#23558;z&#30340;&#35266;&#27979;&#20540;&#21644;&#22122;&#22768;&#30456;&#21152;</span>
+<span style="color: #8787d7;">z_mat</span> = z_watch + noise_mat
+<span style="color: #008787; background-color: #262626;">#</span><span style="color: #008787; background-color: #262626;">print(z_mat)</span>
+
+<span style="color: #008787; background-color: #262626;"># </span><span style="color: #008787; background-color: #262626;">&#23450;&#20041;x&#30340;&#21021;&#22987;&#29366;&#24577;</span>
+<span style="color: #8787d7;">x_mat</span> = np.mat([[0, ], [0, ]])
+<span style="color: #008787; background-color: #262626;"># </span><span style="color: #008787; background-color: #262626;">print(x_mat)</span>
+<span style="color: #008787; background-color: #262626;"># </span><span style="color: #008787; background-color: #262626;">&#23450;&#20041;&#21021;&#22987;&#29366;&#24577;&#21327;&#26041;&#24046;&#30697;&#38453;</span>
+<span style="color: #8787d7;">p_mat</span> = np.mat([[1, 0], [0, 1]])
+<span style="color: #008787; background-color: #262626;"># </span><span style="color: #008787; background-color: #262626;">&#23450;&#20041;&#29366;&#24577;&#36716;&#31227;&#30697;&#38453;&#65292;&#22240;&#20026;&#27599;&#31186;&#38047;&#37319;&#19968;&#27425;&#26679;&#65292;&#25152;&#20197;delta_t = 1</span>
+<span style="color: #8787d7;">f_mat</span> = np.mat([[1, 1], [0, 1]])
+<span style="color: #008787; background-color: #262626;"># </span><span style="color: #008787; background-color: #262626;">&#23450;&#20041;&#29366;&#24577;&#36716;&#31227;&#21327;&#26041;&#24046;&#30697;&#38453;&#65292;&#36825;&#37324;&#25105;&#20204;&#25226;&#21327;&#26041;&#24046;&#35774;&#32622;&#30340;&#24456;&#23567;&#65292;&#22240;&#20026;&#35273;&#24471;&#29366;&#24577;&#36716;&#31227;&#30697;&#38453;&#20934;&#30830;&#24230;&#39640;</span>
+<span style="color: #8787d7;">q_mat</span> = np.mat([[0.0001, 0], [0, 0.0001]])
+<span style="color: #008787; background-color: #262626;"># </span><span style="color: #008787; background-color: #262626;">&#23450;&#20041;&#35266;&#27979;&#30697;&#38453;</span>
+<span style="color: #8787d7;">h_mat</span> = np.mat([1, 0])
+<span style="color: #008787; background-color: #262626;"># </span><span style="color: #008787; background-color: #262626;">&#23450;&#20041;&#35266;&#27979;&#22122;&#22768;&#21327;&#26041;&#24046;</span>
+<span style="color: #8787d7;">r_mat</span> = np.mat([1])
+
+<span style="color: #268bd2; font-weight: bold;">for</span> i <span style="color: #268bd2; font-weight: bold;">in</span> <span style="color: #268bd2;">range</span>(100):
+        <span style="color: #8787d7;">x_predict</span> = f_mat * x_mat
+        <span style="color: #8787d7;">p_predict</span> = f_mat * p_mat * f_mat.T + q_mat
+        <span style="color: #8787d7;">kalman</span> = p_predict * h_mat.T / (h_mat * p_predict * h_mat.T + r_mat)
+        <span style="color: #8787d7;">x_mat</span> = x_predict + kalman * (z_mat[0, i] - h_mat * x_predict)
+        <span style="color: #8787d7;">p_mat</span> = (np.eye(2) - kalman * h_mat) * p_predict
+        plt.plot(x_mat[0, 0], x_mat[1, 0], <span style="color: #2aa198;">'ro'</span>, markersize=1)
+plt.show()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-org3b52040" class="outline-3">
+<h3 id="org3b52040">Grope  Theorie</h3>
+<div class="outline-text-3" id="text-org3b52040">
+</div>
+<div id="outline-container-org58c4da9" class="outline-4">
+<h4 id="org58c4da9">sammlungen von Grope</h4>
+<div class="outline-text-4" id="text-org58c4da9">
+<ol class="org-ol">
+<li>G本身和单位元称为G的平凡子集</li>
+<li>群的元素个数称为群的阶</li>
+<li>群的阶数是素数，则该群一定是循环群</li>
+<li>有限群的子集的阶数是该有限群的阶数的约数</li>
+<li>在置换群中，任何一个轮换都可以用其他的对换组合来实现</li>
+<li>在置换群中，如果一个置换能通过奇（偶）数次对换得到，那么它只能有奇
+（偶）数次对换得到</li>
+<li>在一个置换群中，可以奇置换和偶置换的个数应给相等</li>
+<li>由偶置换可以得到一个交错群（包括与单元群的置换）</li>
+<li>阿贝尔群</li>
+<li>\(\beta_1 \times H\) 元素\(\beta_1\) 左乘H的每一个元素得到的就叫: 元素
+\(\beta_1\) 关于H的左陪集</li>
+<li>右陪集亦然， 左右陪集可以不相等</li>
+<li>子群H中每个元素作用于群G,得到的左右陪集都相等，则称H为G的正规子群</li>
+<li>G本身和单位元{e}肯定都是正规子集，但是成为平凡正规子群</li>
+<li>只有群中有正规子集，这该群中肯定存在一个相应的对称</li>
+<li>阿贝尔群的子群肯定是正规子群</li>
+<li>只有当H是正规子群是，商群G/H才是一个群，否则只是一个空间</li>
+<li>单群，没有正规子群的群，是群论中的最小单元</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: si</p>
+<p class="date">Created: 2022-02-05 Sa 12:58</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

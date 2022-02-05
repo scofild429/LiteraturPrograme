@@ -25,7 +25,7 @@
       org-html-head-include-scripts nil       ;; Use our own scripts
       org-html-head-include-default-style nil ;; Use our own styles
       ;; org-html-head "<link rel=\"stylesheet\" href=\"https://cdn.simplecss.org/simple.min.css\" />")
-      org-html-head "<link rel=\"stylesheet\" href=\"https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css\" />")
+      org-html-head "<link rel=\"stylesheet\" href=\"https://fniessen.github.io/org-html-themes/src/bigblow_theme/css/bigblow.css\" />")
 
 
 ;; Define the publishing project
