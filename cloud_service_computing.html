@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-02-18 Fri 17:08 -->
+<!-- 2022-02-18 Fri 17:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Cloud Service Computing</title>
@@ -39,183 +39,183 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org911d760">Cloud computation</a>
+<li><a href="#org8b3160b">Cloud computation</a>
 <ul>
-<li><a href="#org84208bb">Platform Virtualization</a>
+<li><a href="#org645f236">Platform Virtualization</a>
 <ul>
-<li><a href="#org72c8633">Defination of Virtualization</a></li>
-<li><a href="#org8fdcf4f">The reasons for applying virtualization</a></li>
-<li><a href="#org5a2eb8e">Full virtualization (Hypervisor system, Bare matal)</a></li>
-<li><a href="#org244c5fa">Hardware-assisted virtualization (Hypervisor system, Bare matal)</a></li>
-<li><a href="#org353c019">Para virtualization (Hypervisor system, Bare matal)</a></li>
-<li><a href="#org1862bc6">Host OS virtualization (Hypervisor system, Hosted)</a></li>
-<li><a href="#org9b735be">OS-level virtualization (Container system)</a></li>
-<li><a href="#orgeb46bb4">Memory virtualization</a></li>
-<li><a href="#org4866daa">Network virtualization</a></li>
-<li><a href="#org696183a">Feathers</a></li>
+<li><a href="#org38613a0">Defination of Virtualization</a></li>
+<li><a href="#org925f60f">The reasons for applying virtualization</a></li>
+<li><a href="#org7a7a20a">Full virtualization (Hypervisor system, Bare matal)</a></li>
+<li><a href="#org8aea332">Hardware-assisted virtualization (Hypervisor system, Bare matal)</a></li>
+<li><a href="#orgb600ff3">Para virtualization (Hypervisor system, Bare matal)</a></li>
+<li><a href="#orgb75343e">Host OS virtualization (Hypervisor system, Hosted)</a></li>
+<li><a href="#orgcbd3c38">OS-level virtualization (Container system)</a></li>
+<li><a href="#org6232a3f">Memory virtualization</a></li>
+<li><a href="#orgaa4ecd8">Network virtualization</a></li>
+<li><a href="#org548580e">Feathers</a></li>
 </ul>
 </li>
-<li><a href="#orgd602336">Docker</a>
+<li><a href="#org7bcdc37">Docker</a>
 <ul>
-<li><a href="#org2d343e2">old note</a></li>
-<li><a href="#orgbd0b68e">commands</a></li>
-<li><a href="#orgb6b2b00">discripation</a></li>
+<li><a href="#org99760b9">old note</a></li>
+<li><a href="#orgb836974">commands</a></li>
+<li><a href="#orgc68665e">discripation</a></li>
 </ul>
 </li>
-<li><a href="#org77a2172">Kubernetes</a></li>
-<li><a href="#org2910520">Virtual Machine</a></li>
-<li><a href="#orgda6a014">Storage Virtualization</a>
+<li><a href="#org5eabfc8">Kubernetes</a></li>
+<li><a href="#org7eb4003">Virtual Machine</a></li>
+<li><a href="#org7cf197f">Storage Virtualization</a>
 <ul>
-<li><a href="#org42fbb12">SSD advantage and disadvanage over HDD</a></li>
-<li><a href="#org881fefc">Storage virtualization advantage</a></li>
-<li><a href="#orgbbb494e">Provisioning:</a></li>
-<li><a href="#org73fc023">Deduplication</a></li>
-<li><a href="#org740d796">Compression:</a></li>
-<li><a href="#orgd6bac1c">Cloning</a></li>
-<li><a href="#orgfc55da6">Snapshotting Copies</a></li>
-<li><a href="#org25d3d6e">increasing the proformance</a></li>
+<li><a href="#org9301979">SSD advantage and disadvanage over HDD</a></li>
+<li><a href="#org81719f4">Storage virtualization advantage</a></li>
+<li><a href="#org0658fbc">Provisioning:</a></li>
+<li><a href="#orgff29541">Deduplication</a></li>
+<li><a href="#orgdb5ec5b">Compression:</a></li>
+<li><a href="#org441ef03">Cloning</a></li>
+<li><a href="#org3c6c864">Snapshotting Copies</a></li>
+<li><a href="#org7caa02d">increasing the proformance</a></li>
 </ul>
 </li>
-<li><a href="#orgb75fd2e">Modern Datacenters</a>
+<li><a href="#orgc1eaa22">Modern Datacenters</a>
 <ul>
-<li><a href="#org5fea01b">automation</a></li>
-<li><a href="#org2e9c4c8">Idempotent</a></li>
-<li><a href="#org6282365">Infrastructure as code</a></li>
-<li><a href="#org68ef290">Foreman:</a></li>
-<li><a href="#org9766d38">Puppet</a></li>
+<li><a href="#orgdea4ce2">automation</a></li>
+<li><a href="#org0248d73">Idempotent</a></li>
+<li><a href="#org76e7320">Infrastructure as code</a></li>
+<li><a href="#org01ac6c2">Foreman:</a></li>
+<li><a href="#orgdb644f4">Puppet</a></li>
 </ul>
 </li>
-<li><a href="#orgd42f366">Monitor</a>
+<li><a href="#orgbf00c02">Monitor</a>
 <ul>
-<li><a href="#org8855084">challange</a></li>
-<li><a href="#orgf118b7e">Real time monitoring</a></li>
-<li><a href="#orgf0c3dee">Historical Monitoring</a></li>
-<li><a href="#orgcd8eef6">Architecture</a></li>
+<li><a href="#org2894dd6">challange</a></li>
+<li><a href="#org59a2191">Real time monitoring</a></li>
+<li><a href="#org22d1be3">Historical Monitoring</a></li>
+<li><a href="#orgb0525b0">Architecture</a></li>
 </ul>
 </li>
-<li><a href="#orge01a4a1">Cloud Computing Concepts</a>
+<li><a href="#orgf5b8e76">Cloud Computing Concepts</a>
 <ul>
-<li><a href="#orgde9d9fa">Cloud Defination</a></li>
-<li><a href="#orgc7cf26f">SOA</a></li>
-<li><a href="#org311ec94">Advantage</a></li>
-<li><a href="#org6fa7ac8">Network design</a></li>
-<li><a href="#org9d161eb">GWDG feathers</a></li>
-<li><a href="#org0939eeb">Infrastructure as Service</a></li>
-<li><a href="#orgda553d7">Platform as a Service</a></li>
-<li><a href="#org8ac0874">Software as a Service</a></li>
+<li><a href="#org1992fda">Cloud Defination</a></li>
+<li><a href="#org839960d">SOA</a></li>
+<li><a href="#org9d65b6d">Advantage</a></li>
+<li><a href="#org4ebc117">Network design</a></li>
+<li><a href="#org340c44b">GWDG feathers</a></li>
+<li><a href="#org9eb5b91">Infrastructure as Service</a></li>
+<li><a href="#orgdcb802a">Platform as a Service</a></li>
+<li><a href="#org99df1a3">Software as a Service</a></li>
 </ul>
 </li>
-<li><a href="#orgce334cb">Web services</a>
+<li><a href="#orgd6b1013">Web services</a>
 <ul>
-<li><a href="#org1f83ab0">Benefits</a></li>
-<li><a href="#org37470f6">SOAP</a></li>
-<li><a href="#org5e76ee3">WSDL</a></li>
-<li><a href="#orgd93d12f">REST</a></li>
-<li><a href="#org6ee2309">API</a></li>
+<li><a href="#org7d322a2">Benefits</a></li>
+<li><a href="#org11f9dcc">SOAP</a></li>
+<li><a href="#org0cc7fb0">WSDL</a></li>
+<li><a href="#orgccc85ae">REST</a></li>
+<li><a href="#org1207061">API</a></li>
 </ul>
 </li>
-<li><a href="#orgc2a11a7">Big Data Service</a>
+<li><a href="#org359263b">Big Data Service</a>
 <ul>
-<li><a href="#org5f58efb">feathers</a></li>
-<li><a href="#org96e223e">processes</a></li>
-<li><a href="#org97b14eb">Challenges</a></li>
+<li><a href="#org2fb4e62">feathers</a></li>
+<li><a href="#orgcc73405">processes</a></li>
+<li><a href="#org51eb118">Challenges</a></li>
 </ul>
 </li>
-<li><a href="#org1636e34">Mapreduce</a></li>
-<li><a href="#org8e17457">Large Scale Data Analysis</a>
+<li><a href="#org8d748fc">Mapreduce</a></li>
+<li><a href="#org4a8b101">Large Scale Data Analysis</a>
 <ul>
-<li><a href="#org2c740e0">batch process</a></li>
-<li><a href="#org8da7683">steaming process</a></li>
-<li><a href="#org39f1884">Stream Computation Platform</a></li>
-<li><a href="#org719d0a2">Hadoop</a></li>
-<li><a href="#orgc5bd10b">HDFS</a></li>
-<li><a href="#org5585ea5">YARN</a></li>
-<li><a href="#org18287aa">Apache Kafka</a></li>
-<li><a href="#orga2e2611">Data management cycle</a></li>
+<li><a href="#orgfb411c6">batch process</a></li>
+<li><a href="#orgb4ed47d">steaming process</a></li>
+<li><a href="#orgc051b37">Stream Computation Platform</a></li>
+<li><a href="#org6fe0a1d">Hadoop</a></li>
+<li><a href="#org3cf53cd">HDFS</a></li>
+<li><a href="#org38601d4">YARN</a></li>
+<li><a href="#org59b7f1d">Apache Kafka</a></li>
+<li><a href="#orgf157ef3">Data management cycle</a></li>
 </ul>
 </li>
-<li><a href="#orgae9666d">Data Grid Data Management</a>
+<li><a href="#orgd0c72c7">Data Grid Data Management</a>
 <ul>
-<li><a href="#orgd1fa5a8">Data Lake</a></li>
-<li><a href="#org86c487d">ETL</a></li>
-<li><a href="#org830b3ea">Storage data in Multiable locations</a></li>
-<li><a href="#org84717ae">Storage data in remote data center</a></li>
-<li><a href="#org2dc02f2">code storage</a></li>
-<li><a href="#orgb884158">fair data management</a></li>
+<li><a href="#orgf463525">Data Lake</a></li>
+<li><a href="#orgfb057b9">ETL</a></li>
+<li><a href="#orge266daa">Storage data in Multiable locations</a></li>
+<li><a href="#org025d73c">Storage data in remote data center</a></li>
+<li><a href="#org0dafa8b">code storage</a></li>
+<li><a href="#org9fc9c11">fair data management</a></li>
 </ul>
 </li>
-<li><a href="#orga7aa06a">ITIL &amp;SLA</a>
+<li><a href="#orgc104f28">ITIL &amp;SLA</a>
 <ul>
-<li><a href="#orgbfc4c8c">non functional service</a></li>
-<li><a href="#orgd893641">ITIL Information Technology Infrastructure Library</a></li>
-<li><a href="#org3bdde56">SLA Service Level Agreement Life cycle</a></li>
-<li><a href="#org7f1ae2d">SLA components include</a></li>
+<li><a href="#orgba6a0cd">non functional service</a></li>
+<li><a href="#orgfc075fe">ITIL Information Technology Infrastructure Library</a></li>
+<li><a href="#org70cf715">SLA Service Level Agreement Life cycle</a></li>
+<li><a href="#org056cfeb">SLA components include</a></li>
 </ul>
 </li>
-<li><a href="#org6fd690c">Security</a>
+<li><a href="#orge048e44">Security</a>
 <ul>
-<li><a href="#org97a20b0">Confidentiality</a></li>
-<li><a href="#org50f457e">Integrity</a></li>
-<li><a href="#orgfbf5c73">Availablity</a></li>
-<li><a href="#org90b0f0e">Asymmetric Encrytion RSA</a></li>
-<li><a href="#org853b651">security benefits</a></li>
-<li><a href="#orga7b42dc">symmetric encryption</a></li>
-<li><a href="#orgbe20405">asymmetic encryption</a></li>
-<li><a href="#org7421257">Digital Signiture</a></li>
-<li><a href="#orgc43733d">how Certificate is trusted</a></li>
-<li><a href="#org525a5b3">Authentication</a></li>
-<li><a href="#org6fad264">Authorization</a></li>
-<li><a href="#orgebbdcef">Confusion and Diffusion</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org02cac34">Paraiell computation</a>
-<ul>
-<li><a href="#orgc67b9ec">Chap1: introduction</a>
-<ul>
-<li><a href="#org2993184">Von Nroven</a></li>
-<li><a href="#org9aa3592">memory mode</a></li>
-<li><a href="#org374005f">shared memory</a></li>
-<li><a href="#org9c88b1f">distribution memory</a></li>
-</ul>
-</li>
-<li><a href="#orgf1afb4d">Chap 2: Proformance</a>
-<ul>
-<li><a href="#org19ec2c8">single Process:</a></li>
-<li><a href="#org54999c3">Multi processes</a></li>
-<li><a href="#org3a3341c">Efficient</a></li>
-<li><a href="#org63a6dd8">Adaes-low</a></li>
-<li><a href="#orgbf38a8a">Gustafon low</a></li>
+<li><a href="#orga0b0e9f">Confidentiality</a></li>
+<li><a href="#orgc471434">Integrity</a></li>
+<li><a href="#org0624b81">Availablity</a></li>
+<li><a href="#orge888dbd">Asymmetric Encrytion RSA</a></li>
+<li><a href="#orgad2b323">security benefits</a></li>
+<li><a href="#orgcb7cf91">symmetric encryption</a></li>
+<li><a href="#org19f2100">asymmetic encryption</a></li>
+<li><a href="#orgdc0c489">Digital Signiture</a></li>
+<li><a href="#orgef59130">how Certificate is trusted</a></li>
+<li><a href="#orgd71cd01">Authentication</a></li>
+<li><a href="#org8503049">Authorization</a></li>
+<li><a href="#orgb2be23b">Confusion and Diffusion</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org8236527">AWS</a></li>
-<li><a href="#org5f69b29">Alibaba</a></li>
-<li><a href="#org4e66b00">GWDG</a></li>
+<li><a href="#orga6fc2ad">Paraiell computation</a>
+<ul>
+<li><a href="#org0a433a2">Chap1: introduction</a>
+<ul>
+<li><a href="#orgceb4e36">Von Nroven</a></li>
+<li><a href="#org8f0f607">memory mode</a></li>
+<li><a href="#org59de0af">shared memory</a></li>
+<li><a href="#org05f0435">distribution memory</a></li>
+</ul>
+</li>
+<li><a href="#org645b7b0">Chap 2: Proformance</a>
+<ul>
+<li><a href="#orgfdcc7f3">single Process:</a></li>
+<li><a href="#org8a72eeb">Multi processes</a></li>
+<li><a href="#orgfea0da8">Efficient</a></li>
+<li><a href="#org79c4c2d">Adaes-low</a></li>
+<li><a href="#org9651060">Gustafon low</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org43b973e">AWS</a></li>
+<li><a href="#org618c0af">Alibaba</a></li>
+<li><a href="#orgd76d714">GWDG</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org911d760" class="outline-2">
-<h2 id="org911d760">Cloud computation</h2>
-<div class="outline-text-2" id="text-org911d760">
+<div id="outline-container-org8b3160b" class="outline-2">
+<h2 id="org8b3160b">Cloud computation</h2>
+<div class="outline-text-2" id="text-org8b3160b">
 </div>
-<div id="outline-container-org84208bb" class="outline-3">
-<h3 id="org84208bb">Platform Virtualization</h3>
-<div class="outline-text-3" id="text-org84208bb">
+<div id="outline-container-org645f236" class="outline-3">
+<h3 id="org645f236">Platform Virtualization</h3>
+<div class="outline-text-3" id="text-org645f236">
 </div>
-<div id="outline-container-org72c8633" class="outline-4">
-<h4 id="org72c8633">Defination of Virtualization</h4>
-<div class="outline-text-4" id="text-org72c8633">
+<div id="outline-container-org38613a0" class="outline-4">
+<h4 id="org38613a0">Defination of Virtualization</h4>
+<div class="outline-text-4" id="text-org38613a0">
 <p>
 the processes of creating software-based version of resources.
 </p>
 </div>
 </div>
-<div id="outline-container-org8fdcf4f" class="outline-4">
-<h4 id="org8fdcf4f">The reasons for applying virtualization</h4>
-<div class="outline-text-4" id="text-org8fdcf4f">
+<div id="outline-container-org925f60f" class="outline-4">
+<h4 id="org925f60f">The reasons for applying virtualization</h4>
+<div class="outline-text-4" id="text-org925f60f">
 <ul class="org-ul">
 <li><b>Utilization</b>: Server consolidation</li>
 <li><b>Isolation</b>: Implication of errors is restricted in virtual resource only</li>
@@ -230,9 +230,9 @@ the processes of creating software-based version of resources.
 </div>
 </div>
 
-<div id="outline-container-org5a2eb8e" class="outline-4">
-<h4 id="org5a2eb8e">Full virtualization (Hypervisor system, Bare matal)</h4>
-<div class="outline-text-4" id="text-org5a2eb8e">
+<div id="outline-container-org7a7a20a" class="outline-4">
+<h4 id="org7a7a20a">Full virtualization (Hypervisor system, Bare matal)</h4>
+<div class="outline-text-4" id="text-org7a7a20a">
 <ul class="org-ul">
 <li>Translation of instructions</li>
 <li>implantation: Virtual Box</li>
@@ -244,9 +244,9 @@ the processes of creating software-based version of resources.
 </div>
 </div>
 
-<div id="outline-container-org244c5fa" class="outline-4">
-<h4 id="org244c5fa">Hardware-assisted virtualization (Hypervisor system, Bare matal)</h4>
-<div class="outline-text-4" id="text-org244c5fa">
+<div id="outline-container-org8aea332" class="outline-4">
+<h4 id="org8aea332">Hardware-assisted virtualization (Hypervisor system, Bare matal)</h4>
+<div class="outline-text-4" id="text-org8aea332">
 <ul class="org-ul">
 <li>implantation: VMware Workstation</li>
 <li>can install many virtual machine</li>
@@ -256,9 +256,9 @@ the processes of creating software-based version of resources.
 </div>
 </div>
 
-<div id="outline-container-org353c019" class="outline-4">
-<h4 id="org353c019">Para virtualization (Hypervisor system, Bare matal)</h4>
-<div class="outline-text-4" id="text-org353c019">
+<div id="outline-container-orgb600ff3" class="outline-4">
+<h4 id="orgb600ff3">Para virtualization (Hypervisor system, Bare matal)</h4>
+<div class="outline-text-4" id="text-orgb600ff3">
 <ul class="org-ul">
 <li>VM(modified OS) runs on Host</li>
 <li>Host on hypervisor</li>
@@ -270,9 +270,9 @@ the processes of creating software-based version of resources.
 </div>
 </div>
 
-<div id="outline-container-org1862bc6" class="outline-4">
-<h4 id="org1862bc6">Host OS virtualization (Hypervisor system, Hosted)</h4>
-<div class="outline-text-4" id="text-org1862bc6">
+<div id="outline-container-orgb75343e" class="outline-4">
+<h4 id="orgb75343e">Host OS virtualization (Hypervisor system, Hosted)</h4>
+<div class="outline-text-4" id="text-orgb75343e">
 <ul class="org-ul">
 <li>Guest OS on Hypervisor</li>
 <li>Hypervisor on Host OS</li>
@@ -289,9 +289,9 @@ the processes of creating software-based version of resources.
 </div>
 
 
-<div id="outline-container-org9b735be" class="outline-4">
-<h4 id="org9b735be">OS-level virtualization (Container system)</h4>
-<div class="outline-text-4" id="text-org9b735be">
+<div id="outline-container-orgcbd3c38" class="outline-4">
+<h4 id="orgcbd3c38">OS-level virtualization (Container system)</h4>
+<div class="outline-text-4" id="text-orgcbd3c38">
 <ul class="org-ul">
 <li>no hypervisor</li>
 <li>multiple useer instances(light-weight) run on a host OS</li>
@@ -300,26 +300,26 @@ the processes of creating software-based version of resources.
 </div>
 </div>
 
-<div id="outline-container-orgeb46bb4" class="outline-4">
-<h4 id="orgeb46bb4">Memory virtualization</h4>
-<div class="outline-text-4" id="text-orgeb46bb4">
+<div id="outline-container-org6232a3f" class="outline-4">
+<h4 id="org6232a3f">Memory virtualization</h4>
+<div class="outline-text-4" id="text-org6232a3f">
 <ul class="org-ul">
 <li>shadow page table on Guest OS</li>
 <li>Extended Page table in Host</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org4866daa" class="outline-4">
-<h4 id="org4866daa">Network virtualization</h4>
-<div class="outline-text-4" id="text-org4866daa">
+<div id="outline-container-orgaa4ecd8" class="outline-4">
+<h4 id="orgaa4ecd8">Network virtualization</h4>
+<div class="outline-text-4" id="text-orgaa4ecd8">
 <p>
 hypervisor provide virtual switch, offering every VM a ip address
 </p>
 </div>
 </div>
-<div id="outline-container-org696183a" class="outline-4">
-<h4 id="org696183a">Feathers</h4>
-<div class="outline-text-4" id="text-org696183a">
+<div id="outline-container-org548580e" class="outline-4">
+<h4 id="org548580e">Feathers</h4>
+<div class="outline-text-4" id="text-org548580e">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -352,13 +352,13 @@ hypervisor provide virtual switch, offering every VM a ip address
 </div>
 </div>
 
-<div id="outline-container-orgd602336" class="outline-3">
-<h3 id="orgd602336">Docker</h3>
-<div class="outline-text-3" id="text-orgd602336">
+<div id="outline-container-org7bcdc37" class="outline-3">
+<h3 id="org7bcdc37">Docker</h3>
+<div class="outline-text-3" id="text-org7bcdc37">
 </div>
-<div id="outline-container-org2d343e2" class="outline-4">
-<h4 id="org2d343e2">old note</h4>
-<div class="outline-text-4" id="text-org2d343e2">
+<div id="outline-container-org99760b9" class="outline-4">
+<h4 id="org99760b9">old note</h4>
+<div class="outline-text-4" id="text-org99760b9">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -407,9 +407,9 @@ hypervisor provide virtual switch, offering every VM a ip address
 </table>
 </div>
 </div>
-<div id="outline-container-orgbd0b68e" class="outline-4">
-<h4 id="orgbd0b68e">commands</h4>
-<div class="outline-text-4" id="text-orgbd0b68e">
+<div id="outline-container-orgb836974" class="outline-4">
+<h4 id="orgb836974">commands</h4>
+<div class="outline-text-4" id="text-orgb836974">
 <ul class="org-ul">
 <li>docker pull NAME</li>
 
@@ -439,9 +439,9 @@ hypervisor provide virtual switch, offering every VM a ip address
 </div>
 </div>
 
-<div id="outline-container-orgb6b2b00" class="outline-4">
-<h4 id="orgb6b2b00">discripation</h4>
-<div class="outline-text-4" id="text-orgb6b2b00">
+<div id="outline-container-orgc68665e" class="outline-4">
+<h4 id="orgc68665e">discripation</h4>
+<div class="outline-text-4" id="text-orgc68665e">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -487,9 +487,9 @@ hypervisor provide virtual switch, offering every VM a ip address
 </div>
 </div>
 </div>
-<div id="outline-container-org77a2172" class="outline-3">
-<h3 id="org77a2172">Kubernetes</h3>
-<div class="outline-text-3" id="text-org77a2172">
+<div id="outline-container-org5eabfc8" class="outline-3">
+<h3 id="org5eabfc8">Kubernetes</h3>
+<div class="outline-text-3" id="text-org5eabfc8">
 <p>
 Container-Orchestration System 
 </p>
@@ -504,9 +504,9 @@ Container-Orchestration System
 </div>
 </div>
 
-<div id="outline-container-org2910520" class="outline-3">
-<h3 id="org2910520">Virtual Machine</h3>
-<div class="outline-text-3" id="text-org2910520">
+<div id="outline-container-org7eb4003" class="outline-3">
+<h3 id="org7eb4003">Virtual Machine</h3>
+<div class="outline-text-3" id="text-org7eb4003">
 <ul class="org-ul">
 <li>Partition</li>
 <li>Isolation</li>
@@ -517,13 +517,13 @@ Container-Orchestration System
 </div>
 </div>
 
-<div id="outline-container-orgda6a014" class="outline-3">
-<h3 id="orgda6a014">Storage Virtualization</h3>
-<div class="outline-text-3" id="text-orgda6a014">
+<div id="outline-container-org7cf197f" class="outline-3">
+<h3 id="org7cf197f">Storage Virtualization</h3>
+<div class="outline-text-3" id="text-org7cf197f">
 </div>
-<div id="outline-container-org42fbb12" class="outline-4">
-<h4 id="org42fbb12">SSD advantage and disadvanage over HDD</h4>
-<div class="outline-text-4" id="text-org42fbb12">
+<div id="outline-container-org9301979" class="outline-4">
+<h4 id="org9301979">SSD advantage and disadvanage over HDD</h4>
+<div class="outline-text-4" id="text-org9301979">
 <ul class="org-ul">
 <li>Reliablity</li>
 <li>Fast</li>
@@ -535,9 +535,9 @@ Container-Orchestration System
 </div>
 </div>
 
-<div id="outline-container-org881fefc" class="outline-4">
-<h4 id="org881fefc">Storage virtualization advantage</h4>
-<div class="outline-text-4" id="text-org881fefc">
+<div id="outline-container-org81719f4" class="outline-4">
+<h4 id="org81719f4">Storage virtualization advantage</h4>
+<div class="outline-text-4" id="text-org81719f4">
 <ul class="org-ul">
 <li>Faster access: because you can have multiple data sources for the same data</li>
 <li>Independence of logic storage resources</li>
@@ -550,9 +550,9 @@ Container-Orchestration System
 </div>
 </div>
 
-<div id="outline-container-orgbbb494e" class="outline-4">
-<h4 id="orgbbb494e">Provisioning:</h4>
-<div class="outline-text-4" id="text-orgbbb494e">
+<div id="outline-container-org0658fbc" class="outline-4">
+<h4 id="org0658fbc">Provisioning:</h4>
+<div class="outline-text-4" id="text-org0658fbc">
 <ul class="org-ul">
 <li>allocate disk space to user on demand</li>
 <li>give a mount of Storage, but not really allocated so much</li>
@@ -560,9 +560,9 @@ Container-Orchestration System
 </div>
 </div>
 
-<div id="outline-container-org73fc023" class="outline-4">
-<h4 id="org73fc023">Deduplication</h4>
-<div class="outline-text-4" id="text-org73fc023">
+<div id="outline-container-orgff29541" class="outline-4">
+<h4 id="orgff29541">Deduplication</h4>
+<div class="outline-text-4" id="text-orgff29541">
 <p>
 Single instance Storage: 
 if the hash value of a datablock is the same with one we already stored,
@@ -574,47 +574,47 @@ dann save its link
 </div>
 </div>
 
-<div id="outline-container-org740d796" class="outline-4">
-<h4 id="org740d796">Compression:</h4>
-<div class="outline-text-4" id="text-org740d796">
+<div id="outline-container-orgdb5ec5b" class="outline-4">
+<h4 id="orgdb5ec5b">Compression:</h4>
+<div class="outline-text-4" id="text-orgdb5ec5b">
 <p>
 compacting the data so that it comsumes less space
 </p>
 </div>
 </div>
-<div id="outline-container-orgd6bac1c" class="outline-4">
-<h4 id="orgd6bac1c">Cloning</h4>
-<div class="outline-text-4" id="text-orgd6bac1c">
+<div id="outline-container-org441ef03" class="outline-4">
+<h4 id="org441ef03">Cloning</h4>
+<div class="outline-text-4" id="text-org441ef03">
 <p>
 Consuming no storage except what is required for metadata until changes
 are written to the copy
 </p>
 </div>
 </div>
-<div id="outline-container-orgfc55da6" class="outline-4">
-<h4 id="orgfc55da6">Snapshotting Copies</h4>
-<div class="outline-text-4" id="text-orgfc55da6">
+<div id="outline-container-org3c6c864" class="outline-4">
+<h4 id="org3c6c864">Snapshotting Copies</h4>
+<div class="outline-text-4" id="text-org3c6c864">
 <p>
 a read-only, point-in-time image of a volume
 </p>
 </div>
 </div>
-<div id="outline-container-org25d3d6e" class="outline-4">
-<h4 id="org25d3d6e">increasing the proformance</h4>
-<div class="outline-text-4" id="text-org25d3d6e">
+<div id="outline-container-org7caa02d" class="outline-4">
+<h4 id="org7caa02d">increasing the proformance</h4>
+<div class="outline-text-4" id="text-org7caa02d">
 <p>
 with more physical disks at the same time
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgb75fd2e" class="outline-3">
-<h3 id="orgb75fd2e">Modern Datacenters</h3>
-<div class="outline-text-3" id="text-orgb75fd2e">
+<div id="outline-container-orgc1eaa22" class="outline-3">
+<h3 id="orgc1eaa22">Modern Datacenters</h3>
+<div class="outline-text-3" id="text-orgc1eaa22">
 </div>
-<div id="outline-container-org5fea01b" class="outline-4">
-<h4 id="org5fea01b">automation</h4>
-<div class="outline-text-4" id="text-org5fea01b">
+<div id="outline-container-orgdea4ce2" class="outline-4">
+<h4 id="orgdea4ce2">automation</h4>
+<div class="outline-text-4" id="text-orgdea4ce2">
 <ul class="org-ul">
 <li>scaling</li>
 <li>Inreases Repeatablity</li>
@@ -628,18 +628,18 @@ illusion of Stability</li>
 </div>
 </div>
 
-<div id="outline-container-org2e9c4c8" class="outline-4">
-<h4 id="org2e9c4c8">Idempotent</h4>
-<div class="outline-text-4" id="text-org2e9c4c8">
+<div id="outline-container-org0248d73" class="outline-4">
+<h4 id="org0248d73">Idempotent</h4>
+<div class="outline-text-4" id="text-org0248d73">
 <p>
 the same code generate the same result, without any change
 </p>
 </div>
 </div>
 
-<div id="outline-container-org6282365" class="outline-4">
-<h4 id="org6282365">Infrastructure as code</h4>
-<div class="outline-text-4" id="text-org6282365">
+<div id="outline-container-org76e7320" class="outline-4">
+<h4 id="org76e7320">Infrastructure as code</h4>
+<div class="outline-text-4" id="text-org76e7320">
 <ul class="org-ul">
 <li>Benefits:
 <ul class="org-ul">
@@ -656,17 +656,17 @@ the same code generate the same result, without any change
 </div>
 </div>
 
-<div id="outline-container-org68ef290" class="outline-4">
-<h4 id="org68ef290">Foreman:</h4>
-<div class="outline-text-4" id="text-org68ef290">
+<div id="outline-container-org01ac6c2" class="outline-4">
+<h4 id="org01ac6c2">Foreman:</h4>
+<div class="outline-text-4" id="text-org01ac6c2">
 <p>
 give the initial configuration to run an OS
 </p>
 </div>
 </div>
-<div id="outline-container-org9766d38" class="outline-4">
-<h4 id="org9766d38">Puppet</h4>
-<div class="outline-text-4" id="text-org9766d38">
+<div id="outline-container-orgdb644f4" class="outline-4">
+<h4 id="orgdb644f4">Puppet</h4>
+<div class="outline-text-4" id="text-orgdb644f4">
 <ul class="org-ul">
 <li>Declarative description of resource states</li>
 <li>Client / server Architecture</li>
@@ -676,31 +676,31 @@ give the initial configuration to run an OS
 </div>
 </div>
 </div>
-<div id="outline-container-orgd42f366" class="outline-3">
-<h3 id="orgd42f366">Monitor</h3>
-<div class="outline-text-3" id="text-orgd42f366">
+<div id="outline-container-orgbf00c02" class="outline-3">
+<h3 id="orgbf00c02">Monitor</h3>
+<div class="outline-text-3" id="text-orgbf00c02">
 </div>
-<div id="outline-container-org8855084" class="outline-4">
-<h4 id="org8855084">challange</h4>
-<div class="outline-text-4" id="text-org8855084">
+<div id="outline-container-org2894dd6" class="outline-4">
+<h4 id="org2894dd6">challange</h4>
+<div class="outline-text-4" id="text-org2894dd6">
 <p>
 collecte data from large mount of servers
 Watch out the overhitting
 </p>
 </div>
 </div>
-<div id="outline-container-orgf118b7e" class="outline-4">
-<h4 id="orgf118b7e">Real time monitoring</h4>
-<div class="outline-text-4" id="text-orgf118b7e">
+<div id="outline-container-org59a2191" class="outline-4">
+<h4 id="org59a2191">Real time monitoring</h4>
+<div class="outline-text-4" id="text-org59a2191">
 <ul class="org-ul">
 <li>Availability Monitoring: altering of failure</li>
 <li>Capacity Monitoring: detect outages of resource</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf0c3dee" class="outline-4">
-<h4 id="orgf0c3dee">Historical Monitoring</h4>
-<div class="outline-text-4" id="text-orgf0c3dee">
+<div id="outline-container-org22d1be3" class="outline-4">
+<h4 id="org22d1be3">Historical Monitoring</h4>
+<div class="outline-text-4" id="text-org22d1be3">
 <ul class="org-ul">
 <li>Long-term information</li>
 <li>Trend analysis</li>
@@ -708,9 +708,9 @@ Watch out the overhitting
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcd8eef6" class="outline-4">
-<h4 id="orgcd8eef6">Architecture</h4>
-<div class="outline-text-4" id="text-orgcd8eef6">
+<div id="outline-container-orgb0525b0" class="outline-4">
+<h4 id="orgb0525b0">Architecture</h4>
+<div class="outline-text-4" id="text-orgb0525b0">
 <ul class="org-ul">
 <li>Measurement: Blackbox, Whitebot,Gauges, Conntes</li>
 <li>Collection: push, pull</li>
@@ -722,13 +722,13 @@ Watch out the overhitting
 </div>
 </div>
 
-<div id="outline-container-orge01a4a1" class="outline-3">
-<h3 id="orge01a4a1">Cloud Computing Concepts</h3>
-<div class="outline-text-3" id="text-orge01a4a1">
+<div id="outline-container-orgf5b8e76" class="outline-3">
+<h3 id="orgf5b8e76">Cloud Computing Concepts</h3>
+<div class="outline-text-3" id="text-orgf5b8e76">
 </div>
-<div id="outline-container-orgde9d9fa" class="outline-4">
-<h4 id="orgde9d9fa">Cloud Defination</h4>
-<div class="outline-text-4" id="text-orgde9d9fa">
+<div id="outline-container-org1992fda" class="outline-4">
+<h4 id="org1992fda">Cloud Defination</h4>
+<div class="outline-text-4" id="text-org1992fda">
 <pre class="example">
 Cloud Computing is a model for enabling on-demand network
 access to a shared pool of configurable computing resource
@@ -740,9 +740,9 @@ effort or service provider interaction
 </div>
 
 
-<div id="outline-container-orgc7cf26f" class="outline-4">
-<h4 id="orgc7cf26f">SOA</h4>
-<div class="outline-text-4" id="text-orgc7cf26f">
+<div id="outline-container-org839960d" class="outline-4">
+<h4 id="org839960d">SOA</h4>
+<div class="outline-text-4" id="text-org839960d">
 <p>
 Servive Oriented Architecture
 SOA has become a core concept of service computing and provides the
@@ -750,9 +750,9 @@ fundamental technologies for realizing service computing
 </p>
 </div>
 </div>
-<div id="outline-container-org311ec94" class="outline-4">
-<h4 id="org311ec94">Advantage</h4>
-<div class="outline-text-4" id="text-org311ec94">
+<div id="outline-container-org9d65b6d" class="outline-4">
+<h4 id="org9d65b6d">Advantage</h4>
+<div class="outline-text-4" id="text-org9d65b6d">
 <ul class="org-ul">
 <li>No captial costs</li>
 <li>High scalability</li>
@@ -761,9 +761,9 @@ fundamental technologies for realizing service computing
 </div>
 </div>
 
-<div id="outline-container-org6fa7ac8" class="outline-4">
-<h4 id="org6fa7ac8">Network design</h4>
-<div class="outline-text-4" id="text-org6fa7ac8">
+<div id="outline-container-org4ebc117" class="outline-4">
+<h4 id="org4ebc117">Network design</h4>
+<div class="outline-text-4" id="text-org4ebc117">
 <p>
 Different: SDN: software define Network
 New architectures have a detached control plane
@@ -776,9 +776,9 @@ instead of heavy logic switching/routing in hardware
 </ul>
 </div>
 </div>
-<div id="outline-container-org9d161eb" class="outline-4">
-<h4 id="org9d161eb">GWDG feathers</h4>
-<div class="outline-text-4" id="text-org9d161eb">
+<div id="outline-container-org340c44b" class="outline-4">
+<h4 id="org340c44b">GWDG feathers</h4>
+<div class="outline-text-4" id="text-org340c44b">
 <ul class="org-ul">
 <li>self service front-end</li>
 <li>SSH authenticate</li>
@@ -789,13 +789,13 @@ instead of heavy logic switching/routing in hardware
 </div>
 
 
-<div id="outline-container-org0939eeb" class="outline-4">
-<h4 id="org0939eeb">Infrastructure as Service</h4>
-<div class="outline-text-4" id="text-org0939eeb">
+<div id="outline-container-org9eb5b91" class="outline-4">
+<h4 id="org9eb5b91">Infrastructure as Service</h4>
+<div class="outline-text-4" id="text-org9eb5b91">
 </div>
 <ul class="org-ul">
-<li><a id="org9b1368f"></a>Different deployment methode<br />
-<div class="outline-text-5" id="text-org9b1368f">
+<li><a id="orgfdf2b2c"></a>Different deployment methode<br />
+<div class="outline-text-5" id="text-orgfdf2b2c">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -822,8 +822,8 @@ instead of heavy logic switching/routing in hardware
 </table>
 </div>
 </li>
-<li><a id="org6866320"></a>Storage<br />
-<div class="outline-text-5" id="text-org6866320">
+<li><a id="org0e7d0e5"></a>Storage<br />
+<div class="outline-text-5" id="text-org0e7d0e5">
 <p>
 CDMI: Cloud Data Management Interface
 File, Block Devices, Object Stores, Database Store
@@ -831,9 +831,9 @@ example: AWS S3
 </p>
 </div>
 </li>
-<li><a id="org0bdfc99"></a>Network<br /></li>
-<li><a id="org2611512"></a>advantage<br />
-<div class="outline-text-5" id="text-org2611512">
+<li><a id="org1a310ff"></a>Network<br /></li>
+<li><a id="org745e544"></a>advantage<br />
+<div class="outline-text-5" id="text-org745e544">
 <ul class="org-ul">
 <li>quick implement of new project</li>
 <li>Flexiblity and scalability</li>
@@ -842,8 +842,8 @@ example: AWS S3
 </ul>
 </div>
 </li>
-<li><a id="org224a7b0"></a>disadvantage<br />
-<div class="outline-text-5" id="text-org224a7b0">
+<li><a id="org5f4fca2"></a>disadvantage<br />
+<div class="outline-text-5" id="text-org5f4fca2">
 <ul class="org-ul">
 <li>complicated to change provider</li>
 <li>dependency on provider</li>
@@ -854,9 +854,9 @@ example: AWS S3
 </ul>
 </div>
 
-<div id="outline-container-orgda553d7" class="outline-4">
-<h4 id="orgda553d7">Platform as a Service</h4>
-<div class="outline-text-4" id="text-orgda553d7">
+<div id="outline-container-orgdcb802a" class="outline-4">
+<h4 id="orgdcb802a">Platform as a Service</h4>
+<div class="outline-text-4" id="text-orgdcb802a">
 <ul class="org-ul">
 <li>Rapid Time-to-Market</li>
 <li>Minimal Development</li>
@@ -866,9 +866,9 @@ example: AWS S3
 </div>
 
 
-<div id="outline-container-org8ac0874" class="outline-4">
-<h4 id="org8ac0874">Software as a Service</h4>
-<div class="outline-text-4" id="text-org8ac0874">
+<div id="outline-container-org99df1a3" class="outline-4">
+<h4 id="org99df1a3">Software as a Service</h4>
+<div class="outline-text-4" id="text-org99df1a3">
 <p>
 based on IaaS, fouce on Applications
 </p>
@@ -876,13 +876,13 @@ based on IaaS, fouce on Applications
 </div>
 </div>
 
-<div id="outline-container-orgce334cb" class="outline-3">
-<h3 id="orgce334cb">Web services</h3>
-<div class="outline-text-3" id="text-orgce334cb">
+<div id="outline-container-orgd6b1013" class="outline-3">
+<h3 id="orgd6b1013">Web services</h3>
+<div class="outline-text-3" id="text-orgd6b1013">
 </div>
-<div id="outline-container-org1f83ab0" class="outline-4">
-<h4 id="org1f83ab0">Benefits</h4>
-<div class="outline-text-4" id="text-org1f83ab0">
+<div id="outline-container-org7d322a2" class="outline-4">
+<h4 id="org7d322a2">Benefits</h4>
+<div class="outline-text-4" id="text-org7d322a2">
 <ul class="org-ul">
 <li>Programmable access</li>
 <li>Distribution over internet</li>
@@ -895,9 +895,9 @@ based on IaaS, fouce on Applications
 </ul>
 </div>
 </div>
-<div id="outline-container-org37470f6" class="outline-4">
-<h4 id="org37470f6">SOAP</h4>
-<div class="outline-text-4" id="text-org37470f6">
+<div id="outline-container-org11f9dcc" class="outline-4">
+<h4 id="org11f9dcc">SOAP</h4>
+<div class="outline-text-4" id="text-org11f9dcc">
 <p>
 Simple Object Access Protocol
 xml based
@@ -905,9 +905,9 @@ RPC based
 </p>
 </div>
 </div>
-<div id="outline-container-org5e76ee3" class="outline-4">
-<h4 id="org5e76ee3">WSDL</h4>
-<div class="outline-text-4" id="text-org5e76ee3">
+<div id="outline-container-org0cc7fb0" class="outline-4">
+<h4 id="org0cc7fb0">WSDL</h4>
+<div class="outline-text-4" id="text-org0cc7fb0">
 <p>
 Web Services Description Language
 xml based
@@ -915,9 +915,9 @@ xml based
 </div>
 </div>
 
-<div id="outline-container-orgd93d12f" class="outline-4">
-<h4 id="orgd93d12f">REST</h4>
-<div class="outline-text-4" id="text-orgd93d12f">
+<div id="outline-container-orgccc85ae" class="outline-4">
+<h4 id="orgccc85ae">REST</h4>
+<div class="outline-text-4" id="text-orgccc85ae">
 <ul class="org-ul">
 <li>Everything is resource</li>
 <li>Every resource is identified by a unique Identifier</li>
@@ -932,9 +932,9 @@ xml based
 </div>
 </div>
 
-<div id="outline-container-org6ee2309" class="outline-4">
-<h4 id="org6ee2309">API</h4>
-<div class="outline-text-4" id="text-org6ee2309">
+<div id="outline-container-org1207061" class="outline-4">
+<h4 id="org1207061">API</h4>
+<div class="outline-text-4" id="text-org1207061">
 <p>
 Application Programming Interface
 </p>
@@ -942,13 +942,13 @@ Application Programming Interface
 </div>
 </div>
 
-<div id="outline-container-orgc2a11a7" class="outline-3">
-<h3 id="orgc2a11a7">Big Data Service</h3>
-<div class="outline-text-3" id="text-orgc2a11a7">
+<div id="outline-container-org359263b" class="outline-3">
+<h3 id="org359263b">Big Data Service</h3>
+<div class="outline-text-3" id="text-org359263b">
 </div>
-<div id="outline-container-org5f58efb" class="outline-4">
-<h4 id="org5f58efb">feathers</h4>
-<div class="outline-text-4" id="text-org5f58efb">
+<div id="outline-container-org2fb4e62" class="outline-4">
+<h4 id="org2fb4e62">feathers</h4>
+<div class="outline-text-4" id="text-org2fb4e62">
 <ul class="org-ul">
 <li>Volume: Scale of data</li>
 <li>Velocity : spend of transfer data</li>
@@ -957,9 +957,9 @@ Application Programming Interface
 </ul>
 </div>
 </div>
-<div id="outline-container-org96e223e" class="outline-4">
-<h4 id="org96e223e">processes</h4>
-<div class="outline-text-4" id="text-org96e223e">
+<div id="outline-container-orgcc73405" class="outline-4">
+<h4 id="orgcc73405">processes</h4>
+<div class="outline-text-4" id="text-orgcc73405">
 <ul class="org-ul">
 <li>Acquisition, Recording</li>
 <li>Extraction, Cleaning, Annotation</li>
@@ -969,9 +969,9 @@ Application Programming Interface
 </ul>
 </div>
 </div>
-<div id="outline-container-org97b14eb" class="outline-4">
-<h4 id="org97b14eb">Challenges</h4>
-<div class="outline-text-4" id="text-org97b14eb">
+<div id="outline-container-org51eb118" class="outline-4">
+<h4 id="org51eb118">Challenges</h4>
+<div class="outline-text-4" id="text-org51eb118">
 <ul class="org-ul">
 <li>Heterogeneity, Incompleteness</li>
 <li>Scale</li>
@@ -981,9 +981,9 @@ Application Programming Interface
 </div>
 </div>
 </div>
-<div id="outline-container-org1636e34" class="outline-3">
-<h3 id="org1636e34">Mapreduce</h3>
-<div class="outline-text-3" id="text-org1636e34">
+<div id="outline-container-org8d748fc" class="outline-3">
+<h3 id="org8d748fc">Mapreduce</h3>
+<div class="outline-text-3" id="text-org8d748fc">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1011,29 +1011,29 @@ Application Programming Interface
 </table>
 </div>
 </div>
-<div id="outline-container-org8e17457" class="outline-3">
-<h3 id="org8e17457">Large Scale Data Analysis</h3>
-<div class="outline-text-3" id="text-org8e17457">
+<div id="outline-container-org4a8b101" class="outline-3">
+<h3 id="org4a8b101">Large Scale Data Analysis</h3>
+<div class="outline-text-3" id="text-org4a8b101">
 </div>
-<div id="outline-container-org2c740e0" class="outline-4">
-<h4 id="org2c740e0">batch process</h4>
-<div class="outline-text-4" id="text-org2c740e0">
+<div id="outline-container-orgfb411c6" class="outline-4">
+<h4 id="orgfb411c6">batch process</h4>
+<div class="outline-text-4" id="text-orgfb411c6">
 <p>
 disadvanage: views generated in batch may out of date
 </p>
 </div>
 </div>
-<div id="outline-container-org8da7683" class="outline-4">
-<h4 id="org8da7683">steaming process</h4>
-<div class="outline-text-4" id="text-org8da7683">
+<div id="outline-container-orgb4ed47d" class="outline-4">
+<h4 id="orgb4ed47d">steaming process</h4>
+<div class="outline-text-4" id="text-orgb4ed47d">
 <p>
 disadvanage: expensive and complex
 </p>
 </div>
 </div>
-<div id="outline-container-org39f1884" class="outline-4">
-<h4 id="org39f1884">Stream Computation Platform</h4>
-<div class="outline-text-4" id="text-org39f1884">
+<div id="outline-container-orgc051b37" class="outline-4">
+<h4 id="orgc051b37">Stream Computation Platform</h4>
+<div class="outline-text-4" id="text-orgc051b37">
 <ul class="org-ul">
 <li>Apache Storm</li>
 <li>Spark Streaming</li>
@@ -1042,28 +1042,28 @@ disadvanage: expensive and complex
 </ul>
 </div>
 </div>
-<div id="outline-container-org719d0a2" class="outline-4">
-<h4 id="org719d0a2">Hadoop</h4>
+<div id="outline-container-org6fe0a1d" class="outline-4">
+<h4 id="org6fe0a1d">Hadoop</h4>
 </div>
-<div id="outline-container-orgc5bd10b" class="outline-4">
-<h4 id="orgc5bd10b">HDFS</h4>
-<div class="outline-text-4" id="text-orgc5bd10b">
+<div id="outline-container-org3cf53cd" class="outline-4">
+<h4 id="org3cf53cd">HDFS</h4>
+<div class="outline-text-4" id="text-org3cf53cd">
 <p>
 Namenode vs DataNodes
 </p>
 </div>
 </div>
-<div id="outline-container-org5585ea5" class="outline-4">
-<h4 id="org5585ea5">YARN</h4>
-<div class="outline-text-4" id="text-org5585ea5">
+<div id="outline-container-org38601d4" class="outline-4">
+<h4 id="org38601d4">YARN</h4>
+<div class="outline-text-4" id="text-org38601d4">
 <p>
 Resource Manager vs NodeManager
 </p>
 </div>
 </div>
-<div id="outline-container-org18287aa" class="outline-4">
-<h4 id="org18287aa">Apache Kafka</h4>
-<div class="outline-text-4" id="text-org18287aa">
+<div id="outline-container-org59b7f1d" class="outline-4">
+<h4 id="org59b7f1d">Apache Kafka</h4>
+<div class="outline-text-4" id="text-org59b7f1d">
 <ul class="org-ul">
 <li>Fast, efficient IO</li>
 <li>Fault tolerant storage</li>
@@ -1071,9 +1071,9 @@ Resource Manager vs NodeManager
 </ul>
 </div>
 </div>
-<div id="outline-container-orga2e2611" class="outline-4">
-<h4 id="orga2e2611">Data management cycle</h4>
-<div class="outline-text-4" id="text-orga2e2611">
+<div id="outline-container-orgf157ef3" class="outline-4">
+<h4 id="orgf157ef3">Data management cycle</h4>
+<div class="outline-text-4" id="text-orgf157ef3">
 <ul class="org-ul">
 <li>Data</li>
 <li>Meta-data</li>
@@ -1084,21 +1084,21 @@ Resource Manager vs NodeManager
 </div>
 </div>
 </div>
-<div id="outline-container-orgae9666d" class="outline-3">
-<h3 id="orgae9666d">Data Grid Data Management</h3>
-<div class="outline-text-3" id="text-orgae9666d">
+<div id="outline-container-orgd0c72c7" class="outline-3">
+<h3 id="orgd0c72c7">Data Grid Data Management</h3>
+<div class="outline-text-3" id="text-orgd0c72c7">
 </div>
-<div id="outline-container-orgd1fa5a8" class="outline-4">
-<h4 id="orgd1fa5a8">Data Lake</h4>
-<div class="outline-text-4" id="text-orgd1fa5a8">
+<div id="outline-container-orgf463525" class="outline-4">
+<h4 id="orgf463525">Data Lake</h4>
+<div class="outline-text-4" id="text-orgf463525">
 <p>
 A data lake is a data storage, where raw data can be stored,
 whos structure is determined at the extraction from the lake
 </p>
 </div>
 <ul class="org-ul">
-<li><a id="org9e901eb"></a>Challenges<br />
-<div class="outline-text-5" id="text-org9e901eb">
+<li><a id="org6154333"></a>Challenges<br />
+<div class="outline-text-5" id="text-org6154333">
 <ul class="org-ul">
 <li>Reliablity</li>
 <li>Slow Performance</li>
@@ -1106,8 +1106,8 @@ whos structure is determined at the extraction from the lake
 </ul>
 </div>
 </li>
-<li><a id="org89c2b42"></a>Zones<br />
-<div class="outline-text-5" id="text-org89c2b42">
+<li><a id="org31d4e57"></a>Zones<br />
+<div class="outline-text-5" id="text-org31d4e57">
 <ul class="org-ul">
 <li>Transient</li>
 <li>raw</li>
@@ -1118,43 +1118,43 @@ whos structure is determined at the extraction from the lake
 </li>
 </ul>
 </div>
-<div id="outline-container-org86c487d" class="outline-4">
-<h4 id="org86c487d">ETL</h4>
-<div class="outline-text-4" id="text-org86c487d">
+<div id="outline-container-orgfb057b9" class="outline-4">
+<h4 id="orgfb057b9">ETL</h4>
+<div class="outline-text-4" id="text-orgfb057b9">
 <p>
 Extract transform load
 </p>
 </div>
 </div>
-<div id="outline-container-org830b3ea" class="outline-4">
-<h4 id="org830b3ea">Storage data in Multiable locations</h4>
-<div class="outline-text-4" id="text-org830b3ea">
+<div id="outline-container-orge266daa" class="outline-4">
+<h4 id="orge266daa">Storage data in Multiable locations</h4>
+<div class="outline-text-4" id="text-orge266daa">
 <p>
 Redundancy for high-availability because of server falied and
 fast access of data
 </p>
 </div>
 </div>
-<div id="outline-container-org84717ae" class="outline-4">
-<h4 id="org84717ae">Storage data in remote data center</h4>
-<div class="outline-text-4" id="text-org84717ae">
+<div id="outline-container-org025d73c" class="outline-4">
+<h4 id="org025d73c">Storage data in remote data center</h4>
+<div class="outline-text-4" id="text-org025d73c">
 <p>
 it is harder to acidentally delete something, such as because
 of disaster.
 </p>
 </div>
 </div>
-<div id="outline-container-org2dc02f2" class="outline-4">
-<h4 id="org2dc02f2">code storage</h4>
-<div class="outline-text-4" id="text-org2dc02f2">
+<div id="outline-container-org0dafa8b" class="outline-4">
+<h4 id="org0dafa8b">code storage</h4>
+<div class="outline-text-4" id="text-org0dafa8b">
 <p>
 ssd
 </p>
 </div>
 </div>
-<div id="outline-container-orgb884158" class="outline-4">
-<h4 id="orgb884158">fair data management</h4>
-<div class="outline-text-4" id="text-orgb884158">
+<div id="outline-container-org9fc9c11" class="outline-4">
+<h4 id="org9fc9c11">fair data management</h4>
+<div class="outline-text-4" id="text-org9fc9c11">
 <p>
 Find-able Accessable Interoperable Reproducible
 </p>
@@ -1162,13 +1162,13 @@ Find-able Accessable Interoperable Reproducible
 </div>
 </div>
 
-<div id="outline-container-orga7aa06a" class="outline-3">
-<h3 id="orga7aa06a">ITIL &amp;SLA</h3>
-<div class="outline-text-3" id="text-orga7aa06a">
+<div id="outline-container-orgc104f28" class="outline-3">
+<h3 id="orgc104f28">ITIL &amp;SLA</h3>
+<div class="outline-text-3" id="text-orgc104f28">
 </div>
-<div id="outline-container-orgbfc4c8c" class="outline-4">
-<h4 id="orgbfc4c8c">non functional service</h4>
-<div class="outline-text-4" id="text-orgbfc4c8c">
+<div id="outline-container-orgba6a0cd" class="outline-4">
+<h4 id="orgba6a0cd">non functional service</h4>
+<div class="outline-text-4" id="text-orgba6a0cd">
 <p>
 organizational Operation of server
 server quality like availability
@@ -1185,18 +1185,18 @@ IT service Provider
 </div>
 </div>
 
-<div id="outline-container-orgd893641" class="outline-4">
-<h4 id="orgd893641">ITIL Information Technology Infrastructure Library</h4>
-<div class="outline-text-4" id="text-orgd893641">
+<div id="outline-container-orgfc075fe" class="outline-4">
+<h4 id="orgfc075fe">ITIL Information Technology Infrastructure Library</h4>
+<div class="outline-text-4" id="text-orgfc075fe">
 <p>
 a framework of best practices of IT service management and delivering 
 </p>
 </div>
 <ul class="org-ul">
-<li><a id="org833b481"></a>service value system SVS<br />
+<li><a id="org74d2333"></a>service value system SVS<br />
 <ul class="org-ul">
-<li><a id="org3a0119a"></a>Guiding principles<br />
-<div class="outline-text-6" id="text-org3a0119a">
+<li><a id="org8bb458e"></a>Guiding principles<br />
+<div class="outline-text-6" id="text-org8bb458e">
 <ul class="org-ul">
 <li>focus on value</li>
 <li>start where you are</li>
@@ -1209,8 +1209,8 @@ a framework of best practices of IT service management and delivering
 </div>
 </li>
 
-<li><a id="org2bd2f20"></a>Service Value Chain<br />
-<div class="outline-text-6" id="text-org2bd2f20">
+<li><a id="orga077498"></a>Service Value Chain<br />
+<div class="outline-text-6" id="text-orga077498">
 <ul class="org-ul">
 <li>plan</li>
 <li>improve</li>
@@ -1223,11 +1223,11 @@ a framework of best practices of IT service management and delivering
 </div>
 </li>
 
-<li><a id="orgd5c7be9"></a>ITIL Practices<br /></li>
+<li><a id="org910a165"></a>ITIL Practices<br /></li>
 </ul>
 </li>
-<li><a id="org01780fb"></a>the four dimensions model<br />
-<div class="outline-text-5" id="text-org01780fb">
+<li><a id="orgd47f1bb"></a>the four dimensions model<br />
+<div class="outline-text-5" id="text-orgd47f1bb">
 <p>
 Organization&amp;People
 Information &amp; Technology
@@ -1238,9 +1238,9 @@ Partners&amp;suppliers
 </li>
 </ul>
 </div>
-<div id="outline-container-org3bdde56" class="outline-4">
-<h4 id="org3bdde56">SLA Service Level Agreement Life cycle</h4>
-<div class="outline-text-4" id="text-org3bdde56">
+<div id="outline-container-org70cf715" class="outline-4">
+<h4 id="org70cf715">SLA Service Level Agreement Life cycle</h4>
+<div class="outline-text-4" id="text-org70cf715">
 <ul class="org-ul">
 <li>Development</li>
 <li>Negotiation</li>
@@ -1251,9 +1251,9 @@ Partners&amp;suppliers
 </ul>
 </div>
 </div>
-<div id="outline-container-org7f1ae2d" class="outline-4">
-<h4 id="org7f1ae2d">SLA components include</h4>
-<div class="outline-text-4" id="text-org7f1ae2d">
+<div id="outline-container-org056cfeb" class="outline-4">
+<h4 id="org056cfeb">SLA components include</h4>
+<div class="outline-text-4" id="text-org056cfeb">
 <ul class="org-ul">
 <li>Parties,  terms,  conditions</li>
 <li>service defination include costs</li>
@@ -1265,37 +1265,37 @@ Partners&amp;suppliers
 </div>
 </div>
 
-<div id="outline-container-org6fd690c" class="outline-3">
-<h3 id="org6fd690c">Security</h3>
-<div class="outline-text-3" id="text-org6fd690c">
+<div id="outline-container-orge048e44" class="outline-3">
+<h3 id="orge048e44">Security</h3>
+<div class="outline-text-3" id="text-orge048e44">
 </div>
-<div id="outline-container-org97a20b0" class="outline-4">
-<h4 id="org97a20b0">Confidentiality</h4>
-<div class="outline-text-4" id="text-org97a20b0">
+<div id="outline-container-orga0b0e9f" class="outline-4">
+<h4 id="orga0b0e9f">Confidentiality</h4>
+<div class="outline-text-4" id="text-orga0b0e9f">
 <p>
 The ability to hide the information from the unauthorized people
 </p>
 </div>
 </div>
-<div id="outline-container-org50f457e" class="outline-4">
-<h4 id="org50f457e">Integrity</h4>
-<div class="outline-text-4" id="text-org50f457e">
+<div id="outline-container-orgc471434" class="outline-4">
+<h4 id="orgc471434">Integrity</h4>
+<div class="outline-text-4" id="text-orgc471434">
 <p>
 The ability to ensure that data are unchanged and remain a correct representation of original data
 </p>
 </div>
 </div>
-<div id="outline-container-orgfbf5c73" class="outline-4">
-<h4 id="orgfbf5c73">Availablity</h4>
-<div class="outline-text-4" id="text-orgfbf5c73">
+<div id="outline-container-org0624b81" class="outline-4">
+<h4 id="org0624b81">Availablity</h4>
+<div class="outline-text-4" id="text-org0624b81">
 <p>
 data is available to authorized people
 </p>
 </div>
 </div>
-<div id="outline-container-org90b0f0e" class="outline-4">
-<h4 id="org90b0f0e">Asymmetric Encrytion RSA</h4>
-<div class="outline-text-4" id="text-org90b0f0e">
+<div id="outline-container-orge888dbd" class="outline-4">
+<h4 id="orge888dbd">Asymmetric Encrytion RSA</h4>
+<div class="outline-text-4" id="text-orge888dbd">
 <pre class="example">
 Meassage: M
 Content: N
@@ -1324,9 +1324,9 @@ get the Mesaage [12]
 </pre>
 </div>
 </div>
-<div id="outline-container-org853b651" class="outline-4">
-<h4 id="org853b651">security benefits</h4>
-<div class="outline-text-4" id="text-org853b651">
+<div id="outline-container-orgad2b323" class="outline-4">
+<h4 id="orgad2b323">security benefits</h4>
+<div class="outline-text-4" id="text-orgad2b323">
 <ul class="org-ul">
 <li>Integrity</li>
 <li>authentify the sender</li>
@@ -1334,59 +1334,59 @@ get the Mesaage [12]
 </ul>
 </div>
 </div>
-<div id="outline-container-orga7b42dc" class="outline-4">
-<h4 id="orga7b42dc">symmetric encryption</h4>
-<div class="outline-text-4" id="text-orga7b42dc">
+<div id="outline-container-orgcb7cf91" class="outline-4">
+<h4 id="orgcb7cf91">symmetric encryption</h4>
+<div class="outline-text-4" id="text-orgcb7cf91">
 <ul class="org-ul">
 <li>challange of key exchange</li>
 <li>en/decryption with the same key</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbe20405" class="outline-4">
-<h4 id="orgbe20405">asymmetic encryption</h4>
-<div class="outline-text-4" id="text-orgbe20405">
+<div id="outline-container-org19f2100" class="outline-4">
+<h4 id="org19f2100">asymmetic encryption</h4>
+<div class="outline-text-4" id="text-org19f2100">
 <ul class="org-ul">
 <li>en/decryption need more resource</li>
 <li>safe key exchange</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org7421257" class="outline-4">
-<h4 id="org7421257">Digital Signiture</h4>
-<div class="outline-text-4" id="text-org7421257">
+<div id="outline-container-orgdc0c489" class="outline-4">
+<h4 id="orgdc0c489">Digital Signiture</h4>
+<div class="outline-text-4" id="text-orgdc0c489">
 <p>
 It's a certificate to identify the sender of message
 </p>
 </div>
 </div>
-<div id="outline-container-orgc43733d" class="outline-4">
-<h4 id="orgc43733d">how Certificate is trusted</h4>
-<div class="outline-text-4" id="text-orgc43733d">
+<div id="outline-container-orgef59130" class="outline-4">
+<h4 id="orgef59130">how Certificate is trusted</h4>
+<div class="outline-text-4" id="text-orgef59130">
 <p>
 OS deliver a list of  already trusted accepted CAs, it's preconfigured
 </p>
 </div>
 </div>
-<div id="outline-container-org525a5b3" class="outline-4">
-<h4 id="org525a5b3">Authentication</h4>
-<div class="outline-text-4" id="text-org525a5b3">
+<div id="outline-container-orgd71cd01" class="outline-4">
+<h4 id="orgd71cd01">Authentication</h4>
+<div class="outline-text-4" id="text-orgd71cd01">
 <p>
 verifies you are who you say you are
 </p>
 </div>
 </div>
-<div id="outline-container-org6fad264" class="outline-4">
-<h4 id="org6fad264">Authorization</h4>
-<div class="outline-text-4" id="text-org6fad264">
+<div id="outline-container-org8503049" class="outline-4">
+<h4 id="org8503049">Authorization</h4>
+<div class="outline-text-4" id="text-org8503049">
 <p>
 verifies if you have the permission to access data
 </p>
 </div>
 </div>
-<div id="outline-container-orgebbdcef" class="outline-4">
-<h4 id="orgebbdcef">Confusion and Diffusion</h4>
-<div class="outline-text-4" id="text-orgebbdcef">
+<div id="outline-container-orgb2be23b" class="outline-4">
+<h4 id="orgb2be23b">Confusion and Diffusion</h4>
+<div class="outline-text-4" id="text-orgb2be23b">
 <p>
 confusion is to create faint ciphertexts in crytoprahic
 Diffusion, if one place of plain text the modified, many places can be modified
@@ -1396,47 +1396,47 @@ Diffusion, if one place of plain text the modified, many places can be modified
 </div>
 </div>
 
-<div id="outline-container-org02cac34" class="outline-2">
-<h2 id="org02cac34">Paraiell computation</h2>
-<div class="outline-text-2" id="text-org02cac34">
+<div id="outline-container-orga6fc2ad" class="outline-2">
+<h2 id="orga6fc2ad">Paraiell computation</h2>
+<div class="outline-text-2" id="text-orga6fc2ad">
 </div>
-<div id="outline-container-orgc67b9ec" class="outline-3">
-<h3 id="orgc67b9ec">Chap1: introduction</h3>
-<div class="outline-text-3" id="text-orgc67b9ec">
+<div id="outline-container-org0a433a2" class="outline-3">
+<h3 id="org0a433a2">Chap1: introduction</h3>
+<div class="outline-text-3" id="text-org0a433a2">
 </div>
-<div id="outline-container-org2993184" class="outline-4">
-<h4 id="org2993184">Von Nroven</h4>
-<div class="outline-text-4" id="text-org2993184">
+<div id="outline-container-orgceb4e36" class="outline-4">
+<h4 id="orgceb4e36">Von Nroven</h4>
+<div class="outline-text-4" id="text-orgceb4e36">
 <p>
 cpu, interconnection, memory
 </p>
 </div>
 </div>
 
-<div id="outline-container-org9aa3592" class="outline-4">
-<h4 id="org9aa3592">memory mode</h4>
-<div class="outline-text-4" id="text-org9aa3592">
+<div id="outline-container-org8f0f607" class="outline-4">
+<h4 id="org8f0f607">memory mode</h4>
+<div class="outline-text-4" id="text-org8f0f607">
 <p>
 shared memory
 distributed memory
 </p>
 </div>
 </div>
-<div id="outline-container-org374005f" class="outline-4">
-<h4 id="org374005f">shared memory</h4>
-<div class="outline-text-4" id="text-org374005f">
+<div id="outline-container-org59de0af" class="outline-4">
+<h4 id="org59de0af">shared memory</h4>
+<div class="outline-text-4" id="text-org59de0af">
 <p>
 easy to build ,hard to large scare
 </p>
 </div>
 </div>
-<div id="outline-container-org9c88b1f" class="outline-4">
-<h4 id="org9c88b1f">distribution memory</h4>
+<div id="outline-container-org05f0435" class="outline-4">
+<h4 id="org05f0435">distribution memory</h4>
 </div>
 </div>
-<div id="outline-container-orgf1afb4d" class="outline-3">
-<h3 id="orgf1afb4d">Chap 2: Proformance</h3>
-<div class="outline-text-3" id="text-orgf1afb4d">
+<div id="outline-container-org645b7b0" class="outline-3">
+<h3 id="org645b7b0">Chap 2: Proformance</h3>
+<div class="outline-text-3" id="text-org645b7b0">
 <p>
 CPI: cycles per instruction
 MIPS: Million Instructions per second
@@ -1468,9 +1468,9 @@ inductive
 </p>
 </div>
 
-<div id="outline-container-org19ec2c8" class="outline-4">
-<h4 id="org19ec2c8">single Process:</h4>
-<div class="outline-text-4" id="text-org19ec2c8">
+<div id="outline-container-orgfdcc7f3" class="outline-4">
+<h4 id="orgfdcc7f3">single Process:</h4>
+<div class="outline-text-4" id="text-orgfdcc7f3">
 <p>
 \[T_{parallel} = \frac{T_{serial}}{p}\]
 speedup: \[S = \frac{T_{serial}}{T_{parallel}}\].
@@ -1478,9 +1478,9 @@ if the parallelized part are perfect parallelable, \(S==p\).
 </p>
 </div>
 </div>
-<div id="outline-container-org54999c3" class="outline-4">
-<h4 id="org54999c3">Multi processes</h4>
-<div class="outline-text-4" id="text-org54999c3">
+<div id="outline-container-org8a72eeb" class="outline-4">
+<h4 id="org8a72eeb">Multi processes</h4>
+<div class="outline-text-4" id="text-org8a72eeb">
 <p>
 \[T_{parallel} = (1-P)T_{serial} +  \frac{P \cdot T_{serial}}{p}\]
 </p>
@@ -1492,21 +1492,21 @@ speedup: \[S = \frac{T_{serial}}{T_{parallel}} = \frac{1}{(1-P)+ \frac{P}{p}}\].
 </div>
 </div>
 
-<div id="outline-container-org3a3341c" class="outline-4">
-<h4 id="org3a3341c">Efficient</h4>
-<div class="outline-text-4" id="text-org3a3341c">
+<div id="outline-container-orgfea0da8" class="outline-4">
+<h4 id="orgfea0da8">Efficient</h4>
+<div class="outline-text-4" id="text-orgfea0da8">
 <p>
 \[E = \frac{S}{p}\]
 </p>
 </div>
 </div>
 
-<div id="outline-container-org63a6dd8" class="outline-4">
-<h4 id="org63a6dd8">Adaes-low</h4>
+<div id="outline-container-org79c4c2d" class="outline-4">
+<h4 id="org79c4c2d">Adaes-low</h4>
 </div>
-<div id="outline-container-orgbf38a8a" class="outline-4">
-<h4 id="orgbf38a8a">Gustafon low</h4>
-<div class="outline-text-4" id="text-orgbf38a8a">
+<div id="outline-container-org9651060" class="outline-4">
+<h4 id="org9651060">Gustafon low</h4>
+<div class="outline-text-4" id="text-org9651060">
 <p>
 \[ S_{p} = \frac{T_{serial} -p T_{paralle}}{T_{seria} + T_{parallel}}\]
 </p>
@@ -1517,15 +1517,15 @@ speedup: \[S = \frac{T_{serial}}{T_{parallel}} = \frac{1}{(1-P)+ \frac{P}{p}}\].
 
 
 
-<div id="outline-container-org8236527" class="outline-2">
-<h2 id="org8236527">AWS</h2>
+<div id="outline-container-org43b973e" class="outline-2">
+<h2 id="org43b973e">AWS</h2>
 </div>
-<div id="outline-container-org5f69b29" class="outline-2">
-<h2 id="org5f69b29">Alibaba</h2>
+<div id="outline-container-org618c0af" class="outline-2">
+<h2 id="org618c0af">Alibaba</h2>
 </div>
-<div id="outline-container-org4e66b00" class="outline-2">
-<h2 id="org4e66b00">GWDG</h2>
-<div class="outline-text-2" id="text-org4e66b00">
+<div id="outline-container-orgd76d714" class="outline-2">
+<h2 id="orgd76d714">GWDG</h2>
+<div class="outline-text-2" id="text-orgd76d714">
 <ol class="org-ol">
 <li>as student of Göttingen send email to support@gwdg.de with uni email, asking for freischaltung of cloud server</li>
 <li>got <a href="https://gwdg.de">https://gwdg.de</a> Dienst-&gt; GWDG cloud server -&gt; self service create Instance
@@ -1567,7 +1567,7 @@ build in - &gt; local host :80
 </div>
 </div></div>
 <div id="postamble" class="status">
-<p class="date">Created: 2022-02-18 Fri 17:08</p>
+<p class="date">Created: 2022-02-18 Fri 17:11</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
 <p class="validation"></p>
 </div>
