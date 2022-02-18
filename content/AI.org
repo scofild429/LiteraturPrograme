@@ -1058,14 +1058,10 @@ large storage of scalability
 no noise leads to small cluster
 scale sensitive
 * Deep Learing
-** Batch Size
-*** Batch Gradient descent
-all data as input once
-*** Stochastic gradient descent
-input each time only one data sample
-*** mini batch gradient descent
-mit mini batch
-multi kernel calcaltion, learing rate decay
+** Batch Size Problem
+| Batch Gradient descent      | all data as input once                       |
+| Stochastic gradient descent | input each time only one data sample         |
+| mini-batch gradient descent | multi kernel calcaltion,  learing rate decay |
 
 *** big batch size
 Advantages: the descentation of weights has a more accuary direction, less oscillation.
@@ -1073,6 +1069,15 @@ Disadvantages: memery explotion, and fall into locally minimum
 *** small batch size
 Advantages: more times  weights update, more chance to overcome locally minimum,
 Disadvantages: difficult to convergence
+** Pytorch
+automatic differentiation
+
+** Regularization
+** Learning rate
+| too small | converge slowly or find local minimum |
+| too large | oscillation or divergence             |
+*** learning rate decay
+
 
 ** Multi-layer perceptrons
 *** Perceptron
@@ -1094,9 +1099,19 @@ Gradient-based optimization does neither always
 find the absolute minimum, nor does it find the
 optimal direction
 **** Second-order optimizers
+Theorical  besser performance, but generally too expensive and not work with minibatches
 **** SGD with momentum
+$$ w \gets w - v$$
+$$ v \gets \beta v + \eta\nabla_{w}L$$
+$$ \beta \in [0, 1]$$
+| too small | get stuck in  local minimum or saddle points |
+| too large | overshoot optimum or spiral around it        |
+
 **** AdaGrad
+adaptive gradient algorithm(DL_03_MLP.pdf/12 )
+
 **** RMSProp
+root mean square propagation(DL_03_MLP.pdf/13 )
 **** Adam
 *** Regularization of MLP
 *** Dropout
@@ -1108,38 +1123,79 @@ LeakyReLU
 Exponential linear unit
 Absolute value activation
 
+** Babysitting training neural network
+- check initial loss make sense
+- overfit training model to 100% accuracy of small samples, such as few minibatches
+  + adjust the initialization and learning rate
+- find the learning rate, which reduce loss significantly
+- rough train few epochs with learning rate nearby from previous step
+- use the best options from previous step, training longer
+- watch out the loss curves
+  + if learning rate decay needed
+  + accuracy of train vs validation, overfit, underfit, go back to step 5
+  
 ** CNN
 Modern CNN architectures tend to use strided convolutions instead of max pooling.
 *** Output size
-valid: $M=\frac{N - k}{s}+1$
-padding: $M=\frac{N  - k +2p}{s}+1$
+valid: $M=\lfloor  \frac{N - k}{s} \rfloor +1$
+padding: $M=\lfloor \frac{N  - k +2p}{s} \rfloor+1$
+N: input size
 M: output size
 p: padding
 k: kernel size
 s: stride size
 *** Receptive field
-$RF size = 1 + \sum^{L}_{l=1}(k_{l}-1)*s$
-$$ RF_{i} = (RF_{i+1} -1)*s + k$$
+$$RF = 1 + \sum^{L}_{l=1}(k_{l}-1)*s $$
+$$ RF_{i} = (RF_{i+1} -1)*s + k $$
+
 From where I want to calcalete to the input layer.
 and set the current calcalete layer's RF as 1
+
+*** Zero Padding
+| valid | without padding | shape reduce k-1    |
+| same  | with padding    | shape stay the same |
+*** pooling
+| max pooling     | only chose the maximum one of block |
+| average pooling | use the average of block            |
 
 *** Feather abstact
 The layer can extract image features,
  and finally determine the convolution kernel parameters
  through backpropagation to obtain the final features
+*** Batch normalization
+For Vanishing/exploding gradients: 
+each example in layer all data are normalized
+$$ \mu = \frac{1}{N} \sum_{i=1} ^{N} x_{i, j}$$
+
+
+$$ \sigma_{j}^{2} = \frac{1}{N} \sum_{i=1}^{n} (x_{i, j} - \mu_{j})^{2}$$
+
+
+$$\hat{x}_{i,j} = \frac{x_{i, j} - \mu_{j}}{\sqrt{\sigma_{j}^{2} + \epsilon}} $$
+
+$$ y_{i, j} = \gamma_{j}\hat{x}_{i, j} + \beta_{j}$$
+
 ** ResNet
 Vanishing gradient and exploding gradient
 ** GAN
-*** Process
-**** Generater stay, Discriminater update
-Examples: ${x_{1}, x_{2}, x_{3}, x_{4}.....  } : X$
-Distribution: ${z_{1}, z_{2}, z_{3}, z_{4}... } : Z$
-use G: map Z to Z'
-use D: Max $V = \frac{1}{m} \sum^{m}_{i=1} log D(X) +\frac{1}{m} \sum^{m}_{i=1} log (1-D(Z'))$
-**** Discriminater stay, Generater update
-use G: map random examples from Z to Z': Z' = G(Z)
-use D: max $V = \frac{1}{m} \sum^{m}_{i=1} log D(G(Z)) = \frac{1}{m} \sum^{m}_{i=1} log D(Z')$
+*** step 1  Generater stay, Discriminater update
+- randomly initialization of G and D
+- inputs (Distribution: ${z_{1}, z_{2}, z_{3}, z_{4}... } : Z$) from known distribution to G get rough outputs (Distribution: ${z^{'}_{1}, z^{'}_{2}, z^{'}_{3}, z^{'}_{4}... } : Z^{'}$)
+- rough outputs and real image (Examples: ${x_{1}, x_{2}, x_{3}, x_{4}.....  } : X$) feed to D
+- training D to classify them with mark,  and update D
 
+   Max $V = \frac{1}{m} \sum^{m}_{i=1} log D(X) +\frac{1}{m} \sum^{m}_{i=1} log (1-D(Z'))$
+
+   mark $Z^{'}$ as low as possible, and mark $X$ as high as possible
+   
+***   step 2  Discriminater stay, Generater update
+- fix D, feed new inputs from known distribution to G
+- get rough outputs again, and pass them to D, and evaluated with mark
+- training G, for getting better mark
+
+ max $V = \frac{1}{m} \sum^{m}_{i=1} log D(G(Z)) = \frac{1}{m} \sum^{m}_{i=1} log D(Z')$
+
+ Just like training normal neural network with minimum cross enteopy
 ** VAE
 *** process
 x: examples
@@ -1152,7 +1208,169 @@ $$\int q(z|x) \cdot \log\frac{q(z|x)}{p(z|x)} dz = \int q(z|x) \cdot \log\frac{q
 $$\int q(z|x) \cdot \log\frac{q(z|x) p(x)}{p(x|z)p(z)}dz = \int q(z|x) \cdot \log q(z|x)dz  + \int q(z|x)\cdot \log p(x)dz - \int q(z|x) \cdot \log p(x|z) dz -\int q(z|x) \cdot \log p(x)    dz$$
 $$= log p(x) + KL[q(z|x)||p(z)] - E_{x\backsim p(x|z)} logp(z|x)$$
 We randomly example the z from the normal Gaussian for VAE
+* CNN
+** regular convolution
+** Depthwise separable convolu0on
+Depthwise Convolution
+Pointwise Convolution
+* RNN
+this is many to one,
+$$h(t) = \tanh(A * [h(t-1), x(t)]^{T})$$
+A[shape(h), shap(h)+shap(x)] is shared by all step
+there is no  big difference for prediction with only h(t) or conta(h(1), h(t))
+* LSTM
+many gate,
+output elementweise product
+ Stacked, Bedirection
+
+* GAN
+generative adversarial Nets
+
 * NLP
+** Data process
+all input should numerical,
+categorized character shoud be one-hot coded, starting with 1
+*** Tokenizationn
+- *Breaking* text to words (There are many steps to consider )
+- *CountWordFrequencies*  (counted key-value dictionary)
+  + list all sorted dictionary
+  + if the list is too big, removing infrequent words(because of incorrection, or neame...) good for one-hot coding
+- *encode* to sequences
+  + with counted dictionary index
+  + index length is one-hot coding vector length
+- *one-hot* coding all sequences
+  +  if one-hot code vector is not so lang, word embedding is not needed
+
+#+begin_src
+  tests[5] = "this is a cat and a"
+  tests_dict = {"this": {1:1}, "is": {2:1}, "a":{3:2}, "cat":{4:1}, "and":{5:1}}
+  tests_sequences = [1,2,3,4,3]
+#+end_src
+    
+*** Word Embedding
+compose high dimension one-hot vector to low dimension
+$$ X_{i}    = P^{T} \cdot e^{i}$$
+$e^{i}$ is high dimensional vector after one-hot coding(v,1) of collected data
+$P^{T}$ is the parameter matrix trained by data(d,v),
+$X_{i}$ is low dimensional vector(d,1), for further training
+$d$ :  The dimension parameter d  is important, can be vertified with corss validation.
+Each row of $P$  is called (words vector词向量), can be interpreted with classification
+
+*Embedding* layer need the number of vocabulary(v), embedding_dim(d), and word_num(cuted words number)
+v*d : parameters for this layer
+** language model
+*** skip-gram
+
+*** CBOW
+continuous bag of words
+
+** text generatation
+Encoder:
+A is RNN layer or LMST layer,
+all input(x1 to xm) share the same A,
+hm is the last result,
+only give hm to decoder, we can generate text,
+but many content of input will be forget
+** seq2seq
+After one resulte in Decode is generated,
+With Corss Enteopy to update the Network,
+using all the resulte we get, to predict the next resulte until all is finished
+consuming the previously generated symbols as additional input when generating the next.
+** Transformer
+*** simple RNN + attention 
+Encoder Input  E$X = x_{1}, x_{2},,,,x_{m}$
+Decoder Input  $X^{'} = x_{1}^{'}, x_{2}^{'},,,,x_m^{'}$
+after RNN or LSTM we get $H = h_{0}, h_{1},,,,,h_{m}$
+Now unlike before only pass the last element $h_{m}$  to Decoder,
+we use attention skill to mix all input information
+1. Notion:
+   - Encoder, lower index $i$ stands for the index of input order in Encoder
+   - Decoder, high index $j$ stands for the index of generated items in Decoder
+   $a^{j}_{i}$ stands for the parameter for generate the j-th item ($s_j$)in Decoder with respect of the i-th input($x_{i}$) in X.
+2. Variables
+   - Encoder input,   $X = x_{1}, x_{2},,,x_{m}$  , 
+   - Encoder  shared parameter,   A: RNN or LSMT shared parameter
+   - Encoder output ,   $H: = h_{1}, h_{2},,,h_{m}$   output at each step of RNN or LSMT
+   -  Decoder initial input   $h_{m}$ ,  denote also as $s^{0}$
+   - key, $q_{i}^{j} = W_{q}^{j} s^{i}$
+   - query $k_{i}^{j} = W_{k}^{j} h_{i}$
+   - Query Martix,  $K^{j} = [k_{i}^{j}, k_{2}^{j},,,k_{m}^{j}]$
+   - Encoder Weight  $a^{j}_{i}$,   $a^{j}_{i} = Softmax(K^{jT} q_{i})$
+   - Eecoder Context Vector, $c^{j} = a_{1}^{j}h_{1} + a_{2}^{j}h_{2}+,,,,+a_{m}^{j}h_{m}$
+   -  Decoder initial input   $h_{m}$ ,  denote also as $s^{0}$
+   - Decoder output, $s^{j} = \tanh(A^{'}\cdot [x^{'j}, s_{j-1}, c_{j-1}]^{T})$
+3. update Network
+       with softmax(c)  get the prediciton, and corss enteopy update network back($W^{j} -> W^{j+1}$)
+
+*** simple RNN + self attention
+only Encoder, e$X = x_{1}, x_{2},,,,x_{m}$
+Without Decoder and Decoder input, 
+after RNN or LSTM we get $H = h_{0}, h_{1},,,,,h_{m}$
+Now unlike before only pass the last element $h_{m}$  to Decoder,
+we use attention skill to mix all input information
+1. Notion:
+   - Encoder, lower index $i$ stands for the index of input order in Encoder
+   - Generation, high index $j$ stands for the index of generated items 
+   $a^{j}_{i}$ stands for the parameter for generate the j-th item ($s_j$)in Encoder with respect of the i-th input($x_{i}$) in X.
+2. Variables
+   - Encoder input,   $X = x_{1}, x_{2},,,x_{m}$  , 
+   - Encoder  shared parameter,   A: RNN or LSMT shared parameter
+   - Encoder output ,   $H: = h_{1}, h_{2},,,h_{m}$   output at each step of RNN or LSMT
+   - key, $q_{i}^{j} = W_{q}^{j} h_{i}$
+   - query $k_{i}^{j} = W_{k}^{j} h_{i}$
+   - Query Martix,  $K^{j} = [k_{i}^{j}, k_{2}^{j},,,k_{m}^{j}]$
+   - Encoder Weight  $a^{j}_{i}$,   $a^{j}_{i} = Softmax(K^{jT} q_{i})$
+   - Eecoder Context Vector, $c^{j} = a_{1}^{j}h_{1} + a_{2}^{j}h_{2}+,,,,+a_{m}^{j}h_{m}$
+
+3. update Network
+     - with softmax(c)  get the prediciton, and corss enteopy update network back($W^{j} -> W^{j+1}$)
+4. Note       
+    - attention:  key, $q_{i}^{j} = W_{q}^{j} s^{i}$ with  $s^{j} = \tanh(A^{'}\cdot [x^{'j}, s_{j-1}, c_{j-1}]^{T})$
+    - self attention: key, $q_{i}^{j} = W_{q}^{j} h_{i}$
+
+*** attention layer
+An attention function can be described as mapping a query and a set of key-value pairs to an output
+Encoder Input  E$X = x_{1}, x_{2},,,,x_{m}$
+Decoder Input  $X^{'} = x_{1}^{'}, x_{2}^{'},,,,x_m^{'}$
+Removing RNN or LSMT, only constructing attention layer
+1. Notion:
+   - Encoder, lower index $i$ stands for the index of input order in Encoder
+   - Decoder, high index $j$ stands for the index of generated items in Decoder
+   $a^{j}_{i}$ stands for the parameter for generate the j-th item ($s_j$)in Decoder with respect of the i-th input($x_{i}$) in X.
+2. Variables
+   - value, $v_{i}^{j} = W_{v}^{j} x_{i}$
+   - query $k_{i}^{j} = W_{k}^{j} x_{i}$ 
+   - key, $q_{i}^{j} = W_{q}^{j} x_{'i}$
+   - Query Martix,  $K^{j} = [k_{i}^{j}, k_{2}^{j},,,k_{m}^{j}]$
+   - Encoder Weight  $a^{j}_{i}$,   $a^{j}_{i} = Softmax(K^{jT} q_{i})$
+   - Eecoder Context Vector, $c^{j} = a_{1}^{j}v_{1}^{j} + a_{2}^{j}v_{2}^{j}+,,,,+a_{m}^{j}v_{m}^{j}$
+3. update Network
+   -  with softmax(c)  get the prediciton, and corss enteopy update network back($W^{j} -> W^{j+1}$)
+4. Note
+    - X replace H, but still seq2seq model(with X')
+
+*** self attention layer
+only Encoder, e$X = x_{1}, x_{2},,,,x_{m}$
+Without Decoder and Decoder input, 
+1. Notion:
+   - Encoder, lower index $i$ stands for the index of input order in Encoder
+   - Generation, high index $j$ stands for the index of generated items 
+   $a^{j}_{i}$ stands for the parameter for generate the j-th item ($s_j$)in Encoder with respect of the i-th input($x_{i}$) in X.
+2. Variables
+   - Encoder input,   $X = x_{1}, x_{2},,,x_{m}$  , 
+   - value, $v_{i}^{j} = W_{v}^{j} x_{i}$
+   - key, $q_{i}^{j} = W_{q}^{j} x_{i}$
+   - query $k_{i}^{j} = W_{k}^{j} x_{i}$
+   - Query Martix,  $K^{j} = [k_{i}^{j}, k_{2}^{j},,,k_{m}^{j}]$
+   - Encoder Weight  $a^{j}_{i}$,   $a^{j}_{i} = Softmax(K^{jT} q_{i})$
+   - Eecoder Context Vector, $c^{j} = a_{1}^{j}v_{1}^{j} + a_{2}^{j}v_{2}^{j}+,,,,+a_{m}^{j}v_{m}^{j}$
+
+3. update Network
+     with softmax(c)  get the prediciton, and corss enteopy update network back($W^{j} -> W^{j+1}$)
+4. Note
+   - in query $k_{i}^{j} = W_{k}^{j} x_{i}$, it's X , not X'
+*** transformer model
+
 #+begin_src ditaa :file foto/RNN_attention.png
     /--+--\    /-----\    /-----\    /-----\   
     |a_1  |    |a_2  |    |a_3  |    |a_m  |  
@@ -1197,155 +1415,12 @@ We randomly example the z from the normal Gaussian for VAE
 #+end_src
 
 #+RESULTS:
-[[file:foto/RNN_attention.png]]
-
 [[./foto/RNN_attention.png]]
-
-** Data process
-all input should numerical,
-categorized character shoud be one-hot coded, starting with 1
-** *Tokenization*
-- Text to words (There are many steps to consider )
-- *CountWordFrequencies*  (counted key-value dictionary)
-        if the list is too big, removing infrequent words(because of incorrection, or neame...) good for one-hot coding
-- encode to sequences with counted value (aligned) and index,  index length is one-hot coding vector length
-- *one-hot* coding all sequences
-  if one-hot code vector is not so lang, word embedding is not needed
-
-** Word Embedding
-compose high dimension one-hot vector to low dimension
-$$ X_{i}    = P^{T} \cdot e^{i}$$
-$e^{i}$ is high dimensional vector after one-hot coding(v,1)
-$P^{T}$ is the parameter matrix trained by data(d,v),
-$X_{i}$ is low dimensional vector(d,1)
-The dimension parameter v of P is important, can be vertified with corss validation
-eac.. ,1) is called (words vector词向量), can be interpreted with classification
-
-*Embedding* layer need the number of vocabulary(v), embedding_dim(d), and word_num(cuted words number)
-v*d : parameters for this layer
-** RNN
-this is many to one,
-$$h(t) = \tanh(A * [h(t-1), x(t)]^{T})$$
-A[shape(h), shap(h)+shap(x)] is shared by all step
-there is no  big difference for prediction with only h(t) or conta(h(1), h(t))
-
-** LSTM
-many gate,
-output elementweise product
- Stacked, Bedirection
-
-** text generatation
-Encoder:
-A is RNN layer or LMST layer,
-all input(x1 to xm) share the same A,
-hm is the last result,
-only give hm to decoder, we can generate text,
-but many content of input will be forget
-** seq2seq
-After one resulte in Decode is generated,
-With Corss Enteopy to update the Network,
-using all the resulte we get, to predict the next resulte until all is finished
-consuming the previously generated symbols as additional input when generating the next.
-** simple RNN + attention 
-Encoder Input  E$X = x_{1}, x_{2},,,,x_{m}$
-Decoder Input  $X^{'} = x_{1}^{'}, x_{2}^{'},,,,x_m^{'}$
-after RNN or LSTM we get $H = h_{0}, h_{1},,,,,h_{m}$
-Now unlike before only pass the last element $h_{m}$  to Decoder,
-we use attention skill to mix all input information
-1. Notion:
-   - Encoder, lower index $i$ stands for the index of input order in Encoder
-   - Decoder, high index $j$ stands for the index of generated items in Decoder
-   $a^{j}_{i}$ stands for the parameter for generate the j-th item ($s_j$)in Decoder with respect of the i-th input($x_{i}$) in X.
-2. Variables
-   - Encoder input,   $X = x_{1}, x_{2},,,x_{m}$  , 
-   - Encoder  shared parameter,   A: RNN or LSMT shared parameter
-   - Encoder output ,   $H: = h_{1}, h_{2},,,h_{m}$   output at each step of RNN or LSMT
-   -  Decoder initial input   $h_{m}$ ,  denote also as $s^{0}$
-   - key, $q_{i}^{j} = W_{q}^{j} s^{i}$
-   - query $k_{i}^{j} = W_{k}^{j} h_{i}$
-   - Query Martix,  $K^{j} = [k_{i}^{j}, k_{2}^{j},,,k_{m}^{j}]$
-   - Encoder Weight  $a^{j}_{i}$,   $a^{j}_{i} = Softmax(K^{jT} q_{i})$
-   - Eecoder Context Vector, $c^{j} = a_{1}^{j}h_{1} + a_{2}^{j}h_{2}+,,,,+a_{m}^{j}h_{m}$
-   -  Decoder initial input   $h_{m}$ ,  denote also as $s^{0}$
-   - Decoder output, $s^{j} = \tanh(A^{'}\cdot [x^{'j}, s_{j-1}, c_{j-1}]^{T})$
-3. update Network
-       with softmax(c)  get the prediciton, and corss enteopy update network back($W^{j} -> W^{j+1}$)
-
-** simple RNN + self attention
-only Encoder, e$X = x_{1}, x_{2},,,,x_{m}$
-Without Decoder and Decoder input, 
-after RNN or LSTM we get $H = h_{0}, h_{1},,,,,h_{m}$
-Now unlike before only pass the last element $h_{m}$  to Decoder,
-we use attention skill to mix all input information
-1. Notion:
-   - Encoder, lower index $i$ stands for the index of input order in Encoder
-   - Generation, high index $j$ stands for the index of generated items 
-   $a^{j}_{i}$ stands for the parameter for generate the j-th item ($s_j$)in Encoder with respect of the i-th input($x_{i}$) in X.
-2. Variables
-   - Encoder input,   $X = x_{1}, x_{2},,,x_{m}$  , 
-   - Encoder  shared parameter,   A: RNN or LSMT shared parameter
-   - Encoder output ,   $H: = h_{1}, h_{2},,,h_{m}$   output at each step of RNN or LSMT
-   - key, $q_{i}^{j} = W_{q}^{j} h_{i}$
-   - query $k_{i}^{j} = W_{k}^{j} h_{i}$
-   - Query Martix,  $K^{j} = [k_{i}^{j}, k_{2}^{j},,,k_{m}^{j}]$
-   - Encoder Weight  $a^{j}_{i}$,   $a^{j}_{i} = Softmax(K^{jT} q_{i})$
-   - Eecoder Context Vector, $c^{j} = a_{1}^{j}h_{1} + a_{2}^{j}h_{2}+,,,,+a_{m}^{j}h_{m}$
-
-3. update Network
-     - with softmax(c)  get the prediciton, and corss enteopy update network back($W^{j} -> W^{j+1}$)
-4. Note       
-    - attention:  key, $q_{i}^{j} = W_{q}^{j} s^{i}$ with  $s^{j} = \tanh(A^{'}\cdot [x^{'j}, s_{j-1}, c_{j-1}]^{T})$
-    - self attention: key, $q_{i}^{j} = W_{q}^{j} h_{i}$
-
-** attention layer
-An attention function can be described as mapping a query and a set of key-value pairs to an output
-Encoder Input  E$X = x_{1}, x_{2},,,,x_{m}$
-Decoder Input  $X^{'} = x_{1}^{'}, x_{2}^{'},,,,x_m^{'}$
-Removing RNN or LSMT, only constructing attention layer
-1. Notion:
-   - Encoder, lower index $i$ stands for the index of input order in Encoder
-   - Decoder, high index $j$ stands for the index of generated items in Decoder
-   $a^{j}_{i}$ stands for the parameter for generate the j-th item ($s_j$)in Decoder with respect of the i-th input($x_{i}$) in X.
-2. Variables
-   - value, $v_{i}^{j} = W_{v}^{j} x_{i}$
-   - query $k_{i}^{j} = W_{k}^{j} x_{i}$ 
-   - key, $q_{i}^{j} = W_{q}^{j} x_{'i}$
-   - Query Martix,  $K^{j} = [k_{i}^{j}, k_{2}^{j},,,k_{m}^{j}]$
-   - Encoder Weight  $a^{j}_{i}$,   $a^{j}_{i} = Softmax(K^{jT} q_{i})$
-   - Eecoder Context Vector, $c^{j} = a_{1}^{j}v_{1}^{j} + a_{2}^{j}v_{2}^{j}+,,,,+a_{m}^{j}v_{m}^{j}$
-3. update Network
-   -  with softmax(c)  get the prediciton, and corss enteopy update network back($W^{j} -> W^{j+1}$)
-4. Note
-    - X replace H, but still seq2seq model(with X')
-
-** self attention layer
-only Encoder, e$X = x_{1}, x_{2},,,,x_{m}$
-Without Decoder and Decoder input, 
-1. Notion:
-   - Encoder, lower index $i$ stands for the index of input order in Encoder
-   - Generation, high index $j$ stands for the index of generated items 
-   $a^{j}_{i}$ stands for the parameter for generate the j-th item ($s_j$)in Encoder with respect of the i-th input($x_{i}$) in X.
-2. Variables
-   - Encoder input,   $X = x_{1}, x_{2},,,x_{m}$  , 
-   - value, $v_{i}^{j} = W_{v}^{j} x_{i}$
-   - key, $q_{i}^{j} = W_{q}^{j} x_{i}$
-   - query $k_{i}^{j} = W_{k}^{j} x_{i}$
-   - Query Martix,  $K^{j} = [k_{i}^{j}, k_{2}^{j},,,k_{m}^{j}]$
-   - Encoder Weight  $a^{j}_{i}$,   $a^{j}_{i} = Softmax(K^{jT} q_{i})$
-   - Eecoder Context Vector, $c^{j} = a_{1}^{j}v_{1}^{j} + a_{2}^{j}v_{2}^{j}+,,,,+a_{m}^{j}v_{m}^{j}$
-
-3. update Network
-     with softmax(c)  get the prediciton, and corss enteopy update network back($W^{j} -> W^{j+1}$)
-4. Note
-   - in query $k_{i}^{j} = W_{k}^{j} x_{i}$, it's X , not X'
-
-** Transformer
 after 6 stacked multi head self attention layers,
 another 6 stacked multi head attention layers, each time take the input of 6 self attention layer
 
 ** Bert
 ** ViT
-
 * What kind of prediction task?
 ** Classification
 Pros: 

@@ -1401,8 +1401,107 @@ source /etc/profile
 #+end_src
 
 * Django
+** uwsgi domain example
 $ uwsgi --chdir /home/cloud/django/QL --http :8000 --module QL.wsgi:application
 $ uwsgi --ini microdomains_uwsgi.ini
+** Projekt StudyNet commands
+pip install virtualenv
+virtualenv --python=python3.9 django
+source django/bin/active
+pip install django
+pip install django-restframework
+pip install django-cors-headers
+pip install djoser
+django-admin startproject studynet_django
+** debug models small example
+access to django shell
+#+begin_src shell   :session django
+  python manage.py shell
+#+end_src
+
+#+begin_src shell   :session django
+  from Myapp.models import Publication, Article
+  p1 = Publication(title='The Python Journal') 
+  p1.save()
+  p1
+#+end_src
+
+#+begin_src shell   :session django
+  p2 = Publication(title='Science News') 
+  p2.save()
+  p2
+#+end_src
+
+#+begin_src shell   :session django
+  p3 = Publication(title='Science Weekly') 
+  p3.save()
+  p3
+#+end_src
+
+#+begin_src shell   :session django
+  p4 = Publication(title='Science for everyone') 
+  p4.save()
+#+end_src
+
+
+#+begin_src shell   :session django
+  a1 = Article(headline='Django lets you build Web apps easily')
+  a1.save()
+#+end_src
+
+
+
+#+begin_src shell   :session django
+  a1.publications.add(p1)
+  a1.publications.add(p4)
+#+end_src
+
+
+#+begin_src shell   :session django
+  a1.publications.all()
+#+end_src
+
+
+#+begin_src shell  :session django
+  a2 = Article(headline='NASA uses Python')
+  a2.save()
+  a2.publications.add(p1, p2)
+  a2.publications.add(p3)
+#+end_src
+
+
+#+begin_src shell   :session django
+  new_publication = a2.publications.create(title='Highlights for Children')
+  new_publication
+#+end_src
+
+
+#+begin_src shell   :session django
+p1.article_set.all()
+#+end_src
+
+
+
+#+begin_src shell  :session django
+a2.publications.all()
+#+end_src
+
+
+#+begin_src shell   :session django
+Publication.objects.get(id=4).article_set.all()
+#+end_src
+
+
+
+
+#+begin_src shell  :session django
+Article.objects.filter(publications__title__startswith="Science")
+#+end_src
+
+
+#+begin_src shell  :session django
+Article.objects.filter(publications__title__startswith="Science").distinct()
+#+end_src
 
 * RuoYi-Vue project
 ** backup deployment

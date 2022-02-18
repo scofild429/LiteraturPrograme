@@ -843,7 +843,6 @@ bin/spark-submit examples/src/main/python/wordcount.py testtext.txt &> output.tx
 ** concepts
 High performance Data Analysis:
 with parallel processing to quickly find the insights from extremely large data sets
-
 ** Chap01 overview
 *** Distributed System
 1. Definiation:
@@ -871,7 +870,7 @@ Bit-level, Instruction level, Data level, Task level
 
 *** Name typical applications for high-performance data analytics
 1. weather forecast
-2. Simulating a  kernel fusion,  tokamak reactor
+2. Simulating   kernel fusion,  tokamak reactor
 
 *** Distinguish HPDA from D/P/S computing and how these topics blend
 Stricter than distributed system( strongly scalling: weak scalling)
@@ -939,13 +938,11 @@ full join
 **** Transactions
 
 
-
 *** Define Database, DBMS, and Data Warehouse
 - an organized collection of data
 - software application for user to use the collected data
 - a system used for reporting and data analysis,  with multidimensional data cube
   
-
 
 
 *** Create a relational model for a given problem
@@ -962,7 +959,6 @@ full join
 *** Appraise the pro/cons of OLAP vs. traditional relational model
 *** Describe DBMS optimizations: index, bulk loading, garbage cleaning
   
-
 ** Chap04 Distributed Storage and Processing with Hadoop
 *** hadoop
 map: filter and convert all input into key-value tuples
@@ -985,8 +981,8 @@ reduce: receives all tuples with the same keys, accumulated
 - Directed acyclic graph (DAG) of tasks
 - Task and resource aware scheduling
 - Pre-launch and re-use containers and caching intermediate results
+- Everyone has to wait for the prozess between mapping and reducing
 *** Sketch the parallel file access performed by MapReduce jobs
-
 
 ** Chap05 Big Data SQL using Hive
 
@@ -2362,15 +2358,25 @@ MongoDB
 : true
 
 
-
 * Paralle compuation
 ** performance
+***  Andel's law: 
 $$ S_{total} = \frac{1}{1-p+\frac{p}{s}} $$
-$$N = \frac{s}{s-P_{B}-P_{D} + \frac{P_{B}}{N_{B}} + \frac{P_{D}}{N_{D}}} $$
-normaly  $s = 1$ for Andel's law
-if s is changed, Gostafan's law,
+$$S = \frac{s}{1-P_{B}-P_{D} + \frac{P_{B}}{N_{B}} + \frac{P_{D}}{N_{D}}} $$
+ 
+
+*** if the task is changed, Gostafan's law,
 $$ s_{g} = \frac{T_{s} + p T_{p}}{T_{s} + T_{p}} $$
-Effectivy: $$ E = \frac{S}{P}$$
+
+
+$$ S = \frac{s_g}{(s_g - P_p) + \frac{P_p}{N_p}}$$
+
+all $P_{p}$ is changed task, such as 70% task doubled, will be 1.4
+
+
+*** Effectivy:
+$$ E = \frac{S}{P}$$
+
 $$ S = \frac{T_{s}}{T_{p}} = \frac{n}{\frac{n}{p}+ \log_{2} p}$$
 
 

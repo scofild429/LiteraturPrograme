@@ -1642,3 +1642,7 @@ managers such as DWM, BSPWM refer to this state as 'monocle'."
         org-gcal-file-alist '(("scofild429@gmail.com" .  "~/Dropbox/Note/gcal.org"))))
 (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
 (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
+
+(load "~/.emacs.d/packages/svg.el")
+(require 'svg)
+(setq default-process-coding-system '(utf-8 . utf-8))
