@@ -3,12 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-02-05 Sat 12:09 -->
+<!-- 2022-02-18 Fri 16:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Postgresql</title>
 <meta name="generator" content="Org mode" />
-<link rel="stylesheet" href="https://fniessen.github.io/org-html-themes/src/bigblow_theme/css/bigblow.css" />
+<link rel="stylesheet" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css" />
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         displayAlign: "center",
@@ -39,42 +39,42 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge410a0c">basic OP</a>
+<li><a href="#orgc439ac9">basic OP</a>
 <ul>
-<li><a href="#org7fd4459">install</a></li>
-<li><a href="#org68699b1">root terminal</a></li>
-<li><a href="#orgf37d9ae">root login into database</a></li>
-<li><a href="#orgfd1f778">user login</a></li>
-<li><a href="#org7d2553f">set password</a></li>
-<li><a href="#org9e30981">change database</a></li>
-<li><a href="#org4acc062">list all users</a></li>
-<li><a href="#org4dc7cc3">login out</a></li>
+<li><a href="#org835472b">install</a></li>
+<li><a href="#orge5f76c8">root terminal</a></li>
+<li><a href="#orgdd6cf18">root login into database</a></li>
+<li><a href="#org4f1db7b">user login</a></li>
+<li><a href="#orgf78ae1e">set password</a></li>
+<li><a href="#org9feb78c">change database</a></li>
+<li><a href="#org24e2ce6">list all users</a></li>
+<li><a href="#org493848d">login out</a></li>
 </ul>
 </li>
-<li><a href="#org276018c">src block</a>
+<li><a href="#orgca5dc64">src block</a>
 <ul>
-<li><a href="#org97ce0aa">with header</a></li>
-<li><a href="#org12a47c4">with session</a></li>
+<li><a href="#org0c0c4a9">with header</a></li>
+<li><a href="#org9618c69">with session</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge410a0c" class="outline-2">
-<h2 id="orge410a0c">basic OP</h2>
-<div class="outline-text-2" id="text-orge410a0c">
+<div id="outline-container-orgc439ac9" class="outline-2">
+<h2 id="orgc439ac9">basic OP</h2>
+<div class="outline-text-2" id="text-orgc439ac9">
 </div>
-<div id="outline-container-org7fd4459" class="outline-3">
-<h3 id="org7fd4459">install</h3>
-<div class="outline-text-3" id="text-org7fd4459">
+<div id="outline-container-org835472b" class="outline-3">
+<h3 id="org835472b">install</h3>
+<div class="outline-text-3" id="text-org835472b">
 <p>
 sudo apt install postgresql postgresql-contrib
 </p>
 </div>
 </div>
-<div id="outline-container-org68699b1" class="outline-3">
-<h3 id="org68699b1">root terminal</h3>
-<div class="outline-text-3" id="text-org68699b1">
+<div id="outline-container-orge5f76c8" class="outline-3">
+<h3 id="orge5f76c8">root terminal</h3>
+<div class="outline-text-3" id="text-orge5f76c8">
 <p>
 this terminal ist not sufficient to program, but basic shell command can be executed
 login into terminal: 
@@ -84,9 +84,9 @@ psql
 </p>
 </div>
 </div>
-<div id="outline-container-orgf37d9ae" class="outline-3">
-<h3 id="orgf37d9ae">root login into database</h3>
-<div class="outline-text-3" id="text-orgf37d9ae">
+<div id="outline-container-orgdd6cf18" class="outline-3">
+<h3 id="orgdd6cf18">root login into database</h3>
+<div class="outline-text-3" id="text-orgdd6cf18">
 <p>
 sudo -i -u postgres psql(postgres:  default user)
 psql, login into psql user
@@ -94,42 +94,42 @@ if we login, we will be located in a table, which have the same name with user
 </p>
 </div>
 </div>
-<div id="outline-container-orgfd1f778" class="outline-3">
-<h3 id="orgfd1f778">user login</h3>
-<div class="outline-text-3" id="text-orgfd1f778">
+<div id="outline-container-org4f1db7b" class="outline-3">
+<h3 id="org4f1db7b">user login</h3>
+<div class="outline-text-3" id="text-org4f1db7b">
 <p>
 psql -d test -U si -W
 </p>
 </div>
 </div>
-<div id="outline-container-org7d2553f" class="outline-3">
-<h3 id="org7d2553f">set password</h3>
-<div class="outline-text-3" id="text-org7d2553f">
+<div id="outline-container-orgf78ae1e" class="outline-3">
+<h3 id="orgf78ae1e">set password</h3>
+<div class="outline-text-3" id="text-orgf78ae1e">
 <p>
 in database set password for user
 \password user
 </p>
 </div>
 </div>
-<div id="outline-container-org9e30981" class="outline-3">
-<h3 id="org9e30981">change database</h3>
-<div class="outline-text-3" id="text-org9e30981">
+<div id="outline-container-org9feb78c" class="outline-3">
+<h3 id="org9feb78c">change database</h3>
+<div class="outline-text-3" id="text-org9feb78c">
 <p>
 \c database
 </p>
 </div>
 </div>
-<div id="outline-container-org4acc062" class="outline-3">
-<h3 id="org4acc062">list all users</h3>
-<div class="outline-text-3" id="text-org4acc062">
+<div id="outline-container-org24e2ce6" class="outline-3">
+<h3 id="org24e2ce6">list all users</h3>
+<div class="outline-text-3" id="text-org24e2ce6">
 <p>
 \du
 </p>
 </div>
 </div>
-<div id="outline-container-org4dc7cc3" class="outline-3">
-<h3 id="org4dc7cc3">login out</h3>
-<div class="outline-text-3" id="text-org4dc7cc3">
+<div id="outline-container-org493848d" class="outline-3">
+<h3 id="org493848d">login out</h3>
+<div class="outline-text-3" id="text-org493848d">
 <p>
 \q
 </p>
@@ -137,13 +137,13 @@ in database set password for user
 </div>
 </div>
 
-<div id="outline-container-org276018c" class="outline-2">
-<h2 id="org276018c">src block</h2>
-<div class="outline-text-2" id="text-org276018c">
+<div id="outline-container-orgca5dc64" class="outline-2">
+<h2 id="orgca5dc64">src block</h2>
+<div class="outline-text-2" id="text-orgca5dc64">
 </div>
-<div id="outline-container-org97ce0aa" class="outline-3">
-<h3 id="org97ce0aa">with header</h3>
-<div class="outline-text-3" id="text-org97ce0aa">
+<div id="outline-container-org0c0c4a9" class="outline-3">
+<h3 id="org0c0c4a9">with header</h3>
+<div class="outline-text-3" id="text-org0c0c4a9">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="font-weight: bold;">create</span> <span style="font-weight: bold;">table</span> <span style="font-weight: bold;">personv</span> (
  id <span style="font-weight: bold; text-decoration: underline;">int</span>, 
@@ -156,9 +156,9 @@ in database set password for user
 </div>
 </div>
 </div>
-<div id="outline-container-org12a47c4" class="outline-3">
-<h3 id="org12a47c4">with session</h3>
-<div class="outline-text-3" id="text-org12a47c4">
+<div id="outline-container-org9618c69" class="outline-3">
+<h3 id="org9618c69">with session</h3>
+<div class="outline-text-3" id="text-org9618c69">
 <div class="org-src-container">
 <pre class="src src-sql">\l
 </pre>
@@ -173,7 +173,7 @@ in database set password for user
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2022-02-05 Sat 12:09</p>
+<p class="date">Created: 2022-02-18 Fri 16:11</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
 <p class="validation"></p>
 </div>
