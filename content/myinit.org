@@ -2307,6 +2307,7 @@ $\mathcal{B}$
        (typescript . t)
   ;;     (scala . t)
        (mongo . t)
+       (go . t)
        (julia-vterm . t )
        ))
     (with-eval-after-load 'org)
@@ -2890,3 +2891,34 @@ hi-lock-file-patterns-policy  to be nil
 | q/RETURN     | Quit             |
 |--------------+------------------|
 
+* Go
+#+begin_src emacs-lisp
+
+
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 1)
+
+
+  (defun ime-go-before-save ()
+    (interactive)
+    (when lsp-mode
+      (lsp-organize-imports)
+      (lsp-format-buffer)))
+
+  (defun lsp-go-install-save-hooks ()
+    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t))
+
+
+  (use-package go-mode
+    :ensure t
+    :config
+    (add-hook 'go-mode-hook 'yas-minor-mode)
+    (add-hook 'go-mode-hook 'lsp-deferred)
+    (add-hook 'go-mode-hook 'lsp-go-install-save-hooks)
+    (add-hook 'go-mode-hook
+              (lambda ()
+                (add-hook 'before-save-hook 'ime-go-before-save)))
+   )
+
+#+end_src

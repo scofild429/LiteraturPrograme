@@ -1059,10 +1059,11 @@ no noise leads to small cluster
 scale sensitive
 * Deep Learing
 ** Batch Size Problem
-| Batch Gradient descent      | all data as input once                       |
-| Stochastic gradient descent | input each time only one data sample         |
-| mini-batch gradient descent | multi kernel calcaltion,  learing rate decay |
+| Batch Gradient descent      | all data as input once                   |
+| Stochastic gradient descent | input each time only one data sample     |
+| mini-batch gradient descent | only a subset of all data points in each |
 
+iteration multi kernel calcaltion,  learing rate decay 
 *** big batch size
 Advantages: the descentation of weights has a more accuary direction, less oscillation.
 Disadvantages: memery explotion, and fall into locally minimum
@@ -1077,7 +1078,6 @@ automatic differentiation
 | too small | converge slowly or find local minimum |
 | too large | oscillation or divergence             |
 *** learning rate decay
-
 
 ** Multi-layer perceptrons
 *** Perceptron
@@ -1133,7 +1133,8 @@ Absolute value activation
 - watch out the loss curves
   + if learning rate decay needed
   + accuracy of train vs validation, overfit, underfit, go back to step 5
-  
+
+- Early strop Idea: Stop training when generalization error increases    
 ** CNN
 Modern CNN architectures tend to use strided convolutions instead of max pooling.
 *** Output size
@@ -1175,6 +1176,10 @@ $$\hat{x}_{i,j} = \frac{x_{i, j} - \mu_{j}}{\sqrt{\sigma_{j}^{2} + \epsilon}} $$
 
 $$ y_{i, j} = \gamma_{j}\hat{x}_{i, j} + \beta_{j}$$
 
+*** regular convolution
+*** Depthwise separable convolu0on
+Depthwise Convolution
+Pointwise Convolution
 ** ResNet
 Vanishing gradient and exploding gradient
 ** GAN
@@ -1188,7 +1193,7 @@ Vanishing gradient and exploding gradient
 
    mark $Z^{'}$ as low as possible, and mark $X$ as high as possible
    
-***   step 2  Discriminater stay, Generater update
+***  step 2  Discriminater stay, Generater update
 - fix D, feed new inputs from known distribution to G
 - get rough outputs again, and pass them to D, and evaluated with mark
 - training G, for getting better mark
@@ -1208,23 +1213,25 @@ $$\int q(z|x) \cdot \log\frac{q(z|x)}{p(z|x)} dz = \int q(z|x) \cdot \log\frac{q
 $$\int q(z|x) \cdot \log\frac{q(z|x) p(x)}{p(x|z)p(z)}dz = \int q(z|x) \cdot \log q(z|x)dz  + \int q(z|x)\cdot \log p(x)dz - \int q(z|x) \cdot \log p(x|z) dz -\int q(z|x) \cdot \log p(x)    dz$$
 $$= log p(x) + KL[q(z|x)||p(z)] - E_{x\backsim p(x|z)} logp(z|x)$$
 We randomly example the z from the normal Gaussian for VAE
-* CNN
-** regular convolution
-** Depthwise separable convolu0on
-Depthwise Convolution
-Pointwise Convolution
-* RNN
+** PixelCNN
+exact likelihood(chain rule), and training slowly
+** RNN
+
 this is many to one,
 $$h(t) = \tanh(A * [h(t-1), x(t)]^{T})$$
 A[shape(h), shap(h)+shap(x)] is shared by all step
 there is no  big difference for prediction with only h(t) or conta(h(1), h(t))
-* LSTM
+** LSTM
 many gate,
 output elementweise product
- Stacked, Bedirection
+Stacked, Bedirection
+- Forget Gate: $f_t = \sigma(W_f \cdot \begin{bmatrix} h_{t-1} \\ x_t \end{bmatrix} )$
+- Input Gate: $i_t = \sigma(W_i \cdot \begin{bmatrix} h_{t-1} \\ x_t \end{bmatrix} )$
+- New Value: $n_t = \tanh(W_n \cdot \begin{bmatrix} h_{t-1} \\ x_t \end{bmatrix} )$
+- Output Gate: $o_t = \sigma(W_o \cdot \begin{bmatrix} h_{t-1} \\ x_t \end{bmatrix} )$
 
-* GAN
-generative adversarial Nets
+- input of C : $C_t = f_t \otimes C_{t-1} + i_t \otimes n_t$
+- output of C : $h_t = o_t \otimes \tanh(C_t)$ 
 
 * NLP
 ** Data process

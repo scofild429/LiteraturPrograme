@@ -1256,6 +1256,7 @@ With one universal prefix argument, only tangle the block at point."
      (typescript . t)
 ;;     (scala . t)
      (mongo . t)
+     (go . t)
      (julia-vterm . t )
      ))
   (with-eval-after-load 'org)
@@ -1646,3 +1647,29 @@ managers such as DWM, BSPWM refer to this state as 'monocle'."
 (load "~/.emacs.d/packages/svg.el")
 (require 'svg)
 (setq default-process-coding-system '(utf-8 . utf-8))
+
+(setq company-idle-delay 0)
+(setq company-minimum-prefix-length 1)
+
+
+(defun ime-go-before-save ()
+  (interactive)
+  (when lsp-mode
+    (lsp-organize-imports)
+    (lsp-format-buffer)))
+
+(defun lsp-go-install-save-hooks ()
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+
+
+(use-package go-mode
+  :ensure t
+  :config
+  (add-hook 'go-mode-hook 'yas-minor-mode)
+  (add-hook 'go-mode-hook 'lsp-deferred)
+  (add-hook 'go-mode-hook 'lsp-go-install-save-hooks)
+  (add-hook 'go-mode-hook
+            (lambda ()
+              (add-hook 'before-save-hook 'ime-go-before-save)))
+ )
