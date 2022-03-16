@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-02-18 Fri 17:12 -->
+<!-- 2022-03-16 Wed 23:27 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Qutuam Computation</title>
@@ -39,33 +39,37 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgdb8b123">Basic states and operations</a>
+<li><a href="#org42fc977">Basic states and operations</a>
 <ul>
-<li><a href="#org05f304e">ketbra</a></li>
-<li><a href="#org7badc64">states</a></li>
-<li><a href="#org94c0eb7">Measurements</a></li>
-<li><a href="#orgdf8ec94">Single Qutantum circuits</a></li>
-<li><a href="#orga4e16d0">Multipartite quantum states</a></li>
-<li><a href="#org2754af5">XOR gate</a></li>
-<li><a href="#orgcc80688">Bell states</a></li>
-<li><a href="#org9678e5a">Teleportion</a></li>
-<li><a href="#org7ec23aa">Bit oracle</a></li>
-<li><a href="#org11a6150">Hadamard on n qubits</a></li>
+<li><a href="#org6a25943">ketbra</a></li>
+<li><a href="#org0663725">states</a></li>
+<li><a href="#orgb5a6756">Measurements</a></li>
+<li><a href="#orga9ca24f">Single Qutantum circuits</a></li>
+<li><a href="#org6856adc">Multipartite quantum states</a></li>
+<li><a href="#orgc40a8c8">XOR gate</a></li>
+<li><a href="#orgdc9f779">Bell states</a></li>
+<li><a href="#orgb15d0ee">Teleportion</a></li>
 </ul>
 </li>
-<li><a href="#orgfa77714">Deutsche-Jose  Algrithmus</a></li>
-<li><a href="#org1f1957f">Gover's Algrithmus</a></li>
+<li><a href="#org9c2787c">Deutsche-Jose</a>
+<ul>
+<li><a href="#orga17d6bd">Bit oracle</a></li>
+<li><a href="#orgf9f0620">Hadamard on n qubits</a></li>
+<li><a href="#org99a1e9f">Deutsche Jose algorithm</a></li>
+</ul>
+</li>
+<li><a href="#org0f91769">Gover's Algrithmus</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgdb8b123" class="outline-2">
-<h2 id="orgdb8b123">Basic states and operations</h2>
-<div class="outline-text-2" id="text-orgdb8b123">
+<div id="outline-container-org42fc977" class="outline-2">
+<h2 id="org42fc977">Basic states and operations</h2>
+<div class="outline-text-2" id="text-org42fc977">
 </div>
-<div id="outline-container-org05f304e" class="outline-3">
-<h3 id="org05f304e">ketbra</h3>
-<div class="outline-text-3" id="text-org05f304e">
+<div id="outline-container-org6a25943" class="outline-3">
+<h3 id="org6a25943">ketbra</h3>
+<div class="outline-text-3" id="text-org6a25943">
 <ul class="org-ul">
 <li>Ket:  \[ |a\rangle = \begin{pmatrix} a_{1} \\ a_{2} \end{pmatrix} \]</li>
 <li>Bra: \[\langle b| = |b\rangle^+  = \begin{pmatrix} b_{1} \\ b_{2} \end{pmatrix}^+ = \begin{pmatrix} b_{1}^* & b_{2}^* \end{pmatrix} \]</li>
@@ -77,9 +81,9 @@
 </p>
 </div>
 </div>
-<div id="outline-container-org7badc64" class="outline-3">
-<h3 id="org7badc64">states</h3>
-<div class="outline-text-3" id="text-org7badc64">
+<div id="outline-container-org0663725" class="outline-3">
+<h3 id="org0663725">states</h3>
+<div class="outline-text-3" id="text-org0663725">
 <p>
 \[|0\rangle := \begin{pmatrix} 1 \\ 0 \end{pmatrix} \]
 </p>
@@ -97,7 +101,7 @@ which means |0&rang; or |1&rang; is its eigentstate, we call it as Z-measurement
 <p>
 \[|-\rangle := \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)\]
 If a measurement will collapse either on |+&rang; or |-&rang;,
-which means |+&rang; or |-&rang; is its eigentstate, we call it as Z-measurement, and denote as \(\sigma_{x}\).
+which means |+&rang; or |-&rang; is its eigentstate, we call it as X-measurement, and denote as \(\sigma_{x}\).
 </p>
 
 <p>
@@ -108,7 +112,7 @@ which means |+&rang; or |-&rang; is its eigentstate, we call it as Z-measurement
 <p>
 \[|-i\rangle := \frac{1}{\sqrt{2}}(|0\rangle - i|1\rangle)\]
 If a measurement will collapse either on |+i&rang; or |-i&rang;,
-which means |+i&rang; or |-i&rang; is its eigentstate, we call it as Z-measurement, and denote as \(\sigma_{y}\).
+which means |+i&rang; or |-i&rang; is its eigentstate, we call it as Y-measurement, and denote as \(\sigma_{y}\).
 </p>
 
 <p>
@@ -116,18 +120,18 @@ The coefficient has to be \(\frac{1}{\sqrt{2}}\) because of normalisation\(\lang
 </p>
 </div>
 </div>
-<div id="outline-container-org94c0eb7" class="outline-3">
-<h3 id="org94c0eb7">Measurements</h3>
-<div class="outline-text-3" id="text-org94c0eb7">
+<div id="outline-container-orgb5a6756" class="outline-3">
+<h3 id="orgb5a6756">Measurements</h3>
+<div class="outline-text-3" id="text-orgb5a6756">
 <p>
 for states basis of{ \(x_1\) } and { \(x_2\) }, the measurement of state \(\phi\) on { \(x_{1}\) } is \(\langle x_{1}|\phi\rangle^2\).
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgdf8ec94" class="outline-3">
-<h3 id="orgdf8ec94">Single Qutantum circuits</h3>
-<div class="outline-text-3" id="text-orgdf8ec94">
+<div id="outline-container-orga9ca24f" class="outline-3">
+<h3 id="orga9ca24f">Single Qutantum circuits</h3>
+<div class="outline-text-3" id="text-orga9ca24f">
 <ul class="org-ul">
 <li><p>
 bit flip: \(\sigma_{x}|0 \rangle = |1 \rangle\) :
@@ -150,9 +154,9 @@ bit flip: \(\sigma_{x}|0 \rangle = |1 \rangle\) :
 </div>
 </div>
 
-<div id="outline-container-orga4e16d0" class="outline-3">
-<h3 id="orga4e16d0">Multipartite quantum states</h3>
-<div class="outline-text-3" id="text-orga4e16d0">
+<div id="outline-container-org6856adc" class="outline-3">
+<h3 id="org6856adc">Multipartite quantum states</h3>
+<div class="outline-text-3" id="text-org6856adc">
 <p>
 we use tensor products to describe multiple states
 \[|a \rangle \oplus | b \rangle = \begin{pmatrix} a_{1} \\ a_{2} \end{pmatrix} \oplus \begin{pmatrix} b_{1} \\ b_{2} \end{pmatrix}  =
@@ -163,9 +167,9 @@ otherweise it's correlated, and  when some fully correlated are called entangled
 </div>
 </div>
 
-<div id="outline-container-org2754af5" class="outline-3">
-<h3 id="org2754af5">XOR gate</h3>
-<div class="outline-text-3" id="text-org2754af5">
+<div id="outline-container-orgc40a8c8" class="outline-3">
+<h3 id="orgc40a8c8">XOR gate</h3>
+<div class="outline-text-3" id="text-orgc40a8c8">
 <p>
 \[CNOT = \begin{pmatrix} 1 & 0 & 0 & 0  \\ 0 & 1 & 0 & 0  \\ 0 & 0 & 1 & 0  \\ 0 & 0 & 0 & 1    \end{pmatrix} \]
 </p>
@@ -188,9 +192,9 @@ Photo <a href="https://github.com/scofild429/LiteraturPrograme/blob/main/content
 </div>
 </div>
 
-<div id="outline-container-orgcc80688" class="outline-3">
-<h3 id="orgcc80688">Bell states</h3>
-<div class="outline-text-3" id="text-orgcc80688">
+<div id="outline-container-orgdc9f779" class="outline-3">
+<h3 id="orgdc9f779">Bell states</h3>
+<div class="outline-text-3" id="text-orgdc9f779">
 <p>
 Example of fully correlated states (maximally entangled),
 </p>
@@ -221,9 +225,9 @@ Photo <a href="https://github.com/scofild429/LiteraturPrograme/blob/main/content
 </div>
 </div>
 
-<div id="outline-container-org9678e5a" class="outline-3">
-<h3 id="org9678e5a">Teleportion</h3>
-<div class="outline-text-3" id="text-org9678e5a">
+<div id="outline-container-orgb15d0ee" class="outline-3">
+<h3 id="orgb15d0ee">Teleportion</h3>
+<div class="outline-text-3" id="text-orgb15d0ee">
 <p>
 If Alise and Bob share the same bell states \(| \varphi^{00}_{AB}  \rangle  = \frac{1}{\sqrt{2}}( |00 \rangle_{AB} + |11 \rangle_{AB})\),
 Now Alias want to send stetas \(|\phi \rangle_{S} = \alpha |0 \rangle_{S} + \beta|1 \rangle_{S}\) to Bob,
@@ -276,10 +280,16 @@ Photo  <a href="https://github.com/scofild429/LiteraturPrograme/blob/main/conten
 </p>
 </div>
 </div>
+</div>
 
-<div id="outline-container-org7ec23aa" class="outline-3">
-<h3 id="org7ec23aa">Bit oracle</h3>
-<div class="outline-text-3" id="text-org7ec23aa">
+
+<div id="outline-container-org9c2787c" class="outline-2">
+<h2 id="org9c2787c">Deutsche-Jose</h2>
+<div class="outline-text-2" id="text-org9c2787c">
+</div>
+<div id="outline-container-orga17d6bd" class="outline-3">
+<h3 id="orga17d6bd">Bit oracle</h3>
+<div class="outline-text-3" id="text-orga17d6bd">
 <p>
 <img src="./foto/QCbitoracle.png" alt="QCbitoracle.png" />
 Photo <a href="https://github.com/scofild429/LiteraturPrograme/blob/main/content/foto/QCbitoracle.png">Link</a> here
@@ -293,12 +303,12 @@ Photo <a href="https://github.com/scofild429/LiteraturPrograme/blob/main/content
 </div>
 </div>
 
-<div id="outline-container-org11a6150" class="outline-3">
-<h3 id="org11a6150">Hadamard on n qubits</h3>
-<div class="outline-text-3" id="text-org11a6150">
+<div id="outline-container-orgf9f0620" class="outline-3">
+<h3 id="orgf9f0620">Hadamard on n qubits</h3>
+<div class="outline-text-3" id="text-orgf9f0620">
 <p>
 for \(x \in \{0, 1\}\),
-\[ |x\rangle ->] H -> |y\rangle\] ,
+\[ |x\rangle -> H -> |y\rangle\] ,
 \[ |y\rangle = \frac{1}{\sqrt{2}} \sum_{k \in \{0, 1 \}} (-1)^{k \cdot x}|k\rangle\]
 </p>
 
@@ -311,13 +321,10 @@ for for \(x \in \{0, 1\}^{n}\),
 </p>
 </div>
 </div>
-</div>
 
-
-
-<div id="outline-container-orgfa77714" class="outline-2">
-<h2 id="orgfa77714">Deutsche-Jose  Algrithmus</h2>
-<div class="outline-text-2" id="text-orgfa77714">
+<div id="outline-container-org99a1e9f" class="outline-3">
+<h3 id="org99a1e9f">Deutsche Jose algorithm</h3>
+<div class="outline-text-3" id="text-org99a1e9f">
 <div class="org-src-container">
 <pre class="src src-latex"><span style="font-weight: bold;">\Qcircuit</span> @C=1em @R=1em {
 <span style="font-weight: bold;">\lstick</span>{<span style="font-weight: bold;">\ket</span>{0}}  &amp; <span style="font-weight: bold;">\gate</span>{H} &amp; <span style="font-weight: bold;">\multigate</span>{2}{U_f} &amp; <span style="font-weight: bold;">\gate</span>{H} &amp; <span style="font-weight: bold;">\meter</span> &amp; <span style="font-weight: bold;">\cw</span>  &amp; <span style="font-weight: bold;">\rstick</span>{<span style="font-weight: bold;">\ket</span>{y_0}} <span style="font-weight: bold;">\\</span>
@@ -365,14 +372,15 @@ and \(P=0\) if f is balanced
 </p>
 </div>
 </div>
+</div>
 
 
-<div id="outline-container-org1f1957f" class="outline-2">
-<h2 id="org1f1957f">Gover's Algrithmus</h2>
+<div id="outline-container-org0f91769" class="outline-2">
+<h2 id="org0f91769">Gover's Algrithmus</h2>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2022-02-18 Fri 17:12</p>
+<p class="date">Created: 2022-03-16 Wed 23:27</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
 <p class="validation"></p>
 </div>
