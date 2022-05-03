@@ -44,10 +44,13 @@
 ;;        x-super-keysym 'meta)
 
 ;; open terminal 
-(global-set-key "\C-\M-x" 'term)
+(global-set-key "\C-\M-x" 'term)  
 
 ;; open  eshell
-(global-set-key "\C-x\ \C-x" 'shell)
+(global-set-key "\C-x\ \C-x" 'eshell)
+
+;; load ./bashrc
+(setq shell-command-switch "-ic")
 
 ;;open init.el file with f1
 (defun open-my-init-file()
@@ -120,6 +123,40 @@
 (add-hook 'web-mode-hook #'rainbow-delimiters-mode)
 (add-hook 'org-mode-hook #'rainbow-delimiters-mode)
 
+(use-package term
+  :config
+  (setq explicit-shell-file-name "bash") ;; Change this to zsh, etc
+  ;; Match the default Bash shell prompt.  Update this if you have a custom prompt
+  (setq term-prompt-regexp "^[^#$%>\n]*[#$%>] *"))
+
+(defun efs/configure-eshell ()
+  ;; Save command history when commands are entered
+  (add-hook 'eshell-pre-command-hook 'eshell-save-some-history)
+
+  ;; Truncate buffer for performance
+  (add-to-list 'eshell-output-filter-functions 'eshell-truncate-buffer)
+
+  ;; Bind some useful keys for evil-mode
+  (evil-define-key '(normal insert visual) eshell-mode-map (kbd "C-r") 'counsel-esh-history)
+  (evil-define-key '(normal insert visual) eshell-mode-map (kbd "<home>") 'eshell-bol)
+  (evil-normalize-keymaps)
+
+  (setq eshell-history-size         10000
+        eshell-buffer-maximum-lines 10000
+        eshell-hist-ignoredups t
+        eshell-scroll-to-bottom-on-input t))
+
+(use-package eshell-git-prompt
+  :ensure t)
+
+(use-package eshell
+  :hook (eshell-first-time-mode . efs/configure-eshell)
+  :config
+  (with-eval-after-load 'esh-opt
+    (setq eshell-destroy-buffer-when-process-dies t)
+    (setq eshell-visual-commands '("htop" "zsh" "vim")))
+  (eshell-git-prompt-use-theme 'powerline))
+
 (use-package eglot
   :ensure t
  )
@@ -131,35 +168,35 @@
 (add-hook 'vue-mode-hook 'eglot-ensure)
 (add-hook ' python-mode-hook 'eglot-ensure)
 
-(use-package irony
-  :ensure t
-  :config
-  (add-hook 'c++-mode-hook 'irony-mode)
-  (add-hook 'c-mode-hook 'irony-mode)
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+;; (use-package irony
+;;   :ensure t
+;;   :config
+;;   (add-hook 'c++-mode-hook 'irony-mode)
+;;   (add-hook 'c-mode-hook 'irony-mode)
+;;   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
-(use-package company-irony
-  :ensure t
-  :config
-  (require 'company)
-  (add-to-list 'company-backends 'company-irony))
+;; (use-package company-irony
+;;   :ensure t
+;;   :config
+;;   (require 'company)
+;;   (add-to-list 'company-backends 'company-irony))
 
-(with-eval-after-load 'company
-  (add-hook 'company-hook 'company-mode)
-  (add-hook 'c-mode-hook 'company-mode))
+;; (with-eval-after-load 'company
+;;   (add-hook 'company-hook 'company-mode)
+;;   (add-hook 'c-mode-hook 'company-mode))
 
-(use-package company-irony-c-headers
-  :ensure t)
+;; (use-package company-irony-c-headers
+;;   :ensure t)
 
-(use-package flycheck-irony
-  :ensure t
-  :config
-  (add-hook 'flycheck-mode-hook 'flycheck-irony-setup))
+;; (use-package flycheck-irony
+;;   :ensure t
+;;   :config
+;;   (add-hook 'flycheck-mode-hook 'flycheck-irony-setup))
 
-(use-package irony-eldoc
-  :ensure t
-  :config
-  (add-hook 'irony-mode-hook #'irony-eldoc))
+;; (use-package irony-eldoc
+;;   :ensure t
+;;   :config
+;;   (add-hook 'irony-mode-hook #'irony-eldoc))
 
 (use-package ob-ipython
   :ensure t
@@ -358,10 +395,11 @@ With one universal prefix argument, only tangle the block at point."
                 (send-to-haskell/file-with-buffer out-file tangled-buffer))))
           nil)))))
 
-(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
-(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "S-C-<right>") 'shrink-window-horizontally)
+(global-set-key (kbd "S-C-<left>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
+(global-set-key (kbd "<f12>") 'visual-fill-column-mode)
 
 (setq x-select-enable-primary t)
 (setq select-enable-primary t)
@@ -554,15 +592,13 @@ With one universal prefix argument, only tangle the block at point."
 
 (provide 'echo-keys)
 
-;; (use-package cnfonts
-  ;; :ensure t
-  ;; :config )
-
-  ;;(require 'cnfonts)
-   ;; 让 cnfonts 随着 Emacs 自动生效。
-;;   (cnfonts-enable)
-   ;; 让 spacemacs mode-line 中的 Unicode 图标正确显示。
-  ;;(cnfonts-set-spacemacs-fallback-fonts)
+;;     (use-package cnfonts
+;;     :ensure t
+;;     :config )
+;;    (cnfonts-mode 1)
+;;     (cnfonts-enable)
+;; ;;     让 spacemacs mode-line 中的 Unicode 图标正确显示。
+;;     (cnfonts-set-spacemacs-fallback-fonts)
 
 (use-package evil
   :ensure t
@@ -662,9 +698,9 @@ With one universal prefix argument, only tangle the block at point."
     (ac-config-default)
     (global-auto-complete-mode t)
     )
+  (define-key ac-complete-mode-map "\M-n" 'ac-next)
+  (define-key ac-complete-mode-map "\M-p" 'ac-previous)
   )
-(define-key ac-complete-mode-map "\C-n" 'ac-next)
-(define-key ac-complete-mode-map "\C-p" 'ac-previous)
 
 (use-package flycheck
     :ensure t
@@ -822,9 +858,11 @@ With one universal prefix argument, only tangle the block at point."
 (global-set-key "\C-\M-l" 'latex-math-preview-insert-mathematical-symbol)
   ;; bigger latex fragment: put this into the init.el, otherweise this will not be executed
   (plist-put org-format-latex-options :scale 3.0)
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 4))
 
   (require 'org)
-  (setq org-format-latex-options (plist-put org-format-latex-options :scale 4))
+
+
   (setq org-latex-create-formula-image-program 'dvipng)
 
   (use-package tex
@@ -1406,18 +1444,18 @@ With one universal prefix argument, only tangle the block at point."
 ;;                '(comany-tide company-web-html company-css company-files))
 ;;   )
 
-(defun my/use-eslint-from-node-modules ()
-  "Use local eslint from node_modules before global."
-  (let* ((root (locate-dominating-file
-                (or (buffer-file-name) default-directory)
-                "node_modules"))
-         (eslint (and root
-                      (expand-file-name "node_modules/eslint/bin/eslint.js"
-                                        root))))
-    (when (and eslint (file-executable-p eslint))
-      (setq-local flycheck-javascript-eslint-executable eslint))))
+;; (defun my/use-eslint-from-node-modules ()
+;;   "Use local eslint from node_modules before global."
+;;   (let* ((root (locate-dominating-file
+;;                 (or (buffer-file-name) default-directory)
+;;                 "node_modules"))
+;;          (eslint (and root
+;;                       (expand-file-name "node_modules/eslint/bin/eslint.js"
+;;                                         root))))
+;;     (when (and eslint (file-executable-p eslint))
+;;       (setq-local flycheck-javascript-eslint-executable eslint))))
 
-(add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
+;; (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
 
 ;; (use-package rjsx-mode
 ;;   :ensure t
@@ -1485,30 +1523,30 @@ With one universal prefix argument, only tangle the block at point."
     )
   )
 
-(use-package tide
-  :ensure t
-  :after (typescript-mode company flycheck)
-  :hook ((typescript-mode . tide-setup)
-         (typescript-mode . tide-hl-identifier-mode))
-  (before-save . tide-format-before-save)
-  :config
-  (setq tide-completion-enable-autoimport-suggestions t)
-  )
+;; (use-package tide
+;;   :ensure t
+;;   :after (typescript-mode company flycheck)
+;;   :hook ((typescript-mode . tide-setup)
+;;          (typescript-mode . tide-hl-identifier-mode))
+;;   (before-save . tide-format-before-save)
+;;   :config
+;;   (setq tide-completion-enable-autoimport-suggestions t)
+;;   )
 
 
-(defun setup-tide-mode ()
-  "Setup tide mode for other mode."
-  (interactive)
-  (message "setup tide mode")
-  (tide-setup)
-  (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
-  (company-mode +1))
+;; (defun setup-tide-mode ()
+;;   "Setup tide mode for other mode."
+;;   (interactive)
+;;   (message "setup tide mode")
+;;   (tide-setup)
+;;   (flycheck-mode +1)
+;;   (setq flycheck-check-syntax-automatically '(save mode-enabled))
+;;   (eldoc-mode +1)
+;;   (tide-hl-identifier-mode +1)
+;;   (company-mode +1))
 
-(add-hook 'js2-mode-hook #'setup-tide-mode)
-(add-hook 'typescript-mode-hook #'setup-tide-mode)
+;; (add-hook 'js2-mode-hook #'setup-tide-mode)
+;; (add-hook 'typescript-mode-hook #'setup-tide-mode)
 ;;  (add-hook 'rjsx-mode-hook #'setup-tide-mode)
 
 (use-package prettier-js
@@ -1529,25 +1567,45 @@ With one universal prefix argument, only tangle the block at point."
   (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
   (lsp-headerline-breadcrumb-mode))
 
-    (use-package lsp-mode
-  ;;    :straight t
-      :commands (lsp lsp-deferred)
-      :hook
-      ((typescript-mode js2-mode web-mode) . lsp)
-      (lsp-mdoe . efs/lsp-mode-setup)
-      :init
-      (setq lsp-keymap-prefix "C-c l")
-      :config
-      (lsp-enable-which-key-integration t)
-      :bind (:map lsp-mode-map
-                ("TAB" . completion-at-point))
-      :custom (lsp-headerline-breadcrumb-enable nil))
+(use-package lsp-mode
+  :ensure t
+  :commands (lsp lsp-deferred)
+  :hook
+  ((typescript-mode js2-mode web-mode) . lsp)
+  (lsp-mdoe . efs/lsp-mode-setup)
+  (lsp-mode . rainbow-delimiters-mode)
+  (go-mode . lsp-deferred)
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :config (progn
+            (lsp-enable-which-key-integration t)
+            ;; use flycheck, not flymake
+            (setq lsp-prefer-flymake nil)
+            ;;(setq lsp-trace nil)
+            (setq lsp-print-performance nil)
+            (setq lsp-log-io nil)
+  )
+:bind (:map lsp-mode-map
+            ("TAB" . completion-at-point))
+:custom (lsp-headerline-breadcrumb-enable nil))
+
+(setq lsp-disabled-clients '(eslint))
 
 (use-package lsp-ui
   :ensure t
-  :hook (lsp-mode . lsp-ui-mode)
+  :after (lsp-mode)
+  :commands lsp-ui-mode
   :custom
-  (lsp-ui-doc-position 'bottom))
+  (lsp-ui-doc-position 'bottom)
+  :config (progn
+          ;; disable inline documentation
+          (setq lsp-ui-sideline-enable nil)
+          ;; disable showing docs on hover at the top of the window
+          (setq lsp-ui-doc-enable nil)
+          (setq lsp-ui-imenu-enable t)
+          (setq lsp-ui-imenu-kind-position 'top))
+)
+
 
 (setq lsp-ui-sideline-show-code-actions nil)
 (setq lsp-headerline-breadcrumb-enable t)
@@ -1574,10 +1632,13 @@ With one universal prefix argument, only tangle the block at point."
 ;; (use-package dap-java :ensure nil)
 
 (use-package typescript-mode
-:mode "\\.ts\\'"
-:hook (typescript-mode . lsp-deferred)
-:config
-(setq typescript-indent-level 2))
+  :mode "\\.ts\\'"
+  :hook (typescript-mode . lsp-deferred)
+  :config
+  (setq typescript-indent-level 2)
+  (require 'dap-node)
+  (dap-node-setup)
+  )
 
 (use-package ob-typescript
 :ensure t
@@ -1672,4 +1733,51 @@ managers such as DWM, BSPWM refer to this state as 'monocle'."
   (add-hook 'go-mode-hook
             (lambda ()
               (add-hook 'before-save-hook 'ime-go-before-save)))
- )
+  )
+
+;; DAP
+(use-package dap-mode
+  ;; :hook (dap-stopped . (lambda (arg) (call-interactively #'dap-hydra)))
+  ;;:custom
+  ;; (dap-go-debug-program `("node" "~/extension/out/src/debugAdapter/goDebug.js"))
+  :config
+  (dap-mode 1)
+  (setq dap-print-io t)
+  ;;(setq fit-window-to-buffer-horizontally t)
+  ;;(setq window-resize-pixelwise t)
+  (require 'dap-hydra)
+  (require 'dap-go)		; download and expand vscode-go-extenstion to the =~/.extensions/go=
+  (dap-go-setup)
+  (use-package dap-ui
+    :ensure nil
+    :config
+    (dap-ui-mode 1)
+    )
+  )
+
+(add-hook 'after-init-hook 'global-flycheck-mode)
+(add-hook 'after-init-hook 'global-company-mode)
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(inhibit-startup-screen t)
+ '(lsp-ui-imenu-enable t)
+ '(package-selected-packages
+   '(treemacs dap-mode flycheck-golangci-lint projectile flx-ido yasnippet use-package lsp-ui go-mode flycheck company-lsp))
+ '(tool-bar-mode nil))
+
+;; use golangci
+(use-package flycheck-golangci-lint
+  :ensure t)
+
+(use-package restclient
+  :ensure t)
+(use-package company-restclient
+  :ensure t
+  :config
+  (add-to-list 'company-backends 'company-restclient))

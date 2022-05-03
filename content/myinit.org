@@ -17,7 +17,9 @@
 | C-c C-o | js2-mode-toggle-element |
 | M-q     | org-fill-paragraph      |
 | M-:     | Eval                    |
+| C-x d   | Dired                   |
 |         |                         |
+|---------+-------------------------|
 
 * commods
 |--------------------------+-----------------------------------------------------------------------|
@@ -86,123 +88,126 @@ input the mapped command
 
 * global settings
 #+BEGIN_SRC emacs-lisp
-      (setq colon-double-space t)
-      ;; tell the Emacs fill commands to insert two spaces after a colon:
+  (setq colon-double-space t)
+  ;; tell the Emacs fill commands to insert two spaces after a colon:
 
-      ;; Rebind 'C-x C-b' for 'buffer-menu'
-      (global-set-key "\C-x\C-b" 'buffer-menu)
-      ;; which not only lists the buffers, but moves point into that window
+  ;; Rebind 'C-x C-b' for 'buffer-menu'
+  (global-set-key "\C-x\C-b" 'buffer-menu)
+  ;; which not only lists the buffers, but moves point into that window
 
-      ;; Set cursor color
-      (set-cursor-color "white")
+  ;; Set cursor color
+  (set-cursor-color "white")
 
-      ;; Set mouse color
-      (set-mouse-color "white")
+  ;; Set mouse color
+  (set-mouse-color "white")
 
-      ;;(setq make-backup-files nil)
+  ;;(setq make-backup-files nil)
 
-      ;;close tool bar 
-      (setq inhibit-startup-message t)
-      (tool-bar-mode -1)
+  ;;close tool bar 
+  (setq inhibit-startup-message t)
+  (tool-bar-mode -1)
 
-      ;;close menu bar
-      (menu-bar-mode -1)
+  ;;close menu bar
+  (menu-bar-mode -1)
 
-      ;;close toggle sroll bar
-      (toggle-scroll-bar -1)
-      ;; parse
-      (show-paren-mode t)
+  ;;close toggle sroll bar
+  (toggle-scroll-bar -1)
+  ;; parse
+  (show-paren-mode t)
 
-      ;; user y and n instead of yes and no 
-      (fset 'yes-or-no-p 'y-or-n-p)
+  ;; user y and n instead of yes and no 
+  (fset 'yes-or-no-p 'y-or-n-p)
 
-      ;; open line number at left side
-      ;;  (global-linum-mode 1)
+  ;; open line number at left side
+  ;;  (global-linum-mode 1)
 
-      ;; emacsclient -a "" -c
-      ;; shortcut to open emacsclient settings in terminal
+  ;; emacsclient -a "" -c
+  ;; shortcut to open emacsclient settings in terminal
 
-      ;; set the meta-key to be super key
-      ;; (setq  x-meta-keysym 'super
-      ;;        x-super-keysym 'meta)
+  ;; set the meta-key to be super key
+  ;; (setq  x-meta-keysym 'super
+  ;;        x-super-keysym 'meta)
 
-      ;; open terminal 
-      (global-set-key "\C-\M-x" 'term)
+  ;; open terminal 
+  (global-set-key "\C-\M-x" 'term)  
 
-      ;; open  eshell
-      (global-set-key "\C-x\ \C-x" 'shell)
+  ;; open  eshell
+  (global-set-key "\C-x\ \C-x" 'eshell)
 
-      ;;open init.el file with f1
-      (defun open-my-init-file()
-        (interactive)
-        (find-file "~/.emacs.d/init.el"))
-      (global-set-key (kbd "<f1>") 'open-my-init-file)
+  ;; load ./bashrc
+  (setq shell-command-switch "-ic")
 
-      ;;open myinit.org file  with f2
-      (defun open-my-init-org-file()
-        (interactive)
-        (find-file "~/Dropbox/LiteraturPrograme/content/myinit.org"))
-      (global-set-key (kbd "<f2>") 'open-my-init-org-file)
+  ;;open init.el file with f1
+  (defun open-my-init-file()
+    (interactive)
+    (find-file "~/.emacs.d/init.el"))
+  (global-set-key (kbd "<f1>") 'open-my-init-file)
 
-      ;;open .bashrc file with f3
-      (defun open-my-bash-file()
-        (interactive)
-        (find-file "~/.bashrc"))
-      (global-set-key (kbd "<f3>") 'open-my-bash-file)
+  ;;open myinit.org file  with f2
+  (defun open-my-init-org-file()
+    (interactive)
+    (find-file "~/Dropbox/LiteraturPrograme/content/myinit.org"))
+  (global-set-key (kbd "<f2>") 'open-my-init-org-file)
 
-      ;;open .bashrc file with f4
-      (defun open-my-tagsnote-file()
-        (interactive)
-        (find-file "~/Dropbox/Note/Note.org.gpg"))
-      (global-set-key (kbd "<f4>") 'open-my-tagsnote-file)
+  ;;open .bashrc file with f3
+  (defun open-my-bash-file()
+    (interactive)
+    (find-file "~/.bashrc"))
+  (global-set-key (kbd "<f3>") 'open-my-bash-file)
 
-
-      ;; trun off cl warning
-      (setq byte-compile-warnings '(cl-functions))
-
-      ;; backup oder
-      (setq backup-directory-alist `(("." . "~/.emacs.d/backup")))
-      (setq backup-by-copying t)
-
-      ;;M-x toggle-truncate-line
-      ;; off the word wrap 是否移动换行
-      (toggle-truncate-lines 1)
-
-      ;; open window horizontally default
-      (setq split-height-threshold nil)
-      (setq split-width-threshold 0 )
+  ;;open .bashrc file with f4
+  (defun open-my-tagsnote-file()
+    (interactive)
+    (find-file "~/Dropbox/Note/Note.org.gpg"))
+  (global-set-key (kbd "<f4>") 'open-my-tagsnote-file)
 
 
-      ;; automatically update file
-      (global-auto-revert-mode t)
+  ;; trun off cl warning
+  (setq byte-compile-warnings '(cl-functions))
 
-      ;;M-n select-current-line
-      (defun select-current-line ()
-        "Select the current line"
-        (interactive)
-        (end-of-line) ; move to end of line
-        (set-mark (line-beginning-position)))
-      (global-set-key (kbd "M-n") 'select-current-line)
+  ;; backup oder
+  (setq backup-directory-alist `(("." . "~/.emacs.d/backup")))
+  (setq backup-by-copying t)
 
-      ;; read only file
-      (global-set-key (kbd "C-M-o") 'read-only-mode)
+  ;;M-x toggle-truncate-line
+  ;; off the word wrap 是否移动换行
+  (toggle-truncate-lines 1)
 
-      ;;add load path
-      (add-to-list 'exec-path "/usr/bin/")
-      (add-to-list 'load-path "~/.emacs.d/loadpath/")
-
-      ;; this is a interrupt for shell in babel  
-      (setq org-babel-sh-eoe-indicator nil)
+  ;; open window horizontally default
+  (setq split-height-threshold nil)
+  (setq split-width-threshold 0 )
 
 
-      ;; toggle the hi lock mode to highlight with command
-       (global-hi-lock-mode 1)
+  ;; automatically update file
+  (global-auto-revert-mode t)
+
+  ;;M-n select-current-line
+  (defun select-current-line ()
+    "Select the current line"
+    (interactive)
+    (end-of-line) ; move to end of line
+    (set-mark (line-beginning-position)))
+  (global-set-key (kbd "M-n") 'select-current-line)
+
+  ;; read only file
+  (global-set-key (kbd "C-M-o") 'read-only-mode)
+
+  ;;add load path
+  (add-to-list 'exec-path "/usr/bin/")
+  (add-to-list 'load-path "~/.emacs.d/loadpath/")
+
+  ;; this is a interrupt for shell in babel  
+  (setq org-babel-sh-eoe-indicator nil)
+
+
+  ;; toggle the hi lock mode to highlight with command
+   (global-hi-lock-mode 1)
 
 
 #+END_SRC
 
 #+RESULTS:
-: open-my-bash-file
+: t
 
 * rainbow mode
  rainbow to nested parentheses
@@ -211,6 +216,52 @@ input the mapped command
   (rainbow-delimiters-mode 1)
   (add-hook 'web-mode-hook #'rainbow-delimiters-mode)
   (add-hook 'org-mode-hook #'rainbow-delimiters-mode)
+#+end_src
+
+#+RESULTS:
+
+* Term mode
+C-n/C-p: next/perious command(char-mode)
+C-c C-j: term-line-mode(can select lines)
+C-c C-k: enter term-char-mode
+#+begin_src emacs-lisp
+(use-package term
+  :config
+  (setq explicit-shell-file-name "bash") ;; Change this to zsh, etc
+  ;; Match the default Bash shell prompt.  Update this if you have a custom prompt
+  (setq term-prompt-regexp "^[^#$%>\n]*[#$%>] *"))
+#+end_src
+* eshell
+#+begin_src emacs-lisp
+
+  (defun efs/configure-eshell ()
+    ;; Save command history when commands are entered
+    (add-hook 'eshell-pre-command-hook 'eshell-save-some-history)
+
+    ;; Truncate buffer for performance
+    (add-to-list 'eshell-output-filter-functions 'eshell-truncate-buffer)
+
+    ;; Bind some useful keys for evil-mode
+    (evil-define-key '(normal insert visual) eshell-mode-map (kbd "C-r") 'counsel-esh-history)
+    (evil-define-key '(normal insert visual) eshell-mode-map (kbd "<home>") 'eshell-bol)
+    (evil-normalize-keymaps)
+
+    (setq eshell-history-size         10000
+          eshell-buffer-maximum-lines 10000
+          eshell-hist-ignoredups t
+          eshell-scroll-to-bottom-on-input t))
+
+  (use-package eshell-git-prompt
+    :ensure t)
+
+  (use-package eshell
+    :hook (eshell-first-time-mode . efs/configure-eshell)
+    :config
+    (with-eval-after-load 'esh-opt
+      (setq eshell-destroy-buffer-when-process-dies t)
+      (setq eshell-visual-commands '("htop" "zsh" "vim")))
+    (eshell-git-prompt-use-theme 'powerline))
+
 #+end_src
 
 * eglot
@@ -230,35 +281,35 @@ input the mapped command
 sudo apt install: cmake, clangd, (or libclang), libclang-dev
 M-x: irnoy-server-install
 #+BEGIN_SRC emacs-lisp
-  (use-package irony
-    :ensure t
-    :config
-    (add-hook 'c++-mode-hook 'irony-mode)
-    (add-hook 'c-mode-hook 'irony-mode)
-    (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+  ;; (use-package irony
+  ;;   :ensure t
+  ;;   :config
+  ;;   (add-hook 'c++-mode-hook 'irony-mode)
+  ;;   (add-hook 'c-mode-hook 'irony-mode)
+  ;;   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
-  (use-package company-irony
-    :ensure t
-    :config
-    (require 'company)
-    (add-to-list 'company-backends 'company-irony))
+  ;; (use-package company-irony
+  ;;   :ensure t
+  ;;   :config
+  ;;   (require 'company)
+  ;;   (add-to-list 'company-backends 'company-irony))
 
-  (with-eval-after-load 'company
-    (add-hook 'company-hook 'company-mode)
-    (add-hook 'c-mode-hook 'company-mode))
+  ;; (with-eval-after-load 'company
+  ;;   (add-hook 'company-hook 'company-mode)
+  ;;   (add-hook 'c-mode-hook 'company-mode))
 
-  (use-package company-irony-c-headers
-    :ensure t)
+  ;; (use-package company-irony-c-headers
+  ;;   :ensure t)
 
-  (use-package flycheck-irony
-    :ensure t
-    :config
-    (add-hook 'flycheck-mode-hook 'flycheck-irony-setup))
+  ;; (use-package flycheck-irony
+  ;;   :ensure t
+  ;;   :config
+  ;;   (add-hook 'flycheck-mode-hook 'flycheck-irony-setup))
 
-  (use-package irony-eldoc
-    :ensure t
-    :config
-    (add-hook 'irony-mode-hook #'irony-eldoc))
+  ;; (use-package irony-eldoc
+  ;;   :ensure t
+  ;;   :config
+  ;;   (add-hook 'irony-mode-hook #'irony-eldoc))
 
 
 #+END_SRC
@@ -618,15 +669,13 @@ _src haskell), and the be called function can be many type.
 important : in src block the calling syntax is NOT allowed
 
 Seeing Literatur Programm Alternativen
-* resize windows
-Shift + Ctrl + left right down up
-
+* global-set-key
 #+begin_src emacs-lisp
-    (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
-    (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
+    (global-set-key (kbd "S-C-<right>") 'shrink-window-horizontally)
+    (global-set-key (kbd "S-C-<left>") 'enlarge-window-horizontally)
     (global-set-key (kbd "S-C-<down>") 'shrink-window)
     (global-set-key (kbd "S-C-<up>") 'enlarge-window)
-
+    (global-set-key (kbd "<f12>") 'visual-fill-column-mode)
 #+end_src
 
 #+RESULTS:
@@ -886,17 +935,16 @@ M-x echo-keys-mode
 #+END_SRC
 * chinese fonts
 install cnfonts
-M-x cnfonts-edit-profile
+M-x : cnfonts-regenerate-profile
+M-x : cnfonts-edit-profile
 #+begin_src emacs-lisp
-  ;; (use-package cnfonts
-  ;; :ensure t
-  ;; :config )
-
-  ;;(require 'cnfonts)
-   ;; 让 cnfonts 随着 Emacs 自动生效。
-;;   (cnfonts-enable)
-   ;; 让 spacemacs mode-line 中的 Unicode 图标正确显示。
-  ;;(cnfonts-set-spacemacs-fallback-fonts)
+  ;;     (use-package cnfonts
+  ;;     :ensure t
+  ;;     :config )
+  ;;    (cnfonts-mode 1)
+  ;;     (cnfonts-enable)
+  ;; ;;     让 spacemacs mode-line 中的 Unicode 图标正确显示。
+  ;;     (cnfonts-set-spacemacs-fallback-fonts)
 
 #+end_src
 
@@ -1094,10 +1142,10 @@ See https://github.com/abo-abo/avy for more info
       (ac-config-default)
       (global-auto-complete-mode t)
       )
+    (define-key ac-complete-mode-map "\M-n" 'ac-next)
+    (define-key ac-complete-mode-map "\M-p" 'ac-previous)
     )
-  (define-key ac-complete-mode-map "\C-n" 'ac-next)
-  (define-key ac-complete-mode-map "\C-p" 'ac-previous)
-  
+
 #+END_SRC
 
 #+RESULTS:
@@ -1357,9 +1405,11 @@ M-x: install package latex-math-preview
     (global-set-key "\C-\M-l" 'latex-math-preview-insert-mathematical-symbol)
     ;; bigger latex fragment: put this into the init.el, otherweise this will not be executed
     (plist-put org-format-latex-options :scale 3.0)
+    (setq org-format-latex-options (plist-put org-format-latex-options :scale 4))
 
     (require 'org)
-    (setq org-format-latex-options (plist-put org-format-latex-options :scale 4))
+
+
     (setq org-latex-create-formula-image-program 'dvipng)
 
     (use-package tex
@@ -2100,7 +2150,7 @@ src 后缀
 | :session  my           | 可切换到生成的my buffer 操作             |
 | :tangle  (创建源码）   | 文件名，yes, no                          |
 | :noweb yes             | 对tangle和export作用                     |
-| :tangle   xxx.py       | 输出文件                                 |
+| :tangle   xxx.py       | 输出文件 C-c C-v t                      |
 | :var  x=2              |                                          |
 | :shebang               | 指定码块的解释器                         |
 |                        |                                          |
@@ -2499,19 +2549,19 @@ for the bowser extension, GhostText is available for chrome and firefox
 #+end_src
 ** eslint use local 
 #+begin_src emacs-lisp  
-      (defun my/use-eslint-from-node-modules ()
-        "Use local eslint from node_modules before global."
-        (let* ((root (locate-dominating-file
-                      (or (buffer-file-name) default-directory)
-                      "node_modules"))
-               (eslint (and root
-                            (expand-file-name "node_modules/eslint/bin/eslint.js"
-                                              root))))
-          (when (and eslint (file-executable-p eslint))
-            (setq-local flycheck-javascript-eslint-executable eslint))))
-  
-      (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
-  
+  ;; (defun my/use-eslint-from-node-modules ()
+  ;;   "Use local eslint from node_modules before global."
+  ;;   (let* ((root (locate-dominating-file
+  ;;                 (or (buffer-file-name) default-directory)
+  ;;                 "node_modules"))
+  ;;          (eslint (and root
+  ;;                       (expand-file-name "node_modules/eslint/bin/eslint.js"
+  ;;                                         root))))
+  ;;     (when (and eslint (file-executable-p eslint))
+  ;;       (setq-local flycheck-javascript-eslint-executable eslint))))
+
+  ;; (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
+
 
 #+end_src
 ** rjsx
@@ -2594,32 +2644,32 @@ for the bowser extension, GhostText is available for chrome and firefox
 #+end_src
 ** tide
 #+begin_src emacs-lisp  
-  (use-package tide
-    :ensure t
-    :after (typescript-mode company flycheck)
-    :hook ((typescript-mode . tide-setup)
-           (typescript-mode . tide-hl-identifier-mode))
-    (before-save . tide-format-before-save)
-    :config
-    (setq tide-completion-enable-autoimport-suggestions t)
-    )
+  ;; (use-package tide
+  ;;   :ensure t
+  ;;   :after (typescript-mode company flycheck)
+  ;;   :hook ((typescript-mode . tide-setup)
+  ;;          (typescript-mode . tide-hl-identifier-mode))
+  ;;   (before-save . tide-format-before-save)
+  ;;   :config
+  ;;   (setq tide-completion-enable-autoimport-suggestions t)
+  ;;   )
 
 
-  (defun setup-tide-mode ()
-    "Setup tide mode for other mode."
-    (interactive)
-    (message "setup tide mode")
-    (tide-setup)
-    (flycheck-mode +1)
-    (setq flycheck-check-syntax-automatically '(save mode-enabled))
-    (eldoc-mode +1)
-    (tide-hl-identifier-mode +1)
-    (company-mode +1))
+  ;; (defun setup-tide-mode ()
+  ;;   "Setup tide mode for other mode."
+  ;;   (interactive)
+  ;;   (message "setup tide mode")
+  ;;   (tide-setup)
+  ;;   (flycheck-mode +1)
+  ;;   (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  ;;   (eldoc-mode +1)
+  ;;   (tide-hl-identifier-mode +1)
+  ;;   (company-mode +1))
 
-  (add-hook 'js2-mode-hook #'setup-tide-mode)
-  (add-hook 'typescript-mode-hook #'setup-tide-mode)
+  ;; (add-hook 'js2-mode-hook #'setup-tide-mode)
+  ;; (add-hook 'typescript-mode-hook #'setup-tide-mode)
   ;;  (add-hook 'rjsx-mode-hook #'setup-tide-mode)
-  
+
 #+end_src
 ** prettier
    sudo npm install -g prettier
@@ -2653,29 +2703,49 @@ Change them to higher numbers, if you find *lsp-mode* sluggish in your computer.
   (defun efs/lsp-mode-setup ()
     (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
     (lsp-headerline-breadcrumb-mode))
-  
-      (use-package lsp-mode
-    ;;    :straight t
-        :commands (lsp lsp-deferred)
-        :hook
-        ((typescript-mode js2-mode web-mode) . lsp)
-        (lsp-mdoe . efs/lsp-mode-setup)
-        :init
-        (setq lsp-keymap-prefix "C-c l")
-        :config
-        (lsp-enable-which-key-integration t)
-        :bind (:map lsp-mode-map
-                  ("TAB" . completion-at-point))
-        :custom (lsp-headerline-breadcrumb-enable nil))
-  
+
+  (use-package lsp-mode
+    :ensure t
+    :commands (lsp lsp-deferred)
+    :hook
+    ((typescript-mode js2-mode web-mode) . lsp)
+    (lsp-mdoe . efs/lsp-mode-setup)
+    (lsp-mode . rainbow-delimiters-mode)
+    (go-mode . lsp-deferred)
+    :init
+    (setq lsp-keymap-prefix "C-c l")
+    :config (progn
+              (lsp-enable-which-key-integration t)
+              ;; use flycheck, not flymake
+              (setq lsp-prefer-flymake nil)
+              ;;(setq lsp-trace nil)
+              (setq lsp-print-performance nil)
+              (setq lsp-log-io nil)
+    )
+  :bind (:map lsp-mode-map
+              ("TAB" . completion-at-point))
+  :custom (lsp-headerline-breadcrumb-enable nil))
+
+  (setq lsp-disabled-clients '(eslint))
+
 #+end_src
 ** lsp ui
 #+begin_src emacs-lisp
   (use-package lsp-ui
     :ensure t
-    :hook (lsp-mode . lsp-ui-mode)
+    :after (lsp-mode)
+    :commands lsp-ui-mode
     :custom
-    (lsp-ui-doc-position 'bottom))
+    (lsp-ui-doc-position 'bottom)
+    :config (progn
+            ;; disable inline documentation
+            (setq lsp-ui-sideline-enable nil)
+            ;; disable showing docs on hover at the top of the window
+            (setq lsp-ui-doc-enable nil)
+            (setq lsp-ui-imenu-enable t)
+            (setq lsp-ui-imenu-kind-position 'top))
+  )
+
 
   (setq lsp-ui-sideline-show-code-actions nil)
   (setq lsp-headerline-breadcrumb-enable t)
@@ -2698,29 +2768,33 @@ Below we will integrate ~dap-mode~ with ~dap-hydra~.
 After we install dap-mode we will also install ~dap-java~.
 
 #+begin_src emacs-lisp
-  ;; (use-package dap-mode
-  ;;   :ensure t
-  ;;   :after (lsp-mode)
-  ;;   :functions dap-hydra/nil
-  ;;   :config
-  ;;   (require 'dap-java)
-  ;;   :bind (:map lsp-mode-map
-  ;;          ("<f5>" . dap-debug)
-  ;;          ("M-<f5>" . dap-hydra))
-  ;;   :hook ((dap-mode . dap-ui-mode)
-  ;;     (dap-session-created . (lambda (&_rest) (dap-hydra)))
-  ;;     (dap-terminated . (lambda (&_rest) (dap-hydra/nil)))))
+        ;; (use-package dap-mode
+        ;;   :ensure t
+        ;;   :after (lsp-mode)
+        ;;   :functions dap-hydra/nil
+        ;;   :config
+        ;;   (require 'dap-java)
+        ;;   :bind (:map lsp-mode-map
+        ;;          ("<f5>" . dap-debug)
+        ;;          ("M-<f5>" . dap-hydra))
+        ;;   :hook ((dap-mode . dap-ui-mode)
+        ;;     (dap-session-created . (lambda (&_rest) (dap-hydra)))
+        ;;     (dap-terminated . (lambda (&_rest) (dap-hydra/nil)))))
 
-  ;; (use-package dap-java :ensure nil)
+        ;; (use-package dap-java :ensure nil)
 #+end_src
 
 ** TS
 #+begin_src emacs-lisp
   (use-package typescript-mode
-  :mode "\\.ts\\'"
-  :hook (typescript-mode . lsp-deferred)
-  :config
-  (setq typescript-indent-level 2))
+    :mode "\\.ts\\'"
+    :hook (typescript-mode . lsp-deferred)
+    :config
+    (setq typescript-indent-level 2)
+    (require 'dap-node)
+    (dap-node-setup)
+    ) 
+
 #+end_src
 
 
@@ -2892,9 +2966,10 @@ hi-lock-file-patterns-policy  to be nil
 |--------------+------------------|
 
 * Go
+Dap-debug has to unset NODE_OPTIONS
+in Terminal  unset NODE_OPTIONS
+or M-x: setenv NODE_OPTIONS Enter
 #+begin_src emacs-lisp
-
-
   (setq company-idle-delay 0)
   (setq company-minimum-prefix-length 1)
 
@@ -2919,6 +2994,60 @@ hi-lock-file-patterns-policy  to be nil
     (add-hook 'go-mode-hook
               (lambda ()
                 (add-hook 'before-save-hook 'ime-go-before-save)))
-   )
+    )
+#+end_src
+#+begin_src emacs-lisp
+  ;; DAP
+  (use-package dap-mode
+    ;; :hook (dap-stopped . (lambda (arg) (call-interactively #'dap-hydra)))
+    ;;:custom
+    ;; (dap-go-debug-program `("node" "~/extension/out/src/debugAdapter/goDebug.js"))
+    :config
+    (dap-mode 1)
+    (setq dap-print-io t)
+    ;;(setq fit-window-to-buffer-horizontally t)
+    ;;(setq window-resize-pixelwise t)
+    (require 'dap-hydra)
+    (require 'dap-go)		; download and expand vscode-go-extenstion to the =~/.extensions/go=
+    (dap-go-setup)
+    (use-package dap-ui
+      :ensure nil
+      :config
+      (dap-ui-mode 1)
+      )
+    )
+
+#+end_src
+#+begin_src emacs-lisp
+
+  (add-hook 'after-init-hook 'global-flycheck-mode)
+  (add-hook 'after-init-hook 'global-company-mode)
+  (eval-after-load 'flycheck
+    '(add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup))
+
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(inhibit-startup-screen t)
+   '(lsp-ui-imenu-enable t)
+   '(package-selected-packages
+     '(treemacs dap-mode flycheck-golangci-lint projectile flx-ido yasnippet use-package lsp-ui go-mode flycheck company-lsp))
+   '(tool-bar-mode nil))
+
+  ;; use golangci
+  (use-package flycheck-golangci-lint
+    :ensure t)
+#+end_src
+
+* restclient
+#+begin_src emacs-lisp
+  (use-package restclient
+    :ensure t)
+  (use-package company-restclient
+    :ensure t
+    :config
+    (add-to-list 'company-backends 'company-restclient))
 
 #+end_src

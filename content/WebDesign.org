@@ -267,8 +267,6 @@ go to official seit and stetp by step
 | sort        | $unset    |
 | limit       |           |
 | skip        |           |
-| /x/         |           |
-| /^x/        |           |
 | upsert      |           |
 | rename      |           |
 | getIndexs   |           |
@@ -278,8 +276,11 @@ go to official seit and stetp by step
 
 
 #+begin_src sh :dir /sudo::
-sudo systemctl start mongod
+  sudo systemctl start mongod
 #+end_src
+
+#+RESULTS:
+
 
 #+RESULTS:
 
@@ -671,7 +672,6 @@ nvm ls
 npm install 将会执行package.json 的设定，
 在IDAE里可以选中package.json 里的 build:prod字段，run
 
-
 ** 操作
 vd 是vue里的data属性
 
@@ -735,8 +735,6 @@ if v-show is false, the DOM element is already included, but will not be present
 
 ** v-if
 if v-if is false, the DOM element will be deleted
-
-* Vue3
 
 * Webpack
 #+begin_src 
@@ -1156,6 +1154,12 @@ SqlSessionFactory
 * c3p0
 * Rruid
 * nginx
+** https ssl deployment
+1, just deploy my web seit normally, and can be access by http
+2, sudo apt install certbot python-certbot-nginx
+3, sudo certbot certonly --nginx (will be asked)
+4, sudo certbot install --nginx
+
 ** local Nginx deployment
 *** install
 #+begin_src 
@@ -1184,7 +1188,6 @@ nginx 的默认设置在其中一个 default 文件里。
 本机开机后,该文件的会被自动部署,端口可见
 
 *** fire wall 80 port if necessary
-
 #+BEGIN_SRC 
   add port :
   sudo apt install firewalld
@@ -1402,8 +1405,9 @@ source /etc/profile
 
 * Django
 ** uwsgi domain example
+this has perhaps to be connected with ssl nginx
 $ uwsgi --chdir /home/cloud/django/QL --http :8000 --module QL.wsgi:application
-$ uwsgi --ini microdomains_uwsgi.ini
+$ uwsgi --ini ql_uwsgi.ini
 ** Projekt StudyNet commands
 pip install virtualenv
 virtualenv --python=python3.9 django
@@ -1740,6 +1744,50 @@ module.exports = {
 sudo apt install serve
 serve folder
 #+end_src
+
+* Traefik
+** just load traefik
+IN: docker-compose.yml
+#+begin_src
+version: "3.8"
+  services:
+    traefik:
+    image: traefik:alpine
+    command: --api --docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 80:80
+      - 8080:8080
+#+end_src
+open localhost:8080
+
+** load traefik with configaution
+IN: traefik.toml
+#+begin_src
+defaultEntryPoints = ["http"]
+
+logLevel = "INFO"
+sendAnonymousUsage = true
+
+[docker]
+  endpoint = "unix:///var/run/docker.sock"
+  exposedByDefault = true
+
+[api]
+dashboard = true
+entrypoint = "dashboard"
+
+[entryPoints]
+  [entryPints.http]
+  address = ":80"
+
+  [entryPints.dashboard]
+  address = ":8080"
+  
+#+end_src
+open localhost:8080
+
 
 * VScode
 *** set the fontsize

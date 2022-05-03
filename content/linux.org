@@ -86,6 +86,19 @@ export LC_CTYPE=zh_CN.UTF-8
 sudo apt-get -y install language-pack-zh-hans
 此应用压制中英文的同步变化, 尽量避免使用中文
 * System configuration collection
+** check port of application
+#+begin_src sh :dir /sudo::  :results output
+ps -aux |grep mongo
+netstat -nap |grep 308267
+#+end_src
+
+#+RESULTS:
+: mongodb   308267  0.9  1.4 1544536 110820 ?      Ssl  21:30   0:25 /usr/bin/mongod --config /etc/mongod.conf
+: root      314541  0.0  0.0  12324   652 pts/4    S+   22:12   0:00 grep mongo
+: tcp        0      0 127.0.0.1:27017         0.0.0.0:*               LISTEN      308267/mongod       
+: unix  2      [ ACC ]     STREAM     LISTENING     4021239  308267/mongod        /tmp/mongodb-27017.sock
+: unix  3      [ ]         STREAM     CONNECTED     4027655  308267/mongod        
+
 ** open fire wall  for port
 sudo apt install firewalld
 add port :

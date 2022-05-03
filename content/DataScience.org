@@ -867,14 +867,11 @@ Consensus, Repication
 
 *** Levels of parallelism
 Bit-level, Instruction level, Data level, Task level
-
 *** Name typical applications for high-performance data analytics
 1. weather forecast
 2. Simulating  kernel fusion,  tokamak reactor
-
 *** Distinguish HPDA from D/P/S computing and how these topics blend
 Stricter than distributed system( strongly scalling: weak scalling)
-
 *** Describe use-cases and challenges in the domain of D/P/S computing
 Recommendation engine
 *** Describe how the scientific method relies on D/P/S computing
@@ -883,15 +880,12 @@ Big Data Analytics extracts insight from data
 *** Name big data challenges and the typical workflow
 how to deal with big data(5Vs)
 Raw-> Descriptive -> Diagnostics -> Predictive -> Prescriptive
-
 *** Recite system characteristics for distributed/parallel/computational science
 *** Sketch generic D/P system architectures
-
 ** Chap02  DataModels & Data Processing Strategies
 *** Define important terminology for data handling and data processing
 Raw data, semantic normalization, Data management plan, Data life cycle,
 data governance,  data provenance...
-
 *** Sketch the ETL process used in data warehouses
 extract from a source database,
 transform with controlling, error and missing treatment, change the layout to fit
@@ -934,13 +928,11 @@ left join: condition strict on left
 right join: condition strict on right
 full join
 **** Transactions
-
+ACID
 *** Define Database, DBMS, and Data Warehouse
 - an organized collection of data
 - software application for user to use the collected data
 - a system used for reporting and data analysis,  with multidimensional data cube
-  
-
 *** Create a relational model for a given problem
 *** Draw an ER(Entity Relational) diagram for a given relational model (and vice versa)
 *** Normalize a small relational model into a redundant-free model
@@ -954,26 +946,22 @@ full join
 - Pivot
 *** Appraise the pro/cons of OLAP vs. traditional relational model
 Star-Schema: pro: simplification of query and performancd gain, emulates OLAP cube
-start-Schema: cons: data integrity is not gurantanted, no natural support of many to many relations
+start-Schema: cons: data integrity is not guaranteed, no natural support of many to many relations, 
 *** Describe DBMS optimizations: index, bulk loading, garbage cleaning
-
-
 ** Chap04 Distributed Storage and Processing with Hadoop
 *** hadoop
 map: filter and convert all input into key-value tuples
 reduce: receives all tuples with the same keys, accumulated
-
 *** Describe the architecture and features of Apache Hadoop
 - HDFS and MapReduce executation engine
-- High availability, automatic recovery
+- High availability,
+- automatic recovery
 - Replication of data
 - Parallel file access
 - Hierarchical namespace
 - Rack-awareness
-  
 *** Formulate simple algorithms using the MapReduce programming model
 *** Justify architectural decisions made in Apache Hadoop
-
 *** Sketch the execution phases of MapReduce and describe their behavior
 1. distributed code
 2. determine fiels
@@ -1014,7 +1002,6 @@ Allow false positives but not false negatives
 *** Sketch the mapping of a (simple) SQL query to a MapReduce job
 ** Chap06
 *** Create a Columnar Data Model (for HBase) for a given use case
-
 *** Justify the reasons and implications behind the HBase storage format
 - medium-size object,
 - stored by row key,
@@ -1030,19 +1017,16 @@ Allow false positives but not false negatives
 *** Provide example data (JSON) for the MongoDB data model and the queries
 *** Sketch the mapping of keys to servers in MongoDB and HBase
 *** Select and justify a suitable shard key for a simple use case
-
 ** Chap07
 *** Define in-memory processing
 Processing of data stored in memory
 - Data will fit in memory
 - Additional persistency is required
 - Fault-tolerance is mandatory
-
 *** Describe the basic data model of Apache Spark and the SQL extension
-it based on RDDs(), which are immutable tuples
+it based on RDDs, which are immutable tuples, (Resilient Distributed Datasets)
 Computation is programmed by transformation,
 lazy evaluation, all computaion is deferred until needed by actions
-
 *** Program a simple data flow algorithm using Spark RDDs
 nums = sc.parallelize(arange(1,100000))
 r1 = nums.filter(lambda x: (x%2) == 1)
@@ -1053,7 +1037,6 @@ r1. = r1.reduce(lambda a,b :a * b)
 - Actions: reduct, count, token, frist
 - Schuffle: repartation
 *** Describe the execution of a simple program on the Spark architecture
-
 ** Chap08
 *** Define stream processing and its basic concepts
 Application for real-time continuous stream-computation for high-velocity data
@@ -1076,7 +1059,7 @@ one tuple may be executed multiple time, and if error occurs, tuple restarted fr
 ** Chap10
 *** List example problems for distributed systems
 Reliable broadcast, Atomic commit, Consensus, Leader election, Replication
-*** Sketch the algorithms for two-phase commit and
+*** Sketch the algorithms for two-phase commit 
 Prepare phase, Commit phase
 *** consistent hashing
 manage the key/value data in distributed system
@@ -1112,7 +1095,6 @@ Color, Size&Shape, Moving,Interpretation of objects,
 - make large data sets coherent
 - serve a reasonably clear purpose
 - be closely integrated with the statistical
-  
 *** Discuss the 4 guidelines for designing graphics on examples
 - Use the right visualization  for data types
 - Use building blocks for graphics (known plot styles)
@@ -1123,7 +1105,6 @@ Color, Size&Shape, Moving,Interpretation of objects,
 - complex system and storage topologies
 - understand the system behavior is difficult
 - data movement of memory and CPU is costly
-  
 *** Discuss the benefit of in-situ and in-transit data analysis
 - in-situ: analyze results while the applications is still running
 - in-transit: analyze data while it is on the IO path
@@ -1131,7 +1112,6 @@ Color, Size&Shape, Moving,Interpretation of objects,
 
 ** Chap12
 *** Sketch a typical I/O stack
-
 *** Develop a NetCDF data model for a given use case
 *** Compare the performance of different storage media
 *** Sketch application types and access patterns
@@ -1144,7 +1124,6 @@ Read-ahead, write-behind, async-IO
 *** Describe a strategy for trustworthy benchmark result
 single-shot: acceptance test
 periodically: regression test
-
 ** 03-01
 #+begin_src sql :engine postgresql :dbhost localhost :dbuser postgres :dbpassword du :database postgres :dbport 5432
     drop table if exists WikipediaArticles ;

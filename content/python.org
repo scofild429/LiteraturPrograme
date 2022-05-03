@@ -3779,6 +3779,30 @@ tf.image.random_flip_up_down(x)
 tf.image.resize(x,[244,244])
 tf.image.random_crop(x,[224,224,3])
 
+* Multi processing
+** map
+#+begin_src python
+  import time
+  import concurrent.futures
+
+  def do_something(n):
+      print(f"sleeping {n} seconds")
+      time.sleep(n)
+      return f"Done {n} seconds sleep"
+
+
+  with concurrent.futures.ProcessPoolExecutor() as executor:
+      secs = [5,4,3,2,1]
+      results = executor.map(do_something, secs)
+
+      for result in results:
+          print(result)
+          
+#+end_src
+
+#+RESULTS:
+
+
 * IDE
 ** emacs
 ** Pycharm
@@ -3876,6 +3900,8 @@ open development and debug mode
 | gg | document begin      |
 | G  | document end        |
 |----+---------------------|
+
+
 
 
 
