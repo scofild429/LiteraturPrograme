@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-05-03 Tue 19:43 -->
+<!-- 2022-05-10 Tue 11:38 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Go</title>
@@ -17,15 +17,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org745bd6b">print</a></li>
-<li><a href="#org035d81a">time</a></li>
-<li><a href="#orgfe4f5fc">sync</a></li>
+<li><a href="#orgd29dcf1">print</a></li>
+<li><a href="#orga979cf9">time</a></li>
+<li><a href="#orge5ed05e">sync</a></li>
+<li><a href="#org6dcf908">go</a></li>
+<li><a href="#org82a763a">chan</a></li>
+<li><a href="#orgb353987">context</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org745bd6b" class="outline-2">
-<h2 id="org745bd6b">print</h2>
-<div class="outline-text-2" id="text-org745bd6b">
+<div id="outline-container-orgd29dcf1" class="outline-2">
+<h2 id="orgd29dcf1">print</h2>
+<div class="outline-text-2" id="text-orgd29dcf1">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import "fmt"
@@ -47,9 +50,9 @@ func main() {
 </div>
 </div>
 
-<div id="outline-container-org035d81a" class="outline-2">
-<h2 id="org035d81a">time</h2>
-<div class="outline-text-2" id="text-org035d81a">
+<div id="outline-container-orga979cf9" class="outline-2">
+<h2 id="orga979cf9">time</h2>
+<div class="outline-text-2" id="text-orga979cf9">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import (
@@ -80,9 +83,9 @@ func main() {
 </div>
 </div>
 
-<div id="outline-container-orgfe4f5fc" class="outline-2">
-<h2 id="orgfe4f5fc">sync</h2>
-<div class="outline-text-2" id="text-orgfe4f5fc">
+<div id="outline-container-orge5ed05e" class="outline-2">
+<h2 id="orge5ed05e">sync</h2>
+<div class="outline-text-2" id="text-orge5ed05e">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import (
@@ -121,9 +124,168 @@ func count(thing string) {
 </pre>
 </div>
 </div>
+
+<div id="outline-container-org6dcf908" class="outline-2">
+<h2 id="org6dcf908">go</h2>
+<div class="outline-text-2" id="text-org6dcf908">
+<div class="org-src-container">
+<pre class="src src-go">package main
+
+import (
+    "fmt"
+    "time"
+)
+
+func main() {
+    var times int
+    go func() {
+	for {
+	}
+    }()
+    go func() {
+	for {
+	}
+    }()
+    go func() {
+	for {
+	}
+    }()
+    go func() {
+	for {
+	}
+    }()
+
+    for times = 0; times &lt;= 10; times++ {
+	fmt.Println("tick", times)
+	time.Sleep(time.Second)
+    }
+}
+
+</pre>
+</div>
+
+<pre class="example">
+tick 0
+tick 1
+tick 2
+tick 3
+tick 4
+tick 5
+tick 6
+tick 7
+tick 8
+tick 9
+tick 10
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org82a763a" class="outline-2">
+<h2 id="org82a763a">chan</h2>
+<div class="outline-text-2" id="text-org82a763a">
+<div class="org-src-container">
+<pre class="src src-go">package main
+import "fmt"
+func main() {
+    // 创建一个整型带两个缓冲的通道
+    ch := make(chan int, 2)
+
+    // 给通道放入两个数据
+    ch &lt;- 0
+    ch &lt;- 1
+
+    // 关闭缓冲
+    close(ch)
+    // 遍历缓冲所有数据, 且多遍历1个
+    for i := 0; i &lt; cap(ch)+1; i++ {
+
+	// 从通道中取出数据
+	v, ok := &lt;-ch
+
+	// 打印取出数据的状态
+	fmt.Println(v, ok)
+    }
+}
+</pre>
+</div>
+
+<pre class="example">
+0 true
+1 true
+0 false
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgb353987" class="outline-2">
+<h2 id="orgb353987"><a id="ID-2bf1c325-6a98-43be-815c-a41934b02756"></a>context</h2>
+<div class="outline-text-2" id="text-orgb353987">
+<div class="org-src-container">
+<pre class="src src-go">package main
+
+import (
+    "fmt"
+    "context"
+    "time"
+)
+
+
+func enrichContext(ctx context.Context) context.Context {
+    return context.WithValue(ctx, "request-id", "11212")
+
+}
+
+func doSomething(ctx context.Context){
+    rID := ctx.Value("request-id")
+    fmt.Println(rID)
+    for {
+	select {
+	case &lt;-ctx.Done():
+	    fmt.Println("times out")
+	    return
+	default:
+	    fmt.Println("doing something cool")
+	}
+	time.Sleep(500*time.Millisecond)
+    }
+}
+
+
+func main (){
+    fmt.Println("Go Context example")
+    ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+    defer cancel()
+    fmt.Println(ctx.Err())
+    ctx = enrichContext(ctx)
+    go doSomething(ctx)
+    select {
+    case &lt;- ctx.Done():
+	fmt.Println("Oh, no, Time is execeed the deadline")
+	fmt.Println(ctx.Err())
+    }
+    time.Sleep(2*time.Second)
+}
+</pre>
+</div>
+
+<pre class="example">
+Go Context example
+&lt;nil&gt;
+11212
+doing something cool
+doing something cool
+doing something cool
+doing something cool
+Oh, no, Time is execeed the deadline
+context deadline exceeded
+times out
+</pre>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2022-05-03 Tue 19:43</p>
+<p class="date">Created: 2022-05-10 Tue 11:38</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
 <p class="validation"></p>
 </div>
