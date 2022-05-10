@@ -28,7 +28,60 @@ python3 -m venv django
 ** pip
 pip freeze > requirement.txt
 pip install -r requirement.txt
+*** ipython
+:PROPERTIES:
+:ID:       6d672724-4e1f-4691-b6ce-02d77bfa0003
+:END:
+
+install ipyton comes error
+#+begin_src
+  AttributeError: 'PtkHistoryAdapter' object has no attribute '_loaded'
+#+end_src
+this is because prompt-toolkit version 2 conflict with ipython,
+upgrade it with
+#+begin_src
+  pip install prompt-toolkit --upgrade
+#+end_src
+
 * GPU Driver for linux
+** install with apt
+:PROPERTIES:
+:ID:       83e059c7-2ffb-4c68-99e5-eea5214dc2bb
+:END:
+
+Am 2022 May 09, monday I install cuda with apt,
+I don't know if this is ready a offer for all, but I still wirte it down
+#+begin_src 
+sudo apt update
+sudo apt upgrade
+ubuntu-drivers devices
+sudo apt install nvidia-driver-510
+reboot
+watch  -n 0.1 nvidia-smi 
+#+end_src
+
+#+begin_src
+sudo apt install zlib1g nvidia-cuda-toolkit
+nvcc -V
+sudo apt install libcudnn8 libcudnn8-dev
+reboot
+#+end_src
+
+#+begin_src
+  pip install virtualenv 
+  python -m virtualenv dlforcvenv
+  cd dlforcvenv
+  source ./bin/activate
+  pip install torch torchvision torchaudio
+#+end_src
+
+#+begin_src
+  pip install notebook
+  python -m jupyter notebook &
+  import torch
+  torch.cuda.is_available(), torch.backends.cudnn.is_available(), torch.cuda.device_count()
+#+end_src
+
 ** install  driver 418-server, cuda 10.1, cudnn 7.6.1 
 #+begin_src 
 1. nouveau to backlist: add following to /etc/modprobe.d/blacklist.conf
@@ -99,24 +152,23 @@ pip install -r requirement.txt
     import tensorflow as tf
     print(tf.test.is_gpu_available())
 #+end_src
-** fixup driver 418-server
-sometime it can be in the case: the communication with nvidia driver is failed,
-to fix it,  using apt install the driver 418-driver from apt again
-** check
-
-#+BEGIN_SRC ipython :results output
-  import tensorflow as tf
-  if (tf.test.is_gpu_available(cuda_only=False, min_cuda_compute_capability=None)==True):
+11.
+    fixup
+    sometime it can be in the case: the communication with nvidia driver is failed,
+    to fix it,  using apt install the driver 418-driver from apt again
+12. 
+    check
+    #+BEGIN_SRC ipython :results output
+    import tensorflow as tf
+    if (tf.test.is_gpu_available(cuda_only=False, min_cuda_compute_capability=None)==True):
       print("using gpu")
-#+END_SRC
+  #+END_SRC
 
 #+RESULTS:
 : WARNING:tensorflow:From <ipython-input-3-77a0022b7707>:2: is_gpu_available (from tensorflow.python.framework.test_util) is deprecated and will be removed in a future version.
 : Instructions for updating:
 : Use `tf.config.list_physical_devices('GPU')` instead.
 : using gpu
-
-
 
 #+begin_src ipython  :results output
   import sys
@@ -130,6 +182,10 @@ to fix it,  using apt install the driver 418-driver from apt again
 * Error
 ** 'int' object is not callable
 trying to assign a variable to the system variable
+** can't open pip installed package
+notebook, or ipython, such package, installed, bu can't open,
+if the package is in the path, we can start it with
+python -m package
 
 * Python Program collection
 ** useful expression
@@ -144,6 +200,7 @@ print(x)
 #+RESULTS:
 : 1
 
+
 Large Number  Formation
 #+begin_src python :results output
 
@@ -155,6 +212,7 @@ print(f'{num1 + num2 :,}')
 
 #+RESULTS:
 : 100,010,000,000
+
 
 
 open with
@@ -1125,6 +1183,31 @@ print(a.merge(b, on='two', how='inner'))
 5      1    0      1     0      3
 #+end_example
 
+** filp
+:PROPERTIES:
+:ID:       6db7b2dc-ccf8-4feb-9ad0-724f66244ad9
+:END:
+
+see numpy document [[https://numpy.org/doc/stable/reference/generated/numpy.flip.html][numpy.flip]]
+#+begin_src python :results output :exports both
+  import numpy as np
+  A = np.array([[1,2,3], [4,5,6], [7,8,9]])
+  print(A)
+  print(A[::-1])
+  print(np.all(A[::-1] == np.flip(A, 0)))
+
+
+#+end_src
+
+#+RESULTS:
+: [[1 2 3]
+:  [4 5 6]
+:  [7 8 9]]
+: [[7 8 9]
+:  [4 5 6]
+:  [1 2 3]]
+: True
+
 * python automotion
 ** system manipulation 
 *** os.getcwd()
@@ -1277,7 +1360,6 @@ $$ \frac{d(out_{ij})}{d(x_{ij})}  = 3(2+4)/4 = 4.5$$
 
 
 
-
 ** Function
 *** x = x.new_ones(4,3)
 
@@ -1325,7 +1407,6 @@ print(torch.max(i, 1))
 : torch.return_types.max(
 : values=tensor([0.4904, 0.9781, 0.2857]),
 : indices=tensor([2, 2, 2]))
-
 
 ** exsample 3 ploy
 #+begin_src ipython :results output
@@ -3779,30 +3860,6 @@ tf.image.random_flip_up_down(x)
 tf.image.resize(x,[244,244])
 tf.image.random_crop(x,[224,224,3])
 
-* Multi processing
-** map
-#+begin_src python
-  import time
-  import concurrent.futures
-
-  def do_something(n):
-      print(f"sleeping {n} seconds")
-      time.sleep(n)
-      return f"Done {n} seconds sleep"
-
-
-  with concurrent.futures.ProcessPoolExecutor() as executor:
-      secs = [5,4,3,2,1]
-      results = executor.map(do_something, secs)
-
-      for result in results:
-          print(result)
-          
-#+end_src
-
-#+RESULTS:
-
-
 * IDE
 ** emacs
 ** Pycharm
@@ -3909,4 +3966,11 @@ open development and debug mode
 
 
 
+* test
+#+begin_src python :results output
+  import os
+  os.system("ls -l")
+#+end_src
+
+#+RESULTS:
 

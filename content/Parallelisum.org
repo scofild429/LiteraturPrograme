@@ -1,0 +1,296 @@
+#+TITLE:  Parallelisum
+#+OPTIONS: num:nil
+#+STARTUP: overview
+* Python
+** Multi Thread
+*** pure thread start
+#+begin_src python :results output :exports both
+  import threading
+
+  def myfunction(a,b):
+      print(a*b)
+  thread1 = threading.Thread(target= myfunction, args=(2,3))
+  thread2 = threading.Thread(target= myfunction, args=(3,4))
+  thread1.start()
+  thread2.start()
+
+#+end_src
+
+#+RESULTS:
+: 6
+: 12
+
+*** thread class
+rewrite __init__  and run in class, which inherit class threading.Thread, and start it with start()
+#+begin_src python :results output :exports both
+  import threading
+  import time
+
+  class myThread(threading.Thread):
+      def __init__(self, threadID, name, counter):
+          threading.Thread.__init__(self)
+          self.threadID = threadID
+          self.name = name
+          self.counter = counter
+      def run(self):
+          print("Starting " + self.name)
+          self.print_time(self.name, 5, self.counter)
+          print("Exiting" + self.name)
+      def print_time(self, threadName, counter, delay):
+          while counter:
+              time.sleep(delay)
+              print(f"{threadName}, {time.ctime(time.time())}")
+              counter -= 1
+  thread1 = myThread(1, "threadone", 1)
+  thread2 = myThread(2, "threadtwo", 2)
+  thread1.start()
+  thread2.start()
+  time.sleep(1)
+  print("Exiting Main Thread.")
+
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Starting threadone
+Starting threadtwo
+threadone, Tue May 10 12:45:22 2022
+Exiting Main Thread.
+threadtwo, Tue May 10 12:45:23 2022
+threadone, Tue May 10 12:45:23 2022
+threadone, Tue May 10 12:45:24 2022
+threadtwo, Tue May 10 12:45:25 2022
+threadone, Tue May 10 12:45:25 2022
+threadone, Tue May 10 12:45:26 2022
+Exitingthreadone
+threadtwo, Tue May 10 12:45:27 2022
+threadtwo, Tue May 10 12:45:29 2022
+threadtwo, Tue May 10 12:45:31 2022
+Exitingthreadtwo
+#+end_example
+
+*** thread with Lock
+#+begin_src python :results output :exports both
+  import threading
+  import time
+
+  myLock = threading.Lock()
+  class myThread(threading.Thread):
+      def __init__(self, threadID, name, counter):
+          threading.Thread.__init__(self)
+          self.threadID = threadID
+          self.name = name
+          self.counter = counter
+      def run(self):
+          print("Starting " + self.name)
+          myLock.acquire()
+          self.print_time(self.name, 5, self.counter)
+          myLock.release()
+          print("Exiting" + self.name)
+      def print_time(self, threadName, counter, delay):
+          while counter:
+              time.sleep(delay)
+              print(f"{threadName}, {time.ctime(time.time())}")
+              counter -= 1
+
+  thread1 = myThread(1, "threadone", 1)
+  thread2 = myThread(2, "threadtwo", 2)
+  thread1.start()
+  thread2.start()
+  time.sleep(1)
+  print("Exiting Main Thread.")
+
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Starting threadone
+Starting threadtwo
+threadone, Tue May 10 12:54:21 2022
+Exiting Main Thread.
+threadone, Tue May 10 12:54:22 2022
+threadone, Tue May 10 12:54:23 2022
+threadone, Tue May 10 12:54:24 2022
+threadone, Tue May 10 12:54:25 2022
+Exitingthreadone
+threadtwo, Tue May 10 12:54:27 2022
+threadtwo, Tue May 10 12:54:29 2022
+threadtwo, Tue May 10 12:54:31 2022
+threadtwo, Tue May 10 12:54:33 2022
+threadtwo, Tue May 10 12:54:35 2022
+Exitingthreadtwo
+#+end_example
+
+
+** Multi processing
+*** pure multi process start
+#+begin_src python :results output :exports both
+  import multiprocessing
+  def myfunction(a,b):
+      print(a*b)
+  process1 = multiprocessing.Process(target=myfunction, args=(2,3))
+  process2 = multiprocessing.Process(target=myfunction, args=(3,4))
+  process1.start()
+  process2.start()
+#+end_src
+
+#+RESULTS:
+: 6
+: 12
+
+*** multi process differ from multi threading
+#+begin_src python :results output :exports both
+  import multiprocessing
+  import threading
+  import random
+
+  def myfunction ():
+      result.append(random.randint(1,10))
+  ####processing
+  result = []
+  process1 = multiprocessing.Process(target=myfunction)
+  process2 = multiprocessing.Process(target=myfunction)
+  process1.start()
+  process2.start()
+  process1.join()
+  process2.join()
+  print("result of multiprocessing", result)
+  ####threading
+  result = []
+  thread1 = threading.Thread(target=myfunction)
+  thread2 = threading.Thread(target=myfunction)
+  thread1.start()
+  thread2.start()
+  thread1.join()
+  thread2.join()
+  print("result of multi threading", result)
+#+end_src
+
+#+RESULTS:
+: result of multiprocessing []
+: result of multi threading [5, 4]
+
+*** Pool
+**** apply
+#+begin_src python :results output :exports both
+  import multiprocessing as mp
+  def myfunction(a, b):
+      return a*b
+
+  pool = mp.Pool(mp.cpu_count())
+  result = [ pool.apply(myfunction, args=(a, 2)) for a in range(1, 100) ]
+  pool.close()
+  print(result)
+
+#+end_src
+
+#+RESULTS:
+: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100, 102, 104, 106, 108, 110, 112, 114, 116, 118, 120, 122, 124, 126, 128, 130, 132, 134, 136, 138, 140, 142, 144, 146, 148, 150, 152, 154, 156, 158, 160, 162, 164, 166, 168, 170, 172, 174, 176, 178, 180, 182, 184, 186, 188, 190, 192, 194, 196, 198]
+
+**** map
+#+begin_src python :results output :exports both
+  import multiprocessing as mp
+  def myfunction(a):
+      return a*a
+
+  pool = mp.Pool(mp.cpu_count())
+  result =  pool.map(myfunction, [a for a in range(1, 100)]) 
+  pool.close()
+  print(result)
+
+#+end_src
+
+#+RESULTS:
+: [1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, 361, 400, 441, 484, 529, 576, 625, 676, 729, 784, 841, 900, 961, 1024, 1089, 1156, 1225, 1296, 1369, 1444, 1521, 1600, 1681, 1764, 1849, 1936, 2025, 2116, 2209, 2304, 2401, 2500, 2601, 2704, 2809, 2916, 3025, 3136, 3249, 3364, 3481, 3600, 3721, 3844, 3969, 4096, 4225, 4356, 4489, 4624, 4761, 4900, 5041, 5184, 5329, 5476, 5625, 5776, 5929, 6084, 6241, 6400, 6561, 6724, 6889, 7056, 7225, 7396, 7569, 7744, 7921, 8100, 8281, 8464, 8649, 8836, 9025, 9216, 9409, 9604, 9801]
+
+**** starmap
+#+begin_src python :results output :exports both
+  import multiprocessing as mp
+  def myfunction(a, b):
+      return a*b
+
+  pool = mp.Pool(mp.cpu_count())
+  result = pool.starmap(myfunction, [(a, 2) for a in range(1, 100)] ) 
+  pool.close()
+  print(result)
+
+#+end_src
+
+#+RESULTS:
+: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100, 102, 104, 106, 108, 110, 112, 114, 116, 118, 120, 122, 124, 126, 128, 130, 132, 134, 136, 138, 140, 142, 144, 146, 148, 150, 152, 154, 156, 158, 160, 162, 164, 166, 168, 170, 172, 174, 176, 178, 180, 182, 184, 186, 188, 190, 192, 194, 196, 198]
+
+**** apply_async
+#+begin_src python :results output :exports both
+  import multiprocessing as mp
+  def myfunction(a, b):
+      return a*b
+
+  pool = mp.Pool(mp.cpu_count())
+  result = [ pool.apply_async(myfunction, args=(a, 2)) for a in range(1, 100)]
+  result = [r.get() for r in result]
+  pool.close()
+  print(result)
+
+#+end_src
+
+#+RESULTS:
+: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100, 102, 104, 106, 108, 110, 112, 114, 116, 118, 120, 122, 124, 126, 128, 130, 132, 134, 136, 138, 140, 142, 144, 146, 148, 150, 152, 154, 156, 158, 160, 162, 164, 166, 168, 170, 172, 174, 176, 178, 180, 182, 184, 186, 188, 190, 192, 194, 196, 198]
+
+**** apply_async with callback, must use wait
+#+begin_src python :results output :exports both
+  import multiprocessing as mp
+  results = []
+  def myfunction(a, b):
+      return a*b
+  def collect_result(result):
+      global results
+      results.append(result)
+
+  pool = mp.Pool(mp.cpu_count())
+  for a in range(1, 100):
+      r = pool.apply_async(myfunction, args=(a, 2), callback=collect_result)
+      r.wait()
+  pool.close()
+
+  print(results)
+#+end_src
+
+#+RESULTS:
+: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100, 102, 104, 106, 108, 110, 112, 114, 116, 118, 120, 122, 124, 126, 128, 130, 132, 134, 136, 138, 140, 142, 144, 146, 148, 150, 152, 154, 156, 158, 160, 162, 164, 166, 168, 170, 172, 174, 176, 178, 180, 182, 184, 186, 188, 190, 192, 194, 196, 198]
+
+
+
+*** map
+
+#+begin_src python :results output  :exports both
+  import time
+  import concurrent.futures
+
+  def do_something(n):
+      print(f"sleeping {n} seconds")
+      time.sleep(n)
+      return f"Done {n} seconds sleep"
+
+
+  with concurrent.futures.ProcessPoolExecutor() as executor:
+      secs = [5,4,3,2,1]
+      results = executor.map(do_something, secs)
+
+      for result in results:
+          print(result)
+          
+#+end_src
+
+#+RESULTS:
+#+begin_example
+sleeping 1 seconds
+sleeping 2 seconds
+sleeping 3 seconds
+sleeping 4 seconds
+sleeping 5 seconds
+Done 5 seconds sleep
+Done 4 seconds sleep
+Done 3 seconds sleep
+Done 2 seconds sleep
+Done 1 seconds sleep
+#+end_example

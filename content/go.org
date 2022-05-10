@@ -79,3 +79,150 @@
 : 4 Sleep
 : 5 Sleep
 
+* go
+#+begin_src go :results output :exports both
+  package main
+
+  import (
+      "fmt"
+      "time"
+  )
+
+  func main() {
+      var times int
+      go func() {
+          for {
+          }
+      }()
+      go func() {
+          for {
+          }
+      }()
+      go func() {
+          for {
+          }
+      }()
+      go func() {
+          for {
+          }
+      }()
+
+      for times = 0; times <= 10; times++ {
+          fmt.Println("tick", times)
+          time.Sleep(time.Second)
+      }
+  }
+
+#+end_src
+
+#+RESULTS:
+#+begin_example
+tick 0
+tick 1
+tick 2
+tick 3
+tick 4
+tick 5
+tick 6
+tick 7
+tick 8
+tick 9
+tick 10
+#+end_example
+
+* chan
+#+begin_src go :results output :exports both
+  package main
+  import "fmt"
+  func main() {
+      // 创建一个整型带两个缓冲的通道
+      ch := make(chan int, 2)
+	
+      // 给通道放入两个数据
+      ch <- 0
+      ch <- 1
+	
+      // 关闭缓冲
+      close(ch)
+      // 遍历缓冲所有数据, 且多遍历1个
+      for i := 0; i < cap(ch)+1; i++ {
+		
+          // 从通道中取出数据
+          v, ok := <-ch
+		
+          // 打印取出数据的状态
+          fmt.Println(v, ok)
+      }
+  }
+#+end_src
+
+#+RESULTS:
+: 0 true
+: 1 true
+: 0 false
+
+* context
+:PROPERTIES:
+:ID:       2bf1c325-6a98-43be-815c-a41934b02756
+:END:
+
+#+begin_src  go :results output :exports both
+  package main
+
+  import (
+      "fmt"
+      "context"
+      "time"
+  )
+
+
+  func enrichContext(ctx context.Context) context.Context {
+      return context.WithValue(ctx, "request-id", "11212")
+
+  }
+
+  func doSomething(ctx context.Context){
+      rID := ctx.Value("request-id")
+      fmt.Println(rID)
+      for {
+          select {
+          case <-ctx.Done():
+              fmt.Println("times out")
+              return
+          default:
+              fmt.Println("doing something cool")
+          }
+          time.Sleep(500*time.Millisecond)
+      }
+  }
+
+
+  func main (){
+      fmt.Println("Go Context example")
+      ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+      defer cancel()
+      fmt.Println(ctx.Err())
+      ctx = enrichContext(ctx)
+      go doSomething(ctx)
+      select {
+      case <- ctx.Done():
+          fmt.Println("Oh, no, Time is execeed the deadline")
+          fmt.Println(ctx.Err())
+      }
+      time.Sleep(2*time.Second)
+  }
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Go Context example
+<nil>
+11212
+doing something cool
+doing something cool
+doing something cool
+doing something cool
+Oh, no, Time is execeed the deadline
+context deadline exceeded
+times out
+#+end_example

@@ -198,9 +198,10 @@
 ;;   :config
 ;;   (add-hook 'irony-mode-hook #'irony-eldoc))
 
-(use-package ob-ipython
-  :ensure t
-  )
+;; (use-package ob-ipython
+;;   :ensure t
+;;   )
+;;(setq ob-ipython-command "/home/si/.local/bin/jupyter")
 (use-package ein
   :ensure t
   )
@@ -856,34 +857,33 @@ With one universal prefix argument, only tangle the block at point."
 :bind (("C-x g" . magit-status)))
 
 (global-set-key "\C-\M-l" 'latex-math-preview-insert-mathematical-symbol)
-  ;; bigger latex fragment: put this into the init.el, otherweise this will not be executed
-  (plist-put org-format-latex-options :scale 3.0)
-  (setq org-format-latex-options (plist-put org-format-latex-options :scale 4))
+;; bigger latex fragment: put this into the init.el, otherweise this will not be executed
+(plist-put org-format-latex-options :scale 3.0)
+(setq org-format-latex-options (plist-put org-format-latex-options :scale 4))
 
-  (require 'org)
+(require 'org)
 
+(setq org-latex-create-formula-image-program 'dvipng)
 
-  (setq org-latex-create-formula-image-program 'dvipng)
+(use-package tex
+  :ensure auctex)
 
-  (use-package tex
-    :ensure auctex)
+(setq Tex-auto-save t)
+(setq Tex-parse-self t)
+(setq-default Tex-master nil)
 
-  (setq Tex-auto-save t)
-  (setq Tex-parse-self t)
-  (setq-default Tex-master nil)
+(setq org-latex-compiler "xelatex")
 
-  (setq org-latex-compiler "xelatex")
+;;enable cdlatex
+(use-package cdlatex
+  :ensure t
+  )
 
-  ;;enable cdlatex
-  (use-package cdlatex
-    :ensure t
-    )
+(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 
-  (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
-
-  (add-hook 'LaTeX-mode-hook
-            (lambda ()
-              (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex --synctex=1%(mode)%' %t" TeX-run-TeX nil t))))
+(add-hook 'LaTeX-mode-hook
+          (lambda ()
+            (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex --synctex=1%(mode)%' %t" TeX-run-TeX nil t))))
 
 ;; (use-package org-fragtog
 ;;   :after org
@@ -1100,7 +1100,6 @@ With one universal prefix argument, only tangle the block at point."
 (setq org-capture-templates
 '(
   ("a" "Appointment" entry (file+headline "~/Dropbox/Note/gcal.org"     "Appointment")  "* %u %? " :prepend t)
-  ;;("n" "TagsNote"    entry (file+headline "~/Dropbox/Note/Note.org.gpg"        "TagsNote")     "* %u %? " :prepend t)
   ("n" "TagsNote"    entry (file+headline "~/Dropbox/Note/Appointment.org"        "TagsNote")     "* %u %? " :prepend t)
 ;; ("m" "Math"          entry (file+headline "~/Dropbox/Sprache/Math/Math.org"           "Math")  "* %u %? " :prepend t)
 ;; ("p" "Physik"        entry (file+headline "~/Dropbox/Sprache/Physik/Physik.org"      "Physik")  "* %u %? " :prepend t)
@@ -1277,7 +1276,7 @@ With one universal prefix argument, only tangle the block at point."
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((python . t)
-     (ipython . t)
+     ;; (ipython . t)
      (emacs-lisp . t)
      (java . t)
      (shell . t)
@@ -1695,15 +1694,15 @@ managers such as DWM, BSPWM refer to this state as 'monocle'."
     (setq prot/window-configuration (current-window-configuration))
     (delete-other-windows)))
 
-(setq package-check-signature nil)
-(use-package org-gcal
-  :ensure t
-  :config
-  (setq org-gcal-client-id "921003958407-21dlp5gjdfglf5efbdqgdcegoou3upcq.apps.googleusercontent.com"
-        org-gcal-client-secret "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"
-        org-gcal-file-alist '(("scofild429@gmail.com" .  "~/Dropbox/Note/gcal.org"))))
-(add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
-(add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
+;; (setq package-check-signature nil)
+;; (use-package org-gcal
+;;   :ensure t
+;;   :config
+;;   (setq org-gcal-client-id "921003958407-21dlp5gjdfglf5efbdqgdcegoou3upcq.apps.googleusercontent.com"
+;;         org-gcal-client-secret "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"
+;;         org-gcal-file-alist '(("scofild429@gmail.com" .  "~/Dropbox/Note/gcal.org"))))
+;; (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
+;; (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
 
 (load "~/.emacs.d/packages/svg.el")
 (require 'svg)
