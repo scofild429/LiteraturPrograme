@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-06-24 Fri 12:20 -->
+<!-- 2022-06-24 Fri 12:34 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Master Theorem and examples</title>
@@ -39,35 +39,35 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd5683ae">Master Theorem</a></li>
-<li><a href="#org40bce1e">1 \(T(n) = 3T(n/2) + n^{2}\)</a></li>
-<li><a href="#org0525684">2 \(T(n) = 4T(n/2) + n^{2}\)</a></li>
-<li><a href="#orge1f3b33">3 \(T(n) = T(n/2) + 2^{n}\)</a></li>
-<li><a href="#orge8b58c5">4 \(T(n) = 2^{n}T(n/2) + n^{n}\)</a></li>
-<li><a href="#org2996f96">5 \(T(n) = 16T(n/4) + n\)</a></li>
-<li><a href="#orgbfde4c7">6 \(T(n) = 2T(n/2) + nlogn\)</a></li>
-<li><a href="#orgf5b305e">7 \(2T(n) = 2T(n/2) + n/logn\)</a></li>
-<li><a href="#orgac51a2e">8 \(T(n) = 2T(n/4) + n^{0.51}\)</a></li>
-<li><a href="#orgdeb2b40">9 \(T(n) = 0.5T(n/2) +1/n\)</a></li>
-<li><a href="#org5737934">10 \(T(n) = 16T(n/4) + n!\)</a></li>
-<li><a href="#orge5d8b8b">11 \(T(n) = \sqrt{2} T(n/2) + logn\)</a></li>
-<li><a href="#org88cea88">12 \(T(n) = 3T(n/2) +n\)</a></li>
-<li><a href="#org3687f3a">13 \(T(n) = 3T(n/3) +\sqrt{n}\)</a></li>
-<li><a href="#org7638da7">14 \(T(n) = 4T(n/2) + cn\)</a></li>
-<li><a href="#org33b3403">15 \(T(n) = 3T(n/4) + nlogn\)</a></li>
-<li><a href="#org86baf9d">16 \(T(n) = 3T(n/3) + n/2\)</a></li>
-<li><a href="#org2c345d8">17 \(T(n) = 6T(n/3) +n^{2}logn\)</a></li>
-<li><a href="#org0e3ae7f">18 \(T(n) = 4T(n/2) + n/logn\)</a></li>
-<li><a href="#org1d075bc">19 \(T(n) = 64T(n/8) -n^{2}logn\)</a></li>
-<li><a href="#orgc372b88">20 \(T(n) = 7T(n/3) + n^{2}\)</a></li>
-<li><a href="#org9dacef0">21 \(T(n) = 4T(n/2) + logn\)</a></li>
-<li><a href="#org64febfa">22 \(T(n) = T(n/2) + n(2-cosn)\)</a></li>
+<li><a href="#org83aebe7">Master Theorem</a></li>
+<li><a href="#org5226665">1 \(T(n) = 3T(n/2) + n^{2}\)</a></li>
+<li><a href="#org91097af">2 \(T(n) = 4T(n/2) + n^{2}\)</a></li>
+<li><a href="#org17d7c20">3 \(T(n) = T(n/2) + 2^{n}\)</a></li>
+<li><a href="#org808f97d">4 \(T(n) = 2^{n}T(n/2) + n^{n}\)</a></li>
+<li><a href="#org2ef58ef">5 \(T(n) = 16T(n/4) + n\)</a></li>
+<li><a href="#org257ec0e">6 \(T(n) = 2T(n/2) + nlogn\)</a></li>
+<li><a href="#orga84be2a">7 \(2T(n) = 2T(n/2) + n/logn\)</a></li>
+<li><a href="#org42d4c32">8 \(T(n) = 2T(n/4) + n^{0.51}\)</a></li>
+<li><a href="#orge9e8e92">9 \(T(n) = 0.5T(n/2) +1/n\)</a></li>
+<li><a href="#orgbcc510a">10 \(T(n) = 16T(n/4) + n!\)</a></li>
+<li><a href="#org009b3e5">11 \(T(n) = \sqrt{2} T(n/2) + logn\)</a></li>
+<li><a href="#orgb87857c">12 \(T(n) = 3T(n/2) +n\)</a></li>
+<li><a href="#org0a85b32">13 \(T(n) = 3T(n/3) +\sqrt{n}\)</a></li>
+<li><a href="#orgc277356">14 \(T(n) = 4T(n/2) + cn\)</a></li>
+<li><a href="#org26dcdab">15 \(T(n) = 3T(n/4) + nlogn\)</a></li>
+<li><a href="#org4eb655a">16 \(T(n) = 3T(n/3) + n/2\)</a></li>
+<li><a href="#orge348f9b">17 \(T(n) = 6T(n/3) +n^{2}logn\)</a></li>
+<li><a href="#org4f227ab">18 \(T(n) = 4T(n/2) + n/logn\)</a></li>
+<li><a href="#org6b4f344">19 \(T(n) = 64T(n/8) -n^{2}logn\)</a></li>
+<li><a href="#orge42b95d">20 \(T(n) = 7T(n/3) + n^{2}\)</a></li>
+<li><a href="#org01c980a">21 \(T(n) = 4T(n/2) + logn\)</a></li>
+<li><a href="#org10a315d">22 \(T(n) = T(n/2) + n(2-cosn)\)</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd5683ae" class="outline-2">
-<h2 id="orgd5683ae">Master Theorem</h2>
-<div class="outline-text-2" id="text-orgd5683ae">
+<div id="outline-container-org83aebe7" class="outline-2">
+<h2 id="org83aebe7">Master Theorem</h2>
+<div class="outline-text-2" id="text-org83aebe7">
 <p>
 In a Recursive process, we can form this,  \[ T_n = a \cdot T(\frac{n}{b}) + f(n) \],
 for  \(a \geq 1\), \(b \geq 1\). T 代表递归符号,   a: 每次递归后重复的次数,
@@ -110,9 +110,9 @@ if not, Master Theorem can't be used in this case
 
 
 
-<div id="outline-container-org40bce1e" class="outline-2">
-<h2 id="org40bce1e">1 \(T(n) = 3T(n/2) + n^{2}\)</h2>
-<div class="outline-text-2" id="text-org40bce1e">
+<div id="outline-container-org5226665" class="outline-2">
+<h2 id="org5226665">1 \(T(n) = 3T(n/2) + n^{2}\)</h2>
+<div class="outline-text-2" id="text-org5226665">
 <p>
 a = 3,
 </p>
@@ -145,9 +145,9 @@ so \(T(n)  = \Omega(f(n)) = \Omega(n^{2})\)
 </div>
 
 
-<div id="outline-container-org0525684" class="outline-2">
-<h2 id="org0525684">2 \(T(n) = 4T(n/2) + n^{2}\)</h2>
-<div class="outline-text-2" id="text-org0525684">
+<div id="outline-container-org91097af" class="outline-2">
+<h2 id="org91097af">2 \(T(n) = 4T(n/2) + n^{2}\)</h2>
+<div class="outline-text-2" id="text-org91097af">
 <p>
 a = 4 
 </p>
@@ -167,9 +167,9 @@ b = 2
 </div>
 
 
-<div id="outline-container-orge1f3b33" class="outline-2">
-<h2 id="orge1f3b33">3 \(T(n) = T(n/2) + 2^{n}\)</h2>
-<div class="outline-text-2" id="text-orge1f3b33">
+<div id="outline-container-org17d7c20" class="outline-2">
+<h2 id="org17d7c20">3 \(T(n) = T(n/2) + 2^{n}\)</h2>
+<div class="outline-text-2" id="text-org17d7c20">
 <p>
 a = 1, b = 2
 </p>
@@ -192,9 +192,9 @@ Regularity condition:
 </div>
 
 
-<div id="outline-container-orge8b58c5" class="outline-2">
-<h2 id="orge8b58c5">4 \(T(n) = 2^{n}T(n/2) + n^{n}\)</h2>
-<div class="outline-text-2" id="text-orge8b58c5">
+<div id="outline-container-org808f97d" class="outline-2">
+<h2 id="org808f97d">4 \(T(n) = 2^{n}T(n/2) + n^{n}\)</h2>
+<div class="outline-text-2" id="text-org808f97d">
 <p>
 \(a = 2^{n}\), b = 2,
 </p>
@@ -211,9 +211,9 @@ Regularity condition:
 </div>
 
 
-<div id="outline-container-org2996f96" class="outline-2">
-<h2 id="org2996f96">5 \(T(n) = 16T(n/4) + n\)</h2>
-<div class="outline-text-2" id="text-org2996f96">
+<div id="outline-container-org2ef58ef" class="outline-2">
+<h2 id="org2ef58ef">5 \(T(n) = 16T(n/4) + n\)</h2>
+<div class="outline-text-2" id="text-org2ef58ef">
 <p>
 a = 16, b = 4;
 </p>
@@ -230,9 +230,9 @@ a = 16, b = 4;
 
 
 
-<div id="outline-container-orgbfde4c7" class="outline-2">
-<h2 id="orgbfde4c7">6 \(T(n) = 2T(n/2) + nlogn\)</h2>
-<div class="outline-text-2" id="text-orgbfde4c7">
+<div id="outline-container-org257ec0e" class="outline-2">
+<h2 id="org257ec0e">6 \(T(n) = 2T(n/2) + nlogn\)</h2>
+<div class="outline-text-2" id="text-org257ec0e">
 <p>
 a = 2, b = 2
 \(n^{\log_{b}^{a}} =n\)
@@ -251,9 +251,9 @@ But in the extend of second case:
 </div>
 
 
-<div id="outline-container-orgf5b305e" class="outline-2">
-<h2 id="orgf5b305e">7 \(2T(n) = 2T(n/2) + n/logn\)</h2>
-<div class="outline-text-2" id="text-orgf5b305e">
+<div id="outline-container-orga84be2a" class="outline-2">
+<h2 id="orga84be2a">7 \(2T(n) = 2T(n/2) + n/logn\)</h2>
+<div class="outline-text-2" id="text-orga84be2a">
 <p>
 a = 2, b = 2,
 \(n^{\log_{b}^{a}} =n\)
@@ -274,9 +274,9 @@ But in the extend of second case for k = -1:
 
 
 
-<div id="outline-container-orgac51a2e" class="outline-2">
-<h2 id="orgac51a2e">8 \(T(n) = 2T(n/4) + n^{0.51}\)</h2>
-<div class="outline-text-2" id="text-orgac51a2e">
+<div id="outline-container-org42d4c32" class="outline-2">
+<h2 id="org42d4c32">8 \(T(n) = 2T(n/4) + n^{0.51}\)</h2>
+<div class="outline-text-2" id="text-org42d4c32">
 <p>
 a = 2, b = 4,
 \(n^{\log_{b}^{a}} = n^{1/2} = \Omega(n^{0.51})\)
@@ -298,9 +298,9 @@ Regularity Condition:
 
 
 
-<div id="outline-container-orgdeb2b40" class="outline-2">
-<h2 id="orgdeb2b40">9 \(T(n) = 0.5T(n/2) +1/n\)</h2>
-<div class="outline-text-2" id="text-orgdeb2b40">
+<div id="outline-container-orge9e8e92" class="outline-2">
+<h2 id="orge9e8e92">9 \(T(n) = 0.5T(n/2) +1/n\)</h2>
+<div class="outline-text-2" id="text-orge9e8e92">
 <p>
 a = 1/2, b = 2,
 </p>
@@ -316,9 +316,9 @@ a = 1/2, b = 2,
 </div>
 
 
-<div id="outline-container-org5737934" class="outline-2">
-<h2 id="org5737934">10 \(T(n) = 16T(n/4) + n!\)</h2>
-<div class="outline-text-2" id="text-org5737934">
+<div id="outline-container-orgbcc510a" class="outline-2">
+<h2 id="orgbcc510a">10 \(T(n) = 16T(n/4) + n!\)</h2>
+<div class="outline-text-2" id="text-orgbcc510a">
 <p>
 a = 16, b = 4,
 \(n^{\log_{b}^{a}} = n^{2} = \Omega(f(n))\)
@@ -337,9 +337,9 @@ Regularity condition:
 </div>
 
 
-<div id="outline-container-orge5d8b8b" class="outline-2">
-<h2 id="orge5d8b8b">11 \(T(n) = \sqrt{2} T(n/2) + logn\)</h2>
-<div class="outline-text-2" id="text-orge5d8b8b">
+<div id="outline-container-org009b3e5" class="outline-2">
+<h2 id="org009b3e5">11 \(T(n) = \sqrt{2} T(n/2) + logn\)</h2>
+<div class="outline-text-2" id="text-org009b3e5">
 <p>
 \(a = \sqrt{2}\), b = 2,
 </p>
@@ -355,9 +355,9 @@ Regularity condition:
 </div>
 
 
-<div id="outline-container-org88cea88" class="outline-2">
-<h2 id="org88cea88">12 \(T(n) = 3T(n/2) +n\)</h2>
-<div class="outline-text-2" id="text-org88cea88">
+<div id="outline-container-orgb87857c" class="outline-2">
+<h2 id="orgb87857c">12 \(T(n) = 3T(n/2) +n\)</h2>
+<div class="outline-text-2" id="text-orgb87857c">
 <p>
 a = 3, b = 2
 \(n^{\log_{b}^{a}} =n^{\log_{2}^{3}} = O(f(n))\)
@@ -370,9 +370,9 @@ a = 3, b = 2
 </div>
 
 
-<div id="outline-container-org3687f3a" class="outline-2">
-<h2 id="org3687f3a">13 \(T(n) = 3T(n/3) +\sqrt{n}\)</h2>
-<div class="outline-text-2" id="text-org3687f3a">
+<div id="outline-container-org0a85b32" class="outline-2">
+<h2 id="org0a85b32">13 \(T(n) = 3T(n/3) +\sqrt{n}\)</h2>
+<div class="outline-text-2" id="text-org0a85b32">
 <p>
 a = 3, b = 3
 </p>
@@ -388,9 +388,9 @@ a = 3, b = 3
 </div>
 
 
-<div id="outline-container-org7638da7" class="outline-2">
-<h2 id="org7638da7">14 \(T(n) = 4T(n/2) + cn\)</h2>
-<div class="outline-text-2" id="text-org7638da7">
+<div id="outline-container-orgc277356" class="outline-2">
+<h2 id="orgc277356">14 \(T(n) = 4T(n/2) + cn\)</h2>
+<div class="outline-text-2" id="text-orgc277356">
 <p>
 a = 4, b =2,
 </p>
@@ -407,9 +407,9 @@ a = 4, b =2,
 </div>
 
 
-<div id="outline-container-org33b3403" class="outline-2">
-<h2 id="org33b3403">15 \(T(n) = 3T(n/4) + nlogn\)</h2>
-<div class="outline-text-2" id="text-org33b3403">
+<div id="outline-container-org26dcdab" class="outline-2">
+<h2 id="org26dcdab">15 \(T(n) = 3T(n/4) + nlogn\)</h2>
+<div class="outline-text-2" id="text-org26dcdab">
 <p>
 a = 3, b = 4,
 </p>
@@ -437,9 +437,9 @@ so, \(T(n) = \Theta(n\log n)\)
 </div>
 
 
-<div id="outline-container-org86baf9d" class="outline-2">
-<h2 id="org86baf9d">16 \(T(n) = 3T(n/3) + n/2\)</h2>
-<div class="outline-text-2" id="text-org86baf9d">
+<div id="outline-container-org4eb655a" class="outline-2">
+<h2 id="org4eb655a">16 \(T(n) = 3T(n/3) + n/2\)</h2>
+<div class="outline-text-2" id="text-org4eb655a">
 <p>
 a = 3, b = 3,
 </p>
@@ -455,9 +455,9 @@ a = 3, b = 3,
 </div>
 
 
-<div id="outline-container-org2c345d8" class="outline-2">
-<h2 id="org2c345d8">17 \(T(n) = 6T(n/3) +n^{2}logn\)</h2>
-<div class="outline-text-2" id="text-org2c345d8">
+<div id="outline-container-orge348f9b" class="outline-2">
+<h2 id="orge348f9b">17 \(T(n) = 6T(n/3) +n^{2}logn\)</h2>
+<div class="outline-text-2" id="text-orge348f9b">
 <p>
 a = 6, b = 3
 \(n^{\log_{b}^{a}} = n^{\log_{3}^{6}} = \Omega(f(n))\)
@@ -476,9 +476,9 @@ Regularity condition:
 </div>
 
 
-<div id="outline-container-org0e3ae7f" class="outline-2">
-<h2 id="org0e3ae7f">18 \(T(n) = 4T(n/2) + n/logn\)</h2>
-<div class="outline-text-2" id="text-org0e3ae7f">
+<div id="outline-container-org4f227ab" class="outline-2">
+<h2 id="org4f227ab">18 \(T(n) = 4T(n/2) + n/logn\)</h2>
+<div class="outline-text-2" id="text-org4f227ab">
 <p>
 a = 4, b = 2,
 </p>
@@ -494,9 +494,9 @@ a = 4, b = 2,
 </div>
 
 
-<div id="outline-container-org1d075bc" class="outline-2">
-<h2 id="org1d075bc">19 \(T(n) = 64T(n/8) -n^{2}logn\)</h2>
-<div class="outline-text-2" id="text-org1d075bc">
+<div id="outline-container-org6b4f344" class="outline-2">
+<h2 id="org6b4f344">19 \(T(n) = 64T(n/8) -n^{2}logn\)</h2>
+<div class="outline-text-2" id="text-org6b4f344">
 <p>
 a = 64, b = 8,
 \(n^{\log_{b}^{a}} = n^{2}\)
@@ -514,9 +514,9 @@ so \(T(n) = \Theta(n^{2}log^{2}n)\)
 </div>
 
 
-<div id="outline-container-orgc372b88" class="outline-2">
-<h2 id="orgc372b88">20 \(T(n) = 7T(n/3) + n^{2}\)</h2>
-<div class="outline-text-2" id="text-orgc372b88">
+<div id="outline-container-orge42b95d" class="outline-2">
+<h2 id="orge42b95d">20 \(T(n) = 7T(n/3) + n^{2}\)</h2>
+<div class="outline-text-2" id="text-orge42b95d">
 <p>
 a = 7, b = 3,
 </p>
@@ -540,9 +540,9 @@ Regularity condition:
 </div>
 
 
-<div id="outline-container-org9dacef0" class="outline-2">
-<h2 id="org9dacef0">21 \(T(n) = 4T(n/2) + logn\)</h2>
-<div class="outline-text-2" id="text-org9dacef0">
+<div id="outline-container-org01c980a" class="outline-2">
+<h2 id="org01c980a">21 \(T(n) = 4T(n/2) + logn\)</h2>
+<div class="outline-text-2" id="text-org01c980a">
 <p>
 a = 4, b = 2,
 </p>
@@ -559,9 +559,9 @@ a = 4, b = 2,
 
 
 
-<div id="outline-container-org64febfa" class="outline-2">
-<h2 id="org64febfa">22 \(T(n) = T(n/2) + n(2-cosn)\)</h2>
-<div class="outline-text-2" id="text-org64febfa">
+<div id="outline-container-org10a315d" class="outline-2">
+<h2 id="org10a315d">22 \(T(n) = T(n/2) + n(2-cosn)\)</h2>
+<div class="outline-text-2" id="text-org10a315d">
 <p>
 a = 1, b = 2,
 </p>
@@ -583,7 +583,7 @@ if \(af(n/b) < c f(n)\), for c &lt;1.
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2022-06-24 Fri 12:20</p>
+<p class="date">Created: 2022-06-24 Fri 12:34</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
 <p class="validation"></p>
 </div>
