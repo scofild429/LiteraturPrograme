@@ -3,6 +3,8 @@
 (global-set-key (kbd "C-M-,") 'menu-bar-mode)
 (global-set-key (kbd "C-M-q") 'ivy-switch-buffer-kill)
 
+(setq undo-tree-auto-save-history nil)
+
 (setq colon-double-space t)
 ;; tell the Emacs fill commands to insert two spaces after a colon:
 
@@ -44,13 +46,11 @@
 ;;        x-super-keysym 'meta)
 
 ;; open terminal 
-(global-set-key "\C-\M-x" 'term)  
-
+;; (global-set-key "\C-\M-x" 'term)
+(global-set-key "\C-x\ \C-x" 'term)
+;; C-c b to jump out of term mode
 ;; open  eshell
-(global-set-key "\C-x\ \C-x" 'eshell)
-
-;; load ./bashrc
-(setq shell-command-switch "-ic")
+;; (global-set-key "\C-x\ \C-x" 'shell)
 
 ;;open init.el file with f1
 (defun open-my-init-file()
@@ -75,7 +75,6 @@
   (interactive)
   (find-file "~/Dropbox/Note/Note.org.gpg"))
 (global-set-key (kbd "<f4>") 'open-my-tagsnote-file)
-
 
 ;; trun off cl warning
 (setq byte-compile-warnings '(cl-functions))
@@ -118,48 +117,36 @@
 ;; toggle the hi lock mode to highlight with command
  (global-hi-lock-mode 1)
 
+(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "S-C-<down>") 'shrink-window)
+(global-set-key (kbd "S-C-<up>") 'enlarge-window)
+(global-set-key [f12] 'global-visual-fill-column-mode)
+(global-set-key (kbd "M-p") 'backward-list)
+(global-set-key (kbd "M-n") 'forward-list)
+
+(setq default-frame-alist
+      '(
+        (top . 200)
+        (left . 400)
+        (width . 200)
+        (height . 100)
+        ;; (cursor-color . "white")
+        ;; (cursor-type . box)
+        ;; (foreground-color . "yellow")
+        ;; (background-color . "black")
+        (font . "-*-Courier-normal-r-*-*-13-*-*-*-c-*-iso8859-1")
+        ))
+(setq initial-frame-alist '((top . 10) (left . 30)))
+
 (use-package rainbow-delimiters)
 (rainbow-delimiters-mode 1)
 (add-hook 'web-mode-hook #'rainbow-delimiters-mode)
 (add-hook 'org-mode-hook #'rainbow-delimiters-mode)
 
-(use-package term
-  :config
-  (setq explicit-shell-file-name "bash") ;; Change this to zsh, etc
-  ;; Match the default Bash shell prompt.  Update this if you have a custom prompt
-  (setq term-prompt-regexp "^[^#$%>\n]*[#$%>] *"))
-
-(defun efs/configure-eshell ()
-  ;; Save command history when commands are entered
-  (add-hook 'eshell-pre-command-hook 'eshell-save-some-history)
-
-  ;; Truncate buffer for performance
-  (add-to-list 'eshell-output-filter-functions 'eshell-truncate-buffer)
-
-  ;; Bind some useful keys for evil-mode
-  (evil-define-key '(normal insert visual) eshell-mode-map (kbd "C-r") 'counsel-esh-history)
-  (evil-define-key '(normal insert visual) eshell-mode-map (kbd "<home>") 'eshell-bol)
-  (evil-normalize-keymaps)
-
-  (setq eshell-history-size         10000
-        eshell-buffer-maximum-lines 10000
-        eshell-hist-ignoredups t
-        eshell-scroll-to-bottom-on-input t))
-
-(use-package eshell-git-prompt
-  :ensure t)
-
-(use-package eshell
-  :hook (eshell-first-time-mode . efs/configure-eshell)
-  :config
-  (with-eval-after-load 'esh-opt
-    (setq eshell-destroy-buffer-when-process-dies t)
-    (setq eshell-visual-commands '("htop" "zsh" "vim")))
-  (eshell-git-prompt-use-theme 'powerline))
-
 (use-package eglot
   :ensure t
- )
+  )
 (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
 (add-to-list 'eglot-server-programs '(web-mode "vls"))
 (add-hook 'c-mode-hook 'eglot-ensure)
@@ -168,43 +155,42 @@
 (add-hook 'vue-mode-hook 'eglot-ensure)
 (add-hook ' python-mode-hook 'eglot-ensure)
 
-;; (use-package irony
-;;   :ensure t
-;;   :config
-;;   (add-hook 'c++-mode-hook 'irony-mode)
-;;   (add-hook 'c-mode-hook 'irony-mode)
-;;   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+(use-package irony
+  :ensure t
+  :config
+  (add-hook 'c++-mode-hook 'irony-mode)
+  (add-hook 'c-mode-hook 'irony-mode)
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
-;; (use-package company-irony
-;;   :ensure t
-;;   :config
-;;   (require 'company)
-;;   (add-to-list 'company-backends 'company-irony))
+(use-package company-irony
+  :ensure t
+  :config
+  (require 'company)
+  (add-to-list 'company-backends 'company-irony))
 
-;; (with-eval-after-load 'company
-;;   (add-hook 'company-hook 'company-mode)
-;;   (add-hook 'c-mode-hook 'company-mode))
+(with-eval-after-load 'company
+  (add-hook 'company-hook 'company-mode)
+  (add-hook 'c-mode-hook 'company-mode))
 
-;; (use-package company-irony-c-headers
-;;   :ensure t)
+(use-package company-irony-c-headers
+  :ensure t)
 
-;; (use-package flycheck-irony
-;;   :ensure t
-;;   :config
-;;   (add-hook 'flycheck-mode-hook 'flycheck-irony-setup))
+(use-package flycheck-irony
+  :ensure t
+  :config
+  (add-hook 'flycheck-mode-hook 'flycheck-irony-setup))
 
-;; (use-package irony-eldoc
-;;   :ensure t
-;;   :config
-;;   (add-hook 'irony-mode-hook #'irony-eldoc))
+(use-package irony-eldoc
+  :ensure t
+  :config
+  (add-hook 'irony-mode-hook #'irony-eldoc))
 
 ;; (use-package ob-ipython
 ;;   :ensure t
 ;;   )
-;;(setq ob-ipython-command "/home/si/.local/bin/jupyter")
-(use-package ein
-  :ensure t
-  )
+;; (use-package ein
+;;   :ensure t
+;;   )
 
 (use-package python
   :ensure t
@@ -273,8 +259,8 @@
 ;; :ensure t
 ;; :hook (python-mode . lsp-deferred))
 
-(use-package jupyter
-    :ensure )
+;; (use-package jupyter
+  ;;   :ensure )
 
 ;; (add-to-list 'load-path "/snap/bin/jupyter")
 ;; (require 'jupyter)
@@ -395,12 +381,6 @@ With one universal prefix argument, only tangle the block at point."
                     (rename-buffer (concat "*" buf-name "*"))))
                 (send-to-haskell/file-with-buffer out-file tangled-buffer))))
           nil)))))
-
-(global-set-key (kbd "S-C-<right>") 'shrink-window-horizontally)
-(global-set-key (kbd "S-C-<left>") 'enlarge-window-horizontally)
-(global-set-key (kbd "S-C-<down>") 'shrink-window)
-(global-set-key (kbd "S-C-<up>") 'enlarge-window)
-(global-set-key (kbd "<f12>") 'visual-fill-column-mode)
 
 (setq x-select-enable-primary t)
 (setq select-enable-primary t)
@@ -593,13 +573,15 @@ With one universal prefix argument, only tangle the block at point."
 
 (provide 'echo-keys)
 
-;;     (use-package cnfonts
-;;     :ensure t
-;;     :config )
-;;    (cnfonts-mode 1)
-;;     (cnfonts-enable)
-;; ;;     让 spacemacs mode-line 中的 Unicode 图标正确显示。
-;;     (cnfonts-set-spacemacs-fallback-fonts)
+(use-package cnfonts
+  :ensure t
+  :config )
+
+(require 'cnfonts)
+;; 让 cnfonts 随着 Emacs 自动生效。
+(cnfonts-enable)
+;; 让 spacemacs mode-line 中的 Unicode 图标正确显示。
+(cnfonts-set-spacemacs-fallback-fonts)
 
 (use-package evil
   :ensure t
@@ -699,9 +681,9 @@ With one universal prefix argument, only tangle the block at point."
     (ac-config-default)
     (global-auto-complete-mode t)
     )
-  (define-key ac-complete-mode-map "\M-n" 'ac-next)
-  (define-key ac-complete-mode-map "\M-p" 'ac-previous)
   )
+(define-key ac-complete-mode-map "\M-n" 'ac-next)
+(define-key ac-complete-mode-map "\M-p" 'ac-previous)
 
 (use-package flycheck
     :ensure t
@@ -745,28 +727,16 @@ With one universal prefix argument, only tangle the block at point."
 (use-package eaf
   :load-path "~/.emacs.d/site-lisp/emacs-application-framework"
   )
-
-(require 'eaf-mindmap)
-(require 'eaf-browser)
-(require 'eaf-pdf-viewer)
 (require 'eaf-camera)
-(require 'eaf-netease-cloud-music)
-;;     (require 'eaf-file-manager)
-(require 'eaf-jupyter)
-;;     (require 'eaf-markdown-previewer)
-;;     (require 'eaf-demo)
-(require 'eaf-org-previewer)
-;;     (require 'eaf-file-sender)
-;;     (require 'eaf-file-browser)
-;;     (require 'eaf-airshare)
-(require 'eaf-music-player)
-;;     (require 'eaf-rss-reader)
 (require 'eaf-system-monitor)
-(require 'eaf-vue-demo)
+(require 'eaf-pdf-viewer)
 (require 'eaf-image-viewer)
-(require 'eaf-terminal)
-;;     (require 'eaf-video-player)
-;;     (require 'eaf-mermaid)
+(require 'eaf-video-player)
+(require 'eaf-org-previewer)
+(require 'eaf-markdown-previewer)
+
+;; (add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-application-framework/")
+;; (require 'eaf)
 
 ;; (defun efs/exwm-update-class ()
 ;;   (exwm-workspace-rename-buffer exwm-class-name))
@@ -857,33 +827,32 @@ With one universal prefix argument, only tangle the block at point."
 :bind (("C-x g" . magit-status)))
 
 (global-set-key "\C-\M-l" 'latex-math-preview-insert-mathematical-symbol)
-;; bigger latex fragment: put this into the init.el, otherweise this will not be executed
-(plist-put org-format-latex-options :scale 3.0)
-(setq org-format-latex-options (plist-put org-format-latex-options :scale 4))
+  ;; bigger latex fragment: put this into the init.el, otherweise this will not be executed
+  (plist-put org-format-latex-options :scale 2.0)
 
-(require 'org)
+  (require 'org)
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 4))
+  (setq org-latex-create-formula-image-program 'dvipng)
 
-(setq org-latex-create-formula-image-program 'dvipng)
+  (use-package tex
+    :ensure auctex)
 
-(use-package tex
-  :ensure auctex)
+  (setq Tex-auto-save t)
+  (setq Tex-parse-self t)
+  (setq-default Tex-master nil)
 
-(setq Tex-auto-save t)
-(setq Tex-parse-self t)
-(setq-default Tex-master nil)
+  (setq org-latex-compiler "xelatex")
 
-(setq org-latex-compiler "xelatex")
+  ;;enable cdlatex
+  (use-package cdlatex
+    :ensure t
+    )
 
-;;enable cdlatex
-(use-package cdlatex
-  :ensure t
-  )
+  (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 
-(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
-
-(add-hook 'LaTeX-mode-hook
-          (lambda ()
-            (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex --synctex=1%(mode)%' %t" TeX-run-TeX nil t))))
+  (add-hook 'LaTeX-mode-hook
+            (lambda ()
+              (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex --synctex=1%(mode)%' %t" TeX-run-TeX nil t))))
 
 ;; (use-package org-fragtog
 ;;   :after org
@@ -988,6 +957,12 @@ With one universal prefix argument, only tangle the block at point."
  )
 
 
+;; Set to the name of the file where new notes will be stored
+(setq org-mobile-inbox-for-pull "~/Dropbox/Apps/flagged.org")
+;; Set to <your Dropbox root directory>/MobileOrg.
+(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
+
+
 ;;hide the emphasis markup (e.g. /.../ for italics, *...* for bold)
 (setq org-hide-emphasis-markers t)
 
@@ -1030,18 +1005,18 @@ With one universal prefix argument, only tangle the block at point."
 (setq org-ditaa-jar-path "/usr/share/ditaa/ditaa.jar")
 ;;sure to enable software ditaa to work
 
-(setq org-todo-keywords
-      '((type  "Work(w)" "Study(s)" "forFun(f)" "|")
-        (sequence  "TODO(t!)"  "|" "DONE(d!)")
-        ))
+;; (setq org-todo-keywords
+;;       '((type  "Work(w)" "Study(s)" "forFun(f)" "|")
+;;         (sequence  "TODO(t!)"  "|" "DONE(d!)")
+;;         ))
 
-(setq org-todo-keyword-faces
-      '(
-        ("Work" .       (:foreground "white" :weight bold))
-        ("Study" .      (:foreground "yellow" :weight bold))
-        ("forFun" .     (:foreground "red" :weight bold))
-        ("DONE" .       (:foreground "green" :weight bold))
-        ))
+;; (setq org-todo-keyword-faces
+;;       '(
+;;         ("Work" .       (:foreground "white" :weight bold))
+;;         ("Study" .      (:foreground "yellow" :weight bold))
+;;         ("forFun" .     (:foreground "red" :weight bold))
+;;         ("DONE" .       (:foreground "green" :weight bold))
+;;         ))
 
 (require 'epa-file)
 (setq epa-file-select-key 0)
@@ -1099,8 +1074,9 @@ With one universal prefix argument, only tangle the block at point."
 
 (setq org-capture-templates
 '(
-  ("a" "Appointment" entry (file+headline "~/Dropbox/Note/gcal.org"     "Appointment")  "* %u %? " :prepend t)
-  ("n" "TagsNote"    entry (file+headline "~/Dropbox/Note/Appointment.org"        "TagsNote")     "* %u %? " :prepend t)
+  ("a" "Appointment" entry (file+headline "~/Dropbox/Note/Appointment.org"     "Appointment")  "* %u %? " :prepend t)
+  ("n" "TagsNote"    entry (file+headline "~/Dropbox/Note/TagsNote.org"           "TagsNote")  "* %u %? " :prepend t)
+  ("m" "MobileOrg"   entry (file "~/Dropbox/Apps/MobileOrg/mobileorg.org"                  )  "* %u %? " :prepend t)
 ;; ("m" "Math"          entry (file+headline "~/Dropbox/Sprache/Math/Math.org"           "Math")  "* %u %? " :prepend t)
 ;; ("p" "Physik"        entry (file+headline "~/Dropbox/Sprache/Physik/Physik.org"      "Physik")  "* %u %? " :prepend t)
 ;; ("r" "ROS"           entry (file+headline "~/Dropbox/Sprache/ROS/ROS.org"               "ROS")  "* %u %? " :prepend t)
@@ -1133,15 +1109,16 @@ With one universal prefix argument, only tangle the block at point."
 (global-set-key (kbd "C-c c") 'org-capture)
 
 (global-set-key "\C-ca" 'org-agenda)
-         (setq org-agenda-files (list 
-                                 "~/Dropbox/Note/Appointment.org"
-                                 "~/Dropbox/Note/gcal.org"
-                                 ))
-         (setq org-agenda-start-on-weekday nil)
-         (setq org-agenda-custom-commands
-               '(("c" "Simple agenda view"
-                  ((agenda "")
-                   (alltodo "")))))
+(setq org-agenda-files (list 
+                        "~/Dropbox/Note/Appointment.org"
+                        "~/Dropbox/Note/TagsNote.org"
+                        "~/Dropbox/Apps/MobileOrg/mobileorg.org"
+                        ))
+(setq org-agenda-start-on-weekday nil)
+(setq org-agenda-custom-commands
+      '(("c" "Simple agenda view"
+         ((agenda "")
+          (alltodo "")))))
 
 (setq org-agenda-include-diary t)
 
@@ -1271,32 +1248,45 @@ With one universal prefix argument, only tangle the block at point."
 ;; (add-to-list 'org-export-filter-strike-through-functions 'my-beamer-structure)
 
 (setq org-confirm-babel-evaluate nil
-        org-src-fontify-natively t
-        org-src-tab-acts-natively t)
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((python . t)
-     ;; (ipython . t)
-     (emacs-lisp . t)
-     (java . t)
-     (shell . t)
-     (sql . t)
-     (C . t)
-     (js . t)
-     (dot . t)
-     (plantuml . t)
-     (ditaa . t)
-     (haskell . t)
-     (dot . t)
-     (org . t)
-     (latex . t )
-     (typescript . t)
-;;     (scala . t)
-     (mongo . t)
-     (go . t)
-     (julia-vterm . t )
-     ))
-  (with-eval-after-load 'org)
+      org-src-fontify-natively t
+      org-src-tab-acts-natively t)
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)
+   ;;(ipython . t)
+   (emacs-lisp . t)
+   (java . t)
+   (shell . t)
+   (sql . t)
+   (C . t)
+   (js . t)
+   (dot . t)
+  ;; (plantuml . t)
+   (ditaa . t)
+  ;; (haskell . t)
+   (dot . t)
+   (org . t)
+   (latex . t )
+   (typescript . t)
+  ;;  scala . t)
+  ;; (mongo . t)
+  ;; (julia-vterm . t )
+   (go . t)
+   ))
+(with-eval-after-load 'org)
+
+(defun org-babel-tangle-block()
+  (interactive)
+  (let ((current-prefix-arg '(4)))
+    (call-interactively 'org-babel-tangle)
+    )
+  )
+
+(eval-after-load "org"
+  '(progn
+     (define-key org-mode-map (kbd "C-c b") 'org-babel-tangle-block)
+     )
+  )
 
 (use-package atomic-chrome
 :ensure t
@@ -1443,18 +1433,18 @@ With one universal prefix argument, only tangle the block at point."
 ;;                '(comany-tide company-web-html company-css company-files))
 ;;   )
 
-;; (defun my/use-eslint-from-node-modules ()
-;;   "Use local eslint from node_modules before global."
-;;   (let* ((root (locate-dominating-file
-;;                 (or (buffer-file-name) default-directory)
-;;                 "node_modules"))
-;;          (eslint (and root
-;;                       (expand-file-name "node_modules/eslint/bin/eslint.js"
-;;                                         root))))
-;;     (when (and eslint (file-executable-p eslint))
-;;       (setq-local flycheck-javascript-eslint-executable eslint))))
+(defun my/use-eslint-from-node-modules ()
+  "Use local eslint from node_modules before global."
+  (let* ((root (locate-dominating-file
+                (or (buffer-file-name) default-directory)
+                "node_modules"))
+         (eslint (and root
+                      (expand-file-name "node_modules/eslint/bin/eslint.js"
+                                        root))))
+    (when (and eslint (file-executable-p eslint))
+      (setq-local flycheck-javascript-eslint-executable eslint))))
 
-;; (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
+(add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
 
 ;; (use-package rjsx-mode
 ;;   :ensure t
@@ -1522,30 +1512,30 @@ With one universal prefix argument, only tangle the block at point."
     )
   )
 
-;; (use-package tide
-;;   :ensure t
-;;   :after (typescript-mode company flycheck)
-;;   :hook ((typescript-mode . tide-setup)
-;;          (typescript-mode . tide-hl-identifier-mode))
-;;   (before-save . tide-format-before-save)
-;;   :config
-;;   (setq tide-completion-enable-autoimport-suggestions t)
-;;   )
+(use-package tide
+  :ensure t
+  :after (typescript-mode company flycheck)
+  :hook ((typescript-mode . tide-setup)
+         (typescript-mode . tide-hl-identifier-mode))
+  (before-save . tide-format-before-save)
+  :config
+  (setq tide-completion-enable-autoimport-suggestions t)
+  )
 
 
-;; (defun setup-tide-mode ()
-;;   "Setup tide mode for other mode."
-;;   (interactive)
-;;   (message "setup tide mode")
-;;   (tide-setup)
-;;   (flycheck-mode +1)
-;;   (setq flycheck-check-syntax-automatically '(save mode-enabled))
-;;   (eldoc-mode +1)
-;;   (tide-hl-identifier-mode +1)
-;;   (company-mode +1))
+(defun setup-tide-mode ()
+  "Setup tide mode for other mode."
+  (interactive)
+  (message "setup tide mode")
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  (company-mode +1))
 
-;; (add-hook 'js2-mode-hook #'setup-tide-mode)
-;; (add-hook 'typescript-mode-hook #'setup-tide-mode)
+(add-hook 'js2-mode-hook #'setup-tide-mode)
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
 ;;  (add-hook 'rjsx-mode-hook #'setup-tide-mode)
 
 (use-package prettier-js
@@ -1566,45 +1556,25 @@ With one universal prefix argument, only tangle the block at point."
   (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
   (lsp-headerline-breadcrumb-mode))
 
-(use-package lsp-mode
-  :ensure t
-  :commands (lsp lsp-deferred)
-  :hook
-  ((typescript-mode js2-mode web-mode) . lsp)
-  (lsp-mdoe . efs/lsp-mode-setup)
-  (lsp-mode . rainbow-delimiters-mode)
-  (go-mode . lsp-deferred)
-  :init
-  (setq lsp-keymap-prefix "C-c l")
-  :config (progn
-            (lsp-enable-which-key-integration t)
-            ;; use flycheck, not flymake
-            (setq lsp-prefer-flymake nil)
-            ;;(setq lsp-trace nil)
-            (setq lsp-print-performance nil)
-            (setq lsp-log-io nil)
-  )
-:bind (:map lsp-mode-map
-            ("TAB" . completion-at-point))
-:custom (lsp-headerline-breadcrumb-enable nil))
-
-(setq lsp-disabled-clients '(eslint))
+    (use-package lsp-mode
+  ;;    :straight t
+      :commands (lsp lsp-deferred)
+      :hook
+      ((typescript-mode js2-mode web-mode) . lsp)
+      (lsp-mdoe . efs/lsp-mode-setup)
+      :init
+      (setq lsp-keymap-prefix "C-c l")
+      :config
+      (lsp-enable-which-key-integration t)
+      :bind (:map lsp-mode-map
+                ("TAB" . completion-at-point))
+      :custom (lsp-headerline-breadcrumb-enable nil))
 
 (use-package lsp-ui
   :ensure t
-  :after (lsp-mode)
-  :commands lsp-ui-mode
+  :hook (lsp-mode . lsp-ui-mode)
   :custom
-  (lsp-ui-doc-position 'bottom)
-  :config (progn
-          ;; disable inline documentation
-          (setq lsp-ui-sideline-enable nil)
-          ;; disable showing docs on hover at the top of the window
-          (setq lsp-ui-doc-enable nil)
-          (setq lsp-ui-imenu-enable t)
-          (setq lsp-ui-imenu-kind-position 'top))
-)
-
+  (lsp-ui-doc-position 'bottom))
 
 (setq lsp-ui-sideline-show-code-actions nil)
 (setq lsp-headerline-breadcrumb-enable t)
@@ -1631,13 +1601,10 @@ With one universal prefix argument, only tangle the block at point."
 ;; (use-package dap-java :ensure nil)
 
 (use-package typescript-mode
-  :mode "\\.ts\\'"
-  :hook (typescript-mode . lsp-deferred)
-  :config
-  (setq typescript-indent-level 2)
-  (require 'dap-node)
-  (dap-node-setup)
-  )
+:mode "\\.ts\\'"
+:hook (typescript-mode . lsp-deferred)
+:config
+(setq typescript-indent-level 2))
 
 (use-package ob-typescript
 :ensure t
@@ -1649,16 +1616,26 @@ With one universal prefix argument, only tangle the block at point."
   :custom
   (python-shell-interpreter "python"))
 
-(package-install 'julia-mode)
-(require 'julia-mode)
-(package-install 'lsp-julia)
-(use-package lsp-julia
-  :config
-  (setq lsp-julia-default-environment "~/.julia/environments/v1.7"))
-(add-hook 'ess-julia-mode-hook #'lsp-mode)
+;; (package-install 'julia-mode)
+;; (require 'julia-mode)
+;; (package-install 'lsp-julia)
+;; (use-package lsp-julia
+;;   :config
+;;   (setq lsp-julia-default-environment "~/.julia/environments/v1.7"))
+;; (add-hook 'ess-julia-mode-hook #'lsp-mode)
 
-(package-install 'julia-vterm)
-(add-hook 'julia-mode-hook #'julia-vterm-mode)
+;; (package-install 'julia-vterm)
+;; (add-hook 'julia-mode-hook #'julia-vterm-mode)
+
+(require 'lsp-mode)
+(add-hook 'go-mode-hook #'lsp-deferred)
+
+;; Set up before-save hooks to format buffer and add/delete imports.
+;; Make sure you don't have other gofmt/goimports hooks enabled.
+(defun lsp-go-install-save-hooks ()
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 
 (defface my-comment-remap-style
   '((default :inherit italic)
@@ -1704,79 +1681,128 @@ managers such as DWM, BSPWM refer to this state as 'monocle'."
 ;; (add-hook 'org-agenda-mode-hook (lambda () (org-gcal-sync) ))
 ;; (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
 
-(load "~/.emacs.d/packages/svg.el")
-(require 'svg)
-(setq default-process-coding-system '(utf-8 . utf-8))
-
-(setq company-idle-delay 0)
-(setq company-minimum-prefix-length 1)
-
-
-(defun ime-go-before-save ()
-  (interactive)
-  (when lsp-mode
-    (lsp-organize-imports)
-    (lsp-format-buffer)))
-
-(defun lsp-go-install-save-hooks ()
-  (add-hook 'before-save-hook #'lsp-format-buffer t t)
-  (add-hook 'before-save-hook #'lsp-organize-imports t t))
-
-
-(use-package go-mode
-  :ensure t
+(use-package mu4e
+  :ensure nil
+  :load-path "/snap/maildir-utils/502/share/emacs/site-lisp/mu4e"
+  ;; :defer 20 ; Wait until 20 seconds after startup
   :config
-  (add-hook 'go-mode-hook 'yas-minor-mode)
-  (add-hook 'go-mode-hook 'lsp-deferred)
-  (add-hook 'go-mode-hook 'lsp-go-install-save-hooks)
-  (add-hook 'go-mode-hook
-            (lambda ()
-              (add-hook 'before-save-hook 'ime-go-before-save)))
+  ;; This is set to 't' to avoid mail syncing issues when using mbsync
+  (setq mu4e-change-filenames-when-moving t)
+  ;; Refresh mail using isync every 10 minutes
+  (setq mu4e-update-interval (* 10 60))
+  (setq mu4e-get-mail-command "mbsync -a")
+  (setq mu4e-maildir "~/Maildir")
+
+  ;; Make sure plain text mails flow correctly for recipients
+  (setq mu4e-compose-format-flowed t)
+  ;; Configure the function to use for sending mail
+  (setq message-send-mail-function 'smtpmail-send-it)
+  ;; (setq mu4e-compose-signature
+  ;;       (concat
+  ;;        "Best regrads\n"
+  ;;        "Silin Zhao")
+  ;;       )
+  (with-eval-after-load 'mu4e
+    (setq mu4e-contexts
+          (list
+           ;; Work account
+           (make-mu4e-context
+            :name "Gmail"
+            :match-func
+            (lambda (msg)
+              (when msg
+                (string-prefix-p "/Gmail" (mu4e-message-field msg :maildir))))
+            :vars '((user-mail-address . "scofild429@gmail.com")
+                    (user-full-name    . "Silin Zhao")
+                    (smtpmail-smtp-server  . "smtp.gmail.com")
+                    (smtpmail-smtp-service . 465)
+                    (smtpmail-stream-type  . ssl)
+                    )))))
+
+  (setq mu4e-maildir-shortcuts
+        '(
+          ("/Inbox" . ?i)
+          ("/[Gmail]/All Mail" . ?a)
+          ("/[Gmail]/Sent Mail" . ?s)
+          ("/[Gmail]/Drafts" . ?d)
+          ))
   )
 
-;; DAP
-(use-package dap-mode
-  ;; :hook (dap-stopped . (lambda (arg) (call-interactively #'dap-hydra)))
-  ;;:custom
-  ;; (dap-go-debug-program `("node" "~/extension/out/src/debugAdapter/goDebug.js"))
-  :config
-  (dap-mode 1)
-  (setq dap-print-io t)
-  ;;(setq fit-window-to-buffer-horizontally t)
-  ;;(setq window-resize-pixelwise t)
-  (require 'dap-hydra)
-  (require 'dap-go)		; download and expand vscode-go-extenstion to the =~/.extensions/go=
-  (dap-go-setup)
-  (use-package dap-ui
-    :ensure nil
-    :config
-    (dap-ui-mode 1)
-    )
-  )
+;; (require 'org-mu4e)
+;; (setq org-mu4e-convert-to-html t)
+;; (setq mu4e-view-prefer-html t)
+;; (add-to-list 'mu4e-view-actions
+;;              '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 
-(add-hook 'after-init-hook 'global-flycheck-mode)
-(add-hook 'after-init-hook 'global-company-mode)
-(eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(inhibit-startup-screen t)
- '(lsp-ui-imenu-enable t)
- '(package-selected-packages
-   '(treemacs dap-mode flycheck-golangci-lint projectile flx-ido yasnippet use-package lsp-ui go-mode flycheck company-lsp))
- '(tool-bar-mode nil))
+;; (defun mu4e-no-background()
+;;   (interactive )
+;;   (setq shr-use-colors t)
+;;   (advice-add #'shr-colorize-region :around (defun shr-no-colourise-region (&rest ignore)))
+;;   (setq shr-color-visible-luminance-min 60)
+;;   (setq shr-color-visible-distance-min 5)
+;;   )
 
-;; use golangci
-(use-package flycheck-golangci-lint
-  :ensure t)
+;; enable inline images
+(setq mu4e-view-show-images t)
+;; use imagemagick, if available
+(when (fboundp 'imagemagick-register-types)
+  (imagemagick-register-types))
 
-(use-package restclient
-  :ensure t)
-(use-package company-restclient
+(setq org-latex-create-formula-image-program 'dvipng)
+
+(use-package org-mime)
+;; (setq org-mime-library 'mml)
+
+(setq mail-user-agent 'mu4e-user-agent)
+(use-package org-msg
   :ensure t
   :config
-  (add-to-list 'company-backends 'company-restclient))
+  (setq org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil author:nil email:nil \\n:t"
+        org-msg-startup "hidestars indent inlineimages"
+        org-msg-greeting-fmt "\nHi%s,\n\n"
+        org-msg-recipient-names '(("scofild429@gmail.com" . "Silin Zhao"))
+        org-msg-greeting-name-limit 3
+        org-msg-default-alternatives '((new		. (text html))
+                                       (reply-to-html	. (text html))
+                                       (reply-to-text	. (text)))
+        org-msg-convert-citation t
+        org-msg-signature
+        "
+        \n Regards,
+        \n Silin Zhao
+        "
+        )
+  (org-msg-mode)
+  )
+
+(setq bibtex-completion-bibliography '("~/Dropbox/Document/emacsref/bibliography/references.bib")
+        bibtex-completion-library-path '("~/Dropbox/Document/emacsref/bibliography/bibtex-pdfs/")
+        bibtex-completion-notes-path "~/Dropbox/Document/emacsref/bibliography/notes/"
+        bibtex-completion-notes-template-multiple-files "* ${author-or-editor}, ${title}, ${journal}, (${year}) :${=type=}: \n\nSee [[cite:&${=key=}]]\n"
+        bibtex-completion-additional-search-fields '(keywords)
+        bibtex-completion-display-formats
+        '((article       . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${journal:40}")
+          (inbook        . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} Chapter ${chapter:32}")
+          (incollection  . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
+          (inproceedings . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
+          (t             . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*}"))
+        bibtex-completion-pdf-open-function
+        (lambda (fpath)
+          (call-process "open" nil 0 nil fpath)))
+
+
+  (require 'bibtex)
+  (require 'org-ref)
+(require 'org-ref-helm)
+
+  (setq bibtex-autokey-year-length 4
+        bibtex-autokey-name-year-separator "-"
+        bibtex-autokey-year-title-separator "-"
+        bibtex-autokey-titleword-separator "-"
+        bibtex-autokey-titlewords 2
+        bibtex-autokey-titlewords-stretch 1
+        bibtex-autokey-titleword-length 5)
+
+  (define-key bibtex-mode-map (kbd "H-b") 'org-ref-bibtex-hydra/body)
+  (define-key org-mode-map (kbd "C-c ]") 'org-ref-insert-link)

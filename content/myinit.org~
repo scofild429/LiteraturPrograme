@@ -17,7 +17,9 @@
 | C-c C-o | js2-mode-toggle-element |
 | M-q     | org-fill-paragraph      |
 | M-:     | Eval                    |
+| C-x d   | Dired                   |
 |         |                         |
+|---------+-------------------------|
 
 * commods
 |--------------------------+-----------------------------------------------------------------------|
@@ -43,7 +45,7 @@
 | M-C-l                    | latex-math-preview-insert-mathematical-symbol                         |
 | C-c o                    | (clm/toggle-comand-log-buffer) to open command-log and again to close |
 | C-c C-e                  | export org                                                            |
-| C-u C-space              | go back to mark postion                                               |
+|                          |                                                                       |
 |--------------------------+-----------------------------------------------------------------------|
 
 
@@ -86,9 +88,6 @@ input the mapped command
 
 * global settings
 #+BEGIN_SRC emacs-lisp
-
-  (setq undo-tree-auto-save-history nil)
-
   (setq colon-double-space t)
   ;; tell the Emacs fill commands to insert two spaces after a colon:
 
@@ -130,11 +129,13 @@ input the mapped command
   ;;        x-super-keysym 'meta)
 
   ;; open terminal 
-  ;; (global-set-key "\C-\M-x" 'term)
-  (global-set-key "\C-x\ \C-x" 'term)
-  ;; C-c b to jump out of term mode
+  (global-set-key "\C-\M-x" 'term)  
+
   ;; open  eshell
-  ;; (global-set-key "\C-x\ \C-x" 'shell)
+  (global-set-key "\C-x\ \C-x" 'eshell)
+
+  ;; load ./bashrc
+  (setq shell-command-switch "-ic")
 
   ;;open init.el file with f1
   (defun open-my-init-file()
@@ -159,6 +160,7 @@ input the mapped command
     (interactive)
     (find-file "~/Dropbox/Note/Note.org.gpg"))
   (global-set-key (kbd "<f4>") 'open-my-tagsnote-file)
+
 
   ;; trun off cl warning
   (setq byte-compile-warnings '(cl-functions))
@@ -205,40 +207,8 @@ input the mapped command
 #+END_SRC
 
 #+RESULTS:
-: open-my-bash-file
+: t
 
-* Global setting keys
-Shift + Ctrl + left right down up
-
-#+begin_src emacs-lisp
-  (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
-  (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
-  (global-set-key (kbd "S-C-<down>") 'shrink-window)
-  (global-set-key (kbd "S-C-<up>") 'enlarge-window)
-  (global-set-key [f12] 'global-visual-fill-column-mode)
-  (global-set-key (kbd "M-p") 'backward-list)
-  (global-set-key (kbd "M-n") 'forward-list)
-#+end_src
-
-#+RESULTS:
-: enlarge-window
-
-* openwindowsize
-#+begin_src emacs-lisp
-    (setq default-frame-alist
-        '(
-          (top . 200)
-          (left . 400)
-          (width . 200)
-          (height . 100)
-          ;; (cursor-color . "white")
-          ;; (cursor-type . box)
-          ;; (foreground-color . "yellow")
-          ;; (background-color . "black")
-          (font . "-*-Courier-normal-r-*-*-13-*-*-*-c-*-iso8859-1")
-          ))
-  (setq initial-frame-alist '((top . 10) (left . 30)))
-#+end_src
 * rainbow mode
  rainbow to nested parentheses
 #+begin_src emacs-lisp
@@ -248,52 +218,98 @@ Shift + Ctrl + left right down up
   (add-hook 'org-mode-hook #'rainbow-delimiters-mode)
 #+end_src
 
+#+RESULTS:
+
+* Term mode
+C-n/C-p: next/perious command(char-mode)
+C-c C-j: term-line-mode(can select lines)
+C-c C-k: enter term-char-mode
+#+begin_src emacs-lisp
+(use-package term
+  :config
+  (setq explicit-shell-file-name "bash") ;; Change this to zsh, etc
+  ;; Match the default Bash shell prompt.  Update this if you have a custom prompt
+  (setq term-prompt-regexp "^[^#$%>\n]*[#$%>] *"))
+#+end_src
+* eshell
+#+begin_src emacs-lisp
+
+  (defun efs/configure-eshell ()
+    ;; Save command history when commands are entered
+    (add-hook 'eshell-pre-command-hook 'eshell-save-some-history)
+
+    ;; Truncate buffer for performance
+    (add-to-list 'eshell-output-filter-functions 'eshell-truncate-buffer)
+
+    ;; Bind some useful keys for evil-mode
+    (evil-define-key '(normal insert visual) eshell-mode-map (kbd "C-r") 'counsel-esh-history)
+    (evil-define-key '(normal insert visual) eshell-mode-map (kbd "<home>") 'eshell-bol)
+    (evil-normalize-keymaps)
+
+    (setq eshell-history-size         10000
+          eshell-buffer-maximum-lines 10000
+          eshell-hist-ignoredups t
+          eshell-scroll-to-bottom-on-input t))
+
+  (use-package eshell-git-prompt
+    :ensure t)
+
+  (use-package eshell
+    :hook (eshell-first-time-mode . efs/configure-eshell)
+    :config
+    (with-eval-after-load 'esh-opt
+      (setq eshell-destroy-buffer-when-process-dies t)
+      (setq eshell-visual-commands '("htop" "zsh" "vim")))
+    (eshell-git-prompt-use-theme 'powerline))
+
+#+end_src
+
 * eglot
 #+begin_src emacs-lisp
   (use-package eglot
     :ensure t
-    )
+   )
   (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
   (add-to-list 'eglot-server-programs '(web-mode "vls"))
   (add-hook 'c-mode-hook 'eglot-ensure)
   (add-hook 'c++-mode-hook 'eglot-ensure)
   (add-hook 'web-mode-hook 'eglot-ensure)
   (add-hook 'vue-mode-hook 'eglot-ensure)
-  (add-hook ' python-mode-hook 'eglot-ensure)
+  (add-hook ' python-mode-hook 'eglot-ensure)    
 #+end_src
 * Irony
 sudo apt install: cmake, clangd, (or libclang), libclang-dev
 M-x: irnoy-server-install
 #+BEGIN_SRC emacs-lisp
-  (use-package irony
-    :ensure t
-    :config
-    (add-hook 'c++-mode-hook 'irony-mode)
-    (add-hook 'c-mode-hook 'irony-mode)
-    (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+  ;; (use-package irony
+  ;;   :ensure t
+  ;;   :config
+  ;;   (add-hook 'c++-mode-hook 'irony-mode)
+  ;;   (add-hook 'c-mode-hook 'irony-mode)
+  ;;   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
-  (use-package company-irony
-    :ensure t
-    :config
-    (require 'company)
-    (add-to-list 'company-backends 'company-irony))
+  ;; (use-package company-irony
+  ;;   :ensure t
+  ;;   :config
+  ;;   (require 'company)
+  ;;   (add-to-list 'company-backends 'company-irony))
 
-  (with-eval-after-load 'company
-    (add-hook 'company-hook 'company-mode)
-    (add-hook 'c-mode-hook 'company-mode))
+  ;; (with-eval-after-load 'company
+  ;;   (add-hook 'company-hook 'company-mode)
+  ;;   (add-hook 'c-mode-hook 'company-mode))
 
-  (use-package company-irony-c-headers
-    :ensure t)
+  ;; (use-package company-irony-c-headers
+  ;;   :ensure t)
 
-  (use-package flycheck-irony
-    :ensure t
-    :config
-    (add-hook 'flycheck-mode-hook 'flycheck-irony-setup))
+  ;; (use-package flycheck-irony
+  ;;   :ensure t
+  ;;   :config
+  ;;   (add-hook 'flycheck-mode-hook 'flycheck-irony-setup))
 
-  (use-package irony-eldoc
-    :ensure t
-    :config
-    (add-hook 'irony-mode-hook #'irony-eldoc))
+  ;; (use-package irony-eldoc
+  ;;   :ensure t
+  ;;   :config
+  ;;   (add-hook 'irony-mode-hook #'irony-eldoc))
 
 
 #+END_SRC
@@ -304,7 +320,7 @@ M-x: irnoy-server-install
 * Python
 src python is python2
 src ipython is python3
-** python
+
 elpy-rpc-python-command is void??
 find this variable and edit it to your pathon interpreter
 
@@ -326,9 +342,10 @@ C-c , jedi: go to definition pop marker
   ;; (use-package ob-ipython
   ;;   :ensure t
   ;;   )
-  ;; (use-package ein
-  ;;   :ensure t
-  ;;   )
+  ;;(setq ob-ipython-command "/home/si/.local/bin/jupyter")
+  (use-package ein
+    :ensure t
+    )
 #+end_src
 
 
@@ -472,8 +489,8 @@ C-c C-o ( open the the ipython mode)
 
 ** emacs-jupyter lab 
 #+begin_src emacs-lisp
-    ;; (use-package jupyter
-    ;;   :ensure )
+    (use-package jupyter
+      :ensure )
 
   ;; (add-to-list 'load-path "/snap/bin/jupyter")
   ;; (require 'jupyter)
@@ -653,6 +670,18 @@ _src haskell), and the be called function can be many type.
 important : in src block the calling syntax is NOT allowed
 
 Seeing Literatur Programm Alternativen
+* global-set-key
+#+begin_src emacs-lisp
+    (global-set-key (kbd "S-C-<right>") 'shrink-window-horizontally)
+    (global-set-key (kbd "S-C-<left>") 'enlarge-window-horizontally)
+    (global-set-key (kbd "S-C-<down>") 'shrink-window)
+    (global-set-key (kbd "S-C-<up>") 'enlarge-window)
+    (global-set-key (kbd "<f12>") 'visual-fill-column-mode)
+#+end_src
+
+#+RESULTS:
+: enlarge-window
+
 * spacemacs-theme
   M-x package-install  spacemacs-theme
   M-x customize-themes
@@ -907,17 +936,16 @@ M-x echo-keys-mode
 #+END_SRC
 * chinese fonts
 install cnfonts
-M-x cnfonts-edit-profile
+M-x : cnfonts-regenerate-profile
+M-x : cnfonts-edit-profile
 #+begin_src emacs-lisp
-  (use-package cnfonts
-    :ensure t
-    :config )
-
-  (require 'cnfonts)
-  ;; 让 cnfonts 随着 Emacs 自动生效。
-  (cnfonts-enable)
-  ;; 让 spacemacs mode-line 中的 Unicode 图标正确显示。
-  (cnfonts-set-spacemacs-fallback-fonts)
+  ;;     (use-package cnfonts
+  ;;     :ensure t
+  ;;     :config )
+  ;;    (cnfonts-mode 1)
+  ;;     (cnfonts-enable)
+  ;; ;;     让 spacemacs mode-line 中的 Unicode 图标正确显示。
+  ;;     (cnfonts-set-spacemacs-fallback-fonts)
 
 #+end_src
 
@@ -1115,10 +1143,10 @@ See https://github.com/abo-abo/avy for more info
       (ac-config-default)
       (global-auto-complete-mode t)
       )
+    (define-key ac-complete-mode-map "\M-n" 'ac-next)
+    (define-key ac-complete-mode-map "\M-p" 'ac-previous)
     )
-  (define-key ac-complete-mode-map "\M-n" 'ac-next)
-  (define-key ac-complete-mode-map "\M-p" 'ac-previous)
-  
+
 #+END_SRC
 
 #+RESULTS:
@@ -1183,8 +1211,6 @@ C-c o (clm/toggle-comand-log-buffer) to open command-log and again to close
   (global-command-log-mode t)
 #+end_src
 * EAF
-Because of the fuck qt6-multimedia is not for Ubuntu 20
-and qt5 is also not reduceable
 
 pip install epc
 pip install PyQt5
@@ -1218,19 +1244,30 @@ eaf-proxy-caret
   (use-package eaf
     :load-path "~/.emacs.d/site-lisp/emacs-application-framework"
     )
-  (require 'eaf-camera)
-  (require 'eaf-system-monitor)
-  (require 'eaf-pdf-viewer)
-  (require 'eaf-image-viewer)
-  (require 'eaf-video-player)
-  (require 'eaf-org-previewer)
-  (require 'eaf-markdown-previewer)
 
-  ;; (add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-application-framework/")
-  ;; (require 'eaf)
+  (require 'eaf-mindmap)
+  (require 'eaf-browser)
+  (require 'eaf-pdf-viewer)
+  (require 'eaf-camera)
+  (require 'eaf-netease-cloud-music)
+  ;;     (require 'eaf-file-manager)
+  (require 'eaf-jupyter)
+  ;;     (require 'eaf-markdown-previewer)
+  ;;     (require 'eaf-demo)
+  (require 'eaf-org-previewer)
+  ;;     (require 'eaf-file-sender)
+  ;;     (require 'eaf-file-browser)
+  ;;     (require 'eaf-airshare)
+  (require 'eaf-music-player)
+  ;;     (require 'eaf-rss-reader)
+  (require 'eaf-system-monitor)
+  (require 'eaf-vue-demo)
+  (require 'eaf-image-viewer)
+  ;;  (require 'eaf-terminal)
+  ;;     (require 'eaf-video-player)
+  ;;     (require 'eaf-mermaid)
 
 #+end_src
-
 * EXWM
 #+begin_src emacs-lisp
 
@@ -1349,6 +1386,8 @@ C-l go back to the above directory
 * Magit
 C-x g
 s/S
+c c
+P p
 
 
 #+BEGIN_SRC emacs-lisp
@@ -1364,35 +1403,38 @@ s/S
 sudo apt install texlive-full
 sudo apt install texlive-xetex
 M-x: install package latex-math-preview
+C-c C-x C-l  : org-latex-preview
+
 #+BEGIN_SRC emacs-lisp
 
-    (global-set-key "\C-\M-l" 'latex-math-preview-insert-mathematical-symbol)
-    ;; bigger latex fragment: put this into the init.el, otherweise this will not be executed
-    (plist-put org-format-latex-options :scale 2.0)
+  (global-set-key "\C-\M-l" 'latex-math-preview-insert-mathematical-symbol)
+  ;; bigger latex fragment: put this into the init.el, otherweise this will not be executed
+  (plist-put org-format-latex-options :scale 3.0)
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 4))
 
-    (require 'org)
-    (setq org-format-latex-options (plist-put org-format-latex-options :scale 4))
-    (setq org-latex-create-formula-image-program 'dvipng)
+  (require 'org)
 
-    (use-package tex
-      :ensure auctex)
+  (setq org-latex-create-formula-image-program 'dvipng)
 
-    (setq Tex-auto-save t)
-    (setq Tex-parse-self t)
-    (setq-default Tex-master nil)
+  (use-package tex
+    :ensure auctex)
 
-    (setq org-latex-compiler "xelatex")
+  (setq Tex-auto-save t)
+  (setq Tex-parse-self t)
+  (setq-default Tex-master nil)
 
-    ;;enable cdlatex
-    (use-package cdlatex
-      :ensure t
-      )
+  (setq org-latex-compiler "xelatex")
 
-    (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+  ;;enable cdlatex
+  (use-package cdlatex
+    :ensure t
+    )
 
-    (add-hook 'LaTeX-mode-hook
-              (lambda ()
-                (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex --synctex=1%(mode)%' %t" TeX-run-TeX nil t))))
+  (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+
+  (add-hook 'LaTeX-mode-hook
+            (lambda ()
+              (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex --synctex=1%(mode)%' %t" TeX-run-TeX nil t))))
 
   ;; (use-package org-fragtog
   ;;   :after org
@@ -1543,12 +1585,6 @@ space for nothing and numbers for replace.
    )
 
 
-  ;; Set to the name of the file where new notes will be stored
-  (setq org-mobile-inbox-for-pull "~/Dropbox/Apps/flagged.org")
-  ;; Set to <your Dropbox root directory>/MobileOrg.
-  (setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
-
-  
   ;;hide the emphasis markup (e.g. /.../ for italics, *...* for bold)
   (setq org-hide-emphasis-markers t)
 
@@ -1582,13 +1618,13 @@ space for nothing and numbers for replace.
       (auto-fill-mode 0)
       (visual-line-mode 1)
       (setq evil-auto-indent nil))
-
+  
     (defun org-mode-center-fill ()
       (interactive)
       (setq visual-fill-column-width 100
             visual-fill-column-center-text t)
           (visual-fill-column-mode 1))
-
+  
   ;; M-x: visual-fill-column-mode
   ;; this will automatic close if more space needed
 
@@ -1674,18 +1710,18 @@ link define options
 
 ** Todo
 #+BEGIN_SRC emacs-lisp
-  ;; (setq org-todo-keywords
-  ;;       '((type  "Work(w)" "Study(s)" "forFun(f)" "|")
-  ;;         (sequence  "TODO(t!)"  "|" "DONE(d!)")
-  ;;         ))
+  (setq org-todo-keywords
+        '((type  "Work(w)" "Study(s)" "forFun(f)" "|")
+          (sequence  "TODO(t!)"  "|" "DONE(d!)")
+          ))
 
-  ;; (setq org-todo-keyword-faces
-  ;;       '(
-  ;;         ("Work" .       (:foreground "white" :weight bold))
-  ;;         ("Study" .      (:foreground "yellow" :weight bold))
-  ;;         ("forFun" .     (:foreground "red" :weight bold))
-  ;;         ("DONE" .       (:foreground "green" :weight bold))
-  ;;         ))
+  (setq org-todo-keyword-faces
+        '(
+          ("Work" .       (:foreground "white" :weight bold))
+          ("Study" .      (:foreground "yellow" :weight bold))
+          ("forFun" .     (:foreground "red" :weight bold))
+          ("DONE" .       (:foreground "green" :weight bold))
+          ))
 
 
 #+END_SRC
@@ -1774,56 +1810,54 @@ for the encrypt file. remember, remember!!
   #+end_src
 * capture 
 #+begin_src emacs-lisp
-  (setq org-capture-templates
-  '(
-    ("a" "Appointment" entry (file+headline "~/Dropbox/Note/Appointment.org"     "Appointment")  "* %u %? " :prepend t)
-    ("n" "TagsNote"    entry (file+headline "~/Dropbox/Note/TagsNote.org"           "TagsNote")  "* %u %? " :prepend t)
-    ("m" "MobileOrg"   entry (file "~/Dropbox/Apps/MobileOrg/mobileorg.org"                  )  "* %u %? " :prepend t)
-  ;; ("m" "Math"          entry (file+headline "~/Dropbox/Sprache/Math/Math.org"           "Math")  "* %u %? " :prepend t)
-  ;; ("p" "Physik"        entry (file+headline "~/Dropbox/Sprache/Physik/Physik.org"      "Physik")  "* %u %? " :prepend t)
-  ;; ("r" "ROS"           entry (file+headline "~/Dropbox/Sprache/ROS/ROS.org"               "ROS")  "* %u %? " :prepend t)
-  ;; ("i" "Inf"           entry (file+headline "~/Dropbox/Sprache/Inf/Inf.org"               "Inf")  "* %u %? " :prepend t)
-  ))
-  (defadvice org-capture-finalize
-      (after delete-capture-frame activate)
-    "Advise capture-finalize to close the frame"
-    (if (equal "capture" (frame-parameter nil 'name))
-        (delete-frame)))
-  (defadvice org-capture-destroy
-      (after delete-capture-frame activate)
-    "Advise capture-destroy to close the frame"
-    (if (equal "capture" (frame-parameter nil 'name))
-        (delete-frame)))
-  (use-package noflet
-    :ensure t )
-  (defun make-capture-frame ()
-    "Create a new frame and run org-capture."
-    (interactive)
-    (make-frame '((name . "capture")))
-    (select-frame-by-name "capture")
-    (delete-other-windows)
-    (noflet ((switch-to-buffer-other-window (buf) (switch-to-buffer buf)))
-      (org-capture)))
-      ;; (require 'ox-beamer)
-      ;; for inserting inactive dates
-      (define-key org-mode-map (kbd "C-c >") (lambda () (interactive (org-time-stamp-inactive))))
+   (setq org-capture-templates
+   '(
+     ("a" "Appointment" entry (file+headline "~/Dropbox/Note/gcal.org"     "Appointment")  "* %u %? " :prepend t)
+     ("n" "TagsNote"    entry (file+headline "~/Dropbox/Note/Appointment.org"        "TagsNote")     "* %u %? " :prepend t)
+   ;; ("m" "Math"          entry (file+headline "~/Dropbox/Sprache/Math/Math.org"           "Math")  "* %u %? " :prepend t)
+   ;; ("p" "Physik"        entry (file+headline "~/Dropbox/Sprache/Physik/Physik.org"      "Physik")  "* %u %? " :prepend t)
+   ;; ("r" "ROS"           entry (file+headline "~/Dropbox/Sprache/ROS/ROS.org"               "ROS")  "* %u %? " :prepend t)
+   ;; ("i" "Inf"           entry (file+headline "~/Dropbox/Sprache/Inf/Inf.org"               "Inf")  "* %u %? " :prepend t)
+   ))
+   (defadvice org-capture-finalize
+       (after delete-capture-frame activate)
+     "Advise capture-finalize to close the frame"
+     (if (equal "capture" (frame-parameter nil 'name))
+         (delete-frame)))
+   (defadvice org-capture-destroy
+       (after delete-capture-frame activate)
+     "Advise capture-destroy to close the frame"
+     (if (equal "capture" (frame-parameter nil 'name))
+         (delete-frame)))
+   (use-package noflet
+     :ensure t )
+   (defun make-capture-frame ()
+     "Create a new frame and run org-capture."
+     (interactive)
+     (make-frame '((name . "capture")))
+     (select-frame-by-name "capture")
+     (delete-other-windows)
+     (noflet ((switch-to-buffer-other-window (buf) (switch-to-buffer buf)))
+       (org-capture)))
+       ;; (require 'ox-beamer)
+       ;; for inserting inactive dates
+       (define-key org-mode-map (kbd "C-c >") (lambda () (interactive (org-time-stamp-inactive))))
 
-  (global-set-key (kbd "C-c c") 'org-capture)
+   (global-set-key (kbd "C-c c") 'org-capture)
 
 #+end_src
 * Agenda  
 #+begin_src emacs-lisp
-  (global-set-key "\C-ca" 'org-agenda)
-  (setq org-agenda-files (list 
-                          "~/Dropbox/Note/Appointment.org"
-                          "~/Dropbox/Note/TagsNote.org"
-                          "~/Dropbox/Apps/MobileOrg/mobileorg.org"
-                          ))
-  (setq org-agenda-start-on-weekday nil)
-  (setq org-agenda-custom-commands
-        '(("c" "Simple agenda view"
-           ((agenda "")
-            (alltodo "")))))
+          (global-set-key "\C-ca" 'org-agenda)
+           (setq org-agenda-files (list 
+                                   "~/Dropbox/Note/Appointment.org"
+                                   "~/Dropbox/Note/gcal.org"
+                                   ))
+           (setq org-agenda-start-on-weekday nil)
+           (setq org-agenda-custom-commands
+                 '(("c" "Simple agenda view"
+                    ((agenda "")
+                     (alltodo "")))))
 
   (setq org-agenda-include-diary t)
 
@@ -1856,6 +1890,7 @@ for the encrypt file. remember, remember!!
 [fn:03] shift + f can dynamical view the agenda items. and Tab goto
 the linked agenda file.
 * org-roam
+** config
 sudo apt install sqlite
 Note:
 as if install org-roam. look if org-roam--sqlite-available-p is t,
@@ -1869,26 +1904,6 @@ because the definition has been changed
 commands:
 org-id-get-create  create a id at the headline, which can also be treated as a node
 org-roam-alias-add is for the cast when you have more than two nodes conficts
-
-|---------+---+------------------------------------|
-| C-c C-h | n | add note for today                 |
-|         | Y | add note for yesterday             |
-|         | T | add note for tomorrow              |
-|         | v | add note for a selcting day        |
-|         | y | go to note of yesterday            |
-|         | t | go te note of tomorrow             |
-|         | c | go to note of selecting day        |
-|         | f | go to note of next day             |
-|         | b | go to note of previous day         |
-|         |   |                                    |
-|         |   |                                    |
-| C-c n   | f | org-roam-node-find(find or create) |
-|         | i | org-roam-node-insert               |
-|         | I | org-roam completion-at-point       |
-|         | l | backlists                          |
-|         |   |                                    |
-|         |   |                                    |
-
 
 #+begin_src emacs-lisp
   (use-package org-roam
@@ -1983,6 +1998,36 @@ org-roam-alias-add is for the cast when you have more than two nodes conficts
 #+END_SRC
 #+RESULTS:
 | my/org-export-preprocessor |
+** roam links
+|-------+---+------------------------------|
+| C-c n | f | org-roam-node-find OR *create* |
+|       | i | org-roam-node-insert         |
+|       | I | org-roam completion-at-point |
+|       | l | backlists                    |
+|-------+---+------------------------------|
+  *C-c n f*  to find the  existed link or create a new one
+  each roam link is a file,
+  *C-c n i*  insert roam link at point
+** Header links
+  *org-store-link*   can be done for each header, but without any output
+  *org-insert-link*   link can be chosed from history,  but this link will only show once in the history
+**  Id links
+*org-id-store-link*, this can add a  id link to the belonged header
+*org-insert-link* chose id type,  but you have to find the id by yourself
+** Journal links
+only for dayly notation
+|---------+---+-----------------------------|
+| C-c C-h | n | add note for today          |
+|         | Y | add note for yesterday      |
+|         | T | add note for tomorrow       |
+|         | v | add note for a selcting day |
+|         | y | go to note of yesterday     |
+|         | t | go te note of tomorrow      |
+|         | c | go to note of selecting day |
+|         | f | go to note of next day      |
+|         | b | go to note of previous day  |
+|---------+---+-----------------------------|
+
 * helm-org-rifle
 M-x: package install helm-org-rifle
 在已经打开的所有文件中匹配搜索关键词，是所有打开文件
@@ -2085,6 +2130,16 @@ template seeing [[./template/ox-beamer.org]]
 
 #+end_src
 
+* org-msg
+#+BEGIN_SRC 
+- mbsync setting seeing in Dropbox
+- C-c C-m to send email
+- math :file output.png -> C-c C-c
+- digraph ->
+- graph --
+
+#+END_SRC
+
 * literatur Programm
 ** options
 src 前缀  
@@ -2101,13 +2156,13 @@ src 后缀
 | language               | function                                 |
 | C/python/emacs-lisp    |                                          |
 | :file abc.org          |                                          |
-| :dir                   | 指定生成代码的路径                       |
+| :dir                   | 指定生成代码的路径                                |
 | :results output        |                                          |
 | :export   (到html文件) | code 只导出代码，results 只是结果 ，both |
 | :session  my           | 可切换到生成的my buffer 操作             |
 | :tangle  (创建源码）   | 文件名，yes, no                          |
 | :noweb yes             | 对tangle和export作用                     |
-| :tangle   xxx.py       | 输出文件 (M-x: org-babel-tangle)         |
+| :tangle   xxx.py       | 输出文件 C-c C-v t                      |
 | :var  x=2              |                                          |
 | :shebang               | 指定码块的解释器                         |
 |                        |                                          |
@@ -2291,51 +2346,37 @@ $\mathcal{B}$
 #+END_SRC
 ** execute Program
 #+BEGIN_SRC emacs-lisp
-  (setq org-confirm-babel-evaluate nil
-        org-src-fontify-natively t
-        org-src-tab-acts-natively t)
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((python . t)
-     ;;(ipython . t)
-     (emacs-lisp . t)
-     (java . t)
-     (shell . t)
-     (sql . t)
-     (C . t)
-     (js . t)
-     (dot . t)
-    ;; (plantuml . t)
-     (ditaa . t)
-    ;; (haskell . t)
-     (dot . t)
-     (org . t)
-     (latex . t )
-     (typescript . t)
-    ;;  scala . t)
-    ;; (mongo . t)
-    ;; (julia-vterm . t )
-     (go . t)
-     ))
-  (with-eval-after-load 'org)
+    (setq org-confirm-babel-evaluate nil
+          org-src-fontify-natively t
+          org-src-tab-acts-natively t)
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((python . t)
+       ;; (ipython . t)
+       (emacs-lisp . t)
+       (java . t)
+       (shell . t)
+       (sql . t)
+       (C . t)
+       (js . t)
+       (dot . t)
+       (plantuml . t)
+       (ditaa . t)
+       (haskell . t)
+       (dot . t)
+       (org . t)
+       (latex . t )
+       (typescript . t)
+  ;;     (scala . t)
+       (mongo . t)
+       (go . t)
+       (julia-vterm . t )
+       ))
+    (with-eval-after-load 'org)
 
 #+END_SRC
 #+RESULTS:
 ** config
-#+begin_src emacs-lisp
-      (defun org-babel-tangle-block()
-        (interactive)
-        (let ((current-prefix-arg '(4)))
-          (call-interactively 'org-babel-tangle)
-          )
-        )
-
-      (eval-after-load "org"
-        '(progn
-           (define-key org-mode-map (kbd "C-c b") 'org-babel-tangle-block)
-           )
-        )
-#+end_src
 * programm settings
 ** ctags
 Wiki : [[https://www.emacswiki.org/emacs/BuildTags][Emacs wiki]]
@@ -2346,6 +2387,7 @@ github for ctags [[https://github.com/universal-ctags/ctags][universal ctags]]
 so the comands from Emacs wiki works
 
 * Atomic-chrome
+for the bowser extension, GhostText is available for chrome and firefox
 #+begin_src emacs-lisp
 (use-package atomic-chrome
 :ensure t
@@ -2519,19 +2561,19 @@ so the comands from Emacs wiki works
 #+end_src
 ** eslint use local 
 #+begin_src emacs-lisp  
-      (defun my/use-eslint-from-node-modules ()
-        "Use local eslint from node_modules before global."
-        (let* ((root (locate-dominating-file
-                      (or (buffer-file-name) default-directory)
-                      "node_modules"))
-               (eslint (and root
-                            (expand-file-name "node_modules/eslint/bin/eslint.js"
-                                              root))))
-          (when (and eslint (file-executable-p eslint))
-            (setq-local flycheck-javascript-eslint-executable eslint))))
-  
-      (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
-  
+  ;; (defun my/use-eslint-from-node-modules ()
+  ;;   "Use local eslint from node_modules before global."
+  ;;   (let* ((root (locate-dominating-file
+  ;;                 (or (buffer-file-name) default-directory)
+  ;;                 "node_modules"))
+  ;;          (eslint (and root
+  ;;                       (expand-file-name "node_modules/eslint/bin/eslint.js"
+  ;;                                         root))))
+  ;;     (when (and eslint (file-executable-p eslint))
+  ;;       (setq-local flycheck-javascript-eslint-executable eslint))))
+
+  ;; (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
+
 
 #+end_src
 ** rjsx
@@ -2614,32 +2656,32 @@ so the comands from Emacs wiki works
 #+end_src
 ** tide
 #+begin_src emacs-lisp  
-  (use-package tide
-    :ensure t
-    :after (typescript-mode company flycheck)
-    :hook ((typescript-mode . tide-setup)
-           (typescript-mode . tide-hl-identifier-mode))
-    (before-save . tide-format-before-save)
-    :config
-    (setq tide-completion-enable-autoimport-suggestions t)
-    )
+  ;; (use-package tide
+  ;;   :ensure t
+  ;;   :after (typescript-mode company flycheck)
+  ;;   :hook ((typescript-mode . tide-setup)
+  ;;          (typescript-mode . tide-hl-identifier-mode))
+  ;;   (before-save . tide-format-before-save)
+  ;;   :config
+  ;;   (setq tide-completion-enable-autoimport-suggestions t)
+  ;;   )
 
 
-  (defun setup-tide-mode ()
-    "Setup tide mode for other mode."
-    (interactive)
-    (message "setup tide mode")
-    (tide-setup)
-    (flycheck-mode +1)
-    (setq flycheck-check-syntax-automatically '(save mode-enabled))
-    (eldoc-mode +1)
-    (tide-hl-identifier-mode +1)
-    (company-mode +1))
+  ;; (defun setup-tide-mode ()
+  ;;   "Setup tide mode for other mode."
+  ;;   (interactive)
+  ;;   (message "setup tide mode")
+  ;;   (tide-setup)
+  ;;   (flycheck-mode +1)
+  ;;   (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  ;;   (eldoc-mode +1)
+  ;;   (tide-hl-identifier-mode +1)
+  ;;   (company-mode +1))
 
-  (add-hook 'js2-mode-hook #'setup-tide-mode)
-  (add-hook 'typescript-mode-hook #'setup-tide-mode)
+  ;; (add-hook 'js2-mode-hook #'setup-tide-mode)
+  ;; (add-hook 'typescript-mode-hook #'setup-tide-mode)
   ;;  (add-hook 'rjsx-mode-hook #'setup-tide-mode)
-  
+
 #+end_src
 ** prettier
    sudo npm install -g prettier
@@ -2673,29 +2715,49 @@ Change them to higher numbers, if you find *lsp-mode* sluggish in your computer.
   (defun efs/lsp-mode-setup ()
     (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
     (lsp-headerline-breadcrumb-mode))
-  
-      (use-package lsp-mode
-    ;;    :straight t
-        :commands (lsp lsp-deferred)
-        :hook
-        ((typescript-mode js2-mode web-mode) . lsp)
-        (lsp-mdoe . efs/lsp-mode-setup)
-        :init
-        (setq lsp-keymap-prefix "C-c l")
-        :config
-        (lsp-enable-which-key-integration t)
-        :bind (:map lsp-mode-map
-                  ("TAB" . completion-at-point))
-        :custom (lsp-headerline-breadcrumb-enable nil))
-  
+
+  (use-package lsp-mode
+    :ensure t
+    :commands (lsp lsp-deferred)
+    :hook
+    ((typescript-mode js2-mode web-mode) . lsp)
+    (lsp-mdoe . efs/lsp-mode-setup)
+    (lsp-mode . rainbow-delimiters-mode)
+    (go-mode . lsp-deferred)
+    :init
+    (setq lsp-keymap-prefix "C-c l")
+    :config (progn
+              (lsp-enable-which-key-integration t)
+              ;; use flycheck, not flymake
+              (setq lsp-prefer-flymake nil)
+              ;;(setq lsp-trace nil)
+              (setq lsp-print-performance nil)
+              (setq lsp-log-io nil)
+    )
+  :bind (:map lsp-mode-map
+              ("TAB" . completion-at-point))
+  :custom (lsp-headerline-breadcrumb-enable nil))
+
+  (setq lsp-disabled-clients '(eslint))
+
 #+end_src
 ** lsp ui
 #+begin_src emacs-lisp
   (use-package lsp-ui
     :ensure t
-    :hook (lsp-mode . lsp-ui-mode)
+    :after (lsp-mode)
+    :commands lsp-ui-mode
     :custom
-    (lsp-ui-doc-position 'bottom))
+    (lsp-ui-doc-position 'bottom)
+    :config (progn
+            ;; disable inline documentation
+            (setq lsp-ui-sideline-enable nil)
+            ;; disable showing docs on hover at the top of the window
+            (setq lsp-ui-doc-enable nil)
+            (setq lsp-ui-imenu-enable t)
+            (setq lsp-ui-imenu-kind-position 'top))
+  )
+
 
   (setq lsp-ui-sideline-show-code-actions nil)
   (setq lsp-headerline-breadcrumb-enable t)
@@ -2718,29 +2780,33 @@ Below we will integrate ~dap-mode~ with ~dap-hydra~.
 After we install dap-mode we will also install ~dap-java~.
 
 #+begin_src emacs-lisp
-  ;; (use-package dap-mode
-  ;;   :ensure t
-  ;;   :after (lsp-mode)
-  ;;   :functions dap-hydra/nil
-  ;;   :config
-  ;;   (require 'dap-java)
-  ;;   :bind (:map lsp-mode-map
-  ;;          ("<f5>" . dap-debug)
-  ;;          ("M-<f5>" . dap-hydra))
-  ;;   :hook ((dap-mode . dap-ui-mode)
-  ;;     (dap-session-created . (lambda (&_rest) (dap-hydra)))
-  ;;     (dap-terminated . (lambda (&_rest) (dap-hydra/nil)))))
+        ;; (use-package dap-mode
+        ;;   :ensure t
+        ;;   :after (lsp-mode)
+        ;;   :functions dap-hydra/nil
+        ;;   :config
+        ;;   (require 'dap-java)
+        ;;   :bind (:map lsp-mode-map
+        ;;          ("<f5>" . dap-debug)
+        ;;          ("M-<f5>" . dap-hydra))
+        ;;   :hook ((dap-mode . dap-ui-mode)
+        ;;     (dap-session-created . (lambda (&_rest) (dap-hydra)))
+        ;;     (dap-terminated . (lambda (&_rest) (dap-hydra/nil)))))
 
-  ;; (use-package dap-java :ensure nil)
+        ;; (use-package dap-java :ensure nil)
 #+end_src
 
 ** TS
 #+begin_src emacs-lisp
   (use-package typescript-mode
-  :mode "\\.ts\\'"
-  :hook (typescript-mode . lsp-deferred)
-  :config
-  (setq typescript-indent-level 2))
+    :mode "\\.ts\\'"
+    :hook (typescript-mode . lsp-deferred)
+    :config
+    (setq typescript-indent-level 2)
+    (require 'dap-node)
+    (dap-node-setup)
+    ) 
+
 #+end_src
 
 
@@ -2762,13 +2828,13 @@ After we install dap-mode we will also install ~dap-java~.
 
 * Julia
 #+begin_src emacs-lisp
-  ;; (package-install 'julia-mode)
-  ;; (require 'julia-mode)
-  ;; (package-install 'lsp-julia)
-  ;; (use-package lsp-julia
-  ;;   :config
-  ;;   (setq lsp-julia-default-environment "~/.julia/environments/v1.7"))
-  ;; (add-hook 'ess-julia-mode-hook #'lsp-mode)
+    (package-install 'julia-mode)
+    (require 'julia-mode)
+    (package-install 'lsp-julia)
+    (use-package lsp-julia
+      :config
+      (setq lsp-julia-default-environment "~/.julia/environments/v1.7"))
+    (add-hook 'ess-julia-mode-hook #'lsp-mode)
 
 #+end_src
 
@@ -2781,22 +2847,10 @@ or / and sudo apt-get install libtool
 >>> Pkg.add("Suppressor")
 
 #+begin_src emacs-lisp
-  ;; (package-install 'julia-vterm)
-  ;; (add-hook 'julia-mode-hook #'julia-vterm-mode)
+  (package-install 'julia-vterm)
+  (add-hook 'julia-mode-hook #'julia-vterm-mode)
 #+end_src
 
-* GO
-#+begin_src emacs-lisp
-  (require 'lsp-mode)
-  (add-hook 'go-mode-hook #'lsp-deferred)
-
-  ;; Set up before-save hooks to format buffer and add/delete imports.
-  ;; Make sure you don't have other gofmt/goimports hooks enabled.
-  (defun lsp-go-install-save-hooks ()
-    (add-hook 'before-save-hook #'lsp-format-buffer t t)
-    (add-hook 'before-save-hook #'lsp-organize-imports t t))
-  (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
-#+end_src
 * hi-lock-mode
 hi-lock-file-patterns-policy  to be nil
 | C-x w | h | give regexp and select color          |
@@ -2865,379 +2919,6 @@ hi-lock-file-patterns-policy  to be nil
   ;; (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
 
 #+end_src
-* mu4e
-[[https://www.djcbsoftware.nl/code/mu/mu4e/index.html#SEC_Contents][mu4e tutorials]]
-|------------------------------+---------------------------+------------------------|
-| mbsync receive email         | ~/.mbsyncrc               | mbsync conton settings |
-| mbsync receive email         | ~/Maildir/.mbsyncpass.gpg | mbsync passwd          |
-| mbsync to mu4e               | myemacs.org               | mu4                    |
-
-in Google Konto: Zugriff durch weniger sichere Apps: AN
-M-x: org~mu4e-mime-switch-headers-or-body  to edit the mail in orgmode
-** mbsync conton setting
-#+begin_src 
-########################################
-# Gmail
-########################################
-IMAPAccount gmail
-Host imap.gmail.com
-User scofild429@gmail.com
-PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/Maildir/.mbsyncpass.gpg"
-Port 993
-SSLType IMAPS
-CertificateFile /etc/ssl/certs/ca-certificates.crt
-
-IMAPStore gmail-remote
-Account gmail
-
-MaildirStore gmail-local
-Path ~/Maildir/Gmail/
-Inbox  ~/Maildir/Gmail/Inbox
-Subfolders Verbatim
-
-Channel gmail
-Master :gmail-remote:
-Slave :gmail-local:
-Create Both
-Expunge Both
-Patterns *
-SyncState *
-CopyArrivalDate yes
-Sync All
-
-
-########################################
-# unimail
-########################################
-# IMAPAccount unimail
-# Host email.stud.uni-goettingen.de
-# User ug-student\silin.zhao
-# #User silin.zhao@stud.uni-goettingen.de
-# PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/Maildir/.unimail.gpg"
-# Port 993
-# SSLType STARTTLS
-# CertificateFile /etc/ssl/certs/ca-certificates.crt
-
-# IMAPStore unimail-remote
-# Account unimail
-
-# MaildirStore unimail-local
-# Path ~/Maildir/Unimai/
-# Inbox ~/Maildir/Unimail/Inbox
-# SubFolders Verbatim
-
-# Channel unimail
-# Master :unimail-remote:
-# Slave :unimail-local:
-# Patterns *
-# SyncState *
-# Expunge None
-# CopyArrivalDate yes
-# Create Both
-# Sync All
-
-
-
-########################################
-# qq.com
-########################################
-IMAPAccount qq
-Host imap.qq.com
-User 364638790@qq.com
-PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/Maildir/.qq.gpg"
-Port 993
-SSLType IMAPS
-CertificateFile /etc/ssl/certs/ca-certificates.crt
-
-IMAPStore qq-remote
-Account qq
-
-MaildirStore qq-local
-Path ~/Maildir/QQ/
-Inbox  ~/Maildir/QQ/Inbox
-SubFolders Verbatim
-
-Channel qq
-Master :qq-remote:
-Slave :qq-local:
-Create Both
-Expunge Both
-Patterns *
-SyncState *
-CopyArrivalDate yes
-Sync All
-
-
-########################################
-# outlook
-########################################
-IMAPAccount outlook
-Host smtp-mail.outlook.com
-User mscofild429@outlook.com
-PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/Maildir/.outlook.gpg"
-Port 993
-SSLType IMAPS
-CertificateFile /etc/ssl/certs/ca-certificates.crt
-
-IMAPStore outlook-remote
-Account outlook
-
-MaildirStore outlook-local
-Path ~/Maildir/Outlook/
-Subfolders Verbatim
-
-Channel outlook
-Master :outlook-remote:
-Slave :outlook-local:
-Create Both
-Expunge Both
-Patterns *
-SyncState *
-CopyArrivalDate yes
-Sync All
-
-
-
-########################################
-# 163
-########################################
-# IMAPAccount 163
-# Host imap.163.com
-# User mscofild429@163.com
-# PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/Maildir/.163.gpg"
-# Port 993
-# SSLType IMAPS
-# CertificateFile /etc/ssl/certs/ca-certificates.crt
-
-# IMAPStore 163-remote
-# Account 163
-
-# MaildirStore 163-local
-# Path ~/Maildir/Wangyi163/
-# Inbox  ~/Maildir/Wangyi163/Inbox
-# SubFolders Verbatim
-
-# Channel 163
-# Master :163-remote:
-# Slave :163-local:
-# Create Both
-# Expunge Both
-# Patterns *
-# SyncState *
-# CopyArrivalDate yes
-# Sync All
-
-
-#+end_src
-
-** mbsync pd
-xxxxxx
-gpg2 --output ~/Maildir/.mbsyncpass.gpg --symmetric ~/Maildir/.mbsyncpass
-** mu4e settings
-sudo apt install isync
-save this into ~/.mbsyncrc
-mbsync -a
-sudo apt install mu4e
-
-ngpg2 --output .mbsyncpass.gpg --symmetric .mbsyncpass
-
-mu index --maildir=~/Maildir  
-mu index  --maildir=~/Maildir/Gmail  --my-address=scofild429@gmail.com
-
-#+begin_src emacs-lisp
-  (use-package mu4e
-    :ensure nil
-    :load-path "/snap/maildir-utils/502/share/emacs/site-lisp/mu4e"
-    ;; :defer 20 ; Wait until 20 seconds after startup
-    :config
-    ;; This is set to 't' to avoid mail syncing issues when using mbsync
-    (setq mu4e-change-filenames-when-moving t)
-    ;; Refresh mail using isync every 10 minutes
-    (setq mu4e-update-interval (* 10 60))
-    (setq mu4e-get-mail-command "mbsync -a")
-    (setq mu4e-maildir "~/Maildir")
-
-    ;; Make sure plain text mails flow correctly for recipients
-    (setq mu4e-compose-format-flowed t)
-    ;; Configure the function to use for sending mail
-    (setq message-send-mail-function 'smtpmail-send-it)
-    ;; (setq mu4e-compose-signature
-    ;;       (concat
-    ;;        "Best regrads\n"
-    ;;        "Silin Zhao")
-    ;;       )
-    (with-eval-after-load 'mu4e
-      (setq mu4e-contexts
-            (list
-             ;; Work account
-             (make-mu4e-context
-              :name "Gmail"
-              :match-func
-              (lambda (msg)
-                (when msg
-                  (string-prefix-p "/Gmail" (mu4e-message-field msg :maildir))))
-              :vars '((user-mail-address . "scofild429@gmail.com")
-                      (user-full-name    . "Silin Zhao")
-                      (smtpmail-smtp-server  . "smtp.gmail.com")
-                      (smtpmail-smtp-service . 465)
-                      (smtpmail-stream-type  . ssl)
-                      )))))
-
-    (setq mu4e-maildir-shortcuts
-          '(
-            ("/Inbox" . ?i)
-            ("/[Gmail]/All Mail" . ?a)
-            ("/[Gmail]/Sent Mail" . ?s)
-            ("/[Gmail]/Drafts" . ?d)
-            ))
-    )
-#+end_src
-
-** mu4e background settingns
-
-[[https://www.djcbsoftware.nl/code/mu/mu4e/MSGV-Keybindings.html][mu4e shourtcuts]]
-with (M-x mu4e-no-background ) html email can be read very clear, no small box background.
-but in SRC source block here are no highlight
-
-
-#+begin_src emacs-lisp
-  ;; (require 'org-mu4e)
-  ;; (setq org-mu4e-convert-to-html t)
-  ;; (setq mu4e-view-prefer-html t)
-  ;; (add-to-list 'mu4e-view-actions
-  ;;              '("ViewInBrowser" . mu4e-action-view-in-browser) t)
-
-
-  ;; (defun mu4e-no-background()
-  ;;   (interactive )
-  ;;   (setq shr-use-colors t)
-  ;;   (advice-add #'shr-colorize-region :around (defun shr-no-colourise-region (&rest ignore)))
-  ;;   (setq shr-color-visible-luminance-min 60)
-  ;;   (setq shr-color-visible-distance-min 5)
-  ;;   )
-
-
-#+end_src
-
-** mu4e for image to read in receive
-#+begin_src emacs-lisp
-;; enable inline images
-(setq mu4e-view-show-images t)
-;; use imagemagick, if available
-(when (fboundp 'imagemagick-register-types)
-  (imagemagick-register-types))
-
-(setq org-latex-create-formula-image-program 'dvipng)
-#+end_src
-** mu4e for image in orgmode to send
-M-x: org~mu4e-mime-switch-headers-or-body to orgmode
-*** ditta
-after :file I can add any path to output, and can be send together
-*** latex
-1- create the image through the src of lsetq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))atex output with normally path
-2- add the photo with [[]] with ../../ because the base is /tmp/file/ , so *return* to the root at frist
-3- if I want to send the latex source code together. with :exports both
-
-** org mime
-not recommanded, use org-msg
-#+begin_src emacs-lisp
-  (use-package org-mime)
-  ;; (setq org-mime-library 'mml)
-
-#+end_src
-
-#+RESULTS:
-: mml
-
-** org-msg
-#+BEGIN_SRC 
-- mbsync setting seeing in Dropbox
-- C-c C-m to send email
-- math :file output.png -> C-c C-c
-- digraph ->
-- graph --
-
-#+END_SRC
-#+begin_src emacs-lisp
-  (setq mail-user-agent 'mu4e-user-agent)
-  (use-package org-msg
-    :ensure t
-    :config
-    (setq org-msg-options "html-postamble:nil H:5 num:nil ^:{} toc:nil author:nil email:nil \\n:t"
-          org-msg-startup "hidestars indent inlineimages"
-          org-msg-greeting-fmt "\nHi%s,\n\n"
-          org-msg-recipient-names '(("scofild429@gmail.com" . "Silin Zhao"))
-          org-msg-greeting-name-limit 3
-          org-msg-default-alternatives '((new		. (text html))
-                                         (reply-to-html	. (text html))
-                                         (reply-to-text	. (text)))
-          org-msg-convert-citation t
-          org-msg-signature
-          "
-          \n Regards,
-          \n Silin Zhao
-          "
-          )
-    (org-msg-mode)
-    )
-#+end_src
-
-** org-ref
-  (require 'org-ref-helm) need to install helm-bibtex
-  C-c ]: insert citation
-  C-Space: mark multi citations
-#+begin_src emacs-lisp
-    (setq bibtex-completion-bibliography '("~/Dropbox/Document/emacsref/bibliography/references.bib")
-          bibtex-completion-library-path '("~/Dropbox/Document/emacsref/bibliography/bibtex-pdfs/")
-          bibtex-completion-notes-path "~/Dropbox/Document/emacsref/bibliography/notes/"
-          bibtex-completion-notes-template-multiple-files "* ${author-or-editor}, ${title}, ${journal}, (${year}) :${=type=}: \n\nSee [[cite:&${=key=}]]\n"
-          bibtex-completion-additional-search-fields '(keywords)
-          bibtex-completion-display-formats
-          '((article       . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${journal:40}")
-            (inbook        . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} Chapter ${chapter:32}")
-            (incollection  . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
-            (inproceedings . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}")
-            (t             . "${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*}"))
-          bibtex-completion-pdf-open-function
-          (lambda (fpath)
-            (call-process "open" nil 0 nil fpath)))
-
-
-    (require 'bibtex)
-    (require 'org-ref)
-  (require 'org-ref-helm)
-
-    (setq bibtex-autokey-year-length 4
-          bibtex-autokey-name-year-separator "-"
-          bibtex-autokey-year-title-separator "-"
-          bibtex-autokey-titleword-separator "-"
-          bibtex-autokey-titlewords 2
-          bibtex-autokey-titlewords-stretch 1
-          bibtex-autokey-titleword-length 5)
-
-    (define-key bibtex-mode-map (kbd "H-b") 'org-ref-bibtex-hydra/body)
-    (define-key org-mode-map (kbd "C-c ]") 'org-ref-insert-link)
-#+end_src
-
-* ebib for tex 
-This package can be used in tex file for latex
-M-x: ebib
-o: open bib file,
-e: edit
-a: add
-M-x: ebib-insert-citation
-C-c C-c in tex file, BibTex and then XeLatex
-#+begin_src 
-#+OPTIONS: toc:3 ':t h:4 ^:{} tags:nil todo:nil
-#+LATEX_CLASS: koma-article
-#+LATEX_CLASS_OPTIONS: [paper=letter,oneside,DIV=8]
-#+LATEX_HEADER: \usepackage[style=verbose,backend=bibtex]{biblatex}
-#+LATEX_HEADER: \addbibresource{local.bib}
-#+STARTUP: entitiespretty
-#+TITLE: Guide to use orgmode for PDF file generatation
-#+AUTHOR: Thomas S. Dye
-#+EMAIL: tsd at tsdye dot com
-#+end_src
 
 * initination
 #+begin_src 
@@ -3263,4 +2944,122 @@ C-c C-c in tex file, BibTex and then XeLatex
 (org-babel-load-file "~/Dropbox/cs/Limacs/myinit.org")
 #+end_src
 
+* Draw and scribble
+#+begin_src emacs-lisp
+  (load "~/.emacs.d/packages/svg.el")
+  (require 'svg)
+  (setq default-process-coding-system '(utf-8 . utf-8))
+#+end_src
+|--------------+------------------|
+| l            | Line             |
+| c            | Circle           |
+| r            | Rectangle        |
+| e            | Ellipse          |
+| t            | Text             |
+| p            | Polyline         |
+| w            | Stroke Width     |
+| f            | Fill color       |
+| C            | Stroke color     |
+| z (+, -, 0)  | Zoom             |
+| x            | Eraser           |
+| M-w          | Copy             |
+| m            | Move             |
+| g            | Group            |
+| G            | Ungroup          |
+| M-g          | Toggle grid      |
+| y            | Selection mode   |
+| ESC          | Cancel Selection |
+| R            | Rotate           |
+| W            | Connection wire  |
+| L            | Symbol Library   |
+| s            | Save SVG         |
+| u            | Undo             |
+| q/RETURN     | Quit             |
+|--------------+------------------|
 
+* Go
+Dap-debug has to unset NODE_OPTIONS
+in Terminal  unset NODE_OPTIONS
+or M-x: setenv NODE_OPTIONS Enter
+#+begin_src emacs-lisp
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 1)
+
+
+  (defun ime-go-before-save ()
+    (interactive)
+    (when lsp-mode
+      (lsp-organize-imports)
+      (lsp-format-buffer)))
+
+  (defun lsp-go-install-save-hooks ()
+    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t))
+
+
+  (use-package go-mode
+    :ensure t
+    :config
+    (add-hook 'go-mode-hook 'yas-minor-mode)
+    (add-hook 'go-mode-hook 'lsp-deferred)
+    (add-hook 'go-mode-hook 'lsp-go-install-save-hooks)
+    (add-hook 'go-mode-hook
+              (lambda ()
+                (add-hook 'before-save-hook 'ime-go-before-save)))
+    )
+#+end_src
+#+begin_src emacs-lisp
+  ;; DAP
+  (use-package dap-mode
+    ;; :hook (dap-stopped . (lambda (arg) (call-interactively #'dap-hydra)))
+    ;;:custom
+    ;; (dap-go-debug-program `("node" "~/extension/out/src/debugAdapter/goDebug.js"))
+    :config
+    (dap-mode 1)
+    (setq dap-print-io t)
+    ;;(setq fit-window-to-buffer-horizontally t)
+    ;;(setq window-resize-pixelwise t)
+    (require 'dap-hydra)
+    (require 'dap-go)		; download and expand vscode-go-extenstion to the =~/.extensions/go=
+    (dap-go-setup)
+    (use-package dap-ui
+      :ensure nil
+      :config
+      (dap-ui-mode 1)
+      )
+    )
+
+#+end_src
+#+begin_src emacs-lisp
+
+  (add-hook 'after-init-hook 'global-flycheck-mode)
+  (add-hook 'after-init-hook 'global-company-mode)
+  (eval-after-load 'flycheck
+    '(add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup))
+
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(inhibit-startup-screen t)
+   '(lsp-ui-imenu-enable t)
+   '(package-selected-packages
+     '(treemacs dap-mode flycheck-golangci-lint projectile flx-ido yasnippet use-package lsp-ui go-mode flycheck company-lsp))
+   '(tool-bar-mode nil))
+
+  ;; use golangci
+  (use-package flycheck-golangci-lint
+    :ensure t)
+#+end_src
+
+* restclient
+#+begin_src emacs-lisp
+  (use-package restclient
+    :ensure t)
+  (use-package company-restclient
+    :ensure t
+    :config
+    (add-to-list 'company-backends 'company-restclient))
+
+#+end_src

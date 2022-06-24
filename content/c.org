@@ -165,17 +165,89 @@ only exit c, if access to *c, segment default
 : format string is   101, 1205551536
 
  assign a address, all exits now
+*** point to pass
 #+begin_src C :results output
-  int *c = 0;
-  int *b = 3;
-  c = &b;
-  printf("format string is %d,  %d, %d\n" , *c, c, &c);
+  void output(int *t){
+    printf("%d\n", *t );
+    (*t)++;
+  }
+
+  int c = 1;
+  printf("c : %d\n",c );
+  for (int i = 0; i< 10; i++){
+    output(&c);
+  }
+  printf("c : %d\n",c );
 #+end_src
 
 #+RESULTS:
-: format string is 3,  773742000, 773741992
+#+begin_example
+c : 1
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+c : 11
+#+end_example
 
-***   char *ptr;
+
+#+begin_src C :results output
+  void output(int t[2]){
+    printf("%d\n", t[1] );
+    (t[1])++;
+    t[0] = 100;
+  }
+
+  int c[2] = {1,2};
+  printf("c[1] : %d\n",c[1] );
+  for (int i = 0; i< 10; i++){
+    output(c);
+  }
+  printf("c[0] : %d\n",c[0] );
+  printf("c[1] : %d\n",c[1] );
+#+end_src
+
+#+RESULTS:
+#+begin_example
+c[1] : 2
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+c[0] : 100
+c[1] : 12
+#+end_example
+
+*** reference  to pass not to that
+#+begin_src C :results output
+  void output(int &t){
+    printf("%d\n", t );
+    t++;
+  }
+
+  int a = 10;
+  printf("a : %d\n",a );
+  for (int i = 0; i< 10; i++){
+    output(a);
+  }
+  printf("a : %d\n",a );
+#+end_src
+
+#+RESULTS:
+
+*** char *ptr;
 all exist
 #+begin_src C :results output
   char *ptr ;
@@ -201,7 +273,6 @@ all exist
 #+RESULTS:
 : format string 111 is ok at 2089099008 
 : format string is lko 
-
 
 ** pointer and array description
 | *p = a[n]         | p             | a            |

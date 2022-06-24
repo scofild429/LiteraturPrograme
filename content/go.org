@@ -42,7 +42,7 @@
 #+end_src
 
 #+RESULTS:
-: 该函数执行完成耗时： 38.669µs
+: 该函数执行完成耗时： 33.536µs
 
 * sync
 #+begin_src go :results output :exports both
@@ -82,12 +82,10 @@
 * go
 #+begin_src go :results output :exports both
   package main
-
   import (
       "fmt"
       "time"
   )
-
   func main() {
       var times int
       go func() {
@@ -106,7 +104,6 @@
           for {
           }
       }()
-
       for times = 0; times <= 10; times++ {
           fmt.Println("tick", times)
           time.Sleep(time.Second)
@@ -175,7 +172,6 @@ tick 10
       "time"
   )
 
-
   func enrichContext(ctx context.Context) context.Context {
       return context.WithValue(ctx, "request-id", "11212")
 
@@ -226,3 +222,127 @@ Oh, no, Time is execeed the deadline
 context deadline exceeded
 times out
 #+end_example
+
+* gonum
+** Test example
+#+begin_src go :results output :exports both :tangle ./babel/main.go
+  package main
+
+  import (
+          "fmt"
+
+          "gonum.org/v1/gonum/blas/blas64"
+          "gonum.org/v1/gonum/mat"
+  )
+
+  func main() {
+          r := row{1, 2, 3, 4}
+          c := column{1, 2, 3}
+
+          var m mat.Dense
+          m.Mul(c, r)
+
+          fmt.Println(mat.Formatted(&m))
+          n := c.RawVector().N
+          inc := c.RawVector().Inc
+          d := c.RawVector().Data
+          fmt.Println(n)
+          fmt.Println(inc)
+          fmt.Println(d)
+
+          u := mat.NewVecDense(3, []float64{1, 2, 3})
+          v := mat.NewVecDense(3, []float64{4, 5, 6})
+          fmt.Println("u :", u)
+          fmt.Println("v :", v)
+
+  }
+
+  // row is a user-defined row vector.
+  type row []float64
+
+  // Dims, At and T minimally satisfy the mat.Matrix interface.
+  func (v row) Dims() (r, c int)    { return 1, len(v) }
+  func (v row) At(_, j int) float64 { return v[j] }
+  func (v row) T() mat.Matrix       { return column(v) }
+
+  // RawVector allows fast path computation with the vector.
+  func (v row) RawVector() blas64.Vector {
+          return blas64.Vector{N: len(v), Data: v, Inc: 1}
+  }
+
+  // column is a user-defined column vector.
+  type column []float64
+
+  // Dims, At and T minimally satisfy the mat.Matrix interface.
+  func (v column) Dims() (r, c int)    { return len(v), 1 }
+  func (v column) At(i, _ int) float64 { return v[i] }
+  func (v column) T() mat.Matrix       { return row(v) }
+
+  // RawVector allows fast path computation with the vector.
+  func (v column) RawVector() blas64.Vector {
+          return blas64.Vector{N: len(v), Data: v, Inc: 1}
+  }
+
+#+end_src
+
+#+RESULTS:
+
+** NewDense
+#+begin_src go :tangle ./babel/main.go
+  package main
+
+  import (
+          "fmt"
+          "gonum.org/v1/gonum/mat"
+  )
+
+  func main() {
+          zeros := mat.NewDense(3,5,nil)
+          fmt.Println(zeros)
+  }
+
+#+end_src
+
+#+RESULTS:
+
+** make
+#+begin_src go :tangle ./babel/main.go
+  package main
+
+  import (
+          "fmt"
+          "math/rand"
+          "gonum.org/v1/gonum/mat"
+  )
+
+  func main() {
+          data := make([]float64, 36)
+          for i := range data {
+                  data[i] = rand.NormFloat64()
+          }
+          a := mat.NewDense(6, 6, data)
+          zeros := mat.NewDense(3,5,nil)
+          // fmt.Println(mat.Formatted(zeros, mat.Prefix(""), mat.Squeeze()))
+          // fmt.Println(mat.Formatted(a, mat.Prefix(""), mat.Squeeze()))
+          eq := mat.Equal(a, zeros)
+          fmt.Println(eq)
+
+  }
+
+#+end_src
+
+** gonum execute  
+#+begin_src sh :results output :exports both
+  cd babel
+  go mod init babel-go
+  go mod tidy
+  go build main.go
+  rm main.go
+  rm go.mod
+  rm go.sum
+  ./main
+#+end_src
+
+#+RESULTS:
+: false
+

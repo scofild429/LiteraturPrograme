@@ -3,9 +3,9 @@
 #+startup: content
 * Install
 ** ISO installation
-
 lsblk
 sudo umount....
+format the partation: 
 sudo mkfs -t ext4 /dev/sda1
 sudo mkfs -t ext4 /dev/sda2
 sudo mkfs -t ext4 /dev/sda
@@ -18,8 +18,6 @@ sudo fdisk  /dev/sda -> m, g, n, 1, Enter, w
 
 sudo dd if=/dev/nvm..p1 of=/dev/sda1
 sudo dd if=/dev/nvm..p3 of=/dev/sda2
-
-
 
 
 
@@ -89,7 +87,7 @@ sudo apt-get -y install language-pack-zh-hans
 ** check port of application
 #+begin_src sh :dir /sudo::  :results output
 ps -aux |grep mongo
-netstat -nap |grep 308267
+netstat -nap |grep 80
 #+end_src
 
 #+RESULTS:
@@ -365,7 +363,6 @@ dlopen dlclose dlsym
 ssh user@ip
 sshpass -p password ssh user@ip
 
-
 ** Login without password
 ssh-keygen -r rsa and drei mal enter
 ssh-copy-id cloud@ip
@@ -377,9 +374,14 @@ emacs /etc/ssh/sshd_config
 2. AllowUsers root OtherUser
 
 
-
 * Useful Software
 ** tar
+-x : extract
+-c: compose
+-v: show the process
+-z: with zip
+-f : such file
+
 #+BEGIN_SRC 
 tar -zvcf xxx.tar.gz xxx
 tar -zvxf xxx.tar.gz
@@ -425,7 +427,7 @@ evince xxx.pdf to view pdf file
 #+END_SRC
 ** stardict
 #+BEGIN_SRC 
- sudo apt install stardict 
+ sudo apt install stardict
  sudo apt install  sdcv 
  download dictionaries from
  http://download.huzheng.org/ 
@@ -799,6 +801,9 @@ rsync -aAXv /home/sx/ /media/sx/A672BA1B72B9EFE3/linuxbackup/home/
 如果要恢复，重复上面的过程，再将target backup 交换
 
 ** system performance
+0. systemlastanzeigen
+   sudo apt install indicator-multiload
+
 1. dependence
 sudo apt-get install gir1.2-gtop-2.0 gir1.2-networkmanager-1.0
 gir1.2-clutter-1.0
@@ -864,8 +869,6 @@ sed -rn '/2\/1/s/00/**/pg' test2.csv
 - test2.csv: input file
 
 sed  's/        //pg' test2.csv 
-
-
 
 
 
@@ -2140,8 +2143,9 @@ Raw 文件
    ssh-keygen -t rsa -C "email2"
 #+end_src
 
+
 and then just all enter as default
-   warming: email1 == email2
+warming: email1 == email2
 
 ** Webconfig
 #+BEGIN_SRC 
@@ -2260,7 +2264,18 @@ commit 添加提交
 又没有记住之前的ID， 可以用，       git reflog 查询.
 #+end_src
 
+* GWDG
+1. as student of Göttingen send email to support@gwdg.de with uni email, asking for freischaltung of cloud server  
+2. got https://gwdg.de Dienst-> GWDG cloud server -> self service create Instance
+   if with my ssh, the connect can be without password, but still need to aktiv
+3. where the instance is created, use the VNS to aktiv the konto, remember to save the password
+   ssh cloud@ip
 * Problem
 ** System limit for number of file watchers reached
 sudo sysctl -w fs.inotify.max_user_watches=100000
 reboot
+
+
+#+begin_src sh
+  ls
+#+end_src
