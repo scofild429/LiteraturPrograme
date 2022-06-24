@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-05-10 Tue 11:38 -->
+<!-- 2022-06-24 Fri 11:53 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Emacs configuration</title>
@@ -39,193 +39,201 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org40cb0ed">configuation</a></li>
-<li><a href="#org00d699e">commods</a>
+<li><a href="#org3dc5ac0">configuation</a></li>
+<li><a href="#org965daa1">commods</a>
 <ul>
-<li><a href="#orgc9b7576">terminal</a></li>
-<li><a href="#orgbf7c824">set hotkey</a></li>
+<li><a href="#orgbd0d3f1">terminal</a></li>
+<li><a href="#org813dd6f">set hotkey</a></li>
 </ul>
 </li>
-<li><a href="#orgccb1ee1">global settings</a></li>
-<li><a href="#org38ae606">rainbow mode</a></li>
-<li><a href="#orgfd704b4">Term mode</a></li>
-<li><a href="#orgc84da99">eshell</a></li>
-<li><a href="#orge20dc92">eglot</a></li>
-<li><a href="#orgcd1a263">Irony</a></li>
-<li><a href="#org7658b0d">Python</a>
+<li><a href="#org13b9665">global settings</a></li>
+<li><a href="#org9fb6609">Global setting keys</a></li>
+<li><a href="#orgf6b85f8">openwindowsize</a></li>
+<li><a href="#org41bc4f5">rainbow mode</a></li>
+<li><a href="#orge624a81">eglot</a></li>
+<li><a href="#org03c03bb">Irony</a></li>
+<li><a href="#org2467c75">Python</a>
 <ul>
-<li><a href="#orgcd1e57c">lsp-pyright</a></li>
-<li><a href="#orgf5218a3">lsp-python</a></li>
-<li><a href="#orgd1ce80a">eamcs notebook</a>
+<li><a href="#org3ec3a38">python</a></li>
+<li><a href="#org5252c9d">lsp-pyright</a></li>
+<li><a href="#org193dcde">lsp-python</a></li>
+<li><a href="#orgb9e6094">eamcs notebook</a>
 <ul>
-<li><a href="#org4abbb7a">Install</a></li>
-<li><a href="#orge23a216">commands</a></li>
+<li><a href="#orgd933365">Install</a></li>
+<li><a href="#orgec58afd">commands</a></li>
 </ul>
 </li>
-<li><a href="#orgb844df3">emacs-jupyter lab</a></li>
+<li><a href="#orgeddba7a">emacs-jupyter lab</a></li>
 </ul>
 </li>
-<li><a href="#org85b05e2">Haskell</a>
+<li><a href="#org11fa8c9">Haskell</a>
 <ul>
-<li><a href="#org99aac1f">haskell mode</a></li>
-<li><a href="#org5b6a2ee">jupyter ihaskell</a></li>
-<li><a href="#org2c3b093">babel haskell in src</a></li>
-<li><a href="#orgf63eb9a">commands to excute haskell</a>
+<li><a href="#org6e086c4">haskell mode</a></li>
+<li><a href="#org54828be">jupyter ihaskell</a></li>
+<li><a href="#org156c130">babel haskell in src</a></li>
+<li><a href="#org20a841c">commands to excute haskell</a>
 <ul>
-<li><a href="#orgaa4f298">in file.hs</a></li>
-<li><a href="#org45fa7b8">C-c C-c call in src</a></li>
-<li><a href="#org2a1610e">send to haskell/org-src-block</a></li>
+<li><a href="#org1888fb5">in file.hs</a></li>
+<li><a href="#org8d61e66">C-c C-c call in src</a></li>
+<li><a href="#org380a00e">send to haskell/org-src-block</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgda889e0">global-set-key</a></li>
-<li><a href="#orge6d6c10">spacemacs-theme</a></li>
-<li><a href="#org01a6e0d">Paste with xsel</a></li>
-<li><a href="#org34c4017">Move-Text</a></li>
-<li><a href="#org0c6ad87">Doom Theme</a></li>
-<li><a href="#orgfd0bbde">copy cut line</a></li>
-<li><a href="#org695bc51">Durchsicht f8</a></li>
-<li><a href="#orgb593c03">Deutsch Rechtschreiben check f9</a></li>
-<li><a href="#org443006b">echo-key</a></li>
-<li><a href="#org7165d9f">chinese fonts</a></li>
-<li><a href="#orgcc3f9b9">evil model</a></li>
-<li><a href="#orgcc6090e">Ranger</a></li>
-<li><a href="#orge0f551d">ielm</a></li>
-<li><a href="#org8af7a62">PDF tools</a></li>
-<li><a href="#orgba41691">recentf</a></li>
-<li><a href="#org9aa8ee6">which key</a></li>
-<li><a href="#orgf6e3b64">Rectangle</a></li>
-<li><a href="#org3ddd756">Counsel</a></li>
-<li><a href="#orgdc6ce64">ivy</a></li>
-<li><a href="#org294d663">Swiper</a></li>
-<li><a href="#orgba0fb21">AutoPairs</a></li>
-<li><a href="#org94a939c">Avy</a></li>
-<li><a href="#org591ef93">Autocomplete</a></li>
-<li><a href="#org83134b6">Flycheck</a></li>
-<li><a href="#org28acbc9">Yasnippet</a></li>
-<li><a href="#orgd7055d6">Undo Tree</a></li>
-<li><a href="#org4297204">general</a></li>
-<li><a href="#orgdfd1f37">command-log-mode</a></li>
-<li><a href="#org35d8479">EAF</a></li>
-<li><a href="#orged4354c">EXWM</a></li>
-<li><a href="#org4ff6efc">Impatient Mode</a></li>
-<li><a href="#orgc57207d">Projectile</a></li>
-<li><a href="#orgceeba0b">fold this</a></li>
-<li><a href="#orgf340601">Helm</a></li>
-<li><a href="#org69d4e3a">Magit</a></li>
-<li><a href="#org3e1c6c4">Latex</a></li>
-<li><a href="#org3142f15">json mode</a></li>
-<li><a href="#org6caf59b">hs-minor-mode</a></li>
-<li><a href="#org8442826">markdown</a></li>
-<li><a href="#org61be45e">Youdao dictionary</a></li>
-<li><a href="#orgf7ef834">Add Time now</a></li>
-<li><a href="#org7b6b300">html-chrome</a></li>
-<li><a href="#org1c946fe">company</a></li>
-<li><a href="#org5988927">ispell-region</a></li>
-<li><a href="#org5cb2086">Orgmode</a>
+<li><a href="#orga3abbe9">spacemacs-theme</a></li>
+<li><a href="#orgd75bc75">Paste with xsel</a></li>
+<li><a href="#orgb6249a6">Move-Text</a></li>
+<li><a href="#orgc48cf33">Doom Theme</a></li>
+<li><a href="#org5eedec6">copy cut line</a></li>
+<li><a href="#orgc139658">Durchsicht f8</a></li>
+<li><a href="#orga748aa3">Deutsch Rechtschreiben check f9</a></li>
+<li><a href="#org8f6a155">echo-key</a></li>
+<li><a href="#orgb4bd3dd">chinese fonts</a></li>
+<li><a href="#org3f5100a">evil model</a></li>
+<li><a href="#org9f889da">Ranger</a></li>
+<li><a href="#org80a7f87">ielm</a></li>
+<li><a href="#org054ca7f">PDF tools</a></li>
+<li><a href="#org33e43a8">recentf</a></li>
+<li><a href="#org51d1422">which key</a></li>
+<li><a href="#orgfe1a650">Rectangle</a></li>
+<li><a href="#org24d2f22">Counsel</a></li>
+<li><a href="#org39d3dcd">ivy</a></li>
+<li><a href="#org736fa5b">Swiper</a></li>
+<li><a href="#org7b080c6">AutoPairs</a></li>
+<li><a href="#org569183d">Avy</a></li>
+<li><a href="#orgeb8a721">Autocomplete</a></li>
+<li><a href="#orgf2ae675">Flycheck</a></li>
+<li><a href="#org53e63ee">Yasnippet</a></li>
+<li><a href="#orgdadc135">Undo Tree</a></li>
+<li><a href="#org5e9065b">general</a></li>
+<li><a href="#org0344b24">command-log-mode</a></li>
+<li><a href="#org34b7de3">EAF</a></li>
+<li><a href="#orga541d23">EXWM</a></li>
+<li><a href="#orge545870">Impatient Mode</a></li>
+<li><a href="#org203993b">Projectile</a></li>
+<li><a href="#orga01b87e">fold this</a></li>
+<li><a href="#orgca6a84f">Helm</a></li>
+<li><a href="#org2fba434">Magit</a></li>
+<li><a href="#orgf767b26">Latex</a></li>
+<li><a href="#org6b72b7c">json mode</a></li>
+<li><a href="#org866509b">hs-minor-mode</a></li>
+<li><a href="#orge2ca103">markdown</a></li>
+<li><a href="#org32f846e">Youdao dictionary</a></li>
+<li><a href="#org5724f91">Add Time now</a></li>
+<li><a href="#org13e15cc">html-chrome</a></li>
+<li><a href="#org18f89f7">company</a></li>
+<li><a href="#org5c27fc1">ispell-region</a></li>
+<li><a href="#org9488614">Orgmode</a>
 <ul>
-<li><a href="#org39f65dd">org config</a></li>
-<li><a href="#org35c34f7">visual-fill-column-mode</a></li>
-<li><a href="#org9deb55a">ditta for dot</a></li>
-<li><a href="#org928db93">operation</a></li>
-<li><a href="#orge95495a">checklist</a></li>
-<li><a href="#orga0c0e55">link</a></li>
-<li><a href="#org00f1407">Todo</a></li>
-<li><a href="#orgef44df4">org encrypt</a></li>
-<li><a href="#org36c3cdb">org-emphasis-alist</a></li>
+<li><a href="#org10123f3">org config</a></li>
+<li><a href="#org1e7616c">visual-fill-column-mode</a></li>
+<li><a href="#orgbeb2daa">ditta for dot</a></li>
+<li><a href="#orgaf9eea1">operation</a></li>
+<li><a href="#orgdad51e2">checklist</a></li>
+<li><a href="#org24b9030">link</a></li>
+<li><a href="#org0751bd3">Todo</a></li>
+<li><a href="#org33e62ee">org encrypt</a></li>
+<li><a href="#orgaea091b">org-emphasis-alist</a></li>
 </ul>
 </li>
-<li><a href="#org9236797">capture</a></li>
-<li><a href="#orga315bf6">Agenda</a></li>
-<li><a href="#org653bec2">org-roam</a>
+<li><a href="#orge17024a">capture</a></li>
+<li><a href="#org51d537b">Agenda</a></li>
+<li><a href="#orgd561f01">org-roam</a></li>
+<li><a href="#org82d6e08">helm-org-rifle</a></li>
+<li><a href="#org32ebc19">org-mind-map</a></li>
+<li><a href="#orgc83c1a1">org-noter</a></li>
+<li><a href="#orgbff019e">Persentation</a>
 <ul>
-<li><a href="#org437a1ae">config</a></li>
-<li><a href="#orgb44498d">roam links</a></li>
-<li><a href="#orgd926e70">Header links</a></li>
-<li><a href="#org1cc4aad">Id links</a></li>
-<li><a href="#orgf07b34f">Journal links</a></li>
+<li><a href="#org9ce894b">REVEAL.js</a></li>
+<li><a href="#org5337abf">ox-beamer</a></li>
 </ul>
 </li>
-<li><a href="#orge76ce10">helm-org-rifle</a></li>
-<li><a href="#orgde740ad">org-mind-map</a></li>
-<li><a href="#orgb9302ee">org-noter</a></li>
-<li><a href="#org27a6efa">Persentation</a>
+<li><a href="#org123132a">literatur Programm</a>
 <ul>
-<li><a href="#org02d87ac">REVEAL.js</a></li>
-<li><a href="#orgd7f6843">ox-beamer</a></li>
-</ul>
-</li>
-<li><a href="#orgfb016ee">org-msg</a></li>
-<li><a href="#orgc506076">literatur Programm</a>
+<li><a href="#org3815441">options</a></li>
+<li><a href="#orgdb47258">ditaa</a></li>
+<li><a href="#org0bb6bf3">graphviz</a></li>
+<li><a href="#org175cbba">math</a>
 <ul>
-<li><a href="#org03d15d0">options</a></li>
-<li><a href="#orgeea8732">ditaa</a></li>
-<li><a href="#org0b9da32">graphviz</a></li>
-<li><a href="#org5d304a5">math</a>
+<li><a href="#orgaddcb44">equation</a></li>
+<li><a href="#org521f367">Matrix</a></li>
+</ul>
+</li>
+<li><a href="#org830bb19">parentheses</a></li>
+<li><a href="#org1af5505">Tabelle</a></li>
+<li><a href="#org3e5f27f">Special characters math</a></li>
+<li><a href="#org4ef9b4f">Formation</a></li>
+<li><a href="#orgcbf95c0">Compile Python2</a></li>
+<li><a href="#org793ad17">execute Program</a></li>
+<li><a href="#orgc9596e0">config</a></li>
+</ul>
+</li>
+<li><a href="#org6dffa54">programm settings</a>
 <ul>
-<li><a href="#org463a03f">equation</a></li>
-<li><a href="#org7415532">Matrix</a></li>
+<li><a href="#orgc748417">ctags</a></li>
 </ul>
 </li>
-<li><a href="#org84f10ac">parentheses</a></li>
-<li><a href="#org8f11ffd">Tabelle</a></li>
-<li><a href="#org9f1b9bb">Special characters math</a></li>
-<li><a href="#org2fd0c29">Formation</a></li>
-<li><a href="#orge5568ea">Compile Python2</a></li>
-<li><a href="#orgd3336be">execute Program</a></li>
-<li><a href="#org04a06e7">config</a></li>
-</ul>
-</li>
-<li><a href="#org2a79f74">programm settings</a>
+<li><a href="#orge66dab5">Atomic-chrome</a></li>
+<li><a href="#org3268487">multiple cursor</a></li>
+<li><a href="#orgc395ab9">Scala</a></li>
+<li><a href="#org83f25b3">leetcode</a></li>
+<li><a href="#orgf5a7c8a">Web mode</a>
 <ul>
-<li><a href="#org324a2fc">ctags</a></li>
+<li><a href="#org51f1a05">web mode</a></li>
+<li><a href="#orgfa1e3d4">html</a></li>
+<li><a href="#org16b9fa6">web-mode for vue</a></li>
+<li><a href="#org037b75f">eslint use local</a></li>
+<li><a href="#orgda6a7b2">rjsx</a></li>
+<li><a href="#orge822955">css</a></li>
+<li><a href="#org4183ddd">emmet</a></li>
+<li><a href="#org851ce53">js</a></li>
+<li><a href="#org9294c92">tide</a></li>
+<li><a href="#orgaa00965">prettier</a></li>
 </ul>
 </li>
-<li><a href="#orgadee0d1">Atomic-chrome</a></li>
-<li><a href="#orgba16466">multiple cursor</a></li>
-<li><a href="#org9c56f75">Scala</a></li>
-<li><a href="#org2e2ec75">leetcode</a></li>
-<li><a href="#org2b78b97">Web mode</a>
+<li><a href="#orgbbc5e81">LSP</a>
 <ul>
-<li><a href="#org62c4a6c">web mode</a></li>
-<li><a href="#orgc3ec32c">html</a></li>
-<li><a href="#org6409677">web-mode for vue</a></li>
-<li><a href="#org0eec323">eslint use local</a></li>
-<li><a href="#org92a343b">rjsx</a></li>
-<li><a href="#org9032a61">css</a></li>
-<li><a href="#orgeafd8d7">emmet</a></li>
-<li><a href="#orgfad4991">js</a></li>
-<li><a href="#org96afa4a">tide</a></li>
-<li><a href="#orgf369fb2">prettier</a></li>
+<li><a href="#org0459049">LSP server</a></li>
+<li><a href="#org5934694">lsp ui</a></li>
+<li><a href="#org9105092">java configuation</a></li>
+<li><a href="#org3c86204">lsp treemacs</a></li>
+<li><a href="#org8c7cf66">dap Mode</a></li>
+<li><a href="#org9efdc19">TS</a></li>
+<li><a href="#org37d2171">python</a></li>
 </ul>
 </li>
-<li><a href="#org68d182c">LSP</a>
+<li><a href="#orgc32a58a">Julia</a></li>
+<li><a href="#org3fcf221">GO</a></li>
+<li><a href="#org42f642f">hi-lock-mode</a></li>
+<li><a href="#org8e1e576">my-comment-mode</a></li>
+<li><a href="#orgae8f67a">my-max-multi-toggle</a></li>
+<li><a href="#orgce58b52">google calender</a></li>
+<li><a href="#orgabf9a06">mu4e</a>
 <ul>
-<li><a href="#orgf196153">LSP server</a></li>
-<li><a href="#orga3a618d">lsp ui</a></li>
-<li><a href="#org3a7be00">java configuation</a></li>
-<li><a href="#orge57d83f">lsp treemacs</a></li>
-<li><a href="#orge51f98e">dap Mode</a></li>
-<li><a href="#orgb315d04">TS</a></li>
-<li><a href="#orga4f24ef">python</a></li>
+<li><a href="#orgcf4e55a">mbsync conton setting</a></li>
+<li><a href="#orgc348c7b">mbsync pd</a></li>
+<li><a href="#orgc39261f">mu4e settings</a></li>
+<li><a href="#org0eeed47">mu4e background settingns</a></li>
+<li><a href="#orga42db62">mu4e for image to read in receive</a></li>
+<li><a href="#orgb95340f">mu4e for image in orgmode to send</a>
+<ul>
+<li><a href="#org81d357f">ditta</a></li>
+<li><a href="#org96efcd2">latex</a></li>
 </ul>
 </li>
-<li><a href="#orgd27092f">Julia</a></li>
-<li><a href="#org80fae0b">hi-lock-mode</a></li>
-<li><a href="#org72e18b3">my-comment-mode</a></li>
-<li><a href="#org23bdd33">my-max-multi-toggle</a></li>
-<li><a href="#org505ef33">google calender</a></li>
-<li><a href="#org78dad87">initination</a></li>
-<li><a href="#org295601d">Draw and scribble</a></li>
-<li><a href="#org88aef84">Go</a></li>
-<li><a href="#org89b2a7a">restclient</a></li>
+<li><a href="#orga994163">org mime</a></li>
+<li><a href="#orgd432cac">org-msg</a></li>
+<li><a href="#org541da98">org-ref</a></li>
+</ul>
+</li>
+<li><a href="#org12a1a2b">ebib for tex</a></li>
+<li><a href="#orgc69b69b">initination</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org40cb0ed" class="outline-2">
-<h2 id="org40cb0ed">configuation</h2>
-<div class="outline-text-2" id="text-org40cb0ed">
+<div id="outline-container-org3dc5ac0" class="outline-2">
+<h2 id="org3dc5ac0">configuation</h2>
+<div class="outline-text-2" id="text-org3dc5ac0">
 <p>
 ./configure &#x2013;with modules &#x2013;with mailutils
 </p>
@@ -304,11 +312,6 @@
 </tr>
 
 <tr>
-<td class="org-left">C-x d</td>
-<td class="org-left">Dired</td>
-</tr>
-
-<tr>
 <td class="org-left">&#xa0;</td>
 <td class="org-left">&#xa0;</td>
 </tr>
@@ -317,9 +320,9 @@
 </div>
 </div>
 
-<div id="outline-container-org00d699e" class="outline-2">
-<h2 id="org00d699e">commods</h2>
-<div class="outline-text-2" id="text-org00d699e">
+<div id="outline-container-org965daa1" class="outline-2">
+<h2 id="org965daa1">commods</h2>
+<div class="outline-text-2" id="text-org965daa1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -428,8 +431,8 @@
 </tr>
 
 <tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">C-u C-space</td>
+<td class="org-left">go back to mark postion</td>
 </tr>
 </tbody>
 </table>
@@ -508,9 +511,9 @@
 </table>
 </div>
 
-<div id="outline-container-orgc9b7576" class="outline-3">
-<h3 id="orgc9b7576">terminal</h3>
-<div class="outline-text-3" id="text-orgc9b7576">
+<div id="outline-container-orgbd0d3f1" class="outline-3">
+<h3 id="orgbd0d3f1">terminal</h3>
+<div class="outline-text-3" id="text-orgbd0d3f1">
 <p>
 S-C-c : can copy out from terminal
 S-C-v : can paste into terminal
@@ -522,9 +525,9 @@ C-u : cut before
 </div>
 </div>
 
-<div id="outline-container-orgbf7c824" class="outline-3">
-<h3 id="orgbf7c824">set hotkey</h3>
-<div class="outline-text-3" id="text-orgbf7c824">
+<div id="outline-container-org813dd6f" class="outline-3">
+<h3 id="org813dd6f">set hotkey</h3>
+<div class="outline-text-3" id="text-org813dd6f">
 <p>
 for current buffer keybindings settings
 M-x: global-set-key 
@@ -542,11 +545,14 @@ input the mapped command
 </div>
 </div>
 
-<div id="outline-container-orgccb1ee1" class="outline-2">
-<h2 id="orgccb1ee1">global settings</h2>
-<div class="outline-text-2" id="text-orgccb1ee1">
+<div id="outline-container-org13b9665" class="outline-2">
+<h2 id="org13b9665">global settings</h2>
+<div class="outline-text-2" id="text-org13b9665">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">setq</span> colon-double-space t)
+<pre class="src src-emacs-lisp">
+(<span style="font-weight: bold;">setq</span> undo-tree-auto-save-history nil)
+
+(<span style="font-weight: bold;">setq</span> colon-double-space t)
 <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">tell the Emacs fill commands to insert two spaces after a colon:</span>
 
 <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Rebind 'C-x C-b' for 'buffer-menu'</span>
@@ -587,13 +593,11 @@ input the mapped command
 <span style="font-weight: bold; font-style: italic;">;;        </span><span style="font-weight: bold; font-style: italic;">x-super-keysym 'meta)</span>
 
 <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">open terminal </span>
-(global-set-key <span style="font-style: italic;">"\C-\M-x"</span> 'term)  
-
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(global-set-key "\C-\M-x" 'term)</span>
+(global-set-key <span style="font-style: italic;">"\C-x\ \C-x"</span> 'term)
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">C-c b to jump out of term mode</span>
 <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">open  eshell</span>
-(global-set-key <span style="font-style: italic;">"\C-x\ \C-x"</span> 'eshell)
-
-<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">load ./bashrc</span>
-(<span style="font-weight: bold;">setq</span> shell-command-switch <span style="font-style: italic;">"-ic"</span>)
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(global-set-key "\C-x\ \C-x" 'shell)</span>
 
 <span style="font-weight: bold; font-style: italic;">;;</span><span style="font-weight: bold; font-style: italic;">open init.el file with f1</span>
 (<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">open-my-init-file</span>()
@@ -618,7 +622,6 @@ input the mapped command
   (<span style="font-weight: bold;">interactive</span>)
   (find-file <span style="font-style: italic;">"~/Dropbox/Note/Note.org.gpg"</span>))
 (global-set-key (kbd <span style="font-style: italic;">"&lt;f4&gt;"</span>) 'open-my-tagsnote-file)
-
 
 <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">trun off cl warning</span>
 (<span style="font-weight: bold;">setq</span> byte-compile-warnings '(cl-functions))
@@ -667,9 +670,50 @@ input the mapped command
 </div>
 </div>
 
-<div id="outline-container-org38ae606" class="outline-2">
-<h2 id="org38ae606">rainbow mode</h2>
-<div class="outline-text-2" id="text-org38ae606">
+<div id="outline-container-org9fb6609" class="outline-2">
+<h2 id="org9fb6609">Global setting keys</h2>
+<div class="outline-text-2" id="text-org9fb6609">
+<p>
+Shift + Ctrl + left right down up
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(global-set-key (kbd <span style="font-style: italic;">"S-C-&lt;left&gt;"</span>) 'shrink-window-horizontally)
+(global-set-key (kbd <span style="font-style: italic;">"S-C-&lt;right&gt;"</span>) 'enlarge-window-horizontally)
+(global-set-key (kbd <span style="font-style: italic;">"S-C-&lt;down&gt;"</span>) 'shrink-window)
+(global-set-key (kbd <span style="font-style: italic;">"S-C-&lt;up&gt;"</span>) 'enlarge-window)
+(global-set-key [f12] 'global-visual-fill-column-mode)
+(global-set-key (kbd <span style="font-style: italic;">"M-p"</span>) 'backward-list)
+(global-set-key (kbd <span style="font-style: italic;">"M-n"</span>) 'forward-list)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf6b85f8" class="outline-2">
+<h2 id="orgf6b85f8">openwindowsize</h2>
+<div class="outline-text-2" id="text-orgf6b85f8">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">  (<span style="font-weight: bold;">setq</span> default-frame-alist
+      '(
+        (top . 200)
+        (left . 400)
+        (width . 200)
+        (height . 100)
+        <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(cursor-color . "white")</span>
+        <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(cursor-type . box)</span>
+        <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(foreground-color . "yellow")</span>
+        <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(background-color . "black")</span>
+        (font . <span style="font-style: italic;">"-*-Courier-normal-r-*-*-13-*-*-*-c-*-iso8859-1"</span>)
+        ))
+(<span style="font-weight: bold;">setq</span> initial-frame-alist '((top . 10) (left . 30)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org41bc4f5" class="outline-2">
+<h2 id="org41bc4f5">rainbow mode</h2>
+<div class="outline-text-2" id="text-org41bc4f5">
 <p>
 rainbow to nested parentheses
 </p>
@@ -683,117 +727,61 @@ rainbow to nested parentheses
 </div>
 </div>
 
-<div id="outline-container-orgfd704b4" class="outline-2">
-<h2 id="orgfd704b4">Term mode</h2>
-<div class="outline-text-2" id="text-orgfd704b4">
-<p>
-C-n/C-p: next/perious command(char-mode)
-C-c C-j: term-line-mode(can select lines)
-C-c C-k: enter term-char-mode
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(use-package term
-  <span style="font-weight: bold;">:config</span>
-  (<span style="font-weight: bold;">setq</span> explicit-shell-file-name <span style="font-style: italic;">"bash"</span>) <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Change this to zsh, etc</span>
-  <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Match the default Bash shell prompt.  Update this if you have a custom prompt</span>
-  (<span style="font-weight: bold;">setq</span> term-prompt-regexp <span style="font-style: italic;">"^[</span><span style="font-style: italic;">^</span><span style="font-style: italic;">#$%&gt;\n]*[#$%&gt;] *"</span>))
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgc84da99" class="outline-2">
-<h2 id="orgc84da99">eshell</h2>
-<div class="outline-text-2" id="text-orgc84da99">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">
-(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">efs/configure-eshell</span> ()
-  <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Save command history when commands are entered</span>
-  (add-hook 'eshell-pre-command-hook 'eshell-save-some-history)
-
-  <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Truncate buffer for performance</span>
-  (add-to-list 'eshell-output-filter-functions 'eshell-truncate-buffer)
-
-  <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Bind some useful keys for evil-mode</span>
-  (evil-define-key '(normal insert visual) eshell-mode-map (kbd <span style="font-style: italic;">"C-r"</span>) 'counsel-esh-history)
-  (evil-define-key '(normal insert visual) eshell-mode-map (kbd <span style="font-style: italic;">"&lt;home&gt;"</span>) 'eshell-bol)
-  (evil-normalize-keymaps)
-
-  (<span style="font-weight: bold;">setq</span> eshell-history-size         10000
-        eshell-buffer-maximum-lines 10000
-        eshell-hist-ignoredups t
-        eshell-scroll-to-bottom-on-input t))
-
-(use-package eshell-git-prompt
-  <span style="font-weight: bold;">:ensure</span> t)
-
-(use-package eshell
-  <span style="font-weight: bold;">:hook</span> (eshell-first-time-mode . efs/configure-eshell)
-  <span style="font-weight: bold;">:config</span>
-  (<span style="font-weight: bold;">with-eval-after-load</span> 'esh-opt
-    (<span style="font-weight: bold;">setq</span> eshell-destroy-buffer-when-process-dies t)
-    (<span style="font-weight: bold;">setq</span> eshell-visual-commands '(<span style="font-style: italic;">"htop"</span> <span style="font-style: italic;">"zsh"</span> <span style="font-style: italic;">"vim"</span>)))
-  (eshell-git-prompt-use-theme 'powerline))
-
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orge20dc92" class="outline-2">
-<h2 id="orge20dc92">eglot</h2>
-<div class="outline-text-2" id="text-orge20dc92">
+<div id="outline-container-orge624a81" class="outline-2">
+<h2 id="orge624a81">eglot</h2>
+<div class="outline-text-2" id="text-orge624a81">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package eglot
   <span style="font-weight: bold;">:ensure</span> t
- )
+  )
 (add-to-list 'eglot-server-programs '((c++-mode c-mode) <span style="font-style: italic;">"clangd"</span>))
 (add-to-list 'eglot-server-programs '(web-mode <span style="font-style: italic;">"vls"</span>))
 (add-hook 'c-mode-hook 'eglot-ensure)
 (add-hook 'c++-mode-hook 'eglot-ensure)
 (add-hook 'web-mode-hook 'eglot-ensure)
 (add-hook 'vue-mode-hook 'eglot-ensure)
-(add-hook ' python-mode-hook 'eglot-ensure)    
+(add-hook ' python-mode-hook 'eglot-ensure)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgcd1a263" class="outline-2">
-<h2 id="orgcd1a263">Irony</h2>
-<div class="outline-text-2" id="text-orgcd1a263">
+<div id="outline-container-org03c03bb" class="outline-2">
+<h2 id="org03c03bb">Irony</h2>
+<div class="outline-text-2" id="text-org03c03bb">
 <p>
 sudo apt install: cmake, clangd, (or libclang), libclang-dev
 M-x: irnoy-server-install
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(use-package irony</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:ensure t</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:config</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(add-hook 'c++-mode-hook 'irony-mode)</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(add-hook 'c-mode-hook 'irony-mode)</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))</span>
+<pre class="src src-emacs-lisp">(use-package irony
+  <span style="font-weight: bold;">:ensure</span> t
+  <span style="font-weight: bold;">:config</span>
+  (add-hook 'c++-mode-hook 'irony-mode)
+  (add-hook 'c-mode-hook 'irony-mode)
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
-<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(use-package company-irony</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:ensure t</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:config</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(require 'company)</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(add-to-list 'company-backends 'company-irony))</span>
+(use-package company-irony
+  <span style="font-weight: bold;">:ensure</span> t
+  <span style="font-weight: bold;">:config</span>
+  (<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">company</span>)
+  (add-to-list 'company-backends 'company-irony))
 
-<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(with-eval-after-load 'company</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(add-hook 'company-hook 'company-mode)</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(add-hook 'c-mode-hook 'company-mode))</span>
+(<span style="font-weight: bold;">with-eval-after-load</span> 'company
+  (add-hook 'company-hook 'company-mode)
+  (add-hook 'c-mode-hook 'company-mode))
 
-<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(use-package company-irony-c-headers</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:ensure t)</span>
+(use-package company-irony-c-headers
+  <span style="font-weight: bold;">:ensure</span> t)
 
-<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(use-package flycheck-irony</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:ensure t</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:config</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(add-hook 'flycheck-mode-hook 'flycheck-irony-setup))</span>
+(use-package flycheck-irony
+  <span style="font-weight: bold;">:ensure</span> t
+  <span style="font-weight: bold;">:config</span>
+  (add-hook 'flycheck-mode-hook 'flycheck-irony-setup))
 
-<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(use-package irony-eldoc</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:ensure t</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:config</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(add-hook 'irony-mode-hook #'irony-eldoc))</span>
+(use-package irony-eldoc
+  <span style="font-weight: bold;">:ensure</span> t
+  <span style="font-weight: bold;">:config</span>
+  (add-hook 'irony-mode-hook #'irony-eldoc))
 
 
 </pre>
@@ -801,14 +789,17 @@ M-x: irnoy-server-install
 </div>
 </div>
 
-<div id="outline-container-org7658b0d" class="outline-2">
-<h2 id="org7658b0d">Python</h2>
-<div class="outline-text-2" id="text-org7658b0d">
+<div id="outline-container-org2467c75" class="outline-2">
+<h2 id="org2467c75">Python</h2>
+<div class="outline-text-2" id="text-org2467c75">
 <p>
 src python is python2
 src ipython is python3
 </p>
-
+</div>
+<div id="outline-container-org3ec3a38" class="outline-3">
+<h3 id="org3ec3a38">python</h3>
+<div class="outline-text-3" id="text-org3ec3a38">
 <p>
 elpy-rpc-python-command is void??
 find this variable and edit it to your pathon interpreter
@@ -838,10 +829,9 @@ C-c , jedi: go to definition pop marker
 <pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(use-package ob-ipython</span>
 <span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:ensure t</span>
 <span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">)</span>
-<span style="font-weight: bold; font-style: italic;">;;</span><span style="font-weight: bold; font-style: italic;">(setq ob-ipython-command "/home/si/.local/bin/jupyter")</span>
-(use-package ein
-  <span style="font-weight: bold;">:ensure</span> t
-  )
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(use-package ein</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:ensure t</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">)</span>
 </pre>
 </div>
 
@@ -907,10 +897,11 @@ C-c , jedi: go to definition pop marker
 </pre>
 </div>
 </div>
+</div>
 
-<div id="outline-container-orgcd1e57c" class="outline-3">
-<h3 id="orgcd1e57c">lsp-pyright</h3>
-<div class="outline-text-3" id="text-orgcd1e57c">
+<div id="outline-container-org5252c9d" class="outline-3">
+<h3 id="org5252c9d">lsp-pyright</h3>
+<div class="outline-text-3" id="text-org5252c9d">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(use-package lsp-pyright</span>
 <span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:ensure t</span>
@@ -921,9 +912,9 @@ C-c , jedi: go to definition pop marker
 </div>
 </div>
 </div>
-<div id="outline-container-orgf5218a3" class="outline-3">
-<h3 id="orgf5218a3">lsp-python</h3>
-<div class="outline-text-3" id="text-orgf5218a3">
+<div id="outline-container-org193dcde" class="outline-3">
+<h3 id="org193dcde">lsp-python</h3>
+<div class="outline-text-3" id="text-org193dcde">
 <p>
 pip install python-language-server[all]
 pip install jedi-language-server
@@ -938,13 +929,13 @@ pip install pytest
 </div>
 </div>
 
-<div id="outline-container-orgd1ce80a" class="outline-3">
-<h3 id="orgd1ce80a">eamcs notebook</h3>
-<div class="outline-text-3" id="text-orgd1ce80a">
+<div id="outline-container-orgb9e6094" class="outline-3">
+<h3 id="orgb9e6094">eamcs notebook</h3>
+<div class="outline-text-3" id="text-orgb9e6094">
 </div>
-<div id="outline-container-org4abbb7a" class="outline-4">
-<h4 id="org4abbb7a">Install</h4>
-<div class="outline-text-4" id="text-org4abbb7a">
+<div id="outline-container-orgd933365" class="outline-4">
+<h4 id="orgd933365">Install</h4>
+<div class="outline-text-4" id="text-orgd933365">
 <p>
 sudo apt install jupyter-notebook
 </p>
@@ -974,9 +965,9 @@ C-c C-o ( open the the ipython mode)
 </div>
 
 
-<div id="outline-container-orge23a216" class="outline-4">
-<h4 id="orge23a216">commands</h4>
-<div class="outline-text-4" id="text-orge23a216">
+<div id="outline-container-orgec58afd" class="outline-4">
+<h4 id="orgec58afd">commands</h4>
+<div class="outline-text-4" id="text-orgec58afd">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1175,12 +1166,12 @@ C-c C-o ( open the the ipython mode)
 </div>
 </div>
 
-<div id="outline-container-orgb844df3" class="outline-3">
-<h3 id="orgb844df3">emacs-jupyter lab</h3>
-<div class="outline-text-3" id="text-orgb844df3">
+<div id="outline-container-orgeddba7a" class="outline-3">
+<h3 id="orgeddba7a">emacs-jupyter lab</h3>
+<div class="outline-text-3" id="text-orgeddba7a">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">  (use-package jupyter
-    <span style="font-weight: bold;">:ensure</span> )
+<pre class="src src-emacs-lisp">  <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(use-package jupyter</span>
+  <span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:ensure )</span>
 
 <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(add-to-list 'load-path "/snap/bin/jupyter")</span>
 <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(require 'jupyter)</span>
@@ -1205,13 +1196,13 @@ C-c C-o ( open the the ipython mode)
 </div>
 </div>
 
-<div id="outline-container-org85b05e2" class="outline-2">
-<h2 id="org85b05e2">Haskell</h2>
-<div class="outline-text-2" id="text-org85b05e2">
+<div id="outline-container-org11fa8c9" class="outline-2">
+<h2 id="org11fa8c9">Haskell</h2>
+<div class="outline-text-2" id="text-org11fa8c9">
 </div>
-<div id="outline-container-org99aac1f" class="outline-3">
-<h3 id="org99aac1f">haskell mode</h3>
-<div class="outline-text-3" id="text-org99aac1f">
+<div id="outline-container-org6e086c4" class="outline-3">
+<h3 id="org6e086c4">haskell mode</h3>
+<div class="outline-text-3" id="text-org6e086c4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package haskell-mode
 <span style="font-weight: bold;">:ensure</span> t
@@ -1224,9 +1215,9 @@ C-c C-o ( open the the ipython mode)
 </div>
 </div>
 </div>
-<div id="outline-container-org5b6a2ee" class="outline-3">
-<h3 id="org5b6a2ee">jupyter ihaskell</h3>
-<div class="outline-text-3" id="text-org5b6a2ee">
+<div id="outline-container-org54828be" class="outline-3">
+<h3 id="org54828be">jupyter ihaskell</h3>
+<div class="outline-text-3" id="text-org54828be">
 <p>
 <a href="https://github.com/gibiansky/IHaskell">install step 1</a>
 <a href="https://github.com/kxxoling/blog/blob/master/haskell/ihaskell.md">install step 2</a>
@@ -1234,9 +1225,9 @@ C-c C-o ( open the the ipython mode)
 </div>
 </div>
 
-<div id="outline-container-org2c3b093" class="outline-3">
-<h3 id="org2c3b093">babel haskell in src</h3>
-<div class="outline-text-3" id="text-org2c3b093">
+<div id="outline-container-org156c130" class="outline-3">
+<h3 id="org156c130">babel haskell in src</h3>
+<div class="outline-text-3" id="text-org156c130">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;;; </span><span style="font-weight: bold; font-style: italic;">babel_haskell.el --- babel for haskell in src    -*- lexical-binding: t; -*-</span>
 
@@ -1338,22 +1329,22 @@ C-c C-o ( open the the ipython mode)
 </div>
 </div>
 
-<div id="outline-container-orgf63eb9a" class="outline-3">
-<h3 id="orgf63eb9a">commands to excute haskell</h3>
-<div class="outline-text-3" id="text-orgf63eb9a">
+<div id="outline-container-org20a841c" class="outline-3">
+<h3 id="org20a841c">commands to excute haskell</h3>
+<div class="outline-text-3" id="text-org20a841c">
 </div>
-<div id="outline-container-orgaa4f298" class="outline-4">
-<h4 id="orgaa4f298">in file.hs</h4>
-<div class="outline-text-4" id="text-orgaa4f298">
+<div id="outline-container-org1888fb5" class="outline-4">
+<h4 id="org1888fb5">in file.hs</h4>
+<div class="outline-text-4" id="text-org1888fb5">
 <p>
 C-c C-l  to execute file.hs and go to interactive environment 
 Seeing ./black.hs
 </p>
 </div>
 </div>
-<div id="outline-container-org45fa7b8" class="outline-4">
-<h4 id="org45fa7b8">C-c C-c call in src</h4>
-<div class="outline-text-4" id="text-org45fa7b8">
+<div id="outline-container-org8d61e66" class="outline-4">
+<h4 id="org8d61e66">C-c C-c call in src</h4>
+<div class="outline-text-4" id="text-org8d61e66">
 <div class="org-src-container">
 <pre class="src src-haskell">#+begin_src haskell  :results value :eval (inferior-haskell-start-process)
   log2 :: Float -&gt; Float
@@ -1378,9 +1369,9 @@ Seeing Literatur Programm Grundlage
 </p>
 </div>
 </div>
-<div id="outline-container-org2a1610e" class="outline-4">
-<h4 id="org2a1610e">send to haskell/org-src-block</h4>
-<div class="outline-text-4" id="text-org2a1610e">
+<div id="outline-container-org380a00e" class="outline-4">
+<h4 id="org380a00e">send to haskell/org-src-block</h4>
+<div class="outline-text-4" id="text-org380a00e">
 <div class="org-src-container">
 <pre class="src src-haskell">#+begin_src haskell  :results value :eval (inferior-haskell-start-process)
   log2 :: Float -&gt; Float
@@ -1412,23 +1403,9 @@ Seeing Literatur Programm Alternativen
 </div>
 </div>
 </div>
-<div id="outline-container-orgda889e0" class="outline-2">
-<h2 id="orgda889e0">global-set-key</h2>
-<div class="outline-text-2" id="text-orgda889e0">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(global-set-key (kbd <span style="font-style: italic;">"S-C-&lt;right&gt;"</span>) 'shrink-window-horizontally)
-(global-set-key (kbd <span style="font-style: italic;">"S-C-&lt;left&gt;"</span>) 'enlarge-window-horizontally)
-(global-set-key (kbd <span style="font-style: italic;">"S-C-&lt;down&gt;"</span>) 'shrink-window)
-(global-set-key (kbd <span style="font-style: italic;">"S-C-&lt;up&gt;"</span>) 'enlarge-window)
-(global-set-key (kbd <span style="font-style: italic;">"&lt;f12&gt;"</span>) 'visual-fill-column-mode)
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orge6d6c10" class="outline-2">
-<h2 id="orge6d6c10">spacemacs-theme</h2>
-<div class="outline-text-2" id="text-orge6d6c10">
+<div id="outline-container-orga3abbe9" class="outline-2">
+<h2 id="orga3abbe9">spacemacs-theme</h2>
+<div class="outline-text-2" id="text-orga3abbe9">
 <p>
 M-x package-install  spacemacs-theme
 M-x customize-themes
@@ -1437,9 +1414,9 @@ spacemacs dark
 </div>
 </div>
 
-<div id="outline-container-org01a6e0d" class="outline-2">
-<h2 id="org01a6e0d">Paste with xsel</h2>
-<div class="outline-text-2" id="text-org01a6e0d">
+<div id="outline-container-orgd75bc75" class="outline-2">
+<h2 id="orgd75bc75">Paste with xsel</h2>
+<div class="outline-text-2" id="text-orgd75bc75">
 <p>
 sudo apt install xsel
 </p>
@@ -1469,9 +1446,9 @@ sudo apt install xsel
 </div>
 </div>
 </div>
-<div id="outline-container-org34c4017" class="outline-2">
-<h2 id="org34c4017">Move-Text</h2>
-<div class="outline-text-2" id="text-org34c4017">
+<div id="outline-container-orgb6249a6" class="outline-2">
+<h2 id="orgb6249a6">Move-Text</h2>
+<div class="outline-text-2" id="text-orgb6249a6">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">    (<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">move-line</span> (n)
       <span style="font-style: italic;">"Move the current line up or down by N lines."</span>
@@ -1537,9 +1514,9 @@ sudo apt install xsel
 </div>
 </div>
 
-<div id="outline-container-org0c6ad87" class="outline-2">
-<h2 id="org0c6ad87">Doom Theme</h2>
-<div class="outline-text-2" id="text-org0c6ad87">
+<div id="outline-container-orgc48cf33" class="outline-2">
+<h2 id="orgc48cf33">Doom Theme</h2>
+<div class="outline-text-2" id="text-orgc48cf33">
 <p>
 I tend to like <b>doom-themes</b> package. Below we will install doom theme. In addition, I will also install a package called <b>heaven-and-hell</b>. This allows us to toggle between two themes using a shortcut key. I will assign <code>F6</code> key to toggling the theme and <code>C-c F6</code> to set to default theme.
 </p>
@@ -1571,9 +1548,9 @@ If you press F6 key in your keyboard, it should switch between doom-palenight an
 </div>
 </div>
 
-<div id="outline-container-orgfd0bbde" class="outline-2">
-<h2 id="orgfd0bbde">copy cut line</h2>
-<div class="outline-text-2" id="text-orgfd0bbde">
+<div id="outline-container-org5eedec6" class="outline-2">
+<h2 id="org5eedec6">copy cut line</h2>
+<div class="outline-text-2" id="text-org5eedec6">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;;  </span><span style="font-weight: bold; font-style: italic;">copy region or whole line</span>
 (global-set-key <span style="font-style: italic;">"\M-w"</span>
@@ -1603,9 +1580,9 @@ If you press F6 key in your keyboard, it should switch between doom-palenight an
 </div>
 </div>
 </div>
-<div id="outline-container-org695bc51" class="outline-2">
-<h2 id="org695bc51">Durchsicht f8</h2>
-<div class="outline-text-2" id="text-org695bc51">
+<div id="outline-container-orgc139658" class="outline-2">
+<h2 id="orgc139658">Durchsicht f8</h2>
+<div class="outline-text-2" id="text-orgc139658">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="font-weight: bold;">setq</span> is-alpha nil)
 (<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">transform-window</span> (a ab)
@@ -1622,9 +1599,9 @@ If you press F6 key in your keyboard, it should switch between doom-palenight an
 </div>
 </div>
 </div>
-<div id="outline-container-orgb593c03" class="outline-2">
-<h2 id="orgb593c03">Deutsch Rechtschreiben check f9</h2>
-<div class="outline-text-2" id="text-orgb593c03">
+<div id="outline-container-orga748aa3" class="outline-2">
+<h2 id="orga748aa3">Deutsch Rechtschreiben check f9</h2>
+<div class="outline-text-2" id="text-orga748aa3">
 <p>
 sudo apt install ispell 
 sudo apt install aspell-de aspell-en
@@ -1663,9 +1640,9 @@ C-. :flyspell-auto-correct-word (turn by turn)
 </div>
 </div>
 </div>
-<div id="outline-container-org443006b" class="outline-2">
-<h2 id="org443006b">echo-key</h2>
-<div class="outline-text-2" id="text-org443006b">
+<div id="outline-container-org8f6a155" class="outline-2">
+<h2 id="org8f6a155">echo-key</h2>
+<div class="outline-text-2" id="text-org8f6a155">
 <p>
 M-x echo-keys-mode
 </p>
@@ -1723,30 +1700,31 @@ M-x echo-keys-mode
 </div>
 </div>
 </div>
-<div id="outline-container-org7165d9f" class="outline-2">
-<h2 id="org7165d9f">chinese fonts</h2>
-<div class="outline-text-2" id="text-org7165d9f">
+<div id="outline-container-orgb4bd3dd" class="outline-2">
+<h2 id="orgb4bd3dd">chinese fonts</h2>
+<div class="outline-text-2" id="text-orgb4bd3dd">
 <p>
 install cnfonts
-M-x : cnfonts-regenerate-profile
-M-x : cnfonts-edit-profile
+M-x cnfonts-edit-profile
 </p>
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;;     </span><span style="font-weight: bold; font-style: italic;">(use-package cnfonts</span>
-<span style="font-weight: bold; font-style: italic;">;;     </span><span style="font-weight: bold; font-style: italic;">:ensure t</span>
-<span style="font-weight: bold; font-style: italic;">;;     </span><span style="font-weight: bold; font-style: italic;">:config )</span>
-<span style="font-weight: bold; font-style: italic;">;;    </span><span style="font-weight: bold; font-style: italic;">(cnfonts-mode 1)</span>
-<span style="font-weight: bold; font-style: italic;">;;     </span><span style="font-weight: bold; font-style: italic;">(cnfonts-enable)</span>
-<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">;;     &#35753; spacemacs mode-line &#20013;&#30340; Unicode &#22270;&#26631;&#27491;&#30830;&#26174;&#31034;&#12290;</span>
-<span style="font-weight: bold; font-style: italic;">;;     </span><span style="font-weight: bold; font-style: italic;">(cnfonts-set-spacemacs-fallback-fonts)</span>
+<pre class="src src-emacs-lisp">(use-package cnfonts
+  <span style="font-weight: bold;">:ensure</span> t
+  <span style="font-weight: bold;">:config</span> )
+
+(<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">cnfonts</span>)
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">&#35753; cnfonts &#38543;&#30528; Emacs &#33258;&#21160;&#29983;&#25928;&#12290;</span>
+(cnfonts-enable)
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">&#35753; spacemacs mode-line &#20013;&#30340; Unicode &#22270;&#26631;&#27491;&#30830;&#26174;&#31034;&#12290;</span>
+(cnfonts-set-spacemacs-fallback-fonts)
 
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgcc3f9b9" class="outline-2">
-<h2 id="orgcc3f9b9">evil model</h2>
-<div class="outline-text-2" id="text-orgcc3f9b9">
+<div id="outline-container-org3f5100a" class="outline-2">
+<h2 id="org3f5100a">evil model</h2>
+<div class="outline-text-2" id="text-org3f5100a">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package evil
   <span style="font-weight: bold;">:ensure</span> t
@@ -1755,9 +1733,9 @@ M-x : cnfonts-edit-profile
 </div>
 </div>
 </div>
-<div id="outline-container-orgcc6090e" class="outline-2">
-<h2 id="orgcc6090e">Ranger</h2>
-<div class="outline-text-2" id="text-orgcc6090e">
+<div id="outline-container-org9f889da" class="outline-2">
+<h2 id="org9f889da">Ranger</h2>
+<div class="outline-text-2" id="text-org9f889da">
 <p>
 not necessary
 </p>
@@ -1861,9 +1839,9 @@ customize Ranger group: ranger-show-hidden t
 </div>
 </div>
 
-<div id="outline-container-orge0f551d" class="outline-2">
-<h2 id="orge0f551d">ielm</h2>
-<div class="outline-text-2" id="text-orge0f551d">
+<div id="outline-container-org80a7f87" class="outline-2">
+<h2 id="org80a7f87">ielm</h2>
+<div class="outline-text-2" id="text-org80a7f87">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1915,9 +1893,9 @@ customize Ranger group: ranger-show-hidden t
 </div>
 </div>
 
-<div id="outline-container-org8af7a62" class="outline-2">
-<h2 id="org8af7a62">PDF tools</h2>
-<div class="outline-text-2" id="text-org8af7a62">
+<div id="outline-container-org054ca7f" class="outline-2">
+<h2 id="org054ca7f">PDF tools</h2>
+<div class="outline-text-2" id="text-org054ca7f">
 <p>
 <a href="https://github.com/politza/pdf-tools">github link</a>
 </p>
@@ -1945,9 +1923,9 @@ M-x: pdf-view-mode to view es in pdf-tools mode
 </div>
 </div>
 </div>
-<div id="outline-container-orgba41691" class="outline-2">
-<h2 id="orgba41691">recentf</h2>
-<div class="outline-text-2" id="text-orgba41691">
+<div id="outline-container-org33e43a8" class="outline-2">
+<h2 id="org33e43a8">recentf</h2>
+<div class="outline-text-2" id="text-org33e43a8">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">recentf</span>)
 (recentf-mode 1)
@@ -1957,9 +1935,9 @@ M-x: pdf-view-mode to view es in pdf-tools mode
 </div>
 </div>
 </div>
-<div id="outline-container-org9aa8ee6" class="outline-2">
-<h2 id="org9aa8ee6">which key</h2>
-<div class="outline-text-2" id="text-org9aa8ee6">
+<div id="outline-container-org51d1422" class="outline-2">
+<h2 id="org51d1422">which key</h2>
+<div class="outline-text-2" id="text-org51d1422">
 <p>
 Brings up some help
 </p>
@@ -1973,9 +1951,9 @@ Brings up some help
 </div>
 </div>
 </div>
-<div id="outline-container-orgf6e3b64" class="outline-2">
-<h2 id="orgf6e3b64">Rectangle</h2>
-<div class="outline-text-2" id="text-orgf6e3b64">
+<div id="outline-container-orgfe1a650" class="outline-2">
+<h2 id="orgfe1a650">Rectangle</h2>
+<div class="outline-text-2" id="text-orgfe1a650">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -2015,9 +1993,9 @@ Brings up some help
 </div>
 </div>
 
-<div id="outline-container-org3ddd756" class="outline-2">
-<h2 id="org3ddd756">Counsel</h2>
-<div class="outline-text-2" id="text-org3ddd756">
+<div id="outline-container-org24d2f22" class="outline-2">
+<h2 id="org24d2f22">Counsel</h2>
+<div class="outline-text-2" id="text-org24d2f22">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"> (use-package counsel
 <span style="font-weight: bold;">:ensure</span> t
@@ -2029,9 +2007,9 @@ Brings up some help
 </div>
 </div>
 </div>
-<div id="outline-container-orgdc6ce64" class="outline-2">
-<h2 id="orgdc6ce64">ivy</h2>
-<div class="outline-text-2" id="text-orgdc6ce64">
+<div id="outline-container-org39d3dcd" class="outline-2">
+<h2 id="org39d3dcd">ivy</h2>
+<div class="outline-text-2" id="text-org39d3dcd">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package ivy
 <span style="font-weight: bold;">:ensure</span> t
@@ -2047,9 +2025,9 @@ Brings up some help
 </div>
 </div>
 
-<div id="outline-container-org294d663" class="outline-2">
-<h2 id="org294d663">Swiper</h2>
-<div class="outline-text-2" id="text-org294d663">
+<div id="outline-container-org736fa5b" class="outline-2">
+<h2 id="org736fa5b">Swiper</h2>
+<div class="outline-text-2" id="text-org736fa5b">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
 
@@ -2070,9 +2048,9 @@ Brings up some help
 </div>
 </div>
 </div>
-<div id="outline-container-orgba0fb21" class="outline-2">
-<h2 id="orgba0fb21">AutoPairs</h2>
-<div class="outline-text-2" id="text-orgba0fb21">
+<div id="outline-container-org7b080c6" class="outline-2">
+<h2 id="org7b080c6">AutoPairs</h2>
+<div class="outline-text-2" id="text-org7b080c6">
 <p>
 Now is flex-autopair
 </p>
@@ -2087,9 +2065,9 @@ Now is flex-autopair
 </div>
 </div>
 </div>
-<div id="outline-container-org94a939c" class="outline-2">
-<h2 id="org94a939c">Avy</h2>
-<div class="outline-text-2" id="text-org94a939c">
+<div id="outline-container-org569183d" class="outline-2">
+<h2 id="org569183d">Avy</h2>
+<div class="outline-text-2" id="text-org569183d">
 <p>
 See <a href="https://github.com/abo-abo/avy">https://github.com/abo-abo/avy</a> for more info
 </p>
@@ -2102,9 +2080,9 @@ See <a href="https://github.com/abo-abo/avy">https://github.com/abo-abo/avy</a> 
 </div>
 </div>
 </div>
-<div id="outline-container-org591ef93" class="outline-2">
-<h2 id="org591ef93">Autocomplete</h2>
-<div class="outline-text-2" id="text-org591ef93">
+<div id="outline-container-orgeb8a721" class="outline-2">
+<h2 id="orgeb8a721">Autocomplete</h2>
+<div class="outline-text-2" id="text-orgeb8a721">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package auto-complete
   <span style="font-weight: bold;">:ensure</span> t
@@ -2113,18 +2091,18 @@ See <a href="https://github.com/abo-abo/avy">https://github.com/abo-abo/avy</a> 
     (ac-config-default)
     (global-auto-complete-mode t)
     )
-  (define-key ac-complete-mode-map <span style="font-style: italic;">"\M-n"</span> 'ac-next)
-  (define-key ac-complete-mode-map <span style="font-style: italic;">"\M-p"</span> 'ac-previous)
   )
+(define-key ac-complete-mode-map <span style="font-style: italic;">"\M-n"</span> 'ac-next)
+(define-key ac-complete-mode-map <span style="font-style: italic;">"\M-p"</span> 'ac-previous)
 
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org83134b6" class="outline-2">
-<h2 id="org83134b6">Flycheck</h2>
-<div class="outline-text-2" id="text-org83134b6">
+<div id="outline-container-orgf2ae675" class="outline-2">
+<h2 id="orgf2ae675">Flycheck</h2>
+<div class="outline-text-2" id="text-orgf2ae675">
 <p>
 C-c ! v to check the flycheck checkers
 </p>
@@ -2139,9 +2117,9 @@ C-c ! v to check the flycheck checkers
 </div>
 </div>
 </div>
-<div id="outline-container-org28acbc9" class="outline-2">
-<h2 id="org28acbc9">Yasnippet</h2>
-<div class="outline-text-2" id="text-org28acbc9">
+<div id="outline-container-org53e63ee" class="outline-2">
+<h2 id="org53e63ee">Yasnippet</h2>
+<div class="outline-text-2" id="text-org53e63ee">
 <p>
 M-x yas-expand to call with  : C-c y
 </p>
@@ -2166,9 +2144,9 @@ M-x yas-expand to call with  : C-c y
 </div>
 </div>
 </div>
-<div id="outline-container-orgd7055d6" class="outline-2">
-<h2 id="orgd7055d6">Undo Tree</h2>
-<div class="outline-text-2" id="text-orgd7055d6">
+<div id="outline-container-orgdadc135" class="outline-2">
+<h2 id="orgdadc135">Undo Tree</h2>
+<div class="outline-text-2" id="text-orgdadc135">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package undo-tree
   <span style="font-weight: bold;">:ensure</span> t
@@ -2178,9 +2156,9 @@ M-x yas-expand to call with  : C-c y
 </div>
 </div>
 </div>
-<div id="outline-container-org4297204" class="outline-2">
-<h2 id="org4297204">general</h2>
-<div class="outline-text-2" id="text-org4297204">
+<div id="outline-container-org5e9065b" class="outline-2">
+<h2 id="org5e9065b">general</h2>
+<div class="outline-text-2" id="text-org5e9065b">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package general
     <span style="font-weight: bold;">:ensure</span> t
@@ -2192,9 +2170,9 @@ M-x yas-expand to call with  : C-c y
 </div>
 </div>
 </div>
-<div id="outline-container-orgdfd1f37" class="outline-2">
-<h2 id="orgdfd1f37">command-log-mode</h2>
-<div class="outline-text-2" id="text-orgdfd1f37">
+<div id="outline-container-org0344b24" class="outline-2">
+<h2 id="org0344b24">command-log-mode</h2>
+<div class="outline-text-2" id="text-org0344b24">
 <p>
 C-c o (clm/toggle-comand-log-buffer) to open command-log and again to close
 </p>
@@ -2207,9 +2185,14 @@ C-c o (clm/toggle-comand-log-buffer) to open command-log and again to close
 </div>
 </div>
 </div>
-<div id="outline-container-org35d8479" class="outline-2">
-<h2 id="org35d8479">EAF</h2>
-<div class="outline-text-2" id="text-org35d8479">
+<div id="outline-container-org34b7de3" class="outline-2">
+<h2 id="org34b7de3">EAF</h2>
+<div class="outline-text-2" id="text-org34b7de3">
+<p>
+Because of the fuck qt6-multimedia is not for Ubuntu 20
+and qt5 is also not reduceable
+</p>
+
 <p>
 pip install epc
 pip install PyQt5
@@ -2302,36 +2285,25 @@ eaf-proxy-caret
 <pre class="src src-emacs-lisp">(use-package eaf
   <span style="font-weight: bold;">:load-path</span> <span style="font-style: italic;">"~/.emacs.d/site-lisp/emacs-application-framework"</span>
   )
-
-(<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">eaf-mindmap</span>)
-(<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">eaf-browser</span>)
-(<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">eaf-pdf-viewer</span>)
 (<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">eaf-camera</span>)
-(<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">eaf-netease-cloud-music</span>)
-<span style="font-weight: bold; font-style: italic;">;;     </span><span style="font-weight: bold; font-style: italic;">(require 'eaf-file-manager)</span>
-(<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">eaf-jupyter</span>)
-<span style="font-weight: bold; font-style: italic;">;;     </span><span style="font-weight: bold; font-style: italic;">(require 'eaf-markdown-previewer)</span>
-<span style="font-weight: bold; font-style: italic;">;;     </span><span style="font-weight: bold; font-style: italic;">(require 'eaf-demo)</span>
-(<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">eaf-org-previewer</span>)
-<span style="font-weight: bold; font-style: italic;">;;     </span><span style="font-weight: bold; font-style: italic;">(require 'eaf-file-sender)</span>
-<span style="font-weight: bold; font-style: italic;">;;     </span><span style="font-weight: bold; font-style: italic;">(require 'eaf-file-browser)</span>
-<span style="font-weight: bold; font-style: italic;">;;     </span><span style="font-weight: bold; font-style: italic;">(require 'eaf-airshare)</span>
-(<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">eaf-music-player</span>)
-<span style="font-weight: bold; font-style: italic;">;;     </span><span style="font-weight: bold; font-style: italic;">(require 'eaf-rss-reader)</span>
 (<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">eaf-system-monitor</span>)
-(<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">eaf-vue-demo</span>)
+(<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">eaf-pdf-viewer</span>)
 (<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">eaf-image-viewer</span>)
-(<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">eaf-terminal</span>)
-<span style="font-weight: bold; font-style: italic;">;;     </span><span style="font-weight: bold; font-style: italic;">(require 'eaf-video-player)</span>
-<span style="font-weight: bold; font-style: italic;">;;     </span><span style="font-weight: bold; font-style: italic;">(require 'eaf-mermaid)</span>
+(<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">eaf-video-player</span>)
+(<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">eaf-org-previewer</span>)
+(<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">eaf-markdown-previewer</span>)
+
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-application-framework/")</span>
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(require 'eaf)</span>
 
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orged4354c" class="outline-2">
-<h2 id="orged4354c">EXWM</h2>
-<div class="outline-text-2" id="text-orged4354c">
+
+<div id="outline-container-orga541d23" class="outline-2">
+<h2 id="orga541d23">EXWM</h2>
+<div class="outline-text-2" id="text-orga541d23">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
 <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(defun efs/exwm-update-class ()</span>
@@ -2395,9 +2367,9 @@ eaf-proxy-caret
 </div>
 </div>
 </div>
-<div id="outline-container-org4ff6efc" class="outline-2">
-<h2 id="org4ff6efc">Impatient Mode</h2>
-<div class="outline-text-2" id="text-org4ff6efc">
+<div id="outline-container-orge545870" class="outline-2">
+<h2 id="orge545870">Impatient Mode</h2>
+<div class="outline-text-2" id="text-orge545870">
 <p>
 M-x package-install impatient-mode 
 M-x httpd-start
@@ -2413,9 +2385,9 @@ M-x impatient-mode
 </div>
 </div>
 
-<div id="outline-container-orgc57207d" class="outline-2">
-<h2 id="orgc57207d">Projectile</h2>
-<div class="outline-text-2" id="text-orgc57207d">
+<div id="outline-container-org203993b" class="outline-2">
+<h2 id="org203993b">Projectile</h2>
+<div class="outline-text-2" id="text-org203993b">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">projectile</span>
 (use-package projectile
@@ -2430,9 +2402,9 @@ M-x impatient-mode
 </div>
 </div>
 </div>
-<div id="outline-container-orgceeba0b" class="outline-2">
-<h2 id="orgceeba0b">fold this</h2>
-<div class="outline-text-2" id="text-orgceeba0b">
+<div id="outline-container-orga01b87e" class="outline-2">
+<h2 id="orga01b87e">fold this</h2>
+<div class="outline-text-2" id="text-orga01b87e">
 <p>
 M-x : package install :  fold this
 </p>
@@ -2445,9 +2417,9 @@ M-x : package install :  fold this
 </div>
 </div>
 </div>
-<div id="outline-container-orgf340601" class="outline-2">
-<h2 id="orgf340601">Helm</h2>
-<div class="outline-text-2" id="text-orgf340601">
+<div id="outline-container-orgca6a84f" class="outline-2">
+<h2 id="orgca6a84f">Helm</h2>
+<div class="outline-text-2" id="text-orgca6a84f">
 <p>
 C-x C-f  :find files in dire mode
 C-l go back to the above directory
@@ -2466,14 +2438,12 @@ C-l go back to the above directory
 </div>
 </div>
 </div>
-<div id="outline-container-org69d4e3a" class="outline-2">
-<h2 id="org69d4e3a">Magit</h2>
-<div class="outline-text-2" id="text-org69d4e3a">
+<div id="outline-container-org2fba434" class="outline-2">
+<h2 id="org2fba434">Magit</h2>
+<div class="outline-text-2" id="text-org2fba434">
 <p>
 C-x g
 s/S
-c c
-P p
 </p>
 
 
@@ -2486,46 +2456,43 @@ P p
 </div>
 </div>
 </div>
-<div id="outline-container-org3e1c6c4" class="outline-2">
-<h2 id="org3e1c6c4">Latex</h2>
-<div class="outline-text-2" id="text-org3e1c6c4">
+<div id="outline-container-orgf767b26" class="outline-2">
+<h2 id="orgf767b26">Latex</h2>
+<div class="outline-text-2" id="text-orgf767b26">
 <p>
 sudo apt install texlive-full
 sudo apt install texlive-xetex
 M-x: install package latex-math-preview
-C-c C-x C-l  : org-latex-preview
 </p>
-
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
-(global-set-key <span style="font-style: italic;">"\C-\M-l"</span> 'latex-math-preview-insert-mathematical-symbol)
-<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">bigger latex fragment: put this into the init.el, otherweise this will not be executed</span>
-(plist-put org-format-latex-options <span style="font-weight: bold;">:scale</span> 3.0)
-(<span style="font-weight: bold;">setq</span> org-format-latex-options (plist-put org-format-latex-options <span style="font-weight: bold;">:scale</span> 4))
+  (global-set-key <span style="font-style: italic;">"\C-\M-l"</span> 'latex-math-preview-insert-mathematical-symbol)
+  <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">bigger latex fragment: put this into the init.el, otherweise this will not be executed</span>
+  (plist-put org-format-latex-options <span style="font-weight: bold;">:scale</span> 2.0)
 
-(<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">org</span>)
+  (<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">org</span>)
+  (<span style="font-weight: bold;">setq</span> org-format-latex-options (plist-put org-format-latex-options <span style="font-weight: bold;">:scale</span> 4))
+  (<span style="font-weight: bold;">setq</span> org-latex-create-formula-image-program 'dvipng)
 
-(<span style="font-weight: bold;">setq</span> org-latex-create-formula-image-program 'dvipng)
+  (use-package tex
+    <span style="font-weight: bold;">:ensure</span> auctex)
 
-(use-package tex
-  <span style="font-weight: bold;">:ensure</span> auctex)
+  (<span style="font-weight: bold;">setq</span> Tex-auto-save t)
+  (<span style="font-weight: bold;">setq</span> Tex-parse-self t)
+  (<span style="font-weight: bold;">setq-default</span> Tex-master nil)
 
-(<span style="font-weight: bold;">setq</span> Tex-auto-save t)
-(<span style="font-weight: bold;">setq</span> Tex-parse-self t)
-(<span style="font-weight: bold;">setq-default</span> Tex-master nil)
+  (<span style="font-weight: bold;">setq</span> org-latex-compiler <span style="font-style: italic;">"xelatex"</span>)
 
-(<span style="font-weight: bold;">setq</span> org-latex-compiler <span style="font-style: italic;">"xelatex"</span>)
+  <span style="font-weight: bold; font-style: italic;">;;</span><span style="font-weight: bold; font-style: italic;">enable cdlatex</span>
+  (use-package cdlatex
+    <span style="font-weight: bold;">:ensure</span> t
+    )
 
-<span style="font-weight: bold; font-style: italic;">;;</span><span style="font-weight: bold; font-style: italic;">enable cdlatex</span>
-(use-package cdlatex
-  <span style="font-weight: bold;">:ensure</span> t
-  )
+  (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 
-(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
-
-(add-hook 'LaTeX-mode-hook
-          (<span style="font-weight: bold;">lambda</span> ()
-            (add-to-list 'TeX-command-list '(<span style="font-style: italic;">"XeLaTeX"</span> <span style="font-style: italic;">"%`xelatex --synctex=1%(mode)%' %t"</span> TeX-run-TeX nil t))))
+  (add-hook 'LaTeX-mode-hook
+            (<span style="font-weight: bold;">lambda</span> ()
+              (add-to-list 'TeX-command-list '(<span style="font-style: italic;">"XeLaTeX"</span> <span style="font-style: italic;">"%`xelatex --synctex=1%(mode)%' %t"</span> TeX-run-TeX nil t))))
 
 <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(use-package org-fragtog</span>
 <span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:after org</span>
@@ -2535,9 +2502,9 @@ C-c C-x C-l  : org-latex-preview
 </div>
 </div>
 </div>
-<div id="outline-container-org3142f15" class="outline-2">
-<h2 id="org3142f15">json mode</h2>
-<div class="outline-text-2" id="text-org3142f15">
+<div id="outline-container-org6b72b7c" class="outline-2">
+<h2 id="org6b72b7c">json mode</h2>
+<div class="outline-text-2" id="text-org6b72b7c">
 <p>
 active hs-minor-mode 
 hs-hide and show
@@ -2549,9 +2516,9 @@ hs-hide and show
 </div>
 </div>
 
-<div id="outline-container-org6caf59b" class="outline-2">
-<h2 id="org6caf59b">hs-minor-mode</h2>
-<div class="outline-text-2" id="text-org6caf59b">
+<div id="outline-container-org866509b" class="outline-2">
+<h2 id="org866509b">hs-minor-mode</h2>
+<div class="outline-text-2" id="text-org866509b">
 <p>
 M-x: hs-minor-mode active
 hs-hide-all
@@ -2563,9 +2530,9 @@ hs-show-block
 </div>
 </div>
 
-<div id="outline-container-org8442826" class="outline-2">
-<h2 id="org8442826">markdown</h2>
-<div class="outline-text-2" id="text-org8442826">
+<div id="outline-container-orge2ca103" class="outline-2">
+<h2 id="orge2ca103">markdown</h2>
+<div class="outline-text-2" id="text-orge2ca103">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package grip-mode
 <span style="font-weight: bold;">:ensure</span> t
@@ -2582,9 +2549,9 @@ hs-show-block
 </div>
 </div>
 </div>
-<div id="outline-container-org61be45e" class="outline-2">
-<h2 id="org61be45e">Youdao dictionary</h2>
-<div class="outline-text-2" id="text-org61be45e">
+<div id="outline-container-org32f846e" class="outline-2">
+<h2 id="org32f846e">Youdao dictionary</h2>
+<div class="outline-text-2" id="text-org32f846e">
 <p>
 M-x package-install youdao-dictionary
 </p>
@@ -2610,9 +2577,9 @@ M-x package-install youdao-dictionary
 </div>
 </div>
 
-<div id="outline-container-orgf7ef834" class="outline-2">
-<h2 id="orgf7ef834">Add Time now</h2>
-<div class="outline-text-2" id="text-orgf7ef834">
+<div id="outline-container-org5724f91" class="outline-2">
+<h2 id="org5724f91">Add Time now</h2>
+<div class="outline-text-2" id="text-org5724f91">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">now</span> ()
 (<span style="font-weight: bold;">interactive</span>)
@@ -2623,9 +2590,9 @@ M-x package-install youdao-dictionary
 </div>
 </div>
 
-<div id="outline-container-org7b6b300" class="outline-2">
-<h2 id="org7b6b300">html-chrome</h2>
-<div class="outline-text-2" id="text-org7b6b300">
+<div id="outline-container-org13e15cc" class="outline-2">
+<h2 id="org13e15cc">html-chrome</h2>
+<div class="outline-text-2" id="text-org13e15cc">
 <p>
 <a href="https://github.com/nikclayton/ob-html-chrome">https://github.com/nikclayton/ob-html-chrome</a>
 </p>
@@ -2645,9 +2612,9 @@ M-x package-install youdao-dictionary
 </div>
 </div>
 </div>
-<div id="outline-container-org1c946fe" class="outline-2">
-<h2 id="org1c946fe">company</h2>
-<div class="outline-text-2" id="text-org1c946fe">
+<div id="outline-container-org18f89f7" class="outline-2">
+<h2 id="org18f89f7">company</h2>
+<div class="outline-text-2" id="text-org18f89f7">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package company
   <span style="font-weight: bold;">:ensure</span> t
@@ -2681,22 +2648,22 @@ M-x package-install youdao-dictionary
 </div>
 </div>
 </div>
-<div id="outline-container-org5988927" class="outline-2">
-<h2 id="org5988927">ispell-region</h2>
-<div class="outline-text-2" id="text-org5988927">
+<div id="outline-container-org5c27fc1" class="outline-2">
+<h2 id="org5c27fc1">ispell-region</h2>
+<div class="outline-text-2" id="text-org5c27fc1">
 <p>
 mark all the region I want to check, and M-X ispell-region
 space for nothing and numbers for replace.
 </p>
 </div>
 </div>
-<div id="outline-container-org5cb2086" class="outline-2">
-<h2 id="org5cb2086">Orgmode</h2>
-<div class="outline-text-2" id="text-org5cb2086">
+<div id="outline-container-org9488614" class="outline-2">
+<h2 id="org9488614">Orgmode</h2>
+<div class="outline-text-2" id="text-org9488614">
 </div>
-<div id="outline-container-org39f65dd" class="outline-3">
-<h3 id="org39f65dd">org config</h3>
-<div class="outline-text-3" id="text-org39f65dd">
+<div id="outline-container-org10123f3" class="outline-3">
+<h3 id="org10123f3">org config</h3>
+<div class="outline-text-3" id="text-org10123f3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package org
   <span style="font-weight: bold;">:hook</span> (org-mode . efs/org-mode-setup))
@@ -2721,6 +2688,12 @@ space for nothing and numbers for replace.
  '(org-confirm-babel-evaluate nil)
  '(org-src-fontify-natively t)
  )
+
+
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Set to the name of the file where new notes will be stored</span>
+(<span style="font-weight: bold;">setq</span> org-mobile-inbox-for-pull <span style="font-style: italic;">"~/Dropbox/Apps/flagged.org"</span>)
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Set to &lt;your Dropbox root directory&gt;/MobileOrg.</span>
+(<span style="font-weight: bold;">setq</span> org-mobile-directory <span style="font-style: italic;">"~/Dropbox/Apps/MobileOrg"</span>)
 
 
 <span style="font-weight: bold; font-style: italic;">;;</span><span style="font-weight: bold; font-style: italic;">hide the emphasis markup (e.g. /.../ for italics, *...* for bold)</span>
@@ -2751,9 +2724,9 @@ space for nothing and numbers for replace.
 </div>
 </div>
 </div>
-<div id="outline-container-org35c34f7" class="outline-3">
-<h3 id="org35c34f7">visual-fill-column-mode</h3>
-<div class="outline-text-3" id="text-org35c34f7">
+<div id="outline-container-org1e7616c" class="outline-3">
+<h3 id="org1e7616c">visual-fill-column-mode</h3>
+<div class="outline-text-3" id="text-org1e7616c">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">  (<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">efs/org-mode-setup</span> ()
     (org-indent-mode)
@@ -2776,9 +2749,9 @@ space for nothing and numbers for replace.
 </div>
 </div>
 
-<div id="outline-container-org9deb55a" class="outline-3">
-<h3 id="org9deb55a">ditta for dot</h3>
-<div class="outline-text-3" id="text-org9deb55a">
+<div id="outline-container-orgbeb2daa" class="outline-3">
+<h3 id="orgbeb2daa">ditta for dot</h3>
+<div class="outline-text-3" id="text-orgbeb2daa">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package htmlize <span style="font-weight: bold;">:ensure</span> t)
 (<span style="font-weight: bold;">setq</span> org-ditaa-jar-path <span style="font-style: italic;">"/usr/share/ditaa/ditaa.jar"</span>)
@@ -2787,9 +2760,9 @@ space for nothing and numbers for replace.
 </div>
 </div>
 </div>
-<div id="outline-container-org928db93" class="outline-3">
-<h3 id="org928db93">operation</h3>
-<div class="outline-text-3" id="text-org928db93">
+<div id="outline-container-orgaf9eea1" class="outline-3">
+<h3 id="orgaf9eea1">operation</h3>
+<div class="outline-text-3" id="text-orgaf9eea1">
 <p>
 src 前缀  
 </p>
@@ -2916,9 +2889,9 @@ session:后台会启动一个相应的解释器控制台，所有名称相同的
 </div>
 </div>
 
-<div id="outline-container-orge95495a" class="outline-3">
-<h3 id="orge95495a">checklist</h3>
-<div class="outline-text-3" id="text-orge95495a">
+<div id="outline-container-orgdad51e2" class="outline-3">
+<h3 id="orgdad51e2">checklist</h3>
+<div class="outline-text-3" id="text-orgdad51e2">
 <p>
 可以在item后面加上<code>[0/2]</code> or <code>[0%]</code>
 </p>
@@ -2928,9 +2901,9 @@ session:后台会启动一个相应的解释器控制台，所有名称相同的
 </ul>
 </div>
 </div>
-<div id="outline-container-orga0c0e55" class="outline-3">
-<h3 id="orga0c0e55">link</h3>
-<div class="outline-text-3" id="text-orga0c0e55">
+<div id="outline-container-org24b9030" class="outline-3">
+<h3 id="org24b9030">link</h3>
+<div class="outline-text-3" id="text-org24b9030">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -2993,7 +2966,7 @@ link define options
 </tr>
 
 <tr>
-<td class="org-left"><a id="orga5547e3"></a></td>
+<td class="org-left"><a id="org95d58db"></a></td>
 </tr>
 </tbody>
 </table>
@@ -3014,31 +2987,31 @@ external file
 </div>
 </div>
 
-<div id="outline-container-org00f1407" class="outline-3">
-<h3 id="org00f1407">Todo</h3>
-<div class="outline-text-3" id="text-org00f1407">
+<div id="outline-container-org0751bd3" class="outline-3">
+<h3 id="org0751bd3">Todo</h3>
+<div class="outline-text-3" id="text-org0751bd3">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">setq</span> org-todo-keywords
-      '((type  <span style="font-style: italic;">"Work(w)"</span> <span style="font-style: italic;">"Study(s)"</span> <span style="font-style: italic;">"forFun(f)"</span> <span style="font-style: italic;">"|"</span>)
-        (sequence  <span style="font-style: italic;">"TODO(t!)"</span>  <span style="font-style: italic;">"|"</span> <span style="font-style: italic;">"DONE(d!)"</span>)
-        ))
+<pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(setq org-todo-keywords</span>
+<span style="font-weight: bold; font-style: italic;">;;       </span><span style="font-weight: bold; font-style: italic;">'((type  "Work(w)" "Study(s)" "forFun(f)" "|")</span>
+<span style="font-weight: bold; font-style: italic;">;;         </span><span style="font-weight: bold; font-style: italic;">(sequence  "TODO(t!)"  "|" "DONE(d!)")</span>
+<span style="font-weight: bold; font-style: italic;">;;         </span><span style="font-weight: bold; font-style: italic;">))</span>
 
-(<span style="font-weight: bold;">setq</span> org-todo-keyword-faces
-      '(
-        (<span style="font-style: italic;">"Work"</span> .       (<span style="font-weight: bold;">:foreground</span> <span style="font-style: italic;">"white"</span> <span style="font-weight: bold;">:weight</span> bold))
-        (<span style="font-style: italic;">"Study"</span> .      (<span style="font-weight: bold;">:foreground</span> <span style="font-style: italic;">"yellow"</span> <span style="font-weight: bold;">:weight</span> bold))
-        (<span style="font-style: italic;">"forFun"</span> .     (<span style="font-weight: bold;">:foreground</span> <span style="font-style: italic;">"red"</span> <span style="font-weight: bold;">:weight</span> bold))
-        (<span style="font-style: italic;">"DONE"</span> .       (<span style="font-weight: bold;">:foreground</span> <span style="font-style: italic;">"green"</span> <span style="font-weight: bold;">:weight</span> bold))
-        ))
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(setq org-todo-keyword-faces</span>
+<span style="font-weight: bold; font-style: italic;">;;       </span><span style="font-weight: bold; font-style: italic;">'(</span>
+<span style="font-weight: bold; font-style: italic;">;;         </span><span style="font-weight: bold; font-style: italic;">("Work" .       (:foreground "white" :weight bold))</span>
+<span style="font-weight: bold; font-style: italic;">;;         </span><span style="font-weight: bold; font-style: italic;">("Study" .      (:foreground "yellow" :weight bold))</span>
+<span style="font-weight: bold; font-style: italic;">;;         </span><span style="font-weight: bold; font-style: italic;">("forFun" .     (:foreground "red" :weight bold))</span>
+<span style="font-weight: bold; font-style: italic;">;;         </span><span style="font-weight: bold; font-style: italic;">("DONE" .       (:foreground "green" :weight bold))</span>
+<span style="font-weight: bold; font-style: italic;">;;         </span><span style="font-weight: bold; font-style: italic;">))</span>
 
 
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgef44df4" class="outline-3">
-<h3 id="orgef44df4">org encrypt</h3>
-<div class="outline-text-3" id="text-orgef44df4">
+<div id="outline-container-org33e62ee" class="outline-3">
+<h3 id="org33e62ee">org encrypt</h3>
+<div class="outline-text-3" id="text-org33e62ee">
 <pre class="example">
 using: (epa-encrypt-file) pass the passwd, and  then delete the source file
 open the encrypt file in emacs or (epa-decrypt-file) need the passwd
@@ -3075,9 +3048,9 @@ for the encrypt file. remember, remember!!
 </div>
 </div>
 
-<div id="outline-container-org36c3cdb" class="outline-3">
-<h3 id="org36c3cdb">org-emphasis-alist</h3>
-<div class="outline-text-3" id="text-org36c3cdb">
+<div id="outline-container-orgaea091b" class="outline-3">
+<h3 id="orgaea091b">org-emphasis-alist</h3>
+<div class="outline-text-3" id="text-orgaea091b">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(setq org-emphasis-alist</span>
 <span style="font-weight: bold; font-style: italic;">;;       </span><span style="font-weight: bold; font-style: italic;">'(("*" bold)</span>
@@ -3130,14 +3103,15 @@ for the encrypt file. remember, remember!!
 </div>
 </div>
 </div>
-<div id="outline-container-org9236797" class="outline-2">
-<h2 id="org9236797">capture</h2>
-<div class="outline-text-2" id="text-org9236797">
+<div id="outline-container-orge17024a" class="outline-2">
+<h2 id="orge17024a">capture</h2>
+<div class="outline-text-2" id="text-orge17024a">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="font-weight: bold;">setq</span> org-capture-templates
 '(
-  (<span style="font-style: italic;">"a"</span> <span style="font-style: italic;">"Appointment"</span> entry (file+headline <span style="font-style: italic;">"~/Dropbox/Note/gcal.org"</span>     <span style="font-style: italic;">"Appointment"</span>)  <span style="font-style: italic;">"* %u %? "</span> <span style="font-weight: bold;">:prepend</span> t)
-  (<span style="font-style: italic;">"n"</span> <span style="font-style: italic;">"TagsNote"</span>    entry (file+headline <span style="font-style: italic;">"~/Dropbox/Note/Appointment.org"</span>        <span style="font-style: italic;">"TagsNote"</span>)     <span style="font-style: italic;">"* %u %? "</span> <span style="font-weight: bold;">:prepend</span> t)
+  (<span style="font-style: italic;">"a"</span> <span style="font-style: italic;">"Appointment"</span> entry (file+headline <span style="font-style: italic;">"~/Dropbox/Note/Appointment.org"</span>     <span style="font-style: italic;">"Appointment"</span>)  <span style="font-style: italic;">"* %u %? "</span> <span style="font-weight: bold;">:prepend</span> t)
+  (<span style="font-style: italic;">"n"</span> <span style="font-style: italic;">"TagsNote"</span>    entry (file+headline <span style="font-style: italic;">"~/Dropbox/Note/TagsNote.org"</span>           <span style="font-style: italic;">"TagsNote"</span>)  <span style="font-style: italic;">"* %u %? "</span> <span style="font-weight: bold;">:prepend</span> t)
+  (<span style="font-style: italic;">"m"</span> <span style="font-style: italic;">"MobileOrg"</span>   entry (file <span style="font-style: italic;">"~/Dropbox/Apps/MobileOrg/mobileorg.org"</span>                  )  <span style="font-style: italic;">"* %u %? "</span> <span style="font-weight: bold;">:prepend</span> t)
 <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">("m" "Math"          entry (file+headline "~/Dropbox/Sprache/Math/Math.org"           "Math")  "* %u %? " :prepend t)</span>
 <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">("p" "Physik"        entry (file+headline "~/Dropbox/Sprache/Physik/Physik.org"      "Physik")  "* %u %? " :prepend t)</span>
 <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">("r" "ROS"           entry (file+headline "~/Dropbox/Sprache/ROS/ROS.org"               "ROS")  "* %u %? " :prepend t)</span>
@@ -3173,20 +3147,21 @@ for the encrypt file. remember, remember!!
 </div>
 </div>
 </div>
-<div id="outline-container-orga315bf6" class="outline-2">
-<h2 id="orga315bf6">Agenda</h2>
-<div class="outline-text-2" id="text-orga315bf6">
+<div id="outline-container-org51d537b" class="outline-2">
+<h2 id="org51d537b">Agenda</h2>
+<div class="outline-text-2" id="text-org51d537b">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">        (global-set-key <span style="font-style: italic;">"\C-ca"</span> 'org-agenda)
-         (<span style="font-weight: bold;">setq</span> org-agenda-files (list 
-                                 <span style="font-style: italic;">"~/Dropbox/Note/Appointment.org"</span>
-                                 <span style="font-style: italic;">"~/Dropbox/Note/gcal.org"</span>
-                                 ))
-         (<span style="font-weight: bold;">setq</span> org-agenda-start-on-weekday nil)
-         (<span style="font-weight: bold;">setq</span> org-agenda-custom-commands
-               '((<span style="font-style: italic;">"c"</span> <span style="font-style: italic;">"Simple agenda view"</span>
-                  ((agenda <span style="font-style: italic;">""</span>)
-                   (alltodo <span style="font-style: italic;">""</span>)))))
+<pre class="src src-emacs-lisp">(global-set-key <span style="font-style: italic;">"\C-ca"</span> 'org-agenda)
+(<span style="font-weight: bold;">setq</span> org-agenda-files (list 
+                        <span style="font-style: italic;">"~/Dropbox/Note/Appointment.org"</span>
+                        <span style="font-style: italic;">"~/Dropbox/Note/TagsNote.org"</span>
+                        <span style="font-style: italic;">"~/Dropbox/Apps/MobileOrg/mobileorg.org"</span>
+                        ))
+(<span style="font-weight: bold;">setq</span> org-agenda-start-on-weekday nil)
+(<span style="font-weight: bold;">setq</span> org-agenda-custom-commands
+      '((<span style="font-style: italic;">"c"</span> <span style="font-style: italic;">"Simple agenda view"</span>
+         ((agenda <span style="font-style: italic;">""</span>)
+          (alltodo <span style="font-style: italic;">""</span>)))))
 
 (<span style="font-weight: bold;">setq</span> org-agenda-include-diary t)
 
@@ -3280,13 +3255,9 @@ for the encrypt file. remember, remember!!
 </table>
 </div>
 </div>
-<div id="outline-container-org653bec2" class="outline-2">
-<h2 id="org653bec2">org-roam</h2>
-<div class="outline-text-2" id="text-org653bec2">
-</div>
-<div id="outline-container-org437a1ae" class="outline-3">
-<h3 id="org437a1ae">config</h3>
-<div class="outline-text-3" id="text-org437a1ae">
+<div id="outline-container-orgd561f01" class="outline-2">
+<h2 id="orgd561f01">org-roam</h2>
+<div class="outline-text-2" id="text-orgd561f01">
 <p>
 sudo apt install sqlite
 Note:
@@ -3306,6 +3277,122 @@ commands:
 org-id-get-create  create a id at the headline, which can also be treated as a node
 org-roam-alias-add is for the cast when you have more than two nodes conficts
 </p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">C-c C-h</td>
+<td class="org-left">n</td>
+<td class="org-left">add note for today</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Y</td>
+<td class="org-left">add note for yesterday</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">T</td>
+<td class="org-left">add note for tomorrow</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">v</td>
+<td class="org-left">add note for a selcting day</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">y</td>
+<td class="org-left">go to note of yesterday</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">t</td>
+<td class="org-left">go te note of tomorrow</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">c</td>
+<td class="org-left">go to note of selecting day</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">f</td>
+<td class="org-left">go to note of next day</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">b</td>
+<td class="org-left">go to note of previous day</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c n</td>
+<td class="org-left">f</td>
+<td class="org-left">org-roam-node-find(find or create)</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">i</td>
+<td class="org-left">org-roam-node-insert</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">I</td>
+<td class="org-left">org-roam completion-at-point</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">l</td>
+<td class="org-left">backlists</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
 
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package org-roam
@@ -3402,149 +3489,9 @@ org-roam-alias-add is for the cast when you have more than two nodes conficts
 </div>
 </div>
 </div>
-<div id="outline-container-orgb44498d" class="outline-3">
-<h3 id="orgb44498d">roam links</h3>
-<div class="outline-text-3" id="text-orgb44498d">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="org-left">C-c n</td>
-<td class="org-left">f</td>
-<td class="org-left">org-roam-node-find OR <b>create</b></td>
-</tr>
-
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">i</td>
-<td class="org-left">org-roam-node-insert</td>
-</tr>
-
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">I</td>
-<td class="org-left">org-roam completion-at-point</td>
-</tr>
-
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">l</td>
-<td class="org-left">backlists</td>
-</tr>
-</tbody>
-</table>
-<p>
-<b>C-c n f</b>  to find the  existed link or create a new one
-each roam link is a file,
-<b>C-c n i</b>  insert roam link at point
-</p>
-</div>
-</div>
-<div id="outline-container-orgd926e70" class="outline-3">
-<h3 id="orgd926e70">Header links</h3>
-<div class="outline-text-3" id="text-orgd926e70">
-<p>
-<b>org-store-link</b>   can be done for each header, but without any output
-<b>org-insert-link</b>   link can be chosed from history,  but this link will only show once in the history
-</p>
-</div>
-</div>
-<div id="outline-container-org1cc4aad" class="outline-3">
-<h3 id="org1cc4aad">Id links</h3>
-<div class="outline-text-3" id="text-org1cc4aad">
-<p>
-<b>org-id-store-link</b>, this can add a  id link to the belonged header
-<b>org-insert-link</b> chose id type,  but you have to find the id by yourself
-</p>
-</div>
-</div>
-<div id="outline-container-orgf07b34f" class="outline-3">
-<h3 id="orgf07b34f">Journal links</h3>
-<div class="outline-text-3" id="text-orgf07b34f">
-<p>
-only for dayly notation
-</p>
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="org-left">C-c C-h</td>
-<td class="org-left">n</td>
-<td class="org-left">add note for today</td>
-</tr>
-
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">Y</td>
-<td class="org-left">add note for yesterday</td>
-</tr>
-
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">T</td>
-<td class="org-left">add note for tomorrow</td>
-</tr>
-
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">v</td>
-<td class="org-left">add note for a selcting day</td>
-</tr>
-
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">y</td>
-<td class="org-left">go to note of yesterday</td>
-</tr>
-
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">t</td>
-<td class="org-left">go te note of tomorrow</td>
-</tr>
-
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">c</td>
-<td class="org-left">go to note of selecting day</td>
-</tr>
-
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">f</td>
-<td class="org-left">go to note of next day</td>
-</tr>
-
-<tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">b</td>
-<td class="org-left">go to note of previous day</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orge76ce10" class="outline-2">
-<h2 id="orge76ce10">helm-org-rifle</h2>
-<div class="outline-text-2" id="text-orge76ce10">
+<div id="outline-container-org82d6e08" class="outline-2">
+<h2 id="org82d6e08">helm-org-rifle</h2>
+<div class="outline-text-2" id="text-org82d6e08">
 <p>
 M-x: package install helm-org-rifle
 在已经打开的所有文件中匹配搜索关键词，是所有打开文件
@@ -3560,9 +3507,9 @@ keywords searching in all opened files, external files,
 </div>
 </div>
 </div>
-<div id="outline-container-orgde740ad" class="outline-2">
-<h2 id="orgde740ad">org-mind-map</h2>
-<div class="outline-text-2" id="text-orgde740ad">
+<div id="outline-container-org32ebc19" class="outline-2">
+<h2 id="org32ebc19">org-mind-map</h2>
+<div class="outline-text-2" id="text-org32ebc19">
 <p>
 <a href="https://github.com/the-humanities/org-mind-map">github link</a> is here,
 </p>
@@ -3605,9 +3552,9 @@ add legend, text display, image display
 </div>
 </div>
 </div>
-<div id="outline-container-orgb9302ee" class="outline-2">
-<h2 id="orgb9302ee">org-noter</h2>
-<div class="outline-text-2" id="text-orgb9302ee">
+<div id="outline-container-orgc83c1a1" class="outline-2">
+<h2 id="orgc83c1a1">org-noter</h2>
+<div class="outline-text-2" id="text-orgc83c1a1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package org-noter
   <span style="font-weight: bold;">:ensure</span> t
@@ -3616,13 +3563,13 @@ add legend, text display, image display
 </div>
 </div>
 </div>
-<div id="outline-container-org27a6efa" class="outline-2">
-<h2 id="org27a6efa">Persentation</h2>
-<div class="outline-text-2" id="text-org27a6efa">
+<div id="outline-container-orgbff019e" class="outline-2">
+<h2 id="orgbff019e">Persentation</h2>
+<div class="outline-text-2" id="text-orgbff019e">
 </div>
-<div id="outline-container-org02d87ac" class="outline-3">
-<h3 id="org02d87ac">REVEAL.js</h3>
-<div class="outline-text-3" id="text-org02d87ac">
+<div id="outline-container-org9ce894b" class="outline-3">
+<h3 id="org9ce894b">REVEAL.js</h3>
+<div class="outline-text-3" id="text-org9ce894b">
 <p>
 Before using it, must before active them
 </p>
@@ -3651,9 +3598,9 @@ Before using it, must before active them
 </div>
 </div>
 
-<div id="outline-container-orgd7f6843" class="outline-3">
-<h3 id="orgd7f6843">ox-beamer</h3>
-<div class="outline-text-3" id="text-orgd7f6843">
+<div id="outline-container-org5337abf" class="outline-3">
+<h3 id="org5337abf">ox-beamer</h3>
+<div class="outline-text-3" id="text-org5337abf">
 <p>
 M-x: org beamer mode
 C-c C-e latex to beamer
@@ -3678,27 +3625,13 @@ template seeing <a href="./template/ox-beamer.html">./template/ox-beamer.html</a
 </div>
 </div>
 
-<div id="outline-container-orgfb016ee" class="outline-2">
-<h2 id="orgfb016ee">org-msg</h2>
-<div class="outline-text-2" id="text-orgfb016ee">
-<pre class="example">
-- mbsync setting seeing in Dropbox
-- C-c C-m to send email
-- math :file output.png -&gt; C-c C-c
-- digraph -&gt;
-- graph --
-
-</pre>
+<div id="outline-container-org123132a" class="outline-2">
+<h2 id="org123132a">literatur Programm</h2>
+<div class="outline-text-2" id="text-org123132a">
 </div>
-</div>
-
-<div id="outline-container-orgc506076" class="outline-2">
-<h2 id="orgc506076">literatur Programm</h2>
-<div class="outline-text-2" id="text-orgc506076">
-</div>
-<div id="outline-container-org03d15d0" class="outline-3">
-<h3 id="org03d15d0">options</h3>
-<div class="outline-text-3" id="text-org03d15d0">
+<div id="outline-container-org3815441" class="outline-3">
+<h3 id="org3815441">options</h3>
+<div class="outline-text-3" id="text-org3815441">
 <p>
 src 前缀  
 </p>
@@ -3797,7 +3730,7 @@ src 后缀
 
 <tr>
 <td class="org-left">:tangle   xxx.py</td>
-<td class="org-left">输出文件 C-c C-v t</td>
+<td class="org-left">输出文件 (M-x: org-babel-tangle)</td>
 </tr>
 
 <tr>
@@ -3824,9 +3757,9 @@ session:后台会启动一个相应的解释器控制台，所有名称相同的
 </p>
 </div>
 </div>
-<div id="outline-container-orgeea8732" class="outline-3">
-<h3 id="orgeea8732">ditaa</h3>
-<div class="outline-text-3" id="text-orgeea8732">
+<div id="outline-container-orgdb47258" class="outline-3">
+<h3 id="orgdb47258">ditaa</h3>
+<div class="outline-text-3" id="text-orgdb47258">
 <p>
 sudo apt-get install ditaa
 C-c C-x C-v to view
@@ -3861,9 +3794,9 @@ C-c C-x C-v to view
 </div>
 </div>
 </div>
-<div id="outline-container-org0b9da32" class="outline-3">
-<h3 id="org0b9da32">graphviz</h3>
-<div class="outline-text-3" id="text-org0b9da32">
+<div id="outline-container-org0bb6bf3" class="outline-3">
+<h3 id="org0bb6bf3">graphviz</h3>
+<div class="outline-text-3" id="text-org0bb6bf3">
 <p>
 sudo apt install graphviz
 </p>
@@ -3899,13 +3832,13 @@ sudo apt install graphviz
 </div>
 </div>
 
-<div id="outline-container-org5d304a5" class="outline-3">
-<h3 id="org5d304a5">math</h3>
-<div class="outline-text-3" id="text-org5d304a5">
+<div id="outline-container-org175cbba" class="outline-3">
+<h3 id="org175cbba">math</h3>
+<div class="outline-text-3" id="text-org175cbba">
 </div>
-<div id="outline-container-org463a03f" class="outline-4">
-<h4 id="org463a03f">equation</h4>
-<div class="outline-text-4" id="text-org463a03f">
+<div id="outline-container-orgaddcb44" class="outline-4">
+<h4 id="orgaddcb44">equation</h4>
+<div class="outline-text-4" id="text-orgaddcb44">
 <div class="org-src-container">
 <pre class="src src-latex"><span style="font-weight: bold;">\begin</span>{<span style="font-weight: bold;">eqnarray*</span>}
 <span style="font-weight: bold;">\hat</span>{f}(x) &amp; <span style="font-weight: bold;">\propto</span> &amp; <span style="font-weight: bold;">\sum</span>_{\nu} <span style="font-weight: bold;">\frac</span>{|F(<span style="font-weight: bold;">\nu</span>)H(<span style="font-weight: bold;">\nu</span>)|^2}{|N(<span style="font-weight: bold;">\nu</span>)|^2}  
@@ -3920,9 +3853,9 @@ sudo apt install graphviz
 </div>
 </div>
 
-<div id="outline-container-org7415532" class="outline-4">
-<h4 id="org7415532">Matrix</h4>
-<div class="outline-text-4" id="text-org7415532">
+<div id="outline-container-org521f367" class="outline-4">
+<h4 id="org521f367">Matrix</h4>
+<div class="outline-text-4" id="text-org521f367">
 <div class="org-src-container">
 <pre class="src src-latex"><span style="font-weight: bold;">\begin</span>{<span style="font-weight: bold;">equation</span>}
   s_{kk'}=
@@ -3953,17 +3886,17 @@ sudo apt install graphviz
 </div>
 </div>
 </div>
-<div id="outline-container-org84f10ac" class="outline-3">
-<h3 id="org84f10ac">parentheses</h3>
-<div class="outline-text-3" id="text-org84f10ac">
+<div id="outline-container-org830bb19" class="outline-3">
+<h3 id="org830bb19">parentheses</h3>
+<div class="outline-text-3" id="text-org830bb19">
 <p>
 set  \[ X = \left( \begin{aligned}  aa \\ bb\\cc  \end{aligned} \right) \]
 </p>
 </div>
 </div>
-<div id="outline-container-org8f11ffd" class="outline-3">
-<h3 id="org8f11ffd">Tabelle</h3>
-<div class="outline-text-3" id="text-org8f11ffd">
+<div id="outline-container-org1af5505" class="outline-3">
+<h3 id="org1af5505">Tabelle</h3>
+<div class="outline-text-3" id="text-org1af5505">
 <div class="org-src-container">
 <pre class="src src-latex"><span style="font-weight: bold;">\begin</span>{<span style="font-weight: bold;">table</span>}[htbp]
 <span style="font-weight: bold;">\centering</span>
@@ -3980,9 +3913,9 @@ Vier &amp; F&#252;nf &amp; Sechs <span style="font-weight: bold;">\\</span>
 </div>
 </div>
 </div>
-<div id="outline-container-org9f1b9bb" class="outline-3">
-<h3 id="org9f1b9bb">Special characters math</h3>
-<div class="outline-text-3" id="text-org9f1b9bb">
+<div id="outline-container-org3e5f27f" class="outline-3">
+<h3 id="org3e5f27f">Special characters math</h3>
+<div class="outline-text-3" id="text-org3e5f27f">
 <pre class="example">
 
  latex-math-preview-insert-mathematical-symbol
@@ -3990,9 +3923,9 @@ this is to add special characters for latex
 </pre>
 </div>
 </div>
-<div id="outline-container-org2fd0c29" class="outline-3">
-<h3 id="org2fd0c29">Formation</h3>
-<div class="outline-text-3" id="text-org2fd0c29">
+<div id="outline-container-org4ef9b4f" class="outline-3">
+<h3 id="org4ef9b4f">Formation</h3>
+<div class="outline-text-3" id="text-org4ef9b4f">
 <p>
 添加大括号
 </p>
@@ -4024,9 +3957,9 @@ $\mathcal{B}$
 </p>
 </div>
 </div>
-<div id="outline-container-orge5568ea" class="outline-3">
-<h3 id="orge5568ea">Compile Python2</h3>
-<div class="outline-text-3" id="text-orge5568ea">
+<div id="outline-container-orgcbf95c0" class="outline-3">
+<h3 id="orgcbf95c0">Compile Python2</h3>
+<div class="outline-text-3" id="text-orgcbf95c0">
 <pre class="example">
 1. in Orgmode using SRC to save a python2 programm, with its interpreter
 2. C-c ' opening the buffer
@@ -4037,53 +3970,70 @@ $\mathcal{B}$
 </pre>
 </div>
 </div>
-<div id="outline-container-orgd3336be" class="outline-3">
-<h3 id="orgd3336be">execute Program</h3>
-<div class="outline-text-3" id="text-orgd3336be">
+<div id="outline-container-org793ad17" class="outline-3">
+<h3 id="org793ad17">execute Program</h3>
+<div class="outline-text-3" id="text-org793ad17">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">  (<span style="font-weight: bold;">setq</span> org-confirm-babel-evaluate nil
-        org-src-fontify-natively t
-        org-src-tab-acts-natively t)
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((python . t)
-     <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(ipython . t)</span>
-     (emacs-lisp . t)
-     (java . t)
-     (shell . t)
-     (sql . t)
-     (C . t)
-     (js . t)
-     (dot . t)
-     (plantuml . t)
-     (ditaa . t)
-     (haskell . t)
-     (dot . t)
-     (org . t)
-     (latex . t )
-     (typescript . t)
-<span style="font-weight: bold; font-style: italic;">;;     </span><span style="font-weight: bold; font-style: italic;">(scala . t)</span>
-     (mongo . t)
-     (go . t)
-     (julia-vterm . t )
-     ))
-  (<span style="font-weight: bold;">with-eval-after-load</span> 'org)
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">setq</span> org-confirm-babel-evaluate nil
+      org-src-fontify-natively t
+      org-src-tab-acts-natively t)
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)
+   <span style="font-weight: bold; font-style: italic;">;;</span><span style="font-weight: bold; font-style: italic;">(ipython . t)</span>
+   (emacs-lisp . t)
+   (java . t)
+   (shell . t)
+   (sql . t)
+   (C . t)
+   (js . t)
+   (dot . t)
+  <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(plantuml . t)</span>
+   (ditaa . t)
+  <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(haskell . t)</span>
+   (dot . t)
+   (org . t)
+   (latex . t )
+   (typescript . t)
+  <span style="font-weight: bold; font-style: italic;">;;  </span><span style="font-weight: bold; font-style: italic;">scala . t)</span>
+  <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(mongo . t)</span>
+  <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(julia-vterm . t )</span>
+   (go . t)
+   ))
+(<span style="font-weight: bold;">with-eval-after-load</span> 'org)
 
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org04a06e7" class="outline-3">
-<h3 id="org04a06e7">config</h3>
+<div id="outline-container-orgc9596e0" class="outline-3">
+<h3 id="orgc9596e0">config</h3>
+<div class="outline-text-3" id="text-orgc9596e0">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">org-babel-tangle-block</span>()
+  (<span style="font-weight: bold;">interactive</span>)
+  (<span style="font-weight: bold;">let</span> ((current-prefix-arg '(4)))
+    (call-interactively 'org-babel-tangle)
+    )
+  )
+
+(eval-after-load <span style="font-style: italic;">"org"</span>
+  '(<span style="font-weight: bold;">progn</span>
+     (define-key org-mode-map (kbd <span style="font-style: italic;">"C-c b"</span>) 'org-babel-tangle-block)
+     )
+  )
+</pre>
 </div>
 </div>
-<div id="outline-container-org2a79f74" class="outline-2">
-<h2 id="org2a79f74">programm settings</h2>
-<div class="outline-text-2" id="text-org2a79f74">
 </div>
-<div id="outline-container-org324a2fc" class="outline-3">
-<h3 id="org324a2fc">ctags</h3>
-<div class="outline-text-3" id="text-org324a2fc">
+</div>
+<div id="outline-container-org6dffa54" class="outline-2">
+<h2 id="org6dffa54">programm settings</h2>
+<div class="outline-text-2" id="text-org6dffa54">
+</div>
+<div id="outline-container-orgc748417" class="outline-3">
+<h3 id="orgc748417">ctags</h3>
+<div class="outline-text-3" id="text-orgc748417">
 <p>
 Wiki : <a href="https://www.emacswiki.org/emacs/BuildTags">Emacs wiki</a>
 </p>
@@ -4098,12 +4048,9 @@ so the comands from Emacs wiki works
 </div>
 </div>
 
-<div id="outline-container-orgadee0d1" class="outline-2">
-<h2 id="orgadee0d1">Atomic-chrome</h2>
-<div class="outline-text-2" id="text-orgadee0d1">
-<p>
-for the bowser extension, GhostText is available for chrome and firefox
-</p>
+<div id="outline-container-orge66dab5" class="outline-2">
+<h2 id="orge66dab5">Atomic-chrome</h2>
+<div class="outline-text-2" id="text-orge66dab5">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package atomic-chrome
 <span style="font-weight: bold;">:ensure</span> t
@@ -4116,9 +4063,9 @@ for the bowser extension, GhostText is available for chrome and firefox
 </div>
 </div>
 </div>
-<div id="outline-container-orgba16466" class="outline-2">
-<h2 id="orgba16466">multiple cursor</h2>
-<div class="outline-text-2" id="text-orgba16466">
+<div id="outline-container-org3268487" class="outline-2">
+<h2 id="org3268487">multiple cursor</h2>
+<div class="outline-text-2" id="text-org3268487">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">
 (use-package multiple-cursors
@@ -4136,9 +4083,9 @@ for the bowser extension, GhostText is available for chrome and firefox
 </div>
 </div>
 
-<div id="outline-container-org9c56f75" class="outline-2">
-<h2 id="org9c56f75">Scala</h2>
-<div class="outline-text-2" id="text-org9c56f75">
+<div id="outline-container-orgc395ab9" class="outline-2">
+<h2 id="orgc395ab9">Scala</h2>
+<div class="outline-text-2" id="text-orgc395ab9">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">  (use-package scala-mode
     <span style="font-weight: bold;">:interpreter</span>
@@ -4218,9 +4165,9 @@ for the bowser extension, GhostText is available for chrome and firefox
 </div>
 </div>
 
-<div id="outline-container-org2e2ec75" class="outline-2">
-<h2 id="org2e2ec75">leetcode</h2>
-<div class="outline-text-2" id="text-org2e2ec75">
+<div id="outline-container-org83f25b3" class="outline-2">
+<h2 id="org83f25b3">leetcode</h2>
+<div class="outline-text-2" id="text-org83f25b3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(use-package leetcode</span>
 <span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:ensure t</span>
@@ -4233,13 +4180,13 @@ for the bowser extension, GhostText is available for chrome and firefox
 </div>
 </div>
 
-<div id="outline-container-org2b78b97" class="outline-2">
-<h2 id="org2b78b97">Web mode</h2>
-<div class="outline-text-2" id="text-org2b78b97">
+<div id="outline-container-orgf5a7c8a" class="outline-2">
+<h2 id="orgf5a7c8a">Web mode</h2>
+<div class="outline-text-2" id="text-orgf5a7c8a">
 </div>
-<div id="outline-container-org62c4a6c" class="outline-3">
-<h3 id="org62c4a6c">web mode</h3>
-<div class="outline-text-3" id="text-org62c4a6c">
+<div id="outline-container-org51f1a05" class="outline-3">
+<h3 id="org51f1a05">web mode</h3>
+<div class="outline-text-3" id="text-org51f1a05">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package company-web
   <span style="font-weight: bold;">:ensure</span> t)
@@ -4269,9 +4216,9 @@ for the bowser extension, GhostText is available for chrome and firefox
 </div>
 </div>
 </div>
-<div id="outline-container-orgc3ec32c" class="outline-3">
-<h3 id="orgc3ec32c">html</h3>
-<div class="outline-text-3" id="text-orgc3ec32c">
+<div id="outline-container-orgfa1e3d4" class="outline-3">
+<h3 id="orgfa1e3d4">html</h3>
+<div class="outline-text-3" id="text-orgfa1e3d4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">company-web-html</span>)
 (<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">my/web-html-setup</span>()
@@ -4289,9 +4236,9 @@ for the bowser extension, GhostText is available for chrome and firefox
 </div>
 </div>
 </div>
-<div id="outline-container-org6409677" class="outline-3">
-<h3 id="org6409677">web-mode for vue</h3>
-<div class="outline-text-3" id="text-org6409677">
+<div id="outline-container-org16b9fa6" class="outline-3">
+<h3 id="org16b9fa6">web-mode for vue</h3>
+<div class="outline-text-3" id="text-org16b9fa6">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(defun my/web-vue-setup()</span>
 <span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">"Setup for js related."</span>
@@ -4309,31 +4256,31 @@ for the bowser extension, GhostText is available for chrome and firefox
 </div>
 </div>
 </div>
-<div id="outline-container-org0eec323" class="outline-3">
-<h3 id="org0eec323">eslint use local</h3>
-<div class="outline-text-3" id="text-org0eec323">
+<div id="outline-container-org037b75f" class="outline-3">
+<h3 id="org037b75f">eslint use local</h3>
+<div class="outline-text-3" id="text-org037b75f">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(defun my/use-eslint-from-node-modules ()</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">"Use local eslint from node_modules before global."</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(let* ((root (locate-dominating-file</span>
-<span style="font-weight: bold; font-style: italic;">;;                 </span><span style="font-weight: bold; font-style: italic;">(or (buffer-file-name) default-directory)</span>
-<span style="font-weight: bold; font-style: italic;">;;                 </span><span style="font-weight: bold; font-style: italic;">"node_modules"))</span>
-<span style="font-weight: bold; font-style: italic;">;;          </span><span style="font-weight: bold; font-style: italic;">(eslint (and root</span>
-<span style="font-weight: bold; font-style: italic;">;;                       </span><span style="font-weight: bold; font-style: italic;">(expand-file-name "node_modules/eslint/bin/eslint.js"</span>
-<span style="font-weight: bold; font-style: italic;">;;                                         </span><span style="font-weight: bold; font-style: italic;">root))))</span>
-<span style="font-weight: bold; font-style: italic;">;;     </span><span style="font-weight: bold; font-style: italic;">(when (and eslint (file-executable-p eslint))</span>
-<span style="font-weight: bold; font-style: italic;">;;       </span><span style="font-weight: bold; font-style: italic;">(setq-local flycheck-javascript-eslint-executable eslint))))</span>
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">my/use-eslint-from-node-modules</span> ()
+  <span style="font-style: italic;">"Use local eslint from node_modules before global."</span>
+  (<span style="font-weight: bold;">let*</span> ((root (locate-dominating-file
+                (<span style="font-weight: bold;">or</span> (buffer-file-name) default-directory)
+                <span style="font-style: italic;">"node_modules"</span>))
+         (eslint (<span style="font-weight: bold;">and</span> root
+                      (expand-file-name <span style="font-style: italic;">"node_modules/eslint/bin/eslint.js"</span>
+                                        root))))
+    (<span style="font-weight: bold;">when</span> (<span style="font-weight: bold;">and</span> eslint (file-executable-p eslint))
+      (<span style="font-weight: bold;">setq-local</span> flycheck-javascript-eslint-executable eslint))))
 
-<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)</span>
+(add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
 
 
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org92a343b" class="outline-3">
-<h3 id="org92a343b">rjsx</h3>
-<div class="outline-text-3" id="text-org92a343b">
+<div id="outline-container-orgda6a7b2" class="outline-3">
+<h3 id="orgda6a7b2">rjsx</h3>
+<div class="outline-text-3" id="text-orgda6a7b2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(use-package rjsx-mode</span>
 <span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:ensure t</span>
@@ -4355,9 +4302,9 @@ for the bowser extension, GhostText is available for chrome and firefox
 </div>
 </div>
 </div>
-<div id="outline-container-org9032a61" class="outline-3">
-<h3 id="org9032a61">css</h3>
-<div class="outline-text-3" id="text-org9032a61">
+<div id="outline-container-orge822955" class="outline-3">
+<h3 id="orge822955">css</h3>
+<div class="outline-text-3" id="text-orge822955">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package css-mode
   <span style="font-weight: bold;">:ensure</span> t
@@ -4380,9 +4327,9 @@ for the bowser extension, GhostText is available for chrome and firefox
 </div>
 </div>
 </div>
-<div id="outline-container-orgeafd8d7" class="outline-3">
-<h3 id="orgeafd8d7">emmet</h3>
-<div class="outline-text-3" id="text-orgeafd8d7">
+<div id="outline-container-org4183ddd" class="outline-3">
+<h3 id="org4183ddd">emmet</h3>
+<div class="outline-text-3" id="text-org4183ddd">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">    (use-package emmet-mode
     <span style="font-weight: bold;">:ensure</span> t
@@ -4404,9 +4351,9 @@ for the bowser extension, GhostText is available for chrome and firefox
 </div>
 </div>
 </div>
-<div id="outline-container-orgfad4991" class="outline-3">
-<h3 id="orgfad4991">js</h3>
-<div class="outline-text-3" id="text-orgfad4991">
+<div id="outline-container-org851ce53" class="outline-3">
+<h3 id="org851ce53">js</h3>
+<div class="outline-text-3" id="text-org851ce53">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package js2-mode
   <span style="font-weight: bold;">:ensure</span> t
@@ -4429,43 +4376,43 @@ for the bowser extension, GhostText is available for chrome and firefox
 </div>
 </div>
 </div>
-<div id="outline-container-org96afa4a" class="outline-3">
-<h3 id="org96afa4a">tide</h3>
-<div class="outline-text-3" id="text-org96afa4a">
+<div id="outline-container-org9294c92" class="outline-3">
+<h3 id="org9294c92">tide</h3>
+<div class="outline-text-3" id="text-org9294c92">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(use-package tide</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:ensure t</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:after (typescript-mode company flycheck)</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:hook ((typescript-mode . tide-setup)</span>
-<span style="font-weight: bold; font-style: italic;">;;          </span><span style="font-weight: bold; font-style: italic;">(typescript-mode . tide-hl-identifier-mode))</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(before-save . tide-format-before-save)</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:config</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(setq tide-completion-enable-autoimport-suggestions t)</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">)</span>
+<pre class="src src-emacs-lisp">(use-package tide
+  <span style="font-weight: bold;">:ensure</span> t
+  <span style="font-weight: bold;">:after</span> (typescript-mode company flycheck)
+  <span style="font-weight: bold;">:hook</span> ((typescript-mode . tide-setup)
+         (typescript-mode . tide-hl-identifier-mode))
+  (before-save . tide-format-before-save)
+  <span style="font-weight: bold;">:config</span>
+  (<span style="font-weight: bold;">setq</span> tide-completion-enable-autoimport-suggestions t)
+  )
 
 
-<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(defun setup-tide-mode ()</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">"Setup tide mode for other mode."</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(interactive)</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(message "setup tide mode")</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(tide-setup)</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(flycheck-mode +1)</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(setq flycheck-check-syntax-automatically '(save mode-enabled))</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(eldoc-mode +1)</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(tide-hl-identifier-mode +1)</span>
-<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(company-mode +1))</span>
+(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">setup-tide-mode</span> ()
+  <span style="font-style: italic;">"Setup tide mode for other mode."</span>
+  (<span style="font-weight: bold;">interactive</span>)
+  (message <span style="font-style: italic;">"setup tide mode"</span>)
+  (tide-setup)
+  (flycheck-mode +1)
+  (<span style="font-weight: bold;">setq</span> flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  (company-mode +1))
 
-<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(add-hook 'js2-mode-hook #'setup-tide-mode)</span>
-<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(add-hook 'typescript-mode-hook #'setup-tide-mode)</span>
+(add-hook 'js2-mode-hook #'setup-tide-mode)
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
 <span style="font-weight: bold; font-style: italic;">;;  </span><span style="font-weight: bold; font-style: italic;">(add-hook 'rjsx-mode-hook #'setup-tide-mode)</span>
 
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf369fb2" class="outline-3">
-<h3 id="orgf369fb2">prettier</h3>
-<div class="outline-text-3" id="text-orgf369fb2">
+<div id="outline-container-orgaa00965" class="outline-3">
+<h3 id="orgaa00965">prettier</h3>
+<div class="outline-text-3" id="text-orgaa00965">
 <p>
 sudo npm install -g prettier
 </p>
@@ -4490,13 +4437,13 @@ sudo npm install -g prettier
 </div>
 </div>
 
-<div id="outline-container-org68d182c" class="outline-2">
-<h2 id="org68d182c">LSP</h2>
-<div class="outline-text-2" id="text-org68d182c">
+<div id="outline-container-orgbbc5e81" class="outline-2">
+<h2 id="orgbbc5e81">LSP</h2>
+<div class="outline-text-2" id="text-orgbbc5e81">
 </div>
-<div id="outline-container-orgf196153" class="outline-3">
-<h3 id="orgf196153">LSP server</h3>
-<div class="outline-text-3" id="text-orgf196153">
+<div id="outline-container-org0459049" class="outline-3">
+<h3 id="org0459049">LSP server</h3>
+<div class="outline-text-3" id="text-org0459049">
 <p>
 Let's install the main package for lsp. Here we will integrate lsp with which-key. This way, when we type the prefix key <code>C-c l</code> we get additional help for compliting the command. 
 </p>
@@ -4513,53 +4460,33 @@ Change them to higher numbers, if you find <b>lsp-mode</b> sluggish in your comp
   (<span style="font-weight: bold;">setq</span> lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
   (lsp-headerline-breadcrumb-mode))
 
-(use-package lsp-mode
-  <span style="font-weight: bold;">:ensure</span> t
-  <span style="font-weight: bold;">:commands</span> (lsp lsp-deferred)
-  <span style="font-weight: bold;">:hook</span>
-  ((typescript-mode js2-mode web-mode) . lsp)
-  (lsp-mdoe . efs/lsp-mode-setup)
-  (lsp-mode . rainbow-delimiters-mode)
-  (go-mode . lsp-deferred)
-  <span style="font-weight: bold;">:init</span>
-  (<span style="font-weight: bold;">setq</span> lsp-keymap-prefix <span style="font-style: italic;">"C-c l"</span>)
-  <span style="font-weight: bold;">:config</span> (<span style="font-weight: bold;">progn</span>
-            (lsp-enable-which-key-integration t)
-            <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">use flycheck, not flymake</span>
-            (<span style="font-weight: bold;">setq</span> lsp-prefer-flymake nil)
-            <span style="font-weight: bold; font-style: italic;">;;</span><span style="font-weight: bold; font-style: italic;">(setq lsp-trace nil)</span>
-            (<span style="font-weight: bold;">setq</span> lsp-print-performance nil)
-            (<span style="font-weight: bold;">setq</span> lsp-log-io nil)
-  )
-<span style="font-weight: bold;">:bind</span> (<span style="font-weight: bold;">:map</span> lsp-mode-map
-            (<span style="font-style: italic;">"TAB"</span> . completion-at-point))
-<span style="font-weight: bold;">:custom</span> (lsp-headerline-breadcrumb-enable nil))
-
-(<span style="font-weight: bold;">setq</span> lsp-disabled-clients '(eslint))
+    (use-package lsp-mode
+  <span style="font-weight: bold; font-style: italic;">;;    </span><span style="font-weight: bold; font-style: italic;">:straight t</span>
+      <span style="font-weight: bold;">:commands</span> (lsp lsp-deferred)
+      <span style="font-weight: bold;">:hook</span>
+      ((typescript-mode js2-mode web-mode) . lsp)
+      (lsp-mdoe . efs/lsp-mode-setup)
+      <span style="font-weight: bold;">:init</span>
+      (<span style="font-weight: bold;">setq</span> lsp-keymap-prefix <span style="font-style: italic;">"C-c l"</span>)
+      <span style="font-weight: bold;">:config</span>
+      (lsp-enable-which-key-integration t)
+      <span style="font-weight: bold;">:bind</span> (<span style="font-weight: bold;">:map</span> lsp-mode-map
+                (<span style="font-style: italic;">"TAB"</span> . completion-at-point))
+      <span style="font-weight: bold;">:custom</span> (lsp-headerline-breadcrumb-enable nil))
 
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orga3a618d" class="outline-3">
-<h3 id="orga3a618d">lsp ui</h3>
-<div class="outline-text-3" id="text-orga3a618d">
+<div id="outline-container-org5934694" class="outline-3">
+<h3 id="org5934694">lsp ui</h3>
+<div class="outline-text-3" id="text-org5934694">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package lsp-ui
   <span style="font-weight: bold;">:ensure</span> t
-  <span style="font-weight: bold;">:after</span> (lsp-mode)
-  <span style="font-weight: bold;">:commands</span> lsp-ui-mode
+  <span style="font-weight: bold;">:hook</span> (lsp-mode . lsp-ui-mode)
   <span style="font-weight: bold;">:custom</span>
-  (lsp-ui-doc-position 'bottom)
-  <span style="font-weight: bold;">:config</span> (<span style="font-weight: bold;">progn</span>
-          <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">disable inline documentation</span>
-          (<span style="font-weight: bold;">setq</span> lsp-ui-sideline-enable nil)
-          <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">disable showing docs on hover at the top of the window</span>
-          (<span style="font-weight: bold;">setq</span> lsp-ui-doc-enable nil)
-          (<span style="font-weight: bold;">setq</span> lsp-ui-imenu-enable t)
-          (<span style="font-weight: bold;">setq</span> lsp-ui-imenu-kind-position 'top))
-)
-
+  (lsp-ui-doc-position 'bottom))
 
 (<span style="font-weight: bold;">setq</span> lsp-ui-sideline-show-code-actions nil)
 (<span style="font-weight: bold;">setq</span> lsp-headerline-breadcrumb-enable t)
@@ -4569,18 +4496,18 @@ Change them to higher numbers, if you find <b>lsp-mode</b> sluggish in your comp
 </div>
 </div>
 
-<div id="outline-container-org3a7be00" class="outline-3">
-<h3 id="org3a7be00">java configuation</h3>
-<div class="outline-text-3" id="text-org3a7be00">
+<div id="outline-container-org9105092" class="outline-3">
+<h3 id="org9105092">java configuation</h3>
+<div class="outline-text-3" id="text-org9105092">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(setenv <span style="font-style: italic;">"JAVA_HOME"</span> <span style="font-style: italic;">"/usr/lib/jvm/java-11-openjdk-amd64"</span>)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orge57d83f" class="outline-3">
-<h3 id="orge57d83f">lsp treemacs</h3>
-<div class="outline-text-3" id="text-orge57d83f">
+<div id="outline-container-org3c86204" class="outline-3">
+<h3 id="org3c86204">lsp treemacs</h3>
+<div class="outline-text-3" id="text-org3c86204">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package lsp-treemacs
 <span style="font-weight: bold;">:after</span> lsp)
@@ -4588,9 +4515,9 @@ Change them to higher numbers, if you find <b>lsp-mode</b> sluggish in your comp
 </div>
 </div>
 </div>
-<div id="outline-container-orge51f98e" class="outline-3">
-<h3 id="orge51f98e">dap Mode</h3>
-<div class="outline-text-3" id="text-orge51f98e">
+<div id="outline-container-org8c7cf66" class="outline-3">
+<h3 id="org8c7cf66">dap Mode</h3>
+<div class="outline-text-3" id="text-org8c7cf66">
 <p>
 Emacs Debug Adapter Protocol aka DAP Mode allows us to debug your program.
 Below we will integrate <code>dap-mode</code> with <code>dap-hydra</code>.
@@ -4618,19 +4545,15 @@ After we install dap-mode we will also install <code>dap-java</code>.
 </div>
 </div>
 
-<div id="outline-container-orgb315d04" class="outline-3">
-<h3 id="orgb315d04">TS</h3>
-<div class="outline-text-3" id="text-orgb315d04">
+<div id="outline-container-org9efdc19" class="outline-3">
+<h3 id="org9efdc19">TS</h3>
+<div class="outline-text-3" id="text-org9efdc19">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package typescript-mode
-  <span style="font-weight: bold;">:mode</span> <span style="font-style: italic;">"\\.ts\\'"</span>
-  <span style="font-weight: bold;">:hook</span> (typescript-mode . lsp-deferred)
-  <span style="font-weight: bold;">:config</span>
-  (<span style="font-weight: bold;">setq</span> typescript-indent-level 2)
-  (<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">dap-node</span>)
-  (dap-node-setup)
-  ) 
-
+<span style="font-weight: bold;">:mode</span> <span style="font-style: italic;">"\\.ts\\'"</span>
+<span style="font-weight: bold;">:hook</span> (typescript-mode . lsp-deferred)
+<span style="font-weight: bold;">:config</span>
+(<span style="font-weight: bold;">setq</span> typescript-indent-level 2))
 </pre>
 </div>
 
@@ -4644,9 +4567,9 @@ After we install dap-mode we will also install <code>dap-java</code>.
 </div>
 </div>
 
-<div id="outline-container-orga4f24ef" class="outline-3">
-<h3 id="orga4f24ef">python</h3>
-<div class="outline-text-3" id="text-orga4f24ef">
+<div id="outline-container-org37d2171" class="outline-3">
+<h3 id="org37d2171">python</h3>
+<div class="outline-text-3" id="text-org37d2171">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(use-package python-mode
   <span style="font-weight: bold;">:ensure</span> nil
@@ -4660,17 +4583,17 @@ After we install dap-mode we will also install <code>dap-java</code>.
 </div>
 </div>
 
-<div id="outline-container-orgd27092f" class="outline-2">
-<h2 id="orgd27092f">Julia</h2>
-<div class="outline-text-2" id="text-orgd27092f">
+<div id="outline-container-orgc32a58a" class="outline-2">
+<h2 id="orgc32a58a">Julia</h2>
+<div class="outline-text-2" id="text-orgc32a58a">
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(package-install 'julia-mode)
-(<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">julia-mode</span>)
-(package-install 'lsp-julia)
-(use-package lsp-julia
-  <span style="font-weight: bold;">:config</span>
-  (<span style="font-weight: bold;">setq</span> lsp-julia-default-environment <span style="font-style: italic;">"~/.julia/environments/v1.7"</span>))
-(add-hook 'ess-julia-mode-hook #'lsp-mode)
+<pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(package-install 'julia-mode)</span>
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(require 'julia-mode)</span>
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(package-install 'lsp-julia)</span>
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(use-package lsp-julia</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">:config</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(setq lsp-julia-default-environment "~/.julia/environments/v1.7"))</span>
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(add-hook 'ess-julia-mode-hook #'lsp-mode)</span>
 
 </pre>
 </div>
@@ -4694,16 +4617,33 @@ or / and sudo apt-get install libtool
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp">(package-install 'julia-vterm)
-(add-hook 'julia-mode-hook #'julia-vterm-mode)
+<pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(package-install 'julia-vterm)</span>
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(add-hook 'julia-mode-hook #'julia-vterm-mode)</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org80fae0b" class="outline-2">
-<h2 id="org80fae0b">hi-lock-mode</h2>
-<div class="outline-text-2" id="text-org80fae0b">
+<div id="outline-container-org3fcf221" class="outline-2">
+<h2 id="org3fcf221">GO</h2>
+<div class="outline-text-2" id="text-org3fcf221">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">lsp-mode</span>)
+(add-hook 'go-mode-hook #'lsp-deferred)
+
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Set up before-save hooks to format buffer and add/delete imports.</span>
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Make sure you don't have other gofmt/goimports hooks enabled.</span>
+(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">lsp-go-install-save-hooks</span> ()
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org42f642f" class="outline-2">
+<h2 id="org42f642f">hi-lock-mode</h2>
+<div class="outline-text-2" id="text-org42f642f">
 <p>
 hi-lock-file-patterns-policy  to be nil
 </p>
@@ -4745,9 +4685,9 @@ hi-lock-file-patterns-policy  to be nil
 </table>
 </div>
 </div>
-<div id="outline-container-org72e18b3" class="outline-2">
-<h2 id="org72e18b3">my-comment-mode</h2>
-<div class="outline-text-2" id="text-org72e18b3">
+<div id="outline-container-org8e1e576" class="outline-2">
+<h2 id="org8e1e576">my-comment-mode</h2>
+<div class="outline-text-2" id="text-org8e1e576">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="font-weight: bold;">defface</span> <span style="font-weight: bold; font-style: italic;">my-comment-remap-style</span>
   '((default <span style="font-weight: bold;">:inherit</span> italic)
@@ -4776,9 +4716,9 @@ hi-lock-file-patterns-policy  to be nil
 </div>
 </div>
 
-<div id="outline-container-org23bdd33" class="outline-2">
-<h2 id="org23bdd33">my-max-multi-toggle</h2>
-<div class="outline-text-2" id="text-org23bdd33">
+<div id="outline-container-orgae8f67a" class="outline-2">
+<h2 id="orgae8f67a">my-max-multi-toggle</h2>
+<div class="outline-text-2" id="text-orgae8f67a">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(<span style="font-weight: bold;">define-minor-mode</span> <span style="font-weight: bold;">my-max-multi-toggle</span>
   <span style="font-style: italic;">"Toggle between multiple windows and single window.</span>
@@ -4796,9 +4736,9 @@ hi-lock-file-patterns-policy  to be nil
 </div>
 </div>
 
-<div id="outline-container-org505ef33" class="outline-2">
-<h2 id="org505ef33">google calender</h2>
-<div class="outline-text-2" id="text-org505ef33">
+<div id="outline-container-orgce58b52" class="outline-2">
+<h2 id="orgce58b52">google calender</h2>
+<div class="outline-text-2" id="text-orgce58b52">
 <ul class="org-ul">
 <li>create the  project (Im -&gt; resource for delete)</li>
 <li>Google Calendar  API enable</li>
@@ -4822,10 +4762,489 @@ hi-lock-file-patterns-policy  to be nil
 </div>
 </div>
 </div>
+<div id="outline-container-orgabf9a06" class="outline-2">
+<h2 id="orgabf9a06">mu4e</h2>
+<div class="outline-text-2" id="text-orgabf9a06">
+<p>
+<a href="https://www.djcbsoftware.nl/code/mu/mu4e/index.html#SEC_Contents">mu4e tutorials</a>
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
-<div id="outline-container-org78dad87" class="outline-2">
-<h2 id="org78dad87">initination</h2>
-<div class="outline-text-2" id="text-org78dad87">
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">mbsync receive email</td>
+<td class="org-left">~/.mbsyncrc</td>
+<td class="org-left">mbsync conton settings</td>
+</tr>
+
+<tr>
+<td class="org-left">mbsync receive email</td>
+<td class="org-left">~/Maildir/.mbsyncpass.gpg</td>
+<td class="org-left">mbsync passwd</td>
+</tr>
+
+<tr>
+<td class="org-left">mbsync to mu4e</td>
+<td class="org-left">myemacs.org</td>
+<td class="org-left">mu4</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+in Google Konto: Zugriff durch weniger sichere Apps: AN
+M-x: org~mu4e-mime-switch-headers-or-body  to edit the mail in orgmode
+</p>
+</div>
+<div id="outline-container-orgcf4e55a" class="outline-3">
+<h3 id="orgcf4e55a">mbsync conton setting</h3>
+<div class="outline-text-3" id="text-orgcf4e55a">
+<pre class="example">
+########################################
+# Gmail
+########################################
+IMAPAccount gmail
+Host imap.gmail.com
+User scofild429@gmail.com
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/Maildir/.mbsyncpass.gpg"
+Port 993
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+Path ~/Maildir/Gmail/
+Inbox  ~/Maildir/Gmail/Inbox
+Subfolders Verbatim
+
+Channel gmail
+Master :gmail-remote:
+Slave :gmail-local:
+Create Both
+Expunge Both
+Patterns *
+SyncState *
+CopyArrivalDate yes
+Sync All
+
+
+########################################
+# unimail
+########################################
+# IMAPAccount unimail
+# Host email.stud.uni-goettingen.de
+# User ug-student\silin.zhao
+# #User silin.zhao@stud.uni-goettingen.de
+# PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/Maildir/.unimail.gpg"
+# Port 993
+# SSLType STARTTLS
+# CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+# IMAPStore unimail-remote
+# Account unimail
+
+# MaildirStore unimail-local
+# Path ~/Maildir/Unimai/
+# Inbox ~/Maildir/Unimail/Inbox
+# SubFolders Verbatim
+
+# Channel unimail
+# Master :unimail-remote:
+# Slave :unimail-local:
+# Patterns *
+# SyncState *
+# Expunge None
+# CopyArrivalDate yes
+# Create Both
+# Sync All
+
+
+
+########################################
+# qq.com
+########################################
+IMAPAccount qq
+Host imap.qq.com
+User 364638790@qq.com
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/Maildir/.qq.gpg"
+Port 993
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore qq-remote
+Account qq
+
+MaildirStore qq-local
+Path ~/Maildir/QQ/
+Inbox  ~/Maildir/QQ/Inbox
+SubFolders Verbatim
+
+Channel qq
+Master :qq-remote:
+Slave :qq-local:
+Create Both
+Expunge Both
+Patterns *
+SyncState *
+CopyArrivalDate yes
+Sync All
+
+
+########################################
+# outlook
+########################################
+IMAPAccount outlook
+Host smtp-mail.outlook.com
+User mscofild429@outlook.com
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/Maildir/.outlook.gpg"
+Port 993
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+IMAPStore outlook-remote
+Account outlook
+
+MaildirStore outlook-local
+Path ~/Maildir/Outlook/
+Subfolders Verbatim
+
+Channel outlook
+Master :outlook-remote:
+Slave :outlook-local:
+Create Both
+Expunge Both
+Patterns *
+SyncState *
+CopyArrivalDate yes
+Sync All
+
+
+
+########################################
+# 163
+########################################
+# IMAPAccount 163
+# Host imap.163.com
+# User mscofild429@163.com
+# PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/Maildir/.163.gpg"
+# Port 993
+# SSLType IMAPS
+# CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+# IMAPStore 163-remote
+# Account 163
+
+# MaildirStore 163-local
+# Path ~/Maildir/Wangyi163/
+# Inbox  ~/Maildir/Wangyi163/Inbox
+# SubFolders Verbatim
+
+# Channel 163
+# Master :163-remote:
+# Slave :163-local:
+# Create Both
+# Expunge Both
+# Patterns *
+# SyncState *
+# CopyArrivalDate yes
+# Sync All
+
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgc348c7b" class="outline-3">
+<h3 id="orgc348c7b">mbsync pd</h3>
+<div class="outline-text-3" id="text-orgc348c7b">
+<p>
+xxxxxx
+gpg2 &#x2013;output ~/Maildir/.mbsyncpass.gpg &#x2013;symmetric ~/Maildir/.mbsyncpass
+</p>
+</div>
+</div>
+<div id="outline-container-orgc39261f" class="outline-3">
+<h3 id="orgc39261f">mu4e settings</h3>
+<div class="outline-text-3" id="text-orgc39261f">
+<p>
+sudo apt install isync
+save this into ~/.mbsyncrc
+mbsync -a
+sudo apt install mu4e
+</p>
+
+<p>
+ngpg2 &#x2013;output .mbsyncpass.gpg &#x2013;symmetric .mbsyncpass
+</p>
+
+<p>
+mu index &#x2013;maildir=~/Maildir  
+mu index  &#x2013;maildir=~/Maildir/Gmail  &#x2013;my-address=scofild429@gmail.com
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(use-package mu4e
+  <span style="font-weight: bold;">:ensure</span> nil
+  <span style="font-weight: bold;">:load-path</span> <span style="font-style: italic;">"/snap/maildir-utils/502/share/emacs/site-lisp/mu4e"</span>
+  <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">:defer 20 ; Wait until 20 seconds after startup</span>
+  <span style="font-weight: bold;">:config</span>
+  <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">This is set to 't' to avoid mail syncing issues when using mbsync</span>
+  (<span style="font-weight: bold;">setq</span> mu4e-change-filenames-when-moving t)
+  <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Refresh mail using isync every 10 minutes</span>
+  (<span style="font-weight: bold;">setq</span> mu4e-update-interval (* 10 60))
+  (<span style="font-weight: bold;">setq</span> mu4e-get-mail-command <span style="font-style: italic;">"mbsync -a"</span>)
+  (<span style="font-weight: bold;">setq</span> mu4e-maildir <span style="font-style: italic;">"~/Maildir"</span>)
+
+  <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Make sure plain text mails flow correctly for recipients</span>
+  (<span style="font-weight: bold;">setq</span> mu4e-compose-format-flowed t)
+  <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Configure the function to use for sending mail</span>
+  (<span style="font-weight: bold;">setq</span> message-send-mail-function 'smtpmail-send-it)
+  <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(setq mu4e-compose-signature</span>
+  <span style="font-weight: bold; font-style: italic;">;;       </span><span style="font-weight: bold; font-style: italic;">(concat</span>
+  <span style="font-weight: bold; font-style: italic;">;;        </span><span style="font-weight: bold; font-style: italic;">"Best regrads\n"</span>
+  <span style="font-weight: bold; font-style: italic;">;;        </span><span style="font-weight: bold; font-style: italic;">"Silin Zhao")</span>
+  <span style="font-weight: bold; font-style: italic;">;;       </span><span style="font-weight: bold; font-style: italic;">)</span>
+  (<span style="font-weight: bold;">with-eval-after-load</span> 'mu4e
+    (<span style="font-weight: bold;">setq</span> mu4e-contexts
+          (list
+           <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Work account</span>
+           (make-mu4e-context
+            <span style="font-weight: bold;">:name</span> <span style="font-style: italic;">"Gmail"</span>
+            <span style="font-weight: bold;">:match-func</span>
+            (<span style="font-weight: bold;">lambda</span> (msg)
+              (<span style="font-weight: bold;">when</span> msg
+                (string-prefix-p <span style="font-style: italic;">"/Gmail"</span> (mu4e-message-field msg <span style="font-weight: bold;">:maildir</span>))))
+            <span style="font-weight: bold;">:vars</span> '((user-mail-address . <span style="font-style: italic;">"scofild429@gmail.com"</span>)
+                    (user-full-name    . <span style="font-style: italic;">"Silin Zhao"</span>)
+                    (smtpmail-smtp-server  . <span style="font-style: italic;">"smtp.gmail.com"</span>)
+                    (smtpmail-smtp-service . 465)
+                    (smtpmail-stream-type  . ssl)
+                    )))))
+
+  (<span style="font-weight: bold;">setq</span> mu4e-maildir-shortcuts
+        '(
+          (<span style="font-style: italic;">"/Inbox"</span> . ?i)
+          (<span style="font-style: italic;">"/[Gmail]/All Mail"</span> . ?a)
+          (<span style="font-style: italic;">"/[Gmail]/Sent Mail"</span> . ?s)
+          (<span style="font-style: italic;">"/[Gmail]/Drafts"</span> . ?d)
+          ))
+  )
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0eeed47" class="outline-3">
+<h3 id="org0eeed47">mu4e background settingns</h3>
+<div class="outline-text-3" id="text-org0eeed47">
+<p>
+<a href="https://www.djcbsoftware.nl/code/mu/mu4e/MSGV-Keybindings.html">mu4e shourtcuts</a>
+with (M-x mu4e-no-background ) html email can be read very clear, no small box background.
+but in SRC source block here are no highlight
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(require 'org-mu4e)</span>
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(setq org-mu4e-convert-to-html t)</span>
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(setq mu4e-view-prefer-html t)</span>
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(add-to-list 'mu4e-view-actions</span>
+<span style="font-weight: bold; font-style: italic;">;;              </span><span style="font-weight: bold; font-style: italic;">'("ViewInBrowser" . mu4e-action-view-in-browser) t)</span>
+
+
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(defun mu4e-no-background()</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(interactive )</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(setq shr-use-colors t)</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(advice-add #'shr-colorize-region :around (defun shr-no-colourise-region (&amp;rest ignore)))</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(setq shr-color-visible-luminance-min 60)</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">(setq shr-color-visible-distance-min 5)</span>
+<span style="font-weight: bold; font-style: italic;">;;   </span><span style="font-weight: bold; font-style: italic;">)</span>
+
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga42db62" class="outline-3">
+<h3 id="orga42db62">mu4e for image to read in receive</h3>
+<div class="outline-text-3" id="text-orga42db62">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">enable inline images</span>
+(<span style="font-weight: bold;">setq</span> mu4e-view-show-images t)
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">use imagemagick, if available</span>
+(<span style="font-weight: bold;">when</span> (fboundp 'imagemagick-register-types)
+  (imagemagick-register-types))
+
+(<span style="font-weight: bold;">setq</span> org-latex-create-formula-image-program 'dvipng)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb95340f" class="outline-3">
+<h3 id="orgb95340f">mu4e for image in orgmode to send</h3>
+<div class="outline-text-3" id="text-orgb95340f">
+<p>
+M-x: org~mu4e-mime-switch-headers-or-body to orgmode
+</p>
+</div>
+<div id="outline-container-org81d357f" class="outline-4">
+<h4 id="org81d357f">ditta</h4>
+<div class="outline-text-4" id="text-org81d357f">
+<p>
+after :file I can add any path to output, and can be send together
+</p>
+</div>
+</div>
+<div id="outline-container-org96efcd2" class="outline-4">
+<h4 id="org96efcd2">latex</h4>
+<div class="outline-text-4" id="text-org96efcd2">
+<p>
+1- create the image through the src of lsetq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))atex output with normally path
+2- add the photo with [[]] with ../../ because the base is <i>tmp/file</i> , so <b>return</b> to the root at frist
+3- if I want to send the latex source code together. with :exports both
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga994163" class="outline-3">
+<h3 id="orga994163">org mime</h3>
+<div class="outline-text-3" id="text-orga994163">
+<p>
+not recommanded, use org-msg
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(use-package org-mime)
+<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(setq org-mime-library 'mml)</span>
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd432cac" class="outline-3">
+<h3 id="orgd432cac">org-msg</h3>
+<div class="outline-text-3" id="text-orgd432cac">
+<pre class="example">
+- mbsync setting seeing in Dropbox
+- C-c C-m to send email
+- math :file output.png -&gt; C-c C-c
+- digraph -&gt;
+- graph --
+
+</pre>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">setq</span> mail-user-agent 'mu4e-user-agent)
+(use-package org-msg
+  <span style="font-weight: bold;">:ensure</span> t
+  <span style="font-weight: bold;">:config</span>
+  (<span style="font-weight: bold;">setq</span> org-msg-options <span style="font-style: italic;">"html-postamble:nil H:5 num:nil ^:{} toc:nil author:nil email:nil \\n:t"</span>
+        org-msg-startup <span style="font-style: italic;">"hidestars indent inlineimages"</span>
+        org-msg-greeting-fmt <span style="font-style: italic;">"\nHi%s,\n\n"</span>
+        org-msg-recipient-names '((<span style="font-style: italic;">"scofild429@gmail.com"</span> . <span style="font-style: italic;">"Silin Zhao"</span>))
+        org-msg-greeting-name-limit 3
+        org-msg-default-alternatives '((new             . (text html))
+                                       (reply-to-html   . (text html))
+                                       (reply-to-text   . (text)))
+        org-msg-convert-citation t
+        org-msg-signature
+        <span style="font-style: italic;">"</span>
+<span style="font-style: italic;">        \n Regards,</span>
+<span style="font-style: italic;">        \n Silin Zhao</span>
+<span style="font-style: italic;">        "</span>
+        )
+  (org-msg-mode)
+  )
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org541da98" class="outline-3">
+<h3 id="org541da98">org-ref</h3>
+<div class="outline-text-3" id="text-org541da98">
+<p>
+(require 'org-ref-helm) need to install helm-bibtex
+C-c ]: insert citation
+C-Space: mark multi citations
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">  (<span style="font-weight: bold;">setq</span> bibtex-completion-bibliography '(<span style="font-style: italic;">"~/Dropbox/Document/emacsref/bibliography/references.bib"</span>)
+        bibtex-completion-library-path '(<span style="font-style: italic;">"~/Dropbox/Document/emacsref/bibliography/bibtex-pdfs/"</span>)
+        bibtex-completion-notes-path <span style="font-style: italic;">"~/Dropbox/Document/emacsref/bibliography/notes/"</span>
+        bibtex-completion-notes-template-multiple-files <span style="font-style: italic;">"* ${author-or-editor}, ${title}, ${journal}, (${year}) :${=type=}: \n\nSee [[cite:&amp;${=key=}]]\n"</span>
+        bibtex-completion-additional-search-fields '(keywords)
+        bibtex-completion-display-formats
+        '((article       . <span style="font-style: italic;">"${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${journal:40}"</span>)
+          (inbook        . <span style="font-style: italic;">"${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} Chapter ${chapter:32}"</span>)
+          (incollection  . <span style="font-style: italic;">"${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}"</span>)
+          (inproceedings . <span style="font-style: italic;">"${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*} ${booktitle:40}"</span>)
+          (t             . <span style="font-style: italic;">"${=has-pdf=:1}${=has-note=:1} ${year:4} ${author:36} ${title:*}"</span>))
+        bibtex-completion-pdf-open-function
+        (<span style="font-weight: bold;">lambda</span> (fpath)
+          (call-process <span style="font-style: italic;">"open"</span> nil 0 nil fpath)))
+
+
+  (<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">bibtex</span>)
+  (<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">org-ref</span>)
+(<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">org-ref-helm</span>)
+
+  (<span style="font-weight: bold;">setq</span> bibtex-autokey-year-length 4
+        bibtex-autokey-name-year-separator <span style="font-style: italic;">"-"</span>
+        bibtex-autokey-year-title-separator <span style="font-style: italic;">"-"</span>
+        bibtex-autokey-titleword-separator <span style="font-style: italic;">"-"</span>
+        bibtex-autokey-titlewords 2
+        bibtex-autokey-titlewords-stretch 1
+        bibtex-autokey-titleword-length 5)
+
+  (define-key bibtex-mode-map (kbd <span style="font-style: italic;">"H-b"</span>) 'org-ref-bibtex-hydra/body)
+  (define-key org-mode-map (kbd <span style="font-style: italic;">"C-c ]"</span>) 'org-ref-insert-link)
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org12a1a2b" class="outline-2">
+<h2 id="org12a1a2b">ebib for tex</h2>
+<div class="outline-text-2" id="text-org12a1a2b">
+<p>
+This package can be used in tex file for latex
+M-x: ebib
+o: open bib file,
+e: edit
+a: add
+M-x: ebib-insert-citation
+C-c C-c in tex file, BibTex and then XeLatex
+</p>
+<pre class="example">
+#+OPTIONS: toc:3 ':t h:4 ^:{} tags:nil todo:nil
+#+LATEX_CLASS: koma-article
+#+LATEX_CLASS_OPTIONS: [paper=letter,oneside,DIV=8]
+#+LATEX_HEADER: \usepackage[style=verbose,backend=bibtex]{biblatex}
+#+LATEX_HEADER: \addbibresource{local.bib}
+#+STARTUP: entitiespretty
+#+TITLE: Guide to use orgmode for PDF file generatation
+#+AUTHOR: Thomas S. Dye
+#+EMAIL: tsd at tsdye dot com
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgc69b69b" class="outline-2">
+<h2 id="orgc69b69b">initination</h2>
+<div class="outline-text-2" id="text-orgc69b69b">
 <pre class="example">
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
@@ -4848,249 +5267,6 @@ hi-lock-file-patterns-policy  to be nil
 
 (org-babel-load-file "~/Dropbox/cs/Limacs/myinit.org")
 </pre>
-</div>
-</div>
-
-<div id="outline-container-org295601d" class="outline-2">
-<h2 id="org295601d">Draw and scribble</h2>
-<div class="outline-text-2" id="text-org295601d">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(load <span style="font-style: italic;">"~/.emacs.d/packages/svg.el"</span>)
-(<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">svg</span>)
-(<span style="font-weight: bold;">setq</span> default-process-coding-system '(utf-8 . utf-8))
-</pre>
-</div>
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="org-left">l</td>
-<td class="org-left">Line</td>
-</tr>
-
-<tr>
-<td class="org-left">c</td>
-<td class="org-left">Circle</td>
-</tr>
-
-<tr>
-<td class="org-left">r</td>
-<td class="org-left">Rectangle</td>
-</tr>
-
-<tr>
-<td class="org-left">e</td>
-<td class="org-left">Ellipse</td>
-</tr>
-
-<tr>
-<td class="org-left">t</td>
-<td class="org-left">Text</td>
-</tr>
-
-<tr>
-<td class="org-left">p</td>
-<td class="org-left">Polyline</td>
-</tr>
-
-<tr>
-<td class="org-left">w</td>
-<td class="org-left">Stroke Width</td>
-</tr>
-
-<tr>
-<td class="org-left">f</td>
-<td class="org-left">Fill color</td>
-</tr>
-
-<tr>
-<td class="org-left">C</td>
-<td class="org-left">Stroke color</td>
-</tr>
-
-<tr>
-<td class="org-left">z (+, -, 0)</td>
-<td class="org-left">Zoom</td>
-</tr>
-
-<tr>
-<td class="org-left">x</td>
-<td class="org-left">Eraser</td>
-</tr>
-
-<tr>
-<td class="org-left">M-w</td>
-<td class="org-left">Copy</td>
-</tr>
-
-<tr>
-<td class="org-left">m</td>
-<td class="org-left">Move</td>
-</tr>
-
-<tr>
-<td class="org-left">g</td>
-<td class="org-left">Group</td>
-</tr>
-
-<tr>
-<td class="org-left">G</td>
-<td class="org-left">Ungroup</td>
-</tr>
-
-<tr>
-<td class="org-left">M-g</td>
-<td class="org-left">Toggle grid</td>
-</tr>
-
-<tr>
-<td class="org-left">y</td>
-<td class="org-left">Selection mode</td>
-</tr>
-
-<tr>
-<td class="org-left">ESC</td>
-<td class="org-left">Cancel Selection</td>
-</tr>
-
-<tr>
-<td class="org-left">R</td>
-<td class="org-left">Rotate</td>
-</tr>
-
-<tr>
-<td class="org-left">W</td>
-<td class="org-left">Connection wire</td>
-</tr>
-
-<tr>
-<td class="org-left">L</td>
-<td class="org-left">Symbol Library</td>
-</tr>
-
-<tr>
-<td class="org-left">s</td>
-<td class="org-left">Save SVG</td>
-</tr>
-
-<tr>
-<td class="org-left">u</td>
-<td class="org-left">Undo</td>
-</tr>
-
-<tr>
-<td class="org-left">q/RETURN</td>
-<td class="org-left">Quit</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-
-<div id="outline-container-org88aef84" class="outline-2">
-<h2 id="org88aef84">Go</h2>
-<div class="outline-text-2" id="text-org88aef84">
-<p>
-Dap-debug has to unset NODE<sub>OPTIONS</sub>
-in Terminal  unset NODE<sub>OPTIONS</sub>
-or M-x: setenv NODE<sub>OPTIONS</sub> Enter
-</p>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(<span style="font-weight: bold;">setq</span> company-idle-delay 0)
-(<span style="font-weight: bold;">setq</span> company-minimum-prefix-length 1)
-
-
-(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">ime-go-before-save</span> ()
-  (<span style="font-weight: bold;">interactive</span>)
-  (<span style="font-weight: bold;">when</span> lsp-mode
-    (lsp-organize-imports)
-    (lsp-format-buffer)))
-
-(<span style="font-weight: bold;">defun</span> <span style="font-weight: bold;">lsp-go-install-save-hooks</span> ()
-  (add-hook 'before-save-hook #'lsp-format-buffer t t)
-  (add-hook 'before-save-hook #'lsp-organize-imports t t))
-
-
-(use-package go-mode
-  <span style="font-weight: bold;">:ensure</span> t
-  <span style="font-weight: bold;">:config</span>
-  (add-hook 'go-mode-hook 'yas-minor-mode)
-  (add-hook 'go-mode-hook 'lsp-deferred)
-  (add-hook 'go-mode-hook 'lsp-go-install-save-hooks)
-  (add-hook 'go-mode-hook
-            (<span style="font-weight: bold;">lambda</span> ()
-              (add-hook 'before-save-hook 'ime-go-before-save)))
-  )
-</pre>
-</div>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">DAP</span>
-(use-package dap-mode
-  <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">:hook (dap-stopped . (lambda (arg) (call-interactively #'dap-hydra)))</span>
-  <span style="font-weight: bold; font-style: italic;">;;</span><span style="font-weight: bold; font-style: italic;">:custom</span>
-  <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">(dap-go-debug-program `("node" "~/extension/out/src/debugAdapter/goDebug.js"))</span>
-  <span style="font-weight: bold;">:config</span>
-  (dap-mode 1)
-  (<span style="font-weight: bold;">setq</span> dap-print-io t)
-  <span style="font-weight: bold; font-style: italic;">;;</span><span style="font-weight: bold; font-style: italic;">(setq fit-window-to-buffer-horizontally t)</span>
-  <span style="font-weight: bold; font-style: italic;">;;</span><span style="font-weight: bold; font-style: italic;">(setq window-resize-pixelwise t)</span>
-  (<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">dap-hydra</span>)
-  (<span style="font-weight: bold;">require</span> '<span style="font-weight: bold; text-decoration: underline;">dap-go</span>)             <span style="font-weight: bold; font-style: italic;">; </span><span style="font-weight: bold; font-style: italic;">download and expand vscode-go-extenstion to the =~/.extensions/go=</span>
-  (dap-go-setup)
-  (use-package dap-ui
-    <span style="font-weight: bold;">:ensure</span> nil
-    <span style="font-weight: bold;">:config</span>
-    (dap-ui-mode 1)
-    )
-  )
-
-</pre>
-</div>
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">
-(add-hook 'after-init-hook 'global-flycheck-mode)
-(add-hook 'after-init-hook 'global-company-mode)
-(eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup))
-
-(custom-set-variables
- <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">custom-set-variables was added by Custom.</span>
- <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">If you edit it by hand, you could mess it up, so be careful.</span>
- <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Your init file should contain only one such instance.</span>
- <span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">If there is more than one, they won't work right.</span>
- '(inhibit-startup-screen t)
- '(lsp-ui-imenu-enable t)
- '(package-selected-packages
-   '(treemacs dap-mode flycheck-golangci-lint projectile flx-ido yasnippet use-package lsp-ui go-mode flycheck company-lsp))
- '(tool-bar-mode nil))
-
-<span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">use golangci</span>
-(use-package flycheck-golangci-lint
-  <span style="font-weight: bold;">:ensure</span> t)
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org89b2a7a" class="outline-2">
-<h2 id="org89b2a7a">restclient</h2>
-<div class="outline-text-2" id="text-org89b2a7a">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp">(use-package restclient
-  <span style="font-weight: bold;">:ensure</span> t)
-(use-package company-restclient
-  <span style="font-weight: bold;">:ensure</span> t
-  <span style="font-weight: bold;">:config</span>
-  (add-to-list 'company-backends 'company-restclient))
-
-</pre>
-</div>
 </div>
 </div>
 <div id="footnotes">
@@ -5117,7 +5293,7 @@ the linked agenda file.
 </div>
 </div></div>
 <div id="postamble" class="status">
-<p class="date">Created: 2022-05-10 Tue 11:38</p>
+<p class="date">Created: 2022-06-24 Fri 11:53</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
 <p class="validation"></p>
 </div>

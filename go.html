@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-05-10 Tue 11:38 -->
+<!-- 2022-06-24 Fri 11:53 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Go</title>
@@ -17,18 +17,26 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd29dcf1">print</a></li>
-<li><a href="#orga979cf9">time</a></li>
-<li><a href="#orge5ed05e">sync</a></li>
-<li><a href="#org6dcf908">go</a></li>
-<li><a href="#org82a763a">chan</a></li>
-<li><a href="#orgb353987">context</a></li>
+<li><a href="#org7949a17">print</a></li>
+<li><a href="#org20eb550">time</a></li>
+<li><a href="#org60ade13">sync</a></li>
+<li><a href="#org7a8e314">go</a></li>
+<li><a href="#org2563cb4">chan</a></li>
+<li><a href="#org45faa22">context</a></li>
+<li><a href="#org0c909f1">gonum</a>
+<ul>
+<li><a href="#org47ea36a">Test example</a></li>
+<li><a href="#org19fa8c8">NewDense</a></li>
+<li><a href="#orga1a8b81">make</a></li>
+<li><a href="#org8334b49">gonum execute</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd29dcf1" class="outline-2">
-<h2 id="orgd29dcf1">print</h2>
-<div class="outline-text-2" id="text-orgd29dcf1">
+<div id="outline-container-org7949a17" class="outline-2">
+<h2 id="org7949a17">print</h2>
+<div class="outline-text-2" id="text-org7949a17">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import "fmt"
@@ -50,9 +58,9 @@ func main() {
 </div>
 </div>
 
-<div id="outline-container-orga979cf9" class="outline-2">
-<h2 id="orga979cf9">time</h2>
-<div class="outline-text-2" id="text-orga979cf9">
+<div id="outline-container-org20eb550" class="outline-2">
+<h2 id="org20eb550">time</h2>
+<div class="outline-text-2" id="text-org20eb550">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import (
@@ -77,15 +85,15 @@ func main() {
 </div>
 
 <pre class="example">
-该函数执行完成耗时： 38.669µs
+该函数执行完成耗时： 33.536µs
 
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orge5ed05e" class="outline-2">
-<h2 id="orge5ed05e">sync</h2>
-<div class="outline-text-2" id="text-orge5ed05e">
+<div id="outline-container-org60ade13" class="outline-2">
+<h2 id="org60ade13">sync</h2>
+<div class="outline-text-2" id="text-org60ade13">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import (
@@ -125,17 +133,15 @@ func count(thing string) {
 </div>
 </div>
 
-<div id="outline-container-org6dcf908" class="outline-2">
-<h2 id="org6dcf908">go</h2>
-<div class="outline-text-2" id="text-org6dcf908">
+<div id="outline-container-org7a8e314" class="outline-2">
+<h2 id="org7a8e314">go</h2>
+<div class="outline-text-2" id="text-org7a8e314">
 <div class="org-src-container">
 <pre class="src src-go">package main
-
 import (
     "fmt"
     "time"
 )
-
 func main() {
     var times int
     go func() {
@@ -154,7 +160,6 @@ func main() {
 	for {
 	}
     }()
-
     for times = 0; times &lt;= 10; times++ {
 	fmt.Println("tick", times)
 	time.Sleep(time.Second)
@@ -180,9 +185,9 @@ tick 10
 </div>
 </div>
 
-<div id="outline-container-org82a763a" class="outline-2">
-<h2 id="org82a763a">chan</h2>
-<div class="outline-text-2" id="text-org82a763a">
+<div id="outline-container-org2563cb4" class="outline-2">
+<h2 id="org2563cb4">chan</h2>
+<div class="outline-text-2" id="text-org2563cb4">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import "fmt"
@@ -218,9 +223,9 @@ func main() {
 </div>
 </div>
 
-<div id="outline-container-orgb353987" class="outline-2">
-<h2 id="orgb353987"><a id="ID-2bf1c325-6a98-43be-815c-a41934b02756"></a>context</h2>
-<div class="outline-text-2" id="text-orgb353987">
+<div id="outline-container-org45faa22" class="outline-2">
+<h2 id="org45faa22"><a id="ID-2bf1c325-6a98-43be-815c-a41934b02756"></a>context</h2>
+<div class="outline-text-2" id="text-org45faa22">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -229,7 +234,6 @@ import (
     "context"
     "time"
 )
-
 
 func enrichContext(ctx context.Context) context.Context {
     return context.WithValue(ctx, "request-id", "11212")
@@ -283,9 +287,154 @@ times out
 </pre>
 </div>
 </div>
+
+<div id="outline-container-org0c909f1" class="outline-2">
+<h2 id="org0c909f1">gonum</h2>
+<div class="outline-text-2" id="text-org0c909f1">
+</div>
+<div id="outline-container-org47ea36a" class="outline-3">
+<h3 id="org47ea36a">Test example</h3>
+<div class="outline-text-3" id="text-org47ea36a">
+<div class="org-src-container">
+<pre class="src src-go">package main
+
+import (
+	"fmt"
+
+	"gonum.org/v1/gonum/blas/blas64"
+	"gonum.org/v1/gonum/mat"
+)
+
+func main() {
+	r := row{1, 2, 3, 4}
+	c := column{1, 2, 3}
+
+	var m mat.Dense
+	m.Mul(c, r)
+
+	fmt.Println(mat.Formatted(&amp;m))
+	n := c.RawVector().N
+	inc := c.RawVector().Inc
+	d := c.RawVector().Data
+	fmt.Println(n)
+	fmt.Println(inc)
+	fmt.Println(d)
+
+	u := mat.NewVecDense(3, []float64{1, 2, 3})
+	v := mat.NewVecDense(3, []float64{4, 5, 6})
+	fmt.Println("u :", u)
+	fmt.Println("v :", v)
+
+}
+
+// row is a user-defined row vector.
+type row []float64
+
+// Dims, At and T minimally satisfy the mat.Matrix interface.
+func (v row) Dims() (r, c int)    { return 1, len(v) }
+func (v row) At(_, j int) float64 { return v[j] }
+func (v row) T() mat.Matrix       { return column(v) }
+
+// RawVector allows fast path computation with the vector.
+func (v row) RawVector() blas64.Vector {
+	return blas64.Vector{N: len(v), Data: v, Inc: 1}
+}
+
+// column is a user-defined column vector.
+type column []float64
+
+// Dims, At and T minimally satisfy the mat.Matrix interface.
+func (v column) Dims() (r, c int)    { return len(v), 1 }
+func (v column) At(i, _ int) float64 { return v[i] }
+func (v column) T() mat.Matrix       { return row(v) }
+
+// RawVector allows fast path computation with the vector.
+func (v column) RawVector() blas64.Vector {
+	return blas64.Vector{N: len(v), Data: v, Inc: 1}
+}
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org19fa8c8" class="outline-3">
+<h3 id="org19fa8c8">NewDense</h3>
+<div class="outline-text-3" id="text-org19fa8c8">
+<div class="org-src-container">
+<pre class="src src-go">package main
+
+import (
+	"fmt"
+	"gonum.org/v1/gonum/mat"
+)
+
+func main() {
+	zeros := mat.NewDense(3,5,nil)
+	fmt.Println(zeros)
+}
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga1a8b81" class="outline-3">
+<h3 id="orga1a8b81">make</h3>
+<div class="outline-text-3" id="text-orga1a8b81">
+<div class="org-src-container">
+<pre class="src src-go">package main
+
+import (
+	"fmt"
+	"math/rand"
+	"gonum.org/v1/gonum/mat"
+)
+
+func main() {
+	data := make([]float64, 36)
+	for i := range data {
+		data[i] = rand.NormFloat64()
+	}
+	a := mat.NewDense(6, 6, data)
+	zeros := mat.NewDense(3,5,nil)
+	// fmt.Println(mat.Formatted(zeros, mat.Prefix(""), mat.Squeeze()))
+	// fmt.Println(mat.Formatted(a, mat.Prefix(""), mat.Squeeze()))
+	eq := mat.Equal(a, zeros)
+	fmt.Println(eq)
+
+}
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8334b49" class="outline-3">
+<h3 id="org8334b49">gonum execute</h3>
+<div class="outline-text-3" id="text-org8334b49">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="font-weight: bold;">cd</span> babel
+go mod init babel-go
+go mod tidy
+go build main.go
+rm main.go
+rm go.mod
+rm go.sum
+./main
+</pre>
+</div>
+
+<pre class="example">
+false
+
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2022-05-10 Tue 11:38</p>
+<p class="date">Created: 2022-06-24 Fri 11:53</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
 <p class="validation"></p>
 </div>
