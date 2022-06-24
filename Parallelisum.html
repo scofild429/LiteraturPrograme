@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-06-24 Fri 12:04 -->
+<!-- 2022-06-24 Fri 12:20 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Parallelisum</title>
@@ -17,152 +17,152 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga412026">Docker</a>
+<li><a href="#orgbe2cd36">1. Docker</a>
 <ul>
 <li>
 <ul>
-<li><a href="#orgd8ae75a">old note</a></li>
-<li><a href="#orgc35819b">commands</a></li>
-<li><a href="#org18e7e2d">discripation</a></li>
-<li><a href="#orge44d641">delete</a></li>
+<li><a href="#orgfe7c573">1.0.1. old note</a></li>
+<li><a href="#org5c0fc8a">1.0.2. commands</a></li>
+<li><a href="#org7819ead">1.0.3. discripation</a></li>
+<li><a href="#orga0f1a8f">1.0.4. delete</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org3786446">Singularity</a>
+<li><a href="#orgb5ca52c">2. Singularity</a>
 <ul>
-<li><a href="#orgcd51439">build [sandbox]</a></li>
+<li><a href="#org43dba51">2.1. build [sandbox]</a></li>
 </ul>
 </li>
-<li><a href="#org827a273">C/C++ with OpenMP</a>
+<li><a href="#orgcc62ca8">3. C/C++ with OpenMP</a>
 <ul>
-<li><a href="#org37329a9">src compile config</a></li>
-<li><a href="#org6dcd4b5">useful libary functions</a>
+<li><a href="#orgd7065ca">3.1. src compile config</a></li>
+<li><a href="#org9482538">3.2. useful libary functions</a>
 <ul>
-<li><a href="#orgc24946f">omp<sub>get</sub><sub>thread</sub><sub>num</sub></a></li>
-<li><a href="#org77f2f4d">omp<sub>get</sub><sub>num</sub><sub>procs</sub></a></li>
-<li><a href="#orgaf1aa3c">omp<sub>get</sub><sub>num</sub><sub>threads</sub></a></li>
-<li><a href="#org404679c">omp<sub>set</sub><sub>num</sub><sub>threads</sub></a></li>
-<li><a href="#org46932ae">omp<sub>get</sub><sub>wtime</sub></a></li>
-<li><a href="#org6feb787">omp<sub>get</sub><sub>wtick</sub></a></li>
-<li><a href="#org3e71d9e">omp<sub>init</sub><sub>lock</sub></a></li>
-<li><a href="#orgb03781b">omp<sub>get</sub><sub>lock</sub></a></li>
-<li><a href="#org81c4623">omp<sub>unset</sub><sub>lock</sub></a></li>
-<li><a href="#org364a9c8">omp<sub>test</sub><sub>lock</sub></a></li>
-<li><a href="#orgb038dd8">omp<sub>destroy</sub><sub>lock</sub></a></li>
+<li><a href="#orga04845f">3.2.1. omp<sub>get</sub><sub>thread</sub><sub>num</sub></a></li>
+<li><a href="#orged963f6">3.2.2. omp<sub>get</sub><sub>num</sub><sub>procs</sub></a></li>
+<li><a href="#org64baa48">3.2.3. omp<sub>get</sub><sub>num</sub><sub>threads</sub></a></li>
+<li><a href="#org67a7816">3.2.4. omp<sub>set</sub><sub>num</sub><sub>threads</sub></a></li>
+<li><a href="#org831e70e">3.2.5. omp<sub>get</sub><sub>wtime</sub></a></li>
+<li><a href="#org9e5f985">3.2.6. omp<sub>get</sub><sub>wtick</sub></a></li>
+<li><a href="#org466a443">3.2.7. omp<sub>init</sub><sub>lock</sub></a></li>
+<li><a href="#orgd5e004b">3.2.8. omp<sub>get</sub><sub>lock</sub></a></li>
+<li><a href="#org4fb464b">3.2.9. omp<sub>unset</sub><sub>lock</sub></a></li>
+<li><a href="#orgcd80ffd">3.2.10. omp<sub>test</sub><sub>lock</sub></a></li>
+<li><a href="#org082c742">3.2.11. omp<sub>destroy</sub><sub>lock</sub></a></li>
 </ul>
 </li>
-<li><a href="#org09f29ad">Constructor</a></li>
-<li><a href="#org831a033">Subconstructor</a></li>
-<li><a href="#orgce3521a">hello world</a></li>
-<li><a href="#orgf6df784">num<sub>threads</sub></a></li>
-<li><a href="#org38aa5fe">for</a></li>
-<li><a href="#org15e5d1b">ordered</a></li>
-<li><a href="#orgf8c53a8">parallel for</a></li>
-<li><a href="#org3cd0a8a">parallel while</a></li>
-<li><a href="#org4d43983">sections and section</a></li>
-<li><a href="#orgd3afd0a">master</a></li>
-<li><a href="#org6708efa">private</a></li>
-<li><a href="#orgeac4d60">firstprivate</a></li>
-<li><a href="#org1c76fca">lastprivate</a></li>
-<li><a href="#orgdc33b86">shared</a></li>
-<li><a href="#orga175dd0">reduction</a></li>
-<li><a href="#orgd0c8cac">default(shared)</a></li>
-<li><a href="#orge817baf">schedule(static)</a></li>
-<li><a href="#orga605ec2">schedule(dynamic)</a></li>
-<li><a href="#org837cc16">schedule(guided)</a></li>
+<li><a href="#orged27b18">3.3. Constructor</a></li>
+<li><a href="#org321a242">3.4. Subconstructor</a></li>
+<li><a href="#org0b417be">3.5. hello world</a></li>
+<li><a href="#org57695db">3.6. num<sub>threads</sub></a></li>
+<li><a href="#org403e461">3.7. for</a></li>
+<li><a href="#org72caa01">3.8. ordered</a></li>
+<li><a href="#org8ddc3c9">3.9. parallel for</a></li>
+<li><a href="#org4a278bb">3.10. parallel while</a></li>
+<li><a href="#org91661ca">3.11. sections and section</a></li>
+<li><a href="#orgbdd61ca">3.12. master</a></li>
+<li><a href="#orgefad3b9">3.13. private</a></li>
+<li><a href="#org9a35bbf">3.14. firstprivate</a></li>
+<li><a href="#org0e1cf56">3.15. lastprivate</a></li>
+<li><a href="#orga83d1aa">3.16. shared</a></li>
+<li><a href="#org81ed9b4">3.17. reduction</a></li>
+<li><a href="#orgf84f047">3.18. default(shared)</a></li>
+<li><a href="#orgb7e828b">3.19. schedule(static)</a></li>
+<li><a href="#org2e3399b">3.20. schedule(dynamic)</a></li>
+<li><a href="#org513f980">3.21. schedule(guided)</a></li>
 </ul>
 </li>
-<li><a href="#orga20d061">C/C++ with mpi</a>
+<li><a href="#org3635c58">4. C/C++ with mpi</a>
 <ul>
-<li><a href="#orgcb3808d">src compile config</a></li>
-<li><a href="#org93109d7">MPI<sub>COMM</sub><sub>WORLD</sub></a></li>
-<li><a href="#org3da75d8">hello world</a></li>
-<li><a href="#org7517528">MPI<sub>COMM</sub><sub>CREAT</sub></a></li>
+<li><a href="#org2f765a3">4.1. src compile config</a></li>
+<li><a href="#org15fa43a">4.2. MPI<sub>COMM</sub><sub>WORLD</sub></a></li>
+<li><a href="#org4cd1997">4.3. hello world</a></li>
+<li><a href="#orgb720304">4.4. MPI<sub>COMM</sub><sub>CREAT</sub></a></li>
 </ul>
 </li>
-<li><a href="#org32f70c1">Python</a>
+<li><a href="#orgbaaab4f">5. Python</a>
 <ul>
-<li><a href="#org9651b39">Multi Thread</a>
+<li><a href="#org5540516">5.1. Multi Thread</a>
 <ul>
-<li><a href="#org63cf711">pure thread start</a></li>
-<li><a href="#org34a6a9a">thread class</a></li>
-<li><a href="#org36949e1">thread with Lock</a></li>
+<li><a href="#orge47db40">5.1.1. pure thread start</a></li>
+<li><a href="#org4e1c0d1">5.1.2. thread class</a></li>
+<li><a href="#org8429135">5.1.3. thread with Lock</a></li>
 </ul>
 </li>
-<li><a href="#org5e855dc">Multi processing</a>
+<li><a href="#orgb6dde44">5.2. Multi processing</a>
 <ul>
-<li><a href="#org810cc25">pure multi process start</a></li>
-<li><a href="#org3d7db33">multi process differ from multi threading</a></li>
-<li><a href="#orgf5d8251">Pool</a></li>
-<li><a href="#orgbd07520">map</a></li>
+<li><a href="#orgc269934">5.2.1. pure multi process start</a></li>
+<li><a href="#orgc0b0f38">5.2.2. multi process differ from multi threading</a></li>
+<li><a href="#orgb0d9c72">5.2.3. Pool</a></li>
+<li><a href="#orga7cd680">5.2.4. map</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org35706bb">Python with mpi</a>
+<li><a href="#orgfa03eec">6. Python with mpi</a>
 <ul>
-<li><a href="#org0bf1b1f">send &amp; recv</a></li>
-<li><a href="#org3c28fe9">Send &amp; Recv</a></li>
-<li><a href="#org0903e52">Bcast</a>
+<li><a href="#org99cb145">6.1. send &amp; recv</a></li>
+<li><a href="#org66fe626">6.2. Send &amp; Recv</a></li>
+<li><a href="#org075f292">6.3. Bcast</a>
 <ul>
-<li><a href="#orge1723f7">with map bcast</a></li>
-<li><a href="#orgd299af7">with array Bcast</a></li>
+<li><a href="#orge867df9">6.3.1. with map bcast</a></li>
+<li><a href="#org2f01369">6.3.2. with array Bcast</a></li>
 </ul>
 </li>
-<li><a href="#org5f053ae">scatter</a>
+<li><a href="#org18960d8">6.4. scatter</a>
 <ul>
-<li><a href="#orgad2b5c5">with number</a></li>
-<li><a href="#org7adb3e8">with array</a></li>
+<li><a href="#org170a9d0">6.4.1. with number</a></li>
+<li><a href="#org522b747">6.4.2. with array</a></li>
 </ul>
 </li>
-<li><a href="#org6f48929">Gather</a>
+<li><a href="#org6b1c1f1">6.5. Gather</a>
 <ul>
-<li><a href="#orgcd22ca0">with number gather</a></li>
-<li><a href="#orgdf8fb90">with array  Gather</a></li>
+<li><a href="#orge28f383">6.5.1. with number gather</a></li>
+<li><a href="#org3c76bbd">6.5.2. with array  Gather</a></li>
 </ul>
 </li>
-<li><a href="#orgba6fc40">Dynamic Process Management</a></li>
+<li><a href="#orgc79d755">6.6. Dynamic Process Management</a></li>
 </ul>
 </li>
-<li><a href="#orgd044f1b">Go</a>
+<li><a href="#orgaf065c8">7. Go</a>
 <ul>
-<li><a href="#org1ccd2ab">go chan</a></li>
+<li><a href="#orgd9920ee">7.1. go chan</a></li>
 </ul>
 </li>
-<li><a href="#org8ddc239">Go with mpi</a>
+<li><a href="#orgf7c593c">8. Go with mpi</a>
 <ul>
-<li><a href="#org7d7380b">cpuNum</a></li>
-<li><a href="#orgbf4ebc5">IsOn</a></li>
-<li><a href="#org25d2e34">WorldRank</a></li>
-<li><a href="#orga747873">WorldSize</a></li>
-<li><a href="#org3a3e5c0">NewCommunicator</a></li>
-<li><a href="#org4125b41">SendInt32 &amp;&amp; RecvInt32</a></li>
-<li><a href="#org2c4c0be">SendInt32s &amp;&amp; RecvInt32s</a></li>
-<li><a href="#org51c70bd">SendString &amp;&amp; RecvString</a></li>
-<li><a href="#orgd47b81c">ReduceInt32s</a></li>
-<li><a href="#org6128c74">AllreduceInt64s</a></li>
-<li><a href="#org8eef6e6">BcastInt64s</a></li>
+<li><a href="#org5199e05">8.1. cpuNum</a></li>
+<li><a href="#org68c0033">8.2. IsOn</a></li>
+<li><a href="#org15a0291">8.3. WorldRank</a></li>
+<li><a href="#org1867de7">8.4. WorldSize</a></li>
+<li><a href="#orge4c4bb2">8.5. NewCommunicator</a></li>
+<li><a href="#org9d1f23c">8.6. SendInt32 &amp;&amp; RecvInt32</a></li>
+<li><a href="#org45f8cfa">8.7. SendInt32s &amp;&amp; RecvInt32s</a></li>
+<li><a href="#org338d25b">8.8. SendString &amp;&amp; RecvString</a></li>
+<li><a href="#orgcfbaa37">8.9. ReduceInt32s</a></li>
+<li><a href="#orge6f4d38">8.10. AllreduceInt64s</a></li>
+<li><a href="#org93aed62">8.11. BcastInt64s</a></li>
 </ul>
 </li>
-<li><a href="#orgc7c6b55">GPGPU</a>
+<li><a href="#orgdc01b97">9. GPGPU</a>
 <ul>
-<li><a href="#org2670970">get variables</a></li>
-<li><a href="#orgdc0f8ca">Addition dim 1</a>
+<li><a href="#orgec1f263">9.1. get variables</a></li>
+<li><a href="#org94d13d5">9.2. Addition dim 1</a>
 <ul>
-<li><a href="#org0dc84d1">without parallelism</a></li>
-<li><a href="#org75b29a8">dim 1, grid 1, block 256 N10000000</a></li>
-<li><a href="#orgb812ce6">dim 1, grid 1, block 256 N10000000 with time</a></li>
-<li><a href="#orga563b6a">dim 1, grid N, block 1, N256</a></li>
-<li><a href="#org4868a51">dim 1, grid 1, block N, N256</a></li>
-<li><a href="#org5f9bae6">dim 1, grid x, block 256</a></li>
+<li><a href="#org9ce87dd">9.2.1. without parallelism</a></li>
+<li><a href="#orgba1f818">9.2.2. dim 1, grid 1, block 256 N10000000</a></li>
+<li><a href="#orgf2f140d">9.2.3. dim 1, grid 1, block 256 N10000000 with time</a></li>
+<li><a href="#orgdbb0a86">9.2.4. dim 1, grid N, block 1, N256</a></li>
+<li><a href="#orgd26d2c8">9.2.5. dim 1, grid 1, block N, N256</a></li>
+<li><a href="#org0e3eb11">9.2.6. dim 1, grid x, block 256</a></li>
 </ul>
 </li>
-<li><a href="#org015b960">Addition dim 2</a>
+<li><a href="#org4daef4a">9.3. Addition dim 2</a>
 <ul>
-<li><a href="#org05ebb89">dim 2, grid 1, block NxN for array</a></li>
-<li><a href="#org3e27876">dim 2, grid 1, block NxN for matrix</a></li>
-<li><a href="#orgdd3d860">dim 2, grid 1, block NxN for matrix with one dim array</a></li>
+<li><a href="#orge8b2b30">9.3.1. dim 2, grid 1, block NxN for array</a></li>
+<li><a href="#org50800e4">9.3.2. dim 2, grid 1, block NxN for matrix</a></li>
+<li><a href="#orgc8ba4ee">9.3.3. dim 2, grid 1, block NxN for matrix with one dim array</a></li>
 </ul>
 </li>
 </ul>
@@ -170,13 +170,13 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orga412026" class="outline-2">
-<h2 id="orga412026">Docker</h2>
-<div class="outline-text-2" id="text-orga412026">
+<div id="outline-container-orgbe2cd36" class="outline-2">
+<h2 id="orgbe2cd36"><span class="section-number-2">1</span> Docker</h2>
+<div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgd8ae75a" class="outline-4">
-<h4 id="orgd8ae75a">old note</h4>
-<div class="outline-text-4" id="text-orgd8ae75a">
+<div id="outline-container-orgfe7c573" class="outline-4">
+<h4 id="orgfe7c573"><span class="section-number-4">1.0.1</span> old note</h4>
+<div class="outline-text-4" id="text-1-0-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -225,9 +225,9 @@
 </table>
 </div>
 </div>
-<div id="outline-container-orgc35819b" class="outline-4">
-<h4 id="orgc35819b">commands</h4>
-<div class="outline-text-4" id="text-orgc35819b">
+<div id="outline-container-org5c0fc8a" class="outline-4">
+<h4 id="org5c0fc8a"><span class="section-number-4">1.0.2</span> commands</h4>
+<div class="outline-text-4" id="text-1-0-2">
 <ul class="org-ul">
 <li>docker pull NAME</li>
 
@@ -257,9 +257,9 @@
 </div>
 </div>
 
-<div id="outline-container-org18e7e2d" class="outline-4">
-<h4 id="org18e7e2d">discripation</h4>
-<div class="outline-text-4" id="text-org18e7e2d">
+<div id="outline-container-org7819ead" class="outline-4">
+<h4 id="org7819ead"><span class="section-number-4">1.0.3</span> discripation</h4>
+<div class="outline-text-4" id="text-1-0-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -304,9 +304,9 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orge44d641" class="outline-4">
-<h4 id="orge44d641">delete</h4>
-<div class="outline-text-4" id="text-orge44d641">
+<div id="outline-container-orga0f1a8f" class="outline-4">
+<h4 id="orga0f1a8f"><span class="section-number-4">1.0.4</span> delete</h4>
+<div class="outline-text-4" id="text-1-0-4">
 <ul class="org-ul">
 <li>delete docker</li>
 </ul>
@@ -324,13 +324,13 @@ perhaps some none name image should also be rm</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org3786446" class="outline-2">
-<h2 id="org3786446">Singularity</h2>
-<div class="outline-text-2" id="text-org3786446">
+<div id="outline-container-orgb5ca52c" class="outline-2">
+<h2 id="orgb5ca52c"><span class="section-number-2">2</span> Singularity</h2>
+<div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgcd51439" class="outline-3">
-<h3 id="orgcd51439">build [sandbox]</h3>
-<div class="outline-text-3" id="text-orgcd51439">
+<div id="outline-container-org43dba51" class="outline-3">
+<h3 id="org43dba51"><span class="section-number-3">2.1</span> build [sandbox]</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
 build  target source
 source can be singularityfile, dockerhubname, online resource,  sandbox simg file, singularity sif file
@@ -355,13 +355,13 @@ sudo singularity shell &#x2013;writable singularityfile.simg
 </div>
 </div>
 
-<div id="outline-container-org827a273" class="outline-2">
-<h2 id="org827a273">C/C++ with OpenMP</h2>
-<div class="outline-text-2" id="text-org827a273">
+<div id="outline-container-orgcc62ca8" class="outline-2">
+<h2 id="orgcc62ca8"><span class="section-number-2">3</span> C/C++ with OpenMP</h2>
+<div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org37329a9" class="outline-3">
-<h3 id="org37329a9">src compile config</h3>
-<div class="outline-text-3" id="text-org37329a9">
+<div id="outline-container-orgd7065ca" class="outline-3">
+<h3 id="orgd7065ca"><span class="section-number-3">3.1</span> src compile config</h3>
+<div class="outline-text-3" id="text-3-1">
 <p>
 C-h v : org-babel-C-compiler
 change gcc to gcc -fopenmp
@@ -369,13 +369,13 @@ change gcc to gcc -fopenmp
 </div>
 </div>
 
-<div id="outline-container-org6dcd4b5" class="outline-3">
-<h3 id="org6dcd4b5">useful libary functions</h3>
-<div class="outline-text-3" id="text-org6dcd4b5">
+<div id="outline-container-org9482538" class="outline-3">
+<h3 id="org9482538"><span class="section-number-3">3.2</span> useful libary functions</h3>
+<div class="outline-text-3" id="text-3-2">
 </div>
-<div id="outline-container-orgc24946f" class="outline-4">
-<h4 id="orgc24946f">omp<sub>get</sub><sub>thread</sub><sub>num</sub></h4>
-<div class="outline-text-4" id="text-orgc24946f">
+<div id="outline-container-orga04845f" class="outline-4">
+<h4 id="orga04845f"><span class="section-number-4">3.2.1</span> omp<sub>get</sub><sub>thread</sub><sub>num</sub></h4>
+<div class="outline-text-4" id="text-3-2-1">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span>* <span style="font-weight: bold; font-style: italic;">argv</span>[])
 {
@@ -400,9 +400,9 @@ omp_get_thread_num:  1
 </pre>
 </div>
 </div>
-<div id="outline-container-org77f2f4d" class="outline-4">
-<h4 id="org77f2f4d">omp<sub>get</sub><sub>num</sub><sub>procs</sub></h4>
-<div class="outline-text-4" id="text-org77f2f4d">
+<div id="outline-container-orged963f6" class="outline-4">
+<h4 id="orged963f6"><span class="section-number-4">3.2.2</span> omp<sub>get</sub><sub>num</sub><sub>procs</sub></h4>
+<div class="outline-text-4" id="text-3-2-2">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span>* <span style="font-weight: bold; font-style: italic;">argv</span>[])
 {
@@ -419,9 +419,9 @@ omp_get_num_procs:  8
 </div>
 </div>
 
-<div id="outline-container-orgaf1aa3c" class="outline-4">
-<h4 id="orgaf1aa3c">omp<sub>get</sub><sub>num</sub><sub>threads</sub></h4>
-<div class="outline-text-4" id="text-orgaf1aa3c">
+<div id="outline-container-org64baa48" class="outline-4">
+<h4 id="org64baa48"><span class="section-number-4">3.2.3</span> omp<sub>get</sub><sub>num</sub><sub>threads</sub></h4>
+<div class="outline-text-4" id="text-3-2-3">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span>* <span style="font-weight: bold; font-style: italic;">argv</span>[])
 {
@@ -452,9 +452,9 @@ omp_get_num_threads:  8
 </div>
 </div>
 
-<div id="outline-container-org404679c" class="outline-4">
-<h4 id="org404679c">omp<sub>set</sub><sub>num</sub><sub>threads</sub></h4>
-<div class="outline-text-4" id="text-org404679c">
+<div id="outline-container-org67a7816" class="outline-4">
+<h4 id="org67a7816"><span class="section-number-4">3.2.4</span> omp<sub>set</sub><sub>num</sub><sub>threads</sub></h4>
+<div class="outline-text-4" id="text-3-2-4">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>()
 {
@@ -477,32 +477,32 @@ omp_get_num_threads:  8
 </pre>
 </div>
 </div>
-<div id="outline-container-org46932ae" class="outline-4">
-<h4 id="org46932ae">omp<sub>get</sub><sub>wtime</sub></h4>
+<div id="outline-container-org831e70e" class="outline-4">
+<h4 id="org831e70e"><span class="section-number-4">3.2.5</span> omp<sub>get</sub><sub>wtime</sub></h4>
 </div>
-<div id="outline-container-org6feb787" class="outline-4">
-<h4 id="org6feb787">omp<sub>get</sub><sub>wtick</sub></h4>
+<div id="outline-container-org9e5f985" class="outline-4">
+<h4 id="org9e5f985"><span class="section-number-4">3.2.6</span> omp<sub>get</sub><sub>wtick</sub></h4>
 </div>
-<div id="outline-container-org3e71d9e" class="outline-4">
-<h4 id="org3e71d9e">omp<sub>init</sub><sub>lock</sub></h4>
+<div id="outline-container-org466a443" class="outline-4">
+<h4 id="org466a443"><span class="section-number-4">3.2.7</span> omp<sub>init</sub><sub>lock</sub></h4>
 </div>
-<div id="outline-container-orgb03781b" class="outline-4">
-<h4 id="orgb03781b">omp<sub>get</sub><sub>lock</sub></h4>
+<div id="outline-container-orgd5e004b" class="outline-4">
+<h4 id="orgd5e004b"><span class="section-number-4">3.2.8</span> omp<sub>get</sub><sub>lock</sub></h4>
 </div>
-<div id="outline-container-org81c4623" class="outline-4">
-<h4 id="org81c4623">omp<sub>unset</sub><sub>lock</sub></h4>
+<div id="outline-container-org4fb464b" class="outline-4">
+<h4 id="org4fb464b"><span class="section-number-4">3.2.9</span> omp<sub>unset</sub><sub>lock</sub></h4>
 </div>
-<div id="outline-container-org364a9c8" class="outline-4">
-<h4 id="org364a9c8">omp<sub>test</sub><sub>lock</sub></h4>
+<div id="outline-container-orgcd80ffd" class="outline-4">
+<h4 id="orgcd80ffd"><span class="section-number-4">3.2.10</span> omp<sub>test</sub><sub>lock</sub></h4>
 </div>
-<div id="outline-container-orgb038dd8" class="outline-4">
-<h4 id="orgb038dd8">omp<sub>destroy</sub><sub>lock</sub></h4>
+<div id="outline-container-org082c742" class="outline-4">
+<h4 id="org082c742"><span class="section-number-4">3.2.11</span> omp<sub>destroy</sub><sub>lock</sub></h4>
 </div>
 </div>
 
-<div id="outline-container-org09f29ad" class="outline-3">
-<h3 id="org09f29ad">Constructor</h3>
-<div class="outline-text-3" id="text-org09f29ad">
+<div id="outline-container-orged27b18" class="outline-3">
+<h3 id="orged27b18"><span class="section-number-3">3.3</span> Constructor</h3>
+<div class="outline-text-3" id="text-3-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -562,9 +562,9 @@ omp_get_num_threads:  8
 </div>
 </div>
 
-<div id="outline-container-org831a033" class="outline-3">
-<h3 id="org831a033">Subconstructor</h3>
-<div class="outline-text-3" id="text-org831a033">
+<div id="outline-container-org321a242" class="outline-3">
+<h3 id="org321a242"><span class="section-number-3">3.4</span> Subconstructor</h3>
+<div class="outline-text-3" id="text-3-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -624,9 +624,9 @@ omp_get_num_threads:  8
 </div>
 </div>
 
-<div id="outline-container-orgce3521a" class="outline-3">
-<h3 id="orgce3521a">hello world</h3>
-<div class="outline-text-3" id="text-orgce3521a">
+<div id="outline-container-org0b417be" class="outline-3">
+<h3 id="org0b417be"><span class="section-number-3">3.5</span> hello world</h3>
+<div class="outline-text-3" id="text-3-5">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span>* <span style="font-weight: bold; font-style: italic;">argv</span>[])
 {
@@ -640,9 +640,9 @@ omp_get_num_threads:  8
 </div>
 </div>
 
-<div id="outline-container-orgf6df784" class="outline-3">
-<h3 id="orgf6df784">num<sub>threads</sub></h3>
-<div class="outline-text-3" id="text-orgf6df784">
+<div id="outline-container-org57695db" class="outline-3">
+<h3 id="org57695db"><span class="section-number-3">3.6</span> num<sub>threads</sub></h3>
+<div class="outline-text-3" id="text-3-6">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span>* <span style="font-weight: bold; font-style: italic;">argv</span>[])
 {
@@ -667,9 +667,9 @@ omp_get_num_threads:  6
 </div>
 </div>
 
-<div id="outline-container-org38aa5fe" class="outline-3">
-<h3 id="org38aa5fe">for</h3>
-<div class="outline-text-3" id="text-org38aa5fe">
+<div id="outline-container-org403e461" class="outline-3">
+<h3 id="org403e461"><span class="section-number-3">3.7</span> for</h3>
+<div class="outline-text-3" id="text-3-7">
 <p>
 only works in one thread
 </p>
@@ -700,9 +700,9 @@ j = 7, ThreadID = 0
 </div>
 </div>
 
-<div id="outline-container-org15e5d1b" class="outline-3">
-<h3 id="org15e5d1b">ordered</h3>
-<div class="outline-text-3" id="text-org15e5d1b">
+<div id="outline-container-org72caa01" class="outline-3">
+<h3 id="org72caa01"><span class="section-number-3">3.8</span> ordered</h3>
+<div class="outline-text-3" id="text-3-8">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span>* <span style="font-weight: bold; font-style: italic;">argv</span>[])
 {
@@ -739,9 +739,9 @@ j = 7, ThreadID = 0
 </div>
 </div>
 
-<div id="outline-container-orgf8c53a8" class="outline-3">
-<h3 id="orgf8c53a8">parallel for</h3>
-<div class="outline-text-3" id="text-orgf8c53a8">
+<div id="outline-container-org8ddc3c9" class="outline-3">
+<h3 id="org8ddc3c9"><span class="section-number-3">3.9</span> parallel for</h3>
+<div class="outline-text-3" id="text-3-9">
 <p>
 for should work with parallel
 </p>
@@ -832,9 +832,9 @@ j = 5, ThreadID = 2
 </div>
 </div>
 
-<div id="outline-container-org3cd0a8a" class="outline-3">
-<h3 id="org3cd0a8a">parallel while</h3>
-<div class="outline-text-3" id="text-org3cd0a8a">
+<div id="outline-container-org4a278bb" class="outline-3">
+<h3 id="org4a278bb"><span class="section-number-3">3.10</span> parallel while</h3>
+<div class="outline-text-3" id="text-3-10">
 <p>
 for should work with parallel
 </p>
@@ -872,9 +872,9 @@ j = 0, ThreadID = 2
 </div>
 </div>
 
-<div id="outline-container-org4d43983" class="outline-3">
-<h3 id="org4d43983">sections and section</h3>
-<div class="outline-text-3" id="text-org4d43983">
+<div id="outline-container-org91661ca" class="outline-3">
+<h3 id="org91661ca"><span class="section-number-3">3.11</span> sections and section</h3>
+<div class="outline-text-3" id="text-3-11">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>)
 {
@@ -945,9 +945,9 @@ section 3 ThreadId = 6
 </div>
 </div>
 
-<div id="outline-container-orgd3afd0a" class="outline-3">
-<h3 id="orgd3afd0a">master</h3>
-<div class="outline-text-3" id="text-orgd3afd0a">
+<div id="outline-container-orgbdd61ca" class="outline-3">
+<h3 id="orgbdd61ca"><span class="section-number-3">3.12</span> master</h3>
+<div class="outline-text-3" id="text-3-12">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>)
 {
@@ -967,9 +967,9 @@ I am the master
 </div>
 </div>
 
-<div id="outline-container-org6708efa" class="outline-3">
-<h3 id="org6708efa">private</h3>
-<div class="outline-text-3" id="text-org6708efa">
+<div id="outline-container-orgefad3b9" class="outline-3">
+<h3 id="orgefad3b9"><span class="section-number-3">3.13</span> private</h3>
+<div class="outline-text-3" id="text-3-13">
 <p>
 after the block of private for,  there are some wired to execute some out of parallelisum
 </p>
@@ -1007,9 +1007,9 @@ kkk = 100
 </div>
 </div>
 
-<div id="outline-container-orgeac4d60" class="outline-3">
-<h3 id="orgeac4d60">firstprivate</h3>
-<div class="outline-text-3" id="text-orgeac4d60">
+<div id="outline-container-org9a35bbf" class="outline-3">
+<h3 id="org9a35bbf"><span class="section-number-3">3.14</span> firstprivate</h3>
+<div class="outline-text-3" id="text-3-14">
 <p>
 take the vaiable to Parallelisum, but not influence back
 </p>
@@ -1043,9 +1043,9 @@ k out of parall = 100
 </div>
 </div>
 
-<div id="outline-container-org1c76fca" class="outline-3">
-<h3 id="org1c76fca">lastprivate</h3>
-<div class="outline-text-3" id="text-org1c76fca">
+<div id="outline-container-org0e1cf56" class="outline-3">
+<h3 id="org0e1cf56"><span class="section-number-3">3.15</span> lastprivate</h3>
+<div class="outline-text-3" id="text-3-15">
 <p>
 take the vaiable to Parallelisum, and influence back
 </p>
@@ -1079,9 +1079,9 @@ k out of parall = 107
 </div>
 </div>
 
-<div id="outline-container-orgdc33b86" class="outline-3">
-<h3 id="orgdc33b86">shared</h3>
-<div class="outline-text-3" id="text-orgdc33b86">
+<div id="outline-container-orga83d1aa" class="outline-3">
+<h3 id="orga83d1aa"><span class="section-number-3">3.16</span> shared</h3>
+<div class="outline-text-3" id="text-3-16">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>)
 {
@@ -1111,9 +1111,9 @@ k = 100
 </div>
 </div>
 
-<div id="outline-container-orga175dd0" class="outline-3">
-<h3 id="orga175dd0">reduction</h3>
-<div class="outline-text-3" id="text-orga175dd0">
+<div id="outline-container-org81ed9b4" class="outline-3">
+<h3 id="org81ed9b4"><span class="section-number-3">3.17</span> reduction</h3>
+<div class="outline-text-3" id="text-3-17">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>)
 {
@@ -1174,9 +1174,9 @@ sum is 80
 </div>
 </div>
 
-<div id="outline-container-orgd0c8cac" class="outline-3">
-<h3 id="orgd0c8cac">default(shared)</h3>
-<div class="outline-text-3" id="text-orgd0c8cac">
+<div id="outline-container-orgf84f047" class="outline-3">
+<h3 id="orgf84f047"><span class="section-number-3">3.18</span> default(shared)</h3>
+<div class="outline-text-3" id="text-3-18">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>)
 {
@@ -1205,9 +1205,9 @@ i=1
 </pre>
 </div>
 </div>
-<div id="outline-container-orge817baf" class="outline-3">
-<h3 id="orge817baf">schedule(static)</h3>
-<div class="outline-text-3" id="text-orge817baf">
+<div id="outline-container-orgb7e828b" class="outline-3">
+<h3 id="orgb7e828b"><span class="section-number-3">3.19</span> schedule(static)</h3>
+<div class="outline-text-3" id="text-3-19">
 <p>
 all iterations will be equally divied to each thread
 schedule(static, size): size time iterations will be drived  each time
@@ -1254,9 +1254,9 @@ i=21, thread_id=2
 </div>
 </div>
 
-<div id="outline-container-orga605ec2" class="outline-3">
-<h3 id="orga605ec2">schedule(dynamic)</h3>
-<div class="outline-text-3" id="text-orga605ec2">
+<div id="outline-container-org2e3399b" class="outline-3">
+<h3 id="org2e3399b"><span class="section-number-3">3.20</span> schedule(dynamic)</h3>
+<div class="outline-text-3" id="text-3-20">
 <p>
 all iterations will be dynamically divied to each thread
 schedule(dynamic, size): size time iterations will be drived  each time
@@ -1295,9 +1295,9 @@ i=3, thread_id=4
 </div>
 </div>
 
-<div id="outline-container-org837cc16" class="outline-3">
-<h3 id="org837cc16">schedule(guided)</h3>
-<div class="outline-text-3" id="text-org837cc16">
+<div id="outline-container-org513f980" class="outline-3">
+<h3 id="org513f980"><span class="section-number-3">3.21</span> schedule(guided)</h3>
+<div class="outline-text-3" id="text-3-21">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold; text-decoration: underline;">void</span> <span style="font-weight: bold;">main</span>(<span style="font-weight: bold; text-decoration: underline;">int</span> <span style="font-weight: bold; font-style: italic;">argc</span>, <span style="font-weight: bold; text-decoration: underline;">char</span> *<span style="font-weight: bold; font-style: italic;">argv</span>)
 {
@@ -1333,13 +1333,13 @@ i=1, thread_id=3
 </div>
 </div>
 
-<div id="outline-container-orga20d061" class="outline-2">
-<h2 id="orga20d061">C/C++ with mpi</h2>
-<div class="outline-text-2" id="text-orga20d061">
+<div id="outline-container-org3635c58" class="outline-2">
+<h2 id="org3635c58"><span class="section-number-2">4</span> C/C++ with mpi</h2>
+<div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgcb3808d" class="outline-3">
-<h3 id="orgcb3808d">src compile config</h3>
-<div class="outline-text-3" id="text-orgcb3808d">
+<div id="outline-container-org2f765a3" class="outline-3">
+<h3 id="org2f765a3"><span class="section-number-3">4.1</span> src compile config</h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
 C-h v : org-babel-C-compiler
 change gcc to mpicc
@@ -1348,9 +1348,9 @@ mpirun &#x2013;host si-u20:8
 </p>
 </div>
 </div>
-<div id="outline-container-org93109d7" class="outline-3">
-<h3 id="org93109d7">MPI<sub>COMM</sub><sub>WORLD</sub></h3>
-<div class="outline-text-3" id="text-org93109d7">
+<div id="outline-container-org15fa43a" class="outline-3">
+<h3 id="org15fa43a"><span class="section-number-3">4.2</span> MPI<sub>COMM</sub><sub>WORLD</sub></h3>
+<div class="outline-text-3" id="text-4-2">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
 <span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdlib.h&gt;</span>
@@ -1374,9 +1374,9 @@ I am MPI process 0.
 </div>
 </div>
 
-<div id="outline-container-org3da75d8" class="outline-3">
-<h3 id="org3da75d8">hello world</h3>
-<div class="outline-text-3" id="text-org3da75d8">
+<div id="outline-container-org4cd1997" class="outline-3">
+<h3 id="org4cd1997"><span class="section-number-3">4.3</span> hello world</h3>
+<div class="outline-text-3" id="text-4-3">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;mpi.h&gt;</span>
 <span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
@@ -1404,9 +1404,9 @@ Hello world from processor si-u20, rank 0 out of 1 processors
 </div>
 </div>
 
-<div id="outline-container-org7517528" class="outline-3">
-<h3 id="org7517528">MPI<sub>COMM</sub><sub>CREAT</sub></h3>
-<div class="outline-text-3" id="text-org7517528">
+<div id="outline-container-orgb720304" class="outline-3">
+<h3 id="orgb720304"><span class="section-number-3">4.4</span> MPI<sub>COMM</sub><sub>CREAT</sub></h3>
+<div class="outline-text-3" id="text-4-4">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
 <span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdlib.h&gt;</span>
@@ -1547,17 +1547,17 @@ MPI processes 0 and 1 and 2 are in the same new communicator.
 </div>
 </div>
 
-<div id="outline-container-org32f70c1" class="outline-2">
-<h2 id="org32f70c1">Python</h2>
-<div class="outline-text-2" id="text-org32f70c1">
+<div id="outline-container-orgbaaab4f" class="outline-2">
+<h2 id="orgbaaab4f"><span class="section-number-2">5</span> Python</h2>
+<div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org9651b39" class="outline-3">
-<h3 id="org9651b39"><a id="ID-9a0bb2b3-cdb5-4ad4-9556-494718b41501"></a>Multi Thread</h3>
-<div class="outline-text-3" id="text-org9651b39">
+<div id="outline-container-org5540516" class="outline-3">
+<h3 id="org5540516"><a id="ID-9a0bb2b3-cdb5-4ad4-9556-494718b41501"></a><span class="section-number-3">5.1</span> Multi Thread</h3>
+<div class="outline-text-3" id="text-5-1">
 </div>
-<div id="outline-container-org63cf711" class="outline-4">
-<h4 id="org63cf711">pure thread start</h4>
-<div class="outline-text-4" id="text-org63cf711">
+<div id="outline-container-orge47db40" class="outline-4">
+<h4 id="orge47db40"><span class="section-number-4">5.1.1</span> pure thread start</h4>
+<div class="outline-text-4" id="text-5-1-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">import</span> threading
 
@@ -1580,9 +1580,9 @@ thread2.start()
 </div>
 </div>
 
-<div id="outline-container-org34a6a9a" class="outline-4">
-<h4 id="org34a6a9a">thread class</h4>
-<div class="outline-text-4" id="text-org34a6a9a">
+<div id="outline-container-org4e1c0d1" class="outline-4">
+<h4 id="org4e1c0d1"><span class="section-number-4">5.1.2</span> thread class</h4>
+<div class="outline-text-4" id="text-5-1-2">
 <p>
 rewrite <span class="underline"><span class="underline">init</span></span>  and run in class, which inherit class threading.Thread, and start it with start()
 </p>
@@ -1637,9 +1637,9 @@ Exitingthreadtwo
 </div>
 </div>
 
-<div id="outline-container-org36949e1" class="outline-4">
-<h4 id="org36949e1">thread with Lock</h4>
-<div class="outline-text-4" id="text-org36949e1">
+<div id="outline-container-org8429135" class="outline-4">
+<h4 id="org8429135"><span class="section-number-4">5.1.3</span> thread with Lock</h4>
+<div class="outline-text-4" id="text-5-1-3">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">import</span> threading
 <span style="font-weight: bold;">import</span> time
@@ -1694,13 +1694,13 @@ Exitingthreadtwo
 </div>
 </div>
 
-<div id="outline-container-org5e855dc" class="outline-3">
-<h3 id="org5e855dc"><a id="ID-493fb105-3ca1-4a4a-87b8-94afa870e5b1"></a>Multi processing</h3>
-<div class="outline-text-3" id="text-org5e855dc">
+<div id="outline-container-orgb6dde44" class="outline-3">
+<h3 id="orgb6dde44"><a id="ID-493fb105-3ca1-4a4a-87b8-94afa870e5b1"></a><span class="section-number-3">5.2</span> Multi processing</h3>
+<div class="outline-text-3" id="text-5-2">
 </div>
-<div id="outline-container-org810cc25" class="outline-4">
-<h4 id="org810cc25">pure multi process start</h4>
-<div class="outline-text-4" id="text-org810cc25">
+<div id="outline-container-orgc269934" class="outline-4">
+<h4 id="orgc269934"><span class="section-number-4">5.2.1</span> pure multi process start</h4>
+<div class="outline-text-4" id="text-5-2-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">import</span> multiprocessing
 <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">myfunction</span>(a,b):
@@ -1720,9 +1720,9 @@ process2.start()
 </div>
 </div>
 
-<div id="outline-container-org3d7db33" class="outline-4">
-<h4 id="org3d7db33">multi process differ from multi threading</h4>
-<div class="outline-text-4" id="text-org3d7db33">
+<div id="outline-container-orgc0b0f38" class="outline-4">
+<h4 id="orgc0b0f38"><span class="section-number-4">5.2.2</span> multi process differ from multi threading</h4>
+<div class="outline-text-4" id="text-5-2-2">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">import</span> multiprocessing
 <span style="font-weight: bold;">import</span> threading
@@ -1759,13 +1759,13 @@ result of multi threading [1, 2]
 </div>
 </div>
 
-<div id="outline-container-orgf5d8251" class="outline-4">
-<h4 id="orgf5d8251">Pool</h4>
-<div class="outline-text-4" id="text-orgf5d8251">
+<div id="outline-container-orgb0d9c72" class="outline-4">
+<h4 id="orgb0d9c72"><span class="section-number-4">5.2.3</span> Pool</h4>
+<div class="outline-text-4" id="text-5-2-3">
 </div>
-<ul class="org-ul">
-<li><a id="org62685b5"></a>apply<br />
-<div class="outline-text-5" id="text-org62685b5">
+<ol class="org-ol">
+<li><a id="org695bbe3"></a>apply<br />
+<div class="outline-text-5" id="text-5-2-3-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">import</span> multiprocessing <span style="font-weight: bold;">as</span> mp
 <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">myfunction</span>(a, b):
@@ -1786,8 +1786,8 @@ pool.close()
 </div>
 </li>
 
-<li><a id="org29e6555"></a>map<br />
-<div class="outline-text-5" id="text-org29e6555">
+<li><a id="orga3b0faa"></a>map<br />
+<div class="outline-text-5" id="text-5-2-3-2">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">import</span> multiprocessing <span style="font-weight: bold;">as</span> mp
 <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">myfunction</span>(a):
@@ -1808,8 +1808,8 @@ pool.close()
 </div>
 </li>
 
-<li><a id="org456d45f"></a>starmap<br />
-<div class="outline-text-5" id="text-org456d45f">
+<li><a id="org2921dc0"></a>starmap<br />
+<div class="outline-text-5" id="text-5-2-3-3">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">import</span> multiprocessing <span style="font-weight: bold;">as</span> mp
 <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">myfunction</span>(a, b):
@@ -1830,8 +1830,8 @@ pool.close()
 </div>
 </li>
 
-<li><a id="orgb8bdbdc"></a>apply<sub>async</sub><br />
-<div class="outline-text-5" id="text-orgb8bdbdc">
+<li><a id="org252558e"></a>apply<sub>async</sub><br />
+<div class="outline-text-5" id="text-5-2-3-4">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">import</span> multiprocessing <span style="font-weight: bold;">as</span> mp
 <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">myfunction</span>(a, b):
@@ -1853,8 +1853,8 @@ pool.close()
 </div>
 </li>
 
-<li><a id="org38fb69e"></a>apply<sub>async</sub> with callback, must use wait<br />
-<div class="outline-text-5" id="text-org38fb69e">
+<li><a id="org0eee608"></a>apply<sub>async</sub> with callback, must use wait<br />
+<div class="outline-text-5" id="text-5-2-3-5">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">import</span> multiprocessing <span style="font-weight: bold;">as</span> mp
 <span style="font-weight: bold; font-style: italic;">results</span> = []
@@ -1875,12 +1875,12 @@ pool.close()
 </div>
 </div>
 </li>
-</ul>
+</ol>
 </div>
 
-<div id="outline-container-orgbd07520" class="outline-4">
-<h4 id="orgbd07520">map</h4>
-<div class="outline-text-4" id="text-orgbd07520">
+<div id="outline-container-orga7cd680" class="outline-4">
+<h4 id="orga7cd680"><span class="section-number-4">5.2.4</span> map</h4>
+<div class="outline-text-4" id="text-5-2-4">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">import</span> time
 <span style="font-weight: bold;">import</span> concurrent.futures
@@ -1917,13 +1917,13 @@ Done 1 seconds sleep
 </div>
 </div>
 </div>
-<div id="outline-container-org35706bb" class="outline-2">
-<h2 id="org35706bb">Python with mpi</h2>
-<div class="outline-text-2" id="text-org35706bb">
+<div id="outline-container-orgfa03eec" class="outline-2">
+<h2 id="orgfa03eec"><span class="section-number-2">6</span> Python with mpi</h2>
+<div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org0bf1b1f" class="outline-3">
-<h3 id="org0bf1b1f">send &amp; recv</h3>
-<div class="outline-text-3" id="text-org0bf1b1f">
+<div id="outline-container-org99cb145" class="outline-3">
+<h3 id="org99cb145"><span class="section-number-3">6.1</span> send &amp; recv</h3>
+<div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">from</span> mpi4py <span style="font-weight: bold;">import</span> MPI
 <span style="font-weight: bold; font-style: italic;">comm</span> = MPI.COMM_WORLD
@@ -1949,9 +1949,9 @@ Done 1 seconds sleep
 </div>
 </div>
 
-<div id="outline-container-org3c28fe9" class="outline-3">
-<h3 id="org3c28fe9">Send &amp; Recv</h3>
-<div class="outline-text-3" id="text-org3c28fe9">
+<div id="outline-container-org66fe626" class="outline-3">
+<h3 id="org66fe626"><span class="section-number-3">6.2</span> Send &amp; Recv</h3>
+<div class="outline-text-3" id="text-6-2">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">from</span> mpi4py <span style="font-weight: bold;">import</span> MPI
 <span style="font-weight: bold;">import</span> numpy
@@ -1984,13 +1984,13 @@ Done 1 seconds sleep
 </div>
 </div>
 
-<div id="outline-container-org0903e52" class="outline-3">
-<h3 id="org0903e52">Bcast</h3>
-<div class="outline-text-3" id="text-org0903e52">
+<div id="outline-container-org075f292" class="outline-3">
+<h3 id="org075f292"><span class="section-number-3">6.3</span> Bcast</h3>
+<div class="outline-text-3" id="text-6-3">
 </div>
-<div id="outline-container-orge1723f7" class="outline-4">
-<h4 id="orge1723f7">with map bcast</h4>
-<div class="outline-text-4" id="text-orge1723f7">
+<div id="outline-container-orge867df9" class="outline-4">
+<h4 id="orge867df9"><span class="section-number-4">6.3.1</span> with map bcast</h4>
+<div class="outline-text-4" id="text-6-3-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">from</span> mpi4py <span style="font-weight: bold;">import</span> MPI
 <span style="font-weight: bold; font-style: italic;">comm</span> = MPI.COMM_WORLD
@@ -2019,9 +2019,9 @@ Done 1 seconds sleep
 </div>
 </div>
 
-<div id="outline-container-orgd299af7" class="outline-4">
-<h4 id="orgd299af7">with array Bcast</h4>
-<div class="outline-text-4" id="text-orgd299af7">
+<div id="outline-container-org2f01369" class="outline-4">
+<h4 id="org2f01369"><span class="section-number-4">6.3.2</span> with array Bcast</h4>
+<div class="outline-text-4" id="text-6-3-2">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">from</span> mpi4py <span style="font-weight: bold;">import</span> MPI
 <span style="font-weight: bold;">import</span> numpy <span style="font-weight: bold;">as</span> np
@@ -2047,13 +2047,13 @@ comm.Bcast(data, root=0)
 </div>
 </div>
 
-<div id="outline-container-org5f053ae" class="outline-3">
-<h3 id="org5f053ae">scatter</h3>
-<div class="outline-text-3" id="text-org5f053ae">
+<div id="outline-container-org18960d8" class="outline-3">
+<h3 id="org18960d8"><span class="section-number-3">6.4</span> scatter</h3>
+<div class="outline-text-3" id="text-6-4">
 </div>
-<div id="outline-container-orgad2b5c5" class="outline-4">
-<h4 id="orgad2b5c5">with number</h4>
-<div class="outline-text-4" id="text-orgad2b5c5">
+<div id="outline-container-org170a9d0" class="outline-4">
+<h4 id="org170a9d0"><span class="section-number-4">6.4.1</span> with number</h4>
+<div class="outline-text-4" id="text-6-4-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">from</span> mpi4py <span style="font-weight: bold;">import</span> MPI
 <span style="font-weight: bold; font-style: italic;">comm</span> = MPI.COMM_WORLD
@@ -2076,9 +2076,9 @@ comm.Bcast(data, root=0)
 </div>
 </div>
 
-<div id="outline-container-org7adb3e8" class="outline-4">
-<h4 id="org7adb3e8">with array</h4>
-<div class="outline-text-4" id="text-org7adb3e8">
+<div id="outline-container-org522b747" class="outline-4">
+<h4 id="org522b747"><span class="section-number-4">6.4.2</span> with array</h4>
+<div class="outline-text-4" id="text-6-4-2">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">from</span> mpi4py <span style="font-weight: bold;">import</span> MPI
 <span style="font-weight: bold;">import</span> numpy <span style="font-weight: bold;">as</span> np
@@ -2103,13 +2103,13 @@ comm.Scatter(sendbuf, recvbuf, root=0)
 </div>
 </div>
 
-<div id="outline-container-org6f48929" class="outline-3">
-<h3 id="org6f48929">Gather</h3>
-<div class="outline-text-3" id="text-org6f48929">
+<div id="outline-container-org6b1c1f1" class="outline-3">
+<h3 id="org6b1c1f1"><span class="section-number-3">6.5</span> Gather</h3>
+<div class="outline-text-3" id="text-6-5">
 </div>
-<div id="outline-container-orgcd22ca0" class="outline-4">
-<h4 id="orgcd22ca0">with number gather</h4>
-<div class="outline-text-4" id="text-orgcd22ca0">
+<div id="outline-container-orge28f383" class="outline-4">
+<h4 id="orge28f383"><span class="section-number-4">6.5.1</span> with number gather</h4>
+<div class="outline-text-4" id="text-6-5-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">from</span> mpi4py <span style="font-weight: bold;">import</span> MPI
 <span style="font-weight: bold; font-style: italic;">comm</span> = MPI.COMM_WORLD
@@ -2145,9 +2145,9 @@ comm.Scatter(sendbuf, recvbuf, root=0)
 </div>
 </div>
 
-<div id="outline-container-orgdf8fb90" class="outline-4">
-<h4 id="orgdf8fb90">with array  Gather</h4>
-<div class="outline-text-4" id="text-orgdf8fb90">
+<div id="outline-container-org3c76bbd" class="outline-4">
+<h4 id="org3c76bbd"><span class="section-number-4">6.5.2</span> with array  Gather</h4>
+<div class="outline-text-4" id="text-6-5-2">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">from</span> mpi4py <span style="font-weight: bold;">import</span> MPI
 <span style="font-weight: bold;">import</span> numpy <span style="font-weight: bold;">as</span> np
@@ -2173,9 +2173,9 @@ comm.Gather(sendbuf, recvbuf, root=0)
 </div>
 </div>
 
-<div id="outline-container-orgba6fc40" class="outline-3">
-<h3 id="orgba6fc40">Dynamic Process Management</h3>
-<div class="outline-text-3" id="text-orgba6fc40">
+<div id="outline-container-orgc79d755" class="outline-3">
+<h3 id="orgc79d755"><span class="section-number-3">6.6</span> Dynamic Process Management</h3>
+<div class="outline-text-3" id="text-6-6">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">from</span> mpi4py <span style="font-weight: bold;">import</span> MPI
 <span style="font-weight: bold;">import</span> numpy
@@ -2224,13 +2224,13 @@ mpirun --host si-u20:4 python3 ./babel/mpi_python_example_client.py
 </div>
 </div>
 
-<div id="outline-container-orgd044f1b" class="outline-2">
-<h2 id="orgd044f1b">Go</h2>
-<div class="outline-text-2" id="text-orgd044f1b">
+<div id="outline-container-orgaf065c8" class="outline-2">
+<h2 id="orgaf065c8"><span class="section-number-2">7</span> Go</h2>
+<div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org1ccd2ab" class="outline-3">
-<h3 id="org1ccd2ab">go chan</h3>
-<div class="outline-text-3" id="text-org1ccd2ab">
+<div id="outline-container-orgd9920ee" class="outline-3">
+<h3 id="orgd9920ee"><span class="section-number-3">7.1</span> go chan</h3>
+<div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import (
@@ -2293,13 +2293,13 @@ tick 10
 </div>
 </div>
 
-<div id="outline-container-org8ddc239" class="outline-2">
-<h2 id="org8ddc239">Go with mpi</h2>
-<div class="outline-text-2" id="text-org8ddc239">
+<div id="outline-container-orgf7c593c" class="outline-2">
+<h2 id="orgf7c593c"><span class="section-number-2">8</span> Go with mpi</h2>
+<div class="outline-text-2" id="text-8">
 </div>
-<div id="outline-container-org7d7380b" class="outline-3">
-<h3 id="org7d7380b">cpuNum</h3>
-<div class="outline-text-3" id="text-org7d7380b">
+<div id="outline-container-org5199e05" class="outline-3">
+<h3 id="org5199e05"><span class="section-number-3">8.1</span> cpuNum</h3>
+<div class="outline-text-3" id="text-8-1">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import (
@@ -2326,9 +2326,9 @@ cpu number is : 8
 </div>
 </div>
 
-<div id="outline-container-orgbf4ebc5" class="outline-3">
-<h3 id="orgbf4ebc5">IsOn</h3>
-<div class="outline-text-3" id="text-orgbf4ebc5">
+<div id="outline-container-org68c0033" class="outline-3">
+<h3 id="org68c0033"><span class="section-number-3">8.2</span> IsOn</h3>
+<div class="outline-text-3" id="text-8-2">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -2368,9 +2368,9 @@ ison is on
 </div>
 </div>
 
-<div id="outline-container-org25d2e34" class="outline-3">
-<h3 id="org25d2e34">WorldRank</h3>
-<div class="outline-text-3" id="text-org25d2e34">
+<div id="outline-container-org15a0291" class="outline-3">
+<h3 id="org15a0291"><span class="section-number-3">8.3</span> WorldRank</h3>
+<div class="outline-text-3" id="text-8-3">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -2406,9 +2406,9 @@ rank is 3
 </div>
 </div>
 
-<div id="outline-container-orga747873" class="outline-3">
-<h3 id="orga747873">WorldSize</h3>
-<div class="outline-text-3" id="text-orga747873">
+<div id="outline-container-org1867de7" class="outline-3">
+<h3 id="org1867de7"><span class="section-number-3">8.4</span> WorldSize</h3>
+<div class="outline-text-3" id="text-8-4">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -2444,9 +2444,9 @@ rank is 8
 </div>
 </div>
 
-<div id="outline-container-org3a3e5c0" class="outline-3">
-<h3 id="org3a3e5c0">NewCommunicator</h3>
-<div class="outline-text-3" id="text-org3a3e5c0">
+<div id="outline-container-orge4c4bb2" class="outline-3">
+<h3 id="orge4c4bb2"><span class="section-number-3">8.5</span> NewCommunicator</h3>
+<div class="outline-text-3" id="text-8-5">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -2527,9 +2527,9 @@ newComm.Rank() is : 3
 </div>
 </div>
 
-<div id="outline-container-org4125b41" class="outline-3">
-<h3 id="org4125b41">SendInt32 &amp;&amp; RecvInt32</h3>
-<div class="outline-text-3" id="text-org4125b41">
+<div id="outline-container-org9d1f23c" class="outline-3">
+<h3 id="org9d1f23c"><span class="section-number-3">8.6</span> SendInt32 &amp;&amp; RecvInt32</h3>
+<div class="outline-text-3" id="text-8-6">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -2578,9 +2578,9 @@ mpirun --use-hwthread-cpus ./go_mpi_SendInt32
 </div>
 </div>
 
-<div id="outline-container-org2c4c0be" class="outline-3">
-<h3 id="org2c4c0be">SendInt32s &amp;&amp; RecvInt32s</h3>
-<div class="outline-text-3" id="text-org2c4c0be">
+<div id="outline-container-org45f8cfa" class="outline-3">
+<h3 id="org45f8cfa"><span class="section-number-3">8.7</span> SendInt32s &amp;&amp; RecvInt32s</h3>
+<div class="outline-text-3" id="text-8-7">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -2626,9 +2626,9 @@ mpirun --host si-u20:6 ./go_mpi_SendUInt32s
 </div>
 </div>
 
-<div id="outline-container-org51c70bd" class="outline-3">
-<h3 id="org51c70bd">SendString &amp;&amp; RecvString</h3>
-<div class="outline-text-3" id="text-org51c70bd">
+<div id="outline-container-org338d25b" class="outline-3">
+<h3 id="org338d25b"><span class="section-number-3">8.8</span> SendString &amp;&amp; RecvString</h3>
+<div class="outline-text-3" id="text-8-8">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -2677,9 +2677,9 @@ str11
 </div>
 </div>
 
-<div id="outline-container-orgd47b81c" class="outline-3">
-<h3 id="orgd47b81c">ReduceInt32s</h3>
-<div class="outline-text-3" id="text-orgd47b81c">
+<div id="outline-container-orgcfbaa37" class="outline-3">
+<h3 id="orgcfbaa37"><span class="section-number-3">8.9</span> ReduceInt32s</h3>
+<div class="outline-text-3" id="text-8-9">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -2721,9 +2721,9 @@ mpirun -n 4 ./go_mpi_ReduceInt32s
 </pre>
 </div>
 </div>
-<div id="outline-container-org6128c74" class="outline-3">
-<h3 id="org6128c74">AllreduceInt64s</h3>
-<div class="outline-text-3" id="text-org6128c74">
+<div id="outline-container-orge6f4d38" class="outline-3">
+<h3 id="orge6f4d38"><span class="section-number-3">8.10</span> AllreduceInt64s</h3>
+<div class="outline-text-3" id="text-8-10">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import (
@@ -2764,9 +2764,9 @@ mpirun -n 4 ./go_mpi_AllreduceInt64s
 </div>
 </div>
 
-<div id="outline-container-org8eef6e6" class="outline-3">
-<h3 id="org8eef6e6">BcastInt64s</h3>
-<div class="outline-text-3" id="text-org8eef6e6">
+<div id="outline-container-org93aed62" class="outline-3">
+<h3 id="org93aed62"><span class="section-number-3">8.11</span> BcastInt64s</h3>
+<div class="outline-text-3" id="text-8-11">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import (
@@ -2811,13 +2811,13 @@ process 1 now has value of [10] from main process
 </div>
 </div>
 
-<div id="outline-container-orgc7c6b55" class="outline-2">
-<h2 id="orgc7c6b55">GPGPU</h2>
-<div class="outline-text-2" id="text-orgc7c6b55">
+<div id="outline-container-orgdc01b97" class="outline-2">
+<h2 id="orgdc01b97"><span class="section-number-2">9</span> GPGPU</h2>
+<div class="outline-text-2" id="text-9">
 </div>
-<div id="outline-container-org2670970" class="outline-3">
-<h3 id="org2670970">get variables</h3>
-<div class="outline-text-3" id="text-org2670970">
+<div id="outline-container-orgec1f263" class="outline-3">
+<h3 id="orgec1f263"><span class="section-number-3">9.1</span> get variables</h3>
+<div class="outline-text-3" id="text-9-1">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
 <span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cuda.h&gt;</span>
@@ -2967,13 +2967,13 @@ gridDim_z is 1
 </div>
 </div>
 
-<div id="outline-container-orgdc0f8ca" class="outline-3">
-<h3 id="orgdc0f8ca">Addition dim 1</h3>
-<div class="outline-text-3" id="text-orgdc0f8ca">
+<div id="outline-container-org94d13d5" class="outline-3">
+<h3 id="org94d13d5"><span class="section-number-3">9.2</span> Addition dim 1</h3>
+<div class="outline-text-3" id="text-9-2">
 </div>
-<div id="outline-container-org0dc84d1" class="outline-4">
-<h4 id="org0dc84d1">without parallelism</h4>
-<div class="outline-text-4" id="text-org0dc84d1">
+<div id="outline-container-org9ce87dd" class="outline-4">
+<h4 id="org9ce87dd"><span class="section-number-4">9.2.1</span> without parallelism</h4>
+<div class="outline-text-4" id="text-9-2-1">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
 <span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdlib.h&gt;</span>
@@ -3057,9 +3057,9 @@ PASSED
 </div>
 </div>
 
-<div id="outline-container-org75b29a8" class="outline-4">
-<h4 id="org75b29a8">dim 1, grid 1, block 256 N10000000</h4>
-<div class="outline-text-4" id="text-org75b29a8">
+<div id="outline-container-orgba1f818" class="outline-4">
+<h4 id="orgba1f818"><span class="section-number-4">9.2.2</span> dim 1, grid 1, block 256 N10000000</h4>
+<div class="outline-text-4" id="text-9-2-2">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
 <span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdlib.h&gt;</span>
@@ -3140,9 +3140,9 @@ nvcc gpu_vector_add_dim1_grid1_block256.cu -o gpu_vector_add_dim1_grid1_block256
 </div>
 </div>
 
-<div id="outline-container-orgb812ce6" class="outline-4">
-<h4 id="orgb812ce6">dim 1, grid 1, block 256 N10000000 with time</h4>
-<div class="outline-text-4" id="text-orgb812ce6">
+<div id="outline-container-orgf2f140d" class="outline-4">
+<h4 id="orgf2f140d"><span class="section-number-4">9.2.3</span> dim 1, grid 1, block 256 N10000000 with time</h4>
+<div class="outline-text-4" id="text-9-2-3">
 <div class="org-src-container">
 <pre class="src src-C">
 <span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
@@ -3240,9 +3240,9 @@ nvcc gpu_vector_add_dim1_grid1_block256_withtime.cu -o gpu_vector_add_dim1_grid1
 </div>
 </div>
 
-<div id="outline-container-orga563b6a" class="outline-4">
-<h4 id="orga563b6a">dim 1, grid N, block 1, N256</h4>
-<div class="outline-text-4" id="text-orga563b6a">
+<div id="outline-container-orgdbb0a86" class="outline-4">
+<h4 id="orgdbb0a86"><span class="section-number-4">9.2.4</span> dim 1, grid N, block 1, N256</h4>
+<div class="outline-text-4" id="text-9-2-4">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
 <span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cuda.h&gt;</span>
@@ -3288,9 +3288,9 @@ nvcc dim1_gridN_block1.cu -o dim1_gridN_block1
 </div>
 </div>
 
-<div id="outline-container-org4868a51" class="outline-4">
-<h4 id="org4868a51">dim 1, grid 1, block N, N256</h4>
-<div class="outline-text-4" id="text-org4868a51">
+<div id="outline-container-orgd26d2c8" class="outline-4">
+<h4 id="orgd26d2c8"><span class="section-number-4">9.2.5</span> dim 1, grid 1, block N, N256</h4>
+<div class="outline-text-4" id="text-9-2-5">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
 <span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cuda.h&gt;</span>
@@ -3851,9 +3851,9 @@ nvcc dim1_gridN_block1_N256.cu -o dim1_gridN_block1_N256
 </div>
 </div>
 
-<div id="outline-container-org5f9bae6" class="outline-4">
-<h4 id="org5f9bae6">dim 1, grid x, block 256</h4>
-<div class="outline-text-4" id="text-org5f9bae6">
+<div id="outline-container-org0e3eb11" class="outline-4">
+<h4 id="org0e3eb11"><span class="section-number-4">9.2.6</span> dim 1, grid x, block 256</h4>
+<div class="outline-text-4" id="text-9-2-6">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
 <span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdlib.h&gt;</span>
@@ -3943,13 +3943,13 @@ PASSED
 </div>
 </div>
 
-<div id="outline-container-org015b960" class="outline-3">
-<h3 id="org015b960">Addition dim 2</h3>
-<div class="outline-text-3" id="text-org015b960">
+<div id="outline-container-org4daef4a" class="outline-3">
+<h3 id="org4daef4a"><span class="section-number-3">9.3</span> Addition dim 2</h3>
+<div class="outline-text-3" id="text-9-3">
 </div>
-<div id="outline-container-org05ebb89" class="outline-4">
-<h4 id="org05ebb89">dim 2, grid 1, block NxN for array</h4>
-<div class="outline-text-4" id="text-org05ebb89">
+<div id="outline-container-orge8b2b30" class="outline-4">
+<h4 id="orge8b2b30"><span class="section-number-4">9.3.1</span> dim 2, grid 1, block NxN for array</h4>
+<div class="outline-text-4" id="text-9-3-1">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
 <span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cuda.h&gt;</span>
@@ -4008,9 +4008,9 @@ Passed
 </div>
 </div>
 
-<div id="outline-container-org3e27876" class="outline-4">
-<h4 id="org3e27876">dim 2, grid 1, block NxN for matrix</h4>
-<div class="outline-text-4" id="text-org3e27876">
+<div id="outline-container-org50800e4" class="outline-4">
+<h4 id="org50800e4"><span class="section-number-4">9.3.2</span> dim 2, grid 1, block NxN for matrix</h4>
+<div class="outline-text-4" id="text-9-3-2">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
 <span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cuda.h&gt;</span>
@@ -5108,9 +5108,9 @@ Passed
 </div>
 
 
-<div id="outline-container-orgdd3d860" class="outline-4">
-<h4 id="orgdd3d860">dim 2, grid 1, block NxN for matrix with one dim array</h4>
-<div class="outline-text-4" id="text-orgdd3d860">
+<div id="outline-container-orgc8ba4ee" class="outline-4">
+<h4 id="orgc8ba4ee"><span class="section-number-4">9.3.3</span> dim 2, grid 1, block NxN for matrix with one dim array</h4>
+<div class="outline-text-4" id="text-9-3-3">
 <div class="org-src-container">
 <pre class="src src-C"><span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;stdio.h&gt;</span>
 <span style="font-weight: bold;">#include</span> <span style="font-style: italic;">&lt;cuda.h&gt;</span>
@@ -6233,7 +6233,7 @@ build in - &gt; local host :80
 </div>
 </div></div>
 <div id="postamble" class="status">
-<p class="date">Created: 2022-06-24 Fri 12:04</p>
+<p class="date">Created: 2022-06-24 Fri 12:20</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
 <p class="validation"></p>
 </div>
