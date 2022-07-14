@@ -127,8 +127,15 @@ sudo systemctl restart mysql
 create databese testforjava;
 use testforjava;
 ** 插入表格
-create table course(id int primary key atuo_increment,  kurs_name varchar(50), kurs_length
-varchar(50),teacher varchar(50), categeory varchar(50));
+#+begin_src sql
+  create table course(
+         id int primary key atuo_increment,
+         kurs_name varchar(50),
+         kurs_length  varchar(50),
+         teacher varchar(50),
+         categeory varchar(50)
+         );
+#+end_src
 for later version, only works for auto_increment, not for identity(m,n)
 ** 插入值
 insert into kurs values(1, 'C++', 23, 'su', 'basic');
@@ -308,7 +315,6 @@ id	pid	type	typecode	title	icon	href	target	spread	ordernum	available
 33	15	permission	dept:update	部门修改			_self	0	28	1
 34	15	permission	dept:delete	部门删除			_self	0	29	1
 #+end_example
-
 
 ** check the database 
 #+name: my-query

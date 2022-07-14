@@ -125,6 +125,53 @@ because without \n, I don't know where to stop
 #+END_SRC
 
 ** SortingGiveNumbersWithExchangeSortedDirection
+** milisecond time
+#+begin_src C :tangle ./task1_q1.c
+  #include <sys/time.h>
+  #include <stdlib.h>
+  #include <stdio.h>
+  #include <unistd.h>
+
+  #define N 1000000
+
+  int current_timestamp() {
+    struct timeval te; 
+    gettimeofday(&te, NULL); // get current time
+    int milliseconds = te.tv_sec*1000 + te.tv_usec/1000; // calculate milliseconds
+    return milliseconds;
+  }
+
+  int main(int argc, char *argv[])
+  {
+    float arr[N];
+    float summation;
+    int start, stop;
+    for (int i = 0; i < N; ++i) {
+      arr[i] = rand() % 100 / (float)100 ;
+    }
+    start = current_timestamp();
+    for (int i = 0; i < N; ++i) {
+      summation += arr[i];
+    }
+    stop = current_timestamp();
+    printf("Summation is %f,  using time %d ", summation,  stop-start);
+    return 0;
+  }
+
+
+#+end_src
+
+
+#+begin_src sh :results output :exports both
+  gcc task1_q1.c -o task1_q1
+  ./task1_q1
+
+#+end_src
+
+#+RESULTS:
+: Summation is 494979.375000,  using time 4 
+
+
 * Point&array
 ** pointer assignment
 

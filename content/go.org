@@ -346,3 +346,387 @@ times out
 #+RESULTS:
 : false
 
+* PatternDesign
+** Observer
+#+begin_src go :results output :exports both
+  package main
+
+  import (
+          "fmt"
+          "sync"
+          "time"
+  )
+
+  type (
+          eventObserver struct {
+                  id   int
+                  time time.Time
+          }
+          eventSubject struct {
+                  observers sync.Map
+          }
+          Event struct {
+                  data int
+          }
+          Observer interface {
+                  NotifyCallback(Event)
+          }
+          Subject interface {
+                  AddListener(Observer)
+                  RemoveListener(Observer)
+                  Notify(Event)
+          }
+  )
+
+  // NotifyCallback ...
+  func (e *eventObserver) NotifyCallback(event Event) {
+          fmt.Printf("Observer: %d Recieved: %d after %v\n", e.id, event.data, time.Since(e.time))
+  }
+
+  // AddListener ...
+  func (s *eventSubject) AddListener(obs Observer) {
+          s.observers.Store(obs, struct{}{})
+  }
+
+  // RemoveListener ...
+  func (s *eventSubject) RemoveListener(obs Observer) {
+          s.observers.Delete(obs)
+  }
+
+  // Notify  ...
+  func (s *eventSubject) Notify(event Event) {
+          s.observers.Range(func(key interface{}, value interface{}) bool {
+                  fmt.Printf("%T", key)
+                  if key == nil || value == nil {
+                          return false
+                  }
+                  key.(Observer).NotifyCallback(event)
+                  return true
+          })
+  }
+
+  func fib(n int) chan int {
+          out := make(chan int)
+          go // name ...
+          func() {
+                  defer close(out)
+                  for i, j := 0, 1; i < n; i, j = i+j, i {
+                          out <- i
+                  }
+          }()
+          return out
+  }
+
+  func main() {
+          n := eventSubject{
+                  observers: sync.Map{},
+          }
+          var obs1 = eventObserver{id: 1, time: time.Now()}
+          var obs2 = eventObserver{id: 2, time: time.Now()}
+
+          n.AddListener(&obs1)
+          n.AddListener(&obs2)
+          n.AddListener(&eventObserver{id: 3, time: time.Now()})
+
+          go func() {
+                  select {
+                  case <-time.After(time.Millisecond):
+                          n.RemoveListener(&obs2)
+                  }
+          }()
+
+          for x := range fib(1000000000000000000) {
+                  n.Notify(Event{data: x})
+          }
+  }
+
+#+end_src
+** Factory
+#+begin_src go :results output :exports both
+  package main
+
+  import (
+          "fmt"
+          "reflect"
+  )
+
+  type (
+          mongoDB struct {
+                  database map[string]string
+          }
+          sqlite struct {
+                  database map[string]string
+          }
+          Database interface {
+                  GetData(string) string
+                  PutData(string, string)
+          }
+          file struct {
+                  name    string
+                  content string
+          }
+          ntfs struct {
+                  files map[string]file
+          }
+          ext4 struct {
+                  files map[string]file
+          }
+          FileSystem interface {
+                  CreateFile(string)
+                  FindFile(string) file
+          }
+
+          Factory func(string) interface{}
+  )
+
+  func (mdb mongoDB) GetData(query string) string {
+          if _, ok := mdb.database[query]; !ok {
+                  return ""
+          }
+          fmt.Println("MongoDB")
+          return mdb.database[query]
+  }
+
+  func (mdb mongoDB) PutData(query string, data string) {
+          mdb.database[query] = data
+  }
+
+  func (sql sqlite) GetData(query string) string {
+          if _, ok := sql.database[query]; !ok {
+                  return ""
+          }
+          fmt.Println("Sqlite")
+          return sql.database[query]
+  }
+
+  func (sql sqlite) PutData(query string, data string) {
+          sql.database[query] = data
+  }
+
+  func (ntfs ntfs) CreateFile(path string) {
+          file := file{content: "NTFS file", name: path}
+          ntfs.files[path] = file
+          fmt.Println("NTFS")
+  }
+
+  func (ext ext4) CreateFile(path string) {
+          file := file{content: "EXT4 file", name: path}
+          ext.files[path] = file
+          fmt.Println("EXT4")
+  }
+
+  func (ntfs ntfs) FindFile(path string) file {
+          if _, ok := ntfs.files[path]; !ok {
+                  return file{}
+          }
+          return ntfs.files[path]
+  }
+
+  func (ext ext4) FindFile(path string) file {
+          if _, ok := ext.files[path]; !ok {
+                  return file{}
+          }
+          return ext.files[path]
+  }
+
+  // DatabaseFactory ...
+  func DatabaseFactory(env string) interface{} {
+          switch env {
+          case "production":
+                  return mongoDB{
+                          database: make(map[string]string),
+                  }
+          case "development":
+                  return sqlite{
+                          database: make(map[string]string),
+                  }
+          default:
+                  return nil
+          }
+  }
+
+  func FilesystemFactory(env string) interface{} {
+          switch env {
+          case "production":
+                  return ntfs{
+                          files: make(map[string]file),
+                  }
+          case "development":
+                  return ext4{
+                          files: make(map[string]file),
+                  }
+          default:
+                  return nil
+          }
+  }
+
+  // AbstractFactoryy ...
+  func AbstractFactory(fact string) func(string) interface{} {
+          switch fact {
+          case "database":
+                  return DatabaseFactory
+          case "filesystem":
+                  return FilesystemFactory
+          default:
+                  return nil
+          }
+  }
+
+  func SetupConstructors(env string) (Database, FileSystem) {
+          fs := AbstractFactory("filesystem")
+          db := AbstractFactory("database")
+          return db(env).(Database), fs(env).(FileSystem)
+
+  }
+
+  func main() {
+          env1 := "production"
+          env2 := "development"
+
+          // db1 := DatabaseFactory(env1)
+          // db2 := DatabaseFactory(env2)
+
+          db1, fs1 := SetupConstructors(env1)
+          db2, fs2 := SetupConstructors(env2)
+
+          db1.PutData("test", "for test")
+          fmt.Println(db1.GetData("test"))
+          db2.PutData("test2", "for test2")
+          fmt.Println(db2.GetData("test2"))
+
+          fs1.CreateFile("../example/fts.txt")
+          fmt.Println(fs1.FindFile("../example/fts.txt"))
+
+          fs2.CreateFile("../example/et4.txt")
+          fmt.Println(fs2.FindFile("../example/et4.txt"))
+
+          fmt.Println(reflect.TypeOf(db1).Name())
+          fmt.Println(reflect.TypeOf(&db1).Elem())
+          fmt.Println(reflect.TypeOf(db2).Name())
+          fmt.Println(reflect.TypeOf(&db2).Elem())
+
+          fmt.Println(reflect.TypeOf(fs1).Name())
+          fmt.Println(reflect.TypeOf(&fs1).Elem())
+          fmt.Println(reflect.TypeOf(fs2).Name())
+          fmt.Println(reflect.TypeOf(&fs2).Elem())
+  }
+
+#+end_src
+
+#+RESULTS:
+#+begin_example
+MongoDB
+for test
+Sqlite
+for test2
+NTFS
+{../example/fts.txt NTFS file}
+EXT4
+{../example/et4.txt EXT4 file}
+mongoDB
+main.Database
+sqlite
+main.Database
+ntfs
+main.FileSystem
+ext4
+main.FileSystem
+#+end_example
+
+** Decorator
+#+begin_src go :results output :exports both
+  package main
+
+  import (
+          "fmt"
+          "log"
+          "math"
+          "os"
+          "sync"
+          "time"
+  )
+
+  func Pi(n int) float64 {
+          ch := make(chan float64)
+          for k := 0; k <= n; k++ {
+                  go func(ch chan float64, k float64) {
+                          ch <- 4 * math.Pow(-1, k) / (2*k + 1)
+                  }(ch, float64(k))
+          }
+          result := 0.0
+          for k := 0; k <= n; k++ {
+                  result += <-ch
+          }
+          return result
+  }
+
+  type piFunc func(int) float64
+
+  func wraplogger(fun piFunc, logger *log.Logger) piFunc {
+          return func(n int) float64 {
+                  fn := func(n int) (result float64) {
+                          defer func(t time.Time) {
+                                  logger.Printf("took=%v, v=%v, result=%v", time.Since(t), n, result)
+                          }(time.Now())
+                          return fun(n)
+                  }
+                  return fn(n)
+          }
+  }
+
+  func wrapcache(fun piFunc, cache *sync.Map) piFunc {
+          return func(n int) float64 {
+                  fn := func(n int) float64 {
+                          key := fmt.Sprintf("n=%d", n)
+                          val, ok := cache.Load(key)
+                          if ok {
+                                  return val.(float64)
+                          }
+                          result := fun(n)
+                          cache.Store(key, result)
+                          return result
+                  }
+                  return fn(n)
+          }
+  }
+
+  func divide(n int) float64 {
+          return float64(n / 2)
+  }
+
+  func main() {
+          // 01
+          // fmt.Println(Pi(1000))
+          // fmt.Println(Pi(50000))
+          // 02
+          //f := wraplogger(Pi, log.New(os.Stdout, "test", 1))
+          // f(10000)
+          //03
+          f := wrapcache(Pi, &sync.Map{})
+          g := wraplogger(f, log.New(os.Stdout, "test", 1))
+          g(100000)
+          g(200000)
+          g(500000)
+          g(500000)
+          // 04
+          f = wrapcache(divide, &sync.Map{})
+          g = wraplogger(f, log.New(os.Stdout, "divide", 1))
+          g(100000)
+          g(200000)
+          g(500000)
+          g(500000)
+  }
+
+
+#+end_src
+
+#+RESULTS:
+: test2022/07/12 took=197.241951ms, v=100000, result=3.1416026534897195
+: test2022/07/12 took=326.435601ms, v=200000, result=3.1415976535647596
+: test2022/07/12 took=678.005443ms, v=500000, result=3.1415946535856927
+: test2022/07/12 took=2.673µs, v=500000, result=3.1415946535856927
+: divide2022/07/12 took=15.404µs, v=100000, result=50000
+: divide2022/07/12 took=3.475µs, v=200000, result=100000
+: divide2022/07/12 took=1.724µs, v=500000, result=250000
+: divide2022/07/12 took=922ns, v=500000, result=250000
+

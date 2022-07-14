@@ -37,11 +37,6 @@ int main(){
   cudaMalloc((void**)&d_b, sizeof(float) * N);
   cudaMalloc((void**)&d_out, sizeof(float) * N);
 
-  cudaEvent_t start, stop;
-  cudaEventCreate(&start);
-  cudaEventCreate(&stop);
-
-  cudaEventRecord(start, 0);
   // Transfer data from host to device memory
   cudaMemcpy(d_a, a, sizeof(float) * N, cudaMemcpyHostToDevice);
   cudaMemcpy(d_b, b, sizeof(float) * N, cudaMemcpyHostToDevice);
@@ -52,23 +47,12 @@ int main(){
   // Transfer data back to host memory
   cudaMemcpy(out, d_out, sizeof(float) * N, cudaMemcpyDeviceToHost);
 
-  cudaEventRecord(stop, 0);
-  cudaEventSynchronize(stop);
-  float elapsedTime;
-  cudaEventElapsedTime(&elapsedTime, start, stop);
-  
-
-  
   // Verification
   for(int i = 0; i < N; i++){
     assert(fabs(out[i] - a[i] - b[i]) < MAX_ERR);
   }
 
-  printf("PASSED with %f ms\n", elapsedTime);
-
-  cudaEventDestroy(start);
-  cudaEventDestroy(stop);
-
+  printf("PASSED\n");
 
   // Deallocate device memory
   cudaFree(d_a);
