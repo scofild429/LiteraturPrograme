@@ -865,28 +865,26 @@ $$ \frac{\partial \mathcal{L}}{\partial b}= \frac{2}{n}\sum^{n}_{i=1}(wx^{i}+b -
 
 **** 多层神经网络
 而对于多层神经网络，$z = w^{T}x + b$, $\frac{\partial z}{\partial w} =x$,  $\frac{\partial z}{\partial b} = 1$.
-每层之间具有激活函数, $\sigma(z) = \frac{1}{1-e^{-z}}$,$\frac{\partial \sigma(x)}{\partial x} = \sigma (1-\sigma)$.
+每层之间具有激活函数, $\sigma(z) = \frac{1}{1 + e^{-z}}$,  $\frac{\partial \sigma}{\partial z} = z (1-z)$.
 损失函数, $\mathcal{L} = \frac{1}{2}(\sigma - y^{i})^{2}$, $$\frac{\partial \mathcal{L}}{\partial \sigma} = (\sigma -y^{i})$$
 
 
 $$\frac{\partial \mathcal{L}}{\partial w} = \frac{\partial
 \mathcal{L}}{\partial \sigma} \cdot \frac{\partial \sigma }{\partial z} \cdot
-\frac{\partial z}{\partial w}$$
+\frac{\partial z}{\partial w} = (\sigma -y)z(1-z) \cdot x$$
 
 
-$\frac{\partial \mathcal{L}}{\partial w} = (\sigma -
-y)\sigma(1-\sigma) \cdot x$
 
 $$\frac{\partial \mathcal{L}}{\partial b} = \frac{\partial
 \mathcal{L}}{\partial \sigma} \cdot \frac{\partial \sigma }{\partial z} \cdot
-\frac{\partial z}{\partial b}$$
+\frac{\partial z}{\partial b} = (\sigma -y)z(1-z)$$
 
-$\frac{\partial  \mathcal{L}}{\partial b} = (\sigma -
-y)\sigma(1-\sigma)$
 
 如果对于多层神经网络，则需要逐层计算，其中$\frac{\partial
 \mathcal{L}}{\partial w}$ 中的w就是相应层的权重，由最后的
 L逐步回推到w。
+
+
 ** K-Means                                                         :Cluster:
 K-means is an example for centroid-based clustering.
 We can determine the cluster of any instance $x \in F$ as $c(x) = argmin_{i=1,..k}d(x,C_{i})$.
@@ -1059,26 +1057,32 @@ no noise leads to small cluster
 scale sensitive
 * Deep Learing
 ** Batch Size Problem
-| Batch Gradient descent      | all data as input once                   |
-| Stochastic gradient descent | input each time only one data sample     |
-| mini-batch gradient descent | only a subset of all data points in each |
-
-iteration multi kernel calcaltion,  learing rate decay 
-*** big batch size
-Advantages: the descentation of weights has a more accuary direction, less oscillation.
+*** Batch Gradient descent
+- all data as input once
+- loss graph is quite smooth
+- need great calculation power
+*** Stochastic gradient descent
+- input each time only one data sample
+- cost will fluctuate over the training
+- fast update the weights
+*** mini-batch gradient descent
+- only a subset of all data points in each
+**** big batch size
+Advantages: the descension of weights has a more accuary direction, less oscillation.
 Disadvantages: memery explotion, and fall into locally minimum
-*** small batch size
+**** small batch size
 Advantages: more times  weights update, more chance to overcome locally minimum,
 Disadvantages: difficult to convergence
+** Learning rate
+| too small | converge slowly or find local minimum |
+| too large | oscillation or divergence             |
+*** Second order optimizer
+*** SGD with momentum
+*** learning rate decay
 ** Pytorch
 automatic differentiation
 
 ** Regularization
-** Learning rate
-| too small | converge slowly or find local minimum |
-| too large | oscillation or divergence             |
-*** learning rate decay
-
 ** Multi-layer perceptrons
 *** Perceptron
 *Universal Approximation Theorem*
@@ -1133,8 +1137,20 @@ Absolute value activation
 - watch out the loss curves
   + if learning rate decay needed
   + accuracy of train vs validation, overfit, underfit, go back to step 5
+- Early strop Idea: Stop training when generalization error increases
+** Hyperparameter search
+- grid search and random search
+- Multipy learning rate by N where you increase the batchsize by factor of N
+** Data Augmentation
+- data artifacts
+  + flips
+  + crops and scales
+  + randomize color
+  + rotate
+- advance data augmentation
+  + Mixup: take linear combination of input and target of two training samples
+  + CutMit: mix patches of the two input,  Target is linear combination with weight according to patch ratio
 
-- Early strop Idea: Stop training when generalization error increases    
 ** CNN
 Modern CNN architectures tend to use strided convolutions instead of max pooling.
 *** Output size
@@ -1187,18 +1203,8 @@ $$ y_{i, j} = \gamma_{j}\hat{x}_{i, j} + \beta_{j}$$
 
 *** regular convolution
 *** Depthwise separable convolution
-Depthwise Convolution, channel-wise + 1*1 convolution
-Pointwise Convolution
-*** Data Augmentation
-- data artifacts
-  flips
-  crops and scales
-  randomize color
-  rotate
-- advance data augmentation
-  Mixup: take linear combination of input and target of two training samples
-  CutMit: mix patches of the two input  also target
-  
+- Depthwise Convolution: channel-wise 
+- Pointwise Convolution: 1*1 convolution
 
 *** learning rate decay
 dacay schudle
@@ -1296,14 +1302,12 @@ consider the consistency loss on all examples between Student model and Teacher 
 3. passing augmented views(x', x'') of the same data(x) to student and teacher model
 4. minimizing the consistency loss of both output $L_{\mu} = ||f(x') -g(x'')||^{2}$.
 5. updating weight of teacher model, $\Theta'_{t} = \alpha \Theta''_{t-1} + (1-\alpha)\Theta_{t}$
-
 *** Pseudo-label based SSL
 1. training Teacher model with labeled data as usual
 2. using well trianed teacher model to predict unlabled data
 3. taking over the  confident prediciton(threshold) lable as new labeled data
 4. training student model with original and new  label data
 5. passing the student model weights to teacher model, and predict all data again 
-
 ** Weakly-supervised learing
 use simple and cheaper labels for training
 - Classification: hashtags
@@ -1337,19 +1341,19 @@ good contrastive learning need many negative examples.
 - BYOL:
   no need for negative examples
 *** Cross-model contrastive learning(CLIP)
-
 ** Semantic segmentation
 *** methods
 - in CNN model, replace  the last fully connected layer with 1x1 converlutions layer
 - at last upsampling to original size
 - ouput original weight * original height * class  number with one-hot coding.
-- loss funtion, cross entry of pixel-wise: $\frac{1}{N} \Sum_{ij} \log p_{ij} t_{ij}$,
+- loss funtion, cross entry of pixel-wise: $\frac{1}{N} \sum_{ij}\sum_{k} \log p_{ij}^{k} t_{ij}^{k}$,
   - imbalanced background not work good for target prediciton, using balanced loss function
   - weight factor r inverse to class frequency
   - dice loss
   - Focal loss
 - upsampling: nearest neighbor interpolation, transposed convolutions
-- upsampling combining with  the corresponding pooling 
+- upsampling combining with  the corresponding pooling
+  
 *** FCN
 tranposed convolution can cause artifacts, can avoid by using fixed upsampling(nearest neighbor)
 *** U-net
@@ -1416,6 +1420,7 @@ Each row of $P$  is called (words vector词向量), can be interpreted with clas
 
 *Embedding* layer need the number of vocabulary(v), embedding_dim(d), and word_num(cuted words number)
 v*d : parameters for this layer
+
 ** language model
 *** skip-gram
 

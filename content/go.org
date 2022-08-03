@@ -730,3 +730,21 @@ main.FileSystem
 : divide2022/07/12 took=1.724µs, v=500000, result=250000
 : divide2022/07/12 took=922ns, v=500000, result=250000
 
+
+* Architecture
+** package
+each folder can only has one named package,
+but it can be shared for many files, also for the test file
+** module
+it is the same designed as project, but only without main function and main package.
+it can be used by local package, module or project, but has to be replaced
+#+begin_src
+go mod edit -replace modulename=folder  
+#+end_src
+- modul name is defined in the go.mod file, and also at last one package should named as it
+- floder can be relative path, or absolute path in the reference package, module or project.
+- can be called from gore, but first :import  
+** project
+- the same with module, with main package and main func, can be call as go run xxx.go
+- can not  be called from gore for now (29.07.2022)
+

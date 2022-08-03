@@ -171,7 +171,6 @@ because without \n, I don't know where to stop
 #+RESULTS:
 : Summation is 494979.375000,  using time 4 
 
-
 * Point&array
 ** pointer assignment
 
@@ -458,6 +457,41 @@ if *x = *(&a)
 ,*x : 1886852976
 ,*&a: 1886852976
 #+end_example
+
+** Important
+
+#+begin_src C :results output :exports both
+  #include <stdio.h>
+  int main(){
+    int a[3][4]={0,1,2,3,4,5,6,7,8,9,10,11};
+    int(*p)[4];
+    int i,j;
+    p=a;
+    for(i=0; i<3; i++){
+      for(j=0; j<4; j++) printf("%2d  ",*(*(p+i)+j));
+      printf("\n");
+    }
+    printf("\n");
+
+    int *m[4] = {a[0],a[1],a[2],a[3]};
+    for(i=0; i<3; i++){
+      for(j=0; j<4; j++) printf("%2d  ",*(*(m+i)+j));
+      printf("\n");
+    }
+
+    return 0;
+  }
+#+end_src
+
+#+RESULTS:
+: 0   1   2   3  
+: 4   5   6   7  
+: 8   9  10  11  
+: 
+: 0   1   2   3  
+: 4   5   6   7  
+: 8   9  10  11  
+
 
 ** * assignment to 2orderPoint
 char / int 数组/指针数组 to 二级指针
