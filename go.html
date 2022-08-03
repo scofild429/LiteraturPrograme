@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-07-14 Thu 14:44 -->
+<!-- 2022-08-03 Wed 20:23 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Go</title>
@@ -17,33 +17,40 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org5094e5a">print</a></li>
-<li><a href="#org93a8b3b">time</a></li>
-<li><a href="#orgfab10ed">sync</a></li>
-<li><a href="#orgdc4470b">go</a></li>
-<li><a href="#org5921cca">chan</a></li>
-<li><a href="#org59a328a">context</a></li>
-<li><a href="#org493cff9">gonum</a>
+<li><a href="#org77dfccf">print</a></li>
+<li><a href="#orgf20442d">time</a></li>
+<li><a href="#org85a615a">sync</a></li>
+<li><a href="#org9152fa7">go</a></li>
+<li><a href="#org94c1075">chan</a></li>
+<li><a href="#org817455c">context</a></li>
+<li><a href="#org25a0a8a">gonum</a>
 <ul>
-<li><a href="#org66ffd43">Test example</a></li>
-<li><a href="#org49f4093">NewDense</a></li>
-<li><a href="#org2a1296c">make</a></li>
-<li><a href="#orgafe920f">gonum execute</a></li>
+<li><a href="#orgef85e1a">Test example</a></li>
+<li><a href="#org557057f">NewDense</a></li>
+<li><a href="#orgf4607ed">make</a></li>
+<li><a href="#orge86eeba">gonum execute</a></li>
 </ul>
 </li>
-<li><a href="#org616188b">PatternDesign</a>
+<li><a href="#org30779c9">PatternDesign</a>
 <ul>
-<li><a href="#orgaf3acc8">Observer</a></li>
-<li><a href="#org3aa0144">Factory</a></li>
-<li><a href="#org311c224">Decorator</a></li>
+<li><a href="#orgf4703ad">Observer</a></li>
+<li><a href="#org59b35ad">Factory</a></li>
+<li><a href="#org7d81566">Decorator</a></li>
+</ul>
+</li>
+<li><a href="#orga819f73">Architecture</a>
+<ul>
+<li><a href="#orgf4bd134">package</a></li>
+<li><a href="#org6478929">module</a></li>
+<li><a href="#org3485d18">project</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org5094e5a" class="outline-2">
-<h2 id="org5094e5a">print</h2>
-<div class="outline-text-2" id="text-org5094e5a">
+<div id="outline-container-org77dfccf" class="outline-2">
+<h2 id="org77dfccf">print</h2>
+<div class="outline-text-2" id="text-org77dfccf">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import "fmt"
@@ -65,9 +72,9 @@ func main() {
 </div>
 </div>
 
-<div id="outline-container-org93a8b3b" class="outline-2">
-<h2 id="org93a8b3b">time</h2>
-<div class="outline-text-2" id="text-org93a8b3b">
+<div id="outline-container-orgf20442d" class="outline-2">
+<h2 id="orgf20442d">time</h2>
+<div class="outline-text-2" id="text-orgf20442d">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import (
@@ -98,9 +105,9 @@ func main() {
 </div>
 </div>
 
-<div id="outline-container-orgfab10ed" class="outline-2">
-<h2 id="orgfab10ed">sync</h2>
-<div class="outline-text-2" id="text-orgfab10ed">
+<div id="outline-container-org85a615a" class="outline-2">
+<h2 id="org85a615a">sync</h2>
+<div class="outline-text-2" id="text-org85a615a">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import (
@@ -140,9 +147,9 @@ func count(thing string) {
 </div>
 </div>
 
-<div id="outline-container-orgdc4470b" class="outline-2">
-<h2 id="orgdc4470b">go</h2>
-<div class="outline-text-2" id="text-orgdc4470b">
+<div id="outline-container-org9152fa7" class="outline-2">
+<h2 id="org9152fa7">go</h2>
+<div class="outline-text-2" id="text-org9152fa7">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import (
@@ -192,9 +199,9 @@ tick 10
 </div>
 </div>
 
-<div id="outline-container-org5921cca" class="outline-2">
-<h2 id="org5921cca">chan</h2>
-<div class="outline-text-2" id="text-org5921cca">
+<div id="outline-container-org94c1075" class="outline-2">
+<h2 id="org94c1075">chan</h2>
+<div class="outline-text-2" id="text-org94c1075">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import "fmt"
@@ -230,9 +237,9 @@ func main() {
 </div>
 </div>
 
-<div id="outline-container-org59a328a" class="outline-2">
-<h2 id="org59a328a"><a id="ID-2bf1c325-6a98-43be-815c-a41934b02756"></a>context</h2>
-<div class="outline-text-2" id="text-org59a328a">
+<div id="outline-container-org817455c" class="outline-2">
+<h2 id="org817455c"><a id="ID-2bf1c325-6a98-43be-815c-a41934b02756"></a>context</h2>
+<div class="outline-text-2" id="text-org817455c">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -295,13 +302,13 @@ times out
 </div>
 </div>
 
-<div id="outline-container-org493cff9" class="outline-2">
-<h2 id="org493cff9">gonum</h2>
-<div class="outline-text-2" id="text-org493cff9">
+<div id="outline-container-org25a0a8a" class="outline-2">
+<h2 id="org25a0a8a">gonum</h2>
+<div class="outline-text-2" id="text-org25a0a8a">
 </div>
-<div id="outline-container-org66ffd43" class="outline-3">
-<h3 id="org66ffd43">Test example</h3>
-<div class="outline-text-3" id="text-org66ffd43">
+<div id="outline-container-orgef85e1a" class="outline-3">
+<h3 id="orgef85e1a">Test example</h3>
+<div class="outline-text-3" id="text-orgef85e1a">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -365,9 +372,9 @@ func (v column) RawVector() blas64.Vector {
 </div>
 </div>
 
-<div id="outline-container-org49f4093" class="outline-3">
-<h3 id="org49f4093">NewDense</h3>
-<div class="outline-text-3" id="text-org49f4093">
+<div id="outline-container-org557057f" class="outline-3">
+<h3 id="org557057f">NewDense</h3>
+<div class="outline-text-3" id="text-org557057f">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -386,9 +393,9 @@ func main() {
 </div>
 </div>
 
-<div id="outline-container-org2a1296c" class="outline-3">
-<h3 id="org2a1296c">make</h3>
-<div class="outline-text-3" id="text-org2a1296c">
+<div id="outline-container-orgf4607ed" class="outline-3">
+<h3 id="orgf4607ed">make</h3>
+<div class="outline-text-3" id="text-orgf4607ed">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -417,9 +424,9 @@ func main() {
 </div>
 </div>
 
-<div id="outline-container-orgafe920f" class="outline-3">
-<h3 id="orgafe920f">gonum execute</h3>
-<div class="outline-text-3" id="text-orgafe920f">
+<div id="outline-container-orge86eeba" class="outline-3">
+<h3 id="orge86eeba">gonum execute</h3>
+<div class="outline-text-3" id="text-orge86eeba">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="font-weight: bold;">cd</span> babel
 go mod init babel-go
@@ -440,13 +447,13 @@ false
 </div>
 </div>
 
-<div id="outline-container-org616188b" class="outline-2">
-<h2 id="org616188b">PatternDesign</h2>
-<div class="outline-text-2" id="text-org616188b">
+<div id="outline-container-org30779c9" class="outline-2">
+<h2 id="org30779c9">PatternDesign</h2>
+<div class="outline-text-2" id="text-org30779c9">
 </div>
-<div id="outline-container-orgaf3acc8" class="outline-3">
-<h3 id="orgaf3acc8">Observer</h3>
-<div class="outline-text-3" id="text-orgaf3acc8">
+<div id="outline-container-orgf4703ad" class="outline-3">
+<h3 id="orgf4703ad">Observer</h3>
+<div class="outline-text-3" id="text-orgf4703ad">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -543,9 +550,9 @@ func main() {
 </div>
 </div>
 </div>
-<div id="outline-container-org3aa0144" class="outline-3">
-<h3 id="org3aa0144">Factory</h3>
-<div class="outline-text-3" id="text-org3aa0144">
+<div id="outline-container-org59b35ad" class="outline-3">
+<h3 id="org59b35ad">Factory</h3>
+<div class="outline-text-3" id="text-org59b35ad">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -739,9 +746,9 @@ main.FileSystem
 </div>
 </div>
 
-<div id="outline-container-org311c224" class="outline-3">
-<h3 id="org311c224">Decorator</h3>
-<div class="outline-text-3" id="text-org311c224">
+<div id="outline-container-org7d81566" class="outline-3">
+<h3 id="org7d81566">Decorator</h3>
+<div class="outline-text-3" id="text-org7d81566">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -843,9 +850,51 @@ divide2022/07/12 took=922ns, v=500000, result=250000
 </div>
 </div>
 </div>
+
+
+<div id="outline-container-orga819f73" class="outline-2">
+<h2 id="orga819f73">Architecture</h2>
+<div class="outline-text-2" id="text-orga819f73">
+</div>
+<div id="outline-container-orgf4bd134" class="outline-3">
+<h3 id="orgf4bd134">package</h3>
+<div class="outline-text-3" id="text-orgf4bd134">
+<p>
+each folder can only has one named package,
+but it can be shared for many files, also for the test file
+</p>
+</div>
+</div>
+<div id="outline-container-org6478929" class="outline-3">
+<h3 id="org6478929">module</h3>
+<div class="outline-text-3" id="text-org6478929">
+<p>
+it is the same designed as project, but only without main function and main package.
+it can be used by local package, module or project, but has to be replaced
+</p>
+<pre class="example">
+go mod edit -replace modulename=folder  
+</pre>
+<ul class="org-ul">
+<li>modul name is defined in the go.mod file, and also at last one package should named as it</li>
+<li>floder can be relative path, or absolute path in the reference package, module or project.</li>
+<li>can be called from gore, but first :import</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3485d18" class="outline-3">
+<h3 id="org3485d18">project</h3>
+<div class="outline-text-3" id="text-org3485d18">
+<ul class="org-ul">
+<li>the same with module, with main package and main func, can be call as go run xxx.go</li>
+<li>can not  be called from gore for now (29.07.2022)</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2022-07-14 Thu 14:44</p>
+<p class="date">Created: 2022-08-03 Wed 20:23</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
 <p class="validation"></p>
 </div>
