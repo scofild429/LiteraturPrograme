@@ -73,6 +73,40 @@ java -jar  xxx.jar
 java -cp  执行jar包,须要指定启动类的入口，程序没有指定main class 的入口
 java -cp /target/xxxx.jar  com.mycompany.app.App
 
+** IDEA generate jar 
+add all plugins to project
+#+begin_src
+<project>
+      .........
+      <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.3</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+#+end_src
+
+File -> Project structur -> Artifacts -> +
+Build -> Build Artifacts -> build
+
+
 * Java programmierung
 ** Sammlungen
 基本数据类型传数值. 而引用传地址

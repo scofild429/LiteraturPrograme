@@ -1,22 +1,113 @@
 #+TITLE:  Go
 #+OPTIONS: num:nil
 #+STARTUP: overview
-* print
-#+begin_src go :results output :exports both
+* Go Features
+** Generics
+#+begin_src go :exports both :results output
   package main
   import "fmt"
+  func Sum[V int64 | float64](m ...V) V {
+          var s V
+          for _,v := range m {
+                  s += v
+          }
+          return s
+  }
   func main() {
-      a := [...]int{1,2,3,4,5}
-      b := a
-      b[1] = 50
-      fmt.Println(a)
-      fmt.Println(b)
+          fmt.Println(Sum([]int64{1,2,3,4,5}...))
+          fmt.Println(Sum(int64(1),int64(2),int64(3),int64(4)))
+          fmt.Println(Sum(1.1, 2.2, 3.3, 4.4))
+  }  
+#+end_src
+
+#+RESULTS:
+
+#+begin_src go :exports both :results output :tangle  ./babel/go_generics_constraints.go
+  package main
+  import (
+          "fmt"
+          "golang.org/x/exp/constraints"
+  )
+  func Sum[V constraints.Float | constraints.Integer](m ...V) V {
+          var s V
+          for _,v := range m {
+                  s += v
+          }
+          return s
+  }
+  func main() {
+          fmt.Println(Sum([]int64{1,2,3,4,5}...))
+          fmt.Println(Sum(1,2,3,4))
+          fmt.Println(Sum(1.1, 2.2, 3.3, 4.4))
+          fmt.Println(Sum(uint32(2), uint32(4)))
+  }  
+#+end_src
+
+#+begin_src sh :results output :exports both
+  cd babel
+  go mod init go-generics-constraints
+  go mod tidy
+  go build go_generics_constraints.go
+  rm main.go
+  rm go.mod
+  rm go.sum
+  ./go_generics_constraints
+#+end_src
+
+#+RESULTS:
+: 15
+: 10
+: 11
+: 6
+
+** Strings
+#+begin_src go :exports both :results output
+  package main
+  import (
+          "fmt"
+          "strings"
+  )
+  func main() {
+          cut := func(sep string) {
+                  s:= "hello|world"
+                  before, after, found := strings.Cut(s, sep)
+                  fmt.Printf("Cut(%q, %q): %q, %q, %v\n", s, sep, before, after, found)
+          }
+          cut("|")
+          cut("hello")
+          cut("nothing")
   }
 #+end_src
 
 #+RESULTS:
-: [1 2 3 4 5]
-: [1 50 3 4 5]
+: Cut("hello|world", "|"): "hello", "world", true
+: Cut("hello|world", "hello"): "", "|world", true
+: Cut("hello|world", "nothing"): "hello|world", "", false
+
+* Array
+#+begin_src go :results output :exports both
+  package main
+  import (
+          "fmt"
+  )
+  func test(array []int64) {
+          for i:= 0; i< 3; i++{
+                  array[i] = 10
+          }
+  }
+
+  func main() {
+          start := make([]int64, 3)
+          test(start)
+          fmt.Println(start)
+  }
+
+
+
+#+end_src
+
+#+RESULTS:
+: [10 10 10]
 
 * time
 #+begin_src go :results output :exports both
@@ -154,9 +245,6 @@ tick 10
 #+end_src
 
 #+RESULTS:
-: 0 true
-: 1 true
-: 0 false
 
 * context
 :PROPERTIES:
@@ -729,6 +817,86 @@ main.FileSystem
 : divide2022/07/12 took=3.475µs, v=200000, result=100000
 : divide2022/07/12 took=1.724µs, v=500000, result=250000
 : divide2022/07/12 took=922ns, v=500000, result=250000
+
+** 单例模式
+#+begin_src go :results output :exports both
+  package main
+
+  import (
+          "fmt"
+  )
+
+  type User struct {
+          Name       string
+          Occupation string
+  }
+
+
+  type Moli interface {
+          Changename()
+          ChangeOccupation()
+  }
+
+  func  CreateUser() (Moli,  *User){
+          var moli Moli
+          u := new(User)
+          moli = u
+          return moli, u
+  }
+
+  func (u *User) Changename (){
+          u.Name = "Joke"
+  }
+
+
+  func (u *User) ChangeOccupation (){
+          u.Occupation = "driver"
+  }
+
+
+  func changeName(u User) {
+          u.Name = "Newi"
+  }
+
+
+  func changeOccupation(u User) {
+          u.Occupation = "driver"
+  }
+
+  func main() {
+          M, user := CreateUser()
+          fmt.Println("should be empty", user)
+
+          user.Name = "kji"
+          fmt.Println("Directly can change the name", *user)
+
+          user.Occupation = "Nothing"
+          fmt.Println("Directly can change the occupation", *user)
+	
+          changeName(*user)
+          fmt.Println("In function, indieictly can not be changed", *user)
+
+          changeOccupation (*user)
+          fmt.Println("In function, idieictly can not be changed", *user)
+
+          M.Changename()
+          fmt.Println("In methode, indieictly can be changed its name", *user)
+
+          M.ChangeOccupation()
+          fmt.Println("In methode,  indieictly can be changed its occupation", *user)
+
+  }
+
+#+end_src
+
+#+RESULTS:
+: should be empty &{ }
+: Directly can change the name {kji }
+: Directly can change the occupation {kji Nothing}
+: In function, indieictly can not be changed {kji Nothing}
+: In function, idieictly can not be changed {kji Nothing}
+: In methode, indieictly can be changed its name {Joke Nothing}
+: In methode,  indieictly can be changed its occupation {Joke driver}
 
 * Architecture
 ** package

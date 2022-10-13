@@ -3,6 +3,11 @@
 #+startup: content
 * Install
 ** ISO installation
+|-------+---------------------|
+| lsblk | list all partiation |
+| mkfs  | format partiation   |
+| fdisk | manage partiation   |
+|-------+---------------------|
 #+begin_src 
 lsblk
 sudo umount....
@@ -21,7 +26,6 @@ sudo dd if=/dev/nvm..p1 of=/dev/sda1
 sudo dd if=/dev/nvm..p3 of=/dev/sda2
 
 
-
 from windows: Rufus
 Disk can delete all partation in linux 
 lsblk -f
@@ -30,7 +34,13 @@ from Linux:
 sudo dd if=~/Downloads/ubuntu-20.04.3-desktop-amd64.iso of=/dev/sda bs=4M status=progress && sync
 #+end_src
 
-** backup and restore
+** backup system
+one step to backup in USB
+#+begin_src
+ sudo dd if=/dev/nvmxx2 of=/dev/sda2 bs=4M status=progress && sync  
+#+end_src
+
+old setting
 insert SSD usb
 $ lsblk
 : check the partition of whole disk
@@ -205,6 +215,13 @@ only root user can call this command
 alias freemem="sync; echo 3 > /proc/sys/vm/drop_caches && swapoff -a && swapon -a && printf '\n%s\n' 'Ram-cache and Swap Cleared' "
 #+end_src
 * commands
+** terminal
+S-C-c : can copy out from terminal
+S-C-v : can paste into terminal
+C-h : backwards to delete
+C-j : enter
+C-k : cut after
+C-u : cut before
 ** sammary
 #+begin_src
 fdisk -l
@@ -511,8 +528,12 @@ The file can be found in Download folder of each devices
 #+end_src
 
 ** gs
-remove active content from pdf 
+*** remove active content from pdf 
 gs -dNOPAUSE -sDEVICE=pdfwrite -sOUTPUTFILE=CV.pdf -dBATCH CV.pdf
+
+*** compress
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH -sOutputFile=compressed_PDF_file.pdf input_PDF_file.pdf
+
 ** mpv player
 sudo apt install mpv
 
@@ -873,7 +894,6 @@ sed -rn '/2\/1/s/00/**/pg' test2.csv
 - test2.csv: input file
 
 sed  's/        //pg' test2.csv 
-
 
 
 

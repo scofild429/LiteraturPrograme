@@ -1,12 +1,9 @@
 package main
 
-
 import (
         "fmt"
-
         mpi "github.com/sbromberger/gompi"
 )
-
 func main() {
         mpi.Start(true)
         fmt.Println()

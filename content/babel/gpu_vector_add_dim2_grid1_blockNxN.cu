@@ -11,25 +11,18 @@ __global__ void add(int *a, int *b, int *c){
 }
 int main()
 {
-  float a[N][N], b[N][N], out[N][N];
-  float d_a[N][N], d_b[N][N], d_out[N][N]; 
-
-  for(int i = 0; i < N; i++){
-    for (int j = 0; j < N; j++){
-      a[i][j] = 1.0f;
-      b[i][j] = 2.0f;
+  int a[N], b[N], c[N], i;
+  int *dev_a, *dev_b, *dev_c;
+  cudaMalloc((void**)&dev_c, N*sizeof(int));
+  cudaMalloc((void**)&dev_b, N*sizeof(int));
+  cudaMalloc((void**)&dev_a, N*sizeof(int));
+  for(i=0; i < N; i++)
+    {
+      a[i] = 1;
+      b[i] = 2;
     }
-  }
-
-  // Allocate device memory 
-  cudaMalloc((void**)&d_a, sizeof(float) * N *N);
-  cudaMalloc((void**)&d_b, sizeof(float) * N * N);
-  cudaMalloc((void**)&d_out, sizeof(float) * N * N);
-
-  // Transfer data from host to device memory
-  cudaMemcpy(d_a, a, sizeof(float) * N * N, cudaMemcpyHostToDevice);
-  cudaMemcpy(d_b, b, sizeof(float) * N * N, cudaMemcpyHostToDevice);
-
+  cudaMemcpy(dev_a, a, N*sizeof(int), cudaMemcpyHostToDevice);
+  cudaMemcpy(dev_b, b, N*sizeof(int), cudaMemcpyHostToDevice);
   dim3 BlockPerGrid(1, 1, 1);
   dim3 ThreadsPerBlock(128, 4, 1);
   add <<< BlockPerGrid, ThreadsPerBlock >>>(dev_a, dev_b, dev_c);

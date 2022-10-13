@@ -1,7 +1,361 @@
 #+TITLE: Data Science and Cloud Service Computing
 #+OPTIONS: num:t
 #+STARTUP: overview
-* Big data
+* Hadoop
+** one node installation
+*** .bashrc
+#+begin_src
+export HADOOP_HOME=/home/cloud/hadoop-3.3.1
+export HADOOP_INSTALL=$HADOOP_HOME
+export HADOOP_MAPRED_HOME=$HADOOP_HOME
+export HADOOP_COMMON_HOME=$HADOOP_HOME
+export HADOOP_HDFS_HOME=$HADOOP_HOME
+export YARN_HOME=$HADOOP_HOME
+export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
+export HADOOP_OPTS"-Djava.library.path=$HADOOP_HOME/lib/nativ"
+#+end_src
+
+*** $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+append to end
+#+begin_src
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+#+end_src
+
+*** $HADOOP_HOME/etc/hadoop/core-site.xml
+in configuration
+#+begin_src
+   <property>
+        <name>hadoop.tmp.dir</name>
+        <value>/home/cloud/tmpdata</value>
+        <description>A base for other temporary directories.</description>
+    </property>
+    <property>
+        <name>fs.default.name</name>
+        <value>hdfs://localhost:9000</value>
+        <description>The name of the default file system></description>
+    </property>
+#+end_src
+
+*** $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+in configuration
+#+begin_src
+<property>
+  <name>dfs.data.dir</name>
+  <value>/home/cloud/dfsdata/namenode</value>
+</property>
+<property>
+  <name>dfs.data.dir</name>
+  <value>/home/cloud/dfsdata/datanode</value>
+</property>
+<property>
+  <name>dfs.replication</name>
+  <value>1</value>
+</property>
+#+end_src
+
+*** $HADOOP_HOME/etc/hadoop/mapred-site.xml
+in configuration
+#+begin_src
+<property>
+  <name>mapreduce.framework.name</name>
+  <value>yarn</value>
+</property>
+#+end_src
+
+*** $HADOOP_HOME/etc/hadoop/yarn-site.xml
+#+begin_src
+<property>
+  <name>yarn.nodemanager.aux-services</name>
+  <value>mapreduce_shuffle</value>
+</property>
+<property>
+  <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+  <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.hostname</name>
+  <value>127.0.0.1</value>
+</property>
+<property>
+  <name>yarn.acl.enable</name>
+  <value>0</value>
+</property>
+<property>
+  <name>yarn.nodemanager.env-whitelist</name>
+  <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PERPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
+</property>
+#+end_src
+
+*** init nodename
+#+begin_src
+cd hadoop-3---
+hdfs namenode -format
+cd sbin
+./start-dfs.sh
+./start-yarn.sh
+jps
+#+end_src
+
+** 3 node installation
+*** GWDG deployment
+|----------------+-------------+-----------------+-------------------|
+| software       | .1          | .10             | .19               |
+|----------------+-------------+-----------------+-------------------|
+| hadoop         | hadoop1     | hadoop2         | hadoop3           |
+|----------------+-------------+-----------------+-------------------|
+| hostname       | project     | q3lb            | q3l               |
+|----------------+-------------+-----------------+-------------------|
+| HDFS Namenode  | NameNode    |                 | SecondaryNameNode |
+| HDFS DataNode  | DataNode    | DataNode        | DataNode          |
+|----------------+-------------+-----------------+-------------------|
+| YARN ResourceM |             | ResourceManager |                   |
+| YARN NodeM     | NodeManager | NodeManager     | NodeManager       |
+|----------------+-------------+-----------------+-------------------|
+*** .bashrc
+#+begin_src
+export HADOOP_HOME=/home/cloud/hadoop-3.3.1
+export HADOOP_INSTALL=$HADOOP_HOME
+export HADOOP_MAPRED_HOME=$HADOOP_HOME
+export HADOOP_COMMON_HOME=$HADOOP_HOME
+export HADOOP_HDFS_HOME=$HADOOP_HOME
+export YARN_HOME=$HADOOP_HOME
+export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
+export HADOOP_OPTS"-Djava.library.path=$HADOOP_HOME/lib/nativ"
+#+end_src
+
+*** $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+append to end
+#+begin_src
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+#+end_src
+*** $HADOOP_HOME/etc/hadoop/core-site.xml
+in configuration
+
+#+begin_src
+   <property>
+        <name>hadoop.tmp.dir</name>
+        <value>/home/cloud/hadoop-3.3.1/data</value>
+        <description>A base for other temporary directories.</description>
+    </property>
+    <property>
+        <name>fs.default.name</name>
+        <value>hdfs://hostname:9000</value> watch out for inter floatip for localhost 
+        <description>The name of the default file system></description>
+    </property>
+#+end_src
+*** $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+in configuration
+#+begin_src
+<property>
+  <name>dfs.data.dir</name>
+  <value>/home/cloud/hahoop-3.3.1/dfsdata/namenode</value>
+</property>
+<property>
+  <name>dfs.data.dir</name>
+  <value>/home/cloud/hahoop-3.3.1/dfsdata/datanode</value>
+</property>
+<property>
+  <name>dfs.replication</name>
+  <value>3</value>
+</property>
+<property>
+  <name>dfs.namenode.http-address</name>
+  <value>*inter floatip:9870*</value>
+</property>
+<property>
+  <name>dfs.namenode.secondary.http-address</name>
+  <value>inter floatip:9868</value>
+</property>
+
+
+
+#+end_src
+*** $HADOOP_HOME/etc/hadoop/yarn-site.xml
+#+begin_src
+<property>
+  <name>yarn.nodemanager.aux-services</name>
+  <value>mapreduce_shuffle</value>
+</property>
+<property>
+  <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+  <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.hostname</name>
+  <value>*inter floatip*</value>
+</property>
+<property>
+  <name>yarn.acl.enable</name>
+  <value>0</value>
+</property>
+<property>
+  <name>yarn.nodemanager.env-whitelist</name>
+  <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PERPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
+</property>
+#+end_src
+*** $HADOOP_HOME/etc/hadoop/mapred-site.xml
+in configuration
+#+begin_src
+<property>
+  <name>mapreduce.framework.name</name>
+  <value>yarn</value>
+</property>
+#+end_src
+*** $HADOOP_HOME/etc/hadoop/wores
+gwdg01
+gwdg10
+gwdg19
+*** init nodename
+#+begin_src
+cd hadoop-3---
+xsycn etc/hadoop
+hdfs namenode -format
+cd sbin
+./start-dfs.sh
+./start-yarn.sh
+jps
+#+end_src
+
+** command
+general comands
+#+begin_src 
+hdfs dfs -ls /
+hdfs dfs -chmod 777 /testFolder
+hdfs dfs -cat /tesFolder/text.txt
+hdfs dfs -get hdfspath localpath
+hdfs dfs -put localpath hdfspath
+hdfs dfsadmin -report
+hdfs fsck /
+#+end_src
+
+word example
+#+begin_src 
+hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.1.jar wordcount /input /output/
+hadoop fs -cat /output/part-r-00000
+cd output
+hadoop fs -getmerge /hpda04-2.3-output/ out
+cat out
+#+end_src
+
+** map()
+map(fun <key1, val1>) -> list(<key2, val2>)
+to a list of key-value pairs
+all elemenet in list must have the same type
+** Schuffle
+schuffle(list(<key2, val2>)) -> list(<key2, list(val2)>)
+** reduce
+reduce (fun, list(<key2, list(val2)>)) -> list(val3)
+
+** Limitation
+1, multiple map() and reduce() must be manually specified
+2, intermediary results has to be written to  the HDFS, not on memory
+iterative algorithms are not very efficient with Hadoop.
+
+* HDFS
+** descripation
+#+begin_src 
+
+Hadoop distributed file system
+Namenode vs Datanodes
+
+1, high throughout with low latency
+2, support large file
+3, locally computation in Node, less transfer zwischen Nodes
+4, resilient design for hardware failurs
+#+end_src
+** install
+tut link [[https://drive.google.com/drive/folders/1XdPbyAc9iWml0fPPNX91Yq3BRwkZAG2M]]
+#+begin_src 
+
+java
+ssh localhost(ssh-keygen -t rsa)
+edit 6 file
+./hdfs  namenode -format
+
+
+
+
+#+end_src
+* YARN
+Yet Another Resource Negotiator
+Resource Manager vs NodeManager
+Resource Manager avoid overutilization and underutilization
+The NodeManager execute tasks on the local resources
+1, Client send a requirement to Resource Manager
+2, Resource manager allocate container in Node Manager
+3, Container in Node Manager start the application Master
+4, Application Master require Resource from Resoure Manager
+5, as the required Resoure is allocated, application master start the Application
+* Spark
+** 3 node installation
+*** GWDG deployment
+|----------------+-------------+-----------------+-------------------|
+| floatip        | .1          | .10             | .19               |
+|----------------+-------------+-----------------+-------------------|
+| hostname       | gwdg01      | gwdg10          | gwdg19            |
+|----------------+-------------+-----------------+-------------------|
+| ip             | .8          | .5              | .10               |
+|----------------+-------------+-----------------+-------------------|
+| HDFS Namenode  | NameNode    |                 | SecondaryNameNode |
+| HDFS DataNode  | DataNode    | DataNode        | DataNode          |
+|----------------+-------------+-----------------+-------------------|
+| YARN ResourceM |             | ResourceManager |                   |
+| YARN NodeM     | NodeManager | NodeManager     | NodeManager       |
+|----------------+-------------+-----------------+-------------------|
+** descripation
+results do not  need to save in HDFS, it support in memory  executation.
+Resilient Distributed Datasets RDDS
+DataFrame from SparkSQL
+
+** scala
+can from binary file
+can from source file
+can from IDEA blugin
+can from spark installation
+
+** install
+*** from source
+this is a full eco system, can build a cluster by my own,
+with embended scala
+*** from pip
+my Prof can also build a eco system in pip download file, with config in  master:
+spark-submit --deploy-mode --master yarn test.py
+But I can't, I can even not find conf file in pip file for pyspark,
+if you still want to consturcte a cluster, use spark installation from source file,
+like following
+
+** single  master node configuration with
+#+begin_src sh :results output
+cat ~/Documents/spark/myown/test.py
+#+end_src
+#+RESULTS:
+ from pyspark.sql import SparkSession
+ spark = SparkSession.builder.appName("examples").getOrCreate()
+ 
+print("hello world")
+
+#+begin_src 
+cd .../spark
+./sbin/start-all
+curl localhost:8080(spark-url for master)
+./bin/spark-submit --master spark-url ./myown/test.py
+#+end_src
+test.py will be executed 
+
+#+begin_src 
+./bin/pyspark --master spark-url 
+#+end_src
+will open  a terminal with master configuration
+
+** pyspark
+#+begin_src
+cd spark
+bin/spark-submit examples/src/main/python/wordcount.py testtext.txt &> output.txt
+#+end_src
+
+* Big data lecture
 ** Association Rule Minning
 - Transaction: T, one behavior, which accomplished a lot of things(items)
   -transaction instances t,
@@ -173,7 +527,7 @@ ignore simiarity of words
 *** challages
 **** dimensionality
 **** Ambiguities
-* Sensor Fusion
+* Sensor Fusion lecture
 ** Sensor Dataverarbeitung
 Tensor Fehler, Präzision: stochastisch
 Richtigkeit: systematisch
@@ -201,8 +555,7 @@ $$ y = H x + e $$
 - $$ \frac{\partial}{\partial x}c^{T}x = \frac{\partial}{\partial x}x^{T}c  = c $$
 - $$ \frac{\partial}{\partial x}x^{T}Ax = 2 Ax $$
 - $$ \frac{\partial}{\partial x}Ax = \frac{\partial}{\partial x}x^{T}A = A $$
-
-* data analysis
+* data analysis code demo
 ** statistical mothode
 #+BEGIN_SRC python :results output
   from scipy import stats
@@ -494,346 +847,7 @@ $$ y = H x + e $$
 
 #+END_SRC
 
-* Hadoop
-** one node installation
-*** .bashrc
-#+begin_src
-export HADOOP_HOME=/home/cloud/hadoop-3.3.1
-export HADOOP_INSTALL=$HADOOP_HOME
-export HADOOP_MAPRED_HOME=$HADOOP_HOME
-export HADOOP_COMMON_HOME=$HADOOP_HOME
-export HADOOP_HDFS_HOME=$HADOOP_HOME
-export YARN_HOME=$HADOOP_HOME
-export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
-export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
-export HADOOP_OPTS"-Djava.library.path=$HADOOP_HOME/lib/nativ"
-#+end_src
-
-*** $HADOOP_HOME/etc/hadoop/hadoop-env.sh
-append to end
-#+begin_src
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-#+end_src
-
-*** $HADOOP_HOME/etc/hadoop/core-site.xml
-in configuration
-#+begin_src
-   <property>
-        <name>hadoop.tmp.dir</name>
-        <value>/home/cloud/tmpdata</value>
-        <description>A base for other temporary directories.</description>
-    </property>
-    <property>
-        <name>fs.default.name</name>
-        <value>hdfs://localhost:9000</value>
-        <description>The name of the default file system></description>
-    </property>
-#+end_src
-
-*** $HADOOP_HOME/etc/hadoop/hdfs-site.xml
-in configuration
-#+begin_src
-<property>
-  <name>dfs.data.dir</name>
-  <value>/home/cloud/dfsdata/namenode</value>
-</property>
-<property>
-  <name>dfs.data.dir</name>
-  <value>/home/cloud/dfsdata/datanode</value>
-</property>
-<property>
-  <name>dfs.replication</name>
-  <value>1</value>
-</property>
-#+end_src
-
-*** $HADOOP_HOME/etc/hadoop/mapred-site.xml
-in configuration
-#+begin_src
-<property>
-  <name>mapreduce.framework.name</name>
-  <value>yarn</value>
-</property>
-#+end_src
-
-*** $HADOOP_HOME/etc/hadoop/yarn-site.xml
-#+begin_src
-<property>
-  <name>yarn.nodemanager.aux-services</name>
-  <value>mapreduce_shuffle</value>
-</property>
-<property>
-  <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
-  <value>org.apache.hadoop.mapred.ShuffleHandler</value>
-</property>
-<property>
-  <name>yarn.resourcemanager.hostname</name>
-  <value>127.0.0.1</value>
-</property>
-<property>
-  <name>yarn.acl.enable</name>
-  <value>0</value>
-</property>
-<property>
-  <name>yarn.nodemanager.env-whitelist</name>
-  <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PERPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
-</property>
-#+end_src
-
-*** init nodename
-#+begin_src
-cd hadoop-3---
-hdfs namenode -format
-cd sbin
-./start-dfs.sh
-./start-yarn.sh
-jps
-#+end_src
-
-** 3 node installation
-*** GWDG deployment
-|----------------+-------------+-----------------+-------------------|
-| software       | .1          | .10             | .19               |
-|----------------+-------------+-----------------+-------------------|
-| hadoop         | hadoop1     | hadoop2         | hadoop3           |
-|----------------+-------------+-----------------+-------------------|
-| hostname       | project     | q3lb            | q3l               |
-|----------------+-------------+-----------------+-------------------|
-| HDFS Namenode  | NameNode    |                 | SecondaryNameNode |
-| HDFS DataNode  | DataNode    | DataNode        | DataNode          |
-|----------------+-------------+-----------------+-------------------|
-| YARN ResourceM |             | ResourceManager |                   |
-| YARN NodeM     | NodeManager | NodeManager     | NodeManager       |
-|----------------+-------------+-----------------+-------------------|
-*** .bashrc
-#+begin_src
-export HADOOP_HOME=/home/cloud/hadoop-3.3.1
-export HADOOP_INSTALL=$HADOOP_HOME
-export HADOOP_MAPRED_HOME=$HADOOP_HOME
-export HADOOP_COMMON_HOME=$HADOOP_HOME
-export HADOOP_HDFS_HOME=$HADOOP_HOME
-export YARN_HOME=$HADOOP_HOME
-export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
-export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
-export HADOOP_OPTS"-Djava.library.path=$HADOOP_HOME/lib/nativ"
-#+end_src
-
-*** $HADOOP_HOME/etc/hadoop/hadoop-env.sh
-append to end
-#+begin_src
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-#+end_src
-*** $HADOOP_HOME/etc/hadoop/core-site.xml
-in configuration
-
-#+begin_src
-   <property>
-        <name>hadoop.tmp.dir</name>
-        <value>/home/cloud/hadoop-3.3.1/data</value>
-        <description>A base for other temporary directories.</description>
-    </property>
-    <property>
-        <name>fs.default.name</name>
-        <value>hdfs://hostname:9000</value> watch out for inter floatip for localhost 
-        <description>The name of the default file system></description>
-    </property>
-#+end_src
-*** $HADOOP_HOME/etc/hadoop/hdfs-site.xml
-in configuration
-#+begin_src
-<property>
-  <name>dfs.data.dir</name>
-  <value>/home/cloud/hahoop-3.3.1/dfsdata/namenode</value>
-</property>
-<property>
-  <name>dfs.data.dir</name>
-  <value>/home/cloud/hahoop-3.3.1/dfsdata/datanode</value>
-</property>
-<property>
-  <name>dfs.replication</name>
-  <value>3</value>
-</property>
-<property>
-  <name>dfs.namenode.http-address</name>
-  <value>*inter floatip:9870*</value>
-</property>
-<property>
-  <name>dfs.namenode.secondary.http-address</name>
-  <value>inter floatip:9868</value>
-</property>
-
-
-
-#+end_src
-*** $HADOOP_HOME/etc/hadoop/yarn-site.xml
-#+begin_src
-<property>
-  <name>yarn.nodemanager.aux-services</name>
-  <value>mapreduce_shuffle</value>
-</property>
-<property>
-  <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
-  <value>org.apache.hadoop.mapred.ShuffleHandler</value>
-</property>
-<property>
-  <name>yarn.resourcemanager.hostname</name>
-  <value>*inter floatip*</value>
-</property>
-<property>
-  <name>yarn.acl.enable</name>
-  <value>0</value>
-</property>
-<property>
-  <name>yarn.nodemanager.env-whitelist</name>
-  <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PERPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
-</property>
-#+end_src
-*** $HADOOP_HOME/etc/hadoop/mapred-site.xml
-in configuration
-#+begin_src
-<property>
-  <name>mapreduce.framework.name</name>
-  <value>yarn</value>
-</property>
-#+end_src
-*** $HADOOP_HOME/etc/hadoop/wores
-gwdg01
-gwdg10
-gwdg19
-*** init nodename
-#+begin_src
-cd hadoop-3---
-xsycn etc/hadoop
-hdfs namenode -format
-cd sbin
-./start-dfs.sh
-./start-yarn.sh
-jps
-#+end_src
-
-** command
-general comands
-#+begin_src 
-hdfs dfs -ls /
-hdfs dfs -chmod 777 /testFolder
-hdfs dfs -cat /tesFolder/text.txt
-hdfs dfs -get hdfspath localpath
-hdfs dfs -put localpath hdfspath
-hdfs dfsadmin -report
-hdfs fsck /
-#+end_src
-
-word example
-#+begin_src 
-hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.1.jar wordcount /input /output/
-hadoop fs -cat /output/part-r-00000
-cd output
-hadoop fs -getmerge /hpda04-2.3-output/ out
-cat out
-#+end_src
-
-** map()
-map(fun <key1, val1>) -> list(<key2, val2>)
-to a list of key-value pairs
-all elemenet in list must have the same type
-** Schuffle
-schuffle(list(<key2, val2>)) -> list(<key2, list(val2)>)
-** reduce
-reduce (fun, list(<key2, list(val2)>)) -> list(val3)
-
-** Limitation
-1, multiple map() and reduce() must be manually specified
-2, intermediary results has to be written to  the HDFS, not on memory
-iterative algorithms are not very efficient with Hadoop.
-
-* HDFS
-** descripation
-Hadoop distributed file system
-Namenode vs Datanodes
-
-1, high throughout with low latency
-2, support large file
-3, locally computation in Node, less transfer zwischen Nodes
-4, resilient design for hardware failurs
-
-* YARN
-Yet Another Resource Negotiator
-Resource Manager vs NodeManager
-Resource Manager avoid overutilization and underutilization
-The NodeManager execute tasks on the local resources
-1, Client send a requirement to Resource Manager
-2, Resource manager allocate container in Node Manager
-3, Container in Node Manager start the application Master
-4, Application Master require Resource from Resoure Manager
-5, as the required Resoure is allocated, application master start the Application
-* Spark
-** 3 node installation
-*** GWDG deployment
-|----------------+-------------+-----------------+-------------------|
-| floatip        | .1          | .10             | .19               |
-|----------------+-------------+-----------------+-------------------|
-| hostname       | gwdg01      | gwdg10          | gwdg19            |
-|----------------+-------------+-----------------+-------------------|
-| ip             | .8          | .5              | .10               |
-|----------------+-------------+-----------------+-------------------|
-| HDFS Namenode  | NameNode    |                 | SecondaryNameNode |
-| HDFS DataNode  | DataNode    | DataNode        | DataNode          |
-|----------------+-------------+-----------------+-------------------|
-| YARN ResourceM |             | ResourceManager |                   |
-| YARN NodeM     | NodeManager | NodeManager     | NodeManager       |
-|----------------+-------------+-----------------+-------------------|
-** descripation
-results do not  need to save in HDFS, it support in memory  executation.
-Resilient Distributed Datasets RDDS
-DataFrame from SparkSQL
-
-** scala
-can from binary file
-can from source file
-can from IDEA blugin
-can from spark installation
-
-** install
-*** from source
-this is a full eco system, can build a cluster by my own,
-with embended scala
-*** from pip
-my Prof can also build a eco system in pip download file, with config in  master:
-spark-submit --deploy-mode --master yarn test.py
-But I can't, I can even not find conf file in pip file for pyspark,
-if you still want to consturcte a cluster, use spark installation from source file,
-like following
-
-** single  master node configuration with
-#+begin_src sh :results output
-cat ~/Documents/spark/myown/test.py
-#+end_src
-#+RESULTS:
- from pyspark.sql import SparkSession
- spark = SparkSession.builder.appName("examples").getOrCreate()
- 
-print("hello world")
-
-#+begin_src 
-cd .../spark
-./sbin/start-all
-curl localhost:8080(spark-url for master)
-./bin/spark-submit --master spark-url ./myown/test.py
-#+end_src
-test.py will be executed 
-
-#+begin_src 
-./bin/pyspark --master spark-url 
-#+end_src
-will open  a terminal with master configuration
-
-** pyspark
-#+begin_src
-cd spark
-bin/spark-submit examples/src/main/python/wordcount.py testtext.txt &> output.txt
-#+end_src
-
-* High performance Data Analysis
+* High performance Data Analysis lecture
 ** concepts
 High performance Data Analysis:
 with parallel processing to quickly find the insights from extremely large data sets
@@ -2487,7 +2501,7 @@ MongoDB
 : switched to db testdatabase
 : true
 
-* Paralle compuation
+* Paralle compuation lecture
 ** performance
 ***  Andel's law: 
 $$ S_{total} = \frac{1}{1-p+\frac{p}{s}} $$
@@ -2507,7 +2521,6 @@ all $P_{p}$ is changed task, such as 70% task doubled, will be 1.4
 $$ E = \frac{S}{P}$$
 
 $$ S = \frac{T_{s}}{T_{p}} = \frac{n}{\frac{n}{p}+ \log_{2} p}$$
-
 
 ** Chap1: introduction
 *** Von Nroven
@@ -2555,7 +2568,7 @@ $$E = \frac{S}{p}$$
 *** Gustafon low
 $$ S_{p} = \frac{T_{serial} -p T_{paralle}}{T_{seria} + T_{parallel}}$$
 
-* Cloud computation
+* Cloud computation lecture
 ** Platform Virtualization
 *** Defination of Virtualization
 the processes of creating software-based version of resources.

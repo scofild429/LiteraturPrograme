@@ -83,6 +83,7 @@ docker rm Did/Dname
   perhaps some none name image should also be rm
 * Singularity
 ** build [sandbox]
+#+begin_src 
 build  target source
 source can be singularityfile, dockerhubname, online resource,  sandbox simg file, singularity sif file
 
@@ -95,6 +96,7 @@ sudo singularity build --sandbox singularity.simg docker://dockerhubname
 
 
 sudo singularity shell --writable singularityfile.simg
+#+end_src
 
 * C/C++ with OpenMP 
 ** src compile config
@@ -818,7 +820,7 @@ mpirun --host si-u20:8
 #+RESULTS:
 : I am MPI process 0.
 
-** hello world
+** hello world of processor 
 #+begin_src C :results output :exports both
   #include <mpi.h>
   #include <stdio.h>
@@ -977,6 +979,40 @@ MPI process 3 in global communicator has now rank 0 in new communicator.
 MPI processes 3 and 4 are in the same new communicator.
 MPI processes 0 and 1 and 2 are in the same new communicator.
 #+end_example
+
+** AllReduce
+#+begin_src C :results output :exports output :tangle ./babel/mpi_comm_allreduce.c
+int main(int argc, char* argv[])
+{
+    MPI_Init(&argc, &argv);
+ 
+    // Get the size of the communicator
+    int size = 0;
+    MPI_Comm_size(MPI_COMM_WORLD, &size);
+    if(size != 4)
+    {
+        printf("This application is meant to be run with 4 MPI processes.\n");
+        MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
+    }
+ 
+    // Get my rank
+    int my_rank;
+    MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
+ 
+    // Each MPI process sends its rank to reduction, root MPI process collects the result
+    int reduction_result = 0;
+    MPI_Allreduce(&my_rank, &reduction_result, 1, MPI_INT, MPI_SUM, MPI_COMM_WORLD);
+ 
+    printf("[MPI Process %d] The sum of all ranks is %d.\n", my_rank, reduction_result);
+ 
+    MPI_Finalize();
+ 
+    return EXIT_SUCCESS;
+}
+  
+#+end_src
+
+#+RESULTS:
 
 * Python
 ** Multi Thread
@@ -1774,13 +1810,10 @@ newComm.Rank() is : 0
 ** SendInt32 && RecvInt32
 #+begin_src go :results output :exports both :tangle ./babel/go_mpi_SendInt32.go
   package main
-
   import (
           "fmt"
-
           mpi "github.com/sbromberger/gompi"
   )
-
   func main() {
           mpi.Start(true)
           fmt.Println()
@@ -1945,8 +1978,8 @@ newComm.Rank() is : 0
           fmt.Println()
           var ranks []int
           newComm := mpi.NewCommunicator(ranks)
-          var dest []int64 = []int64{0}
-          var send []int64 = []int64{10 * int64(newComm.Rank())}
+          var dest []int64 = []int64{0, 0}
+          var send []int64 = []int64{20 * int64(newComm.Rank()), 2}
           newComm.AllreduceInt64s(dest, send, mpi.OpSum, 0)
           if newComm.Rank() == 0 {
                   fmt.Println(dest)
@@ -1956,8 +1989,12 @@ newComm.Rank() is : 0
 #+end_src
 #+begin_src sh :results output :exports both
   cd babel
+  go mod init go_mpi_AllreduceInt64s 
+  go mod tidy
   go build ./go_mpi_AllreduceInt64s.go
   mpirun -n 4 ./go_mpi_AllreduceInt64s
+  rm go.mod
+  rm go.sum
 
 #+end_src
 
@@ -1966,7 +2003,11 @@ newComm.Rank() is : 0
 : 
 : 
 : 
-: [60]
+: [120 8]
+
+
+
+
 
 ** BcastInt64s
 #+begin_src go :tangle ./babel/go_mpi_BcastInt64s.go
