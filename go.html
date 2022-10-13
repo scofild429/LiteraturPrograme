@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-08-05 Fri 08:15 -->
+<!-- 2022-10-13 Thu 22:58 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Go</title>
@@ -17,64 +17,180 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org209b5a3">print</a></li>
-<li><a href="#org741fe93">time</a></li>
-<li><a href="#org850e719">sync</a></li>
-<li><a href="#orge43ffbd">go</a></li>
-<li><a href="#org0445488">chan</a></li>
-<li><a href="#orgc3e02bb">context</a></li>
-<li><a href="#orgafc6867">gonum</a>
+<li><a href="#orgbf08b2a">Go Features</a>
 <ul>
-<li><a href="#org91834a1">Test example</a></li>
-<li><a href="#org824ffd2">NewDense</a></li>
-<li><a href="#org0ace4e0">make</a></li>
-<li><a href="#org6ec96d7">gonum execute</a></li>
+<li><a href="#orgd7e784e">Generics</a></li>
+<li><a href="#orga76e38b">Strings</a></li>
 </ul>
 </li>
-<li><a href="#org3930c9f">PatternDesign</a>
+<li><a href="#org3d81d76">Array</a></li>
+<li><a href="#org9b15d33">time</a></li>
+<li><a href="#org8cee610">sync</a></li>
+<li><a href="#org1e9abc9">go</a></li>
+<li><a href="#org081c539">chan</a></li>
+<li><a href="#orgea2cbeb">context</a></li>
+<li><a href="#org25b90ca">gonum</a>
 <ul>
-<li><a href="#org83f2070">Observer</a></li>
-<li><a href="#org62a2ebe">Factory</a></li>
-<li><a href="#orga3b2e18">Decorator</a></li>
+<li><a href="#org4e0292e">Test example</a></li>
+<li><a href="#orge7212fb">NewDense</a></li>
+<li><a href="#org0726660">make</a></li>
+<li><a href="#org9e4d34f">gonum execute</a></li>
 </ul>
 </li>
-<li><a href="#org3a512c3">Architecture</a>
+<li><a href="#org7e5e0e3">PatternDesign</a>
 <ul>
-<li><a href="#org9502393">package</a></li>
-<li><a href="#org034d5e1">module</a></li>
-<li><a href="#org69705c5">project</a></li>
+<li><a href="#org3d2e6bc">Observer</a></li>
+<li><a href="#orgbce20ca">Factory</a></li>
+<li><a href="#orgf2aaba9">Decorator</a></li>
+<li><a href="#org0d6ecfc">单例模式</a></li>
+</ul>
+</li>
+<li><a href="#org64ac6d6">Architecture</a>
+<ul>
+<li><a href="#orgdfeca05">package</a></li>
+<li><a href="#orgf3abd23">module</a></li>
+<li><a href="#org99cc9d7">project</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org209b5a3" class="outline-2">
-<h2 id="org209b5a3">print</h2>
-<div class="outline-text-2" id="text-org209b5a3">
+<div id="outline-container-orgbf08b2a" class="outline-2">
+<h2 id="orgbf08b2a">Go Features</h2>
+<div class="outline-text-2" id="text-orgbf08b2a">
+</div>
+<div id="outline-container-orgd7e784e" class="outline-3">
+<h3 id="orgd7e784e">Generics</h3>
+<div class="outline-text-3" id="text-orgd7e784e">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import "fmt"
+func Sum[V int64 | float64](m ...V) V {
+	var s V
+	for _,v := range m {
+		s += v
+	}
+	return s
+}
 func main() {
-    a := [...]int{1,2,3,4,5}
-    b := a
-    b[1] = 50
-    fmt.Println(a)
-    fmt.Println(b)
+	fmt.Println(Sum([]int64{1,2,3,4,5}...))
+	fmt.Println(Sum(int64(1),int64(2),int64(3),int64(4)))
+	fmt.Println(Sum(1.1, 2.2, 3.3, 4.4))
+}  
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-go">package main
+import (
+	"fmt"
+	"golang.org/x/exp/constraints"
+)
+func Sum[V constraints.Float | constraints.Integer](m ...V) V {
+	var s V
+	for _,v := range m {
+		s += v
+	}
+	return s
+}
+func main() {
+	fmt.Println(Sum([]int64{1,2,3,4,5}...))
+	fmt.Println(Sum(1,2,3,4))
+	fmt.Println(Sum(1.1, 2.2, 3.3, 4.4))
+	fmt.Println(Sum(uint32(2), uint32(4)))
+}  
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="font-weight: bold;">cd</span> babel
+go mod init go-generics-constraints
+go mod tidy
+go build go_generics_constraints.go
+rm main.go
+rm go.mod
+rm go.sum
+./go_generics_constraints
+</pre>
+</div>
+
+<pre class="example">
+15
+10
+11
+6
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orga76e38b" class="outline-3">
+<h3 id="orga76e38b">Strings</h3>
+<div class="outline-text-3" id="text-orga76e38b">
+<div class="org-src-container">
+<pre class="src src-go">package main
+import (
+	"fmt"
+	"strings"
+)
+func main() {
+	cut := func(sep string) {
+		s:= "hello|world"
+		before, after, found := strings.Cut(s, sep)
+		fmt.Printf("Cut(%q, %q): %q, %q, %v\n", s, sep, before, after, found)
+	}
+	cut("|")
+	cut("hello")
+	cut("nothing")
 }
 </pre>
 </div>
 
 <pre class="example">
-[1 2 3 4 5]
-[1 50 3 4 5]
+Cut("hello|world", "|"): "hello", "world", true
+Cut("hello|world", "hello"): "", "|world", true
+Cut("hello|world", "nothing"): "hello|world", "", false
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3d81d76" class="outline-2">
+<h2 id="org3d81d76">Array</h2>
+<div class="outline-text-2" id="text-org3d81d76">
+<div class="org-src-container">
+<pre class="src src-go">package main
+import (
+	"fmt"
+)
+func test(array []int64) {
+	for i:= 0; i&lt; 3; i++{
+		array[i] = 10
+	}
+}
+
+func main() {
+	start := make([]int64, 3)
+	test(start)
+	fmt.Println(start)
+}
+
+
+
+</pre>
+</div>
+
+<pre class="example">
+[10 10 10]
 
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org741fe93" class="outline-2">
-<h2 id="org741fe93">time</h2>
-<div class="outline-text-2" id="text-org741fe93">
+<div id="outline-container-org9b15d33" class="outline-2">
+<h2 id="org9b15d33">time</h2>
+<div class="outline-text-2" id="text-org9b15d33">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import (
@@ -105,9 +221,9 @@ func main() {
 </div>
 </div>
 
-<div id="outline-container-org850e719" class="outline-2">
-<h2 id="org850e719">sync</h2>
-<div class="outline-text-2" id="text-org850e719">
+<div id="outline-container-org8cee610" class="outline-2">
+<h2 id="org8cee610">sync</h2>
+<div class="outline-text-2" id="text-org8cee610">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import (
@@ -147,9 +263,9 @@ func count(thing string) {
 </div>
 </div>
 
-<div id="outline-container-orge43ffbd" class="outline-2">
-<h2 id="orge43ffbd">go</h2>
-<div class="outline-text-2" id="text-orge43ffbd">
+<div id="outline-container-org1e9abc9" class="outline-2">
+<h2 id="org1e9abc9">go</h2>
+<div class="outline-text-2" id="text-org1e9abc9">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import (
@@ -199,9 +315,9 @@ tick 10
 </div>
 </div>
 
-<div id="outline-container-org0445488" class="outline-2">
-<h2 id="org0445488">chan</h2>
-<div class="outline-text-2" id="text-org0445488">
+<div id="outline-container-org081c539" class="outline-2">
+<h2 id="org081c539">chan</h2>
+<div class="outline-text-2" id="text-org081c539">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import "fmt"
@@ -227,19 +343,12 @@ func main() {
 }
 </pre>
 </div>
-
-<pre class="example">
-0 true
-1 true
-0 false
-
-</pre>
 </div>
 </div>
 
-<div id="outline-container-orgc3e02bb" class="outline-2">
-<h2 id="orgc3e02bb"><a id="ID-2bf1c325-6a98-43be-815c-a41934b02756"></a>context</h2>
-<div class="outline-text-2" id="text-orgc3e02bb">
+<div id="outline-container-orgea2cbeb" class="outline-2">
+<h2 id="orgea2cbeb"><a id="ID-2bf1c325-6a98-43be-815c-a41934b02756"></a>context</h2>
+<div class="outline-text-2" id="text-orgea2cbeb">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -302,13 +411,13 @@ times out
 </div>
 </div>
 
-<div id="outline-container-orgafc6867" class="outline-2">
-<h2 id="orgafc6867">gonum</h2>
-<div class="outline-text-2" id="text-orgafc6867">
+<div id="outline-container-org25b90ca" class="outline-2">
+<h2 id="org25b90ca">gonum</h2>
+<div class="outline-text-2" id="text-org25b90ca">
 </div>
-<div id="outline-container-org91834a1" class="outline-3">
-<h3 id="org91834a1">Test example</h3>
-<div class="outline-text-3" id="text-org91834a1">
+<div id="outline-container-org4e0292e" class="outline-3">
+<h3 id="org4e0292e">Test example</h3>
+<div class="outline-text-3" id="text-org4e0292e">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -372,9 +481,9 @@ func (v column) RawVector() blas64.Vector {
 </div>
 </div>
 
-<div id="outline-container-org824ffd2" class="outline-3">
-<h3 id="org824ffd2">NewDense</h3>
-<div class="outline-text-3" id="text-org824ffd2">
+<div id="outline-container-orge7212fb" class="outline-3">
+<h3 id="orge7212fb">NewDense</h3>
+<div class="outline-text-3" id="text-orge7212fb">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -393,9 +502,9 @@ func main() {
 </div>
 </div>
 
-<div id="outline-container-org0ace4e0" class="outline-3">
-<h3 id="org0ace4e0">make</h3>
-<div class="outline-text-3" id="text-org0ace4e0">
+<div id="outline-container-org0726660" class="outline-3">
+<h3 id="org0726660">make</h3>
+<div class="outline-text-3" id="text-org0726660">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -424,9 +533,9 @@ func main() {
 </div>
 </div>
 
-<div id="outline-container-org6ec96d7" class="outline-3">
-<h3 id="org6ec96d7">gonum execute</h3>
-<div class="outline-text-3" id="text-org6ec96d7">
+<div id="outline-container-org9e4d34f" class="outline-3">
+<h3 id="org9e4d34f">gonum execute</h3>
+<div class="outline-text-3" id="text-org9e4d34f">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="font-weight: bold;">cd</span> babel
 go mod init babel-go
@@ -447,13 +556,13 @@ false
 </div>
 </div>
 
-<div id="outline-container-org3930c9f" class="outline-2">
-<h2 id="org3930c9f">PatternDesign</h2>
-<div class="outline-text-2" id="text-org3930c9f">
+<div id="outline-container-org7e5e0e3" class="outline-2">
+<h2 id="org7e5e0e3">PatternDesign</h2>
+<div class="outline-text-2" id="text-org7e5e0e3">
 </div>
-<div id="outline-container-org83f2070" class="outline-3">
-<h3 id="org83f2070">Observer</h3>
-<div class="outline-text-3" id="text-org83f2070">
+<div id="outline-container-org3d2e6bc" class="outline-3">
+<h3 id="org3d2e6bc">Observer</h3>
+<div class="outline-text-3" id="text-org3d2e6bc">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -550,9 +659,9 @@ func main() {
 </div>
 </div>
 </div>
-<div id="outline-container-org62a2ebe" class="outline-3">
-<h3 id="org62a2ebe">Factory</h3>
-<div class="outline-text-3" id="text-org62a2ebe">
+<div id="outline-container-orgbce20ca" class="outline-3">
+<h3 id="orgbce20ca">Factory</h3>
+<div class="outline-text-3" id="text-orgbce20ca">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -746,9 +855,9 @@ main.FileSystem
 </div>
 </div>
 
-<div id="outline-container-orga3b2e18" class="outline-3">
-<h3 id="orga3b2e18">Decorator</h3>
-<div class="outline-text-3" id="text-orga3b2e18">
+<div id="outline-container-orgf2aaba9" class="outline-3">
+<h3 id="orgf2aaba9">Decorator</h3>
+<div class="outline-text-3" id="text-orgf2aaba9">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -849,24 +958,111 @@ divide2022/07/12 took=922ns, v=500000, result=250000
 </pre>
 </div>
 </div>
+
+<div id="outline-container-org0d6ecfc" class="outline-3">
+<h3 id="org0d6ecfc">单例模式</h3>
+<div class="outline-text-3" id="text-org0d6ecfc">
+<div class="org-src-container">
+<pre class="src src-go">package main
+
+import (
+	"fmt"
+)
+
+type User struct {
+	Name       string
+	Occupation string
+}
+
+
+type Moli interface {
+	Changename()
+	ChangeOccupation()
+}
+
+func  CreateUser() (Moli,  *User){
+	var moli Moli
+	u := new(User)
+	moli = u
+	return moli, u
+}
+
+func (u *User) Changename (){
+	u.Name = "Joke"
+}
+
+
+func (u *User) ChangeOccupation (){
+	u.Occupation = "driver"
+}
+
+
+func changeName(u User) {
+	u.Name = "Newi"
+}
+
+
+func changeOccupation(u User) {
+	u.Occupation = "driver"
+}
+
+func main() {
+	M, user := CreateUser()
+	fmt.Println("should be empty", user)
+
+	user.Name = "kji"
+	fmt.Println("Directly can change the name", *user)
+
+	user.Occupation = "Nothing"
+	fmt.Println("Directly can change the occupation", *user)
+
+	changeName(*user)
+	fmt.Println("In function, indieictly can not be changed", *user)
+
+	changeOccupation (*user)
+	fmt.Println("In function, idieictly can not be changed", *user)
+
+	M.Changename()
+	fmt.Println("In methode, indieictly can be changed its name", *user)
+
+	M.ChangeOccupation()
+	fmt.Println("In methode,  indieictly can be changed its occupation", *user)
+
+}
+
+</pre>
 </div>
 
-<div id="outline-container-org3a512c3" class="outline-2">
-<h2 id="org3a512c3">Architecture</h2>
-<div class="outline-text-2" id="text-org3a512c3">
+<pre class="example">
+should be empty &amp;{ }
+Directly can change the name {kji }
+Directly can change the occupation {kji Nothing}
+In function, indieictly can not be changed {kji Nothing}
+In function, idieictly can not be changed {kji Nothing}
+In methode, indieictly can be changed its name {Joke Nothing}
+In methode,  indieictly can be changed its occupation {Joke driver}
+
+</pre>
 </div>
-<div id="outline-container-org9502393" class="outline-3">
-<h3 id="org9502393">package</h3>
-<div class="outline-text-3" id="text-org9502393">
+</div>
+</div>
+
+<div id="outline-container-org64ac6d6" class="outline-2">
+<h2 id="org64ac6d6">Architecture</h2>
+<div class="outline-text-2" id="text-org64ac6d6">
+</div>
+<div id="outline-container-orgdfeca05" class="outline-3">
+<h3 id="orgdfeca05">package</h3>
+<div class="outline-text-3" id="text-orgdfeca05">
 <p>
 each folder can only has one named package,
 but it can be shared for many files, also for the test file
 </p>
 </div>
 </div>
-<div id="outline-container-org034d5e1" class="outline-3">
-<h3 id="org034d5e1">module</h3>
-<div class="outline-text-3" id="text-org034d5e1">
+<div id="outline-container-orgf3abd23" class="outline-3">
+<h3 id="orgf3abd23">module</h3>
+<div class="outline-text-3" id="text-orgf3abd23">
 <p>
 it is the same designed as project, but only without main function and main package.
 it can be used by local package, module or project, but has to be replaced
@@ -881,9 +1077,9 @@ go mod edit -replace modulename=folder
 </ul>
 </div>
 </div>
-<div id="outline-container-org69705c5" class="outline-3">
-<h3 id="org69705c5">project</h3>
-<div class="outline-text-3" id="text-org69705c5">
+<div id="outline-container-org99cc9d7" class="outline-3">
+<h3 id="org99cc9d7">project</h3>
+<div class="outline-text-3" id="text-org99cc9d7">
 <ul class="org-ul">
 <li>the same with module, with main package and main func, can be call as go run xxx.go</li>
 <li>can not  be called from gore for now (29.07.2022)</li>
@@ -893,7 +1089,7 @@ go mod edit -replace modulename=folder
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2022-08-05 Fri 08:15</p>
+<p class="date">Created: 2022-10-13 Thu 22:58</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
 <p class="validation"></p>
 </div>
