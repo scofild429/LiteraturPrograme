@@ -2,29 +2,18 @@
 #+OPTIONS: num:t
 #+STARTUP: overview
 * basic OP
-** install
+#+begin_src 
+sudo apt install psql client
 sudo apt install postgresql postgresql-contrib
-** root terminal
-this terminal ist not sufficient to program, but basic shell command can be executed
-login into terminal: 
 sudo -i -u postgres
-terminal to psql:
-psql
-** root login into database
-sudo -i -u postgres psql(postgres:  default user)
-psql, login into psql user
-if we login, we will be located in a table, which have the same name with user
-** user login
-psql -d test -U si -W
-** set password
-in database set password for user
+sudo -u postgres psql
 \password user
-** change database
+alter user user_name with PASSWORD 'new_password';
+psql -h localhost -U si (with be asked for password)
 \c database
-** list all users
 \du
-** login out
 \q
+#+end_src
 
 * src block
 ** with header

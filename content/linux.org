@@ -61,6 +61,26 @@ $ sudo  mkfs -t ext4 /dev/nvmxxx2
 $ sudo dd  if=/dev/sda2 of=/dev/nvmxx2 bs=4M status=progress && sync
 : should be just fine
 
+** grub repair
+for error : Minimal BASH-like line editing is supported......
+#+begin_src
+   grub > ls 
+   grub > ls (hd0,gptXX)/boot/grub
+#+end_src
+  if XX partation returns many file, one is with grub.cfg, this is the one we want
+#+begin_src
+     grub > set root=(hd0,gptXX)
+     grub > set prefix=(hd0,gptXX)/boot/grub
+     grub > normal
+#+end_src
+enter the system
+#+begin_src
+  sudo add-apt-repository ppa:yannubuntu/boot-repair
+  sudo apt-get update
+  sudo apt-get install boot-repair
+  sudo grub-install /dev/where EFI partation is
+#+end_src
+
 ** Recover the  fastplatte in windows
 #+BEGIN_SRC 
 1. WIN+R diskpart

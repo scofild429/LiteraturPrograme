@@ -33,6 +33,48 @@
 : shift
 : [ 'Apple', 'Banane', 'Orange' ]
 
+methods for Array
+| pop()                              |
+| push()                             |
+| shift()                            |
+| unshift()                          |
+| splice(0,1,2)                      |
+| slice(0,1)                         |
+| concat()                           |
+| sort(function(a,b)return(a-b))     |
+| reverse()                          |
+| map(value, index, array)           |
+| filter(value, index, array)        |
+| reduce(total, value, index, array) |
+| every(value, index, array)         |
+| some(value, index, array)          |
+| indexOf()                          |
+| find(value, index, array)          |
+|                                    |
+|                                    |
+
+#+begin_src js :results output
+  function mymap(value, index, array){
+    return value*array[index]
+  }
+  let arr = [1,2,3,4,5];
+  console.log(arr.map(mymap));
+#+end_src
+
+#+RESULTS:
+: [ 1, 4, 9, 16, 25 ]
+
+#+begin_src js :results output
+  function myreduce(total, value, index, array){
+    return total+value*array[index]
+  }
+  let arr = [1,2,3,4,5];
+  console.log(arr.reduce(myreduce, 10));
+#+end_src
+
+#+RESULTS:
+: 65
+
 * set array 去重 求交 
 #+begin_src js :results output
   let arr = [1,2,3,4,5,6,7,4,5,6];
