@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-11-05 Sat 11:45 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Vue</title>
+<meta name="generator" content="Org mode" />
+<link rel="stylesheet" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">Vue</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org65b8f6f">1. 数据绑定</a></li>
+<li><a href="#orgd0f441d">2. npm</a></li>
+<li><a href="#orge65bfcf">3. 操作</a></li>
+<li><a href="#orge08ba70">4. 生命周期</a></li>
+<li><a href="#org28ae70e">5. component</a></li>
+<li><a href="#org1979350">6. Mustache</a></li>
+<li><a href="#orgc61128e">7. v-bind</a>
+<ul>
+<li><a href="#orgdf93180">7.1. multi class 动态绑定v-band</a></li>
+<li><a href="#orgf6b7361">7.2. multi style 动态绑定v-band</a></li>
+</ul>
+</li>
+<li><a href="#orgb5db539">8. v-show</a></li>
+<li><a href="#org7014b63">9. v-if</a></li>
+<li><a href="#org1490ed3">10. watch multiple value</a></li>
+<li><a href="#org91f9dfb">11. reactive multiple value</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org65b8f6f" class="outline-2">
+<h2 id="org65b8f6f"><span class="section-number-2">1</span> 数据绑定</h2>
+<div class="outline-text-2" id="text-1">
+<ol class="org-ol">
+<li>计算属性
+在computed属性对象中定义计算属性的方法
+在页面中使用{{方法名}}来显示计算的结果</li>
+<li>监视属性:
+通过通过vm对象的$watch()或watch配置来监视指定的属性
+当属性变化时, 回调函数自动调用, 在函数内部进行计算</li>
+<li><p>
+计算属性高级:
+通过getter/setter实现对属性数据的显示和监视
+计算属性存在缓存, 多次读取只执行一次getter计算
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">
+<span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">app</span> = Vue.createApp({
+    data() {
+        <span style="font-weight: bold;">return</span> { count: 4 }
+    }
+})
+
+<span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">vm</span> = app.mount(<span style="font-style: italic;">'#app'</span>)
+
+console.log(vm.$data.count) <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">=&gt; 4</span>
+console.log(vm.count)       <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">=&gt; 4</span>
+
+<span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#20462;&#25913; vm.count &#30340;&#20540;&#20063;&#20250;&#26356;&#26032; $data.count</span>
+vm.count = 5
+console.log(vm.$data.count) <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">=&gt; 5</span>
+
+<span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">&#21453;&#20043;&#20134;&#28982;</span>
+vm.$data.count = 6
+console.log(vm.count) <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">=&gt; 6</span>
+
+</pre>
+</div></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgd0f441d" class="outline-2">
+<h2 id="orgd0f441d"><span class="section-number-2">2</span> npm</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+npm install 将会执行package.json 的设定，
+在IDAE里可以选中package.json 里的 build:prod字段，run
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge65bfcf" class="outline-2">
+<h2 id="orge65bfcf"><span class="section-number-2">3</span> 操作</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+vd 是vue里的data属性
+</p>
+
+<p>
+vm 是vue里的mothods方法
+</p>
+
+<p>
+ht 是html里的标签
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">{{vd}}</td>
+<td class="org-left">占位</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">v-text="vd"</td>
+<td class="org-left">替换</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">v-html="vd"</td>
+<td class="org-left">替换并渲染</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">v-bind:ht="vd"</td>
+<td class="org-left">:ht="vd" 设置属性</td>
+<td class="org-left">可用3元表达式或者数据的元素对象指定</td>
+</tr>
+
+<tr>
+<td class="org-left">v-on:ht="vm"</td>
+<td class="org-left">@ht="vm"</td>
+<td class="org-left">on methode(可自定义)</td>
+</tr>
+
+<tr>
+<td class="org-left">v-mode="vd"</td>
+<td class="org-left">只在表单中暴露vd,并操作</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">v-for="(item,index) in "vd""</td>
+<td class="org-left">vd时vue中可迭代元素或在对象</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">v-for="i in 10"</td>
+<td class="org-left">1,,,,,9</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">push</td>
+<td class="org-left">后加</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">unshift</td>
+<td class="org-left">前加</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">v-if</td>
+<td class="org-left">删除不显示的元素</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">v-show</td>
+<td class="org-left">display 不显示的元素</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orge08ba70" class="outline-2">
+<h2 id="orge08ba70"><span class="section-number-2">4</span> 生命周期</h2>
+<div class="outline-text-2" id="text-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">beforeCreate</td>
+<td class="org-left">加载vue系统构造，但是可以接触到Dom元素</td>
+</tr>
+
+<tr>
+<td class="org-left">created</td>
+<td class="org-left">加载自定义的data,mothods, filter&#x2026;..</td>
+</tr>
+
+<tr>
+<td class="org-left">beforeMounte</td>
+<td class="org-left">创建特性在内存</td>
+</tr>
+
+<tr>
+<td class="org-left">mounted</td>
+<td class="org-left">加载特性，渲染页面</td>
+</tr>
+
+<tr>
+<td class="org-left">beforeupdate</td>
+<td class="org-left">更改特性</td>
+</tr>
+
+<tr>
+<td class="org-left">updated</td>
+<td class="org-left">渲染更改的特性</td>
+</tr>
+
+<tr>
+<td class="org-left">beforedestroy</td>
+<td class="org-left">准备清除特性</td>
+</tr>
+
+<tr>
+<td class="org-left">destroy</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org28ae70e" class="outline-2">
+<h2 id="org28ae70e"><span class="section-number-2">5</span> component</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+1, 用extends编写template
+2, 在component中编写template
+3, 在vue 外部，script模块中编写template
+4, 在vue的组件中使用变量和方法，必须在组件中用函数定义，
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1979350" class="outline-2">
+<h2 id="org1979350"><span class="section-number-2">6</span> Mustache</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+{{item }} item von el can be here
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc61128e" class="outline-2">
+<h2 id="orgc61128e"><span class="section-number-2">7</span> v-bind</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+v-bind: kann verbunden werden mit
+id, href, key, für characters von DOM elements
+</p>
+</div>
+
+<div id="outline-container-orgdf93180" class="outline-3">
+<h3 id="orgdf93180"><span class="section-number-3">7.1</span> multi class 动态绑定v-band</h3>
+<div class="outline-text-3" id="text-7-1">
+<ol class="org-ol">
+<li>三目运算指定class</li>
+<li>集合，可删除class，不可增加,不会被拦截</li>
+<li>数组，可加可减</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgf6b7361" class="outline-3">
+<h3 id="orgf6b7361"><span class="section-number-3">7.2</span> multi style 动态绑定v-band</h3>
+<div class="outline-text-3" id="text-7-2">
+<ol class="org-ol">
+<li>三目运算指定style</li>
+<li>集合，可删除style，不可增加， 不会被拦截</li>
+<li>数组，可加可减</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb5db539" class="outline-2">
+<h2 id="orgb5db539"><span class="section-number-2">8</span> v-show</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+if v-show is false, the DOM element is already included, but will not be presented.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7014b63" class="outline-2">
+<h2 id="org7014b63"><span class="section-number-2">9</span> v-if</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+if v-if is false, the DOM element will be deleted
+</p>
+</div>
+</div>
+<div id="outline-container-org1490ed3" class="outline-2">
+<h2 id="org1490ed3"><span class="section-number-2">10</span> watch multiple value</h2>
+<div class="outline-text-2" id="text-10">
+<div class="org-src-container">
+<pre class="src src-js">watch(
+  () =&gt; [PlasData.Amount_Package_Plasmid_1, PlasData.Concentration_Package_Plasmid_1],
+  ([Amount_Package_Plasmid_1, Concentration_Package_Plasmid_1]) =&gt; {
+    PlasData.Volume_Package_Plasmid_1 =  +((1/Concentration_Package_Plasmid_1)*Amount_Package_Plasmid_1).toFixed(2)
+  })
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org91f9dfb" class="outline-2">
+<h2 id="org91f9dfb"><span class="section-number-2">11</span> reactive multiple value</h2>
+<div class="outline-text-2" id="text-11">
+<div class="org-src-container">
+<pre class="src src-js"><span style="font-weight: bold;">const</span> <span style="font-weight: bold; font-style: italic;">platedata</span> :PlatedataType[]  = reactive([])
+platedata.push({id:1, name:<span style="font-style: italic;">"6 Well"</span>, highlight: <span style="font-weight: bold; text-decoration: underline;">false</span>, editable: <span style="font-weight: bold; text-decoration: underline;">true</span>, show: <span style="font-weight: bold; text-decoration: underline;">false</span>})
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2022-11-05 Sat 11:45</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>
