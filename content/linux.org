@@ -115,6 +115,28 @@ watch -n 1 nvidia-smi
 export LC_CTYPE=zh_CN.UTF-8
 sudo apt-get -y install language-pack-zh-hans
 此应用压制中英文的同步变化, 尽量避免使用中文
+** Time Screensaver
+NowSat Nov  5 12:29:50 2022, I just configured my computer for a time screensaver.
++ [[https://github.com/alexanderk23/gluqlo][link]]
++ go the the link, for me only work with building from source, don't forget the dependence.
++ after install it add  following into ~/.xscreensaver undter section of programs:
+  #+begin_src
+    gluqlo -root \n\
+  #+end_src
++ install Xscreensaver if not with following, but before that, delete gnome-screensaver if exist.
+  #+begin_src
+    sudo apt-get install xscreensaver xscreensaver-data-extra xscreensaver-gl-extra
+  #+end_src
++ start Screensaver application, find the Gluqlo, and set it to be the only one, more setting is option
++ start startup application, add one as following, name and comment is as well(liberty)
++ lauch keyshort, add keyshort as following, key combination is as personal wish
+  #+begin_src
+    xscreensaver-command -lock
+  #+end_src
+
++ now test the keyshort  
+
+
 * System configuration collection
 ** check port of application
 #+begin_src sh :dir /sudo::  :results output
@@ -2170,7 +2192,10 @@ side thread can start to run.
 
 * Git
 ** tips
+#+begin_src 
 Raw 文件
+git rm --cached file, will only delete it in git, but still in my local directory
+#+end_src
 ** Git installation in Linux
 
 1. sudo apt install git
