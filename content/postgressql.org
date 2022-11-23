@@ -2,18 +2,36 @@
 #+OPTIONS: num:t
 #+STARTUP: overview
 * basic OP
-#+begin_src 
-sudo apt install psql client
+#+begin_src
+sudo apt install postgresql-client-common
+
 sudo apt install postgresql postgresql-contrib
-sudo -i -u postgres
+#+end_src
+sudo -i -u postgres && psql
+: swith to psql user (postgres, auto created), and then login in
 sudo -u postgres psql
-\password user
-alter user user_name with PASSWORD 'new_password';
-psql -h localhost -U si (with be asked for password)
+: login psql from current user
+
+\password 'user_name';
+alter user 'user_name' with PASSWORD 'new_password';
+: set password
+
+
+psql -h localhost -U 'user_name' (with be asked for password)
+: login with password, for locally distributed or remotely
+: for remote login, please install at least one client version( install postgres-client-12)
+
+
 \c database
 \du
 \q
+
+
+#+begin_src
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
 #+end_src
+: drop all table
 
 * src block
 ** with header

@@ -256,6 +256,24 @@ only root user can call this command
 #+begin_src sh
 alias freemem="sync; echo 3 > /proc/sys/vm/drop_caches && swapoff -a && swapon -a && printf '\n%s\n' 'Ram-cache and Swap Cleared' "
 #+end_src
+** create customized dock to favorites
+- find the executable files and icon
+- create the desktop setting file: /usr/share/applications/myapp.desktop
+- change the settings and make it executable +x
+- new works as normal
+ 
+  #+begin_src shell
+    #!/usr/bin/env xdg-open
+    [Desktop Entry]
+    Version=1.0
+    Type=Application
+    Terminal=false
+    Exec=/path/to/yourapp
+    Name=YourApp
+    Comment=Description of YourApp
+    Icon=/path/to/yourapp.png
+  #+end_src
+  
 * commands
 ** terminal
 S-C-c : can copy out from terminal
