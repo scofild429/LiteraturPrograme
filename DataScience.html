@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-11-05 Sat 11:45 -->
+<!-- 2022-11-23 Wed 10:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Data Science and Cloud Service Computing</title>
@@ -39,407 +39,407 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgfc8bc22">1. Hadoop</a>
+<li><a href="#org2b01e4d">1. Hadoop</a>
 <ul>
-<li><a href="#orgab91b0e">1.1. one node installation</a>
+<li><a href="#org2e0869e">1.1. one node installation</a>
 <ul>
-<li><a href="#org102a406">1.1.1. .bashrc</a></li>
-<li><a href="#org4993e6a">1.1.2. $HADOOP<sub>HOME</sub>/etc/hadoop/hadoop-env.sh</a></li>
-<li><a href="#org34de9b1">1.1.3. $HADOOP<sub>HOME</sub>/etc/hadoop/core-site.xml</a></li>
-<li><a href="#org8fd2dd1">1.1.4. $HADOOP<sub>HOME</sub>/etc/hadoop/hdfs-site.xml</a></li>
-<li><a href="#orgbe03c8e">1.1.5. $HADOOP<sub>HOME</sub>/etc/hadoop/mapred-site.xml</a></li>
-<li><a href="#org1b93c45">1.1.6. $HADOOP<sub>HOME</sub>/etc/hadoop/yarn-site.xml</a></li>
-<li><a href="#org8518383">1.1.7. init nodename</a></li>
+<li><a href="#org987c3c3">1.1.1. .bashrc</a></li>
+<li><a href="#org5fc325e">1.1.2. $HADOOP<sub>HOME</sub>/etc/hadoop/hadoop-env.sh</a></li>
+<li><a href="#orgef79fad">1.1.3. $HADOOP<sub>HOME</sub>/etc/hadoop/core-site.xml</a></li>
+<li><a href="#orgb26fa90">1.1.4. $HADOOP<sub>HOME</sub>/etc/hadoop/hdfs-site.xml</a></li>
+<li><a href="#orgeb4c87b">1.1.5. $HADOOP<sub>HOME</sub>/etc/hadoop/mapred-site.xml</a></li>
+<li><a href="#org832cf0c">1.1.6. $HADOOP<sub>HOME</sub>/etc/hadoop/yarn-site.xml</a></li>
+<li><a href="#org7d01fea">1.1.7. init nodename</a></li>
 </ul>
 </li>
-<li><a href="#orgb2b80c8">1.2. 3 node installation</a>
+<li><a href="#org08ac549">1.2. 3 node installation</a>
 <ul>
-<li><a href="#org578d72e">1.2.1. GWDG deployment</a></li>
-<li><a href="#org739e21a">1.2.2. .bashrc</a></li>
-<li><a href="#org1cd76cf">1.2.3. $HADOOP<sub>HOME</sub>/etc/hadoop/hadoop-env.sh</a></li>
-<li><a href="#orgab1a991">1.2.4. $HADOOP<sub>HOME</sub>/etc/hadoop/core-site.xml</a></li>
-<li><a href="#org7671bec">1.2.5. $HADOOP<sub>HOME</sub>/etc/hadoop/hdfs-site.xml</a></li>
-<li><a href="#org73dacc3">1.2.6. $HADOOP<sub>HOME</sub>/etc/hadoop/yarn-site.xml</a></li>
-<li><a href="#orgd86d86d">1.2.7. $HADOOP<sub>HOME</sub>/etc/hadoop/mapred-site.xml</a></li>
-<li><a href="#orgdc064bd">1.2.8. $HADOOP<sub>HOME</sub>/etc/hadoop/wores</a></li>
-<li><a href="#org914a482">1.2.9. init nodename</a></li>
+<li><a href="#orgc0de38e">1.2.1. GWDG deployment</a></li>
+<li><a href="#org3beecf1">1.2.2. .bashrc</a></li>
+<li><a href="#org7f213cd">1.2.3. $HADOOP<sub>HOME</sub>/etc/hadoop/hadoop-env.sh</a></li>
+<li><a href="#orgd5c0650">1.2.4. $HADOOP<sub>HOME</sub>/etc/hadoop/core-site.xml</a></li>
+<li><a href="#org8e6f0cb">1.2.5. $HADOOP<sub>HOME</sub>/etc/hadoop/hdfs-site.xml</a></li>
+<li><a href="#org4745156">1.2.6. $HADOOP<sub>HOME</sub>/etc/hadoop/yarn-site.xml</a></li>
+<li><a href="#orgadf5205">1.2.7. $HADOOP<sub>HOME</sub>/etc/hadoop/mapred-site.xml</a></li>
+<li><a href="#org76cb4d5">1.2.8. $HADOOP<sub>HOME</sub>/etc/hadoop/wores</a></li>
+<li><a href="#org369723b">1.2.9. init nodename</a></li>
 </ul>
 </li>
-<li><a href="#org42afcfa">1.3. command</a></li>
-<li><a href="#org7b62890">1.4. map()</a></li>
-<li><a href="#org7c3d694">1.5. Schuffle</a></li>
-<li><a href="#org0080363">1.6. reduce</a></li>
-<li><a href="#org9951b54">1.7. Limitation</a></li>
+<li><a href="#org07f27fb">1.3. command</a></li>
+<li><a href="#org0a3e2a2">1.4. map()</a></li>
+<li><a href="#org2352dd4">1.5. Schuffle</a></li>
+<li><a href="#orgb4e5f1c">1.6. reduce</a></li>
+<li><a href="#org4326f23">1.7. Limitation</a></li>
 </ul>
 </li>
-<li><a href="#org1f1ddd0">2. HDFS</a>
+<li><a href="#org0edd261">2. HDFS</a>
 <ul>
-<li><a href="#org46e69ec">2.1. descripation</a></li>
-<li><a href="#org3b701ba">2.2. install</a></li>
+<li><a href="#org6d2e40b">2.1. descripation</a></li>
+<li><a href="#org1a9c03b">2.2. install</a></li>
 </ul>
 </li>
-<li><a href="#org9bd0e07">3. YARN</a></li>
-<li><a href="#orgc2d69a0">4. Spark</a>
+<li><a href="#org3d783a7">3. YARN</a></li>
+<li><a href="#orga417b71">4. Spark</a>
 <ul>
-<li><a href="#orgb0590b2">4.1. 3 node installation</a>
+<li><a href="#org69dabc4">4.1. 3 node installation</a>
 <ul>
-<li><a href="#org7341f53">4.1.1. GWDG deployment</a></li>
+<li><a href="#org5354a81">4.1.1. GWDG deployment</a></li>
 </ul>
 </li>
-<li><a href="#org8630bc9">4.2. descripation</a></li>
-<li><a href="#orgb59ea64">4.3. scala</a></li>
-<li><a href="#org3f8931e">4.4. install</a>
+<li><a href="#orgff41c8e">4.2. descripation</a></li>
+<li><a href="#org07ea547">4.3. scala</a></li>
+<li><a href="#org4db7fee">4.4. install</a>
 <ul>
-<li><a href="#org134a4d6">4.4.1. from source</a></li>
-<li><a href="#orgdc168a4">4.4.2. from pip</a></li>
+<li><a href="#orgdc0c638">4.4.1. from source</a></li>
+<li><a href="#org9d39419">4.4.2. from pip</a></li>
 </ul>
 </li>
-<li><a href="#org5e96875">4.5. single  master node configuration with</a></li>
-<li><a href="#org614ff02">4.6. pyspark</a></li>
+<li><a href="#org94944be">4.5. single  master node configuration with</a></li>
+<li><a href="#org0a69e48">4.6. pyspark</a></li>
 </ul>
 </li>
-<li><a href="#org3402204">5. Big data lecture</a>
+<li><a href="#org8736213">5. Big data lecture</a>
 <ul>
-<li><a href="#org3206332">5.1. Association Rule Minning</a></li>
-<li><a href="#org6cb698c">5.2. Data Exploration</a></li>
-<li><a href="#org392f775">5.3. Time Series Analysis</a>
+<li><a href="#orgdf51fc7">5.1. Association Rule Minning</a></li>
+<li><a href="#org41b1d1d">5.2. Data Exploration</a></li>
+<li><a href="#org0170f62">5.3. Time Series Analysis</a>
 <ul>
-<li><a href="#orgc7c213e">5.3.1. Descripation</a></li>
-<li><a href="#org3005c34">5.3.2. Box-Jenkins for stationary</a></li>
-<li><a href="#orga01bc4e">5.3.3. Differencing for not stationary</a></li>
-<li><a href="#org80b6bb0">5.3.4. Correlation</a></li>
-<li><a href="#org97ff4b6">5.3.5. ARIMA</a></li>
+<li><a href="#org6caab6b">5.3.1. Descripation</a></li>
+<li><a href="#org47f0538">5.3.2. Box-Jenkins for stationary</a></li>
+<li><a href="#orga003ecf">5.3.3. Differencing for not stationary</a></li>
+<li><a href="#org3a6143f">5.3.4. Correlation</a></li>
+<li><a href="#org0219186">5.3.5. ARIMA</a></li>
 </ul>
 </li>
-<li><a href="#orgb448c2f">5.4. Text minning</a>
+<li><a href="#orgf7edf35">5.4. Text minning</a>
 <ul>
-<li><a href="#orgc92f47e">5.4.1. Preprocessing</a></li>
-<li><a href="#orgbca70bb">5.4.2. Visualiztation</a></li>
-<li><a href="#orgddab69b">5.4.3. challages</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgf58b0fb">6. Sensor Fusion lecture</a>
-<ul>
-<li><a href="#org36e2760">6.1. Sensor Dataverarbeitung</a></li>
-<li><a href="#org3fd8f9a">6.2. concepts</a></li>
-</ul>
-</li>
-<li><a href="#orgf7ca25a">7. data analysis code demo</a>
-<ul>
-<li><a href="#org95f7a5d">7.1. statistical mothode</a></li>
-<li><a href="#orgdbf6781">7.2. confidence level interval determinate</a></li>
-<li><a href="#orgb3c6c4b">7.3. a complete ploted distribution of confidence level on t mode</a></li>
-<li><a href="#org573e795">7.4. a complete ploted distribution</a></li>
-<li><a href="#org5799ca7">7.5. a complete ploted distribution on between region</a></li>
-<li><a href="#org49e3ad9">7.6. a example from internet</a></li>
-<li><a href="#orgbea8830">7.7. 1 2 3 order and gauss fitting</a></li>
-<li><a href="#orgda9b372">7.8. linear fitting</a></li>
-<li><a href="#orgd3860e7">7.9. linear fitting with ployfit</a></li>
-</ul>
-</li>
-<li><a href="#org47204a4">8. High performance Data Analysis lecture</a>
-<ul>
-<li><a href="#orgc5ca961">8.1. concepts</a></li>
-<li><a href="#orga824b50">8.2. Chap01 overview</a>
-<ul>
-<li><a href="#orgb59c78a">8.2.1. Distributed System</a></li>
-<li><a href="#org381c4d8">8.2.2. Levels of parallelism</a></li>
-<li><a href="#org3e84c1c">8.2.3. Name typical applications for high-performance data analytics</a></li>
-<li><a href="#orge639100">8.2.4. Distinguish HPDA from D/P/S computing and how these topics blend</a></li>
-<li><a href="#orgea6b5bf">8.2.5. Describe use-cases and challenges in the domain of D/P/S computing</a></li>
-<li><a href="#org82b08e3">8.2.6. Describe how the scientific method relies on D/P/S computing</a></li>
-<li><a href="#orgea1c7ff">8.2.7. Name big data challenges and the typical workflow</a></li>
-<li><a href="#orgfdcb6b4">8.2.8. Recite system characteristics for distributed/parallel/computational science</a></li>
-<li><a href="#org3d90784">8.2.9. Sketch generic D/P system architectures</a></li>
-</ul>
-</li>
-<li><a href="#orgcaf403b">8.3. Chap02  DataModels &amp; Data Processing Strategies</a>
-<ul>
-<li><a href="#org70dc9fa">8.3.1. Define important terminology for data handling and data processing</a></li>
-<li><a href="#orgeaf0280">8.3.2. Sketch the ETL process used in data warehouses</a></li>
-<li><a href="#org822f34f">8.3.3. Sketch a typical HPDA data analysis workflow</a></li>
-<li><a href="#org739833a">8.3.4. Sketch the lambda architecture</a></li>
-<li><a href="#org3f0764d">8.3.5. Construct suitable data models for a given use-case and discuss their pro/cons</a></li>
-<li><a href="#org1c2ed0c">8.3.6. Define relevant semantics for data</a></li>
-<li><a href="#org74030c6">8.3.7. data models</a></li>
-</ul>
-</li>
-<li><a href="#orgef7af0f">8.4. Chap03 Databases and DataWarehouses</a>
-<ul>
-<li><a href="#org664daec">8.4.1. relatation model</a></li>
-<li><a href="#org97e00c5">8.4.2. Define Database, DBMS, and Data Warehouse</a></li>
-<li><a href="#orgb59f4c7">8.4.3. Create a relational model for a given problem</a></li>
-<li><a href="#orgac8cc1d">8.4.4. Draw an ER(Entity Relational) diagram for a given relational model (and vice versa)</a></li>
-<li><a href="#orgda8255c">8.4.5. Normalize a small relational model into a redundant-free model</a></li>
-<li><a href="#org1734eb9">8.4.6. List the result of an inner join of two tables to resolve relationships</a></li>
-<li><a href="#org3d810a7">8.4.7. Formulate SQL queries for a relational model</a></li>
-<li><a href="#org22fd890">8.4.8. Create a Star-Schema from a relational model (and formulate queries)</a></li>
-<li><a href="#org99a6667">8.4.9. Sketch the operations for an OLAP cube</a></li>
-<li><a href="#orgc4d0e1e">8.4.10. Appraise the pro/cons of OLAP vs. traditional relational model</a></li>
-<li><a href="#orgfc42d01">8.4.11. Describe DBMS optimizations: index, bulk loading, garbage cleaning</a></li>
-</ul>
-</li>
-<li><a href="#org6255e23">8.5. Chap04 Distributed Storage and Processing with Hadoop</a>
-<ul>
-<li><a href="#org07a58d8">8.5.1. hadoop</a></li>
-<li><a href="#org739fe32">8.5.2. Describe the architecture and features of Apache Hadoop</a></li>
-<li><a href="#org2a389bd">8.5.3. Formulate simple algorithms using the MapReduce programming model</a></li>
-<li><a href="#org62e2f84">8.5.4. Justify architectural decisions made in Apache Hadoop</a></li>
-<li><a href="#org21e66e8">8.5.5. Sketch the execution phases of MapReduce and describe their behavior</a></li>
-<li><a href="#orgfaad0ec">8.5.6. Describe limitations of Hadoop1 and the benefits of Hadoop2 with TEZ</a></li>
-<li><a href="#org33be24d">8.5.7. Sketch the parallel file access performed by MapReduce jobs</a></li>
-</ul>
-</li>
-<li><a href="#org229bb7a">8.6. Chap05 Big Data SQL using Hive</a>
-<ul>
-<li><a href="#org1758a37">8.6.1. Compare the execution model of SQL in an RDBMS with Hive</a></li>
-<li><a href="#org757f9cf">8.6.2. Justify the features of the ORC format(Optimized Row Columnar)</a></li>
-<li><a href="#orgdd14936">8.6.3. Apply a bloom filter on example data</a></li>
-<li><a href="#org3dd14f0">8.6.4. Describe how tables are generally mapped to the file system hierarchy and optimizations</a></li>
-<li><a href="#org9b76824">8.6.5. Describe how data sampling can be optimizing via the mapping of tables on HDFS</a></li>
-<li><a href="#org0cb76a3">8.6.6. Sketch the mapping of a (simple) SQL query to a MapReduce job</a></li>
-</ul>
-</li>
-<li><a href="#org5aca5e6">8.7. Chap06</a>
-<ul>
-<li><a href="#org9aae6e5">8.7.1. Create a Columnar Data Model (for HBase) for a given use case</a></li>
-<li><a href="#org53b39d4">8.7.2. Justify the reasons and implications behind the HBase storage format</a></li>
-<li><a href="#org48ca34b">8.7.3. Describe how HBase interacts with Hive and Hadoop</a></li>
-<li><a href="#org57485b2">8.7.4. Describe the features and namespace handling in Zookeeper</a></li>
-<li><a href="#org4e8a018">8.7.5. Create a Document Data Model (for MongDB) for a given use case</a></li>
-<li><a href="#org28a5680">8.7.6. Provide example data (JSON) for the MongoDB data model and the queries</a></li>
-<li><a href="#org64fbcd9">8.7.7. Sketch the mapping of keys to servers in MongoDB and HBase</a></li>
-<li><a href="#org4b47ba6">8.7.8. Select and justify a suitable shard key for a simple use case</a></li>
-</ul>
-</li>
-<li><a href="#orga85b04c">8.8. Chap07</a>
-<ul>
-<li><a href="#orgfe1d3cd">8.8.1. Define in-memory processing</a></li>
-<li><a href="#orgd7d721e">8.8.2. Describe the basic data model of Apache Spark and the SQL extension</a></li>
-<li><a href="#org62c8d0f">8.8.3. Program a simple data flow algorithm using Spark RDDs</a></li>
-<li><a href="#org57a81fa">8.8.4. Sketch the architecture of Spark and the roles of its components</a></li>
-<li><a href="#org6b1c0ac">8.8.5. Describe the execution of a simple program on the Spark architecture</a></li>
-</ul>
-</li>
-<li><a href="#org50b4b34">8.9. Chap08</a>
-<ul>
-<li><a href="#orgf05c570">8.9.1. Define stream processing and its basic concepts</a></li>
-<li><a href="#org65ba379">8.9.2. Describe the parallel execution of a Storm topology</a></li>
-<li><a href="#org4b85fd0">8.9.3. Illustrate how the at-least-once processing semantics is achieved via tuple tracking</a></li>
-<li><a href="#org6990e77">8.9.4. Describe alternatives for obtaining exactly-once semantics and their challenges</a></li>
-<li><a href="#orgf3ad44e">8.9.5. Sketch how a data flow could be parallelized and distributed across CPU nodes on an example</a></li>
-</ul>
-</li>
-<li><a href="#org6a22b4e">8.10. Chap09</a></li>
-<li><a href="#org4ec1281">8.11. Chap10</a>
-<ul>
-<li><a href="#org1156988">8.11.1. List example problems for distributed systems</a></li>
-<li><a href="#orgd916cae">8.11.2. Sketch the algorithms for two-phase commit</a></li>
-<li><a href="#orgeba586b">8.11.3. consistent hashing</a></li>
-<li><a href="#org3340786">8.11.4. Discuss semantics  when designing distributed systems</a></li>
-<li><a href="#orge631e3a">8.11.5. Discuss  limitations when designing distributed systems</a></li>
-<li><a href="#orgfabcbb5">8.11.6. Explain the meaning of the CAP-theorem</a></li>
-<li><a href="#org5621363">8.11.7. Sketch the 3-tier architecture</a></li>
-<li><a href="#orgc8aeb44">8.11.8. Design systems using the RESTful architecture</a></li>
-<li><a href="#orgfae7753">8.11.9. Describing relevant performance factors for HPDA</a></li>
-<li><a href="#org513f24b">8.11.10. Listing peak performance of relevant components</a></li>
-<li><a href="#org59a7570">8.11.11. Assessing /Judging observed application performance</a></li>
-</ul>
-</li>
-<li><a href="#org2b62c8f">8.12. Chap11</a>
-<ul>
-<li><a href="#org1719974">8.12.1. Sketching the visual analytics workflow</a></li>
-<li><a href="#orgeefc9e2">8.12.2. Listing optical illusions</a></li>
-<li><a href="#org807c49e">8.12.3. Listing 5 goals of graphical displays</a></li>
-<li><a href="#org97680bd">8.12.4. Discuss the 4 guidelines for designing graphics on examples</a></li>
-<li><a href="#org71dc42c">8.12.5. Describe the challenges when analyzing data</a></li>
-<li><a href="#orgbddffac">8.12.6. Discuss the benefit of in-situ and in-transit data analysis</a></li>
-</ul>
-</li>
-<li><a href="#orgd5f6c31">8.13. Chap12</a>
-<ul>
-<li><a href="#org7ad2ee9">8.13.1. Sketch a typical I/O stack</a></li>
-<li><a href="#org10159ad">8.13.2. Develop a NetCDF data model for a given use case</a></li>
-<li><a href="#org123e2a1">8.13.3. Compare the performance of different storage media</a></li>
-<li><a href="#org840f49d">8.13.4. Sketch application types and access patterns</a></li>
-<li><a href="#org14a0514">8.13.5. Justify the use for I/O benchmarks</a></li>
-<li><a href="#org91f2c1a">8.13.6. Describe an I/O performance optimization technique</a></li>
-<li><a href="#org5f76cc4">8.13.7. Describe a strategy for trustworthy benchmark result</a></li>
-</ul>
-</li>
-<li><a href="#org5e1a43a">8.14. 03-01</a></li>
-<li><a href="#org2d0ec98">8.15. 03-02</a></li>
-<li><a href="#org7d1c4c3">8.16. 04-01</a>
-<ul>
-<li><a href="#orgfe7ad55">8.16.1. mapper and reducer in own</a></li>
-<li><a href="#org4c8c528">8.16.2. sql</a></li>
-<li><a href="#org24a3915">8.16.3. select</a></li>
-<li><a href="#org0f6be18">8.16.4. summation</a></li>
-<li><a href="#org4d51518">8.16.5. join</a></li>
-</ul>
-</li>
-<li><a href="#orgba7dbbd">8.17. 04-02</a>
-<ul>
-<li><a href="#orgae6c539">8.17.1. 2.1</a></li>
-<li><a href="#org784b306">8.17.2. 2.2</a></li>
-<li><a href="#org5105ed8">8.17.3. 2.3</a></li>
-<li><a href="#org9b3bde6">8.17.4. 2.4</a></li>
-</ul>
-</li>
-<li><a href="#org28e5efe">8.18. 05</a></li>
-<li><a href="#org641300f">8.19. 06</a></li>
-</ul>
-</li>
-<li><a href="#org5051fc9">9. Paralle compuation lecture</a>
-<ul>
-<li><a href="#orgd254a3b">9.1. performance</a>
-<ul>
-<li><a href="#orgb3e2c27">9.1.1. Andel's law:</a></li>
-<li><a href="#orgc635735">9.1.2. if the task is changed, Gostafan's law,</a></li>
-<li><a href="#orgadea20d">9.1.3. Effectivy:</a></li>
-</ul>
-</li>
-<li><a href="#orgd48f54f">9.2. Chap1: introduction</a>
-<ul>
-<li><a href="#orgeb7a89f">9.2.1. Von Nroven</a></li>
-<li><a href="#orgeaa84d6">9.2.2. memory mode</a></li>
-<li><a href="#org261f63d">9.2.3. shared memory</a></li>
-<li><a href="#org7dfa342">9.2.4. distribution memory</a></li>
-</ul>
-</li>
-<li><a href="#orgc5de6fb">9.3. Chap 2: Proformance</a>
-<ul>
-<li><a href="#org37c8696">9.3.1. single Process:</a></li>
-<li><a href="#org51538b3">9.3.2. Multi processes</a></li>
-<li><a href="#orgee1bcaa">9.3.3. Efficient</a></li>
-<li><a href="#orgd26d142">9.3.4. Adaes-low</a></li>
-<li><a href="#orgd1d4e7f">9.3.5. Gustafon low</a></li>
+<li><a href="#orgfa27655">5.4.1. Preprocessing</a></li>
+<li><a href="#orge75cc51">5.4.2. Visualiztation</a></li>
+<li><a href="#orge84d595">5.4.3. challages</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org1c8e4a6">10. Cloud computation lecture</a>
+<li><a href="#orgba3dfe2">6. Sensor Fusion lecture</a>
 <ul>
-<li><a href="#orgf2f5acf">10.1. Platform Virtualization</a>
-<ul>
-<li><a href="#orgc9b30a2">10.1.1. Defination of Virtualization</a></li>
-<li><a href="#org8d953c8">10.1.2. The reasons for applying virtualization</a></li>
-<li><a href="#org293536d">10.1.3. Full virtualization (Hypervisor system, Bare matal)</a></li>
-<li><a href="#org4220b65">10.1.4. Hardware-assisted virtualization (Hypervisor system, Bare matal)</a></li>
-<li><a href="#org087f6a7">10.1.5. Para virtualization (Hypervisor system, Bare matal)</a></li>
-<li><a href="#org6a917ae">10.1.6. Host OS virtualization (Hypervisor system, Hosted)</a></li>
-<li><a href="#orgba7b05b">10.1.7. OS-level virtualization (Container system)</a></li>
-<li><a href="#org760ac83">10.1.8. Memory virtualization</a></li>
-<li><a href="#orge943d78">10.1.9. Network virtualization</a></li>
-<li><a href="#org95dc464">10.1.10. Feathers</a></li>
+<li><a href="#orgc15bbf4">6.1. Sensor Dataverarbeitung</a></li>
+<li><a href="#org1fb9e56">6.2. concepts</a></li>
 </ul>
 </li>
-<li><a href="#orgfc12529">10.2. Kubernetes</a></li>
-<li><a href="#orge15e33c">10.3. Virtual Machine</a></li>
-<li><a href="#org3509952">10.4. Storage Virtualization</a>
+<li><a href="#orgb94cf21">7. data analysis code demo</a>
 <ul>
-<li><a href="#org5639845">10.4.1. SSD advantage and disadvanage over HDD</a></li>
-<li><a href="#org885a428">10.4.2. Storage virtualization advantage</a></li>
-<li><a href="#orgd978299">10.4.3. Provisioning:</a></li>
-<li><a href="#org5d870e6">10.4.4. Deduplication</a></li>
-<li><a href="#org8442b77">10.4.5. Compression:</a></li>
-<li><a href="#org22abe72">10.4.6. Cloning</a></li>
-<li><a href="#org03e4cfe">10.4.7. Snapshotting Copies</a></li>
-<li><a href="#org327697b">10.4.8. increasing the proformance</a></li>
+<li><a href="#orgce475ae">7.1. statistical mothode</a></li>
+<li><a href="#org683a975">7.2. confidence level interval determinate</a></li>
+<li><a href="#org03974f0">7.3. a complete ploted distribution of confidence level on t mode</a></li>
+<li><a href="#orgfd3af11">7.4. a complete ploted distribution</a></li>
+<li><a href="#org3f4ffd0">7.5. a complete ploted distribution on between region</a></li>
+<li><a href="#org1b61e25">7.6. a example from internet</a></li>
+<li><a href="#orge71ffed">7.7. 1 2 3 order and gauss fitting</a></li>
+<li><a href="#org1b30fcc">7.8. linear fitting</a></li>
+<li><a href="#orga3bd199">7.9. linear fitting with ployfit</a></li>
 </ul>
 </li>
-<li><a href="#org5389962">10.5. Modern Datacenters</a>
+<li><a href="#org336bc89">8. High performance Data Analysis lecture</a>
 <ul>
-<li><a href="#org57888e0">10.5.1. automation</a></li>
-<li><a href="#org52525ea">10.5.2. Idempotent</a></li>
-<li><a href="#org4cd7b7f">10.5.3. Infrastructure as code</a></li>
-<li><a href="#org1cfbaec">10.5.4. Foreman:</a></li>
-<li><a href="#orgd94116e">10.5.5. Puppet</a></li>
+<li><a href="#org8b39a14">8.1. concepts</a></li>
+<li><a href="#orgc0fd06c">8.2. Chap01 overview</a>
+<ul>
+<li><a href="#orga095cbb">8.2.1. Distributed System</a></li>
+<li><a href="#orgf497058">8.2.2. Levels of parallelism</a></li>
+<li><a href="#orgcf65efa">8.2.3. Name typical applications for high-performance data analytics</a></li>
+<li><a href="#org9a4c3be">8.2.4. Distinguish HPDA from D/P/S computing and how these topics blend</a></li>
+<li><a href="#org0a4c486">8.2.5. Describe use-cases and challenges in the domain of D/P/S computing</a></li>
+<li><a href="#org34c2640">8.2.6. Describe how the scientific method relies on D/P/S computing</a></li>
+<li><a href="#org73b651c">8.2.7. Name big data challenges and the typical workflow</a></li>
+<li><a href="#org9429649">8.2.8. Recite system characteristics for distributed/parallel/computational science</a></li>
+<li><a href="#orgb4f196a">8.2.9. Sketch generic D/P system architectures</a></li>
 </ul>
 </li>
-<li><a href="#org7ecc931">10.6. Monitor</a>
+<li><a href="#orgc9e0e30">8.3. Chap02  DataModels &amp; Data Processing Strategies</a>
 <ul>
-<li><a href="#org935e3e5">10.6.1. challange</a></li>
-<li><a href="#orgdf1f7ca">10.6.2. Real time monitoring</a></li>
-<li><a href="#orga24ea23">10.6.3. Historical Monitoring</a></li>
-<li><a href="#org26ef93e">10.6.4. Architecture</a></li>
+<li><a href="#org9410dad">8.3.1. Define important terminology for data handling and data processing</a></li>
+<li><a href="#org6a64952">8.3.2. Sketch the ETL process used in data warehouses</a></li>
+<li><a href="#org075a9a2">8.3.3. Sketch a typical HPDA data analysis workflow</a></li>
+<li><a href="#org5a9cc28">8.3.4. Sketch the lambda architecture</a></li>
+<li><a href="#orgcb709bf">8.3.5. Construct suitable data models for a given use-case and discuss their pro/cons</a></li>
+<li><a href="#orgdd290d5">8.3.6. Define relevant semantics for data</a></li>
+<li><a href="#orgd5d9e6e">8.3.7. data models</a></li>
 </ul>
 </li>
-<li><a href="#org2035843">10.7. Cloud Computing Concepts</a>
+<li><a href="#org7eefc26">8.4. Chap03 Databases and DataWarehouses</a>
 <ul>
-<li><a href="#org3c977b1">10.7.1. Cloud Defination</a></li>
-<li><a href="#org5340448">10.7.2. SOA</a></li>
-<li><a href="#org7de43d5">10.7.3. Advantage</a></li>
-<li><a href="#orgd1dbe7c">10.7.4. Network design</a></li>
-<li><a href="#orgfdcebaf">10.7.5. GWDG feathers</a></li>
-<li><a href="#orgb7764c1">10.7.6. Infrastructure as Service</a></li>
-<li><a href="#org4e137ee">10.7.7. Platform as a Service</a></li>
-<li><a href="#orga7610a7">10.7.8. Software as a Service</a></li>
+<li><a href="#orgf177639">8.4.1. relatation model</a></li>
+<li><a href="#orgbaf9e49">8.4.2. Define Database, DBMS, and Data Warehouse</a></li>
+<li><a href="#org5f7f2d0">8.4.3. Create a relational model for a given problem</a></li>
+<li><a href="#org101dab3">8.4.4. Draw an ER(Entity Relational) diagram for a given relational model (and vice versa)</a></li>
+<li><a href="#org6de80d5">8.4.5. Normalize a small relational model into a redundant-free model</a></li>
+<li><a href="#org294b22d">8.4.6. List the result of an inner join of two tables to resolve relationships</a></li>
+<li><a href="#orgaa7adf0">8.4.7. Formulate SQL queries for a relational model</a></li>
+<li><a href="#orgf58f271">8.4.8. Create a Star-Schema from a relational model (and formulate queries)</a></li>
+<li><a href="#org7a390ec">8.4.9. Sketch the operations for an OLAP cube</a></li>
+<li><a href="#orgcc35520">8.4.10. Appraise the pro/cons of OLAP vs. traditional relational model</a></li>
+<li><a href="#orge5c4004">8.4.11. Describe DBMS optimizations: index, bulk loading, garbage cleaning</a></li>
 </ul>
 </li>
-<li><a href="#orgf482c4a">10.8. Web services</a>
+<li><a href="#org9482db7">8.5. Chap04 Distributed Storage and Processing with Hadoop</a>
 <ul>
-<li><a href="#org6e2f283">10.8.1. Benefits</a></li>
-<li><a href="#org2f64cab">10.8.2. SOAP</a></li>
-<li><a href="#org3ac0dd6">10.8.3. WSDL</a></li>
-<li><a href="#org4266de8">10.8.4. REST</a></li>
-<li><a href="#orgbd5f56f">10.8.5. API</a></li>
+<li><a href="#org4cbc832">8.5.1. hadoop</a></li>
+<li><a href="#org415241a">8.5.2. Describe the architecture and features of Apache Hadoop</a></li>
+<li><a href="#orge43997d">8.5.3. Formulate simple algorithms using the MapReduce programming model</a></li>
+<li><a href="#org265a8f6">8.5.4. Justify architectural decisions made in Apache Hadoop</a></li>
+<li><a href="#orgbf15f26">8.5.5. Sketch the execution phases of MapReduce and describe their behavior</a></li>
+<li><a href="#orgcbadd4b">8.5.6. Describe limitations of Hadoop1 and the benefits of Hadoop2 with TEZ</a></li>
+<li><a href="#org86fd3b8">8.5.7. Sketch the parallel file access performed by MapReduce jobs</a></li>
 </ul>
 </li>
-<li><a href="#orgc477503">10.9. Big Data Service</a>
+<li><a href="#org1257946">8.6. Chap05 Big Data SQL using Hive</a>
 <ul>
-<li><a href="#org6e68131">10.9.1. feathers</a></li>
-<li><a href="#org6d5f437">10.9.2. processes</a></li>
-<li><a href="#org8f69a12">10.9.3. Challenges</a></li>
+<li><a href="#orge9b41b8">8.6.1. Compare the execution model of SQL in an RDBMS with Hive</a></li>
+<li><a href="#org6e79b3b">8.6.2. Justify the features of the ORC format(Optimized Row Columnar)</a></li>
+<li><a href="#orgbd642d8">8.6.3. Apply a bloom filter on example data</a></li>
+<li><a href="#org9b028d4">8.6.4. Describe how tables are generally mapped to the file system hierarchy and optimizations</a></li>
+<li><a href="#orga5c1b0c">8.6.5. Describe how data sampling can be optimizing via the mapping of tables on HDFS</a></li>
+<li><a href="#orga812e80">8.6.6. Sketch the mapping of a (simple) SQL query to a MapReduce job</a></li>
 </ul>
 </li>
-<li><a href="#orgbaa099e">10.10. Mapreduce</a></li>
-<li><a href="#org6c96e44">10.11. Large Scale Data Analysis</a>
+<li><a href="#orgee7e759">8.7. Chap06</a>
 <ul>
-<li><a href="#org3e192c7">10.11.1. batch process</a></li>
-<li><a href="#org43f7232">10.11.2. steaming process</a></li>
-<li><a href="#org01448d0">10.11.3. Stream Computation Platform</a></li>
-<li><a href="#org0ca5864">10.11.4. Hadoop</a></li>
-<li><a href="#orge39a61b">10.11.5. HDFS</a></li>
-<li><a href="#org6af666d">10.11.6. YARN</a></li>
-<li><a href="#orgef0f9d5">10.11.7. Apache Kafka</a></li>
-<li><a href="#orge107ae9">10.11.8. Data management cycle</a></li>
+<li><a href="#orgd8e5044">8.7.1. Create a Columnar Data Model (for HBase) for a given use case</a></li>
+<li><a href="#org5ab7485">8.7.2. Justify the reasons and implications behind the HBase storage format</a></li>
+<li><a href="#org7a45219">8.7.3. Describe how HBase interacts with Hive and Hadoop</a></li>
+<li><a href="#org3f2a582">8.7.4. Describe the features and namespace handling in Zookeeper</a></li>
+<li><a href="#orga233f47">8.7.5. Create a Document Data Model (for MongDB) for a given use case</a></li>
+<li><a href="#org0c63b89">8.7.6. Provide example data (JSON) for the MongoDB data model and the queries</a></li>
+<li><a href="#org1c26ab9">8.7.7. Sketch the mapping of keys to servers in MongoDB and HBase</a></li>
+<li><a href="#org6ffde28">8.7.8. Select and justify a suitable shard key for a simple use case</a></li>
 </ul>
 </li>
-<li><a href="#org6fd844d">10.12. Data Grid Data Management</a>
+<li><a href="#org6d2dd2b">8.8. Chap07</a>
 <ul>
-<li><a href="#org0cb8eb7">10.12.1. Data Lake</a></li>
-<li><a href="#org6c55189">10.12.2. ETL</a></li>
-<li><a href="#orgfb5588c">10.12.3. Storage data in Multiable locations</a></li>
-<li><a href="#org5ec7221">10.12.4. Storage data in remote data center</a></li>
-<li><a href="#org35c669c">10.12.5. code storage</a></li>
-<li><a href="#org47a792e">10.12.6. fair data management</a></li>
+<li><a href="#org76a2514">8.8.1. Define in-memory processing</a></li>
+<li><a href="#orgccea0a8">8.8.2. Describe the basic data model of Apache Spark and the SQL extension</a></li>
+<li><a href="#orgf8ebd0e">8.8.3. Program a simple data flow algorithm using Spark RDDs</a></li>
+<li><a href="#org8e94ee8">8.8.4. Sketch the architecture of Spark and the roles of its components</a></li>
+<li><a href="#org3a10420">8.8.5. Describe the execution of a simple program on the Spark architecture</a></li>
 </ul>
 </li>
-<li><a href="#org4876f2f">10.13. ITIL &amp;SLA</a>
+<li><a href="#orgad200f2">8.9. Chap08</a>
 <ul>
-<li><a href="#orgd40fe46">10.13.1. non functional service</a></li>
-<li><a href="#org6ffb9cf">10.13.2. ITIL Information Technology Infrastructure Library</a></li>
-<li><a href="#org37df90b">10.13.3. SLA Service Level Agreement Life cycle</a></li>
-<li><a href="#orgc5becef">10.13.4. SLA components include</a></li>
+<li><a href="#orgc03f10a">8.9.1. Define stream processing and its basic concepts</a></li>
+<li><a href="#org8f52bd5">8.9.2. Describe the parallel execution of a Storm topology</a></li>
+<li><a href="#org8e082bb">8.9.3. Illustrate how the at-least-once processing semantics is achieved via tuple tracking</a></li>
+<li><a href="#org79ec1d6">8.9.4. Describe alternatives for obtaining exactly-once semantics and their challenges</a></li>
+<li><a href="#org40823d8">8.9.5. Sketch how a data flow could be parallelized and distributed across CPU nodes on an example</a></li>
 </ul>
 </li>
-<li><a href="#org1e43962">10.14. Security</a>
+<li><a href="#orgc021906">8.10. Chap09</a></li>
+<li><a href="#org8da9df2">8.11. Chap10</a>
 <ul>
-<li><a href="#org91c42d7">10.14.1. Confidentiality</a></li>
-<li><a href="#org6be1e18">10.14.2. Integrity</a></li>
-<li><a href="#org80d016b">10.14.3. Availablity</a></li>
-<li><a href="#orgcfc345a">10.14.4. Asymmetric Encrytion RSA</a></li>
-<li><a href="#org9436d42">10.14.5. security benefits</a></li>
-<li><a href="#org16cf6c4">10.14.6. symmetric encryption</a></li>
-<li><a href="#org1e5c4a3">10.14.7. asymmetic encryption</a></li>
-<li><a href="#org19b9667">10.14.8. Digital Signiture</a></li>
-<li><a href="#org056f077">10.14.9. how Certificate is trusted</a></li>
-<li><a href="#org70ede40">10.14.10. Authentication</a></li>
-<li><a href="#orgd9f23ea">10.14.11. Authorization</a></li>
-<li><a href="#org5aabee1">10.14.12. Confusion and Diffusion</a></li>
+<li><a href="#orgfa08033">8.11.1. List example problems for distributed systems</a></li>
+<li><a href="#org29ee637">8.11.2. Sketch the algorithms for two-phase commit</a></li>
+<li><a href="#orga1e44c6">8.11.3. consistent hashing</a></li>
+<li><a href="#org6dbb5bc">8.11.4. Discuss semantics  when designing distributed systems</a></li>
+<li><a href="#org19dae66">8.11.5. Discuss  limitations when designing distributed systems</a></li>
+<li><a href="#orgc329ca6">8.11.6. Explain the meaning of the CAP-theorem</a></li>
+<li><a href="#orgde189f5">8.11.7. Sketch the 3-tier architecture</a></li>
+<li><a href="#org9c9401e">8.11.8. Design systems using the RESTful architecture</a></li>
+<li><a href="#org23485a3">8.11.9. Describing relevant performance factors for HPDA</a></li>
+<li><a href="#org240fe03">8.11.10. Listing peak performance of relevant components</a></li>
+<li><a href="#org7bc9aba">8.11.11. Assessing /Judging observed application performance</a></li>
+</ul>
+</li>
+<li><a href="#org8f8fd26">8.12. Chap11</a>
+<ul>
+<li><a href="#orgbb138ef">8.12.1. Sketching the visual analytics workflow</a></li>
+<li><a href="#org8b71fc6">8.12.2. Listing optical illusions</a></li>
+<li><a href="#org0194d1b">8.12.3. Listing 5 goals of graphical displays</a></li>
+<li><a href="#orgfda8e1b">8.12.4. Discuss the 4 guidelines for designing graphics on examples</a></li>
+<li><a href="#org23ef2a8">8.12.5. Describe the challenges when analyzing data</a></li>
+<li><a href="#org105338c">8.12.6. Discuss the benefit of in-situ and in-transit data analysis</a></li>
+</ul>
+</li>
+<li><a href="#org3bae38b">8.13. Chap12</a>
+<ul>
+<li><a href="#org7f02b8c">8.13.1. Sketch a typical I/O stack</a></li>
+<li><a href="#org27944bb">8.13.2. Develop a NetCDF data model for a given use case</a></li>
+<li><a href="#orgcd6f1db">8.13.3. Compare the performance of different storage media</a></li>
+<li><a href="#orgbd270e1">8.13.4. Sketch application types and access patterns</a></li>
+<li><a href="#org76e18fd">8.13.5. Justify the use for I/O benchmarks</a></li>
+<li><a href="#orgeef625a">8.13.6. Describe an I/O performance optimization technique</a></li>
+<li><a href="#orgb225036">8.13.7. Describe a strategy for trustworthy benchmark result</a></li>
+</ul>
+</li>
+<li><a href="#org80750a0">8.14. 03-01</a></li>
+<li><a href="#org884e857">8.15. 03-02</a></li>
+<li><a href="#org3d2a50e">8.16. 04-01</a>
+<ul>
+<li><a href="#org763950f">8.16.1. mapper and reducer in own</a></li>
+<li><a href="#org56b6410">8.16.2. sql</a></li>
+<li><a href="#org73df295">8.16.3. select</a></li>
+<li><a href="#orgb487762">8.16.4. summation</a></li>
+<li><a href="#org508c585">8.16.5. join</a></li>
+</ul>
+</li>
+<li><a href="#org706c13c">8.17. 04-02</a>
+<ul>
+<li><a href="#orgd1e2316">8.17.1. 2.1</a></li>
+<li><a href="#orgdda7d7a">8.17.2. 2.2</a></li>
+<li><a href="#org8e2eddc">8.17.3. 2.3</a></li>
+<li><a href="#org4d64c8f">8.17.4. 2.4</a></li>
+</ul>
+</li>
+<li><a href="#orgc5685df">8.18. 05</a></li>
+<li><a href="#orgd750275">8.19. 06</a></li>
+</ul>
+</li>
+<li><a href="#org740ff24">9. Paralle compuation lecture</a>
+<ul>
+<li><a href="#orgfd4b877">9.1. performance</a>
+<ul>
+<li><a href="#orgce61035">9.1.1. Andel's law:</a></li>
+<li><a href="#orgcae66d8">9.1.2. if the task is changed, Gostafan's law,</a></li>
+<li><a href="#org225201d">9.1.3. Effectivy:</a></li>
+</ul>
+</li>
+<li><a href="#orge34f054">9.2. Chap1: introduction</a>
+<ul>
+<li><a href="#org7375ca1">9.2.1. Von Nroven</a></li>
+<li><a href="#orgb5b35a4">9.2.2. memory mode</a></li>
+<li><a href="#org2132f43">9.2.3. shared memory</a></li>
+<li><a href="#org395aa77">9.2.4. distribution memory</a></li>
+</ul>
+</li>
+<li><a href="#org15229a2">9.3. Chap 2: Proformance</a>
+<ul>
+<li><a href="#org855b3ab">9.3.1. single Process:</a></li>
+<li><a href="#org38b2161">9.3.2. Multi processes</a></li>
+<li><a href="#org63f416b">9.3.3. Efficient</a></li>
+<li><a href="#org9a2fe59">9.3.4. Adaes-low</a></li>
+<li><a href="#org5949132">9.3.5. Gustafon low</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org1d5ca5b">10. Cloud computation lecture</a>
+<ul>
+<li><a href="#orgc0ec710">10.1. Platform Virtualization</a>
+<ul>
+<li><a href="#org51d5018">10.1.1. Defination of Virtualization</a></li>
+<li><a href="#orge60cd86">10.1.2. The reasons for applying virtualization</a></li>
+<li><a href="#orgb62ad87">10.1.3. Full virtualization (Hypervisor system, Bare matal)</a></li>
+<li><a href="#orgeaae2a3">10.1.4. Hardware-assisted virtualization (Hypervisor system, Bare matal)</a></li>
+<li><a href="#orga770155">10.1.5. Para virtualization (Hypervisor system, Bare matal)</a></li>
+<li><a href="#orge454f56">10.1.6. Host OS virtualization (Hypervisor system, Hosted)</a></li>
+<li><a href="#orgc25a41a">10.1.7. OS-level virtualization (Container system)</a></li>
+<li><a href="#org3bf2cb2">10.1.8. Memory virtualization</a></li>
+<li><a href="#org55428bd">10.1.9. Network virtualization</a></li>
+<li><a href="#orgbaf6001">10.1.10. Feathers</a></li>
+</ul>
+</li>
+<li><a href="#org6cba9e9">10.2. Kubernetes</a></li>
+<li><a href="#orgb877c0b">10.3. Virtual Machine</a></li>
+<li><a href="#orga69b560">10.4. Storage Virtualization</a>
+<ul>
+<li><a href="#org4fe9570">10.4.1. SSD advantage and disadvanage over HDD</a></li>
+<li><a href="#org143bc8c">10.4.2. Storage virtualization advantage</a></li>
+<li><a href="#orge07bdf0">10.4.3. Provisioning:</a></li>
+<li><a href="#org6cf2ae1">10.4.4. Deduplication</a></li>
+<li><a href="#org5933ca2">10.4.5. Compression:</a></li>
+<li><a href="#orgb0a94db">10.4.6. Cloning</a></li>
+<li><a href="#org80cd4ce">10.4.7. Snapshotting Copies</a></li>
+<li><a href="#org3f08bc7">10.4.8. increasing the proformance</a></li>
+</ul>
+</li>
+<li><a href="#org3c768b7">10.5. Modern Datacenters</a>
+<ul>
+<li><a href="#org4389f57">10.5.1. automation</a></li>
+<li><a href="#orgc46b3d6">10.5.2. Idempotent</a></li>
+<li><a href="#org1b24462">10.5.3. Infrastructure as code</a></li>
+<li><a href="#org71b8d02">10.5.4. Foreman:</a></li>
+<li><a href="#org33632bf">10.5.5. Puppet</a></li>
+</ul>
+</li>
+<li><a href="#org69cfd79">10.6. Monitor</a>
+<ul>
+<li><a href="#orgf1fd443">10.6.1. challange</a></li>
+<li><a href="#orgd76630b">10.6.2. Real time monitoring</a></li>
+<li><a href="#org6d666d2">10.6.3. Historical Monitoring</a></li>
+<li><a href="#org79054e0">10.6.4. Architecture</a></li>
+</ul>
+</li>
+<li><a href="#org7063021">10.7. Cloud Computing Concepts</a>
+<ul>
+<li><a href="#org5c71917">10.7.1. Cloud Defination</a></li>
+<li><a href="#orga304905">10.7.2. SOA</a></li>
+<li><a href="#org243d2dd">10.7.3. Advantage</a></li>
+<li><a href="#org7a89ab1">10.7.4. Network design</a></li>
+<li><a href="#org6dcf389">10.7.5. GWDG feathers</a></li>
+<li><a href="#orgcbfdfbf">10.7.6. Infrastructure as Service</a></li>
+<li><a href="#orgd759265">10.7.7. Platform as a Service</a></li>
+<li><a href="#orgf7b78d6">10.7.8. Software as a Service</a></li>
+</ul>
+</li>
+<li><a href="#org82983e2">10.8. Web services</a>
+<ul>
+<li><a href="#org751e121">10.8.1. Benefits</a></li>
+<li><a href="#orga44661c">10.8.2. SOAP</a></li>
+<li><a href="#org713d638">10.8.3. WSDL</a></li>
+<li><a href="#orgcfd1e13">10.8.4. REST</a></li>
+<li><a href="#org4979648">10.8.5. API</a></li>
+</ul>
+</li>
+<li><a href="#org0454ba6">10.9. Big Data Service</a>
+<ul>
+<li><a href="#orgc934984">10.9.1. feathers</a></li>
+<li><a href="#orge62838c">10.9.2. processes</a></li>
+<li><a href="#org78b3c77">10.9.3. Challenges</a></li>
+</ul>
+</li>
+<li><a href="#org8a38ac1">10.10. Mapreduce</a></li>
+<li><a href="#org59b5e1e">10.11. Large Scale Data Analysis</a>
+<ul>
+<li><a href="#org46ff9da">10.11.1. batch process</a></li>
+<li><a href="#org5837244">10.11.2. steaming process</a></li>
+<li><a href="#orgcabc171">10.11.3. Stream Computation Platform</a></li>
+<li><a href="#orgd35d7b4">10.11.4. Hadoop</a></li>
+<li><a href="#org1c1d708">10.11.5. HDFS</a></li>
+<li><a href="#org426c5ca">10.11.6. YARN</a></li>
+<li><a href="#org53293a4">10.11.7. Apache Kafka</a></li>
+<li><a href="#orgde85237">10.11.8. Data management cycle</a></li>
+</ul>
+</li>
+<li><a href="#org71ec50f">10.12. Data Grid Data Management</a>
+<ul>
+<li><a href="#org8e64a18">10.12.1. Data Lake</a></li>
+<li><a href="#org2e210fc">10.12.2. ETL</a></li>
+<li><a href="#org1cbb0cb">10.12.3. Storage data in Multiable locations</a></li>
+<li><a href="#org7b4c408">10.12.4. Storage data in remote data center</a></li>
+<li><a href="#org94b8972">10.12.5. code storage</a></li>
+<li><a href="#orgff4faf4">10.12.6. fair data management</a></li>
+</ul>
+</li>
+<li><a href="#org86c5455">10.13. ITIL &amp;SLA</a>
+<ul>
+<li><a href="#orgb2ccfe0">10.13.1. non functional service</a></li>
+<li><a href="#org1d45921">10.13.2. ITIL Information Technology Infrastructure Library</a></li>
+<li><a href="#org49a6a6d">10.13.3. SLA Service Level Agreement Life cycle</a></li>
+<li><a href="#org1c65175">10.13.4. SLA components include</a></li>
+</ul>
+</li>
+<li><a href="#org8e0850a">10.14. Security</a>
+<ul>
+<li><a href="#org2703a35">10.14.1. Confidentiality</a></li>
+<li><a href="#org5cb5722">10.14.2. Integrity</a></li>
+<li><a href="#org086d180">10.14.3. Availablity</a></li>
+<li><a href="#org484f8f7">10.14.4. Asymmetric Encrytion RSA</a></li>
+<li><a href="#org9ef36c3">10.14.5. security benefits</a></li>
+<li><a href="#orge8ec4f8">10.14.6. symmetric encryption</a></li>
+<li><a href="#org8fb04df">10.14.7. asymmetic encryption</a></li>
+<li><a href="#orge276e84">10.14.8. Digital Signiture</a></li>
+<li><a href="#org9d18e02">10.14.9. how Certificate is trusted</a></li>
+<li><a href="#org96695f3">10.14.10. Authentication</a></li>
+<li><a href="#org90a967f">10.14.11. Authorization</a></li>
+<li><a href="#orgd1a46ae">10.14.12. Confusion and Diffusion</a></li>
 </ul>
 </li>
 </ul>
@@ -447,16 +447,16 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfc8bc22" class="outline-2">
-<h2 id="orgfc8bc22"><span class="section-number-2">1</span> Hadoop</h2>
+<div id="outline-container-org2b01e4d" class="outline-2">
+<h2 id="org2b01e4d"><span class="section-number-2">1</span> Hadoop</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgab91b0e" class="outline-3">
-<h3 id="orgab91b0e"><span class="section-number-3">1.1</span> one node installation</h3>
+<div id="outline-container-org2e0869e" class="outline-3">
+<h3 id="org2e0869e"><span class="section-number-3">1.1</span> one node installation</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-org102a406" class="outline-4">
-<h4 id="org102a406"><span class="section-number-4">1.1.1</span> .bashrc</h4>
+<div id="outline-container-org987c3c3" class="outline-4">
+<h4 id="org987c3c3"><span class="section-number-4">1.1.1</span> .bashrc</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <pre class="example">
 export HADOOP_HOME=/home/cloud/hadoop-3.3.1
@@ -472,8 +472,8 @@ export HADOOP_OPTS"-Djava.library.path=$HADOOP_HOME/lib/nativ"
 </div>
 </div>
 
-<div id="outline-container-org4993e6a" class="outline-4">
-<h4 id="org4993e6a"><span class="section-number-4">1.1.2</span> $HADOOP<sub>HOME</sub>/etc/hadoop/hadoop-env.sh</h4>
+<div id="outline-container-org5fc325e" class="outline-4">
+<h4 id="org5fc325e"><span class="section-number-4">1.1.2</span> $HADOOP<sub>HOME</sub>/etc/hadoop/hadoop-env.sh</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <p>
 append to end
@@ -484,8 +484,8 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 </div>
 </div>
 
-<div id="outline-container-org34de9b1" class="outline-4">
-<h4 id="org34de9b1"><span class="section-number-4">1.1.3</span> $HADOOP<sub>HOME</sub>/etc/hadoop/core-site.xml</h4>
+<div id="outline-container-orgef79fad" class="outline-4">
+<h4 id="orgef79fad"><span class="section-number-4">1.1.3</span> $HADOOP<sub>HOME</sub>/etc/hadoop/core-site.xml</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <p>
 in configuration
@@ -505,8 +505,8 @@ in configuration
 </div>
 </div>
 
-<div id="outline-container-org8fd2dd1" class="outline-4">
-<h4 id="org8fd2dd1"><span class="section-number-4">1.1.4</span> $HADOOP<sub>HOME</sub>/etc/hadoop/hdfs-site.xml</h4>
+<div id="outline-container-orgb26fa90" class="outline-4">
+<h4 id="orgb26fa90"><span class="section-number-4">1.1.4</span> $HADOOP<sub>HOME</sub>/etc/hadoop/hdfs-site.xml</h4>
 <div class="outline-text-4" id="text-1-1-4">
 <p>
 in configuration
@@ -528,8 +528,8 @@ in configuration
 </div>
 </div>
 
-<div id="outline-container-orgbe03c8e" class="outline-4">
-<h4 id="orgbe03c8e"><span class="section-number-4">1.1.5</span> $HADOOP<sub>HOME</sub>/etc/hadoop/mapred-site.xml</h4>
+<div id="outline-container-orgeb4c87b" class="outline-4">
+<h4 id="orgeb4c87b"><span class="section-number-4">1.1.5</span> $HADOOP<sub>HOME</sub>/etc/hadoop/mapred-site.xml</h4>
 <div class="outline-text-4" id="text-1-1-5">
 <p>
 in configuration
@@ -543,8 +543,8 @@ in configuration
 </div>
 </div>
 
-<div id="outline-container-org1b93c45" class="outline-4">
-<h4 id="org1b93c45"><span class="section-number-4">1.1.6</span> $HADOOP<sub>HOME</sub>/etc/hadoop/yarn-site.xml</h4>
+<div id="outline-container-org832cf0c" class="outline-4">
+<h4 id="org832cf0c"><span class="section-number-4">1.1.6</span> $HADOOP<sub>HOME</sub>/etc/hadoop/yarn-site.xml</h4>
 <div class="outline-text-4" id="text-1-1-6">
 <pre class="example">
 &lt;property&gt;
@@ -571,8 +571,8 @@ in configuration
 </div>
 </div>
 
-<div id="outline-container-org8518383" class="outline-4">
-<h4 id="org8518383"><span class="section-number-4">1.1.7</span> init nodename</h4>
+<div id="outline-container-org7d01fea" class="outline-4">
+<h4 id="org7d01fea"><span class="section-number-4">1.1.7</span> init nodename</h4>
 <div class="outline-text-4" id="text-1-1-7">
 <pre class="example">
 cd hadoop-3---
@@ -586,12 +586,12 @@ jps
 </div>
 </div>
 
-<div id="outline-container-orgb2b80c8" class="outline-3">
-<h3 id="orgb2b80c8"><span class="section-number-3">1.2</span> 3 node installation</h3>
+<div id="outline-container-org08ac549" class="outline-3">
+<h3 id="org08ac549"><span class="section-number-3">1.2</span> 3 node installation</h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-org578d72e" class="outline-4">
-<h4 id="org578d72e"><span class="section-number-4">1.2.1</span> GWDG deployment</h4>
+<div id="outline-container-orgc0de38e" class="outline-4">
+<h4 id="orgc0de38e"><span class="section-number-4">1.2.1</span> GWDG deployment</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -662,8 +662,8 @@ jps
 </table>
 </div>
 </div>
-<div id="outline-container-org739e21a" class="outline-4">
-<h4 id="org739e21a"><span class="section-number-4">1.2.2</span> .bashrc</h4>
+<div id="outline-container-org3beecf1" class="outline-4">
+<h4 id="org3beecf1"><span class="section-number-4">1.2.2</span> .bashrc</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <pre class="example">
 export HADOOP_HOME=/home/cloud/hadoop-3.3.1
@@ -679,8 +679,8 @@ export HADOOP_OPTS"-Djava.library.path=$HADOOP_HOME/lib/nativ"
 </div>
 </div>
 
-<div id="outline-container-org1cd76cf" class="outline-4">
-<h4 id="org1cd76cf"><span class="section-number-4">1.2.3</span> $HADOOP<sub>HOME</sub>/etc/hadoop/hadoop-env.sh</h4>
+<div id="outline-container-org7f213cd" class="outline-4">
+<h4 id="org7f213cd"><span class="section-number-4">1.2.3</span> $HADOOP<sub>HOME</sub>/etc/hadoop/hadoop-env.sh</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <p>
 append to end
@@ -690,8 +690,8 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 </pre>
 </div>
 </div>
-<div id="outline-container-orgab1a991" class="outline-4">
-<h4 id="orgab1a991"><span class="section-number-4">1.2.4</span> $HADOOP<sub>HOME</sub>/etc/hadoop/core-site.xml</h4>
+<div id="outline-container-orgd5c0650" class="outline-4">
+<h4 id="orgd5c0650"><span class="section-number-4">1.2.4</span> $HADOOP<sub>HOME</sub>/etc/hadoop/core-site.xml</h4>
 <div class="outline-text-4" id="text-1-2-4">
 <p>
 in configuration
@@ -711,8 +711,8 @@ in configuration
 </pre>
 </div>
 </div>
-<div id="outline-container-org7671bec" class="outline-4">
-<h4 id="org7671bec"><span class="section-number-4">1.2.5</span> $HADOOP<sub>HOME</sub>/etc/hadoop/hdfs-site.xml</h4>
+<div id="outline-container-org8e6f0cb" class="outline-4">
+<h4 id="org8e6f0cb"><span class="section-number-4">1.2.5</span> $HADOOP<sub>HOME</sub>/etc/hadoop/hdfs-site.xml</h4>
 <div class="outline-text-4" id="text-1-2-5">
 <p>
 in configuration
@@ -744,8 +744,8 @@ in configuration
 </pre>
 </div>
 </div>
-<div id="outline-container-org73dacc3" class="outline-4">
-<h4 id="org73dacc3"><span class="section-number-4">1.2.6</span> $HADOOP<sub>HOME</sub>/etc/hadoop/yarn-site.xml</h4>
+<div id="outline-container-org4745156" class="outline-4">
+<h4 id="org4745156"><span class="section-number-4">1.2.6</span> $HADOOP<sub>HOME</sub>/etc/hadoop/yarn-site.xml</h4>
 <div class="outline-text-4" id="text-1-2-6">
 <pre class="example">
 &lt;property&gt;
@@ -771,8 +771,8 @@ in configuration
 </pre>
 </div>
 </div>
-<div id="outline-container-orgd86d86d" class="outline-4">
-<h4 id="orgd86d86d"><span class="section-number-4">1.2.7</span> $HADOOP<sub>HOME</sub>/etc/hadoop/mapred-site.xml</h4>
+<div id="outline-container-orgadf5205" class="outline-4">
+<h4 id="orgadf5205"><span class="section-number-4">1.2.7</span> $HADOOP<sub>HOME</sub>/etc/hadoop/mapred-site.xml</h4>
 <div class="outline-text-4" id="text-1-2-7">
 <p>
 in configuration
@@ -785,8 +785,8 @@ in configuration
 </pre>
 </div>
 </div>
-<div id="outline-container-orgdc064bd" class="outline-4">
-<h4 id="orgdc064bd"><span class="section-number-4">1.2.8</span> $HADOOP<sub>HOME</sub>/etc/hadoop/wores</h4>
+<div id="outline-container-org76cb4d5" class="outline-4">
+<h4 id="org76cb4d5"><span class="section-number-4">1.2.8</span> $HADOOP<sub>HOME</sub>/etc/hadoop/wores</h4>
 <div class="outline-text-4" id="text-1-2-8">
 <p>
 gwdg01
@@ -795,8 +795,8 @@ gwdg19
 </p>
 </div>
 </div>
-<div id="outline-container-org914a482" class="outline-4">
-<h4 id="org914a482"><span class="section-number-4">1.2.9</span> init nodename</h4>
+<div id="outline-container-org369723b" class="outline-4">
+<h4 id="org369723b"><span class="section-number-4">1.2.9</span> init nodename</h4>
 <div class="outline-text-4" id="text-1-2-9">
 <pre class="example">
 cd hadoop-3---
@@ -811,8 +811,8 @@ jps
 </div>
 </div>
 
-<div id="outline-container-org42afcfa" class="outline-3">
-<h3 id="org42afcfa"><span class="section-number-3">1.3</span> command</h3>
+<div id="outline-container-org07f27fb" class="outline-3">
+<h3 id="org07f27fb"><span class="section-number-3">1.3</span> command</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 general comands
@@ -840,8 +840,8 @@ cat out
 </div>
 </div>
 
-<div id="outline-container-org7b62890" class="outline-3">
-<h3 id="org7b62890"><span class="section-number-3">1.4</span> map()</h3>
+<div id="outline-container-org0a3e2a2" class="outline-3">
+<h3 id="org0a3e2a2"><span class="section-number-3">1.4</span> map()</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 map(fun &lt;key1, val1&gt;) -&gt; list(&lt;key2, val2&gt;)
@@ -850,16 +850,16 @@ all elemenet in list must have the same type
 </p>
 </div>
 </div>
-<div id="outline-container-org7c3d694" class="outline-3">
-<h3 id="org7c3d694"><span class="section-number-3">1.5</span> Schuffle</h3>
+<div id="outline-container-org2352dd4" class="outline-3">
+<h3 id="org2352dd4"><span class="section-number-3">1.5</span> Schuffle</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 schuffle(list(&lt;key2, val2&gt;)) -&gt; list(&lt;key2, list(val2)&gt;)
 </p>
 </div>
 </div>
-<div id="outline-container-org0080363" class="outline-3">
-<h3 id="org0080363"><span class="section-number-3">1.6</span> reduce</h3>
+<div id="outline-container-orgb4e5f1c" class="outline-3">
+<h3 id="orgb4e5f1c"><span class="section-number-3">1.6</span> reduce</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 reduce (fun, list(&lt;key2, list(val2)&gt;)) -&gt; list(val3)
@@ -867,8 +867,8 @@ reduce (fun, list(&lt;key2, list(val2)&gt;)) -&gt; list(val3)
 </div>
 </div>
 
-<div id="outline-container-org9951b54" class="outline-3">
-<h3 id="org9951b54"><span class="section-number-3">1.7</span> Limitation</h3>
+<div id="outline-container-org4326f23" class="outline-3">
+<h3 id="org4326f23"><span class="section-number-3">1.7</span> Limitation</h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
 1, multiple map() and reduce() must be manually specified
@@ -879,12 +879,12 @@ iterative algorithms are not very efficient with Hadoop.
 </div>
 </div>
 
-<div id="outline-container-org1f1ddd0" class="outline-2">
-<h2 id="org1f1ddd0"><span class="section-number-2">2</span> HDFS</h2>
+<div id="outline-container-org0edd261" class="outline-2">
+<h2 id="org0edd261"><span class="section-number-2">2</span> HDFS</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org46e69ec" class="outline-3">
-<h3 id="org46e69ec"><span class="section-number-3">2.1</span> descripation</h3>
+<div id="outline-container-org6d2e40b" class="outline-3">
+<h3 id="org6d2e40b"><span class="section-number-3">2.1</span> descripation</h3>
 <div class="outline-text-3" id="text-2-1">
 <pre class="example">
 
@@ -898,8 +898,8 @@ Namenode vs Datanodes
 </pre>
 </div>
 </div>
-<div id="outline-container-org3b701ba" class="outline-3">
-<h3 id="org3b701ba"><span class="section-number-3">2.2</span> install</h3>
+<div id="outline-container-org1a9c03b" class="outline-3">
+<h3 id="org1a9c03b"><span class="section-number-3">2.2</span> install</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 tut link <a href="https://drive.google.com/drive/folders/1XdPbyAc9iWml0fPPNX91Yq3BRwkZAG2M">https://drive.google.com/drive/folders/1XdPbyAc9iWml0fPPNX91Yq3BRwkZAG2M</a>
@@ -918,8 +918,8 @@ edit 6 file
 </div>
 </div>
 </div>
-<div id="outline-container-org9bd0e07" class="outline-2">
-<h2 id="org9bd0e07"><span class="section-number-2">3</span> YARN</h2>
+<div id="outline-container-org3d783a7" class="outline-2">
+<h2 id="org3d783a7"><span class="section-number-2">3</span> YARN</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Yet Another Resource Negotiator
@@ -934,16 +934,16 @@ The NodeManager execute tasks on the local resources
 </p>
 </div>
 </div>
-<div id="outline-container-orgc2d69a0" class="outline-2">
-<h2 id="orgc2d69a0"><span class="section-number-2">4</span> Spark</h2>
+<div id="outline-container-orga417b71" class="outline-2">
+<h2 id="orga417b71"><span class="section-number-2">4</span> Spark</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgb0590b2" class="outline-3">
-<h3 id="orgb0590b2"><span class="section-number-3">4.1</span> 3 node installation</h3>
+<div id="outline-container-org69dabc4" class="outline-3">
+<h3 id="org69dabc4"><span class="section-number-3">4.1</span> 3 node installation</h3>
 <div class="outline-text-3" id="text-4-1">
 </div>
-<div id="outline-container-org7341f53" class="outline-4">
-<h4 id="org7341f53"><span class="section-number-4">4.1.1</span> GWDG deployment</h4>
+<div id="outline-container-org5354a81" class="outline-4">
+<h4 id="org5354a81"><span class="section-number-4">4.1.1</span> GWDG deployment</h4>
 <div class="outline-text-4" id="text-4-1-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1015,8 +1015,8 @@ The NodeManager execute tasks on the local resources
 </div>
 </div>
 </div>
-<div id="outline-container-org8630bc9" class="outline-3">
-<h3 id="org8630bc9"><span class="section-number-3">4.2</span> descripation</h3>
+<div id="outline-container-orgff41c8e" class="outline-3">
+<h3 id="orgff41c8e"><span class="section-number-3">4.2</span> descripation</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 results do not  need to save in HDFS, it support in memory  executation.
@@ -1026,8 +1026,8 @@ DataFrame from SparkSQL
 </div>
 </div>
 
-<div id="outline-container-orgb59ea64" class="outline-3">
-<h3 id="orgb59ea64"><span class="section-number-3">4.3</span> scala</h3>
+<div id="outline-container-org07ea547" class="outline-3">
+<h3 id="org07ea547"><span class="section-number-3">4.3</span> scala</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 can from binary file
@@ -1038,12 +1038,12 @@ can from spark installation
 </div>
 </div>
 
-<div id="outline-container-org3f8931e" class="outline-3">
-<h3 id="org3f8931e"><span class="section-number-3">4.4</span> install</h3>
+<div id="outline-container-org4db7fee" class="outline-3">
+<h3 id="org4db7fee"><span class="section-number-3">4.4</span> install</h3>
 <div class="outline-text-3" id="text-4-4">
 </div>
-<div id="outline-container-org134a4d6" class="outline-4">
-<h4 id="org134a4d6"><span class="section-number-4">4.4.1</span> from source</h4>
+<div id="outline-container-orgdc0c638" class="outline-4">
+<h4 id="orgdc0c638"><span class="section-number-4">4.4.1</span> from source</h4>
 <div class="outline-text-4" id="text-4-4-1">
 <p>
 this is a full eco system, can build a cluster by my own,
@@ -1051,8 +1051,8 @@ with embended scala
 </p>
 </div>
 </div>
-<div id="outline-container-orgdc168a4" class="outline-4">
-<h4 id="orgdc168a4"><span class="section-number-4">4.4.2</span> from pip</h4>
+<div id="outline-container-org9d39419" class="outline-4">
+<h4 id="org9d39419"><span class="section-number-4">4.4.2</span> from pip</h4>
 <div class="outline-text-4" id="text-4-4-2">
 <p>
 my Prof can also build a eco system in pip download file, with config in  master:
@@ -1065,8 +1065,8 @@ like following
 </div>
 </div>
 
-<div id="outline-container-org5e96875" class="outline-3">
-<h3 id="org5e96875"><span class="section-number-3">4.5</span> single  master node configuration with</h3>
+<div id="outline-container-org94944be" class="outline-3">
+<h3 id="org94944be"><span class="section-number-3">4.5</span> single  master node configuration with</h3>
 <div class="outline-text-3" id="text-4-5">
 <div class="org-src-container">
 <pre class="src src-sh">cat ~/Documents/spark/myown/test.py
@@ -1100,8 +1100,8 @@ will open  a terminal with master configuration
 </div>
 </div>
 
-<div id="outline-container-org614ff02" class="outline-3">
-<h3 id="org614ff02"><span class="section-number-3">4.6</span> pyspark</h3>
+<div id="outline-container-org0a69e48" class="outline-3">
+<h3 id="org0a69e48"><span class="section-number-3">4.6</span> pyspark</h3>
 <div class="outline-text-3" id="text-4-6">
 <pre class="example">
 cd spark
@@ -1111,12 +1111,12 @@ bin/spark-submit examples/src/main/python/wordcount.py testtext.txt &amp;&gt; ou
 </div>
 </div>
 
-<div id="outline-container-org3402204" class="outline-2">
-<h2 id="org3402204"><span class="section-number-2">5</span> Big data lecture</h2>
+<div id="outline-container-org8736213" class="outline-2">
+<h2 id="org8736213"><span class="section-number-2">5</span> Big data lecture</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org3206332" class="outline-3">
-<h3 id="org3206332"><span class="section-number-3">5.1</span> Association Rule Minning</h3>
+<div id="outline-container-orgdf51fc7" class="outline-3">
+<h3 id="orgdf51fc7"><span class="section-number-3">5.1</span> Association Rule Minning</h3>
 <div class="outline-text-3" id="text-5-1">
 <ul class="org-ul">
 <li>Transaction: T, one behavior, which accomplished a lot of things(items)
@@ -1190,8 +1190,8 @@ The impact of a on b to be done
 </div>
 </div>
 
-<div id="outline-container-org6cb698c" class="outline-3">
-<h3 id="org6cb698c"><span class="section-number-3">5.2</span> Data Exploration</h3>
+<div id="outline-container-org41b1d1d" class="outline-3">
+<h3 id="org41b1d1d"><span class="section-number-3">5.2</span> Data Exploration</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 Singal feather: histogram density, rug, Box-Whisker
@@ -1217,12 +1217,12 @@ correlation heatmap
 </div>
 </div>
 
-<div id="outline-container-org392f775" class="outline-3">
-<h3 id="org392f775"><span class="section-number-3">5.3</span> Time Series Analysis</h3>
+<div id="outline-container-org0170f62" class="outline-3">
+<h3 id="org0170f62"><span class="section-number-3">5.3</span> Time Series Analysis</h3>
 <div class="outline-text-3" id="text-5-3">
 </div>
-<div id="outline-container-orgc7c213e" class="outline-4">
-<h4 id="orgc7c213e"><span class="section-number-4">5.3.1</span> Descripation</h4>
+<div id="outline-container-org6caab6b" class="outline-4">
+<h4 id="org6caab6b"><span class="section-number-4">5.3.1</span> Descripation</h4>
 <div class="outline-text-4" id="text-5-3-1">
 <p>
 Discrete values  {\(x_1\),&#x2026;.,\(x_T\)} = \((x_t)_{t=1}^T\)
@@ -1270,12 +1270,12 @@ so   \[X = T + S + R\]
 </p>
 </div>
 </div>
-<div id="outline-container-org3005c34" class="outline-4">
-<h4 id="org3005c34"><span class="section-number-4">5.3.2</span> Box-Jenkins for stationary</h4>
+<div id="outline-container-org47f0538" class="outline-4">
+<h4 id="org47f0538"><span class="section-number-4">5.3.2</span> Box-Jenkins for stationary</h4>
 <div class="outline-text-4" id="text-5-3-2">
 </div>
 <ol class="org-ol">
-<li><a id="orgdb1eca0"></a>stationary<br />
+<li><a id="org7a4538e"></a>stationary<br />
 <div class="outline-text-5" id="text-5-3-2-1">
 <p>
 Time series is stationary
@@ -1284,7 +1284,7 @@ so the autocorrelation is stochastic process,
 </p>
 </div>
 </li>
-<li><a id="org5e1c306"></a>Trend and Series Effects<br />
+<li><a id="orga738143"></a>Trend and Series Effects<br />
 <div class="outline-text-5" id="text-5-3-2-2">
 <ol class="org-ol">
 <li>model the trend \(T_{t}\) on the  time series \(x_{t}\)</li>
@@ -1294,7 +1294,7 @@ so the autocorrelation is stochastic process,
 </ol>
 </div>
 </li>
-<li><a id="orgffe25f9"></a>Regession and Seasonal Means<br />
+<li><a id="orgde875f1"></a>Regession and Seasonal Means<br />
 <div class="outline-text-5" id="text-5-3-2-3">
 <p>
 In this context we can only use linear regession to fit the all time series, get \(\hat{x}\).
@@ -1315,8 +1315,8 @@ the last season is not complete.
 </ol>
 </div>
 
-<div id="outline-container-orga01bc4e" class="outline-4">
-<h4 id="orga01bc4e"><span class="section-number-4">5.3.3</span> Differencing for not stationary</h4>
+<div id="outline-container-orga003ecf" class="outline-4">
+<h4 id="orga003ecf"><span class="section-number-4">5.3.3</span> Differencing for not stationary</h4>
 <div class="outline-text-4" id="text-5-3-3">
 <p>
 for \(y=f(x)\) for two points(\(x_1\), \(y_1\)) and (\(x_2, y_2\)),
@@ -1337,8 +1337,8 @@ using  the difference  between two consecutive points in time during the season.
 </div>
 </div>
 
-<div id="outline-container-org80b6bb0" class="outline-4">
-<h4 id="org80b6bb0"><span class="section-number-4">5.3.4</span> Correlation</h4>
+<div id="outline-container-org3a6143f" class="outline-4">
+<h4 id="org3a6143f"><span class="section-number-4">5.3.4</span> Correlation</h4>
 <div class="outline-text-4" id="text-5-3-4">
 <p>
 Autocorrelation is the direct relationship of the values
@@ -1356,15 +1356,15 @@ residual seasonal effect for regession and seasonal means
 </p>
 </div>
 </div>
-<div id="outline-container-org97ff4b6" class="outline-4">
-<h4 id="org97ff4b6"><span class="section-number-4">5.3.5</span> ARIMA</h4>
+<div id="outline-container-org0219186" class="outline-4">
+<h4 id="org0219186"><span class="section-number-4">5.3.5</span> ARIMA</h4>
 <div class="outline-text-4" id="text-5-3-5">
 <p>
 three ways to model correlation
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="orgd4ad345"></a>AR: atuoregressive<br />
+<li><a id="org8021e07"></a>AR: atuoregressive<br />
 <div class="outline-text-5" id="text-5-3-5-1">
 <p>
 model the direct influence of the past p points on time series
@@ -1375,7 +1375,7 @@ c :constant over all time
 </div>
 </li>
 
-<li><a id="org16d684e"></a>MA: Moving average<br />
+<li><a id="orgbc7e38f"></a>MA: Moving average<br />
 <div class="outline-text-5" id="text-5-3-5-2">
 <p>
 model the random effect on time series
@@ -1385,7 +1385,7 @@ the difference is the random influence of the past noise to next value
 </div>
 </li>
 
-<li><a id="orgfc8e2f2"></a>ARMA: autoregressive and Moving average<br />
+<li><a id="org835fd32"></a>ARMA: autoregressive and Moving average<br />
 <div class="outline-text-5" id="text-5-3-5-3">
 <p>
 \(c + \epsilon_{t} + \sum_{i=1}^{p}a_{i}x_{t-i} + \sum_{j=1}^{q}b_{j}\epsilon_{t-j}\)
@@ -1393,7 +1393,7 @@ the difference is the random influence of the past noise to next value
 </div>
 </li>
 
-<li><a id="orgc3e19aa"></a>select p and q<br />
+<li><a id="orgeccc0b2"></a>select p and q<br />
 <div class="outline-text-5" id="text-5-3-5-4">
 <p>
 partial authentication estimate the p for AR, but if p can cover all the season,
@@ -1411,30 +1411,30 @@ at the same time the effect of AR should also be counted for determinate q.
 </div>
 </div>
 
-<div id="outline-container-orgb448c2f" class="outline-3">
-<h3 id="orgb448c2f"><span class="section-number-3">5.4</span> Text minning</h3>
+<div id="outline-container-orgf7edf35" class="outline-3">
+<h3 id="orgf7edf35"><span class="section-number-3">5.4</span> Text minning</h3>
 <div class="outline-text-3" id="text-5-4">
 </div>
-<div id="outline-container-orgc92f47e" class="outline-4">
-<h4 id="orgc92f47e"><span class="section-number-4">5.4.1</span> Preprocessing</h4>
+<div id="outline-container-orgfa27655" class="outline-4">
+<h4 id="orgfa27655"><span class="section-number-4">5.4.1</span> Preprocessing</h4>
 <div class="outline-text-4" id="text-5-4-1">
 </div>
 <ol class="org-ol">
-<li><a id="org9854656"></a>Creation of a Corpus<br />
+<li><a id="org34f9966"></a>Creation of a Corpus<br />
 <div class="outline-text-5" id="text-5-4-1-1">
 <p>
 contains all text to analysis
 </p>
 </div>
 </li>
-<li><a id="orgddb92d5"></a>remove the irrelevant content,<br />
+<li><a id="orgd312923"></a>remove the irrelevant content,<br />
 <div class="outline-text-5" id="text-5-4-1-2">
 <p>
 links, timestamps
 </p>
 </div>
 </li>
-<li><a id="org4b4791c"></a>Punctuation and Cases<br />
+<li><a id="org4a9b43f"></a>Punctuation and Cases<br />
 <div class="outline-text-5" id="text-5-4-1-3">
 <p>
 remove all Punctuation, and all use small cases
@@ -1442,14 +1442,14 @@ a problem is about acronyms
 </p>
 </div>
 </li>
-<li><a id="org3e52fcb"></a>Stop words<br />
+<li><a id="orgdb0c36a"></a>Stop words<br />
 <div class="outline-text-5" id="text-5-4-1-4">
 <p>
 commons words should be removed, auch as I, to ,a
 </p>
 </div>
 </li>
-<li><a id="org51f0c29"></a>Stemming and Lemmatization<br />
+<li><a id="org01f600c"></a>Stemming and Lemmatization<br />
 <div class="outline-text-5" id="text-5-4-1-5">
 <p>
 first Lemmatization, and then Stemming
@@ -1458,20 +1458,20 @@ first Lemmatization, and then Stemming
 </li>
 </ol>
 </div>
-<div id="outline-container-orgbca70bb" class="outline-4">
-<h4 id="orgbca70bb"><span class="section-number-4">5.4.2</span> Visualiztation</h4>
+<div id="outline-container-orge75cc51" class="outline-4">
+<h4 id="orge75cc51"><span class="section-number-4">5.4.2</span> Visualiztation</h4>
 <div class="outline-text-4" id="text-5-4-2">
 </div>
 <ol class="org-ol">
-<li><a id="orgf0ca730"></a>bag-of-words with wordclouds<br /></li>
-<li><a id="org9dd31f9"></a>Term frequency(TF)<br />
+<li><a id="orgc6888b8"></a>bag-of-words with wordclouds<br /></li>
+<li><a id="org66da03d"></a>Term frequency(TF)<br />
 <div class="outline-text-5" id="text-5-4-2-2">
 <p>
 is the count of a words within document
 </p>
 </div>
 </li>
-<li><a id="orgb74b7f6"></a>Inverse Document Frequency(IDF)<br />
+<li><a id="org4bc6446"></a>Inverse Document Frequency(IDF)<br />
 <div class="outline-text-5" id="text-5-4-2-3">
 <p>
 is to weight words by their uniqueness within the corpus
@@ -1483,14 +1483,14 @@ N: the number of document in corpus
 </div>
 </li>
 
-<li><a id="orge4343d1"></a>TFIDF<br />
+<li><a id="org1952162"></a>TFIDF<br />
 <div class="outline-text-5" id="text-5-4-2-4">
 <p>
 \[TFIDF = TF \cdot IDF \]
 </p>
 </div>
 </li>
-<li><a id="orgbfc80a1"></a>beyond the bag-of-words<br />
+<li><a id="orgd3856ff"></a>beyond the bag-of-words<br />
 <div class="outline-text-5" id="text-5-4-2-5">
 <p>
 ignore the structure of document
@@ -1501,23 +1501,23 @@ ignore simiarity of words
 </ol>
 </div>
 
-<div id="outline-container-orgddab69b" class="outline-4">
-<h4 id="orgddab69b"><span class="section-number-4">5.4.3</span> challages</h4>
+<div id="outline-container-orge84d595" class="outline-4">
+<h4 id="orge84d595"><span class="section-number-4">5.4.3</span> challages</h4>
 <div class="outline-text-4" id="text-5-4-3">
 </div>
 <ol class="org-ol">
-<li><a id="org574ef52"></a>dimensionality<br /></li>
-<li><a id="org90facd0"></a>Ambiguities<br /></li>
+<li><a id="org05680cf"></a>dimensionality<br /></li>
+<li><a id="org488583b"></a>Ambiguities<br /></li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf58b0fb" class="outline-2">
-<h2 id="orgf58b0fb"><span class="section-number-2">6</span> Sensor Fusion lecture</h2>
+<div id="outline-container-orgba3dfe2" class="outline-2">
+<h2 id="orgba3dfe2"><span class="section-number-2">6</span> Sensor Fusion lecture</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org36e2760" class="outline-3">
-<h3 id="org36e2760"><span class="section-number-3">6.1</span> Sensor Dataverarbeitung</h3>
+<div id="outline-container-orgc15bbf4" class="outline-3">
+<h3 id="orgc15bbf4"><span class="section-number-3">6.1</span> Sensor Dataverarbeitung</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 Tensor Fehler, Präzision: stochastisch
@@ -1525,8 +1525,8 @@ Richtigkeit: systematisch
 </p>
 </div>
 </div>
-<div id="outline-container-org3fd8f9a" class="outline-3">
-<h3 id="org3fd8f9a"><span class="section-number-3">6.2</span> concepts</h3>
+<div id="outline-container-org1fb9e56" class="outline-3">
+<h3 id="org1fb9e56"><span class="section-number-3">6.2</span> concepts</h3>
 <div class="outline-text-3" id="text-6-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1612,12 +1612,12 @@ Richtigkeit: systematisch
 </div>
 </div>
 </div>
-<div id="outline-container-orgf7ca25a" class="outline-2">
-<h2 id="orgf7ca25a"><span class="section-number-2">7</span> data analysis code demo</h2>
+<div id="outline-container-orgb94cf21" class="outline-2">
+<h2 id="orgb94cf21"><span class="section-number-2">7</span> data analysis code demo</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org95f7a5d" class="outline-3">
-<h3 id="org95f7a5d"><span class="section-number-3">7.1</span> statistical mothode</h3>
+<div id="outline-container-orgce475ae" class="outline-3">
+<h3 id="orgce475ae"><span class="section-number-3">7.1</span> statistical mothode</h3>
 <div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">from</span> scipy <span style="font-weight: bold;">import</span> stats
@@ -1643,8 +1643,8 @@ Richtigkeit: systematisch
 </div>
 </div>
 
-<div id="outline-container-orgdbf6781" class="outline-3">
-<h3 id="orgdbf6781"><span class="section-number-3">7.2</span> confidence level interval determinate</h3>
+<div id="outline-container-org683a975" class="outline-3">
+<h3 id="org683a975"><span class="section-number-3">7.2</span> confidence level interval determinate</h3>
 <div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">import</span> numpy <span style="font-weight: bold;">as</span> np
@@ -1671,8 +1671,8 @@ Richtigkeit: systematisch
 </div>
 </div>
 </div>
-<div id="outline-container-orgb3c6c4b" class="outline-3">
-<h3 id="orgb3c6c4b"><span class="section-number-3">7.3</span> a complete ploted distribution of confidence level on t mode</h3>
+<div id="outline-container-org03974f0" class="outline-3">
+<h3 id="org03974f0"><span class="section-number-3">7.3</span> a complete ploted distribution of confidence level on t mode</h3>
 <div class="outline-text-3" id="text-7-3">
 <div class="org-src-container">
 <pre class="src src-python">  <span style="font-weight: bold;">import</span> numpy <span style="font-weight: bold;">as</span> np
@@ -1699,8 +1699,8 @@ Richtigkeit: systematisch
 </div>
 </div>
 </div>
-<div id="outline-container-org573e795" class="outline-3">
-<h3 id="org573e795"><span class="section-number-3">7.4</span> a complete ploted distribution</h3>
+<div id="outline-container-orgfd3af11" class="outline-3">
+<h3 id="orgfd3af11"><span class="section-number-3">7.4</span> a complete ploted distribution</h3>
 <div class="outline-text-3" id="text-7-4">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">import</span> numpy <span style="font-weight: bold;">as</span> np
@@ -1721,8 +1721,8 @@ plt.show()
 </div>
 </div>
 
-<div id="outline-container-org5799ca7" class="outline-3">
-<h3 id="org5799ca7"><span class="section-number-3">7.5</span> a complete ploted distribution on between region</h3>
+<div id="outline-container-org3f4ffd0" class="outline-3">
+<h3 id="org3f4ffd0"><span class="section-number-3">7.5</span> a complete ploted distribution on between region</h3>
 <div class="outline-text-3" id="text-7-5">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold; font-style: italic;">x</span> = np.linspace(-5,5,100)
@@ -1739,8 +1739,8 @@ plt.show()
 </div>
 </div>
 </div>
-<div id="outline-container-org49e3ad9" class="outline-3">
-<h3 id="org49e3ad9"><span class="section-number-3">7.6</span> a example from internet</h3>
+<div id="outline-container-org1b61e25" class="outline-3">
+<h3 id="org1b61e25"><span class="section-number-3">7.6</span> a example from internet</h3>
 <div class="outline-text-3" id="text-7-6">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">import</span> pandas <span style="font-weight: bold;">as</span> pd
@@ -1756,8 +1756,8 @@ plt.show(df.plot(kind = <span style="font-style: italic;">'box'</span>))
 </div>
 </div>
 </div>
-<div id="outline-container-orgbea8830" class="outline-3">
-<h3 id="orgbea8830"><span class="section-number-3">7.7</span> 1 2 3 order and gauss fitting</h3>
+<div id="outline-container-orge71ffed" class="outline-3">
+<h3 id="orge71ffed"><span class="section-number-3">7.7</span> 1 2 3 order and gauss fitting</h3>
 <div class="outline-text-3" id="text-7-7">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">import</span> numpy <span style="font-weight: bold;">as</span> np
@@ -1851,8 +1851,8 @@ plot_figure()
 </div>
 </div>
 </div>
-<div id="outline-container-orgda9b372" class="outline-3">
-<h3 id="orgda9b372"><span class="section-number-3">7.8</span> linear fitting</h3>
+<div id="outline-container-org1b30fcc" class="outline-3">
+<h3 id="org1b30fcc"><span class="section-number-3">7.8</span> linear fitting</h3>
 <div class="outline-text-3" id="text-7-8">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">matplotlib inline</span>
@@ -1890,8 +1890,8 @@ plt.plot(x_fine, bestfit_rho, <span style="font-style: italic;">'r-'</span>, lw=
 </div>
 </div>
 </div>
-<div id="outline-container-orgd3860e7" class="outline-3">
-<h3 id="orgd3860e7"><span class="section-number-3">7.9</span> linear fitting with ployfit</h3>
+<div id="outline-container-orga3bd199" class="outline-3">
+<h3 id="orga3bd199"><span class="section-number-3">7.9</span> linear fitting with ployfit</h3>
 <div class="outline-text-3" id="text-7-9">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">matplotlib inline</span>
@@ -1932,12 +1932,12 @@ plt.show()
 </div>
 </div>
 
-<div id="outline-container-org47204a4" class="outline-2">
-<h2 id="org47204a4"><span class="section-number-2">8</span> High performance Data Analysis lecture</h2>
+<div id="outline-container-org336bc89" class="outline-2">
+<h2 id="org336bc89"><span class="section-number-2">8</span> High performance Data Analysis lecture</h2>
 <div class="outline-text-2" id="text-8">
 </div>
-<div id="outline-container-orgc5ca961" class="outline-3">
-<h3 id="orgc5ca961"><span class="section-number-3">8.1</span> concepts</h3>
+<div id="outline-container-org8b39a14" class="outline-3">
+<h3 id="org8b39a14"><span class="section-number-3">8.1</span> concepts</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 High performance Data Analysis:
@@ -1945,12 +1945,12 @@ with parallel processing to quickly find the insights from extremely large data 
 </p>
 </div>
 </div>
-<div id="outline-container-orga824b50" class="outline-3">
-<h3 id="orga824b50"><span class="section-number-3">8.2</span> Chap01 overview</h3>
+<div id="outline-container-orgc0fd06c" class="outline-3">
+<h3 id="orgc0fd06c"><span class="section-number-3">8.2</span> Chap01 overview</h3>
 <div class="outline-text-3" id="text-8-2">
 </div>
-<div id="outline-container-orgb59c78a" class="outline-4">
-<h4 id="orgb59c78a"><span class="section-number-4">8.2.1</span> Distributed System</h4>
+<div id="outline-container-orga095cbb" class="outline-4">
+<h4 id="orga095cbb"><span class="section-number-4">8.2.1</span> Distributed System</h4>
 <div class="outline-text-4" id="text-8-2-1">
 <ol class="org-ol">
 <li>Definiation:</li>
@@ -1980,16 +1980,16 @@ Consensus, Repication
 </div>
 </div>
 
-<div id="outline-container-org381c4d8" class="outline-4">
-<h4 id="org381c4d8"><span class="section-number-4">8.2.2</span> Levels of parallelism</h4>
+<div id="outline-container-orgf497058" class="outline-4">
+<h4 id="orgf497058"><span class="section-number-4">8.2.2</span> Levels of parallelism</h4>
 <div class="outline-text-4" id="text-8-2-2">
 <p>
 Bit-level, Instruction level, Data level, Task level
 </p>
 </div>
 </div>
-<div id="outline-container-org3e84c1c" class="outline-4">
-<h4 id="org3e84c1c"><span class="section-number-4">8.2.3</span> Name typical applications for high-performance data analytics</h4>
+<div id="outline-container-orgcf65efa" class="outline-4">
+<h4 id="orgcf65efa"><span class="section-number-4">8.2.3</span> Name typical applications for high-performance data analytics</h4>
 <div class="outline-text-4" id="text-8-2-3">
 <ol class="org-ol">
 <li>weather forecast</li>
@@ -1997,24 +1997,24 @@ Bit-level, Instruction level, Data level, Task level
 </ol>
 </div>
 </div>
-<div id="outline-container-orge639100" class="outline-4">
-<h4 id="orge639100"><span class="section-number-4">8.2.4</span> Distinguish HPDA from D/P/S computing and how these topics blend</h4>
+<div id="outline-container-org9a4c3be" class="outline-4">
+<h4 id="org9a4c3be"><span class="section-number-4">8.2.4</span> Distinguish HPDA from D/P/S computing and how these topics blend</h4>
 <div class="outline-text-4" id="text-8-2-4">
 <p>
 Stricter than distributed system( strongly scalling: weak scalling)
 </p>
 </div>
 </div>
-<div id="outline-container-orgea6b5bf" class="outline-4">
-<h4 id="orgea6b5bf"><span class="section-number-4">8.2.5</span> Describe use-cases and challenges in the domain of D/P/S computing</h4>
+<div id="outline-container-org0a4c486" class="outline-4">
+<h4 id="org0a4c486"><span class="section-number-4">8.2.5</span> Describe use-cases and challenges in the domain of D/P/S computing</h4>
 <div class="outline-text-4" id="text-8-2-5">
 <p>
 Recommendation engine
 </p>
 </div>
 </div>
-<div id="outline-container-org82b08e3" class="outline-4">
-<h4 id="org82b08e3"><span class="section-number-4">8.2.6</span> Describe how the scientific method relies on D/P/S computing</h4>
+<div id="outline-container-org34c2640" class="outline-4">
+<h4 id="org34c2640"><span class="section-number-4">8.2.6</span> Describe how the scientific method relies on D/P/S computing</h4>
 <div class="outline-text-4" id="text-8-2-6">
 <p>
 Simulation models real systems to gain new insight
@@ -2022,8 +2022,8 @@ Big Data Analytics extracts insight from data
 </p>
 </div>
 </div>
-<div id="outline-container-orgea1c7ff" class="outline-4">
-<h4 id="orgea1c7ff"><span class="section-number-4">8.2.7</span> Name big data challenges and the typical workflow</h4>
+<div id="outline-container-org73b651c" class="outline-4">
+<h4 id="org73b651c"><span class="section-number-4">8.2.7</span> Name big data challenges and the typical workflow</h4>
 <div class="outline-text-4" id="text-8-2-7">
 <p>
 how to deal with big data(5Vs)
@@ -2031,19 +2031,19 @@ Raw-&gt; Descriptive -&gt; Diagnostics -&gt; Predictive -&gt; Prescriptive
 </p>
 </div>
 </div>
-<div id="outline-container-orgfdcb6b4" class="outline-4">
-<h4 id="orgfdcb6b4"><span class="section-number-4">8.2.8</span> Recite system characteristics for distributed/parallel/computational science</h4>
+<div id="outline-container-org9429649" class="outline-4">
+<h4 id="org9429649"><span class="section-number-4">8.2.8</span> Recite system characteristics for distributed/parallel/computational science</h4>
 </div>
-<div id="outline-container-org3d90784" class="outline-4">
-<h4 id="org3d90784"><span class="section-number-4">8.2.9</span> Sketch generic D/P system architectures</h4>
+<div id="outline-container-orgb4f196a" class="outline-4">
+<h4 id="orgb4f196a"><span class="section-number-4">8.2.9</span> Sketch generic D/P system architectures</h4>
 </div>
 </div>
-<div id="outline-container-orgcaf403b" class="outline-3">
-<h3 id="orgcaf403b"><span class="section-number-3">8.3</span> Chap02  DataModels &amp; Data Processing Strategies</h3>
+<div id="outline-container-orgc9e0e30" class="outline-3">
+<h3 id="orgc9e0e30"><span class="section-number-3">8.3</span> Chap02  DataModels &amp; Data Processing Strategies</h3>
 <div class="outline-text-3" id="text-8-3">
 </div>
-<div id="outline-container-org70dc9fa" class="outline-4">
-<h4 id="org70dc9fa"><span class="section-number-4">8.3.1</span> Define important terminology for data handling and data processing</h4>
+<div id="outline-container-org9410dad" class="outline-4">
+<h4 id="org9410dad"><span class="section-number-4">8.3.1</span> Define important terminology for data handling and data processing</h4>
 <div class="outline-text-4" id="text-8-3-1">
 <p>
 Raw data, semantic normalization, Data management plan, Data life cycle,
@@ -2051,8 +2051,8 @@ data governance,  data provenance&#x2026;
 </p>
 </div>
 </div>
-<div id="outline-container-orgeaf0280" class="outline-4">
-<h4 id="orgeaf0280"><span class="section-number-4">8.3.2</span> Sketch the ETL process used in data warehouses</h4>
+<div id="outline-container-org6a64952" class="outline-4">
+<h4 id="org6a64952"><span class="section-number-4">8.3.2</span> Sketch the ETL process used in data warehouses</h4>
 <div class="outline-text-4" id="text-8-3-2">
 <p>
 extract from a source database,
@@ -2061,8 +2061,8 @@ loading, integrate them into data warehouses for user
 </p>
 </div>
 </div>
-<div id="outline-container-org822f34f" class="outline-4">
-<h4 id="org822f34f"><span class="section-number-4">8.3.3</span> Sketch a typical HPDA data analysis workflow</h4>
+<div id="outline-container-org075a9a2" class="outline-4">
+<h4 id="org075a9a2"><span class="section-number-4">8.3.3</span> Sketch a typical HPDA data analysis workflow</h4>
 <div class="outline-text-4" id="text-8-3-3">
 <p>
 classical: discovery, integration, exploitation
@@ -2070,8 +2070,8 @@ in high level,  with  SQL, java, scala, Python, with parallelism for data Explor
 </p>
 </div>
 </div>
-<div id="outline-container-org739833a" class="outline-4">
-<h4 id="org739833a"><span class="section-number-4">8.3.4</span> Sketch the lambda architecture</h4>
+<div id="outline-container-org5a9cc28" class="outline-4">
+<h4 id="org5a9cc28"><span class="section-number-4">8.3.4</span> Sketch the lambda architecture</h4>
 <div class="outline-text-4" id="text-8-3-4">
 <p>
 Lambda architecture is a concept for enabling real-time processing and batch methods together.
@@ -2080,14 +2080,14 @@ speed layer(read time)
 </p>
 </div>
 </div>
-<div id="outline-container-org3f0764d" class="outline-4">
-<h4 id="org3f0764d"><span class="section-number-4">8.3.5</span> Construct suitable data models for a given use-case and discuss their pro/cons</h4>
+<div id="outline-container-orgcb709bf" class="outline-4">
+<h4 id="orgcb709bf"><span class="section-number-4">8.3.5</span> Construct suitable data models for a given use-case and discuss their pro/cons</h4>
 </div>
-<div id="outline-container-org1c2ed0c" class="outline-4">
-<h4 id="org1c2ed0c"><span class="section-number-4">8.3.6</span> Define relevant semantics for data</h4>
+<div id="outline-container-orgdd290d5" class="outline-4">
+<h4 id="orgdd290d5"><span class="section-number-4">8.3.6</span> Define relevant semantics for data</h4>
 </div>
-<div id="outline-container-org74030c6" class="outline-4">
-<h4 id="org74030c6"><span class="section-number-4">8.3.7</span> data models</h4>
+<div id="outline-container-orgd5d9e6e" class="outline-4">
+<h4 id="orgd5d9e6e"><span class="section-number-4">8.3.7</span> data models</h4>
 <div class="outline-text-4" id="text-8-3-7">
 <p>
 Concurrency, Durability, Consensus,
@@ -2102,16 +2102,16 @@ Concurrency, Durability, Consensus,
 </div>
 </div>
 </div>
-<div id="outline-container-orgef7af0f" class="outline-3">
-<h3 id="orgef7af0f"><span class="section-number-3">8.4</span> Chap03 Databases and DataWarehouses</h3>
+<div id="outline-container-org7eefc26" class="outline-3">
+<h3 id="org7eefc26"><span class="section-number-3">8.4</span> Chap03 Databases and DataWarehouses</h3>
 <div class="outline-text-3" id="text-8-4">
 </div>
-<div id="outline-container-org664daec" class="outline-4">
-<h4 id="org664daec"><span class="section-number-4">8.4.1</span> relatation model</h4>
+<div id="outline-container-orgf177639" class="outline-4">
+<h4 id="orgf177639"><span class="section-number-4">8.4.1</span> relatation model</h4>
 <div class="outline-text-4" id="text-8-4-1">
 </div>
 <ol class="org-ol">
-<li><a id="org965f33e"></a>Cardinality<br />
+<li><a id="org03bfbfa"></a>Cardinality<br />
 <div class="outline-text-5" id="text-8-4-1-1">
 <ul class="org-ul">
 <li>one to one</li>
@@ -2120,7 +2120,7 @@ Concurrency, Durability, Consensus,
 </ul>
 </div>
 </li>
-<li><a id="orgfa9e887"></a>Normalization Form<br />
+<li><a id="orgfcafd59"></a>Normalization Form<br />
 <div class="outline-text-5" id="text-8-4-1-2">
 <p>
 reduces dependencies, prevents inconsistency, save space
@@ -2133,14 +2133,14 @@ reduces dependencies, prevents inconsistency, save space
 </ul>
 </div>
 </li>
-<li><a id="org9186805"></a>group by<br />
+<li><a id="org0335943"></a>group by<br />
 <div class="outline-text-5" id="text-8-4-1-3">
 <p>
 it's done with Aggregatation(in sql or in python, both)
 </p>
 </div>
 </li>
-<li><a id="orgec8d9bc"></a>join<br />
+<li><a id="orgcde6f39"></a>join<br />
 <div class="outline-text-5" id="text-8-4-1-4">
 <p>
 cross join: Cartesian product of two tables
@@ -2152,7 +2152,7 @@ full join
 </p>
 </div>
 </li>
-<li><a id="org43d3c9e"></a>Transactions<br />
+<li><a id="org10ede2b"></a>Transactions<br />
 <div class="outline-text-5" id="text-8-4-1-5">
 <p>
 ACID
@@ -2161,8 +2161,8 @@ ACID
 </li>
 </ol>
 </div>
-<div id="outline-container-org97e00c5" class="outline-4">
-<h4 id="org97e00c5"><span class="section-number-4">8.4.2</span> Define Database, DBMS, and Data Warehouse</h4>
+<div id="outline-container-orgbaf9e49" class="outline-4">
+<h4 id="orgbaf9e49"><span class="section-number-4">8.4.2</span> Define Database, DBMS, and Data Warehouse</h4>
 <div class="outline-text-4" id="text-8-4-2">
 <ul class="org-ul">
 <li>an organized collection of data</li>
@@ -2171,26 +2171,26 @@ ACID
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb59f4c7" class="outline-4">
-<h4 id="orgb59f4c7"><span class="section-number-4">8.4.3</span> Create a relational model for a given problem</h4>
+<div id="outline-container-org5f7f2d0" class="outline-4">
+<h4 id="org5f7f2d0"><span class="section-number-4">8.4.3</span> Create a relational model for a given problem</h4>
 </div>
-<div id="outline-container-orgac8cc1d" class="outline-4">
-<h4 id="orgac8cc1d"><span class="section-number-4">8.4.4</span> Draw an ER(Entity Relational) diagram for a given relational model (and vice versa)</h4>
+<div id="outline-container-org101dab3" class="outline-4">
+<h4 id="org101dab3"><span class="section-number-4">8.4.4</span> Draw an ER(Entity Relational) diagram for a given relational model (and vice versa)</h4>
 </div>
-<div id="outline-container-orgda8255c" class="outline-4">
-<h4 id="orgda8255c"><span class="section-number-4">8.4.5</span> Normalize a small relational model into a redundant-free model</h4>
+<div id="outline-container-org6de80d5" class="outline-4">
+<h4 id="org6de80d5"><span class="section-number-4">8.4.5</span> Normalize a small relational model into a redundant-free model</h4>
 </div>
-<div id="outline-container-org1734eb9" class="outline-4">
-<h4 id="org1734eb9"><span class="section-number-4">8.4.6</span> List the result of an inner join of two tables to resolve relationships</h4>
+<div id="outline-container-org294b22d" class="outline-4">
+<h4 id="org294b22d"><span class="section-number-4">8.4.6</span> List the result of an inner join of two tables to resolve relationships</h4>
 </div>
-<div id="outline-container-org3d810a7" class="outline-4">
-<h4 id="org3d810a7"><span class="section-number-4">8.4.7</span> Formulate SQL queries for a relational model</h4>
+<div id="outline-container-orgaa7adf0" class="outline-4">
+<h4 id="orgaa7adf0"><span class="section-number-4">8.4.7</span> Formulate SQL queries for a relational model</h4>
 </div>
-<div id="outline-container-org22fd890" class="outline-4">
-<h4 id="org22fd890"><span class="section-number-4">8.4.8</span> Create a Star-Schema from a relational model (and formulate queries)</h4>
+<div id="outline-container-orgf58f271" class="outline-4">
+<h4 id="orgf58f271"><span class="section-number-4">8.4.8</span> Create a Star-Schema from a relational model (and formulate queries)</h4>
 </div>
-<div id="outline-container-org99a6667" class="outline-4">
-<h4 id="org99a6667"><span class="section-number-4">8.4.9</span> Sketch the operations for an OLAP cube</h4>
+<div id="outline-container-org7a390ec" class="outline-4">
+<h4 id="org7a390ec"><span class="section-number-4">8.4.9</span> Sketch the operations for an OLAP cube</h4>
 <div class="outline-text-4" id="text-8-4-9">
 <ul class="org-ul">
 <li>Slice</li>
@@ -2200,8 +2200,8 @@ ACID
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc4d0e1e" class="outline-4">
-<h4 id="orgc4d0e1e"><span class="section-number-4">8.4.10</span> Appraise the pro/cons of OLAP vs. traditional relational model</h4>
+<div id="outline-container-orgcc35520" class="outline-4">
+<h4 id="orgcc35520"><span class="section-number-4">8.4.10</span> Appraise the pro/cons of OLAP vs. traditional relational model</h4>
 <div class="outline-text-4" id="text-8-4-10">
 <p>
 Star-Schema: pro: simplification of query and performancd gain, emulates OLAP cube
@@ -2209,16 +2209,16 @@ start-Schema: cons: data integrity is not guaranteed, no natural support of many
 </p>
 </div>
 </div>
-<div id="outline-container-orgfc42d01" class="outline-4">
-<h4 id="orgfc42d01"><span class="section-number-4">8.4.11</span> Describe DBMS optimizations: index, bulk loading, garbage cleaning</h4>
+<div id="outline-container-orge5c4004" class="outline-4">
+<h4 id="orge5c4004"><span class="section-number-4">8.4.11</span> Describe DBMS optimizations: index, bulk loading, garbage cleaning</h4>
 </div>
 </div>
-<div id="outline-container-org6255e23" class="outline-3">
-<h3 id="org6255e23"><span class="section-number-3">8.5</span> Chap04 Distributed Storage and Processing with Hadoop</h3>
+<div id="outline-container-org9482db7" class="outline-3">
+<h3 id="org9482db7"><span class="section-number-3">8.5</span> Chap04 Distributed Storage and Processing with Hadoop</h3>
 <div class="outline-text-3" id="text-8-5">
 </div>
-<div id="outline-container-org07a58d8" class="outline-4">
-<h4 id="org07a58d8"><span class="section-number-4">8.5.1</span> hadoop</h4>
+<div id="outline-container-org4cbc832" class="outline-4">
+<h4 id="org4cbc832"><span class="section-number-4">8.5.1</span> hadoop</h4>
 <div class="outline-text-4" id="text-8-5-1">
 <p>
 map: filter and convert all input into key-value tuples
@@ -2226,8 +2226,8 @@ reduce: receives all tuples with the same keys, accumulated
 </p>
 </div>
 </div>
-<div id="outline-container-org739fe32" class="outline-4">
-<h4 id="org739fe32"><span class="section-number-4">8.5.2</span> Describe the architecture and features of Apache Hadoop</h4>
+<div id="outline-container-org415241a" class="outline-4">
+<h4 id="org415241a"><span class="section-number-4">8.5.2</span> Describe the architecture and features of Apache Hadoop</h4>
 <div class="outline-text-4" id="text-8-5-2">
 <ul class="org-ul">
 <li>HDFS and MapReduce executation engine</li>
@@ -2240,14 +2240,14 @@ reduce: receives all tuples with the same keys, accumulated
 </ul>
 </div>
 </div>
-<div id="outline-container-org2a389bd" class="outline-4">
-<h4 id="org2a389bd"><span class="section-number-4">8.5.3</span> Formulate simple algorithms using the MapReduce programming model</h4>
+<div id="outline-container-orge43997d" class="outline-4">
+<h4 id="orge43997d"><span class="section-number-4">8.5.3</span> Formulate simple algorithms using the MapReduce programming model</h4>
 </div>
-<div id="outline-container-org62e2f84" class="outline-4">
-<h4 id="org62e2f84"><span class="section-number-4">8.5.4</span> Justify architectural decisions made in Apache Hadoop</h4>
+<div id="outline-container-org265a8f6" class="outline-4">
+<h4 id="org265a8f6"><span class="section-number-4">8.5.4</span> Justify architectural decisions made in Apache Hadoop</h4>
 </div>
-<div id="outline-container-org21e66e8" class="outline-4">
-<h4 id="org21e66e8"><span class="section-number-4">8.5.5</span> Sketch the execution phases of MapReduce and describe their behavior</h4>
+<div id="outline-container-orgbf15f26" class="outline-4">
+<h4 id="orgbf15f26"><span class="section-number-4">8.5.5</span> Sketch the execution phases of MapReduce and describe their behavior</h4>
 <div class="outline-text-4" id="text-8-5-5">
 <ol class="org-ol">
 <li>distributed code</li>
@@ -2261,8 +2261,8 @@ reduce: receives all tuples with the same keys, accumulated
 </ol>
 </div>
 </div>
-<div id="outline-container-orgfaad0ec" class="outline-4">
-<h4 id="orgfaad0ec"><span class="section-number-4">8.5.6</span> Describe limitations of Hadoop1 and the benefits of Hadoop2 with TEZ</h4>
+<div id="outline-container-orgcbadd4b" class="outline-4">
+<h4 id="orgcbadd4b"><span class="section-number-4">8.5.6</span> Describe limitations of Hadoop1 and the benefits of Hadoop2 with TEZ</h4>
 <div class="outline-text-4" id="text-8-5-6">
 <ul class="org-ul">
 <li>Allow modelling and execution of data processing logic</li>
@@ -2274,17 +2274,17 @@ reduce: receives all tuples with the same keys, accumulated
 </ul>
 </div>
 </div>
-<div id="outline-container-org33be24d" class="outline-4">
-<h4 id="org33be24d"><span class="section-number-4">8.5.7</span> Sketch the parallel file access performed by MapReduce jobs</h4>
+<div id="outline-container-org86fd3b8" class="outline-4">
+<h4 id="org86fd3b8"><span class="section-number-4">8.5.7</span> Sketch the parallel file access performed by MapReduce jobs</h4>
 </div>
 </div>
 
-<div id="outline-container-org229bb7a" class="outline-3">
-<h3 id="org229bb7a"><span class="section-number-3">8.6</span> Chap05 Big Data SQL using Hive</h3>
+<div id="outline-container-org1257946" class="outline-3">
+<h3 id="org1257946"><span class="section-number-3">8.6</span> Chap05 Big Data SQL using Hive</h3>
 <div class="outline-text-3" id="text-8-6">
 </div>
-<div id="outline-container-org1758a37" class="outline-4">
-<h4 id="org1758a37"><span class="section-number-4">8.6.1</span> Compare the execution model of SQL in an RDBMS with Hive</h4>
+<div id="outline-container-orge9b41b8" class="outline-4">
+<h4 id="orge9b41b8"><span class="section-number-4">8.6.1</span> Compare the execution model of SQL in an RDBMS with Hive</h4>
 <div class="outline-text-4" id="text-8-6-1">
 <ul class="org-ul">
 <li>Table: Like in relational databases with a schema</li>
@@ -2294,8 +2294,8 @@ reduce: receives all tuples with the same keys, accumulated
 </div>
 </div>
 
-<div id="outline-container-org757f9cf" class="outline-4">
-<h4 id="org757f9cf"><span class="section-number-4">8.6.2</span> Justify the features of the ORC format(Optimized Row Columnar)</h4>
+<div id="outline-container-org6e79b3b" class="outline-4">
+<h4 id="org6e79b3b"><span class="section-number-4">8.6.2</span> Justify the features of the ORC format(Optimized Row Columnar)</h4>
 <div class="outline-text-4" id="text-8-6-2">
 <ul class="org-ul">
 <li>Light-weight index stored within the file</li>
@@ -2308,8 +2308,8 @@ reduce: receives all tuples with the same keys, accumulated
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdd14936" class="outline-4">
-<h4 id="orgdd14936"><span class="section-number-4">8.6.3</span> Apply a bloom filter on example data</h4>
+<div id="outline-container-orgbd642d8" class="outline-4">
+<h4 id="orgbd642d8"><span class="section-number-4">8.6.3</span> Apply a bloom filter on example data</h4>
 <div class="outline-text-4" id="text-8-6-3">
 <p>
 Identify if an element is a member of a set with n elements
@@ -2317,25 +2317,25 @@ Allow false positives but not false negatives
 </p>
 </div>
 </div>
-<div id="outline-container-org3dd14f0" class="outline-4">
-<h4 id="org3dd14f0"><span class="section-number-4">8.6.4</span> Describe how tables are generally mapped to the file system hierarchy and optimizations</h4>
+<div id="outline-container-org9b028d4" class="outline-4">
+<h4 id="org9b028d4"><span class="section-number-4">8.6.4</span> Describe how tables are generally mapped to the file system hierarchy and optimizations</h4>
 </div>
-<div id="outline-container-org9b76824" class="outline-4">
-<h4 id="org9b76824"><span class="section-number-4">8.6.5</span> Describe how data sampling can be optimizing via the mapping of tables on HDFS</h4>
+<div id="outline-container-orga5c1b0c" class="outline-4">
+<h4 id="orga5c1b0c"><span class="section-number-4">8.6.5</span> Describe how data sampling can be optimizing via the mapping of tables on HDFS</h4>
 </div>
-<div id="outline-container-org0cb76a3" class="outline-4">
-<h4 id="org0cb76a3"><span class="section-number-4">8.6.6</span> Sketch the mapping of a (simple) SQL query to a MapReduce job</h4>
+<div id="outline-container-orga812e80" class="outline-4">
+<h4 id="orga812e80"><span class="section-number-4">8.6.6</span> Sketch the mapping of a (simple) SQL query to a MapReduce job</h4>
 </div>
 </div>
-<div id="outline-container-org5aca5e6" class="outline-3">
-<h3 id="org5aca5e6"><span class="section-number-3">8.7</span> Chap06</h3>
+<div id="outline-container-orgee7e759" class="outline-3">
+<h3 id="orgee7e759"><span class="section-number-3">8.7</span> Chap06</h3>
 <div class="outline-text-3" id="text-8-7">
 </div>
-<div id="outline-container-org9aae6e5" class="outline-4">
-<h4 id="org9aae6e5"><span class="section-number-4">8.7.1</span> Create a Columnar Data Model (for HBase) for a given use case</h4>
+<div id="outline-container-orgd8e5044" class="outline-4">
+<h4 id="orgd8e5044"><span class="section-number-4">8.7.1</span> Create a Columnar Data Model (for HBase) for a given use case</h4>
 </div>
-<div id="outline-container-org53b39d4" class="outline-4">
-<h4 id="org53b39d4"><span class="section-number-4">8.7.2</span> Justify the reasons and implications behind the HBase storage format</h4>
+<div id="outline-container-org5ab7485" class="outline-4">
+<h4 id="org5ab7485"><span class="section-number-4">8.7.2</span> Justify the reasons and implications behind the HBase storage format</h4>
 <div class="outline-text-4" id="text-8-7-2">
 <ul class="org-ul">
 <li>medium-size object,</li>
@@ -2351,31 +2351,31 @@ Allow false positives but not false negatives
 </ul>
 </div>
 </div>
-<div id="outline-container-org48ca34b" class="outline-4">
-<h4 id="org48ca34b"><span class="section-number-4">8.7.3</span> Describe how HBase interacts with Hive and Hadoop</h4>
+<div id="outline-container-org7a45219" class="outline-4">
+<h4 id="org7a45219"><span class="section-number-4">8.7.3</span> Describe how HBase interacts with Hive and Hadoop</h4>
 </div>
-<div id="outline-container-org57485b2" class="outline-4">
-<h4 id="org57485b2"><span class="section-number-4">8.7.4</span> Describe the features and namespace handling in Zookeeper</h4>
+<div id="outline-container-org3f2a582" class="outline-4">
+<h4 id="org3f2a582"><span class="section-number-4">8.7.4</span> Describe the features and namespace handling in Zookeeper</h4>
 </div>
-<div id="outline-container-org4e8a018" class="outline-4">
-<h4 id="org4e8a018"><span class="section-number-4">8.7.5</span> Create a Document Data Model (for MongDB) for a given use case</h4>
+<div id="outline-container-orga233f47" class="outline-4">
+<h4 id="orga233f47"><span class="section-number-4">8.7.5</span> Create a Document Data Model (for MongDB) for a given use case</h4>
 </div>
-<div id="outline-container-org28a5680" class="outline-4">
-<h4 id="org28a5680"><span class="section-number-4">8.7.6</span> Provide example data (JSON) for the MongoDB data model and the queries</h4>
+<div id="outline-container-org0c63b89" class="outline-4">
+<h4 id="org0c63b89"><span class="section-number-4">8.7.6</span> Provide example data (JSON) for the MongoDB data model and the queries</h4>
 </div>
-<div id="outline-container-org64fbcd9" class="outline-4">
-<h4 id="org64fbcd9"><span class="section-number-4">8.7.7</span> Sketch the mapping of keys to servers in MongoDB and HBase</h4>
+<div id="outline-container-org1c26ab9" class="outline-4">
+<h4 id="org1c26ab9"><span class="section-number-4">8.7.7</span> Sketch the mapping of keys to servers in MongoDB and HBase</h4>
 </div>
-<div id="outline-container-org4b47ba6" class="outline-4">
-<h4 id="org4b47ba6"><span class="section-number-4">8.7.8</span> Select and justify a suitable shard key for a simple use case</h4>
+<div id="outline-container-org6ffde28" class="outline-4">
+<h4 id="org6ffde28"><span class="section-number-4">8.7.8</span> Select and justify a suitable shard key for a simple use case</h4>
 </div>
 </div>
-<div id="outline-container-orga85b04c" class="outline-3">
-<h3 id="orga85b04c"><span class="section-number-3">8.8</span> Chap07</h3>
+<div id="outline-container-org6d2dd2b" class="outline-3">
+<h3 id="org6d2dd2b"><span class="section-number-3">8.8</span> Chap07</h3>
 <div class="outline-text-3" id="text-8-8">
 </div>
-<div id="outline-container-orgfe1d3cd" class="outline-4">
-<h4 id="orgfe1d3cd"><span class="section-number-4">8.8.1</span> Define in-memory processing</h4>
+<div id="outline-container-org76a2514" class="outline-4">
+<h4 id="org76a2514"><span class="section-number-4">8.8.1</span> Define in-memory processing</h4>
 <div class="outline-text-4" id="text-8-8-1">
 <p>
 Processing of data stored in memory
@@ -2387,8 +2387,8 @@ Processing of data stored in memory
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd7d721e" class="outline-4">
-<h4 id="orgd7d721e"><span class="section-number-4">8.8.2</span> Describe the basic data model of Apache Spark and the SQL extension</h4>
+<div id="outline-container-orgccea0a8" class="outline-4">
+<h4 id="orgccea0a8"><span class="section-number-4">8.8.2</span> Describe the basic data model of Apache Spark and the SQL extension</h4>
 <div class="outline-text-4" id="text-8-8-2">
 <p>
 it based on RDDs, which are immutable tuples, (Resilient Distributed Datasets)
@@ -2397,8 +2397,8 @@ lazy evaluation, all computaion is deferred until needed by actions
 </p>
 </div>
 </div>
-<div id="outline-container-org62c8d0f" class="outline-4">
-<h4 id="org62c8d0f"><span class="section-number-4">8.8.3</span> Program a simple data flow algorithm using Spark RDDs</h4>
+<div id="outline-container-orgf8ebd0e" class="outline-4">
+<h4 id="orgf8ebd0e"><span class="section-number-4">8.8.3</span> Program a simple data flow algorithm using Spark RDDs</h4>
 <div class="outline-text-4" id="text-8-8-3">
 <p>
 nums = sc.parallelize(arange(1,100000))
@@ -2408,8 +2408,8 @@ r1. = r1.reduce(lambda a,b :a * b)
 </p>
 </div>
 </div>
-<div id="outline-container-org57a81fa" class="outline-4">
-<h4 id="org57a81fa"><span class="section-number-4">8.8.4</span> Sketch the architecture of Spark and the roles of its components</h4>
+<div id="outline-container-org8e94ee8" class="outline-4">
+<h4 id="org8e94ee8"><span class="section-number-4">8.8.4</span> Sketch the architecture of Spark and the roles of its components</h4>
 <div class="outline-text-4" id="text-8-8-4">
 <ul class="org-ul">
 <li>Transformation: map, filter, union, pipe, groupbykey, join</li>
@@ -2418,16 +2418,16 @@ r1. = r1.reduce(lambda a,b :a * b)
 </ul>
 </div>
 </div>
-<div id="outline-container-org6b1c0ac" class="outline-4">
-<h4 id="org6b1c0ac"><span class="section-number-4">8.8.5</span> Describe the execution of a simple program on the Spark architecture</h4>
+<div id="outline-container-org3a10420" class="outline-4">
+<h4 id="org3a10420"><span class="section-number-4">8.8.5</span> Describe the execution of a simple program on the Spark architecture</h4>
 </div>
 </div>
-<div id="outline-container-org50b4b34" class="outline-3">
-<h3 id="org50b4b34"><span class="section-number-3">8.9</span> Chap08</h3>
+<div id="outline-container-orgad200f2" class="outline-3">
+<h3 id="orgad200f2"><span class="section-number-3">8.9</span> Chap08</h3>
 <div class="outline-text-3" id="text-8-9">
 </div>
-<div id="outline-container-orgf05c570" class="outline-4">
-<h4 id="orgf05c570"><span class="section-number-4">8.9.1</span> Define stream processing and its basic concepts</h4>
+<div id="outline-container-orgc03f10a" class="outline-4">
+<h4 id="orgc03f10a"><span class="section-number-4">8.9.1</span> Define stream processing and its basic concepts</h4>
 <div class="outline-text-4" id="text-8-9-1">
 <p>
 Application for real-time continuous stream-computation for high-velocity data
@@ -2435,8 +2435,8 @@ Stream groupings defines how tuples are transferred
 </p>
 </div>
 </div>
-<div id="outline-container-org65ba379" class="outline-4">
-<h4 id="org65ba379"><span class="section-number-4">8.9.2</span> Describe the parallel execution of a Storm topology</h4>
+<div id="outline-container-org8f52bd5" class="outline-4">
+<h4 id="org8f52bd5"><span class="section-number-4">8.9.2</span> Describe the parallel execution of a Storm topology</h4>
 <div class="outline-text-4" id="text-8-9-2">
 <p>
 the graph of the calculation represented as network,
@@ -2444,8 +2444,8 @@ the parallelism (tasks) is statically defined for a topology
 </p>
 </div>
 </div>
-<div id="outline-container-org4b85fd0" class="outline-4">
-<h4 id="org4b85fd0"><span class="section-number-4">8.9.3</span> Illustrate how the at-least-once processing semantics is achieved via tuple tracking</h4>
+<div id="outline-container-org8e082bb" class="outline-4">
+<h4 id="org8e082bb"><span class="section-number-4">8.9.3</span> Illustrate how the at-least-once processing semantics is achieved via tuple tracking</h4>
 <div class="outline-text-4" id="text-8-9-3">
 <p>
 one tuple may be executed multiple time, and if error occurs, tuple restarted from Spout
@@ -2457,8 +2457,8 @@ one tuple may be executed multiple time, and if error occurs, tuple restarted fr
 </ul>
 </div>
 </div>
-<div id="outline-container-org6990e77" class="outline-4">
-<h4 id="org6990e77"><span class="section-number-4">8.9.4</span> Describe alternatives for obtaining exactly-once semantics and their challenges</h4>
+<div id="outline-container-org79ec1d6" class="outline-4">
+<h4 id="org79ec1d6"><span class="section-number-4">8.9.4</span> Describe alternatives for obtaining exactly-once semantics and their challenges</h4>
 <div class="outline-text-4" id="text-8-9-4">
 <ul class="org-ul">
 <li>each tuple is executed exactly once,</li>
@@ -2468,35 +2468,35 @@ one tuple may be executed multiple time, and if error occurs, tuple restarted fr
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf3ad44e" class="outline-4">
-<h4 id="orgf3ad44e"><span class="section-number-4">8.9.5</span> Sketch how a data flow could be parallelized and distributed across CPU nodes on an example</h4>
+<div id="outline-container-org40823d8" class="outline-4">
+<h4 id="org40823d8"><span class="section-number-4">8.9.5</span> Sketch how a data flow could be parallelized and distributed across CPU nodes on an example</h4>
 </div>
 </div>
-<div id="outline-container-org6a22b4e" class="outline-3">
-<h3 id="org6a22b4e"><span class="section-number-3">8.10</span> Chap09</h3>
+<div id="outline-container-orgc021906" class="outline-3">
+<h3 id="orgc021906"><span class="section-number-3">8.10</span> Chap09</h3>
 </div>
-<div id="outline-container-org4ec1281" class="outline-3">
-<h3 id="org4ec1281"><span class="section-number-3">8.11</span> Chap10</h3>
+<div id="outline-container-org8da9df2" class="outline-3">
+<h3 id="org8da9df2"><span class="section-number-3">8.11</span> Chap10</h3>
 <div class="outline-text-3" id="text-8-11">
 </div>
-<div id="outline-container-org1156988" class="outline-4">
-<h4 id="org1156988"><span class="section-number-4">8.11.1</span> List example problems for distributed systems</h4>
+<div id="outline-container-orgfa08033" class="outline-4">
+<h4 id="orgfa08033"><span class="section-number-4">8.11.1</span> List example problems for distributed systems</h4>
 <div class="outline-text-4" id="text-8-11-1">
 <p>
 Reliable broadcast, Atomic commit, Consensus, Leader election, Replication
 </p>
 </div>
 </div>
-<div id="outline-container-orgd916cae" class="outline-4">
-<h4 id="orgd916cae"><span class="section-number-4">8.11.2</span> Sketch the algorithms for two-phase commit</h4>
+<div id="outline-container-org29ee637" class="outline-4">
+<h4 id="org29ee637"><span class="section-number-4">8.11.2</span> Sketch the algorithms for two-phase commit</h4>
 <div class="outline-text-4" id="text-8-11-2">
 <p>
 Prepare phase, Commit phase
 </p>
 </div>
 </div>
-<div id="outline-container-orgeba586b" class="outline-4">
-<h4 id="orgeba586b"><span class="section-number-4">8.11.3</span> consistent hashing</h4>
+<div id="outline-container-orga1e44c6" class="outline-4">
+<h4 id="orga1e44c6"><span class="section-number-4">8.11.3</span> consistent hashing</h4>
 <div class="outline-text-4" id="text-8-11-3">
 <p>
 manage the key/value data in distributed system
@@ -2504,8 +2504,8 @@ load balancing, and faul tolerant
 </p>
 </div>
 </div>
-<div id="outline-container-org3340786" class="outline-4">
-<h4 id="org3340786"><span class="section-number-4">8.11.4</span> Discuss semantics  when designing distributed systems</h4>
+<div id="outline-container-org6dbb5bc" class="outline-4">
+<h4 id="org6dbb5bc"><span class="section-number-4">8.11.4</span> Discuss semantics  when designing distributed systems</h4>
 <div class="outline-text-4" id="text-8-11-4">
 <p>
 Consistency(atomicity, visibility, isolation)
@@ -2514,51 +2514,51 @@ Durability
 </p>
 </div>
 </div>
-<div id="outline-container-orge631e3a" class="outline-4">
-<h4 id="orge631e3a"><span class="section-number-4">8.11.5</span> Discuss  limitations when designing distributed systems</h4>
+<div id="outline-container-org19dae66" class="outline-4">
+<h4 id="org19dae66"><span class="section-number-4">8.11.5</span> Discuss  limitations when designing distributed systems</h4>
 <div class="outline-text-4" id="text-8-11-5">
 <p>
 CAP(Consistency, Available, Partition tolerance) can't meet together in a DS
 </p>
 </div>
 </div>
-<div id="outline-container-orgfabcbb5" class="outline-4">
-<h4 id="orgfabcbb5"><span class="section-number-4">8.11.6</span> Explain the meaning of the CAP-theorem</h4>
+<div id="outline-container-orgc329ca6" class="outline-4">
+<h4 id="orgc329ca6"><span class="section-number-4">8.11.6</span> Explain the meaning of the CAP-theorem</h4>
 </div>
-<div id="outline-container-org5621363" class="outline-4">
-<h4 id="org5621363"><span class="section-number-4">8.11.7</span> Sketch the 3-tier architecture</h4>
+<div id="outline-container-orgde189f5" class="outline-4">
+<h4 id="orgde189f5"><span class="section-number-4">8.11.7</span> Sketch the 3-tier architecture</h4>
 <div class="outline-text-4" id="text-8-11-7">
 <p>
 Presentation, Application precessing, Data management
 </p>
 </div>
 </div>
-<div id="outline-container-orgc8aeb44" class="outline-4">
-<h4 id="orgc8aeb44"><span class="section-number-4">8.11.8</span> Design systems using the RESTful architecture</h4>
+<div id="outline-container-org9c9401e" class="outline-4">
+<h4 id="org9c9401e"><span class="section-number-4">8.11.8</span> Design systems using the RESTful architecture</h4>
 <div class="outline-text-4" id="text-8-11-8">
 <p>
 Simplicity of the interface, Portability, Cachable, Tracable
 </p>
 </div>
 </div>
-<div id="outline-container-orgfae7753" class="outline-4">
-<h4 id="orgfae7753"><span class="section-number-4">8.11.9</span> Describing relevant performance factors for HPDA</h4>
+<div id="outline-container-org23485a3" class="outline-4">
+<h4 id="org23485a3"><span class="section-number-4">8.11.9</span> Describing relevant performance factors for HPDA</h4>
 <div class="outline-text-4" id="text-8-11-9">
 <p>
 Time, cost, energie, Productivity
 </p>
 </div>
 </div>
-<div id="outline-container-org513f24b" class="outline-4">
-<h4 id="org513f24b"><span class="section-number-4">8.11.10</span> Listing peak performance of relevant components</h4>
+<div id="outline-container-org240fe03" class="outline-4">
+<h4 id="org240fe03"><span class="section-number-4">8.11.10</span> Listing peak performance of relevant components</h4>
 <div class="outline-text-4" id="text-8-11-10">
 <p>
 Computation, Communicatation, Input/Output devices
 </p>
 </div>
 </div>
-<div id="outline-container-org59a7570" class="outline-4">
-<h4 id="org59a7570"><span class="section-number-4">8.11.11</span> Assessing /Judging observed application performance</h4>
+<div id="outline-container-org7bc9aba" class="outline-4">
+<h4 id="org7bc9aba"><span class="section-number-4">8.11.11</span> Assessing /Judging observed application performance</h4>
 <div class="outline-text-4" id="text-8-11-11">
 <ul class="org-ul">
 <li>Estimate the workload</li>
@@ -2571,23 +2571,23 @@ E = W / P
 </div>
 </div>
 </div>
-<div id="outline-container-org2b62c8f" class="outline-3">
-<h3 id="org2b62c8f"><span class="section-number-3">8.12</span> Chap11</h3>
+<div id="outline-container-org8f8fd26" class="outline-3">
+<h3 id="org8f8fd26"><span class="section-number-3">8.12</span> Chap11</h3>
 <div class="outline-text-3" id="text-8-12">
 </div>
-<div id="outline-container-org1719974" class="outline-4">
-<h4 id="org1719974"><span class="section-number-4">8.12.1</span> Sketching the visual analytics workflow</h4>
+<div id="outline-container-orgbb138ef" class="outline-4">
+<h4 id="orgbb138ef"><span class="section-number-4">8.12.1</span> Sketching the visual analytics workflow</h4>
 </div>
-<div id="outline-container-orgeefc9e2" class="outline-4">
-<h4 id="orgeefc9e2"><span class="section-number-4">8.12.2</span> Listing optical illusions</h4>
+<div id="outline-container-org8b71fc6" class="outline-4">
+<h4 id="org8b71fc6"><span class="section-number-4">8.12.2</span> Listing optical illusions</h4>
 <div class="outline-text-4" id="text-8-12-2">
 <p>
 Color, Size&amp;Shape, Moving,Interpretation of objects,
 </p>
 </div>
 </div>
-<div id="outline-container-org807c49e" class="outline-4">
-<h4 id="org807c49e"><span class="section-number-4">8.12.3</span> Listing 5 goals of graphical displays</h4>
+<div id="outline-container-org0194d1b" class="outline-4">
+<h4 id="org0194d1b"><span class="section-number-4">8.12.3</span> Listing 5 goals of graphical displays</h4>
 <div class="outline-text-4" id="text-8-12-3">
 <ul class="org-ul">
 <li>show the data</li>
@@ -2599,8 +2599,8 @@ Color, Size&amp;Shape, Moving,Interpretation of objects,
 </ul>
 </div>
 </div>
-<div id="outline-container-org97680bd" class="outline-4">
-<h4 id="org97680bd"><span class="section-number-4">8.12.4</span> Discuss the 4 guidelines for designing graphics on examples</h4>
+<div id="outline-container-orgfda8e1b" class="outline-4">
+<h4 id="orgfda8e1b"><span class="section-number-4">8.12.4</span> Discuss the 4 guidelines for designing graphics on examples</h4>
 <div class="outline-text-4" id="text-8-12-4">
 <ul class="org-ul">
 <li>Use the right visualization  for data types</li>
@@ -2610,8 +2610,8 @@ Color, Size&amp;Shape, Moving,Interpretation of objects,
 </ul>
 </div>
 </div>
-<div id="outline-container-org71dc42c" class="outline-4">
-<h4 id="org71dc42c"><span class="section-number-4">8.12.5</span> Describe the challenges when analyzing data</h4>
+<div id="outline-container-org23ef2a8" class="outline-4">
+<h4 id="org23ef2a8"><span class="section-number-4">8.12.5</span> Describe the challenges when analyzing data</h4>
 <div class="outline-text-4" id="text-8-12-5">
 <ul class="org-ul">
 <li>large data volumes and velocities</li>
@@ -2621,8 +2621,8 @@ Color, Size&amp;Shape, Moving,Interpretation of objects,
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbddffac" class="outline-4">
-<h4 id="orgbddffac"><span class="section-number-4">8.12.6</span> Discuss the benefit of in-situ and in-transit data analysis</h4>
+<div id="outline-container-org105338c" class="outline-4">
+<h4 id="org105338c"><span class="section-number-4">8.12.6</span> Discuss the benefit of in-situ and in-transit data analysis</h4>
 <div class="outline-text-4" id="text-8-12-6">
 <ul class="org-ul">
 <li>in-situ: analyze results while the applications is still running</li>
@@ -2633,24 +2633,24 @@ Color, Size&amp;Shape, Moving,Interpretation of objects,
 </div>
 </div>
 
-<div id="outline-container-orgd5f6c31" class="outline-3">
-<h3 id="orgd5f6c31"><span class="section-number-3">8.13</span> Chap12</h3>
+<div id="outline-container-org3bae38b" class="outline-3">
+<h3 id="org3bae38b"><span class="section-number-3">8.13</span> Chap12</h3>
 <div class="outline-text-3" id="text-8-13">
 </div>
-<div id="outline-container-org7ad2ee9" class="outline-4">
-<h4 id="org7ad2ee9"><span class="section-number-4">8.13.1</span> Sketch a typical I/O stack</h4>
+<div id="outline-container-org7f02b8c" class="outline-4">
+<h4 id="org7f02b8c"><span class="section-number-4">8.13.1</span> Sketch a typical I/O stack</h4>
 </div>
-<div id="outline-container-org10159ad" class="outline-4">
-<h4 id="org10159ad"><span class="section-number-4">8.13.2</span> Develop a NetCDF data model for a given use case</h4>
+<div id="outline-container-org27944bb" class="outline-4">
+<h4 id="org27944bb"><span class="section-number-4">8.13.2</span> Develop a NetCDF data model for a given use case</h4>
 </div>
-<div id="outline-container-org123e2a1" class="outline-4">
-<h4 id="org123e2a1"><span class="section-number-4">8.13.3</span> Compare the performance of different storage media</h4>
+<div id="outline-container-orgcd6f1db" class="outline-4">
+<h4 id="orgcd6f1db"><span class="section-number-4">8.13.3</span> Compare the performance of different storage media</h4>
 </div>
-<div id="outline-container-org840f49d" class="outline-4">
-<h4 id="org840f49d"><span class="section-number-4">8.13.4</span> Sketch application types and access patterns</h4>
+<div id="outline-container-orgbd270e1" class="outline-4">
+<h4 id="orgbd270e1"><span class="section-number-4">8.13.4</span> Sketch application types and access patterns</h4>
 </div>
-<div id="outline-container-org14a0514" class="outline-4">
-<h4 id="org14a0514"><span class="section-number-4">8.13.5</span> Justify the use for I/O benchmarks</h4>
+<div id="outline-container-org76e18fd" class="outline-4">
+<h4 id="org76e18fd"><span class="section-number-4">8.13.5</span> Justify the use for I/O benchmarks</h4>
 <div class="outline-text-4" id="text-8-13-5">
 <p>
 Can use simple/understandable sequence of operations
@@ -2659,16 +2659,16 @@ Sometimes only possibility to understand hardware capabilities
 </p>
 </div>
 </div>
-<div id="outline-container-org91f2c1a" class="outline-4">
-<h4 id="org91f2c1a"><span class="section-number-4">8.13.6</span> Describe an I/O performance optimization technique</h4>
+<div id="outline-container-orgeef625a" class="outline-4">
+<h4 id="orgeef625a"><span class="section-number-4">8.13.6</span> Describe an I/O performance optimization technique</h4>
 <div class="outline-text-4" id="text-8-13-6">
 <p>
 Read-ahead, write-behind, async-IO
 </p>
 </div>
 </div>
-<div id="outline-container-org5f76cc4" class="outline-4">
-<h4 id="org5f76cc4"><span class="section-number-4">8.13.7</span> Describe a strategy for trustworthy benchmark result</h4>
+<div id="outline-container-orgb225036" class="outline-4">
+<h4 id="orgb225036"><span class="section-number-4">8.13.7</span> Describe a strategy for trustworthy benchmark result</h4>
 <div class="outline-text-4" id="text-8-13-7">
 <p>
 single-shot: acceptance test
@@ -2677,8 +2677,8 @@ periodically: regression test
 </div>
 </div>
 </div>
-<div id="outline-container-org5e1a43a" class="outline-3">
-<h3 id="org5e1a43a"><span class="section-number-3">8.14</span> 03-01</h3>
+<div id="outline-container-org80750a0" class="outline-3">
+<h3 id="org80750a0"><span class="section-number-3">8.14</span> 03-01</h3>
 <div class="outline-text-3" id="text-8-14">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="font-weight: bold;">drop</span> <span style="font-weight: bold;">table</span> <span style="font-weight: bold;">if</span> <span style="font-weight: bold;">exists</span> WikipediaArticles ;
@@ -2776,8 +2776,8 @@ link <span style="font-weight: bold; text-decoration: underline;">int</span>
 </div>
 </div>
 
-<div id="outline-container-org2d0ec98" class="outline-3">
-<h3 id="org2d0ec98"><span class="section-number-3">8.15</span> 03-02</h3>
+<div id="outline-container-org884e857" class="outline-3">
+<h3 id="org884e857"><span class="section-number-3">8.15</span> 03-02</h3>
 <div class="outline-text-3" id="text-8-15">
 <div class="org-src-container">
 <pre class="src src-dot">digraph diagramm {
@@ -2796,12 +2796,12 @@ link <span style="font-weight: bold; text-decoration: underline;">int</span>
 </div>
 </div>
 
-<div id="outline-container-org7d1c4c3" class="outline-3">
-<h3 id="org7d1c4c3"><span class="section-number-3">8.16</span> 04-01</h3>
+<div id="outline-container-org3d2a50e" class="outline-3">
+<h3 id="org3d2a50e"><span class="section-number-3">8.16</span> 04-01</h3>
 <div class="outline-text-3" id="text-8-16">
 </div>
-<div id="outline-container-orgfe7ad55" class="outline-4">
-<h4 id="orgfe7ad55"><span class="section-number-4">8.16.1</span> mapper and reducer in own</h4>
+<div id="outline-container-org763950f" class="outline-4">
+<h4 id="org763950f"><span class="section-number-4">8.16.1</span> mapper and reducer in own</h4>
 <div class="outline-text-4" id="text-8-16-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">def</span> <span style="font-weight: bold;">mapper</span>(key, value):
@@ -2828,8 +2828,8 @@ link <span style="font-weight: bold; text-decoration: underline;">int</span>
 </div>
 </div>
 
-<div id="outline-container-org4c8c528" class="outline-4">
-<h4 id="org4c8c528"><span class="section-number-4">8.16.2</span> sql</h4>
+<div id="outline-container-org56b6410" class="outline-4">
+<h4 id="org56b6410"><span class="section-number-4">8.16.2</span> sql</h4>
 <div class="outline-text-4" id="text-8-16-2">
 <div class="org-src-container">
 <pre class="src src-sh">cat ~/Documents/hpda0404.csv 
@@ -2860,8 +2860,8 @@ listed <span style="font-weight: bold; text-decoration: underline;">int</span>
 </div>
 </div>
 
-<div id="outline-container-org24a3915" class="outline-4">
-<h4 id="org24a3915"><span class="section-number-4">8.16.3</span> select</h4>
+<div id="outline-container-org73df295" class="outline-4">
+<h4 id="org73df295"><span class="section-number-4">8.16.3</span> select</h4>
 <div class="outline-text-4" id="text-8-16-3">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">import</span> csv
@@ -2888,8 +2888,8 @@ listed <span style="font-weight: bold; text-decoration: underline;">int</span>
 </div>
 </div>
 
-<div id="outline-container-org0f6be18" class="outline-4">
-<h4 id="org0f6be18"><span class="section-number-4">8.16.4</span> summation</h4>
+<div id="outline-container-orgb487762" class="outline-4">
+<h4 id="orgb487762"><span class="section-number-4">8.16.4</span> summation</h4>
 <div class="outline-text-4" id="text-8-16-4">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">import</span> csv
@@ -2924,8 +2924,8 @@ listed <span style="font-weight: bold; text-decoration: underline;">int</span>
 </div>
 </div>
 
-<div id="outline-container-org4d51518" class="outline-4">
-<h4 id="org4d51518"><span class="section-number-4">8.16.5</span> join</h4>
+<div id="outline-container-org508c585" class="outline-4">
+<h4 id="org508c585"><span class="section-number-4">8.16.5</span> join</h4>
 <div class="outline-text-4" id="text-8-16-5">
 <div class="org-src-container">
 <pre class="src src-sh">cat ~/Documents/hpda0404a.csv 
@@ -2967,12 +2967,12 @@ cat ~/Documents/hpda0404b.csv
 </div>
 </div>
 
-<div id="outline-container-orgba7dbbd" class="outline-3">
-<h3 id="orgba7dbbd"><span class="section-number-3">8.17</span> 04-02</h3>
+<div id="outline-container-org706c13c" class="outline-3">
+<h3 id="org706c13c"><span class="section-number-3">8.17</span> 04-02</h3>
 <div class="outline-text-3" id="text-8-17">
 </div>
-<div id="outline-container-orgae6c539" class="outline-4">
-<h4 id="orgae6c539"><span class="section-number-4">8.17.1</span> 2.1</h4>
+<div id="outline-container-orgd1e2316" class="outline-4">
+<h4 id="orgd1e2316"><span class="section-number-4">8.17.1</span> 2.1</h4>
 <div class="outline-text-4" id="text-8-17-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">from</span> nltk.stem.snowball <span style="font-weight: bold;">import</span> SnowballStemmer
@@ -3013,19 +3013,19 @@ cat ~/Documents/hpda0404b.csv
 </div>
 </div>
 </div>
-<div id="outline-container-org784b306" class="outline-4">
-<h4 id="org784b306"><span class="section-number-4">8.17.2</span> 2.2</h4>
+<div id="outline-container-orgdda7d7a" class="outline-4">
+<h4 id="orgdda7d7a"><span class="section-number-4">8.17.2</span> 2.2</h4>
 </div>
-<div id="outline-container-org5105ed8" class="outline-4">
-<h4 id="org5105ed8"><span class="section-number-4">8.17.3</span> 2.3</h4>
+<div id="outline-container-org8e2eddc" class="outline-4">
+<h4 id="org8e2eddc"><span class="section-number-4">8.17.3</span> 2.3</h4>
 <div class="outline-text-4" id="text-8-17-3">
 <p>
 see in Document folder
 </p>
 </div>
 </div>
-<div id="outline-container-org9b3bde6" class="outline-4">
-<h4 id="org9b3bde6"><span class="section-number-4">8.17.4</span> 2.4</h4>
+<div id="outline-container-org4d64c8f" class="outline-4">
+<h4 id="org4d64c8f"><span class="section-number-4">8.17.4</span> 2.4</h4>
 <div class="outline-text-4" id="text-8-17-4">
 <p>
 mapper
@@ -3095,8 +3095,8 @@ With errors
 </div>
 </div>
 
-<div id="outline-container-org28e5efe" class="outline-3">
-<h3 id="org28e5efe"><span class="section-number-3">8.18</span> 05</h3>
+<div id="outline-container-orgc5685df" class="outline-3">
+<h3 id="orgc5685df"><span class="section-number-3">8.18</span> 05</h3>
 <div class="outline-text-3" id="text-8-18">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">import</span> csv
@@ -3148,8 +3148,8 @@ bd.write(<span style="font-style: italic;">"/home/si/Documents/hpda/05/out.csv"<
 </div>
 </div>
 
-<div id="outline-container-org641300f" class="outline-3">
-<h3 id="org641300f"><span class="section-number-3">8.19</span> 06</h3>
+<div id="outline-container-orgd750275" class="outline-3">
+<h3 id="orgd750275"><span class="section-number-3">8.19</span> 06</h3>
 <div class="outline-text-3" id="text-8-19">
 <p>
 MongoDB
@@ -3211,16 +3211,16 @@ db.wiki.drop()
 </div>
 </div>
 
-<div id="outline-container-org5051fc9" class="outline-2">
-<h2 id="org5051fc9"><span class="section-number-2">9</span> Paralle compuation lecture</h2>
+<div id="outline-container-org740ff24" class="outline-2">
+<h2 id="org740ff24"><span class="section-number-2">9</span> Paralle compuation lecture</h2>
 <div class="outline-text-2" id="text-9">
 </div>
-<div id="outline-container-orgd254a3b" class="outline-3">
-<h3 id="orgd254a3b"><span class="section-number-3">9.1</span> performance</h3>
+<div id="outline-container-orgfd4b877" class="outline-3">
+<h3 id="orgfd4b877"><span class="section-number-3">9.1</span> performance</h3>
 <div class="outline-text-3" id="text-9-1">
 </div>
-<div id="outline-container-orgb3e2c27" class="outline-4">
-<h4 id="orgb3e2c27"><span class="section-number-4">9.1.1</span> Andel's law:</h4>
+<div id="outline-container-orgce61035" class="outline-4">
+<h4 id="orgce61035"><span class="section-number-4">9.1.1</span> Andel's law:</h4>
 <div class="outline-text-4" id="text-9-1-1">
 <p>
 \[ S_{total} = \frac{1}{1-p+\frac{p}{s}} \]
@@ -3230,8 +3230,8 @@ db.wiki.drop()
 </div>
 
 
-<div id="outline-container-orgc635735" class="outline-4">
-<h4 id="orgc635735"><span class="section-number-4">9.1.2</span> if the task is changed, Gostafan's law,</h4>
+<div id="outline-container-orgcae66d8" class="outline-4">
+<h4 id="orgcae66d8"><span class="section-number-4">9.1.2</span> if the task is changed, Gostafan's law,</h4>
 <div class="outline-text-4" id="text-9-1-2">
 <p>
 \[ s_{g} = \frac{T_{s} + p T_{p}}{T_{s} + T_{p}} \]
@@ -3249,8 +3249,8 @@ all \(P_{p}\) is changed task, such as 70% task doubled, will be 1.4
 </div>
 
 
-<div id="outline-container-orgadea20d" class="outline-4">
-<h4 id="orgadea20d"><span class="section-number-4">9.1.3</span> Effectivy:</h4>
+<div id="outline-container-org225201d" class="outline-4">
+<h4 id="org225201d"><span class="section-number-4">9.1.3</span> Effectivy:</h4>
 <div class="outline-text-4" id="text-9-1-3">
 <p>
 \[ E = \frac{S}{P}\]
@@ -3263,12 +3263,12 @@ all \(P_{p}\) is changed task, such as 70% task doubled, will be 1.4
 </div>
 </div>
 
-<div id="outline-container-orgd48f54f" class="outline-3">
-<h3 id="orgd48f54f"><span class="section-number-3">9.2</span> Chap1: introduction</h3>
+<div id="outline-container-orge34f054" class="outline-3">
+<h3 id="orge34f054"><span class="section-number-3">9.2</span> Chap1: introduction</h3>
 <div class="outline-text-3" id="text-9-2">
 </div>
-<div id="outline-container-orgeb7a89f" class="outline-4">
-<h4 id="orgeb7a89f"><span class="section-number-4">9.2.1</span> Von Nroven</h4>
+<div id="outline-container-org7375ca1" class="outline-4">
+<h4 id="org7375ca1"><span class="section-number-4">9.2.1</span> Von Nroven</h4>
 <div class="outline-text-4" id="text-9-2-1">
 <p>
 cpu, interconnection, memory
@@ -3276,8 +3276,8 @@ cpu, interconnection, memory
 </div>
 </div>
 
-<div id="outline-container-orgeaa84d6" class="outline-4">
-<h4 id="orgeaa84d6"><span class="section-number-4">9.2.2</span> memory mode</h4>
+<div id="outline-container-orgb5b35a4" class="outline-4">
+<h4 id="orgb5b35a4"><span class="section-number-4">9.2.2</span> memory mode</h4>
 <div class="outline-text-4" id="text-9-2-2">
 <p>
 shared memory
@@ -3285,20 +3285,20 @@ distributed memory
 </p>
 </div>
 </div>
-<div id="outline-container-org261f63d" class="outline-4">
-<h4 id="org261f63d"><span class="section-number-4">9.2.3</span> shared memory</h4>
+<div id="outline-container-org2132f43" class="outline-4">
+<h4 id="org2132f43"><span class="section-number-4">9.2.3</span> shared memory</h4>
 <div class="outline-text-4" id="text-9-2-3">
 <p>
 easy to build ,hard to large scare
 </p>
 </div>
 </div>
-<div id="outline-container-org7dfa342" class="outline-4">
-<h4 id="org7dfa342"><span class="section-number-4">9.2.4</span> distribution memory</h4>
+<div id="outline-container-org395aa77" class="outline-4">
+<h4 id="org395aa77"><span class="section-number-4">9.2.4</span> distribution memory</h4>
 </div>
 </div>
-<div id="outline-container-orgc5de6fb" class="outline-3">
-<h3 id="orgc5de6fb"><span class="section-number-3">9.3</span> Chap 2: Proformance</h3>
+<div id="outline-container-org15229a2" class="outline-3">
+<h3 id="org15229a2"><span class="section-number-3">9.3</span> Chap 2: Proformance</h3>
 <div class="outline-text-3" id="text-9-3">
 <p>
 CPI: cycles per instruction
@@ -3331,8 +3331,8 @@ inductive
 </p>
 </div>
 
-<div id="outline-container-org37c8696" class="outline-4">
-<h4 id="org37c8696"><span class="section-number-4">9.3.1</span> single Process:</h4>
+<div id="outline-container-org855b3ab" class="outline-4">
+<h4 id="org855b3ab"><span class="section-number-4">9.3.1</span> single Process:</h4>
 <div class="outline-text-4" id="text-9-3-1">
 <p>
 \[T_{parallel} = \frac{T_{serial}}{p}\]
@@ -3341,8 +3341,8 @@ if the parallelized part are perfect parallelable, \(S==p\).
 </p>
 </div>
 </div>
-<div id="outline-container-org51538b3" class="outline-4">
-<h4 id="org51538b3"><span class="section-number-4">9.3.2</span> Multi processes</h4>
+<div id="outline-container-org38b2161" class="outline-4">
+<h4 id="org38b2161"><span class="section-number-4">9.3.2</span> Multi processes</h4>
 <div class="outline-text-4" id="text-9-3-2">
 <p>
 \[T_{parallel} = (1-P)T_{serial} +  \frac{P \cdot T_{serial}}{p}\]
@@ -3355,8 +3355,8 @@ speedup: \[S = \frac{T_{serial}}{T_{parallel}} = \frac{1}{(1-P)+ \frac{P}{p}}\].
 </div>
 </div>
 
-<div id="outline-container-orgee1bcaa" class="outline-4">
-<h4 id="orgee1bcaa"><span class="section-number-4">9.3.3</span> Efficient</h4>
+<div id="outline-container-org63f416b" class="outline-4">
+<h4 id="org63f416b"><span class="section-number-4">9.3.3</span> Efficient</h4>
 <div class="outline-text-4" id="text-9-3-3">
 <p>
 \[E = \frac{S}{p}\]
@@ -3364,11 +3364,11 @@ speedup: \[S = \frac{T_{serial}}{T_{parallel}} = \frac{1}{(1-P)+ \frac{P}{p}}\].
 </div>
 </div>
 
-<div id="outline-container-orgd26d142" class="outline-4">
-<h4 id="orgd26d142"><span class="section-number-4">9.3.4</span> Adaes-low</h4>
+<div id="outline-container-org9a2fe59" class="outline-4">
+<h4 id="org9a2fe59"><span class="section-number-4">9.3.4</span> Adaes-low</h4>
 </div>
-<div id="outline-container-orgd1d4e7f" class="outline-4">
-<h4 id="orgd1d4e7f"><span class="section-number-4">9.3.5</span> Gustafon low</h4>
+<div id="outline-container-org5949132" class="outline-4">
+<h4 id="org5949132"><span class="section-number-4">9.3.5</span> Gustafon low</h4>
 <div class="outline-text-4" id="text-9-3-5">
 <p>
 \[ S_{p} = \frac{T_{serial} -p T_{paralle}}{T_{seria} + T_{parallel}}\]
@@ -3378,24 +3378,24 @@ speedup: \[S = \frac{T_{serial}}{T_{parallel}} = \frac{1}{(1-P)+ \frac{P}{p}}\].
 </div>
 </div>
 
-<div id="outline-container-org1c8e4a6" class="outline-2">
-<h2 id="org1c8e4a6"><span class="section-number-2">10</span> Cloud computation lecture</h2>
+<div id="outline-container-org1d5ca5b" class="outline-2">
+<h2 id="org1d5ca5b"><span class="section-number-2">10</span> Cloud computation lecture</h2>
 <div class="outline-text-2" id="text-10">
 </div>
-<div id="outline-container-orgf2f5acf" class="outline-3">
-<h3 id="orgf2f5acf"><span class="section-number-3">10.1</span> Platform Virtualization</h3>
+<div id="outline-container-orgc0ec710" class="outline-3">
+<h3 id="orgc0ec710"><span class="section-number-3">10.1</span> Platform Virtualization</h3>
 <div class="outline-text-3" id="text-10-1">
 </div>
-<div id="outline-container-orgc9b30a2" class="outline-4">
-<h4 id="orgc9b30a2"><span class="section-number-4">10.1.1</span> Defination of Virtualization</h4>
+<div id="outline-container-org51d5018" class="outline-4">
+<h4 id="org51d5018"><span class="section-number-4">10.1.1</span> Defination of Virtualization</h4>
 <div class="outline-text-4" id="text-10-1-1">
 <p>
 the processes of creating software-based version of resources.
 </p>
 </div>
 </div>
-<div id="outline-container-org8d953c8" class="outline-4">
-<h4 id="org8d953c8"><span class="section-number-4">10.1.2</span> The reasons for applying virtualization</h4>
+<div id="outline-container-orge60cd86" class="outline-4">
+<h4 id="orge60cd86"><span class="section-number-4">10.1.2</span> The reasons for applying virtualization</h4>
 <div class="outline-text-4" id="text-10-1-2">
 <ul class="org-ul">
 <li><b>Utilization</b>: Server consolidation</li>
@@ -3411,8 +3411,8 @@ the processes of creating software-based version of resources.
 </div>
 </div>
 
-<div id="outline-container-org293536d" class="outline-4">
-<h4 id="org293536d"><span class="section-number-4">10.1.3</span> Full virtualization (Hypervisor system, Bare matal)</h4>
+<div id="outline-container-orgb62ad87" class="outline-4">
+<h4 id="orgb62ad87"><span class="section-number-4">10.1.3</span> Full virtualization (Hypervisor system, Bare matal)</h4>
 <div class="outline-text-4" id="text-10-1-3">
 <ul class="org-ul">
 <li>Translation of instructions</li>
@@ -3425,8 +3425,8 @@ the processes of creating software-based version of resources.
 </div>
 </div>
 
-<div id="outline-container-org4220b65" class="outline-4">
-<h4 id="org4220b65"><span class="section-number-4">10.1.4</span> Hardware-assisted virtualization (Hypervisor system, Bare matal)</h4>
+<div id="outline-container-orgeaae2a3" class="outline-4">
+<h4 id="orgeaae2a3"><span class="section-number-4">10.1.4</span> Hardware-assisted virtualization (Hypervisor system, Bare matal)</h4>
 <div class="outline-text-4" id="text-10-1-4">
 <ul class="org-ul">
 <li>implantation: VMware Workstation</li>
@@ -3437,8 +3437,8 @@ the processes of creating software-based version of resources.
 </div>
 </div>
 
-<div id="outline-container-org087f6a7" class="outline-4">
-<h4 id="org087f6a7"><span class="section-number-4">10.1.5</span> Para virtualization (Hypervisor system, Bare matal)</h4>
+<div id="outline-container-orga770155" class="outline-4">
+<h4 id="orga770155"><span class="section-number-4">10.1.5</span> Para virtualization (Hypervisor system, Bare matal)</h4>
 <div class="outline-text-4" id="text-10-1-5">
 <ul class="org-ul">
 <li>VM(modified OS) runs on Host</li>
@@ -3451,8 +3451,8 @@ the processes of creating software-based version of resources.
 </div>
 </div>
 
-<div id="outline-container-org6a917ae" class="outline-4">
-<h4 id="org6a917ae"><span class="section-number-4">10.1.6</span> Host OS virtualization (Hypervisor system, Hosted)</h4>
+<div id="outline-container-orge454f56" class="outline-4">
+<h4 id="orge454f56"><span class="section-number-4">10.1.6</span> Host OS virtualization (Hypervisor system, Hosted)</h4>
 <div class="outline-text-4" id="text-10-1-6">
 <ul class="org-ul">
 <li>Guest OS on Hypervisor</li>
@@ -3470,8 +3470,8 @@ the processes of creating software-based version of resources.
 </div>
 
 
-<div id="outline-container-orgba7b05b" class="outline-4">
-<h4 id="orgba7b05b"><span class="section-number-4">10.1.7</span> OS-level virtualization (Container system)</h4>
+<div id="outline-container-orgc25a41a" class="outline-4">
+<h4 id="orgc25a41a"><span class="section-number-4">10.1.7</span> OS-level virtualization (Container system)</h4>
 <div class="outline-text-4" id="text-10-1-7">
 <ul class="org-ul">
 <li>no hypervisor</li>
@@ -3481,8 +3481,8 @@ the processes of creating software-based version of resources.
 </div>
 </div>
 
-<div id="outline-container-org760ac83" class="outline-4">
-<h4 id="org760ac83"><span class="section-number-4">10.1.8</span> Memory virtualization</h4>
+<div id="outline-container-org3bf2cb2" class="outline-4">
+<h4 id="org3bf2cb2"><span class="section-number-4">10.1.8</span> Memory virtualization</h4>
 <div class="outline-text-4" id="text-10-1-8">
 <ul class="org-ul">
 <li>shadow page table on Guest OS</li>
@@ -3490,16 +3490,16 @@ the processes of creating software-based version of resources.
 </ul>
 </div>
 </div>
-<div id="outline-container-orge943d78" class="outline-4">
-<h4 id="orge943d78"><span class="section-number-4">10.1.9</span> Network virtualization</h4>
+<div id="outline-container-org55428bd" class="outline-4">
+<h4 id="org55428bd"><span class="section-number-4">10.1.9</span> Network virtualization</h4>
 <div class="outline-text-4" id="text-10-1-9">
 <p>
 hypervisor provide virtual switch, offering every VM a ip address
 </p>
 </div>
 </div>
-<div id="outline-container-org95dc464" class="outline-4">
-<h4 id="org95dc464"><span class="section-number-4">10.1.10</span> Feathers</h4>
+<div id="outline-container-orgbaf6001" class="outline-4">
+<h4 id="orgbaf6001"><span class="section-number-4">10.1.10</span> Feathers</h4>
 <div class="outline-text-4" id="text-10-1-10">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -3533,8 +3533,8 @@ hypervisor provide virtual switch, offering every VM a ip address
 </div>
 </div>
 
-<div id="outline-container-orgfc12529" class="outline-3">
-<h3 id="orgfc12529"><span class="section-number-3">10.2</span> Kubernetes</h3>
+<div id="outline-container-org6cba9e9" class="outline-3">
+<h3 id="org6cba9e9"><span class="section-number-3">10.2</span> Kubernetes</h3>
 <div class="outline-text-3" id="text-10-2">
 <p>
 Container-Orchestration System 
@@ -3550,8 +3550,8 @@ Container-Orchestration System
 </div>
 </div>
 
-<div id="outline-container-orge15e33c" class="outline-3">
-<h3 id="orge15e33c"><span class="section-number-3">10.3</span> Virtual Machine</h3>
+<div id="outline-container-orgb877c0b" class="outline-3">
+<h3 id="orgb877c0b"><span class="section-number-3">10.3</span> Virtual Machine</h3>
 <div class="outline-text-3" id="text-10-3">
 <ul class="org-ul">
 <li>Partition</li>
@@ -3563,12 +3563,12 @@ Container-Orchestration System
 </div>
 </div>
 
-<div id="outline-container-org3509952" class="outline-3">
-<h3 id="org3509952"><span class="section-number-3">10.4</span> Storage Virtualization</h3>
+<div id="outline-container-orga69b560" class="outline-3">
+<h3 id="orga69b560"><span class="section-number-3">10.4</span> Storage Virtualization</h3>
 <div class="outline-text-3" id="text-10-4">
 </div>
-<div id="outline-container-org5639845" class="outline-4">
-<h4 id="org5639845"><span class="section-number-4">10.4.1</span> SSD advantage and disadvanage over HDD</h4>
+<div id="outline-container-org4fe9570" class="outline-4">
+<h4 id="org4fe9570"><span class="section-number-4">10.4.1</span> SSD advantage and disadvanage over HDD</h4>
 <div class="outline-text-4" id="text-10-4-1">
 <ul class="org-ul">
 <li>Reliablity</li>
@@ -3581,8 +3581,8 @@ Container-Orchestration System
 </div>
 </div>
 
-<div id="outline-container-org885a428" class="outline-4">
-<h4 id="org885a428"><span class="section-number-4">10.4.2</span> Storage virtualization advantage</h4>
+<div id="outline-container-org143bc8c" class="outline-4">
+<h4 id="org143bc8c"><span class="section-number-4">10.4.2</span> Storage virtualization advantage</h4>
 <div class="outline-text-4" id="text-10-4-2">
 <ul class="org-ul">
 <li>Faster access: because you can have multiple data sources for the same data</li>
@@ -3596,8 +3596,8 @@ Container-Orchestration System
 </div>
 </div>
 
-<div id="outline-container-orgd978299" class="outline-4">
-<h4 id="orgd978299"><span class="section-number-4">10.4.3</span> Provisioning:</h4>
+<div id="outline-container-orge07bdf0" class="outline-4">
+<h4 id="orge07bdf0"><span class="section-number-4">10.4.3</span> Provisioning:</h4>
 <div class="outline-text-4" id="text-10-4-3">
 <ul class="org-ul">
 <li>allocate disk space to user on demand</li>
@@ -3606,8 +3606,8 @@ Container-Orchestration System
 </div>
 </div>
 
-<div id="outline-container-org5d870e6" class="outline-4">
-<h4 id="org5d870e6"><span class="section-number-4">10.4.4</span> Deduplication</h4>
+<div id="outline-container-org6cf2ae1" class="outline-4">
+<h4 id="org6cf2ae1"><span class="section-number-4">10.4.4</span> Deduplication</h4>
 <div class="outline-text-4" id="text-10-4-4">
 <p>
 Single instance Storage: 
@@ -3620,16 +3620,16 @@ dann save its link
 </div>
 </div>
 
-<div id="outline-container-org8442b77" class="outline-4">
-<h4 id="org8442b77"><span class="section-number-4">10.4.5</span> Compression:</h4>
+<div id="outline-container-org5933ca2" class="outline-4">
+<h4 id="org5933ca2"><span class="section-number-4">10.4.5</span> Compression:</h4>
 <div class="outline-text-4" id="text-10-4-5">
 <p>
 compacting the data so that it comsumes less space
 </p>
 </div>
 </div>
-<div id="outline-container-org22abe72" class="outline-4">
-<h4 id="org22abe72"><span class="section-number-4">10.4.6</span> Cloning</h4>
+<div id="outline-container-orgb0a94db" class="outline-4">
+<h4 id="orgb0a94db"><span class="section-number-4">10.4.6</span> Cloning</h4>
 <div class="outline-text-4" id="text-10-4-6">
 <p>
 Consuming no storage except what is required for metadata until changes
@@ -3637,16 +3637,16 @@ are written to the copy
 </p>
 </div>
 </div>
-<div id="outline-container-org03e4cfe" class="outline-4">
-<h4 id="org03e4cfe"><span class="section-number-4">10.4.7</span> Snapshotting Copies</h4>
+<div id="outline-container-org80cd4ce" class="outline-4">
+<h4 id="org80cd4ce"><span class="section-number-4">10.4.7</span> Snapshotting Copies</h4>
 <div class="outline-text-4" id="text-10-4-7">
 <p>
 a read-only, point-in-time image of a volume
 </p>
 </div>
 </div>
-<div id="outline-container-org327697b" class="outline-4">
-<h4 id="org327697b"><span class="section-number-4">10.4.8</span> increasing the proformance</h4>
+<div id="outline-container-org3f08bc7" class="outline-4">
+<h4 id="org3f08bc7"><span class="section-number-4">10.4.8</span> increasing the proformance</h4>
 <div class="outline-text-4" id="text-10-4-8">
 <p>
 with more physical disks at the same time
@@ -3654,12 +3654,12 @@ with more physical disks at the same time
 </div>
 </div>
 </div>
-<div id="outline-container-org5389962" class="outline-3">
-<h3 id="org5389962"><span class="section-number-3">10.5</span> Modern Datacenters</h3>
+<div id="outline-container-org3c768b7" class="outline-3">
+<h3 id="org3c768b7"><span class="section-number-3">10.5</span> Modern Datacenters</h3>
 <div class="outline-text-3" id="text-10-5">
 </div>
-<div id="outline-container-org57888e0" class="outline-4">
-<h4 id="org57888e0"><span class="section-number-4">10.5.1</span> automation</h4>
+<div id="outline-container-org4389f57" class="outline-4">
+<h4 id="org4389f57"><span class="section-number-4">10.5.1</span> automation</h4>
 <div class="outline-text-4" id="text-10-5-1">
 <ul class="org-ul">
 <li>scaling</li>
@@ -3674,8 +3674,8 @@ illusion of Stability</li>
 </div>
 </div>
 
-<div id="outline-container-org52525ea" class="outline-4">
-<h4 id="org52525ea"><span class="section-number-4">10.5.2</span> Idempotent</h4>
+<div id="outline-container-orgc46b3d6" class="outline-4">
+<h4 id="orgc46b3d6"><span class="section-number-4">10.5.2</span> Idempotent</h4>
 <div class="outline-text-4" id="text-10-5-2">
 <p>
 the same code generate the same result, without any change
@@ -3683,8 +3683,8 @@ the same code generate the same result, without any change
 </div>
 </div>
 
-<div id="outline-container-org4cd7b7f" class="outline-4">
-<h4 id="org4cd7b7f"><span class="section-number-4">10.5.3</span> Infrastructure as code</h4>
+<div id="outline-container-org1b24462" class="outline-4">
+<h4 id="org1b24462"><span class="section-number-4">10.5.3</span> Infrastructure as code</h4>
 <div class="outline-text-4" id="text-10-5-3">
 <ul class="org-ul">
 <li>Benefits:
@@ -3702,16 +3702,16 @@ the same code generate the same result, without any change
 </div>
 </div>
 
-<div id="outline-container-org1cfbaec" class="outline-4">
-<h4 id="org1cfbaec"><span class="section-number-4">10.5.4</span> Foreman:</h4>
+<div id="outline-container-org71b8d02" class="outline-4">
+<h4 id="org71b8d02"><span class="section-number-4">10.5.4</span> Foreman:</h4>
 <div class="outline-text-4" id="text-10-5-4">
 <p>
 give the initial configuration to run an OS
 </p>
 </div>
 </div>
-<div id="outline-container-orgd94116e" class="outline-4">
-<h4 id="orgd94116e"><span class="section-number-4">10.5.5</span> Puppet</h4>
+<div id="outline-container-org33632bf" class="outline-4">
+<h4 id="org33632bf"><span class="section-number-4">10.5.5</span> Puppet</h4>
 <div class="outline-text-4" id="text-10-5-5">
 <ul class="org-ul">
 <li>Declarative description of resource states</li>
@@ -3722,12 +3722,12 @@ give the initial configuration to run an OS
 </div>
 </div>
 </div>
-<div id="outline-container-org7ecc931" class="outline-3">
-<h3 id="org7ecc931"><span class="section-number-3">10.6</span> Monitor</h3>
+<div id="outline-container-org69cfd79" class="outline-3">
+<h3 id="org69cfd79"><span class="section-number-3">10.6</span> Monitor</h3>
 <div class="outline-text-3" id="text-10-6">
 </div>
-<div id="outline-container-org935e3e5" class="outline-4">
-<h4 id="org935e3e5"><span class="section-number-4">10.6.1</span> challange</h4>
+<div id="outline-container-orgf1fd443" class="outline-4">
+<h4 id="orgf1fd443"><span class="section-number-4">10.6.1</span> challange</h4>
 <div class="outline-text-4" id="text-10-6-1">
 <p>
 collecte data from large mount of servers
@@ -3735,8 +3735,8 @@ Watch out the overhitting
 </p>
 </div>
 </div>
-<div id="outline-container-orgdf1f7ca" class="outline-4">
-<h4 id="orgdf1f7ca"><span class="section-number-4">10.6.2</span> Real time monitoring</h4>
+<div id="outline-container-orgd76630b" class="outline-4">
+<h4 id="orgd76630b"><span class="section-number-4">10.6.2</span> Real time monitoring</h4>
 <div class="outline-text-4" id="text-10-6-2">
 <ul class="org-ul">
 <li>Availability Monitoring: altering of failure</li>
@@ -3744,8 +3744,8 @@ Watch out the overhitting
 </ul>
 </div>
 </div>
-<div id="outline-container-orga24ea23" class="outline-4">
-<h4 id="orga24ea23"><span class="section-number-4">10.6.3</span> Historical Monitoring</h4>
+<div id="outline-container-org6d666d2" class="outline-4">
+<h4 id="org6d666d2"><span class="section-number-4">10.6.3</span> Historical Monitoring</h4>
 <div class="outline-text-4" id="text-10-6-3">
 <ul class="org-ul">
 <li>Long-term information</li>
@@ -3754,8 +3754,8 @@ Watch out the overhitting
 </ul>
 </div>
 </div>
-<div id="outline-container-org26ef93e" class="outline-4">
-<h4 id="org26ef93e"><span class="section-number-4">10.6.4</span> Architecture</h4>
+<div id="outline-container-org79054e0" class="outline-4">
+<h4 id="org79054e0"><span class="section-number-4">10.6.4</span> Architecture</h4>
 <div class="outline-text-4" id="text-10-6-4">
 <ul class="org-ul">
 <li>Measurement: Blackbox, Whitebot,Gauges, Conntes</li>
@@ -3768,12 +3768,12 @@ Watch out the overhitting
 </div>
 </div>
 
-<div id="outline-container-org2035843" class="outline-3">
-<h3 id="org2035843"><span class="section-number-3">10.7</span> Cloud Computing Concepts</h3>
+<div id="outline-container-org7063021" class="outline-3">
+<h3 id="org7063021"><span class="section-number-3">10.7</span> Cloud Computing Concepts</h3>
 <div class="outline-text-3" id="text-10-7">
 </div>
-<div id="outline-container-org3c977b1" class="outline-4">
-<h4 id="org3c977b1"><span class="section-number-4">10.7.1</span> Cloud Defination</h4>
+<div id="outline-container-org5c71917" class="outline-4">
+<h4 id="org5c71917"><span class="section-number-4">10.7.1</span> Cloud Defination</h4>
 <div class="outline-text-4" id="text-10-7-1">
 <pre class="example">
 Cloud Computing is a model for enabling on-demand network
@@ -3786,8 +3786,8 @@ effort or service provider interaction
 </div>
 
 
-<div id="outline-container-org5340448" class="outline-4">
-<h4 id="org5340448"><span class="section-number-4">10.7.2</span> SOA</h4>
+<div id="outline-container-orga304905" class="outline-4">
+<h4 id="orga304905"><span class="section-number-4">10.7.2</span> SOA</h4>
 <div class="outline-text-4" id="text-10-7-2">
 <p>
 Servive Oriented Architecture
@@ -3796,8 +3796,8 @@ fundamental technologies for realizing service computing
 </p>
 </div>
 </div>
-<div id="outline-container-org7de43d5" class="outline-4">
-<h4 id="org7de43d5"><span class="section-number-4">10.7.3</span> Advantage</h4>
+<div id="outline-container-org243d2dd" class="outline-4">
+<h4 id="org243d2dd"><span class="section-number-4">10.7.3</span> Advantage</h4>
 <div class="outline-text-4" id="text-10-7-3">
 <ul class="org-ul">
 <li>No captial costs</li>
@@ -3807,8 +3807,8 @@ fundamental technologies for realizing service computing
 </div>
 </div>
 
-<div id="outline-container-orgd1dbe7c" class="outline-4">
-<h4 id="orgd1dbe7c"><span class="section-number-4">10.7.4</span> Network design</h4>
+<div id="outline-container-org7a89ab1" class="outline-4">
+<h4 id="org7a89ab1"><span class="section-number-4">10.7.4</span> Network design</h4>
 <div class="outline-text-4" id="text-10-7-4">
 <p>
 Different: SDN: software define Network
@@ -3822,8 +3822,8 @@ instead of heavy logic switching/routing in hardware
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfdcebaf" class="outline-4">
-<h4 id="orgfdcebaf"><span class="section-number-4">10.7.5</span> GWDG feathers</h4>
+<div id="outline-container-org6dcf389" class="outline-4">
+<h4 id="org6dcf389"><span class="section-number-4">10.7.5</span> GWDG feathers</h4>
 <div class="outline-text-4" id="text-10-7-5">
 <ul class="org-ul">
 <li>self service front-end</li>
@@ -3835,12 +3835,12 @@ instead of heavy logic switching/routing in hardware
 </div>
 
 
-<div id="outline-container-orgb7764c1" class="outline-4">
-<h4 id="orgb7764c1"><span class="section-number-4">10.7.6</span> Infrastructure as Service</h4>
+<div id="outline-container-orgcbfdfbf" class="outline-4">
+<h4 id="orgcbfdfbf"><span class="section-number-4">10.7.6</span> Infrastructure as Service</h4>
 <div class="outline-text-4" id="text-10-7-6">
 </div>
 <ol class="org-ol">
-<li><a id="org4931494"></a>Different deployment methode<br />
+<li><a id="orgcaff158"></a>Different deployment methode<br />
 <div class="outline-text-5" id="text-10-7-6-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -3868,7 +3868,7 @@ instead of heavy logic switching/routing in hardware
 </table>
 </div>
 </li>
-<li><a id="orgf5046bd"></a>Storage<br />
+<li><a id="orgfb5bdbc"></a>Storage<br />
 <div class="outline-text-5" id="text-10-7-6-2">
 <p>
 CDMI: Cloud Data Management Interface
@@ -3877,8 +3877,8 @@ example: AWS S3
 </p>
 </div>
 </li>
-<li><a id="org4caab98"></a>Network<br /></li>
-<li><a id="org11138bb"></a>advantage<br />
+<li><a id="orgbbbf435"></a>Network<br /></li>
+<li><a id="orgab1cda4"></a>advantage<br />
 <div class="outline-text-5" id="text-10-7-6-4">
 <ul class="org-ul">
 <li>quick implement of new project</li>
@@ -3888,7 +3888,7 @@ example: AWS S3
 </ul>
 </div>
 </li>
-<li><a id="org08ef206"></a>disadvantage<br />
+<li><a id="org82f6cd1"></a>disadvantage<br />
 <div class="outline-text-5" id="text-10-7-6-5">
 <ul class="org-ul">
 <li>complicated to change provider</li>
@@ -3900,8 +3900,8 @@ example: AWS S3
 </ol>
 </div>
 
-<div id="outline-container-org4e137ee" class="outline-4">
-<h4 id="org4e137ee"><span class="section-number-4">10.7.7</span> Platform as a Service</h4>
+<div id="outline-container-orgd759265" class="outline-4">
+<h4 id="orgd759265"><span class="section-number-4">10.7.7</span> Platform as a Service</h4>
 <div class="outline-text-4" id="text-10-7-7">
 <ul class="org-ul">
 <li>Rapid Time-to-Market</li>
@@ -3912,8 +3912,8 @@ example: AWS S3
 </div>
 
 
-<div id="outline-container-orga7610a7" class="outline-4">
-<h4 id="orga7610a7"><span class="section-number-4">10.7.8</span> Software as a Service</h4>
+<div id="outline-container-orgf7b78d6" class="outline-4">
+<h4 id="orgf7b78d6"><span class="section-number-4">10.7.8</span> Software as a Service</h4>
 <div class="outline-text-4" id="text-10-7-8">
 <p>
 based on IaaS, fouce on Applications
@@ -3922,12 +3922,12 @@ based on IaaS, fouce on Applications
 </div>
 </div>
 
-<div id="outline-container-orgf482c4a" class="outline-3">
-<h3 id="orgf482c4a"><span class="section-number-3">10.8</span> Web services</h3>
+<div id="outline-container-org82983e2" class="outline-3">
+<h3 id="org82983e2"><span class="section-number-3">10.8</span> Web services</h3>
 <div class="outline-text-3" id="text-10-8">
 </div>
-<div id="outline-container-org6e2f283" class="outline-4">
-<h4 id="org6e2f283"><span class="section-number-4">10.8.1</span> Benefits</h4>
+<div id="outline-container-org751e121" class="outline-4">
+<h4 id="org751e121"><span class="section-number-4">10.8.1</span> Benefits</h4>
 <div class="outline-text-4" id="text-10-8-1">
 <ul class="org-ul">
 <li>Programmable access</li>
@@ -3941,8 +3941,8 @@ based on IaaS, fouce on Applications
 </ul>
 </div>
 </div>
-<div id="outline-container-org2f64cab" class="outline-4">
-<h4 id="org2f64cab"><span class="section-number-4">10.8.2</span> SOAP</h4>
+<div id="outline-container-orga44661c" class="outline-4">
+<h4 id="orga44661c"><span class="section-number-4">10.8.2</span> SOAP</h4>
 <div class="outline-text-4" id="text-10-8-2">
 <p>
 Simple Object Access Protocol
@@ -3951,8 +3951,8 @@ RPC based
 </p>
 </div>
 </div>
-<div id="outline-container-org3ac0dd6" class="outline-4">
-<h4 id="org3ac0dd6"><span class="section-number-4">10.8.3</span> WSDL</h4>
+<div id="outline-container-org713d638" class="outline-4">
+<h4 id="org713d638"><span class="section-number-4">10.8.3</span> WSDL</h4>
 <div class="outline-text-4" id="text-10-8-3">
 <p>
 Web Services Description Language
@@ -3961,8 +3961,8 @@ xml based
 </div>
 </div>
 
-<div id="outline-container-org4266de8" class="outline-4">
-<h4 id="org4266de8"><span class="section-number-4">10.8.4</span> REST</h4>
+<div id="outline-container-orgcfd1e13" class="outline-4">
+<h4 id="orgcfd1e13"><span class="section-number-4">10.8.4</span> REST</h4>
 <div class="outline-text-4" id="text-10-8-4">
 <ul class="org-ul">
 <li>Everything is resource</li>
@@ -3978,8 +3978,8 @@ xml based
 </div>
 </div>
 
-<div id="outline-container-orgbd5f56f" class="outline-4">
-<h4 id="orgbd5f56f"><span class="section-number-4">10.8.5</span> API</h4>
+<div id="outline-container-org4979648" class="outline-4">
+<h4 id="org4979648"><span class="section-number-4">10.8.5</span> API</h4>
 <div class="outline-text-4" id="text-10-8-5">
 <p>
 Application Programming Interface
@@ -3988,12 +3988,12 @@ Application Programming Interface
 </div>
 </div>
 
-<div id="outline-container-orgc477503" class="outline-3">
-<h3 id="orgc477503"><span class="section-number-3">10.9</span> Big Data Service</h3>
+<div id="outline-container-org0454ba6" class="outline-3">
+<h3 id="org0454ba6"><span class="section-number-3">10.9</span> Big Data Service</h3>
 <div class="outline-text-3" id="text-10-9">
 </div>
-<div id="outline-container-org6e68131" class="outline-4">
-<h4 id="org6e68131"><span class="section-number-4">10.9.1</span> feathers</h4>
+<div id="outline-container-orgc934984" class="outline-4">
+<h4 id="orgc934984"><span class="section-number-4">10.9.1</span> feathers</h4>
 <div class="outline-text-4" id="text-10-9-1">
 <ul class="org-ul">
 <li>Volume: Scale of data</li>
@@ -4003,8 +4003,8 @@ Application Programming Interface
 </ul>
 </div>
 </div>
-<div id="outline-container-org6d5f437" class="outline-4">
-<h4 id="org6d5f437"><span class="section-number-4">10.9.2</span> processes</h4>
+<div id="outline-container-orge62838c" class="outline-4">
+<h4 id="orge62838c"><span class="section-number-4">10.9.2</span> processes</h4>
 <div class="outline-text-4" id="text-10-9-2">
 <ul class="org-ul">
 <li>Acquisition, Recording</li>
@@ -4015,8 +4015,8 @@ Application Programming Interface
 </ul>
 </div>
 </div>
-<div id="outline-container-org8f69a12" class="outline-4">
-<h4 id="org8f69a12"><span class="section-number-4">10.9.3</span> Challenges</h4>
+<div id="outline-container-org78b3c77" class="outline-4">
+<h4 id="org78b3c77"><span class="section-number-4">10.9.3</span> Challenges</h4>
 <div class="outline-text-4" id="text-10-9-3">
 <ul class="org-ul">
 <li>Heterogeneity, Incompleteness</li>
@@ -4027,8 +4027,8 @@ Application Programming Interface
 </div>
 </div>
 </div>
-<div id="outline-container-orgbaa099e" class="outline-3">
-<h3 id="orgbaa099e"><span class="section-number-3">10.10</span> Mapreduce</h3>
+<div id="outline-container-org8a38ac1" class="outline-3">
+<h3 id="org8a38ac1"><span class="section-number-3">10.10</span> Mapreduce</h3>
 <div class="outline-text-3" id="text-10-10">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -4057,28 +4057,28 @@ Application Programming Interface
 </table>
 </div>
 </div>
-<div id="outline-container-org6c96e44" class="outline-3">
-<h3 id="org6c96e44"><span class="section-number-3">10.11</span> Large Scale Data Analysis</h3>
+<div id="outline-container-org59b5e1e" class="outline-3">
+<h3 id="org59b5e1e"><span class="section-number-3">10.11</span> Large Scale Data Analysis</h3>
 <div class="outline-text-3" id="text-10-11">
 </div>
-<div id="outline-container-org3e192c7" class="outline-4">
-<h4 id="org3e192c7"><span class="section-number-4">10.11.1</span> batch process</h4>
+<div id="outline-container-org46ff9da" class="outline-4">
+<h4 id="org46ff9da"><span class="section-number-4">10.11.1</span> batch process</h4>
 <div class="outline-text-4" id="text-10-11-1">
 <p>
 disadvanage: views generated in batch may out of date
 </p>
 </div>
 </div>
-<div id="outline-container-org43f7232" class="outline-4">
-<h4 id="org43f7232"><span class="section-number-4">10.11.2</span> steaming process</h4>
+<div id="outline-container-org5837244" class="outline-4">
+<h4 id="org5837244"><span class="section-number-4">10.11.2</span> steaming process</h4>
 <div class="outline-text-4" id="text-10-11-2">
 <p>
 disadvanage: expensive and complex
 </p>
 </div>
 </div>
-<div id="outline-container-org01448d0" class="outline-4">
-<h4 id="org01448d0"><span class="section-number-4">10.11.3</span> Stream Computation Platform</h4>
+<div id="outline-container-orgcabc171" class="outline-4">
+<h4 id="orgcabc171"><span class="section-number-4">10.11.3</span> Stream Computation Platform</h4>
 <div class="outline-text-4" id="text-10-11-3">
 <ul class="org-ul">
 <li>Apache Storm</li>
@@ -4088,27 +4088,27 @@ disadvanage: expensive and complex
 </ul>
 </div>
 </div>
-<div id="outline-container-org0ca5864" class="outline-4">
-<h4 id="org0ca5864"><span class="section-number-4">10.11.4</span> Hadoop</h4>
+<div id="outline-container-orgd35d7b4" class="outline-4">
+<h4 id="orgd35d7b4"><span class="section-number-4">10.11.4</span> Hadoop</h4>
 </div>
-<div id="outline-container-orge39a61b" class="outline-4">
-<h4 id="orge39a61b"><span class="section-number-4">10.11.5</span> HDFS</h4>
+<div id="outline-container-org1c1d708" class="outline-4">
+<h4 id="org1c1d708"><span class="section-number-4">10.11.5</span> HDFS</h4>
 <div class="outline-text-4" id="text-10-11-5">
 <p>
 Namenode vs DataNodes
 </p>
 </div>
 </div>
-<div id="outline-container-org6af666d" class="outline-4">
-<h4 id="org6af666d"><span class="section-number-4">10.11.6</span> YARN</h4>
+<div id="outline-container-org426c5ca" class="outline-4">
+<h4 id="org426c5ca"><span class="section-number-4">10.11.6</span> YARN</h4>
 <div class="outline-text-4" id="text-10-11-6">
 <p>
 Resource Manager vs NodeManager
 </p>
 </div>
 </div>
-<div id="outline-container-orgef0f9d5" class="outline-4">
-<h4 id="orgef0f9d5"><span class="section-number-4">10.11.7</span> Apache Kafka</h4>
+<div id="outline-container-org53293a4" class="outline-4">
+<h4 id="org53293a4"><span class="section-number-4">10.11.7</span> Apache Kafka</h4>
 <div class="outline-text-4" id="text-10-11-7">
 <ul class="org-ul">
 <li>Fast, efficient IO</li>
@@ -4117,8 +4117,8 @@ Resource Manager vs NodeManager
 </ul>
 </div>
 </div>
-<div id="outline-container-orge107ae9" class="outline-4">
-<h4 id="orge107ae9"><span class="section-number-4">10.11.8</span> Data management cycle</h4>
+<div id="outline-container-orgde85237" class="outline-4">
+<h4 id="orgde85237"><span class="section-number-4">10.11.8</span> Data management cycle</h4>
 <div class="outline-text-4" id="text-10-11-8">
 <ul class="org-ul">
 <li>Data</li>
@@ -4130,12 +4130,12 @@ Resource Manager vs NodeManager
 </div>
 </div>
 </div>
-<div id="outline-container-org6fd844d" class="outline-3">
-<h3 id="org6fd844d"><span class="section-number-3">10.12</span> Data Grid Data Management</h3>
+<div id="outline-container-org71ec50f" class="outline-3">
+<h3 id="org71ec50f"><span class="section-number-3">10.12</span> Data Grid Data Management</h3>
 <div class="outline-text-3" id="text-10-12">
 </div>
-<div id="outline-container-org0cb8eb7" class="outline-4">
-<h4 id="org0cb8eb7"><span class="section-number-4">10.12.1</span> Data Lake</h4>
+<div id="outline-container-org8e64a18" class="outline-4">
+<h4 id="org8e64a18"><span class="section-number-4">10.12.1</span> Data Lake</h4>
 <div class="outline-text-4" id="text-10-12-1">
 <p>
 A data lake is a data storage, where raw data can be stored,
@@ -4143,7 +4143,7 @@ whos structure is determined at the extraction from the lake
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="orgb5817d1"></a>Challenges<br />
+<li><a id="org6fc3649"></a>Challenges<br />
 <div class="outline-text-5" id="text-10-12-1-1">
 <ul class="org-ul">
 <li>Reliablity</li>
@@ -4152,7 +4152,7 @@ whos structure is determined at the extraction from the lake
 </ul>
 </div>
 </li>
-<li><a id="org0569ba3"></a>Zones<br />
+<li><a id="org91d4e4c"></a>Zones<br />
 <div class="outline-text-5" id="text-10-12-1-2">
 <ul class="org-ul">
 <li>Transient</li>
@@ -4164,16 +4164,16 @@ whos structure is determined at the extraction from the lake
 </li>
 </ol>
 </div>
-<div id="outline-container-org6c55189" class="outline-4">
-<h4 id="org6c55189"><span class="section-number-4">10.12.2</span> ETL</h4>
+<div id="outline-container-org2e210fc" class="outline-4">
+<h4 id="org2e210fc"><span class="section-number-4">10.12.2</span> ETL</h4>
 <div class="outline-text-4" id="text-10-12-2">
 <p>
 Extract transform load
 </p>
 </div>
 </div>
-<div id="outline-container-orgfb5588c" class="outline-4">
-<h4 id="orgfb5588c"><span class="section-number-4">10.12.3</span> Storage data in Multiable locations</h4>
+<div id="outline-container-org1cbb0cb" class="outline-4">
+<h4 id="org1cbb0cb"><span class="section-number-4">10.12.3</span> Storage data in Multiable locations</h4>
 <div class="outline-text-4" id="text-10-12-3">
 <p>
 Redundancy for high-availability because of server falied and
@@ -4181,8 +4181,8 @@ fast access of data
 </p>
 </div>
 </div>
-<div id="outline-container-org5ec7221" class="outline-4">
-<h4 id="org5ec7221"><span class="section-number-4">10.12.4</span> Storage data in remote data center</h4>
+<div id="outline-container-org7b4c408" class="outline-4">
+<h4 id="org7b4c408"><span class="section-number-4">10.12.4</span> Storage data in remote data center</h4>
 <div class="outline-text-4" id="text-10-12-4">
 <p>
 it is harder to acidentally delete something, such as because
@@ -4190,16 +4190,16 @@ of disaster.
 </p>
 </div>
 </div>
-<div id="outline-container-org35c669c" class="outline-4">
-<h4 id="org35c669c"><span class="section-number-4">10.12.5</span> code storage</h4>
+<div id="outline-container-org94b8972" class="outline-4">
+<h4 id="org94b8972"><span class="section-number-4">10.12.5</span> code storage</h4>
 <div class="outline-text-4" id="text-10-12-5">
 <p>
 ssd
 </p>
 </div>
 </div>
-<div id="outline-container-org47a792e" class="outline-4">
-<h4 id="org47a792e"><span class="section-number-4">10.12.6</span> fair data management</h4>
+<div id="outline-container-orgff4faf4" class="outline-4">
+<h4 id="orgff4faf4"><span class="section-number-4">10.12.6</span> fair data management</h4>
 <div class="outline-text-4" id="text-10-12-6">
 <p>
 Find-able Accessable Interoperable Reproducible
@@ -4208,12 +4208,12 @@ Find-able Accessable Interoperable Reproducible
 </div>
 </div>
 
-<div id="outline-container-org4876f2f" class="outline-3">
-<h3 id="org4876f2f"><span class="section-number-3">10.13</span> ITIL &amp;SLA</h3>
+<div id="outline-container-org86c5455" class="outline-3">
+<h3 id="org86c5455"><span class="section-number-3">10.13</span> ITIL &amp;SLA</h3>
 <div class="outline-text-3" id="text-10-13">
 </div>
-<div id="outline-container-orgd40fe46" class="outline-4">
-<h4 id="orgd40fe46"><span class="section-number-4">10.13.1</span> non functional service</h4>
+<div id="outline-container-orgb2ccfe0" class="outline-4">
+<h4 id="orgb2ccfe0"><span class="section-number-4">10.13.1</span> non functional service</h4>
 <div class="outline-text-4" id="text-10-13-1">
 <p>
 organizational Operation of server
@@ -4231,17 +4231,17 @@ IT service Provider
 </div>
 </div>
 
-<div id="outline-container-org6ffb9cf" class="outline-4">
-<h4 id="org6ffb9cf"><span class="section-number-4">10.13.2</span> ITIL Information Technology Infrastructure Library</h4>
+<div id="outline-container-org1d45921" class="outline-4">
+<h4 id="org1d45921"><span class="section-number-4">10.13.2</span> ITIL Information Technology Infrastructure Library</h4>
 <div class="outline-text-4" id="text-10-13-2">
 <p>
 a framework of best practices of IT service management and delivering 
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="org4479a44"></a>service value system SVS<br />
+<li><a id="orgeee553f"></a>service value system SVS<br />
 <ol class="org-ol">
-<li><a id="org2a042c7"></a>Guiding principles<br />
+<li><a id="org6e338f1"></a>Guiding principles<br />
 <div class="outline-text-6" id="text-10-13-2-1-1">
 <ul class="org-ul">
 <li>focus on value</li>
@@ -4255,7 +4255,7 @@ a framework of best practices of IT service management and delivering
 </div>
 </li>
 
-<li><a id="org5e7fe39"></a>Service Value Chain<br />
+<li><a id="org2c51340"></a>Service Value Chain<br />
 <div class="outline-text-6" id="text-10-13-2-1-2">
 <ul class="org-ul">
 <li>plan</li>
@@ -4269,10 +4269,10 @@ a framework of best practices of IT service management and delivering
 </div>
 </li>
 
-<li><a id="org10ac2b2"></a>ITIL Practices<br /></li>
+<li><a id="org9580b06"></a>ITIL Practices<br /></li>
 </ol>
 </li>
-<li><a id="orgc2518db"></a>the four dimensions model<br />
+<li><a id="orgb47121f"></a>the four dimensions model<br />
 <div class="outline-text-5" id="text-10-13-2-2">
 <p>
 Organization&amp;People
@@ -4284,8 +4284,8 @@ Partners&amp;suppliers
 </li>
 </ol>
 </div>
-<div id="outline-container-org37df90b" class="outline-4">
-<h4 id="org37df90b"><span class="section-number-4">10.13.3</span> SLA Service Level Agreement Life cycle</h4>
+<div id="outline-container-org49a6a6d" class="outline-4">
+<h4 id="org49a6a6d"><span class="section-number-4">10.13.3</span> SLA Service Level Agreement Life cycle</h4>
 <div class="outline-text-4" id="text-10-13-3">
 <ul class="org-ul">
 <li>Development</li>
@@ -4297,8 +4297,8 @@ Partners&amp;suppliers
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc5becef" class="outline-4">
-<h4 id="orgc5becef"><span class="section-number-4">10.13.4</span> SLA components include</h4>
+<div id="outline-container-org1c65175" class="outline-4">
+<h4 id="org1c65175"><span class="section-number-4">10.13.4</span> SLA components include</h4>
 <div class="outline-text-4" id="text-10-13-4">
 <ul class="org-ul">
 <li>Parties,  terms,  conditions</li>
@@ -4311,36 +4311,36 @@ Partners&amp;suppliers
 </div>
 </div>
 
-<div id="outline-container-org1e43962" class="outline-3">
-<h3 id="org1e43962"><span class="section-number-3">10.14</span> Security</h3>
+<div id="outline-container-org8e0850a" class="outline-3">
+<h3 id="org8e0850a"><span class="section-number-3">10.14</span> Security</h3>
 <div class="outline-text-3" id="text-10-14">
 </div>
-<div id="outline-container-org91c42d7" class="outline-4">
-<h4 id="org91c42d7"><span class="section-number-4">10.14.1</span> Confidentiality</h4>
+<div id="outline-container-org2703a35" class="outline-4">
+<h4 id="org2703a35"><span class="section-number-4">10.14.1</span> Confidentiality</h4>
 <div class="outline-text-4" id="text-10-14-1">
 <p>
 The ability to hide the information from the unauthorized people
 </p>
 </div>
 </div>
-<div id="outline-container-org6be1e18" class="outline-4">
-<h4 id="org6be1e18"><span class="section-number-4">10.14.2</span> Integrity</h4>
+<div id="outline-container-org5cb5722" class="outline-4">
+<h4 id="org5cb5722"><span class="section-number-4">10.14.2</span> Integrity</h4>
 <div class="outline-text-4" id="text-10-14-2">
 <p>
 The ability to ensure that data are unchanged and remain a correct representation of original data
 </p>
 </div>
 </div>
-<div id="outline-container-org80d016b" class="outline-4">
-<h4 id="org80d016b"><span class="section-number-4">10.14.3</span> Availablity</h4>
+<div id="outline-container-org086d180" class="outline-4">
+<h4 id="org086d180"><span class="section-number-4">10.14.3</span> Availablity</h4>
 <div class="outline-text-4" id="text-10-14-3">
 <p>
 data is available to authorized people
 </p>
 </div>
 </div>
-<div id="outline-container-orgcfc345a" class="outline-4">
-<h4 id="orgcfc345a"><span class="section-number-4">10.14.4</span> Asymmetric Encrytion RSA</h4>
+<div id="outline-container-org484f8f7" class="outline-4">
+<h4 id="org484f8f7"><span class="section-number-4">10.14.4</span> Asymmetric Encrytion RSA</h4>
 <div class="outline-text-4" id="text-10-14-4">
 <pre class="example">
 Meassage: M
@@ -4370,8 +4370,8 @@ get the Mesaage [12]
 </pre>
 </div>
 </div>
-<div id="outline-container-org9436d42" class="outline-4">
-<h4 id="org9436d42"><span class="section-number-4">10.14.5</span> security benefits</h4>
+<div id="outline-container-org9ef36c3" class="outline-4">
+<h4 id="org9ef36c3"><span class="section-number-4">10.14.5</span> security benefits</h4>
 <div class="outline-text-4" id="text-10-14-5">
 <ul class="org-ul">
 <li>Integrity</li>
@@ -4380,8 +4380,8 @@ get the Mesaage [12]
 </ul>
 </div>
 </div>
-<div id="outline-container-org16cf6c4" class="outline-4">
-<h4 id="org16cf6c4"><span class="section-number-4">10.14.6</span> symmetric encryption</h4>
+<div id="outline-container-orge8ec4f8" class="outline-4">
+<h4 id="orge8ec4f8"><span class="section-number-4">10.14.6</span> symmetric encryption</h4>
 <div class="outline-text-4" id="text-10-14-6">
 <ul class="org-ul">
 <li>challange of key exchange</li>
@@ -4389,8 +4389,8 @@ get the Mesaage [12]
 </ul>
 </div>
 </div>
-<div id="outline-container-org1e5c4a3" class="outline-4">
-<h4 id="org1e5c4a3"><span class="section-number-4">10.14.7</span> asymmetic encryption</h4>
+<div id="outline-container-org8fb04df" class="outline-4">
+<h4 id="org8fb04df"><span class="section-number-4">10.14.7</span> asymmetic encryption</h4>
 <div class="outline-text-4" id="text-10-14-7">
 <ul class="org-ul">
 <li>en/decryption need more resource</li>
@@ -4398,40 +4398,40 @@ get the Mesaage [12]
 </ul>
 </div>
 </div>
-<div id="outline-container-org19b9667" class="outline-4">
-<h4 id="org19b9667"><span class="section-number-4">10.14.8</span> Digital Signiture</h4>
+<div id="outline-container-orge276e84" class="outline-4">
+<h4 id="orge276e84"><span class="section-number-4">10.14.8</span> Digital Signiture</h4>
 <div class="outline-text-4" id="text-10-14-8">
 <p>
 It's a certificate to identify the sender of message
 </p>
 </div>
 </div>
-<div id="outline-container-org056f077" class="outline-4">
-<h4 id="org056f077"><span class="section-number-4">10.14.9</span> how Certificate is trusted</h4>
+<div id="outline-container-org9d18e02" class="outline-4">
+<h4 id="org9d18e02"><span class="section-number-4">10.14.9</span> how Certificate is trusted</h4>
 <div class="outline-text-4" id="text-10-14-9">
 <p>
 OS deliver a list of  already trusted accepted CAs, it's preconfigured
 </p>
 </div>
 </div>
-<div id="outline-container-org70ede40" class="outline-4">
-<h4 id="org70ede40"><span class="section-number-4">10.14.10</span> Authentication</h4>
+<div id="outline-container-org96695f3" class="outline-4">
+<h4 id="org96695f3"><span class="section-number-4">10.14.10</span> Authentication</h4>
 <div class="outline-text-4" id="text-10-14-10">
 <p>
 verifies you are who you say you are
 </p>
 </div>
 </div>
-<div id="outline-container-orgd9f23ea" class="outline-4">
-<h4 id="orgd9f23ea"><span class="section-number-4">10.14.11</span> Authorization</h4>
+<div id="outline-container-org90a967f" class="outline-4">
+<h4 id="org90a967f"><span class="section-number-4">10.14.11</span> Authorization</h4>
 <div class="outline-text-4" id="text-10-14-11">
 <p>
 verifies if you have the permission to access data
 </p>
 </div>
 </div>
-<div id="outline-container-org5aabee1" class="outline-4">
-<h4 id="org5aabee1"><span class="section-number-4">10.14.12</span> Confusion and Diffusion</h4>
+<div id="outline-container-orgd1a46ae" class="outline-4">
+<h4 id="orgd1a46ae"><span class="section-number-4">10.14.12</span> Confusion and Diffusion</h4>
 <div class="outline-text-4" id="text-10-14-12">
 <p>
 confusion is to create faint ciphertexts in crytoprahic
@@ -4443,7 +4443,7 @@ Diffusion, if one place of plain text the modified, many places can be modified
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2022-11-05 Sat 11:45</p>
+<p class="date">Created: 2022-11-23 Wed 10:31</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
 <p class="validation"></p>
 </div>

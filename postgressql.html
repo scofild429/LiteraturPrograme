@@ -3,12 +3,34 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-11-05 Sat 11:45 -->
+<!-- 2022-11-23 Wed 10:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Postgresql</title>
 <meta name="generator" content="Org mode" />
 <link rel="stylesheet" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css" />
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="content">
@@ -17,40 +39,83 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7c4cba1">1. basic OP</a></li>
-<li><a href="#org59661d8">2. src block</a>
+<li><a href="#org7e9f21e">1. basic OP</a></li>
+<li><a href="#orgb032b6f">2. src block</a>
 <ul>
-<li><a href="#orgf682473">2.1. with header</a></li>
-<li><a href="#orgad741df">2.2. with session</a></li>
+<li><a href="#orgc3960f9">2.1. with header</a></li>
+<li><a href="#orge2033c7">2.2. with session</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org7c4cba1" class="outline-2">
-<h2 id="org7c4cba1"><span class="section-number-2">1</span> basic OP</h2>
+<div id="outline-container-org7e9f21e" class="outline-2">
+<h2 id="org7e9f21e"><span class="section-number-2">1</span> basic OP</h2>
 <div class="outline-text-2" id="text-1">
 <pre class="example">
-sudo apt install psql client
+sudo apt install postgresql-client-common
+
 sudo apt install postgresql postgresql-contrib
-sudo -i -u postgres
+</pre>
+<p>
+sudo -i -u postgres &amp;&amp; psql
+</p>
+<pre class="example">
+swith to psql user (postgres, auto created), and then login in
+
+</pre>
+<p>
 sudo -u postgres psql
-\password user
-alter user user_name with PASSWORD 'new_password';
-psql -h localhost -U si (with be asked for password)
+</p>
+<pre class="example">
+login psql from current user
+
+</pre>
+
+<p>
+\password 'user<sub>name</sub>';
+alter user 'user<sub>name</sub>' with PASSWORD 'new<sub>password</sub>';
+</p>
+<pre class="example">
+set password
+
+</pre>
+
+
+<p>
+psql -h localhost -U 'user<sub>name</sub>' (with be asked for password)
+</p>
+<pre class="example">
+login with password, for locally distributed or remotely
+for remote login, please install at least one client version( install postgres-client-12)
+
+</pre>
+
+
+<p>
 \c database
 \du
 \q
+</p>
+
+
+<pre class="example">
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+</pre>
+<pre class="example">
+drop all table
+
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org59661d8" class="outline-2">
-<h2 id="org59661d8"><span class="section-number-2">2</span> src block</h2>
+<div id="outline-container-orgb032b6f" class="outline-2">
+<h2 id="orgb032b6f"><span class="section-number-2">2</span> src block</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgf682473" class="outline-3">
-<h3 id="orgf682473"><span class="section-number-3">2.1</span> with header</h3>
+<div id="outline-container-orgc3960f9" class="outline-3">
+<h3 id="orgc3960f9"><span class="section-number-3">2.1</span> with header</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="font-weight: bold;">create</span> <span style="font-weight: bold;">table</span> <span style="font-weight: bold;">personv</span> (
@@ -64,8 +129,8 @@ psql -h localhost -U si (with be asked for password)
 </div>
 </div>
 </div>
-<div id="outline-container-orgad741df" class="outline-3">
-<h3 id="orgad741df"><span class="section-number-3">2.2</span> with session</h3>
+<div id="outline-container-orge2033c7" class="outline-3">
+<h3 id="orge2033c7"><span class="section-number-3">2.2</span> with session</h3>
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
 <pre class="src src-sql">\l
@@ -81,7 +146,7 @@ psql -h localhost -U si (with be asked for password)
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2022-11-05 Sat 11:45</p>
+<p class="date">Created: 2022-11-23 Wed 10:31</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
 <p class="validation"></p>
 </div>
