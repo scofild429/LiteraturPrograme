@@ -76,11 +76,13 @@ methods for Array
 : 65
 
 * set array 去重 求交 
-#+begin_src js :results output
-  let arr = [1,2,3,4,5,6,7,4,5,6];
-  let arr2 = [2,4,6];
-  let result = [...new Set(arr)].filter( item => new Set(arr2).has(item));
-  console.log(result);
+#+begin_src javascript :results output
+     let arr = [1,2,3,4,5,6,7,4,5,6];
+     let arr2 = [2,4,6];
+     let result = [...new Set(arr)].filter(
+       item => new Set(arr2).has(item)
+     );
+     console.log(result);
 #+end_src
 
 #+RESULTS:
@@ -1464,7 +1466,7 @@ npx jest --coverage / npm run coverage
 
 - autodetect
 packages.json->"scripts":
-"test":"jest", ---->>>> "test":"jest --watchAll",
+"test":"jest", ---->>>> "test":"jest --watchall",
 
 - babel
 npm install @bable/core@7.4.5 @bable/preset-env@7.4.5 -D
@@ -1476,3 +1478,104 @@ o model
 f model 
 p model
 
+** runing node npm js fetch async await
++ npm init
++ "type": "module", >> package.json
++ npm install node-fetch
+  #+begin_src js
+    import fetch from 'node-fetch';
+
+    fetch("https://pokeapi.co/api/v2/pokemon/")
+      .then((res) => res.json())
+      .then((data) => console.log(data)); 
+  #+end_src
++ node index.js
+** jest test npm js fetch async await
++ npm init -y 
++ "type": "module", >> package.json
++ npm install node-fetch
+  #+begin_src js
+    import fetch from 'node-fetch';
+
+    const getPokemonList = async() => {
+      const listRep = await fetch("https://pokeapi.co/api/v2/pokemon/");
+      return await listRep.json();
+    };
+
+    const getPokemon = async(url) => {
+      const dataResp = await fetch(url);
+      return await dataResp.json();
+    };
+
+
+
+    function sum(a, b) {
+      return a + b;
+    }
+    module.exports = {
+      sum,
+      getPokemon,
+      getPokemonList
+    };
+  #+end_src
++ Here, because jest are default use CommonJS, so please PLEASE revoke your node-fetch to version 2.
+  Because node-fetch after version 3, it will be convert to ES6.
++ npm remove node-fetch
++ npm install node-fetch@2.6.2
+  #+begin_src js
+    const {sum, getPokemon, getPokemonList } = require('./index');
+
+    test("testSum", () => {
+      expect( sum(1, 2) ).toBe(3);
+    });
+
+    test("testDict", () => {
+      const data = {one: 1};
+      data["two"] = 2;
+      expect( data ).toEqual({one:1, two:2});
+    });
+
+
+    test("testgetPokemonList", async () => {
+      const pokemonList = await getPokemonList();
+      const firstPokemon = await getPokemon(pokemonList.results[0].url);
+      expect(firstPokemon.name).toBe("bulbasaur");
+    });
+
+
+  #+end_src
++ but the index.js is using ES6 to import fetch-node, even use module.exports(for CommonJS) and require, but import is still complaining.
++ npm i -s @bable/preset-env
++ npm i -s babel-jest
++ touch .babelrc
+  #+begin_src
+   {
+     "presets": ["@babel/preset-env"]
+   }
+  #+end_src
++ npm run test should now work  
+
+** yarn ts fetch async await
++ cd asyncts
++ yarn init -y
++ yarn add typescript ts-node @types/node-fetch@2.6.2
++ yarn add node-fetch@2.6.2
++ npx tsc --init
+  
+  #+begin_src typescript
+    import fetch from "node-fetch"
+    fetch("https://pokeapi.co/api/v2/pokemon/")
+      .then((res) => res.json())
+      .then((data) => console.log(data)); 
+
+  #+end_src
++ ts-node index.ts
+
+    *node-fetch convert every thing into EMS moduld after version 3.0*
+    if you meet some error, please use the last version 2
++ yarn add @supercharge/promise-pool
++ yarn add ts-jest jest  @types/jest -D
++ npx ts-jest config:init
++ yarn test
++ seeing the demo ~/Dropbox/cs/asyncTSPromisejest
+  

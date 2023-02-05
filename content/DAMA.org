@@ -1,0 +1,183 @@
+#+TITLE:  DAMA
+#+OPTIONS: num:t
+#+STARTUP: overview
+* DAMA
+** Motivation for Data Management
++ Visibility
++ Reliability
++ Security
++ Scalability
+** Motivation for Research Data Management
++ the amonut of data growth fast
++ new technologies
++ more accessible data due to standardisation
++ Required by funding agency
++ Scientific
+** Key difference between Data management Vs Data Science
+- Acquisition
+- Storage
+- Quality
+- Governance
+- Integrity
+
+** Data Science Life Cycle
+Acquirement, clean, *explore, preprocessing, model*, validation, present
+** Research Data Life Cycle
+*Plan*, Collect, Assure, Describe, Submit, Preserve, Discover, Integrate, Analysis, Publish
+** Research Data Life Cycle 2
+  Analysis   <- discovery
+  $\downarrow$                 $\uparrow$           Archiving
+  processing -> Distribution
+
+  - version controll
+  - provenance
+  - normalization
+  - integrity preservation
+  - curation
+** Storage & Preseveration
+ - storage, mid-term, on my own disk
+ - preseveration, long term, accessible for other
+ - 321
+ - Accessibility, Authenticity, Longevity
+   
+
+  
+* Data Model
+** model
+- why? to save the data in the database or information system
+- conceptual representation of data objects, associcated with other data object
+- benefits, helpful for visual representation, busisess rules, regulatory compliances, consistancy conventions
+** data moduling technologies
+- ERM, Entity Relation Model
+- UML, Unified Modeling Language
+** Data modul Types
+- Conceptual
+- Logical
+- Physical
+** Data Type  
+*** Structured
+
+
+*** Semi-Structured
+self-describing structur
+json, XML, Email, Key-value-Store
+
+*** Unstuctured
+** Data Acquire
+- Harvesting
+  from external into system storage
+  
+- Ingesting
+  fro different storages to different step for processing
+* Database
+** Hierarchical database
+- hierarchical structured
+- 1 to 1, 1 to n,
+- XML
+** Network database  
+- Predecessor of relational database
+- more than one parent
+- allow n to n
+- uses a direct graph with direct link
+- can becomes a complex structure
+** Relational Database  
+- not sufficient for fast growth of big data and its complexity
+- hard to scale horizontally
+- Normalization, reduce the disk space
+- DeNormalization, fast and optimised for query 
+- Snowflake schema,
+  + less disk space
+  + normalized
+  + minimal redundency
+  + powerful for data analysis
+  + allow many to many relationship
+- Star Schema(denormalization)
+  + simple to understand and build
+  + fast querying, no join 
+  
+** Object-Oriented Database  
+** No-SQL database
+- for big data
+
+** ACID compliance
+- potential failures, server, power, OS
+- Atomicity
+- Consistency
+- Isolation
+- Durablity
+  [[https://www.ibm.com/docs/en/cics-ts/5.4?topic=processing-acid-properties-transactions][IMB Statement]]
+** CAP Theorem
+- Consistency
+- Availablity
+- Partition tolerance
+- sql(CAx), no-sql(xAP)
+** ETL Process
+- E, Extract: Read data from source
+- L, Load, store data in the final data store
+- T, Transform: modify data based on the requirement
+- mostly is *ELT*
+- but if the data source allow modification, *TEL* is  also possible
+
+** Data Warehouse
++ integrated data from different source
++ resructure data (denormalization)
++ optimized for analysis
++ Building
+  - Data source Layer: integrate internal and external data
+  - Staging layer: conduct transformation
+  - Storage Layer: host a database
+** Database
+- real time data 
+- optimized for modification and querying(very efficient)
+- normalized data
+** Data Marts
+- subject-oriented database
+- to meet the specific group of users
+- data access with higher performance
+- Data maintenance, different department can have their own controll
+- Easy setup, simple design, required less technical
+- Analysis, KPIs,
+- Easy input
+** Data Lake
+| data Warehouse     | Data Lake            |
+| processed          | raw                  |
+| structured         | all possible and raw |
+| ready for analysis | open                 |
+| business user      | data scientists      |
+| costly             | easy                 |
+| more secure        | less                 |
+| sql                | no sql               |
+| fast result        | slow resulte         |
+
+** Data Mesh
+- domain-oriented decentralized data owership and architecture
+- data as a product
+- self-serve data infrastructure as platform
+- federated computational governance
+- architecture for data governance
+
+** Data Fabric
+- conceptual
+- focus on highly automating and integrating
+- need more matedata
+
+* Meta Data
+Meta data is must, a connect(descripation) data of data, necessary for control and efficiency while processing data, also important and required for access and discovery.
+problem, stored in different place also different form.
+** FAIR Principes
+- Findable
+- Accessable
+- interoperable
+- Reuseable
+- The principles emphasise *machine-actionability*, because humans increasingly rely on computational support to deal with data as a result of the increase in volume, complexity, and creation speed of data.
+** Type
+** direction
++ who created it, what it is,  when, where, how, licence.
+** Meaning
+- Controlled Vocabular
+- Texonomies
+- Thesaui
+- Ontologies
+
+ 
+

@@ -274,6 +274,14 @@ alias freemem="sync; echo 3 > /proc/sys/vm/drop_caches && swapoff -a && swapon -
     Icon=/path/to/yourapp.png
   #+end_src
   
+** hstr
+#+begin_src
+add-apt-repository ppa:ultradvorka/ppa
+apt-get update
+apt-get install hstr
+#+end_src
+the hh
+
 * commands
 ** terminal
 S-C-c : can copy out from terminal
@@ -455,6 +463,11 @@ emacs /etc/ssh/sshd_config
 ** output redirect
 comands xxx >> output file
 comands xxx &>> str error file
+** recursive string replace
+#+begin_src sh
+  find . -type f -name "*.md" -exec sed -i 's/foo/bar/g' {} +
+  find . -type f -name "*.vue" -exec sed -i 's/store.state.Timer/store.state.Session01/g' {} +
+#+end_src
 * Useful Software
 ** tar
 -x : extract
@@ -2323,6 +2336,10 @@ git reset --hard ID
 
 commit 添加提交
 和上次commit提交融合，不产生新的提交记录：  git commit --amend
+*** remote branch
+#+begin_src 
+git checkout -t origin/ui-mockup
+#+end_src
 
 ** commands to recover
 *** after only save 
