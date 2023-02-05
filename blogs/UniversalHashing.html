@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-11-23 Wed 10:31 -->
+<!-- 2023-02-05 Sun 14:43 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Summary of  Universal Hashing</title>
@@ -39,24 +39,24 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8c8b957">Definition</a></li>
-<li><a href="#org7da0c61">Carter-Wegman hash function</a></li>
-<li><a href="#org41def4f">Python example</a></li>
-<li><a href="#org65822e7">universal hash with reproducible</a>
+<li><a href="#orga0952e5">Definition</a></li>
+<li><a href="#org85c8dae">Carter-Wegman hash function</a></li>
+<li><a href="#orgc3d368a">Python example</a></li>
+<li><a href="#org1d9f2f4">universal hash with reproducible</a>
 <ul>
-<li><a href="#org17a16ca">check the input data from 100000 to 100100</a></li>
-<li><a href="#org642ba5c">check randint from 1 to 10000</a></li>
-<li><a href="#org168bcbf">check 100 special  input  data</a></li>
-<li><a href="#orgbd6f73d">search key</a></li>
+<li><a href="#orgc7f6842">check the input data from 100000 to 100100</a></li>
+<li><a href="#org22b5b3f">check randint from 1 to 10000</a></li>
+<li><a href="#orgdb571f0">check 100 special  input  data</a></li>
+<li><a href="#org48fc606">search key</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org8c8b957" class="outline-2">
-<h2 id="org8c8b957">Definition</h2>
-<div class="outline-text-2" id="text-org8c8b957">
+<div id="outline-container-orga0952e5" class="outline-2">
+<h2 id="orga0952e5">Definition</h2>
+<div class="outline-text-2" id="text-orga0952e5">
 <p>
 We want to save a dataset A  localy into dataset B, with has m slots in B
 and fast access to search, insert, delete operation,
@@ -95,9 +95,9 @@ one example of h can be Carter-Wegman hash function
 </div>
 </div>
 
-<div id="outline-container-org7da0c61" class="outline-2">
-<h2 id="org7da0c61">Carter-Wegman hash function</h2>
-<div class="outline-text-2" id="text-org7da0c61">
+<div id="outline-container-org85c8dae" class="outline-2">
+<h2 id="org85c8dae">Carter-Wegman hash function</h2>
+<div class="outline-text-2" id="text-org85c8dae">
 <p>
 Carter-Wegman hash function is :
 </p>
@@ -165,9 +165,9 @@ So we can guarantee that the distribution of elements in B can be very randomly 
 </div>
 </div>
 
-<div id="outline-container-org41def4f" class="outline-2">
-<h2 id="org41def4f">Python example</h2>
-<div class="outline-text-2" id="text-org41def4f">
+<div id="outline-container-orgc3d368a" class="outline-2">
+<h2 id="orgc3d368a">Python example</h2>
+<div class="outline-text-2" id="text-orgc3d368a">
 <p>
 this example is from <a href="https://github.com/zydeon/universal-hashing/blob/master/main.py">zydeon github</a>
 </p>
@@ -282,9 +282,9 @@ otherwise we can't find it again in hashtable, even we never know if it still in
 </div>
 </div>
 
-<div id="outline-container-org65822e7" class="outline-2">
-<h2 id="org65822e7">universal hash with reproducible</h2>
-<div class="outline-text-2" id="text-org65822e7">
+<div id="outline-container-org1d9f2f4" class="outline-2">
+<h2 id="org1d9f2f4">universal hash with reproducible</h2>
+<div class="outline-text-2" id="text-org1d9f2f4">
 <p>
 So we want to overcome this problem with reproducible porperty.
 We fix the a and b, in our following assumpation we set a = b = p-1
@@ -310,9 +310,9 @@ the hashtable, all elements will be computed again in new hashtable, this take a
 </p>
 </div>
 </div>
-<div id="outline-container-org17a16ca" class="outline-3">
-<h3 id="org17a16ca">check the input data from 100000 to 100100</h3>
-<div class="outline-text-3" id="text-org17a16ca">
+<div id="outline-container-orgc7f6842" class="outline-3">
+<h3 id="orgc7f6842">check the input data from 100000 to 100100</h3>
+<div class="outline-text-3" id="text-orgc7f6842">
 <div class="org-src-container">
 <pre class="src src-ipython">from math import ceil, log2
 from primesieve import nth_prime
@@ -380,15 +380,14 @@ if __name__ == '__main__':
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100099, 100098, 100097, 100096, 100095, 100094, 100093, 100092, 100091, 100090, 100089, 100088, 100087, 100086, 100085, 100084, 100083, 100082, 100081, 100080, 100079, 100078, 100077, 100076, 100075, 100074, 100073, 100072, 100071, 100070, 100069, 100068, 100067, 100066, 100065, 100064, 100063, 100062, 100061, 100060, 100059, 100058, 100057, 100056, 100055, 100054, 100053, 100052, 100051, 100050, 100049, 100048, 100047, 100046, 100045, 100044, 100043, 100042, 100041, 100040, 100039, 100038, 100037, 100036, 100035, 100034, 100033, 100032, 100031, 100030, 100029, 100028, 100027, 100026, 100025, 100024, 100023, 100022, 100021, 100020, 100019, 100018, 100017, 100016, 100015, 100014, 100013, 100012, 100011, 100010, 100009, 100008, 100007, 100006, 100005, 100004, 100003, 100002, 100001, 100000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 x :9000 is not in hashtable
 x :100010 is in hashtable
-
 </pre>
 </div>
 </div>
 
 
-<div id="outline-container-org642ba5c" class="outline-3">
-<h3 id="org642ba5c">check randint from 1 to 10000</h3>
-<div class="outline-text-3" id="text-org642ba5c">
+<div id="outline-container-org22b5b3f" class="outline-3">
+<h3 id="org22b5b3f">check randint from 1 to 10000</h3>
+<div class="outline-text-3" id="text-org22b5b3f">
 <div class="org-src-container">
 <pre class="src src-ipython">from math import ceil, log2
 from primesieve import nth_prime
@@ -459,15 +458,14 @@ if __name__ == '__main__':
 [8310, 9254, 9908, 0, 0, 2505, 3704, 651, 0, 3650, 9500, 9499, 0, 0, 8696, 0, 6894, 493, 0, 0, 0, 0, 0, 8943, 686, 0, 4294, 0, 0, 9481, 4280, 1279, 0, 2638, 0, 1875, 9074, 3873, 0, 0, 870, 834, 0, 0, 0, 9665, 0, 5263, 0, 3661, 86, 2659, 0, 0, 0, 0, 4054, 1053, 0, 1851, 50, 0, 0, 9647, 0, 2645, 7234, 0, 0, 9841, 0, 8407, 2438, 0, 0, 3235, 9634, 0, 0, 3543, 0, 0, 428, 0, 0, 2625, 0, 6823, 0, 1421, 0, 7619, 0, 5017, 0, 2815, 0, 0, 0, 0, 0, 7809, 0, 207, 9606, 8605, 604, 6603, 202, 9100, 0, 0, 198, 3997, 0, 0, 0, 7793, 0, 0, 190, 1294, 1588, 787, 0, 0, 0, 0, 2782, 0, 3580, 2579, 0, 0, 0, 0, 8574, 6573, 972, 8771, 0, 0, 0, 0, 0, 2565, 4764, 0, 0, 8961, 6560, 8479, 1558, 0, 0, 0, 8554, 0, 0, 5951, 0, 1309, 0, 4773, 0, 0, 6344, 9743, 9342, 941, 0, 1139, 0, 0, 1136, 0, 7334, 6733, 0, 6131, 1930, 9129, 0, 0, 6526, 0, 0, 3361, 0, 9560, 6120, 0, 0, 0, 0, 0, 7714, 7313, 3912, 8111]
 x :9000 is not in hashtable
 x :100010 is not in hashtable
-
 </pre>
 </div>
 </div>
 
 
-<div id="outline-container-org168bcbf" class="outline-3">
-<h3 id="org168bcbf">check 100 special  input  data</h3>
-<div class="outline-text-3" id="text-org168bcbf">
+<div id="outline-container-orgdb571f0" class="outline-3">
+<h3 id="orgdb571f0">check 100 special  input  data</h3>
+<div class="outline-text-3" id="text-orgdb571f0">
 <p>
 we use       
 </p>
@@ -652,15 +650,14 @@ if __name__ == '__main__':
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17600, 10600, 7200, 7400, 13000, 8600, 14200, 3600, 11000, 14200, 14800, 2200, 3200, 17000, 1400, 14000, 1400, 9200, 16000, 8200, 1600, 4000, 1800, 15600, 8400, 12000, 15200, 8200, 16200, 9600, 17200, 13200, 12000, 17800, 1200, 17000, 18200, 14800, 11600, 6200, 9200, 19200, 16400, 2000, 16400, 13600, 13600, 2800, 12000, 3000, 6400, 19200, 18800, 200, 16800, 19200, 11800, 18600, 9000, 17600, 16800, 18800, 1800, 15000, 7800, 2000, 9800, 5400, 5600, 19600, 11600, 5800, 3400, 14400, 12800, 16800, 9600, 12600, 12600, 8800, 1800, 16400, 6800, 6200, 1000, 18200, 15200, 8800, 5200, 15800, 9600, 10200, 19800, 12400, 17800, 3400, 4800, 1400, 10600, 14800, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 x :9000 is in hashtable
 x :100010 is not in hashtable
-
 </pre>
 </div>
 </div>
 
 
-<div id="outline-container-orgbd6f73d" class="outline-3">
-<h3 id="orgbd6f73d">search key</h3>
-<div class="outline-text-3" id="text-orgbd6f73d">
+<div id="outline-container-org48fc606" class="outline-3">
+<h3 id="org48fc606">search key</h3>
+<div class="outline-text-3" id="text-org48fc606">
 <p>
 we also used the check function to check if the data is already in hashtable,
 the check can be done for with and without collision input data.
@@ -739,16 +736,14 @@ if __name__ == '__main__':
 x :5000 is in hashtable
 x :9000 is in hashtable
 x :10300 is not in hashtable
-
 </pre>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2022-11-23 Wed 10:31</p>
-<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9)</p>
-<p class="validation"></p>
+<p class="date">Created: 2023-02-05 Sun 14:43</p>
+<p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="https://orgmode.org">Org</a> mode 9.3)</p>
 </div>
 </body>
 </html>
