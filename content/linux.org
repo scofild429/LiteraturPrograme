@@ -136,7 +136,6 @@ NowSat Nov  5 12:29:50 2022, I just configured my computer for a time screensave
 
 + now test the keyshort  
 
-
 * System configuration collection
 ** check port of application
 #+begin_src sh :dir /sudo::  :results output
@@ -2374,6 +2373,45 @@ git checkout -t origin/ui-mockup
    if with my ssh, the connect can be without password, but still need to aktiv
 3. where the instance is created, use the VNS to aktiv the konto, remember to save the password
    ssh cloud@ip
+* Certificate
+- First generate the self-singed certificate: Set CN to localhost,
+  #+begin_src
+    openssl req -new -x509 -nodes -keyout key.pem -sha256 -days 365 -out cert.pem
+    sudo cp cert.pem /etc/pki/ca-trust/source/anchors/
+    sudo update-ca-trust
+  #+end_src
+
+- First generate a new key, and Then create a CSR from it:
+  #+begin_src
+    openssl genrsa -out test.key 2048
+    openssl req -new -key test.key -out test.csr
+  #+end_src
+
+- creat extenation file test.ext, for domain name or DNS
+  #+begin_src
+1 authorityKeyIdentifier=keyid,issuer
+2 basicConstraints=CA:FALSE
+3 keyUsage =digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
+4 subjectAltName = @alt_names
+5
+6 [alt_names]
+7 DNS.1 = localhost
+8 DNS.2 = test.dev
+  #+end_src
+
+- Create a new signed certificate for extended information
+  #+begin_src
+openssl x509 -req -in test.csr -CA cert.pem -CAkey key.pem -CAcreateserial \
+-out test.crt -days 365 -sha256 -extfile test.ext    
+  #+end_src
+
+- signed by Let's Encrypt
+    #+begin_src
+      sudo certbot certonly --standalone
+    #+end_src
+
+- DONe
+
 * Problem
 ** System limit for number of file watchers reached
 sudo sysctl -w fs.inotify.max_user_watches=100000
