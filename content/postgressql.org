@@ -13,6 +13,7 @@ sudo -u postgres psql
 : login psql from current user
 
 \password 'user_name';
+OR
 alter user 'user_name' with PASSWORD 'new_password';
 : set password
 
@@ -36,9 +37,9 @@ CREATE SCHEMA public;
 * src block
 ** with header
 #+header: :engine postgresql
-#+header: :dbhost 141.5.103.10
+#+header: :dbhost 141.5.102.245
 #+header: :dbuser postgres
-#+header: :dbpassword "du"
+#+header: :dbpassword "hpc"
 #+header: :database postgres
 #+begin_src sql 
 create table personv (
@@ -49,8 +50,10 @@ create table personv (
  dataofbirth DATE
 ) ;
 #+end_src
+
 #+RESULTS:
 |---|
+
 ** with session
 #+begin_src sql :engine postgresql :dbhost localhost :dbuser postgres :dbpassword ich :database postgres :dbport 5432
 \l
