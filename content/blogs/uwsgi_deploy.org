@@ -14,7 +14,7 @@
 #+begin_src sh
   sudo apt-get install python3.8-dev
   sudo apt-get install gcc
-  pip install uwsgi
+  sudo pip install uwsgi
 #+end_src
 
 - test
@@ -26,7 +26,7 @@
     ssh -L 8000:127.0.0.1:8000 username@ip
   #+end_src
 
-- config, /etc/uwsgi/apps-avaiable/project.ini
+- config: /etc/uwsgi/apps-avaiable/project.ini
   #+begin_src text
     [uwsgi]
     uid = ubuntu
@@ -65,13 +65,21 @@ check the log content with sudo tail -10f /var/log/uwsgi/project.log
 if correct, enable it with soft link to apps-enable
 
 ** nginx
+- username
+  #+begin_src text
+   # sudo vim /etc/nginx/nginx.conf
+   user ubuntu;      # instead of www-data
+            
+  #+end_src
+
 - nginx site-avaiable file 
 #+begin_src tex
   upstream django {
       server unix:///home/..../project.sock;
   }
-          
+
     server {
+        listen  8000;
         server_name DomainName DNS;
         charset     utf-8;
         # max upload size
@@ -88,8 +96,9 @@ if correct, enable it with soft link to apps-enable
             uwsgi_pass  django;
             include     /home/..../uwsgi_params;
         }
+      }
 #+end_src
-
+- *be careful, the socket path should macht*
 - last line uwsgi_params is in the project root directory
  #+begin_src text
    uwsgi_param  QUERY_STRING       $query_string;
@@ -128,7 +137,7 @@ if correct, enable it with soft link to apps-enable
     [Install]
     WantedBy=multi-user.target
   #+end_src
-
+*be careful for the path of uwsgi*
 - start service and enable it
   #+begin_src sh
     sudo systemctl start uwsgi.

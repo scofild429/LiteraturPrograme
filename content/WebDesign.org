@@ -959,7 +959,6 @@ request session model
 
 * Spring Boot
 * JDBC
-
 - Driver
 - connection
 - mysql
@@ -1818,3 +1817,13 @@ change the owner and group of html to be non root,
 
 
 
+
+* full stack deployment
+- frontend at 80
+- backend at 8000
+- nginx for reverse proxy
+  under the server_name
+  location /api/ {                                                                                
+  proxy_pass http://localhost:8000;                                                       
+  }
+  

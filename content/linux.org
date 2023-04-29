@@ -968,8 +968,6 @@ sed -rn '/2\/1/s/00/**/pg' test2.csv
 sed  's/        //pg' test2.csv 
 
 
-
-
 * Makefile
 gcc 调用 make 来构造
 
@@ -2373,6 +2371,9 @@ git checkout -t origin/ui-mockup
    if with my ssh, the connect can be without password, but still need to aktiv
 3. where the instance is created, use the VNS to aktiv the konto, remember to save the password
    ssh cloud@ip
+* Google cloud
+
+
 * Certificate
 - First generate the self-singed certificate: Set CN to localhost,
   #+begin_src
@@ -2420,4 +2421,10 @@ reboot
 
 #+begin_src sh
   ls
+#+end_src
+* Docker
+#+begin_src sh
+  sudo docker rm $(sudo docker ps -aq)
+  sudo docker rmi $(sudo docker images -aq)
+  
 #+end_src
