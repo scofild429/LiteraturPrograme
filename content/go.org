@@ -3,6 +3,7 @@
 #+STARTUP: overview
 * Go Features
 ** Note
+*** Array
 - Array & Slice: Array must with specialized length for [x]
 - function:
   + must given specialized arguments(if point) when execution
@@ -12,7 +13,7 @@
   + for execution: the instance of receiver can be pointer or not, will automatically convered
   + if receiver is not a pointer, the receiver can still be a pointer
 
-- interface
+*** interface
   + def interface with its contains
   + def receiver
   + receiver implementing the contains with methods(just like method above)
@@ -20,6 +21,10 @@
   + instancing of receiver
   + passing receiver to interface(if the implementation is kind of pointer for receiver, here also pass pointer)
   + executing methods of interface
+*** Slice
+As you’ve noticed, when you slice from the end, it’s the length that shrinks. The pointer to the first element and the capacity remain unchanged.
+
+When you slice from the beginning of the slice, though, what happens instead is the pointer to the first element is changed to be a pointer to the nth element that you’re slicing from (i.e. sl = arr[2:] means to set the pointer to point to &arr[2]). Because the head of the slice has moved forward 2, in this case, the length and capacity have to decrease by 2.
   
 ** Generics
 #+begin_src go :exports both :results output
@@ -103,7 +108,7 @@
 : Cut("hello|world", "hello"): "", "|world", true
 : Cut("hello|world", "nothing"): "hello|world", "", false
 
-* Array
+** Array
 #+begin_src go :results output :exports both
   package main
   import (
@@ -127,6 +132,221 @@
 
 #+RESULTS:
 : [10 10 10]
+
+** Map
+three way to create a map
+#+begin_src go :exports both :results output
+  package main
+  import (
+          "fmt"
+  )
+  func main() {
+          myMap1 := make(map[string]string, 10)
+          fmt.Println(myMap1)
+          myMap1["one"] = "python"
+          fmt.Println(myMap1)
+          myMap2 := make(map[string]string)
+          myMap2["one"] = "python"
+          fmt.Println(myMap2)          
+          myMap3 := map[string]string{
+                  "one": "python",
+          }
+          fmt.Println(myMap3)
+  }
+#+end_src
+
+#+RESULTS:
+: map[]
+: map[one:python]
+: map[one:python]
+: map[one:python]
+
+** Methode
+function(copy or pointer)
+methode(copy or pointer)
+
+** interface
+#+begin_src go :exports both :results output
+  package main
+  import (
+          "fmt"
+  )
+  type AnimalIF interface{
+          Sleep()
+          GetColor() string
+          GetType() string
+  }
+
+  type Cat struct{
+          color string
+  }
+
+  func (this *Cat) Sleep(){
+          fmt.Println("Cat is sleeping")
+  }
+  func (this *Cat) GetColor() string {
+          return this.color
+  }
+  func (this *Cat) GetType() string {
+          return "Cat"
+  }
+
+  type Dog struct{
+          color string
+  }
+
+  func (this *Dog) Sleep(){
+          fmt.Println("Dog is sleeping")
+  }
+  func (this *Dog) GetColor() string {
+          return this.color
+  }
+  func (this *Dog) GetType() string {
+          return "Dog"
+  }
+  func ShowInfo(animal AnimalIF){
+          animal.Sleep()
+          fmt.Println("color = ", animal.GetColor())
+          fmt.Println("type = ", animal.GetType())
+  }
+
+  func main() {
+          cat := Cat{"Green"}
+          dog := Dog{"Yellow"}
+          ShowInfo(&cat)
+          ShowInfo(&dog)
+  }
+#+end_src
+
+#+RESULTS:
+: Cat is sleeping
+: color =  Green
+: type =  Cat
+: Dog is sleeping
+: color =  Yellow
+: type =  Dog
+
+ interface {}
+assert: arg.(string), if arg is not {}, it will be forced to convert to string
+can refer to every kind of value
+** polymorphism
+OpenFile already implemented Wirter and Reader 
+#+begin_src go :results output :exports both
+package main
+
+import (
+	"fmt"
+	"io"
+	"os"
+)
+
+func main() {
+	tty, err := os.OpenFile("/dev/tty", os.O_RDWR, 0)
+	if err != nil {
+		fmt.Println("Open file with error", err)
+		return
+	}
+	var r io.Reader
+	r = tty
+	var w io.Writer
+	w = r.(io.Writer)
+	w.Write([]byte("HELLO from meb\n"))
+}
+
+  
+#+end_src
+
+#+RESULTS:
+: Open file with error open /dev/tty: no such device or address
+
+** reflect
+#+begin_src go :results output :exports both
+  package main
+
+  import (
+          "fmt"
+          "reflect"
+  )
+
+  func reflectNum(arg interface{}){
+          fmt.Println("type: ", reflect.TypeOf(arg))
+          fmt.Println("value: ", reflect.ValueOf(arg))
+  }
+
+  func main(){
+          var num float64 = 3.1415926
+          reflectNum(num)
+  }
+
+#+end_src
+
+#+RESULTS:
+: type:  float64
+: value:  3.1415926
+
+
+#+begin_src go :results output :exports both
+  package main
+  import (
+          "fmt"
+          "reflect"
+  )
+
+  type User struct {
+          Id int
+          Name string
+          Age int
+  }
+
+  func (this User) Call(){
+          fmt.Println("user is calling")
+          fmt.Printf("%v\n", this)
+  }
+
+  func (this User) End_Call(id int){
+          fmt.Println(id)
+          fmt.Printf("%v\n", this)
+  }
+
+  func main(){
+          user := User{10, "Alice", 23}
+          reflectExample(user)
+  }
+
+  func reflectExample(input interface{}){
+          //get tpye
+          inputType := reflect.TypeOf(input)
+          fmt.Println("input Type is :", inputType.Name())
+
+
+          //get value
+          inputValue := reflect.ValueOf(input)
+          fmt.Println("value Type is :", inputValue)
+
+
+          //get fields in details
+          for i := 0; i< inputType.NumField(); i++ {
+                  field := inputType.Field(i)
+                  value := inputValue.Field(i).Interface()
+                  fmt.Printf("%s: %v = %v\n",field.Name, field.Type, value)
+          }
+
+          //get methods in details
+          for i := 0; i< inputType.NumMethod(); i++ {
+                  method := inputType.Method(i)
+                  fmt.Printf("%s: %v\n", method.Name, method.Type)
+          }
+  }
+#+end_src
+
+#+RESULTS:
+: input Type is : User
+: value Type is : {10 Alice 23}
+: Id: int = 10
+: Name: string = Alice
+: Age: int = 23
+: Call: func(main.User)
+: End_Call: func(main.User, int)
 
 * time
 #+begin_src go :results output :exports both
@@ -155,6 +375,56 @@
 : 该函数执行完成耗时： 33.536µs
 
 * sync
+#+begin_src go :results output :exports both
+package main
+
+import "fmt"
+
+func produce(c chan<- int) {
+	for i := 0; i < 10; i++ {
+		fmt.Printf(" Produced : %d\n", i)
+		c <- i // synchronization
+	}
+}
+
+func consume(c <-chan int) {
+	for true {
+		i := <-c // synchronization
+		fmt.Printf(" Consumed : %d\n", i)
+	}
+}
+
+func main() {
+	c := make(chan int)
+	go consume(c)
+	produce(c)
+}
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Produced : 0
+ Consumed : 0
+ Produced : 1
+ Produced : 2
+ Consumed : 1
+ Consumed : 2
+ Produced : 3
+ Produced : 4
+ Consumed : 3
+ Consumed : 4
+ Produced : 5
+ Produced : 6
+ Consumed : 5
+ Consumed : 6
+ Produced : 7
+ Produced : 8
+ Consumed : 7
+ Consumed : 8
+ Produced : 9
+#+end_example
+
+
 #+begin_src go :results output :exports both
   package main
   import (
@@ -934,3 +1204,9 @@ go mod edit -replace modulename=folder
 - the same with module, with main package and main func, can be call as go run xxx.go
 - can not  be called from gore for now (29.07.2022)
 
+
+    here is also1
+    here is also2
+    here is also3
+    here is also4
+                                                                    
