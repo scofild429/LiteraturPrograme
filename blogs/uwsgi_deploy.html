@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-04-29 Sat 21:38 -->
+<!-- 2023-07-22 Sat 21:02 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>uwsgi deploy</title>
@@ -17,22 +17,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7cc67cf">Reference</a></li>
-<li><a href="#org4d49456">steps</a>
+<li><a href="#org98e9281">Reference</a></li>
+<li><a href="#org2387c5e">steps</a>
 <ul>
-<li><a href="#org1388c9c">python manage.py runserver should work</a></li>
-<li><a href="#org73932dc">uwsgi</a></li>
-<li><a href="#orge300560">nginx</a></li>
-<li><a href="#org5b1d499">service</a></li>
+<li><a href="#orgac85a52">python manage.py runserver should work</a></li>
+<li><a href="#org2386dc5">uwsgi</a></li>
+<li><a href="#org51588c1">nginx</a></li>
+<li><a href="#org04bab1b">service</a></li>
 </ul>
 </li>
-<li><a href="#org0a33b3c">ssl</a></li>
+<li><a href="#orgd20caf6">ssl</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org7cc67cf" class="outline-2">
-<h2 id="org7cc67cf">Reference</h2>
-<div class="outline-text-2" id="text-org7cc67cf">
+<div id="outline-container-org98e9281" class="outline-2">
+<h2 id="org98e9281">Reference</h2>
+<div class="outline-text-2" id="text-org98e9281">
 <ul class="org-ul">
 <li><a href="https://tonyteaches.tech/django-nginx-uwsgi-tutorial/">How to Set Up Django on Nginx with uWSGI</a></li>
 <li><a href="https://medium.com/all-about-django/deploying-django-applications-in-production-with-uwsgi-and-nginx-78aac8c0f735">Deploying Django applications in production with uwsgi and nginx</a></li>
@@ -41,21 +41,22 @@
 </div>
 </div>
 
-<div id="outline-container-org4d49456" class="outline-2">
-<h2 id="org4d49456">steps</h2>
-<div class="outline-text-2" id="text-org4d49456">
+<div id="outline-container-org2387c5e" class="outline-2">
+<h2 id="org2387c5e">steps</h2>
+<div class="outline-text-2" id="text-org2387c5e">
 </div>
-<div id="outline-container-org1388c9c" class="outline-3">
-<h3 id="org1388c9c">python manage.py runserver should work</h3>
+<div id="outline-container-orgac85a52" class="outline-3">
+<h3 id="orgac85a52">python manage.py runserver should work</h3>
 </div>
-<div id="outline-container-org73932dc" class="outline-3">
-<h3 id="org73932dc">uwsgi</h3>
-<div class="outline-text-3" id="text-org73932dc">
+<div id="outline-container-org2386dc5" class="outline-3">
+<h3 id="org2386dc5">uwsgi</h3>
+<div class="outline-text-3" id="text-org2386dc5">
 <ul class="org-ul">
-<li>install</li>
+<li>install  not in virtual envirement</li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-sh">sudo apt-get install python3.8-dev
+sudo apt-get install python3.10-dev
 sudo apt-get install gcc
 sudo pip install uwsgi
 </pre>
@@ -129,16 +130,16 @@ if correct, enable it with soft link to apps-enable
 </div>
 </div>
 
-<div id="outline-container-orge300560" class="outline-3">
-<h3 id="orge300560">nginx</h3>
-<div class="outline-text-3" id="text-orge300560">
+<div id="outline-container-org51588c1" class="outline-3">
+<h3 id="org51588c1">nginx</h3>
+<div class="outline-text-3" id="text-org51588c1">
 <ul class="org-ul">
 <li><p>
 username
 </p>
 <div class="org-src-container">
 <pre class="src src-text"># sudo vim /etc/nginx/nginx.conf
-user ubuntu;      # instead of www-data
+user cloud;      # instead of www-data
 
 </pre>
 </div></li>
@@ -147,32 +148,31 @@ user ubuntu;      # instead of www-data
 </ul>
 <div class="org-src-container">
 <pre class="src src-tex">upstream django {
-    server unix:///home/..../project.sock;
+    server unix:///home/..../project/project.sock;
 }
 
   server {
-      listen  8000;
+      listen  80;
       server_name DomainName DNS;
       charset     utf-8;
       # max upload size
       client_max_body_size 75M;
-      # Django media and static files
       location /media  {
-          alias /home/..../media;
+          alias /home/..../project/media;
       }
       location /static {
-          alias /home/..../static;
+          alias /home/..../project/static;
       }
       # Send all non-media requests to the Django server.
       location / {
           uwsgi_pass  django;
-          include     /home/..../uwsgi_params;
+          include     /home/..../project/uwsgi_params;
       }
     }
 </pre>
 </div>
 <ul class="org-ul">
-<li><b>be careful, the socket path should macht</b></li>
+<li><b>be careful, the socket path should match</b></li>
 <li><p>
 last line uwsgi<sub>params</sub> is in the project root directory
 </p>
@@ -194,6 +194,9 @@ uwsgi_param  SERVER_NAME        $server_name;
 </pre>
 </div>
 
+<p>
+sudo ln -s source des
+</p>
 <ul class="org-ul">
 <li>enable the nginx configation file and test a picture in media</li>
 </ul></li>
@@ -201,9 +204,9 @@ uwsgi_param  SERVER_NAME        $server_name;
 </div>
 </div>
 
-<div id="outline-container-org5b1d499" class="outline-3">
-<h3 id="org5b1d499">service</h3>
-<div class="outline-text-3" id="text-org5b1d499">
+<div id="outline-container-org04bab1b" class="outline-3">
+<h3 id="org04bab1b">service</h3>
+<div class="outline-text-3" id="text-org04bab1b">
 <ul class="org-ul">
 <li><p>
 create service file with sudo vim /etc/systemd/system/uwsgi.service
@@ -244,9 +247,9 @@ sudo systemctl enable uwsgi.
 </div>
 </div>
 
-<div id="outline-container-org0a33b3c" class="outline-2">
-<h2 id="org0a33b3c">ssl</h2>
-<div class="outline-text-2" id="text-org0a33b3c">
+<div id="outline-container-orgd20caf6" class="outline-2">
+<h2 id="orgd20caf6">ssl</h2>
+<div class="outline-text-2" id="text-orgd20caf6">
 <p>
 sudo certbot -d -d -d
 </p>
@@ -254,7 +257,7 @@ sudo certbot -d -d -d
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2023-04-29 Sat 21:38</p>
+<p class="date">Created: 2023-07-22 Sat 21:02</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="https://orgmode.org">Org</a> mode 9.3)</p>
 </div>
 </body>
