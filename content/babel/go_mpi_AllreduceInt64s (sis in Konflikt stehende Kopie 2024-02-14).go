@@ -7,15 +7,13 @@ import (
 func main() {
         mpi.Start(true)
         fmt.Println()
-        var ranks []int 
+        var ranks []int
         newComm := mpi.NewCommunicator(ranks)
+        var dest []int64 = []int64{0, 0}
+        var send []int64 = []int64{20 * int64(newComm.Rank()), 2}
+        newComm.AllreduceInt64s(dest, send, mpi.OpSum, 0)
         if newComm.Rank() == 0 {
-                var data int32 = 60
-                newComm.SendInt32(data, 1, 10)
-        }
-        if newComm.Rank() == 1 {
-                data, _ := newComm.RecvInt32(0, 10)
-                fmt.Println(data)
+                fmt.Println(dest)
         }
         mpi.Stop()
 }

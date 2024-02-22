@@ -285,6 +285,15 @@ apt-get install hstr
 the hh
 
 * commands
+** hits
+- assigne permition for delete
+#+begin_src sh
+chmod -R u+rwx /usr/users/szhao/go-workspace/pkg/mod
+#+end_src
+
+- /ect/ssh/sshd_config
+  - AllowedUsers cloud silin, allow such user login remotely
+
 ** terminal
 S-C-c : can copy out from terminal
 S-C-v : can paste into terminal
@@ -369,6 +378,7 @@ cd $(dirname $(which cling))
 
 ** less
 
+|-------+---------------|
 | J     | down          |
 | K     | up            |
 | Space | next page     |
@@ -377,6 +387,8 @@ cd $(dirname $(which cling))
 | n     | next mark     |
 | N     | previous mark |
 | q     | quit          |
+|-------+---------------|
+
 
 ** link
 *** 静态库的制作
@@ -2429,5 +2441,10 @@ reboot
 #+begin_src sh
   sudo docker rm $(sudo docker ps -aq)
   sudo docker rmi $(sudo docker images -aq)
-  
 #+end_src
+* opencv
+sudo cmake -DCMAKE_INSTALL_PREFIX:PATH=/home/si/Dokumente/opencv/libopencv ..
+make
+make install
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/si/Dokumente/opencv/libopencv/lib
+

@@ -6,7 +6,6 @@ import (
 )
 func main() {
         mpi.Start(true)
-        fmt.Println()
         var ranks []int
         newComm := mpi.NewCommunicator(ranks)
         var dest []int64 = []int64{0, 0}

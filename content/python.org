@@ -1216,6 +1216,13 @@ see numpy document [[https://numpy.org/doc/stable/reference/generated/numpy.flip
   pprint(inspect.getmembers(time))
 #+end_src
 
+** @property
+#+begin_src
+@property: Declares the method as a property.
+@<property-name>.setter: Specifies the setter method for a property that sets the value to a property.
+@<property-name>.deleter: Specifies the delete method as a property that deletes a property.  
+#+end_src
+
 * python automotion
 ** system manipulation 
 *** os.getcwd()
@@ -3976,7 +3983,6 @@ open development and debug mode
 
 
 
-
 * test
 #+begin_src python :results output
   import os
@@ -3985,4 +3991,36 @@ open development and debug mode
 
 #+RESULTS:
 
+* Exception
+#+begin_src  python
+def example1():
+    print("example 01")
+    try:
+        a = 10 / 0
+    except ZeroDivisionError as e:
+        print("catched")
+        raise RuntimeError("Runtime error") from e
+    except Exception as e:
+        print(e.__class__.__name__)
 
+def call():
+    try:
+        example1()
+    except RuntimeError as e:
+        print(e.__class__.__name__)
+        print(e.args)
+        print("Runtime Error")
+    except Exception as e:
+        print(e.__class__.__name__)
+        print(e.args)
+
+call()
+
+#+end_src
+
+#+RESULTS:
+
+
+
+
+.env not be share

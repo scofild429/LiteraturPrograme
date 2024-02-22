@@ -12,7 +12,7 @@ func main() {
         var ranks []int 
         newComm := mpi.NewCommunicator(ranks)
         if newComm.Rank() == 0 {
-                var data []uint32 = []uint32{1, 2, 3, 4}
+                var data []uint32 = []uint32{1, 2, 3}
                 newComm.SendUInt32s(data, 1, 10)
         }
         if newComm.Rank() == 1 {

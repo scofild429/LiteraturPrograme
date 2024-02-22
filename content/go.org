@@ -508,6 +508,7 @@ tick 10
 #+end_example
 
 * chan
+** example
 #+begin_src go :results output :exports both
   package main
   import "fmt"
@@ -534,6 +535,85 @@ tick 10
 #+end_src
 
 #+RESULTS:
+** dead lock unbuffer channel 
+#+begin_src go :results output :exports both
+  package main
+  import "fmt"
+  func main() {
+      // 创建一个整型带两个缓冲的通道
+      ch := make(chan int)
+
+      // 给通道放入两个数据
+      ch <- 0
+      id := <- ch
+      fmt.Println(id)
+
+      close(ch)
+  }
+#+end_src
+
+#+RESULTS:
+*but can be saved with goroutine*
+
+#+begin_src go :results output :exports both
+  package main
+  import "fmt"
+  func main() {
+      ch := make(chan int)
+      go func(){
+        ch <- 0
+      }()
+      id := <- ch
+      fmt.Println(id)
+      close(ch)
+  }
+#+end_src
+
+#+RESULTS:
+: 0
+
+
+
+** deal lock after buffer channel is full
+*buffer can be filled*
+#+begin_src go :results output :exports both
+  package main
+  import "fmt"
+  func main() {
+      ch := make(chan int, 2)
+
+      ch <- 0
+      ch <- 1
+      id := <- ch
+      fmt.Println(id)
+
+      close(ch)
+  }
+#+end_src
+
+#+RESULTS:
+: 0
+
+
+*but  can not  be exceeded*
+#+begin_src go :results output :exports both
+  package main
+  import "fmt"
+  func main() {
+      ch := make(chan int, 2)
+
+      ch <- 0
+      ch <- 1
+      ch <- 2
+      id := <- ch
+      fmt.Println(id)
+
+      close(ch)
+  }
+#+end_src
+
+#+RESULTS:
+: 0
 
 * context
 :PROPERTIES:
@@ -599,6 +679,65 @@ Oh, no, Time is execeed the deadline
 context deadline exceeded
 times out
 #+end_example
+
+#+begin_src  go :results output :exports both
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+	"time"
+)
+
+func main() {
+	start := time.Now
+	ctx := context.Background()
+	userId := 10
+	val, err := fetchUserData(ctx, userId)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println("result : ", val)
+	fmt.Println("took ", time.Since(start()))
+}
+
+type Response struct {
+	value int
+	err   error
+}
+
+func fetchUserData(ctx context.Context, userid int) (int, error) {
+	ctx, cancel := context.WithTimeout(ctx, time.Millisecond*200)
+	defer cancel()
+
+	respch := make(chan Response)
+
+	go func() {
+		val, err := fetchThirdPartyStuffWhichCanbeSlow()
+		respch <- Response{
+			value: val,
+			err:   err,
+		}
+	}()
+
+	for {
+		select {
+		case <-ctx.Done():
+			return 0, fmt.Errorf("Fetch data is time out")
+		case resp := <-respch:
+			return resp.value, resp.err
+		}
+	}
+}
+
+func fetchThirdPartyStuffWhichCanbeSlow() (int, error) {
+	time.Sleep(time.Millisecond * 150)
+	return 666, nil
+}
+#+end_src
+
+#+RESULTS:
 
 * gonum
 ** Test example
@@ -1210,3 +1349,22 @@ go mod edit -replace modulename=folder
     here is also3
     here is also4
                                                                     
+* pprof, allow cpu and mem profile
+#+begin_src go
+  import (
+	"os"
+	"time"
+
+	"github.com/pkg/profile"
+	"runtime/pprof"
+)
+
+  cpuFile, _ := os.Create("cpu.pprof")
+  pprof.StartCPUProfile(cpuFile)
+  defer pprof.StopCPUProfile()
+
+  defer profile.Start(profile.MemProfile, profile.ProfilePath(".")).Stop()
+
+
+
+#+end_src
