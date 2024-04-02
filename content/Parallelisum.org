@@ -102,7 +102,8 @@ docker rm Did/Dname
   sudo singularity build --sandbox singularityfile.simg singularityfile
   sudo singularity build --sandbox singularity.simg docker://dockerhubname
 
-
+  sudo singularity shell  singularityfile.simg
+  
   sudo singularity shell --writable singularityfile.simg
 
   sudo singularity shell --bind /home/silin/go:/home/go  -w --nv centos-7.simg
@@ -1644,7 +1645,6 @@ assert data == (rank+1)**2
 #+end_src
 
 
-
 * Go with mpi
 ** cpuNum
 #+begin_src go :results output :exports both :tangle ./babel/go_mpi_cpuNum.go
@@ -2623,7 +2623,6 @@ func main(){
 
 #+RESULTS:
 : PASSED
-
 
 *** dim 1, grid 1, block 256 N10000000 with time
 #+begin_src C :tangle  ./babel/gpu_vector_add_dim1_grid1_block256_withtime.cu

@@ -1351,20 +1351,18 @@ go mod edit -replace modulename=folder
                                                                     
 * pprof, allow cpu and mem profile
 #+begin_src go
-  import (
-	"os"
-	"time"
+    import (
+          "os"
+          "time"
 
-	"github.com/pkg/profile"
-	"runtime/pprof"
-)
+          "github.com/pkg/profile"
+          "runtime/pprof"
+  )
 
-  cpuFile, _ := os.Create("cpu.pprof")
-  pprof.StartCPUProfile(cpuFile)
-  defer pprof.StopCPUProfile()
-
-  defer profile.Start(profile.MemProfile, profile.ProfilePath(".")).Stop()
-
-
+    cpuFile, _ := os.Create("cpu.pprof")
+    pprof.StartCPUProfile(cpuFile)
+    defer pprof.StopCPUProfile()
+  
+    defer profile.Start(profile.MemProfile, profile.ProfilePath(".")).Stop()
 
 #+end_src
