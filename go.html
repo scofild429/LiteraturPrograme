@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-04-02 Tue 16:28 -->
+<!-- 2024-04-15 Mon 10:53 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Go</title>
@@ -17,74 +17,74 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga08fe8b">Go Features</a>
+<li><a href="#orgcf66f83">Go Features</a>
 <ul>
-<li><a href="#org47f8bda">Note</a>
+<li><a href="#orgd6b477f">Note</a>
 <ul>
-<li><a href="#org9a7372c">Array</a></li>
-<li><a href="#orgc6a9cb0">interface</a></li>
-<li><a href="#orgff8769f">Slice</a></li>
+<li><a href="#org3574163">Array</a></li>
+<li><a href="#org028467d">interface</a></li>
+<li><a href="#org12e212c">Slice</a></li>
 </ul>
 </li>
-<li><a href="#org2cbe891">Generics</a></li>
-<li><a href="#org2487dc1">Strings</a></li>
-<li><a href="#orga0f3928">Array</a></li>
-<li><a href="#orgba20a42">Map</a></li>
-<li><a href="#org4950666">Methode</a></li>
-<li><a href="#orgf51cace">interface</a></li>
-<li><a href="#org5ea1d1f">polymorphism</a></li>
-<li><a href="#org2b261b6">reflect</a></li>
+<li><a href="#org6d36a8c">Generics</a></li>
+<li><a href="#orgdb115f9">Strings</a></li>
+<li><a href="#org526dc49">Array</a></li>
+<li><a href="#orga993f2e">Map</a></li>
+<li><a href="#org19d8cab">Methode</a></li>
+<li><a href="#org0543dd2">interface</a></li>
+<li><a href="#orgf66f529">polymorphism</a></li>
+<li><a href="#orgd65f43b">reflect</a></li>
 </ul>
 </li>
-<li><a href="#org115fc86">time</a></li>
-<li><a href="#orgcec2be9">sync</a></li>
-<li><a href="#org0d1dd18">go</a></li>
-<li><a href="#org768be4f">chan</a>
+<li><a href="#org34eb15a">time</a></li>
+<li><a href="#orge56fbda">sync</a></li>
+<li><a href="#orga6e1aae">go</a></li>
+<li><a href="#org8bc6045">chan</a>
 <ul>
-<li><a href="#orgc1482b4">example</a></li>
-<li><a href="#org487bed7">dead lock unbuffer channel</a></li>
-<li><a href="#orgcde9f60">deal lock after buffer channel is full</a></li>
+<li><a href="#org32f5412">example</a></li>
+<li><a href="#org3e85c3d">dead lock unbuffer channel</a></li>
+<li><a href="#org09279e2">deal lock after buffer channel is full</a></li>
 </ul>
 </li>
-<li><a href="#orga04564a">context</a></li>
-<li><a href="#org1e6a048">gonum</a>
+<li><a href="#org7b0e106">context</a></li>
+<li><a href="#orgb0e7f28">gonum</a>
 <ul>
-<li><a href="#org630da6b">Test example</a></li>
-<li><a href="#orgb13d5ad">NewDense</a></li>
-<li><a href="#org877dbde">make</a></li>
-<li><a href="#org3277297">gonum execute</a></li>
+<li><a href="#org0d7d269">Test example</a></li>
+<li><a href="#org6ef9653">NewDense</a></li>
+<li><a href="#org2b80a0a">make</a></li>
+<li><a href="#org25f0512">gonum execute</a></li>
 </ul>
 </li>
-<li><a href="#orga9204c5">PatternDesign</a>
+<li><a href="#org264a3d2">PatternDesign</a>
 <ul>
-<li><a href="#org97be7b8">Observer</a></li>
-<li><a href="#org1333f63">Factory</a></li>
-<li><a href="#org06f0bc2">Decorator</a></li>
-<li><a href="#org23daa01">单例模式</a></li>
+<li><a href="#org2026f2f">Observer</a></li>
+<li><a href="#orga963c74">Factory</a></li>
+<li><a href="#org5a77467">Decorator</a></li>
+<li><a href="#org6242e42">单例模式</a></li>
 </ul>
 </li>
-<li><a href="#org8f41657">Architecture</a>
+<li><a href="#org189dd1f">Architecture</a>
 <ul>
-<li><a href="#org3d1db9c">package</a></li>
-<li><a href="#org9a28ca3">module</a></li>
-<li><a href="#orgd3f2dab">project</a></li>
+<li><a href="#org8f2281b">package</a></li>
+<li><a href="#orge88acd7">module</a></li>
+<li><a href="#org880ea18">project</a></li>
 </ul>
 </li>
-<li><a href="#org113dab7">pprof, allow cpu and mem profile</a></li>
+<li><a href="#org375087c">pprof, allow cpu and mem profile</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga08fe8b" class="outline-2">
-<h2 id="orga08fe8b">Go Features</h2>
-<div class="outline-text-2" id="text-orga08fe8b">
+<div id="outline-container-orgcf66f83" class="outline-2">
+<h2 id="orgcf66f83">Go Features</h2>
+<div class="outline-text-2" id="text-orgcf66f83">
 </div>
-<div id="outline-container-org47f8bda" class="outline-3">
-<h3 id="org47f8bda">Note</h3>
-<div class="outline-text-3" id="text-org47f8bda">
+<div id="outline-container-orgd6b477f" class="outline-3">
+<h3 id="orgd6b477f">Note</h3>
+<div class="outline-text-3" id="text-orgd6b477f">
 </div>
-<div id="outline-container-org9a7372c" class="outline-4">
-<h4 id="org9a7372c">Array</h4>
-<div class="outline-text-4" id="text-org9a7372c">
+<div id="outline-container-org3574163" class="outline-4">
+<h4 id="org3574163">Array</h4>
+<div class="outline-text-4" id="text-org3574163">
 <ul class="org-ul">
 <li>Array &amp; Slice: Array must with specialized length for [x]</li>
 <li>function:
@@ -102,9 +102,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgc6a9cb0" class="outline-4">
-<h4 id="orgc6a9cb0">interface</h4>
-<div class="outline-text-4" id="text-orgc6a9cb0">
+<div id="outline-container-org028467d" class="outline-4">
+<h4 id="org028467d">interface</h4>
+<div class="outline-text-4" id="text-org028467d">
 <ul class="org-ul">
 <li>def interface with its contains</li>
 <li>def receiver</li>
@@ -116,9 +116,9 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgff8769f" class="outline-4">
-<h4 id="orgff8769f">Slice</h4>
-<div class="outline-text-4" id="text-orgff8769f">
+<div id="outline-container-org12e212c" class="outline-4">
+<h4 id="org12e212c">Slice</h4>
+<div class="outline-text-4" id="text-org12e212c">
 <p>
 As you’ve noticed, when you slice from the end, it’s the length that shrinks. The pointer to the first element and the capacity remain unchanged.
 </p>
@@ -130,9 +130,9 @@ When you slice from the beginning of the slice, though, what happens instead is 
 </div>
 </div>
 
-<div id="outline-container-org2cbe891" class="outline-3">
-<h3 id="org2cbe891">Generics</h3>
-<div class="outline-text-3" id="text-org2cbe891">
+<div id="outline-container-org6d36a8c" class="outline-3">
+<h3 id="org6d36a8c">Generics</h3>
+<div class="outline-text-3" id="text-org6d36a8c">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import "fmt"
@@ -194,9 +194,9 @@ rm go.sum
 </div>
 </div>
 
-<div id="outline-container-org2487dc1" class="outline-3">
-<h3 id="org2487dc1">Strings</h3>
-<div class="outline-text-3" id="text-org2487dc1">
+<div id="outline-container-orgdb115f9" class="outline-3">
+<h3 id="orgdb115f9">Strings</h3>
+<div class="outline-text-3" id="text-orgdb115f9">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import (
@@ -224,9 +224,9 @@ Cut("hello|world", "nothing"): "hello|world", "", false
 </div>
 </div>
 
-<div id="outline-container-orga0f3928" class="outline-3">
-<h3 id="orga0f3928">Array</h3>
-<div class="outline-text-3" id="text-orga0f3928">
+<div id="outline-container-org526dc49" class="outline-3">
+<h3 id="org526dc49">Array</h3>
+<div class="outline-text-3" id="text-org526dc49">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import (
@@ -255,9 +255,9 @@ func main() {
 </div>
 </div>
 
-<div id="outline-container-orgba20a42" class="outline-3">
-<h3 id="orgba20a42">Map</h3>
-<div class="outline-text-3" id="text-orgba20a42">
+<div id="outline-container-orga993f2e" class="outline-3">
+<h3 id="orga993f2e">Map</h3>
+<div class="outline-text-3" id="text-orga993f2e">
 <p>
 three way to create a map
 </p>
@@ -291,9 +291,9 @@ map[one:python]
 </div>
 </div>
 
-<div id="outline-container-org4950666" class="outline-3">
-<h3 id="org4950666">Methode</h3>
-<div class="outline-text-3" id="text-org4950666">
+<div id="outline-container-org19d8cab" class="outline-3">
+<h3 id="org19d8cab">Methode</h3>
+<div class="outline-text-3" id="text-org19d8cab">
 <p>
 function(copy or pointer)
 methode(copy or pointer)
@@ -301,9 +301,9 @@ methode(copy or pointer)
 </div>
 </div>
 
-<div id="outline-container-orgf51cace" class="outline-3">
-<h3 id="orgf51cace">interface</h3>
-<div class="outline-text-3" id="text-orgf51cace">
+<div id="outline-container-org0543dd2" class="outline-3">
+<h3 id="org0543dd2">interface</h3>
+<div class="outline-text-3" id="text-org0543dd2">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import (
@@ -374,9 +374,9 @@ can refer to every kind of value
 </p>
 </div>
 </div>
-<div id="outline-container-org5ea1d1f" class="outline-3">
-<h3 id="org5ea1d1f">polymorphism</h3>
-<div class="outline-text-3" id="text-org5ea1d1f">
+<div id="outline-container-orgf66f529" class="outline-3">
+<h3 id="orgf66f529">polymorphism</h3>
+<div class="outline-text-3" id="text-orgf66f529">
 <p>
 OpenFile already implemented Wirter and Reader 
 </p>
@@ -412,9 +412,9 @@ Open file with error open /dev/tty: no such device or address
 </div>
 </div>
 
-<div id="outline-container-org2b261b6" class="outline-3">
-<h3 id="org2b261b6">reflect</h3>
-<div class="outline-text-3" id="text-org2b261b6">
+<div id="outline-container-orgd65f43b" class="outline-3">
+<h3 id="orgd65f43b">reflect</h3>
+<div class="outline-text-3" id="text-orgd65f43b">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -511,9 +511,9 @@ End_Call: func(main.User, int)
 </div>
 </div>
 
-<div id="outline-container-org115fc86" class="outline-2">
-<h2 id="org115fc86">time</h2>
-<div class="outline-text-2" id="text-org115fc86">
+<div id="outline-container-org34eb15a" class="outline-2">
+<h2 id="org34eb15a">time</h2>
+<div class="outline-text-2" id="text-org34eb15a">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import (
@@ -543,9 +543,9 @@ func main() {
 </div>
 </div>
 
-<div id="outline-container-orgcec2be9" class="outline-2">
-<h2 id="orgcec2be9">sync</h2>
-<div class="outline-text-2" id="text-orgcec2be9">
+<div id="outline-container-orge56fbda" class="outline-2">
+<h2 id="orge56fbda">sync</h2>
+<div class="outline-text-2" id="text-orge56fbda">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -634,9 +634,9 @@ func count(thing string) {
 </div>
 </div>
 
-<div id="outline-container-org0d1dd18" class="outline-2">
-<h2 id="org0d1dd18">go</h2>
-<div class="outline-text-2" id="text-org0d1dd18">
+<div id="outline-container-orga6e1aae" class="outline-2">
+<h2 id="orga6e1aae">go</h2>
+<div class="outline-text-2" id="text-orga6e1aae">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import (
@@ -686,13 +686,13 @@ tick 10
 </div>
 </div>
 
-<div id="outline-container-org768be4f" class="outline-2">
-<h2 id="org768be4f">chan</h2>
-<div class="outline-text-2" id="text-org768be4f">
+<div id="outline-container-org8bc6045" class="outline-2">
+<h2 id="org8bc6045">chan</h2>
+<div class="outline-text-2" id="text-org8bc6045">
 </div>
-<div id="outline-container-orgc1482b4" class="outline-3">
-<h3 id="orgc1482b4">example</h3>
-<div class="outline-text-3" id="text-orgc1482b4">
+<div id="outline-container-org32f5412" class="outline-3">
+<h3 id="org32f5412">example</h3>
+<div class="outline-text-3" id="text-org32f5412">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import "fmt"
@@ -720,9 +720,9 @@ func main() {
 </div>
 </div>
 </div>
-<div id="outline-container-org487bed7" class="outline-3">
-<h3 id="org487bed7">dead lock unbuffer channel</h3>
-<div class="outline-text-3" id="text-org487bed7">
+<div id="outline-container-org3e85c3d" class="outline-3">
+<h3 id="org3e85c3d">dead lock unbuffer channel</h3>
+<div class="outline-text-3" id="text-org3e85c3d">
 <div class="org-src-container">
 <pre class="src src-go">package main
 import "fmt"
@@ -767,9 +767,9 @@ func main() {
 
 
 
-<div id="outline-container-orgcde9f60" class="outline-3">
-<h3 id="orgcde9f60">deal lock after buffer channel is full</h3>
-<div class="outline-text-3" id="text-orgcde9f60">
+<div id="outline-container-org09279e2" class="outline-3">
+<h3 id="org09279e2">deal lock after buffer channel is full</h3>
+<div class="outline-text-3" id="text-org09279e2">
 <p>
 <b>buffer can be filled</b>
 </p>
@@ -822,9 +822,9 @@ func main() {
 </div>
 </div>
 
-<div id="outline-container-orga04564a" class="outline-2">
-<h2 id="orga04564a">context</h2>
-<div class="outline-text-2" id="text-orga04564a">
+<div id="outline-container-org7b0e106" class="outline-2">
+<h2 id="org7b0e106">context</h2>
+<div class="outline-text-2" id="text-org7b0e106">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -945,13 +945,13 @@ func fetchThirdPartyStuffWhichCanbeSlow() (int, error) {
 </div>
 </div>
 
-<div id="outline-container-org1e6a048" class="outline-2">
-<h2 id="org1e6a048">gonum</h2>
-<div class="outline-text-2" id="text-org1e6a048">
+<div id="outline-container-orgb0e7f28" class="outline-2">
+<h2 id="orgb0e7f28">gonum</h2>
+<div class="outline-text-2" id="text-orgb0e7f28">
 </div>
-<div id="outline-container-org630da6b" class="outline-3">
-<h3 id="org630da6b">Test example</h3>
-<div class="outline-text-3" id="text-org630da6b">
+<div id="outline-container-org0d7d269" class="outline-3">
+<h3 id="org0d7d269">Test example</h3>
+<div class="outline-text-3" id="text-org0d7d269">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -1015,9 +1015,9 @@ func (v column) RawVector() blas64.Vector {
 </div>
 </div>
 
-<div id="outline-container-orgb13d5ad" class="outline-3">
-<h3 id="orgb13d5ad">NewDense</h3>
-<div class="outline-text-3" id="text-orgb13d5ad">
+<div id="outline-container-org6ef9653" class="outline-3">
+<h3 id="org6ef9653">NewDense</h3>
+<div class="outline-text-3" id="text-org6ef9653">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -1036,9 +1036,9 @@ func main() {
 </div>
 </div>
 
-<div id="outline-container-org877dbde" class="outline-3">
-<h3 id="org877dbde">make</h3>
-<div class="outline-text-3" id="text-org877dbde">
+<div id="outline-container-org2b80a0a" class="outline-3">
+<h3 id="org2b80a0a">make</h3>
+<div class="outline-text-3" id="text-org2b80a0a">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -1067,9 +1067,9 @@ func main() {
 </div>
 </div>
 
-<div id="outline-container-org3277297" class="outline-3">
-<h3 id="org3277297">gonum execute</h3>
-<div class="outline-text-3" id="text-org3277297">
+<div id="outline-container-org25f0512" class="outline-3">
+<h3 id="org25f0512">gonum execute</h3>
+<div class="outline-text-3" id="text-org25f0512">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="font-weight: bold;">cd</span> babel
 go mod init babel-go
@@ -1089,13 +1089,13 @@ false
 </div>
 </div>
 
-<div id="outline-container-orga9204c5" class="outline-2">
-<h2 id="orga9204c5">PatternDesign</h2>
-<div class="outline-text-2" id="text-orga9204c5">
+<div id="outline-container-org264a3d2" class="outline-2">
+<h2 id="org264a3d2">PatternDesign</h2>
+<div class="outline-text-2" id="text-org264a3d2">
 </div>
-<div id="outline-container-org97be7b8" class="outline-3">
-<h3 id="org97be7b8">Observer</h3>
-<div class="outline-text-3" id="text-org97be7b8">
+<div id="outline-container-org2026f2f" class="outline-3">
+<h3 id="org2026f2f">Observer</h3>
+<div class="outline-text-3" id="text-org2026f2f">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -1192,9 +1192,9 @@ func main() {
 </div>
 </div>
 </div>
-<div id="outline-container-org1333f63" class="outline-3">
-<h3 id="org1333f63">Factory</h3>
-<div class="outline-text-3" id="text-org1333f63">
+<div id="outline-container-orga963c74" class="outline-3">
+<h3 id="orga963c74">Factory</h3>
+<div class="outline-text-3" id="text-orga963c74">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -1388,9 +1388,9 @@ main.FileSystem
 </div>
 </div>
 
-<div id="outline-container-org06f0bc2" class="outline-3">
-<h3 id="org06f0bc2">Decorator</h3>
-<div class="outline-text-3" id="text-org06f0bc2">
+<div id="outline-container-org5a77467" class="outline-3">
+<h3 id="org5a77467">Decorator</h3>
+<div class="outline-text-3" id="text-org5a77467">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -1491,9 +1491,9 @@ divide2022/07/12 took=922ns, v=500000, result=250000
 </div>
 </div>
 
-<div id="outline-container-org23daa01" class="outline-3">
-<h3 id="org23daa01">单例模式</h3>
-<div class="outline-text-3" id="text-org23daa01">
+<div id="outline-container-org6242e42" class="outline-3">
+<h3 id="org6242e42">单例模式</h3>
+<div class="outline-text-3" id="text-org6242e42">
 <div class="org-src-container">
 <pre class="src src-go">package main
 
@@ -1578,22 +1578,22 @@ In methode,  indieictly can be changed its occupation {Joke driver}
 </div>
 </div>
 
-<div id="outline-container-org8f41657" class="outline-2">
-<h2 id="org8f41657">Architecture</h2>
-<div class="outline-text-2" id="text-org8f41657">
+<div id="outline-container-org189dd1f" class="outline-2">
+<h2 id="org189dd1f">Architecture</h2>
+<div class="outline-text-2" id="text-org189dd1f">
 </div>
-<div id="outline-container-org3d1db9c" class="outline-3">
-<h3 id="org3d1db9c">package</h3>
-<div class="outline-text-3" id="text-org3d1db9c">
+<div id="outline-container-org8f2281b" class="outline-3">
+<h3 id="org8f2281b">package</h3>
+<div class="outline-text-3" id="text-org8f2281b">
 <p>
 each folder can only has one named package,
 but it can be shared for many files, also for the test file
 </p>
 </div>
 </div>
-<div id="outline-container-org9a28ca3" class="outline-3">
-<h3 id="org9a28ca3">module</h3>
-<div class="outline-text-3" id="text-org9a28ca3">
+<div id="outline-container-orge88acd7" class="outline-3">
+<h3 id="orge88acd7">module</h3>
+<div class="outline-text-3" id="text-orge88acd7">
 <p>
 it is the same designed as project, but only without main function and main package.
 it can be used by local package, module or project, but has to be replaced
@@ -1608,9 +1608,9 @@ go mod edit -replace modulename=folder
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd3f2dab" class="outline-3">
-<h3 id="orgd3f2dab">project</h3>
-<div class="outline-text-3" id="text-orgd3f2dab">
+<div id="outline-container-org880ea18" class="outline-3">
+<h3 id="org880ea18">project</h3>
+<div class="outline-text-3" id="text-org880ea18">
 <ul class="org-ul">
 <li>the same with module, with main package and main func, can be call as go run xxx.go</li>
 <li>can not  be called from gore for now (29.07.2022)</li>
@@ -1627,9 +1627,9 @@ here is also4
 </div>
 </div>
 
-<div id="outline-container-org113dab7" class="outline-2">
-<h2 id="org113dab7">pprof, allow cpu and mem profile</h2>
-<div class="outline-text-2" id="text-org113dab7">
+<div id="outline-container-org375087c" class="outline-2">
+<h2 id="org375087c">pprof, allow cpu and mem profile</h2>
+<div class="outline-text-2" id="text-org375087c">
 <div class="org-src-container">
 <pre class="src src-go">  import (
 	"os"
@@ -1651,7 +1651,7 @@ here is also4
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2024-04-02 Tue 16:28</p>
+<p class="date">Created: 2024-04-15 Mon 10:53</p>
 <p class="creator"><a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.1 (<a href="https://orgmode.org">Org</a> mode 9.3)</p>
 </div>
 </body>
