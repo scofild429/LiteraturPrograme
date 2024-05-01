@@ -1,0 +1,434 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>TS - my collection</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="AI.org.html"><strong aria-hidden="true">1.</strong> AI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="MachineLearning.org.html"><strong aria-hidden="true">1.1.</strong> MachineLearning</a></li><li class="chapter-item expanded "><a href="DeepLearning.org.html"><strong aria-hidden="true">1.2.</strong> DeepLearning</a></li><li class="chapter-item expanded "><a href="NLP.org.html"><strong aria-hidden="true">1.3.</strong> NLP</a></li></ol></li><li class="chapter-item expanded "><a href="CS.org.html"><strong aria-hidden="true">2.</strong> CS</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="linux.org.html"><strong aria-hidden="true">2.1.</strong> Linux</a></li><li class="chapter-item expanded "><a href="Algorithm.org.html"><strong aria-hidden="true">2.2.</strong> Algorithm</a></li><li class="chapter-item expanded "><a href="DataStructure.org.html"><strong aria-hidden="true">2.3.</strong> DataStructure</a></li><li class="chapter-item expanded "><a href="Parallelisum.org.html"><strong aria-hidden="true">2.4.</strong> Parallelisum</a></li><li class="chapter-item expanded "><a href="cloud_service_computing.org.html"><strong aria-hidden="true">2.5.</strong> Cloud_service_computing</a></li><li class="chapter-item expanded "><a href="blockchain.org.html"><strong aria-hidden="true">2.6.</strong> Blockchain</a></li></ol></li><li class="chapter-item expanded "><a href="DataScience.org.html"><strong aria-hidden="true">3.</strong> DataScience</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="DAMA.org.html"><strong aria-hidden="true">3.1.</strong> DAMA</a></li></ol></li><li class="chapter-item expanded "><a href="Math.org.html"><strong aria-hidden="true">4.</strong> Math</a></li><li class="chapter-item expanded "><a href="Physik.org.html"><strong aria-hidden="true">5.</strong> Physik</a></li><li class="chapter-item expanded "><a href="QutuamComputation.org.html"><strong aria-hidden="true">6.</strong> QutuamComputation</a></li><li class="chapter-item expanded "><a href="ROS.org.html"><strong aria-hidden="true">7.</strong> ROS</a></li><li class="chapter-item expanded "><a href="tools.org.html"><strong aria-hidden="true">8.</strong> Tools</a></li><li class="chapter-item expanded "><a href="WebDesign.org.html"><strong aria-hidden="true">9.</strong> WebDesign</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vue.org.html"><strong aria-hidden="true">9.1.</strong> Vue</a></li><li class="chapter-item expanded "><a href="vscode.org.html"><strong aria-hidden="true">9.2.</strong> Vscode</a></li></ol></li><li class="chapter-item expanded "><a href="Language.org.html"><strong aria-hidden="true">10.</strong> Language</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c.org.html"><strong aria-hidden="true">10.1.</strong> C</a></li><li class="chapter-item expanded "><a href="ts.org.html" class="active"><strong aria-hidden="true">10.2.</strong> TS</a></li><li class="chapter-item expanded "><a href="scala.org.html"><strong aria-hidden="true">10.3.</strong> Scala</a></li><li class="chapter-item expanded "><a href="lisp.org.html"><strong aria-hidden="true">10.4.</strong> Lisp</a></li><li class="chapter-item expanded "><a href="Java.org.html"><strong aria-hidden="true">10.5.</strong> Java</a></li><li class="chapter-item expanded "><a href="JS.org.html"><strong aria-hidden="true">10.6.</strong> JS</a></li><li class="chapter-item expanded "><a href="go.org.html"><strong aria-hidden="true">10.7.</strong> Go</a></li><li class="chapter-item expanded "><a href="rust.org.html"><strong aria-hidden="true">10.8.</strong> Rust</a></li><li class="chapter-item expanded "><a href="python.org.html"><strong aria-hidden="true">10.9.</strong> Python</a></li><li class="chapter-item expanded "><a href="emacs.org.html"><strong aria-hidden="true">10.10.</strong> Emacs</a></li><li class="chapter-item expanded "><a href="haskell.org.html"><strong aria-hidden="true">10.11.</strong> Haskell</a></li><li class="chapter-item expanded "><a href="Julia.org.html"><strong aria-hidden="true">10.12.</strong> Julia</a></li><li class="chapter-item expanded "><a href="mysql.org.html"><strong aria-hidden="true">10.13.</strong> Mysql</a></li><li class="chapter-item expanded "><a href="postgressql.org.html"><strong aria-hidden="true">10.14.</strong> Postgressql</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">my collection</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<hr />
+<h2 id="title-typescript"><a class="header" href="#title-typescript">title: Typescript</a></h2>
+<pre><code class="language-{=org}">#+startup: content
+</code></pre>
+<h1 id="basic"><a class="header" href="#basic">basic</a></h1>
+<pre><code class="language-{.typescript results=&quot;output&quot; exports=&quot;both&quot;}">function greeter(person: string) {
+    return "Hello, " + person
+}
+let user = "Yee"
+console.log(greeter(user))
+</code></pre>
+<pre><code class="language-example">Hello, Yee
+</code></pre>
+<pre><code class="language-{.typescript results=&quot;output&quot; exports=&quot;both&quot;}">function greeter(person: string) {
+    return "Hello, " + person
+}
+"use strict";
+let user = [2, 39]
+console.log(greeter(user))
+</code></pre>
+<pre><code class="language-example">../../../../tmp/babel-cIibwh/ts-src-IRbM7W.ts(6,21): error TS2345: Argument of type 'number[]' is not assignable to parameter of type 'string'.
+Hello, 2,39
+</code></pre>
+<pre><code class="language-{.typescript results=&quot;output&quot; exports=&quot;both&quot;}">class User{
+    Fristname:string
+    Lastname:string
+    Fullname:string
+
+    constructor(firstname:string, lastname:string){
+        this.Fristname = firstname
+        this.Lastname = lastname
+        this.Fullname = this.Fristname+this.Lastname
+    }
+}
+interface Person{
+    Fristname:string
+    Lastname:string
+}
+
+function Greeter(Person){
+    return "hello, "+Person.Fristname + Person.Lastname
+}
+var user = new User("li", "san")
+
+console.log(Greeter(user))
+
+</code></pre>
+<pre><code class="language-example">../../../../tmp/babel-cIibwh/ts-src-DPsbOA.ts(17,18): error TS7006: Parameter 'Person' implicitly has an 'any' type.
+hello, lisan
+</code></pre>
+<h1 id="callback"><a class="header" href="#callback">callback</a></h1>
+<pre><code class="language-{.typescript results=&quot;output&quot; exports=&quot;both&quot;}">const n: number = 10
+let qual = n =&gt; n*n;  
+let m = (() =&gt; {
+    console.log('nidh', n, qual(4))
+    return 9
+})()
+console.log(m)
+
+</code></pre>
+<pre><code class="language-example">../../../../tmp/babel-KUfP9t/ts-src-HiNQhf.ts(2,12): error TS7006: Parameter 'n' implicitly has an 'any' type.
+nidh 10 16
+9
+</code></pre>
+<pre><code class="language-{.typescript results=&quot;output&quot; exports=&quot;both&quot;}">let jj = (
+    (msg , didi) =&gt; {
+        console.log(msg);
+        didi(msg);
+        return 9
+    }
+)
+( "kdiikkjkjk",
+  msg =&gt; {
+      console.log(msg);
+  }
+)
+
+console.log(jj)
+</code></pre>
+<pre><code class="language-example">../../../../tmp/babel-KUfP9t/ts-src-SG7pDT.ts(11,3): error TS7006: Parameter 'msg' implicitly has an 'any' type.
+kdiikkjkjk
+kdiikkjkjk
+9
+</code></pre>
+<h1 id="generic"><a class="header" href="#generic">Generic</a></h1>
+<h2 id="withour-generic"><a class="header" href="#withour-generic">withour generic</a></h2>
+<pre><code class="language-{.typescript results=&quot;output&quot; exports=&quot;both&quot;}">function createArray(value: any, count: number): any[] {
+  const arr: any[] = []
+  for (let index = 0; index &lt; count; index++) {
+    arr.push(value)
+  }
+  return arr
+}
+
+const arr1 = createArray(11, 3)
+const arr2 = createArray('aa', 3)
+console.log(arr1)
+console.log(arr2)
+console.log(arr1[0].toFixed(), arr2[0].split(''))
+</code></pre>
+<pre><code class="language-example">[ 11, 11, 11 ]
+[ 'aa', 'aa', 'aa' ]
+11 [ 'a', 'a' ]
+</code></pre>
+<h2 id="with-generic"><a class="header" href="#with-generic">with generic</a></h2>
+<pre><code class="language-{.typescript results=&quot;output&quot; exports=&quot;both&quot;}">function createArray2 &lt;T&gt; (value: T, count: number):T[] {
+  const arr: Array&lt;T&gt; = []
+  for (let index = 0; index &lt; count; index++) {
+    arr.push(value)
+  }
+  return arr
+}
+const arr3 = createArray2&lt;number&gt;(11, 3)
+console.log(arr3[0].toFixed())
+// console.log(arr3[0].split('')) // error
+const arr4 = createArray2&lt;string&gt;('aa', 3)
+console.log(arr4[0].split(''))
+// console.log(arr4[0].toFixed()) // error
+</code></pre>
+<pre><code class="language-example">11
+[ 'a', 'a' ]
+</code></pre>
+<h2 id="advanced-example"><a class="header" href="#advanced-example">advanced example</a></h2>
+<pre><code class="language-{.typescript results=&quot;output&quot; exports=&quot;both&quot;}">interface IbaseCRUD &lt;T&gt; {
+  data: T[]
+  add: (t: T) =&gt; void
+  getById: (id: number) =&gt; T
+
+}
+
+class User {
+  id?: number; //id主键自增
+  name: string; //姓名
+  age: number; //年龄
+
+  constructor (name, age) {
+    this.name = name
+    this.age = age
+  }
+}
+
+class UserCRUD implements IbaseCRUD &lt;User&gt; {
+  data: User[] = []
+
+  add(user: User): void {
+    user = {...user, id: Date.now()}
+    this.data.push(user)
+    console.log('保存user', user.id)
+  }
+
+  getById(id: number): User {
+    return this.data.find(item =&gt; item.id===id)
+  }
+}
+
+
+const userCRUD = new UserCRUD()
+userCRUD.add(new User('tom', 12))
+userCRUD.add(new User('tom2', 13))
+console.log(userCRUD.data)
+</code></pre>
+<pre><code class="language-example">../../../../tmp/babel-VDC0rp/ts-src-ub8Ktp.ts(13,16): error TS7006: Parameter 'name' implicitly has an 'any' type.
+../../../../tmp/babel-VDC0rp/ts-src-ub8Ktp.ts(13,22): error TS7006: Parameter 'age' implicitly has an 'any' type.
+保存user 1629717666420
+保存user 1629717666424
+[
+  { name: 'tom', age: 12, id: 1629717666420 },
+  { name: 'tom2', age: 13, id: 1629717666424 }
+]
+</code></pre>
+<h2 id="interface"><a class="header" href="#interface">interface</a></h2>
+<pre><code class="language-{.typescript results=&quot;output&quot; exports=&quot;both&quot;}">class User{
+    Fristname:string
+    Lastname:string
+    Fullname:string
+
+    constructor(firstname:string, lastname:string){
+        this.Fristname = firstname
+        this.Lastname = lastname
+        this.Fullname = this.Fristname+this.Lastname
+    }
+}
+interface Person{
+    Fristname:string
+    Lastname:string
+}
+
+function Greeter(Person){
+    return "hello, "+Person.Fristname + Person.Lastname
+}
+var user = new User("li", "san")
+
+console.log(Greeter(user))
+
+</code></pre>
+<pre><code class="language-example">../../../../tmp/babel-VDC0rp/ts-src-kkk0v4.ts(17,18): error TS7006: Parameter 'Person' implicitly has an 'any' type.
+hello, lisan
+</code></pre>
+<h1 id="collection"><a class="header" href="#collection">collection</a></h1>
+<pre><code class="language-{.typescript results=&quot;output&quot; exports=&quot;both&quot;}">var nn = 10.00002
+console.log(+nn.toFixed(2))
+</code></pre>
+<pre><code class="language-example">10
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="c.org.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="scala.org.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="c.org.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="scala.org.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

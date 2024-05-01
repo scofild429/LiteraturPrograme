@@ -1,0 +1,1666 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>WebDesign - my collection</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="AI.org.html"><strong aria-hidden="true">1.</strong> AI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="MachineLearning.org.html"><strong aria-hidden="true">1.1.</strong> MachineLearning</a></li><li class="chapter-item expanded "><a href="DeepLearning.org.html"><strong aria-hidden="true">1.2.</strong> DeepLearning</a></li><li class="chapter-item expanded "><a href="NLP.org.html"><strong aria-hidden="true">1.3.</strong> NLP</a></li></ol></li><li class="chapter-item expanded "><a href="CS.org.html"><strong aria-hidden="true">2.</strong> CS</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="linux.org.html"><strong aria-hidden="true">2.1.</strong> Linux</a></li><li class="chapter-item expanded "><a href="Algorithm.org.html"><strong aria-hidden="true">2.2.</strong> Algorithm</a></li><li class="chapter-item expanded "><a href="DataStructure.org.html"><strong aria-hidden="true">2.3.</strong> DataStructure</a></li><li class="chapter-item expanded "><a href="Parallelisum.org.html"><strong aria-hidden="true">2.4.</strong> Parallelisum</a></li><li class="chapter-item expanded "><a href="cloud_service_computing.org.html"><strong aria-hidden="true">2.5.</strong> Cloud_service_computing</a></li><li class="chapter-item expanded "><a href="blockchain.org.html"><strong aria-hidden="true">2.6.</strong> Blockchain</a></li></ol></li><li class="chapter-item expanded "><a href="DataScience.org.html"><strong aria-hidden="true">3.</strong> DataScience</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="DAMA.org.html"><strong aria-hidden="true">3.1.</strong> DAMA</a></li></ol></li><li class="chapter-item expanded "><a href="Math.org.html"><strong aria-hidden="true">4.</strong> Math</a></li><li class="chapter-item expanded "><a href="Physik.org.html"><strong aria-hidden="true">5.</strong> Physik</a></li><li class="chapter-item expanded "><a href="QutuamComputation.org.html"><strong aria-hidden="true">6.</strong> QutuamComputation</a></li><li class="chapter-item expanded "><a href="ROS.org.html"><strong aria-hidden="true">7.</strong> ROS</a></li><li class="chapter-item expanded "><a href="tools.org.html"><strong aria-hidden="true">8.</strong> Tools</a></li><li class="chapter-item expanded "><a href="WebDesign.org.html" class="active"><strong aria-hidden="true">9.</strong> WebDesign</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vue.org.html"><strong aria-hidden="true">9.1.</strong> Vue</a></li><li class="chapter-item expanded "><a href="vscode.org.html"><strong aria-hidden="true">9.2.</strong> Vscode</a></li></ol></li><li class="chapter-item expanded "><a href="Language.org.html"><strong aria-hidden="true">10.</strong> Language</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c.org.html"><strong aria-hidden="true">10.1.</strong> C</a></li><li class="chapter-item expanded "><a href="ts.org.html"><strong aria-hidden="true">10.2.</strong> TS</a></li><li class="chapter-item expanded "><a href="scala.org.html"><strong aria-hidden="true">10.3.</strong> Scala</a></li><li class="chapter-item expanded "><a href="lisp.org.html"><strong aria-hidden="true">10.4.</strong> Lisp</a></li><li class="chapter-item expanded "><a href="Java.org.html"><strong aria-hidden="true">10.5.</strong> Java</a></li><li class="chapter-item expanded "><a href="JS.org.html"><strong aria-hidden="true">10.6.</strong> JS</a></li><li class="chapter-item expanded "><a href="go.org.html"><strong aria-hidden="true">10.7.</strong> Go</a></li><li class="chapter-item expanded "><a href="rust.org.html"><strong aria-hidden="true">10.8.</strong> Rust</a></li><li class="chapter-item expanded "><a href="python.org.html"><strong aria-hidden="true">10.9.</strong> Python</a></li><li class="chapter-item expanded "><a href="emacs.org.html"><strong aria-hidden="true">10.10.</strong> Emacs</a></li><li class="chapter-item expanded "><a href="haskell.org.html"><strong aria-hidden="true">10.11.</strong> Haskell</a></li><li class="chapter-item expanded "><a href="Julia.org.html"><strong aria-hidden="true">10.12.</strong> Julia</a></li><li class="chapter-item expanded "><a href="mysql.org.html"><strong aria-hidden="true">10.13.</strong> Mysql</a></li><li class="chapter-item expanded "><a href="postgressql.org.html"><strong aria-hidden="true">10.14.</strong> Postgressql</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">my collection</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<hr />
+<h2 id="title-webdesige"><a class="header" href="#title-webdesige">title: Webdesige</a></h2>
+<pre><code class="language-{=org}">#+startup: overviews
+</code></pre>
+<h1 id="factory-mode"><a class="header" href="#factory-mode">Factory mode</a></h1>
+<h2 id="one-product-one-factory-many-many-design"><a class="header" href="#one-product-one-factory-many-many-design">one product one factory many many design</a></h2>
+<p>一个产品，在一个工厂里有多个设计实现</p>
+<h2 id="one-product-many-factory-many-design"><a class="header" href="#one-product-many-factory-many-design">one product many factory many design</a></h2>
+<p>一个产品，在多个各自的工厂里，有自己特有的设计实现</p>
+<h2 id="many-product-many-factory-many-design"><a class="header" href="#many-product-many-factory-many-design">many product many factory many design</a></h2>
+<p>对于多个产品，在多个各自的工厂里，有自己特有的对每个产品的设计实现</p>
+<h1 id="project-build-digraph"><a class="header" href="#project-build-digraph">project build digraph</a></h1>
+<pre><code class="language-{.dot file=&quot;foto/webbuildmitemacs.png&quot;}">digraph diagramm {
+        Emacs  [shape=box,color=red]
+        LspJavaSpringInitizer [shape=box,color=red]
+        Config [shape=box,color=red]
+        dapDebug [shape=box,color=red]
+        Programmierung [shape=box,color=red]
+        Terminal -&gt;  Maven建包;
+        Maven建包 -&gt; Maven加依赖pom;
+        Maven加依赖pom -&gt; OpenEmacsFile;
+        OpenEmacsFile -&gt;   Programmierung;
+        Programmierung -&gt; MavenCompile;
+        MavenCompile -&gt; MavenPackage;
+        MavenCompile -&gt; dapDebug[label = "也可./mvnx"];
+        MavenPackage -&gt; 执行jar包;
+        MavenPackage -&gt; dapDebug;
+        执行jar包 -&gt; dapDebug;
+        Emacs -&gt; LspJavaSpringInitizer;
+        LspJavaSpringInitizer -&gt; Config;
+        Config -&gt; Programmierung;
+        Programmierung -&gt; dapDebug;
+        dapDebug -&gt; Webbroser;
+}
+</code></pre>
+<p><img src="foto/webbuildmitemacs.png" alt="" /></p>
+<pre><code>1 add the to the above SRC begin:  dot :file ../sysconf/foto/webbuild.png
+2 delete the output :  [[file:../sysconf/foto/webbuild.png]]
+3 push the sysc repository, because the foto is located in it
+4 add the link from sysc repository  https://github.com/scofild429/sysc/blob/master/foto/webbuild.png
+</code></pre>
+<h1 id="wordpress-web-development-in-aws"><a class="header" href="#wordpress-web-development-in-aws">WordPress Web development in AWS</a></h1>
+<h2 id="构建后台"><a class="header" href="#构建后台">构建后台</a></h2>
+<p>没事不要执行该代码</p>
+<pre><code>cd ~/Documents/web/key_aws
+ssh ubuntu@3.124.205.43 -i pass1aws.pem
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install apache2
+sudo systemctl status apache2
+sudo systemctl enable apache2
+sudo apt install mariadb-server mariadb-client
+sudo systemctl start mariadb
+sudo systemctl status mariadb
+sudo mysql_secure_installation ...
+sudo systemctl restart mariadb
+sudo apt install php php-mysql php-gd php-cli php-common
+sudo apt install wget unzip
+sudo wget https://wordpress.org/latest.zip
+sudo unzip latest.zip
+sudo cp -r wordpress/* /var/www/html/
+cd /var/www/html/
+sudo chown www-data:www-data -R /var/www/html/
+sudo rm index.html 
+## Now go to the IP webseit, when need database, do so
+sudo mysql -u root -p
+Enter
+##  create database wordpress;
+create database wordpress;
+create user "wpadmin"@"%" identified by "wpadminpw";
+grant all privileges on wordpress.* to "wpadmin"@"%";
+exit;
+</code></pre>
+<p>back to the IP webseit, pass the database , username and password, set
+username and password for wordpress, 到此，可以用IP 地址访问前端和后台了</p>
+<h2 id="解析域名"><a class="header" href="#解析域名">解析域名</a></h2>
+<p>route53, 用域名创建NS A-IPV4,名称为空， 值为IP CNAME，名称www, 值为域名
+再将A 和CNAME 放到namecheap的域名的DNS管理中</p>
+<h2 id="ssl"><a class="header" href="#ssl">ssl</a></h2>
+<pre><code>sudo a2enmod ssl
+sudo systemctl restart apache2
+cd ~
+wget https://dl.eff.org/certbot-auto
+chmod a+x certbot-auto
+sudo ./certbot-auto --apache....
+</code></pre>
+<p>go to <a href="https://www.sslshopper.com/ssl-checker.html">https://www.sslshopper.com/ssl-checker.html</a> and check you domina</p>
+<h2 id="scp"><a class="header" href="#scp">scp</a></h2>
+<p>transfer file to linux instance of CE2</p>
+<pre><code>scp -i pass1aws.pem init.el ubuntu@3.124.205.43:.emacs.d
+</code></pre>
+<h2 id="external-html"><a class="header" href="#external-html">external html</a></h2>
+<ul>
+<li>将文件传到部署根目录</li>
+<li>复制文件xxx.html 为page-xxx.php到应用主题根目录</li>
+<li>创建页面，先只写标题，保存后改别名，slug 为xxx</li>
+<li>发布后，将页面设为菜单就能访问</li>
+</ul>
+<h1 id="web-design-envirement-in-emacs"><a class="header" href="#web-design-envirement-in-emacs">Web Design Envirement in Emacs</a></h1>
+<h2 id="lsp-mode"><a class="header" href="#lsp-mode">lsp-mode</a></h2>
+<h2 id="lsp-java"><a class="header" href="#lsp-java">lsp-java</a></h2>
+<h2 id="dap-mode"><a class="header" href="#dap-mode">dap-mode</a></h2>
+<h2 id="spring-boot"><a class="header" href="#spring-boot">Spring Boot</a></h2>
+<p>Emacs : M-x lsp-java-springboot-generate after build the project, it can
+be compiled by Maven,and run</p>
+<h2 id="project-build-digraph-1"><a class="header" href="#project-build-digraph-1">project build digraph</a></h2>
+<pre><code>digraph diagramm {
+        Emacs  [shape=box,color=red]
+        LspJavaSpringInitizer [shape=box,color=red]
+        Config [shape=box,color=red]
+        dapDebug [shape=box,color=red]
+        Programmierung [shape=box,color=red]
+        Terminal -&gt;  Maven建包;
+        Maven建包 -&gt; Maven加依赖pom;
+        Maven加依赖pom -&gt; OpenEmacsFile;
+        OpenEmacsFile -&gt;   Programmierung;
+        Programmierung -&gt; MavenCompile;
+        MavenCompile -&gt; MavenPackage;
+        MavenCompile -&gt; dapDebug[label = "也可./mvnx"];
+        MavenPackage -&gt; 执行jar包;
+        MavenPackage -&gt; dapDebug;
+        执行jar包 -&gt; dapDebug;
+        Emacs -&gt; LspJavaSpringInitizer;
+        LspJavaSpringInitizer -&gt; Config;
+        Config -&gt; Programmierung;
+        Programmierung -&gt; dapDebug;
+        dapDebug -&gt; Webbroser;
+}
+
+1 add the to the above SRC begin:  dot :file ../sysconf/foto/webbuild.png
+2 delete the output :  [[file:../sysconf/foto/webbuild.png]]
+3 push the sysc repository, because the foto is located in it
+4 add the link from sysc repository  https://github.com/scofild429/sysc/blob/master/foto/webbuild.png
+</code></pre>
+<p><a href="https://github.com/scofild429/sysc/blob/master/foto/webbuild.png">webbuild.png</a></p>
+<h2 id="appeared-problem"><a class="header" href="#appeared-problem">appeared Problem</a></h2>
+<h3 id="server-is-not-startup"><a class="header" href="#server-is-not-startup">server is not startup</a></h3>
+<p>1, workspace 有重叠和包含， 2, 需要重启 lsp mode</p>
+<h3 id="cant-find-the-main-class-to-start-project"><a class="header" href="#cant-find-the-main-class-to-start-project">can't find the main class to start project</a></h3>
+<p>mvn compile 出现问题，大多数时候是依赖的问题</p>
+<h3 id="没有对应的补全"><a class="header" href="#没有对应的补全">没有对应的补全</a></h3>
+<p>mvn 依赖的version 不同会有不同的包，补全也不同</p>
+<h1 id="mysql"><a class="header" href="#mysql">MySQL</a></h1>
+<h2 id="事务隔离"><a class="header" href="#事务隔离">事务隔离</a></h2>
+<p>1 可同时访问修改 脏读 2 隔离访问 不可重返读 3 单人访问 幻读</p>
+<h2 id="single-java-file-connect-to-mysql"><a class="header" href="#single-java-file-connect-to-mysql">single java file connect to mysql</a></h2>
+<p>1.download the driver to a current to java file</p>
+<p><a href="https://jar-download.com/artifacts/mysql/mysql-connector-java">official
+web</a>, and
+in my case</p>
+<p>mysql-connector-java-8.0.20.jar</p>
+<p>2.add the current path to the CLASSPATH</p>
+<p>export CLASSPATH=mysql-connector-java-8.0.20.jar:.</p>
+<p>3.compile and connect</p>
+<h2 id="execute-as-a-jar-file"><a class="header" href="#execute-as-a-jar-file">execute as a jar file</a></h2>
+<p>if I want to package them to a package to a jar <a href="https://stackoverflow.com/questions/574594/how-can-i-create-an-executable-jar-with-dependencies-using-maven">starkoverflow
+hitting</a>
+and this plugin to pom.xml</p>
+<pre><code>&lt;build&gt;
+  &lt;plugins&gt;
+    &lt;plugin&gt;
+      &lt;artifactId&gt;maven-assembly-plugin&lt;/artifactId&gt;
+      &lt;configuration&gt;
+        &lt;archive&gt;
+          &lt;manifest&gt;
+            &lt;mainClass&gt;fully.qualified.MainClass&lt;/mainClass&gt;
+          &lt;/manifest&gt;
+        &lt;/archive&gt;
+        &lt;descriptorRefs&gt;
+          &lt;descriptorRef&gt;jar-with-dependencies&lt;/descriptorRef&gt;
+        &lt;/descriptorRefs&gt;
+      &lt;/configuration&gt;
+    &lt;/plugin&gt;
+  &lt;/plugins&gt;
+&lt;/build&gt;
+</code></pre>
+<p>and run with : mvn clean compile assembly:single</p>
+<p>and then mvn package</p>
+<p>can be called by jar file</p>
+<p>java -cp target/xxxx....xx.jar com.mycompany.app.App</p>
+<h2 id="springboot"><a class="header" href="#springboot">springboot</a></h2>
+<p>just call the plugins at the start</p>
+<h2 id="事务-transaction"><a class="header" href="#事务-transaction">事务 Transaction</a></h2>
+<pre><code>声明式：Annoation
+1, 配置事务管理器
+2, 开启事务注解
+3, 添加事务注解
+@Transaction(propagation, isolation, timeout, readout, (no)rollback)
+propagation;事务是否传播
+isolation:
+脏读：未提交的事务读取到另一个未提交的事务的原始数据
+不可重复读；未提交的事务读取到另一个提交的事务的原始数据
+幻读；未提交的事务读取到另一个提交的事务的修改数据
+</code></pre>
+<h2 id="范式"><a class="header" href="#范式">范式</a></h2>
+<hr />
+<p>原子性   一致性   隔离性   持久性</p>
+<hr />
+<h2 id="连接池"><a class="header" href="#连接池">连接池</a></h2>
+<h2 id="外键"><a class="header" href="#外键">外键</a></h2>
+<h2 id="多表"><a class="header" href="#多表">多表</a></h2>
+<h2 id="execute-in-emacs"><a class="header" href="#execute-in-emacs">execute in emacs</a></h2>
+<ol>
+<li>create mvn project</li>
+<li>find the plugin of mysql and add it to pom.xml</li>
+<li>programmierung</li>
+<li>the connection can be call in the dabug of emacs</li>
+</ol>
+<p>M-x :dap-debug</p>
+<h1 id="mongodb"><a class="header" href="#mongodb">MongoDB</a></h1>
+<h2 id="install"><a class="header" href="#install">install</a></h2>
+<p>go to official seit and stetp by step</p>
+<p>commonds      functions</p>
+<hr />
+<p>or            $inc
+in            $mul
+exist         $rename
+gl            $set
+sort          $unset
+limit<br />
+skip<br />
+upsert<br />
+rename<br />
+getIndexs<br />
+createIndex<br />
+dropIndex</p>
+<pre><code class="language-{.bash org-language=&quot;sh&quot; dir=&quot;/sudo::&quot;}">sudo systemctl start mongod
+</code></pre>
+<pre><code class="language-{=org}">#+RESULTS:
+</code></pre>
+<h2 id="create-database-collections-and-drops"><a class="header" href="#create-database-collections-and-drops">create database, collections, and drops</a></h2>
+<p>:admin at the first step, we must login into one database</p>
+<pre><code class="language-{.mongo db=&quot;testdatabase&quot;}">show dbs;
+use xiaoma;
+db.createCollection("posts");
+show collections;
+db.posts.drop();
+db.dropDatabase();
+</code></pre>
+<h2 id="create-database-collections-and-documents"><a class="header" href="#create-database-collections-and-documents">create database, collections, and documents</a></h2>
+<pre><code class="language-{.mongo db=&quot;testdatabase&quot;}">
+use xiaoma;
+db.createCollection("posts");
+show collections;
+
+db.posts.insert({ 
+    title: "my first blog",
+    content: "can be start"
+});
+db.posts.insert({ 
+    title: "my second blog",
+    content: "can be start now",
+    tag: ["unknow type"]
+});
+
+for(var i = 3;i&lt;=10;i++){
+    db.posts.insert( {title :"this is my "+i+"th blog"});
+};
+db.posts.find();
+db.posts.count();
+db.posts.remove({});
+db.posts.drop();
+db.dropDatabase();
+</code></pre>
+<h2 id="backup-and-restore"><a class="header" href="#backup-and-restore">backup and restore</a></h2>
+<p>mongo xiaoma : can just get in xiaoma database</p>
+<h3 id="01-create-documents"><a class="header" href="#01-create-documents">01, create documents</a></h3>
+<pre><code class="language-{.mongo db=&quot;admin&quot;}">use xiaoma;
+db.createCollection("posts");
+show collections;
+
+db.posts.insert({ 
+    title: "my first blog",
+    content: "can be start"
+});
+db.posts.insert({ 
+    title: "my second blog",
+    content: "can be start now",
+    tag: ["unknow type"]
+});
+
+for(var i = 3;i&lt;=10;i++){
+    db.posts.insert( {title :"this is my "+i+"th blog"});
+};
+
+db.posts.find();
+db.posts.count();
+
+</code></pre>
+<h3 id="02-dump"><a class="header" href="#02-dump">02, dump</a></h3>
+<pre><code class="language-{.bash org-language=&quot;sh&quot;}">cd ~/Desktop/
+mkdir mongobk
+cd mongobk
+mongodump -d xiaoma
+
+</code></pre>
+<h3 id="03-delete-documents"><a class="header" href="#03-delete-documents">03, delete documents</a></h3>
+<pre><code class="language-{.mongo db=&quot;admin&quot;}">use xiaoma;
+db.posts.remove({});
+db.posts.find();
+exit;
+</code></pre>
+<h3 id="04-restore"><a class="header" href="#04-restore">04, restore</a></h3>
+<pre><code class="language-{.bash org-language=&quot;sh&quot;}">cd ~/Desktop/mongobk
+mongorestore --drop
+</code></pre>
+<h3 id="05-check"><a class="header" href="#05-check">05, check</a></h3>
+<pre><code class="language-{.mongo db=&quot;admin&quot;}">use xiaoma;
+db.posts.find();
+db.posts.drop();
+db.dropDatabase();
+</code></pre>
+<h1 id="fastdfs"><a class="header" href="#fastdfs">fastdfs</a></h1>
+<h2 id="libfastcommon--fastdfs"><a class="header" href="#libfastcommon--fastdfs">libfastcommon &amp; fastdfs</a></h2>
+<h3 id="install-1"><a class="header" href="#install-1">install</a></h3>
+<p>sudo ./make.sh install 查看tracker和storage的执行脚本，安装后必须存在 ll
+<em>etc/init.d</em> | grep fdfs</p>
+<h3 id="create-location-of-tracker-and-stoarge"><a class="header" href="#create-location-of-tracker-and-stoarge">create location of tracker and stoarge</a></h3>
+<p>mkdir ~/Dokumente/WebDev/fastdfs/client mkdir
+~/Dokumente/WebDev/fastdfs/tracker mkdir
+~/Dokumente/WebDev/fastdfs/storage</p>
+<h3 id="copy-config"><a class="header" href="#copy-config">copy config</a></h3>
+<p>sudo cp /etc/fdfs/client.conf.sample /etc/fdfs/client.conf sudo cp
+/etc/fdfs/tracker.conf.sample /etc/fdfs/tracker.conf sudo cp
+/etc/fdfs/storage.conf.sample <em>etc/fdfs/storage.conf sudo cp
+//etc/fdfs/storage~ids~.conf.sample</em> //etc/fdfs/storage~ids~.conf</p>
+<h3 id="config-tracker-stoarge-client"><a class="header" href="#config-tracker-stoarge-client">config tracker stoarge client</a></h3>
+<p>cd /etc/fdfs copy all config file as modification file</p>
+<p>tracker: 修改base~path~ 为新建的tracker目录full name</p>
+<p>storage: base~path~ 为新建的storage目录full name store~path~
+为新建的storage目录fullname tracker-server:内网加tracker的端口</p>
+<p>client: base~path~: 为新建的client目录full
+tracker-server:内网加tracker的端口</p>
+<h3 id="open-port"><a class="header" href="#open-port">open port</a></h3>
+<p>open port sudo firewall-cmd --add-port=80/tcp --permanent sudo
+firewall-cmd --add-port=23000/tcp --permanent sudo firewall-cmd
+--add-port=22122/tcp --permanent restart firewall: sudo firewall-cmd
+--reload</p>
+<h3 id="start-and-test"><a class="header" href="#start-and-test">start and test</a></h3>
+<p>sudo /usr/bin/fdfs~trackerd~ /etc/fdfs/tracker.conf start sudo
+/usr/bin/fdfs~storaged~ /etc/fdfs/storage.conf start sudo
+/usr/bin/fdfs~test~ /etc/fdfs/client.conf upload /etc/fdfs/110.png</p>
+<p>Or</p>
+<p>this can be don't work for Unit fdfs~storaged~.service not found sudo
+service fdfs~trackerd~ start sudo service fdfs~trackerd~ start</p>
+<p>/usr/bin/fdfs~uploadfile~ /etc/fdfs/client.conf ~/Bilder/110.png</p>
+<h2 id="fastdfs-nginx-mode"><a class="header" href="#fastdfs-nginx-mode">fastdfs-nginx-mode</a></h2>
+<p>将config中的 ngx~moduleincs~="/usr/local/include" and CORE~INCS~=
+="$CORE~INCS~ /usr/local/include" 改为：
+ngx~moduleincs~="/usr/include/fastdfs /usr/include/fastcommon"
+CORE~INCS~= ="$CORE~INCS~ /ur/include/fastdfs
+/usr/include/fastcommon"</p>
+<p>再将config同目录下的mod~fastdfs~.conf 复制到/etc/fdfs/中 and modify:</p>
+<ul>
+<li>tracker~server~ just like in storage.conf</li>
+<li>url~havegroupname~ = true</li>
+<li>store~path0~ just like in storge.conf</li>
+</ul>
+<p>最后将fastdfs中conf中的http.conf和mime.types复制的/etc/fdfs/</p>
+<h2 id="nginx-with-fdfs"><a class="header" href="#nginx-with-fdfs">nginx with fdfs</a></h2>
+<p>apt-get install libpcre3 libpcre3-dev apt-get install libpcre3 zlib1g
+apt-get install libpcre3 zlib1g-dev ./configure --prefix=/opt/nginx
+--sbin-path=/usr/bin/nginx --add-module=../fastdfs-nginx-module-1.20/src
+make sudo make install</p>
+<p>location ~/group([0-9]){ ngx~fastdfsmodule~; }</p>
+<p>cd <em>usr/bin</em> ./nginx</p>
+<p>OR: sudo /usr/bin/nginx -s reload</p>
+<h2 id="idea-config"><a class="header" href="#idea-config">IDEA config</a></h2>
+<pre><code>#fastdfs设置
+fdfs:
+  so-timeout: 2500       # 读取时间
+  connect-timeout: 5000   # 连接超时时间
+  thumb-image:           # 缩略图
+    width: 100
+    height: 100
+  tracker-list:          # tracker服务配置地址列表
+    - localhost:22122
+upload:
+  base-url: localhost/
+  allow-types:
+    - image/jpeg
+    - image/png
+    - image/bmp
+</code></pre>
+<h1 id="nodejs-newest-install"><a class="header" href="#nodejs-newest-install">Nodejs newest install</a></h1>
+<p>current releast</p>
+<pre><code class="language-{.bash org-language=&quot;sh&quot;}">sudo apt-get install curl 
+curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+</code></pre>
+<p>LTS release</p>
+<pre><code class="language-{.bash org-language=&quot;sh&quot;}">sudo apt-get install curl 
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - 
+</code></pre>
+<p>install and upgrade</p>
+<pre><code class="language-{.bash org-language=&quot;sh&quot;}">sudo apt-get install nodejs
+sudo npm install -g install
+</code></pre>
+<h1 id="yarn-newest-install"><a class="header" href="#yarn-newest-install">Yarn newest install</a></h1>
+<p>yarn can be installed by npm, and yarn --version works, but only for old
+old version</p>
+<p>for yarn init comes the error: "00h00m00s 0/0: : ERROR: [Errno 2] No
+such file or directory: 'init'"</p>
+<p>delete yarn and reinstall it</p>
+<pre><code class="language-{.bash org-language=&quot;sh&quot;}">sudo apt remove cmdtest
+sudo apt remove yarn
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt update
+sudo apt upgrade
+</code></pre>
+<p>for upgrade comes the error:</p>
+<pre><code>ModuleNotFoundError: No module named 'uaclient'
+dpkg: Fehler beim Bearbeiten des Paketes ubuntu-advantage-tools (--configure):
+ »installiertes ubuntu-advantage-tools-Skript des Paketes post-installation«-Unterprozess gab den Fehlerwert 1 zurück
+Fehler traten auf beim Bearbeiten von:
+ ubuntu-advantage-tools
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+</code></pre>
+<p>Normally in one package is not complete in dpkg or apt,</p>
+<pre><code class="language-{.bash org-language=&quot;sh&quot;}">sudo dpkg --configure -a
+</code></pre>
+<p>or</p>
+<pre><code class="language-{.bash org-language=&quot;sh&quot;}">sudo apt install -f
+sudo apt install--fix-broken
+</code></pre>
+<p>works, but if not, remove it if possible so ubuntu-advantage-tools
+should be removed,</p>
+<pre><code class="language-{.bash org-language=&quot;sh&quot;}">sudo apt-get remove ubuntu-advantage-tools
+sudo mv /var/lib/dpkg/info/ubuntu-advantage-tools.* /tmp/
+sudo dpkg --force-remove-reinstreq --purge ubuntu-advantage-tools
+sudo dpkg --remove --force-remove-reinstreq ubuntu-advantage-tools
+</code></pre>
+<p>then</p>
+<pre><code class="language-{.bash org-language=&quot;sh&quot;}">sudo apt update
+sudo apt upgrade
+sudo apt install yarn
+yarn --version
+</code></pre>
+<p>new version can be shown, and yarn init works</p>
+<h1 id="js"><a class="header" href="#js">JS</a></h1>
+<p>some ES6 has to be connected <a href="JS.org">JS</a> to here,</p>
+<h1 id="ts"><a class="header" href="#ts">ts</a></h1>
+<p>after change the tsconfig.json, use the command to compile ts to js
+continual.</p>
+<pre><code>tsc -watch
+</code></pre>
+<h1 id="npm"><a class="header" href="#npm">npm</a></h1>
+<pre><code>npm build
+sudo npm i -g serve
+serve -s dist
+sudo npm i json-server
+</code></pre>
+<p>list all installed packages npm list -g --depth=0 npm uninstall
+reveal.js</p>
+<h1 id="nvm"><a class="header" href="#nvm">nvm</a></h1>
+<pre><code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+nvm ls-remote
+nvm install node (the least version)
+nvm ls
+nvm install v16.13.1
+nvm ls
+nvm install v17.2.0
+nvm ls
+</code></pre>
+<h1 id="webpack"><a class="header" href="#webpack">Webpack</a></h1>
+<pre><code>npm init -y
+npm i -D webpack webpack-cli typescript ts-loader
+
+设定生成的html的特性，包括使用模板
+npm i -D html-webpack-plugin
+
+设定项目的运行服务器
+npm i -D webpack-dev-server
+in package.json/"scripts":      "start": "webpack serve --open chromium-browser"
+and then in terminal: npm start
+
+
+删除上次的生成文件，整个dist目录
+npm i -D clean-webpack-plugin
+</code></pre>
+<pre><code class="language-{.javascript org-language=&quot;js&quot;}">const path = require("path");
+
+const HTMLWebpackPlugin = require("html-webpack-plugin");
+
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+
+module.exports = {
+    entry: "./src/index.ts",
+    output: {
+        path: path.resolve(__dirname, "dist"),
+        filename: "bundle.js",
+        // environment: {
+        //     arrowFunction: false,
+        // },
+    },
+    module: {
+        rules: [
+            {
+                test: /\.ts$/,
+                use: [
+                    {
+                        loader: "babel-loader",
+                        options: {
+                            presets: [
+                                [
+                                    "@babel/preset-env",
+                                    {
+                                        targets: {
+                                            chrome: "87",
+                                            // ie: "11",
+                                        },
+                                        corejs: "3",
+                                        useBuiltIns: "usage",
+                                    },
+                                ],
+                            ],
+                        },
+                    },
+                    "ts-loader",
+                ],
+                exclude: /node-modules/,
+            },
+        ],
+    },
+    plugins: [
+        new HTMLWebpackPlugin({
+            title: "APP For Webpack",
+        }),
+        new CleanWebpackPlugin(),
+    ],
+
+    //模块设定
+    resolve: {
+        extensions: [".ts", ".js"],
+    },
+};
+
+</code></pre>
+<pre><code>webpack: Permission denied
+
+sudo chmod 777 ./node_modules/.bin/webpack
+</code></pre>
+<h1 id="jquary"><a class="header" href="#jquary">JQuary</a></h1>
+<h2 id="select-element"><a class="header" href="#select-element">select element</a></h2>
+<h3 id="jquery选择器"><a class="header" href="#jquery选择器">JQuery选择器</a></h3>
+<hr />
+<p>elements chooser                     class chooser   id chooser      name
+$("p"), $("div"), $("h2")   $(".test")   $("#test")   $("[name=name]")</p>
+<hr />
+<h3 id="css-选择器"><a class="header" href="#css-选择器">CSS 选择器</a></h3>
+<hr />
+<p>elements chooser   class chooser   id chooser
+p, div, h2         .test           #test</p>
+<hr />
+<h2 id="jquery思想-方法函数化-方法链式化-取值赋值一体化"><a class="header" href="#jquery思想-方法函数化-方法链式化-取值赋值一体化">JQuery思想 方法函数化 方法链式化， 取值赋值一体化</a></h2>
+<pre><code class="language-{.javascript org-language=&quot;js&quot; results=&quot;output&quot; exports=&quot;both&quot;}">$(function(){
+    $("h1").click(function(){
+        alert("nihao");
+    });
+    $("h1").mouseout(function(){
+        this.style.backgroundColor = "red";
+    });
+    $("h1").mouseover(function(){
+        this.style.backgroundColor = "blue";
+    });
+});
+
+$(function(){
+    $("h1").click(function(){
+        alert("nihao");
+    }).mouseout(function(){
+        this.style.backgroundColor = "red";
+    }).mouseover(function(){
+        this.style.backgroundColor = "blue";
+    });
+});
+
+$("div").html()
+$("input").val()
+
+</code></pre>
+<h2 id="function"><a class="header" href="#function">function</a></h2>
+<h3 id="filter"><a class="header" href="#filter">filter</a></h3>
+<h3 id="not"><a class="header" href="#not">not</a></h3>
+<h3 id="has"><a class="header" href="#has">has</a></h3>
+<h3 id="prev"><a class="header" href="#prev">prev</a></h3>
+<h3 id="next"><a class="header" href="#next">next</a></h3>
+<h3 id="find"><a class="header" href="#find">find</a></h3>
+<h3 id="eq"><a class="header" href="#eq">eq</a></h3>
+<h3 id="index"><a class="header" href="#index">index</a></h3>
+<h3 id="attr"><a class="header" href="#attr">attr</a></h3>
+<h3 id="addclass"><a class="header" href="#addclass">addClass</a></h3>
+<h3 id="removeclass"><a class="header" href="#removeclass">removeClass</a></h3>
+<h3 id="on"><a class="header" href="#on">on</a></h3>
+<h3 id="off"><a class="header" href="#off">off</a></h3>
+<h3 id="width" id="&quot;1468334d-997a-4fb5-b78d-4c0a31baf52a&quot;">width</h3>
+<p>width innerWidth outerWidth</p>
+<h3 id="scrolltop"><a class="header" href="#scrolltop">scrollTop</a></h3>
+<h3 id=""><a class="header" href="#"></a></h3>
+<h2 id="operation-function"><a class="header" href="#operation-function">operation function</a></h2>
+<hr />
+<p>toggle   fade     slide    animate      stop       clain
+text     html     val      attr         append     prepend
+after    before   remove   empty        addclass   removeclass
+css      width    height   perent       childen    siblings
+load     get      post     noConflict</p>
+<hr />
+<h1 id="ajax"><a class="header" href="#ajax">AJAX</a></h1>
+<h1 id="servlet"><a class="header" href="#servlet">Servlet</a></h1>
+<h1 id="bootstrap"><a class="header" href="#bootstrap">Bootstrap</a></h1>
+<h1 id="spring"><a class="header" href="#spring">Spring</a></h1>
+<h2 id="sammelung"><a class="header" href="#sammelung">sammelung:</a></h2>
+<hr />
+<p>Component       inject the class into Spring from current file as bean
+ComponentScan   load the bean into current file from Spring as class
+Autowired       complete all beans dependence with the beans in spring
+Configuration   configuration class</p>
+<hr />
+<p>模式： 单例和多例：生命周期：创建和销毁时间</p>
+<h2 id="annotation-mehthod"><a class="header" href="#annotation-mehthod">Annotation mehthod</a></h2>
+<h3 id="component"><a class="header" href="#component">@Component</a></h3>
+<p>将所修饰的类做成bean，由 Spring 来管理
+为了减少耦合，建立一个配置类来管理全部的bean 由 @Configuation and
+@ComponentScan 创建的配置类来管理。
+注意Spring只是默认管理@ComponentScan所在的其以下的区域，
+除非指定包名，可以到其上一级的包路径</p>
+<h3 id="web-hierarchy-with-component"><a class="header" href="#web-hierarchy-with-component">web hierarchy with @component</a></h3>
+<p>Controller layer use @Controller than @Component Service layer use
+@Service than @Component Dao layer use @Repository than @Component</p>
+<h3 id="autowired"><a class="header" href="#autowired">autowired</a></h3>
+<ul>
+<li>Set注入 利用set方法</li>
+<li>cost注入 利用构造方法，可和set 注入混用</li>
+<li>普通成员变量</li>
+<li>普通成员函数</li>
+</ul>
+<h3 id="interface-with-autowired"><a class="header" href="#interface-with-autowired">interface with @Autowired</a></h3>
+<hr />
+<p>注入          @Compenten                     加在实现类
+装配          @Autowired                     放在该接口的类型前
+产生歧义      多个Autowired                   如果该接口有多个实现类，不知道用那个实现类的bean
+首选bean      @Primary                       多个实现类的Compenten注入时，可制定唯一一个实现类为首
+限定附        @Qualifier("xxx")            在Autowired时，使用一样的 @Qualifier("xxx")
+bean id       @Compenten("xxx")            同样在Autowired时，使用一样的 @Qualifier("xxx")
+默认bean id   xxx即为类名                     在Autowired时 @Qualifier("xxx")时，类名首字母小写即可
+二合一        @Resource(name="小写类名")   代替Autowired 和Qulifier()</p>
+<hr />
+<h2 id="xml-mehthod"><a class="header" href="#xml-mehthod">xml mehthod</a></h2>
+<p>New-&gt; XML Configuration File -&gt; Spring Config default name:
+ApplicationContext.xml</p>
+<p>&lt;bean class="xxx.xxx.xxx.class" id="" (gleich wie name="")
+别名可以多个，隔开即可 &lt;consturctor-arg ref="beanid"&gt; für
+contributor bean &lt;consturctor-arg name="xxx" value="yyy"&gt; für
+contributor string c:contributor C名称空间 &lt;list&gt; &lt;map&gt; &lt;set&gt;
+&lt;p&gt; &lt;util&gt; &lt;properties&gt; ... &gt;&lt;bean&gt;</p>
+<h2 id="bean-method"><a class="header" href="#bean-method">bean method</a></h2>
+<p>Don't use @Component or Service Controller Repository to inject
+bean(IOC) with a config class @Configuation Use @bean on it's
+consturctor function to inject bean.
+对其多实现类的歧义性处理，和自动装配一样，@Primary @Qualifer and BEANID</p>
+<h3 id="seter"><a class="header" href="#seter">seter</a></h3>
+<p>passing the contributor bean can use setter function</p>
+<h3 id="consturctor"><a class="header" href="#consturctor">consturctor</a></h3>
+<p>if a bean need another bean as contributor, the contributor can be
+passed as argument into consturctor function, or generated</p>
+<h2 id="advancd-mehthod"><a class="header" href="#advancd-mehthod">advancd mehthod</a></h2>
+<h3 id="function-field"><a class="header" href="#function-field">function field</a></h3>
+<hr />
+<p>singleton   default only one bean
+prototype   scope="prototype"
+Session     each inject
+request</p>
+<hr />
+<h3 id="lazy-load-bean"><a class="header" href="#lazy-load-bean">lazy load bean</a></h3>
+<p>in xml: lazy-init="true" in Annotation: @Lazy with prototype,
+singleton is default as lazy</p>
+<h3 id="init-and-destroy"><a class="header" href="#init-and-destroy">init and destroy</a></h3>
+<h2 id="log4j"><a class="header" href="#log4j">log4j</a></h2>
+<p>after injuct in pox.xml, create log4j.properties in project resources
+fold</p>
+<pre><code>log4j.rootCategory=INFO, stdout
+
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%d{ABSOLUTE} %5p %t %c{2}:%L - %m%n
+
+log4j.category.org.springframework.beans.factory=DEBUG
+</code></pre>
+<h2 id="test"><a class="header" href="#test">Test</a></h2>
+<hr />
+<h2>@RunWith
+@ContextConfiguration</h2>
+<h2 id="aop"><a class="header" href="#aop">AOP</a></h2>
+<p>动态代理，(JDK，接口) (CGLib, 接口)</p>
+<p>前置，后置，环绕 class 1 -&gt; Bean 1 Bean 1 +
+pointcut(expression,within,args) + class 2 -&gt; Bean 2</p>
+<h3 id="concept"><a class="header" href="#concept">Concept</a></h3>
+<p>连接点：可增强的方法 切入点: 实际上被增强的方法 通知（增强）：增强的内容</p>
+<ul>
+<li>前置 Before</li>
+<li>后置 After 增强之后，return 之前，有异常也执行</li>
+<li>环绕 Around</li>
+<li>异常 AfterThrowing 有异常才执行</li>
+<li>最终 AterRreturning return 之后才执行，有异常不执行</li>
+</ul>
+<p>切面：将增强内容应用到切入点</p>
+<h3 id="aspectj"><a class="header" href="#aspectj">AspectJ</a></h3>
+<ul>
+<li>xml</li>
+<li>Annotation</li>
+</ul>
+<p>切入点表达式 @Pointcut @Oder()</p>
+<h2 id="jdbc"><a class="header" href="#jdbc">JDBC</a></h2>
+<p>JDBC Template update(sql, args) 增删改 queryForObject()查 query()
+bachtupdate()</p>
+<h1 id="spingmvc"><a class="header" href="#spingmvc">SpingMVC</a></h1>
+<p>Web action --&gt; 前端控制 --&gt; Path --&gt; 后端 --&gt; handler --&gt; 前端
+backend reserver arguments.</p>
+<ol>
+<li>single argument</li>
+<li>multi arguments</li>
+<li>class instance</li>
+</ol>
+<hr />
+<p>C -&gt; C   redirect   重定向   刷新后会重复提交增删改
+C -&gt; V   forward    转发     查询需要转发</p>
+<hr />
+<p>-Dfile.encoding=utf-8 for Tomcat server VM Options: backend output for
+chineseisch</p>
+<p>C-&gt; V assugment request session model</p>
+<h1 id="spring-boot-1"><a class="header" href="#spring-boot-1">Spring Boot</a></h1>
+<h1 id="jdbc-1"><a class="header" href="#jdbc-1">JDBC</a></h1>
+<ul>
+<li>Driver</li>
+<li>connection</li>
+<li>mysql</li>
+<li>execute</li>
+<li>statement</li>
+<li>preperedstatement</li>
+<li>close</li>
+</ul>
+<h1 id="mybatis"><a class="header" href="#mybatis">mybatis</a></h1>
+<h2 id="framework"><a class="header" href="#framework">framework</a></h2>
+<h3 id="springboot-1"><a class="header" href="#springboot-1">springboot</a></h3>
+<ol>
+<li>
+<p>pom.xml</p>
+<p>&lt;dependency&gt; &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
+&lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt;
+&lt;version&gt;3.3.0&lt;/version&gt; &lt;/dependency&gt;</p>
+</li>
+<li>
+<p>application.yml</p>
+<p>配置mybatis, 指示Mapper.xml的位置 mapper-locations:
+classpath:mapper/*/*Mapper.xml</p>
+<ol>
+<li>
+<p>Mybatias configuration(appeared.yml)</p>
+<hr />
+<h2>prppreties
+settings
+typeAliases
+typeHanders
+plugins
+envirements
+mapper(url, resource, class, Annotation)</h2>
+</li>
+<li>
+<p>*Mapper.xml</p>
+<hr />
+<p>query:                    resultMap/resultType
+insert, update, delete:   parameterType</p>
+<hr />
+</li>
+</ol>
+</li>
+<li>
+<p>Applicaton.java</p>
+<p>启动类, 指示bean扫描的位置 @MapperScan(basePackages =
+{"com.sxt.system.mapper"})</p>
+</li>
+<li>
+<p>Route</p>
+<p>web requirement -&gt; controller -&gt; server -&gt; serverIpm -&gt;
+*Mapper.xml(self def) 自定义的在*Mapper.xml内找到数据库的入口，
+默认的可以直接调用。</p>
+</li>
+</ol>
+<h3 id="spring-1"><a class="header" href="#spring-1">spring</a></h3>
+<h2 id="and-"><a class="header" href="#and-"># and $</a></h2>
+<ol>
+<li># will add ' ' around the given paramenters, so it's saft, with
+concat</li>
+<li>$ will not add ' ', it's not safe</li>
+</ol>
+<h2 id="include"><a class="header" href="#include">include</a></h2>
+<p>&lt;sql id="commonField" id, goodname, price &lt;/sql&gt;</p>
+<p>Select &lt;include refid="commonField" /&gt;</p>
+<h2 id="流程"><a class="header" href="#流程">流程</a></h2>
+<ul>
+<li>获取字节输入流</li>
+<li>构建SqlSessioFactory</li>
+<li>生产SqlSession</li>
+<li>执行Dao</li>
+<li>释放资源</li>
+</ul>
+<h2 id="延迟加载"><a class="header" href="#延迟加载">延迟加载</a></h2>
+<h2 id="缓存"><a class="header" href="#缓存">缓存</a></h2>
+<h2 id="一级缓存"><a class="header" href="#一级缓存">一级缓存</a></h2>
+<p>SqlSession</p>
+<h2 id="二级缓存"><a class="header" href="#二级缓存">二级缓存</a></h2>
+<p>SqlSessionFactory</p>
+<h2 id="注解开发"><a class="header" href="#注解开发">注解开发</a></h2>
+<h1 id="shiro"><a class="header" href="#shiro">Shiro</a></h1>
+<h1 id="c3p0"><a class="header" href="#c3p0">c3p0</a></h1>
+<h1 id="rruid"><a class="header" href="#rruid">Rruid</a></h1>
+<h1 id="nginx"><a class="header" href="#nginx">nginx</a></h1>
+<h2 id="https-ssl-deployment"><a class="header" href="#https-ssl-deployment">https ssl deployment</a></h2>
+<p>1, just deploy my web seit normally, and can be access by http 2, sudo
+apt install certbot python-certbot-nginx 3, sudo certbot certonly
+--nginx (will be asked) 4, sudo certbot install --nginx</p>
+<h2 id="local-nginx-deployment"><a class="header" href="#local-nginx-deployment">local Nginx deployment</a></h2>
+<h3 id="install-2"><a class="header" href="#install-2">install</a></h3>
+<pre><code>yum install -y pcre pcre-devel
+yum install -y zlib zlib-devel
+yum install -y openssl openssl-devel
+
+
+tar
+mv xxx nginx
+mv nginx /usr/local/src/
+cd /usr/local/src/nginx
+mkdir /usr/nginx
+./configure --prefix=/usr/nginx
+make
+make install
+</code></pre>
+<p>sudo apt install nginx</p>
+<p><em>etc/nginx</em> 是其配置文件夹，里面有很多include文件， nginx
+的默认设置在其中一个 default 文件里。 本机html仓库 /var/www/html
+将项目放在此文件夹下，运行对于的端口即可
+本机开机后,该文件的会被自动部署,端口可见</p>
+<h3 id="fire-wall-80-port-if-necessary"><a class="header" href="#fire-wall-80-port-if-necessary">fire wall 80 port if necessary</a></h3>
+<pre><code>add port :
+sudo apt install firewalld
+sudo firewall-cmd --add-port=80/tcp --permanent
+sudo firewall-cmd --remove-port=80/tcp --permanent
+restart firewall:
+sudo  firewall-cmd --reload
+check port:
+sudo  firewall-cmd --list-all
+</code></pre>
+<h3 id="nginx-control"><a class="header" href="#nginx-control">nginx control</a></h3>
+<pre><code>sudo apt systemctl stop nginx
+nginx -s stop
+sudo apt systemctl start nginx
+nginx -s reload
+</code></pre>
+<h3 id="uninstall"><a class="header" href="#uninstall">uninstall</a></h3>
+<p>sudo apt-get purge nginx nginx-common</p>
+<h2 id="nginx-with-php"><a class="header" href="#nginx-with-php">Nginx with php</a></h2>
+<p>sudo apt install nginx sudo systemctl restart nginx sudo apt install php
+sudo apt install php-fpm check if exit: /var/run/php/php7.2-fpm.sock</p>
+<p>emacs /etc/php/7.2/fpm/pool.d/www.conf -&gt; listen =
+/run/php/php7.2-fpm.sock</p>
+<p>cd /etc/nginx/sites-available emacs default</p>
+<pre><code>list  post
+root  folder
+location ~ \.php{
+     include snippets/fastcgi-php.conf;
+     fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
+     include fastcgi_params;
+}
+</code></pre>
+<p>vollstandig</p>
+<pre><code>################### 9020 FOR php ##################################################################################
+server {
+    listen 9020;
+    listen [::]:9020;
+
+    # SSL configuration
+    #
+    # listen 443 ssl default_server;
+    # listen [::]:443 ssl default_server;
+    #
+    # Note: You should disable gzip for SSL traffic.
+    # See: https://bugs.debian.org/773332
+    #
+    # Read up on ssl_ciphers to ensure a secure configuration.
+    # See: https://bugs.debian.org/765782
+    #
+    # Self signed certs generated by the ssl-cert package
+    # Don't use them in a production server!
+    #
+    # include snippets/snakeoil.conf;
+
+    root /home/sx/Documents/nginx9020;
+
+    # Add index.php to the list if you are using PHP
+    index index.html index.htm index.nginx-debian.html index.php;
+
+    server_name _;
+
+    location / {
+        # First attempt to serve request as file, then
+        # as directory, then fall back to displaying a 404.
+        try_files uri uri/ =404;
+    }
+
+    # pass PHP scripts to FastCGI server
+    #
+    location ~ \.php {
+        include snippets/fastcgi-php.conf;
+
+        # With php-fpm (or other unix sockets):
+        fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
+        # With php-cgi (or other tcp sockets):
+        include fastcgi_params;
+        #fastcgi_pass 127.0.0.1:9000;
+    }
+
+    # deny access to .htaccess files, if Apache's document root
+    # concurs with nginx's one
+    #
+    #location ~ /\.ht {
+    #   deny all;
+    #}
+}
+</code></pre>
+<h1 id="apache2"><a class="header" href="#apache2">apache2</a></h1>
+<p>sudo apt install apache2 sudo systemctl restart apache2 cd <em>etc/apache2</em></p>
+<ol>
+<li>ports.conf -&gt; add new post</li>
+<li>appache.conf -&gt; add new folder</li>
+<li>cd sites-available emacs 000-default.conf -&gt; add server of post and
+folder</li>
+</ol>
+<h1 id="maven"><a class="header" href="#maven">Maven</a></h1>
+<h2 id="package-all-the-dependencies-together-as-a-jar"><a class="header" href="#package-all-the-dependencies-together-as-a-jar">package all the dependencies together as a jar</a></h2>
+<p>if I want to package them to a package to a jar <a href="https://stackoverflow.com/questions/574594/how-can-i-create-an-executable-jar-with-dependencies-using-maven">starkoverflow
+hitting</a>
+and this plugin to pom.xml</p>
+<pre><code>&lt;build&gt;
+  &lt;plugins&gt;
+    &lt;plugin&gt;
+      &lt;artifactId&gt;maven-assembly-plugin&lt;/artifactId&gt;
+      &lt;configuration&gt;
+        &lt;archive&gt;
+          &lt;manifest&gt;
+            &lt;mainClass&gt;fully.qualified.MainClass&lt;/mainClass&gt;
+          &lt;/manifest&gt;
+        &lt;/archive&gt;
+        &lt;descriptorRefs&gt;
+          &lt;descriptorRef&gt;jar-with-dependencies&lt;/descriptorRef&gt;
+        &lt;/descriptorRefs&gt;
+      &lt;/configuration&gt;
+    &lt;/plugin&gt;
+  &lt;/plugins&gt;
+&lt;/build&gt;
+</code></pre>
+<p>package and Execute</p>
+<ul>
+<li>run with : mvn clean compile assembly:single</li>
+<li>mvn package</li>
+</ul>
+<p>and now this jar file can be called</p>
+<ul>
+<li>java -cp target/xxxx....xx.jar com.mycompany.app.App</li>
+</ul>
+<h2 id="customize-locally-archetype"><a class="header" href="#customize-locally-archetype">customize locally archetype</a></h2>
+<p>to the local repository</p>
+<pre><code class="language-{.bash org-language=&quot;sh&quot;}">cd ~/.m2/repository/org/apache/maven/archetypes/maven-archetype-quickstart/1.4/
+</code></pre>
+<p>open the jar file, and change the pom.xml</p>
+<h1 id="session-und-cookie"><a class="header" href="#session-und-cookie">Session und Cookie</a></h1>
+<ol>
+<li>Browser send request to server with name, password...</li>
+<li>if the authentication is passed, server generate a SessionID,</li>
+</ol>
+<p>and search the results, giving back browser response(name, password,
+results Sessionid..) Sessionid will be saved in SERVER.</p>
+<ol>
+<li>get the response, browser save the name, password and Sessionid as</li>
+</ol>
+<p>Cookie.</p>
+<ol>
+<li>send request again, browser get the name, password, and Sessionid
+from Cookie, and send the requests</li>
+<li>server check the Sessionid only if possible, and send the results
+and name, password again as response back to browser.</li>
+</ol>
+<p>Only the first time response, Sessionid will be send back to browser.</p>
+<h2 id="cookie-do-not-carry-session-id"><a class="header" href="#cookie-do-not-carry-session-id">cookie do not carry session id</a></h2>
+<p>URL重写（常用），就是把session id直接附加在URL路径的后面</p>
+<h1 id="http-proposal"><a class="header" href="#http-proposal">HTTP Proposal</a></h1>
+<h2 id="http-request"><a class="header" href="#http-request">http Request</a></h2>
+<hr />
+<p>Request Line    request type + url path(many kinds of paramenters)+ http version
+Header:         Host; Cookie; Content-type; User-Agent...
+Request Body:   username="admin"&amp;password="admin"</p>
+<hr />
+<h2 id="http-response"><a class="header" href="#http-response">Http Response</a></h2>
+<hr />
+<p>esponse Line:    http version + state code + state string
+Header:          Content-type (describe information)
+Response Body:   &lt;html&gt; ....&lt;/tml&gt;</p>
+<hr />
+<h1 id="appeared-problem-1"><a class="header" href="#appeared-problem-1">appeared Problem</a></h1>
+<h2 id="server-is-not-startup-1"><a class="header" href="#server-is-not-startup-1">server is not startup</a></h2>
+<p>1, workspace 有重叠和包含， 2, 需要重启 lsp mode</p>
+<h2 id="cant-find-the-main-class-to-start-project-1"><a class="header" href="#cant-find-the-main-class-to-start-project-1">can't find the main class to start project</a></h2>
+<p>mvn compile 出现问题，大多数时候是依赖的问题</p>
+<h2 id="没有对应的补全-1"><a class="header" href="#没有对应的补全-1">没有对应的补全</a></h2>
+<p>mvn 依赖的version 不同会有不同的包，补全也不同</p>
+<h1 id="local-jdk-configuration"><a class="header" href="#local-jdk-configuration">local jdk configuration</a></h1>
+<pre><code>mkdir /usr/local/java
+tar -zxvf jdkxxxxx.tar.gz -C /usr/localjava
+sudo emacs -nw -q /etc/profile
+-&gt;
+JAVA_HOME=/usr/local/java/jdkxxxxx
+PATH=&lt;span class="katex"&gt;&lt;span class="katex-html" aria-hidden="true"&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:1em;vertical-align:-0.25em;"&gt;&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.09618em;"&gt;J&lt;/span&gt;&lt;span class="mord mathnormal"&gt;A&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.22222em;"&gt;V&lt;/span&gt;&lt;span class="mord"&gt;&lt;span class="mord mathnormal"&gt;A&lt;/span&gt;&lt;span class="msupsub"&gt;&lt;span class="vlist-t vlist-t2"&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist" style="height:0.3283em;"&gt;&lt;span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"&gt;&lt;span class="pstrut" style="height:2.7em;"&gt;&lt;/span&gt;&lt;span class="sizing reset-size6 size3 mtight"&gt;&lt;span class="mord mathnormal mtight" style="margin-right:0.08125em;"&gt;H&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="vlist-s"&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist" style="height:0.15em;"&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.05764em;"&gt;OME&lt;/span&gt;&lt;span class="mord"&gt;/&lt;/span&gt;&lt;span class="mord mathnormal"&gt;bin&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.2778em;"&gt;&lt;/span&gt;&lt;span class="mrel"&gt;:&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;PATH
+CLASSPATH=.:&lt;span class="katex"&gt;&lt;span class="katex-html" aria-hidden="true"&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:1em;vertical-align:-0.25em;"&gt;&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.09618em;"&gt;J&lt;/span&gt;&lt;span class="mord mathnormal"&gt;A&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.22222em;"&gt;V&lt;/span&gt;&lt;span class="mord"&gt;&lt;span class="mord mathnormal"&gt;A&lt;/span&gt;&lt;span class="msupsub"&gt;&lt;span class="vlist-t vlist-t2"&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist" style="height:0.3283em;"&gt;&lt;span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"&gt;&lt;span class="pstrut" style="height:2.7em;"&gt;&lt;/span&gt;&lt;span class="sizing reset-size6 size3 mtight"&gt;&lt;span class="mord mathnormal mtight" style="margin-right:0.08125em;"&gt;H&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="vlist-s"&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist" style="height:0.15em;"&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.05764em;"&gt;OME&lt;/span&gt;&lt;span class="mord"&gt;/&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.01968em;"&gt;l&lt;/span&gt;&lt;span class="mord mathnormal"&gt;ib&lt;/span&gt;&lt;span class="mord"&gt;/&lt;/span&gt;&lt;span class="mord mathnormal"&gt;d&lt;/span&gt;&lt;span class="mord mathnormal"&gt;t&lt;/span&gt;&lt;span class="mord"&gt;.&lt;/span&gt;&lt;span class="mord mathnormal"&gt;ja&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.02778em;"&gt;r&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.2778em;"&gt;&lt;/span&gt;&lt;span class="mrel"&gt;:&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;JAVA_HOME/lib/tools.jar
+export JAVA_HOME
+export PATH
+export CLASSPATH
+
+source /etc/profile
+</code></pre>
+<h1 id="django"><a class="header" href="#django">Django</a></h1>
+<h2 id="tvm-archetype"><a class="header" href="#tvm-archetype">TVM archetype</a></h2>
+<p><a href="./foto/DangoTVM.drawio.png">TVM design</a></p>
+<h2 id="uwsgi-domain-example"><a class="header" href="#uwsgi-domain-example">uwsgi domain example</a></h2>
+<p>this has perhaps to be connected with ssl nginx $ uwsgi --chdir
+/home/cloud/django/QL --http :8000 --module QL.wsgi:application $ uwsgi
+--ini ql~uwsgi~.ini</p>
+<h2 id="projekt-studynet-commands"><a class="header" href="#projekt-studynet-commands">Projekt StudyNet commands</a></h2>
+<p>pip install virtualenv virtualenv --python=python3.9 django source
+django/bin/active pip install django pip install django-restframework
+pip install django-cors-headers pip install djoser django-admin
+startproject studynet~django~</p>
+<h2 id="debug-models-small-example"><a class="header" href="#debug-models-small-example">debug models small example</a></h2>
+<p>access to django shell</p>
+<pre><code class="language-{.shell session=&quot;django&quot;}">python manage.py shell
+</code></pre>
+<pre><code class="language-{.shell session=&quot;django&quot;}">from Myapp.models import Publication, Article
+p1 = Publication(title='The Python Journal') 
+p1.save()
+p1
+</code></pre>
+<pre><code class="language-{.shell session=&quot;django&quot;}">p2 = Publication(title='Science News') 
+p2.save()
+p2
+</code></pre>
+<pre><code class="language-{.shell session=&quot;django&quot;}">p3 = Publication(title='Science Weekly') 
+p3.save()
+p3
+</code></pre>
+<pre><code class="language-{.shell session=&quot;django&quot;}">p4 = Publication(title='Science for everyone') 
+p4.save()
+</code></pre>
+<pre><code class="language-{.shell session=&quot;django&quot;}">a1 = Article(headline='Django lets you build Web apps easily')
+a1.save()
+</code></pre>
+<pre><code class="language-{.shell session=&quot;django&quot;}">a1.publications.add(p1)
+a1.publications.add(p4)
+</code></pre>
+<pre><code class="language-{.shell session=&quot;django&quot;}">a1.publications.all()
+</code></pre>
+<pre><code class="language-{.shell session=&quot;django&quot;}">a2 = Article(headline='NASA uses Python')
+a2.save()
+a2.publications.add(p1, p2)
+a2.publications.add(p3)
+</code></pre>
+<pre><code class="language-{.shell session=&quot;django&quot;}">new_publication = a2.publications.create(title='Highlights for Children')
+new_publication
+</code></pre>
+<pre><code class="language-{.shell session=&quot;django&quot;}">p1.article_set.all()
+</code></pre>
+<pre><code class="language-{.shell session=&quot;django&quot;}">a2.publications.all()
+</code></pre>
+<pre><code class="language-{.shell session=&quot;django&quot;}">Publication.objects.get(id=4).article_set.all()
+</code></pre>
+<pre><code class="language-{.shell session=&quot;django&quot;}">Article.objects.filter(publications__title__startswith="Science")
+</code></pre>
+<pre><code class="language-{.shell session=&quot;django&quot;}">Article.objects.filter(publications__title__startswith="Science").distinct()
+</code></pre>
+<h2 id="modeltomodel"><a class="header" href="#modeltomodel">modelTOmodel</a></h2>
+<ul>
+<li>oneToone:
+<ul>
+<li>connected instance must saved at frist</li>
+<li>in connecting instance creatation, the connected instance will
+be specified</li>
+<li>connected.connecting</li>
+<li>connecting.connected</li>
+</ul>
+</li>
+<li>ManyToone(ForeignKey)
+<ul>
+<li>connected instance must saved at frist</li>
+<li>in connecting instance creatation, the connected instance will
+be specified</li>
+<li>connecting.conneted</li>
+<li>connected.connecting~set~.all()</li>
+</ul>
+</li>
+<li>ManToMany
+<ul>
+<li>connected instance must saved at frist</li>
+<li>connecting instance must saved at frist</li>
+<li>connecting.connected.add(connected)</li>
+<li>connecting.conneted.all()</li>
+<li>connected.connecting~set~.all()</li>
+</ul>
+</li>
+</ul>
+<h2 id="documents-collections"><a class="header" href="#documents-collections">Documents Collections</a></h2>
+<ul>
+<li>for choose filed, get the presented value with :
+instance.get~fieldnamedisplay~()</li>
+</ul>
+<h1 id="ruoyi-vue-project"><a class="header" href="#ruoyi-vue-project">RuoYi-Vue project</a></h1>
+<h2 id="backup-deployment"><a class="header" href="#backup-deployment">backup deployment</a></h2>
+<h3 id="redis"><a class="header" href="#redis">redis</a></h3>
+<pre><code>sudo apt install redis-server
+sudo snap install redis-desktop-manager(not necessary)
+
+sem /etc/redis/redis.conf
+56 bind 127.0.0.1
+507 requirepass 123456
+
+sudo systemctl restart redis-server
+or
+sudo service redis-server restart
+
+1. without password : redis-cli 
+2. with password    : redis-cli -h localhost -p 6379 -a 123456
+PING -&gt; PONG
+
+It may happen, even with requirepass, but still can login without pass.
+The application based on this will be fail,
+Need redis-cli login, and &gt; auth "pass"
+if returns OK, it works for Applications
+</code></pre>
+<h3 id="mysql-1"><a class="header" href="#mysql-1">mysql</a></h3>
+<h3 id="tomcat"><a class="header" href="#tomcat">tomcat</a></h3>
+<p>configuration for IDEA as local Tomcat</p>
+<h3 id="schnitt"><a class="header" href="#schnitt">schnitt</a></h3>
+<p>redis mysql uploadPath system log.path check localhost:8080</p>
+<h3 id="ssh"><a class="header" href="#ssh">ssh</a></h3>
+<p>set to be false</p>
+<h3 id="dependence-from-jdk8"><a class="header" href="#dependence-from-jdk8">dependence from jdk8</a></h3>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;javax.xml.bind&lt;/groupId&gt;
+    &lt;artifactId&gt;jaxb-api&lt;/artifactId&gt;
+    &lt;version&gt;2.3.0&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;com.sun.xml.bind&lt;/groupId&gt;
+    &lt;artifactId&gt;jaxb-impl&lt;/artifactId&gt;
+    &lt;version&gt;2.3.0&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;com.sun.xml.bind&lt;/groupId&gt;
+    &lt;artifactId&gt;jaxb-core&lt;/artifactId&gt;
+    &lt;version&gt;2.3.0&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;javax.activation&lt;/groupId&gt;
+    &lt;artifactId&gt;activation&lt;/artifactId&gt;
+    &lt;version&gt;1.1.1&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h2 id="frontend-deployment"><a class="header" href="#frontend-deployment">frontend deployment</a></h2>
+<h3 id="build"><a class="header" href="#build">build</a></h3>
+<pre><code>cd ruoyi-ui
+npm run build:prod
+npm run build:stage
+cp -r dist/* ~/Documens/nginx9010/
+</code></pre>
+<h3 id="验证码-for-nginx"><a class="header" href="#验证码-for-nginx">验证码 for nginx</a></h3>
+<pre><code>#####################9010 NOT for php ############################################################################
+
+
+server {
+    listen 9010;
+    listen [::]:9010;
+
+    # SSL configuration
+    #
+    # listen 443 ssl default_server;
+    # listen [::]:443 ssl default_server;
+    #
+    # Note: You should disable gzip for SSL traffic.
+    # See: https://bugs.debian.org/773332
+    #
+    # Read up on ssl_ciphers to ensure a secure configuration.
+    # See: https://bugs.debian.org/765782
+    #
+    # Self signed certs generated by the ssl-cert package
+    # Don't use them in a production server!
+    #
+    # include snippets/snakeoil.conf;
+
+
+
+    # Add index.php to the list if you are using PHP
+
+
+    server_name _;
+
+    location / {
+        # First attempt to serve request as file, then
+        # as directory, then fall back to displaying a 404.
+        root /home/sx/Documents/nginx9010;
+        index index.html index.htm index.nginx-debian.html index.php;
+        try_files &lt;span class="katex"&gt;&lt;span class="katex-html" aria-hidden="true"&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:0.6595em;"&gt;&lt;/span&gt;&lt;span class="mord mathnormal"&gt;u&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.02778em;"&gt;r&lt;/span&gt;&lt;span class="mord mathnormal"&gt;i&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;uri/ =404;
+    }
+
+    # deny access to .htaccess files, if Apache's document root
+    # concurs with nginx's one
+    #
+    #location ~ /\.ht {
+    #   deny all;
+    #}
+
+    location /prod-api/{
+            proxy_set_header Host &lt;span class="katex"&gt;&lt;span class="katex-html" aria-hidden="true"&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"&gt;&lt;/span&gt;&lt;span class="mord mathnormal"&gt;h&lt;/span&gt;&lt;span class="mord mathnormal"&gt;tt&lt;/span&gt;&lt;span class="mord"&gt;&lt;span class="mord mathnormal"&gt;p&lt;/span&gt;&lt;span class="msupsub"&gt;&lt;span class="vlist-t vlist-t2"&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist" style="height:0.3361em;"&gt;&lt;span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"&gt;&lt;span class="pstrut" style="height:2.7em;"&gt;&lt;/span&gt;&lt;span class="sizing reset-size6 size3 mtight"&gt;&lt;span class="mord mathnormal mtight"&gt;h&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="vlist-s"&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist" style="height:0.15em;"&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="mord mathnormal"&gt;os&lt;/span&gt;&lt;span class="mord mathnormal"&gt;t&lt;/span&gt;&lt;span class="mpunct"&gt;;&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.1667em;"&gt;&lt;/span&gt;&lt;span class="mord mathnormal"&gt;p&lt;/span&gt;&lt;span class="mord mathnormal"&gt;ro&lt;/span&gt;&lt;span class="mord mathnormal"&gt;x&lt;/span&gt;&lt;span class="mord"&gt;&lt;span class="mord mathnormal" style="margin-right:0.03588em;"&gt;y&lt;/span&gt;&lt;span class="msupsub"&gt;&lt;span class="vlist-t vlist-t2"&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist" style="height:0.1514em;"&gt;&lt;span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"&gt;&lt;span class="pstrut" style="height:2.7em;"&gt;&lt;/span&gt;&lt;span class="sizing reset-size6 size3 mtight"&gt;&lt;span class="mord mathnormal mtight"&gt;s&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="vlist-s"&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist" style="height:0.15em;"&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="mord mathnormal"&gt;e&lt;/span&gt;&lt;span class="mord"&gt;&lt;span class="mord mathnormal"&gt;t&lt;/span&gt;&lt;span class="msupsub"&gt;&lt;span class="vlist-t vlist-t2"&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist" style="height:0.3361em;"&gt;&lt;span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"&gt;&lt;span class="pstrut" style="height:2.7em;"&gt;&lt;/span&gt;&lt;span class="sizing reset-size6 size3 mtight"&gt;&lt;span class="mord mathnormal mtight"&gt;h&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="vlist-s"&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist" style="height:0.15em;"&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="mord mathnormal"&gt;e&lt;/span&gt;&lt;span class="mord mathnormal"&gt;a&lt;/span&gt;&lt;span class="mord mathnormal"&gt;d&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.02778em;"&gt;er&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.07847em;"&gt;X&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.2222em;"&gt;&lt;/span&gt;&lt;span class="mbin"&gt;−&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.2222em;"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"&gt;&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.00773em;"&gt;R&lt;/span&gt;&lt;span class="mord mathnormal"&gt;e&lt;/span&gt;&lt;span class="mord mathnormal"&gt;a&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.01968em;"&gt;l&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.2222em;"&gt;&lt;/span&gt;&lt;span class="mbin"&gt;−&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.2222em;"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:0.6833em;"&gt;&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.07847em;"&gt;I&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.13889em;"&gt;P&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;remote_addr;
+            proxy_set_header REMOTE-HOST &lt;span class="katex"&gt;&lt;span class="katex-html" aria-hidden="true"&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"&gt;&lt;/span&gt;&lt;span class="mord mathnormal"&gt;re&lt;/span&gt;&lt;span class="mord mathnormal"&gt;m&lt;/span&gt;&lt;span class="mord mathnormal"&gt;o&lt;/span&gt;&lt;span class="mord mathnormal"&gt;t&lt;/span&gt;&lt;span class="mord"&gt;&lt;span class="mord mathnormal"&gt;e&lt;/span&gt;&lt;span class="msupsub"&gt;&lt;span class="vlist-t vlist-t2"&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist" style="height:0.1514em;"&gt;&lt;span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"&gt;&lt;span class="pstrut" style="height:2.7em;"&gt;&lt;/span&gt;&lt;span class="sizing reset-size6 size3 mtight"&gt;&lt;span class="mord mathnormal mtight"&gt;a&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="vlist-s"&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist" style="height:0.15em;"&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="mord mathnormal"&gt;dd&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.02778em;"&gt;r&lt;/span&gt;&lt;span class="mpunct"&gt;;&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.1667em;"&gt;&lt;/span&gt;&lt;span class="mord mathnormal"&gt;p&lt;/span&gt;&lt;span class="mord mathnormal"&gt;ro&lt;/span&gt;&lt;span class="mord mathnormal"&gt;x&lt;/span&gt;&lt;span class="mord"&gt;&lt;span class="mord mathnormal" style="margin-right:0.03588em;"&gt;y&lt;/span&gt;&lt;span class="msupsub"&gt;&lt;span class="vlist-t vlist-t2"&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist" style="height:0.1514em;"&gt;&lt;span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"&gt;&lt;span class="pstrut" style="height:2.7em;"&gt;&lt;/span&gt;&lt;span class="sizing reset-size6 size3 mtight"&gt;&lt;span class="mord mathnormal mtight"&gt;s&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="vlist-s"&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist" style="height:0.15em;"&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="mord mathnormal"&gt;e&lt;/span&gt;&lt;span class="mord"&gt;&lt;span class="mord mathnormal"&gt;t&lt;/span&gt;&lt;span class="msupsub"&gt;&lt;span class="vlist-t vlist-t2"&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist" style="height:0.3361em;"&gt;&lt;span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"&gt;&lt;span class="pstrut" style="height:2.7em;"&gt;&lt;/span&gt;&lt;span class="sizing reset-size6 size3 mtight"&gt;&lt;span class="mord mathnormal mtight"&gt;h&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="vlist-s"&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class="vlist-r"&gt;&lt;span class="vlist" style="height:0.15em;"&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="mord mathnormal"&gt;e&lt;/span&gt;&lt;span class="mord mathnormal"&gt;a&lt;/span&gt;&lt;span class="mord mathnormal"&gt;d&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.02778em;"&gt;er&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.07847em;"&gt;X&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.2222em;"&gt;&lt;/span&gt;&lt;span class="mbin"&gt;−&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.2222em;"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"&gt;&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.13889em;"&gt;F&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.02778em;"&gt;or&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.02691em;"&gt;w&lt;/span&gt;&lt;span class="mord mathnormal"&gt;a&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.02778em;"&gt;r&lt;/span&gt;&lt;span class="mord mathnormal"&gt;d&lt;/span&gt;&lt;span class="mord mathnormal"&gt;e&lt;/span&gt;&lt;span class="mord mathnormal"&gt;d&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.2222em;"&gt;&lt;/span&gt;&lt;span class="mbin"&gt;−&lt;/span&gt;&lt;span class="mspace" style="margin-right:0.2222em;"&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="base"&gt;&lt;span class="strut" style="height:0.6833em;"&gt;&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.13889em;"&gt;F&lt;/span&gt;&lt;span class="mord mathnormal" style="margin-right:0.02778em;"&gt;or&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;proxy_add_x_forwarded_for;
+            proxy_pass http://localhost:8080/;
+        }
+
+        error_page   500 502 503 504  /50x.html;
+
+    location = /50x.html {
+            root   html;
+        }
+
+}
+</code></pre>
+<h1 id="webpack-1"><a class="header" href="#webpack-1">webpack</a></h1>
+<pre><code>npm init -y
+npm i -D webpack webpack-cli typescript ts-loader
+
+设定生成的html的特性，包括使用模板
+npm i -D html-webpack-plugin
+
+设定项目的运行服务器
+npm i -D webpack-dev-server
+in package.json/"scripts":      "start": "webpack serve --open chromium-browser"
+and then in terminal: npm start
+
+
+删除上次的生成文件，整个dist目录
+npm i -D clean-webpack-plugin
+</code></pre>
+<pre><code class="language-{.javascript org-language=&quot;js&quot;}">const path = require("path");
+
+const HTMLWebpackPlugin = require("html-webpack-plugin");
+
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+
+module.exports = {
+    entry: "./src/index.ts",
+    output: {
+        path: path.resolve(__dirname, "dist"),
+        filename: "bundle.js",
+        // environment: {
+        //     arrowFunction: false,
+        // },
+    },
+    module: {
+        rules: [
+            {
+                test: /\.ts$/,
+                use: [
+                    {
+                        loader: "babel-loader",
+                        options: {
+                            presets: [
+                                [
+                                    "@babel/preset-env",
+                                    {
+                                        targets: {
+                                            chrome: "87",
+                                            // ie: "11",
+                                        },
+                                        corejs: "3",
+                                        useBuiltIns: "usage",
+                                    },
+                                ],
+                            ],
+                        },
+                    },
+                    "ts-loader",
+                ],
+                exclude: /node-modules/,
+            },
+        ],
+    },
+    plugins: [
+        new HTMLWebpackPlugin({
+            title: "APP For Webpack",
+        }),
+        new CleanWebpackPlugin(),
+    ],
+
+    //模块设定
+    resolve: {
+        extensions: [".ts", ".js"],
+    },
+};
+
+</code></pre>
+<h1 id="serve"><a class="header" href="#serve">serve</a></h1>
+<pre><code>sudo apt install serve
+serve folder
+</code></pre>
+<h1 id="traefik"><a class="header" href="#traefik">Traefik</a></h1>
+<h2 id="just-load-traefik"><a class="header" href="#just-load-traefik">just load traefik</a></h2>
+<p>IN: docker-compose.yml</p>
+<pre><code>version: "3.8"
+  services:
+    traefik:
+    image: traefik:alpine
+    command: --api --docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 80:80
+      - 8080:8080
+</code></pre>
+<p>open localhost:8080</p>
+<h2 id="load-traefik-with-configaution"><a class="header" href="#load-traefik-with-configaution">load traefik with configaution</a></h2>
+<p>IN: traefik.toml</p>
+<pre><code>defaultEntryPoints = ["http"]
+
+logLevel = "INFO"
+sendAnonymousUsage = true
+
+[docker]
+  endpoint = "unix:///var/run/docker.sock"
+  exposedByDefault = true
+
+[api]
+dashboard = true
+entrypoint = "dashboard"
+
+[entryPoints]
+  [entryPints.http]
+  address = ":80"
+
+  [entryPints.dashboard]
+  address = ":8080"
+</code></pre>
+<p>open localhost:8080</p>
+<h1 id="oauth"><a class="header" href="#oauth">Oauth</a></h1>
+<hr />
+<p>Resource owner         me
+Client                 myapp
+Authorization server   google cloud project
+Resource server        google account
+Authorization grant    the whole process
+call back /redirect    app api call
+Access token           jwt token
+Scope                  ['client~id~']
+Consent                allow?</p>
+<hr />
+<h1 id="vscode"><a class="header" href="#vscode">VScode</a></h1>
+<h3 id="set-the-fontsize"><a class="header" href="#set-the-fontsize">set the fontsize</a></h3>
+<p>settings: editor . fontsize:15 windows .zoomLevel: 1.5</p>
+<h3 id="zen-mode"><a class="header" href="#zen-mode">Zen mode</a></h3>
+<p>hiden all stuff, only show code</p>
+<h3 id="minmap"><a class="header" href="#minmap">Minmap</a></h3>
+<p>minmap of all code</p>
+<h3 id="switch-in-opened-file"><a class="header" href="#switch-in-opened-file">switch in opened file</a></h3>
+<p>ctrl + tab</p>
+<h3 id="emmet"><a class="header" href="#emmet">Emmet</a></h3>
+<p>"emmet.triggerExpansionOnTab": true</p>
+<h3 id="quokka"><a class="header" href="#quokka">Quokka</a></h3>
+<p>M-x: new quokka js file will execute all in the new file</p>
+<h3 id="better-comments"><a class="header" href="#better-comments">Better comments</a></h3>
+<p>open it in format on save</p>
+<h3 id="live-server"><a class="header" href="#live-server">live server</a></h3>
+<p>M-x live server open file</p>
+<h1 id="problem"><a class="header" href="#problem">Problem</a></h1>
+<h2 id="maximun-file-number"><a class="header" href="#maximun-file-number">maximun file number</a></h2>
+<pre><code>System limit for number of file watchers reached, watch '/home/silin/Dokumente/WebDev/Vue/vueboot5/node_modules/webpack-dev-server/client/live.html'
+</code></pre>
+<p><a href="https://stackoverflow.com/questions/55763428/react-native-error-enospc-system-limit-for-number-of-file-watchers-reached">Overstack
+description</a>
+the Project need more file than the system can watch,</p>
+<pre><code>Ubuntu
+
+sudo gedit /etc/sysctl.conf
+
+Add a line at the bottom
+
+fs.inotify.max_user_watches=524288
+
+Then save and exit!
+
+sudo sysctl -p
+
+to check it
+
+Then it is solved!
+</code></pre>
+<h2 id="mix-of-tab-and-space"><a class="header" href="#mix-of-tab-and-space">Mix of Tab and space</a></h2>
+<p>// .eslintrc.js module.exports = { "rules": {
+"no-mixed-spaces-and-tabs": 0, // disable rule } };</p>
+<h2 id="unexpected-tab-character-no-tabs"><a class="header" href="#unexpected-tab-character-no-tabs">Unexpected tab character (no-tabs)</a></h2>
+<p>// .eslintrc.js module.exports = { "rules": { "no-tabs": 0 } };</p>
+<h2 id="parsing-error-unexpected-token"><a class="header" href="#parsing-error-unexpected-token">Parsing error: Unexpected token &lt;</a></h2>
+<p>// .eslintrc.js module.exports = { "root": true, "env": { "node":
+true }, "extends": [ "plugin:vue/essential", "eslint:recommended"
+], "rules": { "no-mixed-spaces-and-tabs": 0, // disable rule },
+"parserOptions": { "ecmaVersion": 6, "ecmaFeatures": {
+"experimentalObjectRestSpread": true }, "parser": "babel-eslint" }
+};</p>
+<h2 id="expected-indentation-of-8-spaces-but-found-1-tab-indent"><a class="header" href="#expected-indentation-of-8-spaces-but-found-1-tab-indent">Expected indentation of 8 spaces but found 1 tab (indent)</a></h2>
+<p>rules: { 'indent': 'off' }</p>
+<h2 id="error0308010cdigital-envelope-routinesunsupported"><a class="header" href="#error0308010cdigital-envelope-routinesunsupported">error:0308010C:digital envelope routines::unsupported</a></h2>
+<p>$: export NODE~OPTIONS~=--openssl-legacy-provider</p>
+<h2 id="scp-to-varwwwhtml-permission-dense"><a class="header" href="#scp-to-varwwwhtml-permission-dense">scp to <em>var/www/html</em> permission dense</a></h2>
+<p>change the owner and group of html to be non root,</p>
+<h1 id="full-stack-deployment"><a class="header" href="#full-stack-deployment">full stack deployment</a></h1>
+<ul>
+<li>frontend at 80</li>
+<li>backend at 8000</li>
+<li>nginx for reverse proxy under the server~name~ location <em>api</em> {
+proxy~pass~ <a href="http://localhost:8000">http://localhost:8000</a>; }</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="tools.org.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="vue.org.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="tools.org.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="vue.org.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

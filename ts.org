@@ -1,0 +1,237 @@
+#+TITLE:  Typescript
+#+OPTIONS: num:t
+#+startup: content
+* basic
+#+begin_src typescript :results output :exports both
+function greeter(person: string) {
+    return "Hello, " + person
+}
+let user = "Yee"
+console.log(greeter(user))
+#+end_src
+
+#+RESULTS:
+: Hello, Yee
+
+#+begin_src typescript :results output :exports both
+  function greeter(person: string) {
+      return "Hello, " + person
+  }
+  "use strict";
+  let user = [2, 39]
+  console.log(greeter(user))
+#+end_src
+
+#+RESULTS:
+: ../../../../tmp/babel-cIibwh/ts-src-IRbM7W.ts(6,21): error TS2345: Argument of type 'number[]' is not assignable to parameter of type 'string'.
+: Hello, 2,39
+
+
+#+begin_src typescript :results output :exports both
+  class User{
+      Fristname:string
+      Lastname:string
+      Fullname:string
+
+      constructor(firstname:string, lastname:string){
+          this.Fristname = firstname
+          this.Lastname = lastname
+          this.Fullname = this.Fristname+this.Lastname
+      }
+  }
+  interface Person{
+      Fristname:string
+      Lastname:string
+  }
+
+  function Greeter(Person){
+      return "hello, "+Person.Fristname + Person.Lastname
+  }
+  var user = new User("li", "san")
+
+  console.log(Greeter(user))
+
+#+end_src
+
+#+RESULTS:
+: ../../../../tmp/babel-cIibwh/ts-src-DPsbOA.ts(17,18): error TS7006: Parameter 'Person' implicitly has an 'any' type.
+: hello, lisan
+
+* callback
+
+#+begin_src typescript :results output :exports both
+  const n: number = 10
+  let qual = n => n*n;  
+  let m = (() => {
+      console.log('nidh', n, qual(4))
+      return 9
+  })()
+  console.log(m)
+  
+#+end_src
+
+#+RESULTS:
+: ../../../../tmp/babel-KUfP9t/ts-src-HiNQhf.ts(2,12): error TS7006: Parameter 'n' implicitly has an 'any' type.
+: nidh 10 16
+: 9
+
+#+begin_src typescript :results output :exports both
+  let jj = (
+      (msg , didi) => {
+          console.log(msg);
+          didi(msg);
+          return 9
+      }
+  )
+  ( "kdiikkjkjk",
+    msg => {
+        console.log(msg);
+    }
+  )
+  
+  console.log(jj)
+#+end_src
+
+#+RESULTS:
+: ../../../../tmp/babel-KUfP9t/ts-src-SG7pDT.ts(11,3): error TS7006: Parameter 'msg' implicitly has an 'any' type.
+: kdiikkjkjk
+: kdiikkjkjk
+: 9
+
+* Generic
+** withour generic
+ #+begin_src typescript :results output :exports both
+function createArray(value: any, count: number): any[] {
+  const arr: any[] = []
+  for (let index = 0; index < count; index++) {
+    arr.push(value)
+  }
+  return arr
+}
+
+const arr1 = createArray(11, 3)
+const arr2 = createArray('aa', 3)
+console.log(arr1)
+console.log(arr2)
+console.log(arr1[0].toFixed(), arr2[0].split(''))
+#+end_src
+
+#+RESULTS:
+: [ 11, 11, 11 ]
+: [ 'aa', 'aa', 'aa' ]
+: 11 [ 'a', 'a' ]
+
+** with generic
+#+begin_src typescript :results output :exports both
+function createArray2 <T> (value: T, count: number):T[] {
+  const arr: Array<T> = []
+  for (let index = 0; index < count; index++) {
+    arr.push(value)
+  }
+  return arr
+}
+const arr3 = createArray2<number>(11, 3)
+console.log(arr3[0].toFixed())
+// console.log(arr3[0].split('')) // error
+const arr4 = createArray2<string>('aa', 3)
+console.log(arr4[0].split(''))
+// console.log(arr4[0].toFixed()) // error
+#+end_src
+
+#+RESULTS:
+: 11
+: [ 'a', 'a' ]
+
+** advanced example
+#+begin_src  typescript :results output :exports both
+  interface IbaseCRUD <T> {
+    data: T[]
+    add: (t: T) => void
+    getById: (id: number) => T
+
+  }
+
+  class User {
+    id?: number; //id主键自增
+    name: string; //姓名
+    age: number; //年龄
+
+    constructor (name, age) {
+      this.name = name
+      this.age = age
+    }
+  }
+
+  class UserCRUD implements IbaseCRUD <User> {
+    data: User[] = []
+  
+    add(user: User): void {
+      user = {...user, id: Date.now()}
+      this.data.push(user)
+      console.log('保存user', user.id)
+    }
+
+    getById(id: number): User {
+      return this.data.find(item => item.id===id)
+    }
+  }
+
+
+  const userCRUD = new UserCRUD()
+  userCRUD.add(new User('tom', 12))
+  userCRUD.add(new User('tom2', 13))
+  console.log(userCRUD.data)
+#+end_src
+
+#+RESULTS:
+: ../../../../tmp/babel-VDC0rp/ts-src-ub8Ktp.ts(13,16): error TS7006: Parameter 'name' implicitly has an 'any' type.
+: ../../../../tmp/babel-VDC0rp/ts-src-ub8Ktp.ts(13,22): error TS7006: Parameter 'age' implicitly has an 'any' type.
+: 保存user 1629717666420
+: 保存user 1629717666424
+: [
+:   { name: 'tom', age: 12, id: 1629717666420 },
+:   { name: 'tom2', age: 13, id: 1629717666424 }
+: ]
+
+** interface  
+#+begin_src typescript :results output :exports both
+  class User{
+      Fristname:string
+      Lastname:string
+      Fullname:string
+
+      constructor(firstname:string, lastname:string){
+          this.Fristname = firstname
+          this.Lastname = lastname
+          this.Fullname = this.Fristname+this.Lastname
+      }
+  }
+  interface Person{
+      Fristname:string
+      Lastname:string
+  }
+
+  function Greeter(Person){
+      return "hello, "+Person.Fristname + Person.Lastname
+  }
+  var user = new User("li", "san")
+
+  console.log(Greeter(user))
+
+#+end_src
+
+#+RESULTS:
+: ../../../../tmp/babel-VDC0rp/ts-src-kkk0v4.ts(17,18): error TS7006: Parameter 'Person' implicitly has an 'any' type.
+: hello, lisan
+
+
+
+* collection
+#+begin_src typescript :results output :exports both
+  var nn = 10.00002
+  console.log(+nn.toFixed(2))
+#+end_src
+
+#+RESULTS:
+: 10
+

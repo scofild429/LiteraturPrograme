@@ -1,0 +1,891 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Mysql - my collection</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="AI.org.html"><strong aria-hidden="true">1.</strong> AI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="MachineLearning.org.html"><strong aria-hidden="true">1.1.</strong> MachineLearning</a></li><li class="chapter-item expanded "><a href="DeepLearning.org.html"><strong aria-hidden="true">1.2.</strong> DeepLearning</a></li><li class="chapter-item expanded "><a href="NLP.org.html"><strong aria-hidden="true">1.3.</strong> NLP</a></li></ol></li><li class="chapter-item expanded "><a href="CS.org.html"><strong aria-hidden="true">2.</strong> CS</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="linux.org.html"><strong aria-hidden="true">2.1.</strong> Linux</a></li><li class="chapter-item expanded "><a href="Algorithm.org.html"><strong aria-hidden="true">2.2.</strong> Algorithm</a></li><li class="chapter-item expanded "><a href="DataStructure.org.html"><strong aria-hidden="true">2.3.</strong> DataStructure</a></li><li class="chapter-item expanded "><a href="Parallelisum.org.html"><strong aria-hidden="true">2.4.</strong> Parallelisum</a></li><li class="chapter-item expanded "><a href="cloud_service_computing.org.html"><strong aria-hidden="true">2.5.</strong> Cloud_service_computing</a></li><li class="chapter-item expanded "><a href="blockchain.org.html"><strong aria-hidden="true">2.6.</strong> Blockchain</a></li></ol></li><li class="chapter-item expanded "><a href="DataScience.org.html"><strong aria-hidden="true">3.</strong> DataScience</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="DAMA.org.html"><strong aria-hidden="true">3.1.</strong> DAMA</a></li></ol></li><li class="chapter-item expanded "><a href="Math.org.html"><strong aria-hidden="true">4.</strong> Math</a></li><li class="chapter-item expanded "><a href="Physik.org.html"><strong aria-hidden="true">5.</strong> Physik</a></li><li class="chapter-item expanded "><a href="QutuamComputation.org.html"><strong aria-hidden="true">6.</strong> QutuamComputation</a></li><li class="chapter-item expanded "><a href="ROS.org.html"><strong aria-hidden="true">7.</strong> ROS</a></li><li class="chapter-item expanded "><a href="tools.org.html"><strong aria-hidden="true">8.</strong> Tools</a></li><li class="chapter-item expanded "><a href="WebDesign.org.html"><strong aria-hidden="true">9.</strong> WebDesign</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vue.org.html"><strong aria-hidden="true">9.1.</strong> Vue</a></li><li class="chapter-item expanded "><a href="vscode.org.html"><strong aria-hidden="true">9.2.</strong> Vscode</a></li></ol></li><li class="chapter-item expanded "><a href="Language.org.html"><strong aria-hidden="true">10.</strong> Language</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c.org.html"><strong aria-hidden="true">10.1.</strong> C</a></li><li class="chapter-item expanded "><a href="ts.org.html"><strong aria-hidden="true">10.2.</strong> TS</a></li><li class="chapter-item expanded "><a href="scala.org.html"><strong aria-hidden="true">10.3.</strong> Scala</a></li><li class="chapter-item expanded "><a href="lisp.org.html"><strong aria-hidden="true">10.4.</strong> Lisp</a></li><li class="chapter-item expanded "><a href="Java.org.html"><strong aria-hidden="true">10.5.</strong> Java</a></li><li class="chapter-item expanded "><a href="JS.org.html"><strong aria-hidden="true">10.6.</strong> JS</a></li><li class="chapter-item expanded "><a href="go.org.html"><strong aria-hidden="true">10.7.</strong> Go</a></li><li class="chapter-item expanded "><a href="rust.org.html"><strong aria-hidden="true">10.8.</strong> Rust</a></li><li class="chapter-item expanded "><a href="python.org.html"><strong aria-hidden="true">10.9.</strong> Python</a></li><li class="chapter-item expanded "><a href="emacs.org.html"><strong aria-hidden="true">10.10.</strong> Emacs</a></li><li class="chapter-item expanded "><a href="haskell.org.html"><strong aria-hidden="true">10.11.</strong> Haskell</a></li><li class="chapter-item expanded "><a href="Julia.org.html"><strong aria-hidden="true">10.12.</strong> Julia</a></li><li class="chapter-item expanded "><a href="mysql.org.html" class="active"><strong aria-hidden="true">10.13.</strong> Mysql</a></li><li class="chapter-item expanded "><a href="postgressql.org.html"><strong aria-hidden="true">10.14.</strong> Postgressql</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">my collection</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<hr />
+<h2 id="title-mysql"><a class="header" href="#title-mysql">title: MySql</a></h2>
+<pre><code class="language-{=org}">#+STARTUP: content
+</code></pre>
+<h1 id="configuation"><a class="header" href="#configuation">configuation</a></h1>
+<h2 id="安装"><a class="header" href="#安装">安装</a></h2>
+<h3 id="install"><a class="header" href="#install">install</a></h3>
+<pre><code>sudo apt install mysql-server
+sudo mysql_secure_installation
+</code></pre>
+<p>此时是给电脑的root用户，创建了一个mysql里root用户的数据库</p>
+<h3 id="电脑的root用户"><a class="header" href="#电脑的root用户">电脑的root用户</a></h3>
+<p>sudo apt install mysql-server sudo mysql~secureinstallation~</p>
+<h3 id="sudo"><a class="header" href="#sudo">sudo</a></h3>
+<p>上面默认设置的是电脑root用户的密码，也就是说只能 sudo 登陆 : sudo mysql
+-u root -p create new user 后可以用非sudo 登录</p>
+<h3 id="with-password"><a class="header" href="#with-password">with password</a></h3>
+<p>关闭无密码登录</p>
+<pre><code>USE mysql;
+UPDATE user SET plugin='mysql_native_password' WHERE User='root';
+FLUSH PRIVILEGES;
+exit;
+</code></pre>
+<p>sudo systemctl restart mysql.service sudo mysql~secureinstallation~</p>
+<h3 id="remote-connect"><a class="header" href="#remote-connect">remote connect</a></h3>
+<p>sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf</p>
+<p>bind-address = 127.0.0.1</p>
+<h3 id="chinese"><a class="header" href="#chinese">Chinese</a></h3>
+<p>对该 my.ini 文件下进行配置修改 ：</p>
+<pre><code>[client]
+default-character-set = utf8
+
+[mysql]
+default-character-set = utf8
+
+[mysqld]
+character-set-client-handshake = FALSE
+character-set-server = utf8
+collation-server = utf8_unicode_ci
+init_connect=’SET NAMES utf8’
+</code></pre>
+<h3 id="plugin-is-not-loaded"><a class="header" href="#plugin-is-not-loaded">Plugin is not loaded</a></h3>
+<p>if Plugin <strong>***</strong> is not loaded: 修改mysql.cnf 在
+[mysqld]下添加skip-grant-tables</p>
+<h3 id="电脑的普通用户进入配置-this-is-not-needed"><a class="header" href="#电脑的普通用户进入配置-this-is-not-needed">电脑的普通用户进入配置 This is not needed</a></h3>
+<hr />
+<p>step   env          command                                                 explain
+01     terminal     sudo mysql -u root -p                                   电脑root进入mysql的root
+02     mysql        select User, Host, plugin from user;                    获取
+03     mysql        update user set plugin='mysql_ native_ password';<br />
+04     mysql        select User, Host, plugin from user;                    获取
+05     mysql        flush privileges;                                       权限更新 in mysqld:skip-grant-tables
+06     mysql <sup class="footnote-reference"><a href="#1">1</a></sup>   C-d C-d                                                 退出
+07     terminal     mysql -u root BUT NOT (mysql -u root -p)                不能 -p, 密码为空，直接Enter进入
+08     mysql        set password for root@localhost = '123'               老版本 = password('123');
+09     error        123 is too simple, just not satisfy the                 check the password requirement.
+10     mysql        show variables like 'validate_ password%';           显示密码设置要求
+11     mysql        set global validate_ password_ length=3;              设置密码长度要求 为 3
+12     mysql        set global validate_ password_ policy=0;              设置密码要求概要 为 0
+13     mysql        set password for root@localhost = '123'               老版本 = password('123');
+14     mysql        flush privileges;                                       权限更新 in mysqld:skip-grant-tables
+15     terminal     mysql -u root -p                                        密码 123 , 登陆时不需要 sudo 开头</p>
+<hr />
+<h2 id="给数据库添加用户"><a class="header" href="#给数据库添加用户">给数据库添加用户</a></h2>
+<p>在进入数据库的root后，mysql 添加普通用户
+<a href="https://www.jianshu.com/p/d7b9c468f20d">简书连接</a> .</p>
+<p>create USER 'sx'@'localhost' IDENTIFIED BY 'scofild';
+创建sx用户，只能本地连接，秘密scofild</p>
+<p>GRANT ALL ON testforjava.course TO 'sx'@'localhost';
+开放testforjava数据集中的course数据表的所有全线给sx 用户</p>
+<p>退出后登陆 sx 用户 mysql -u sx -p scofild</p>
+<p>便只能看到有权限的数据集</p>
+<h2 id="查看数据库及添加数据库"><a class="header" href="#查看数据库及添加数据库">查看数据库及添加数据库</a></h2>
+<p>show databases;</p>
+<p>create databese kurs;</p>
+<p>drop databases kurs;</p>
+<h2 id="中文设置"><a class="header" href="#中文设置">中文设置</a></h2>
+<hr />
+<h2 id="show-variables-like-character"><a class="header" href="#show-variables-like-character">show variables like 'character%';</a></h2>
+<p>听说mysql的utf8不是真的utf8，需要使用utf8mb4. 在用户登陆后用set
+charactater server database = utf8 或者utf8mb4，
+只要重开接入，设置就复原。
+只有在/etc/mysql/中的mysql.cnf中的clint/mysqld/mysql字段加入以上设定，重启生效</p>
+<hr />
+<p>在[client]下追加   default-character-set=utf8
+在[mysqld]下追加   character-set-server=utf8
+在[mysql]下追加    default-character-set=utf8</p>
+<hr />
+<h2 id="特殊字符"><a class="header" href="#特殊字符">特殊字符</a></h2>
+<ul>
+<li>用`ry-vue`</li>
+</ul>
+<p>create database `ry-vue`;</p>
+<h2 id="execute-file-执行sql文件"><a class="header" href="#execute-file-执行sql文件">execute file 执行sql文件</a></h2>
+<p>mysql -u root -p xxxx use database; source .../file.sql</p>
+<h2 id="remote"><a class="header" href="#remote">remote</a></h2>
+<p>alter user 'root'@'localhost' indentified by '110011';</p>
+<h2 id="reboot"><a class="header" href="#reboot">reboot</a></h2>
+<p>sudo systemctl restart mysql</p>
+<h1 id="operation"><a class="header" href="#operation">Operation</a></h1>
+<h2 id="进入数据库"><a class="header" href="#进入数据库">进入数据库</a></h2>
+<p>create databese testforjava; use testforjava;</p>
+<h2 id="插入表格"><a class="header" href="#插入表格">插入表格</a></h2>
+<pre><code class="language-sql">create table course(
+       id int primary key atuo_increment,
+       kurs_name varchar(50),
+       kurs_length  varchar(50),
+       teacher varchar(50),
+       categeory varchar(50)
+       );
+</code></pre>
+<p>for later version, only works for auto~increment~, not for identity(m,n)</p>
+<h2 id="插入值"><a class="header" href="#插入值">插入值</a></h2>
+<p>insert into kurs values(1, 'C++', 23, 'su', 'basic'); insert into
+kurs values (2, 'Python', 50, 'morvan', 'hard'); insert into kurs
+values(3, 'CLI', 22, 'su', 'basic');</p>
+<p>或者 不完整信息</p>
+<p>insert into kurs(id, kurs~name~, categeory) values(4, 'java',
+'basic'); (指定属性给值)</p>
+<h2 id="查看表格"><a class="header" href="#查看表格">查看表格</a></h2>
+<p>show tables;</p>
+<p>describe course;</p>
+<h2 id="编辑表格"><a class="header" href="#编辑表格">编辑表格</a></h2>
+<p>alter table course rename kurs; (重命名)</p>
+<p>alter table kurs add link varchar(50); (添加属性，列)</p>
+<p>alter table kurs drop column link; (将该列删除)</p>
+<p>alter table kurs modify teacher varchar(100); (修改该列的属性，增加容量)</p>
+<p>alter table kurs change column teacher lecture varchar(100);
+(修改该列的名称，和属性，)</p>
+<h2 id="读取内容"><a class="header" href="#读取内容">读取内容</a></h2>
+<p>select * from kurs;</p>
+<p>select kurs~name~, lecture from kurs;</p>
+<p>读取内容时，不重复显示</p>
+<p>select distinct lecture from kurs;</p>
+<h2 id="高级条件查询"><a class="header" href="#高级条件查询">高级条件查询</a></h2>
+<p>select * from course where course~name~ = 'gnome';</p>
+<p>select * from course where course~length~ &gt; 10;</p>
+<p>select * from course where lecture='su' and categeory='adv';
+(满足这两个要求的) select * from course order by course~length~ desc;
+(由课程长度有小到大排序) 后面加desc 则反序排序</p>
+<h2 id="delete"><a class="header" href="#delete">delete</a></h2>
+<p>delete from course where id =2; delete from table where key=value</p>
+<h2 id="update"><a class="header" href="#update">update</a></h2>
+<p>update course set lecture = 'Lee' where id =3;</p>
+<h2 id="backup"><a class="header" href="#backup">backup</a></h2>
+<p>mysqldump -u root -p kurs &gt; firstForFun.sql;
+(在root下将kurs数据库备份为FirstForFun.sql)</p>
+<p>mysql -u root -p kurs &lt; Firstforfun.sql
+(将备份文件FirstForFun.sql恢复为kurs数据库)</p>
+<p>(此两个语句是在退出sql后的terminal执行的)</p>
+<h1 id="management"><a class="header" href="#management">Management</a></h1>
+<h2 id="user"><a class="header" href="#user">user</a></h2>
+<p>show databases; use mysql; show tables;</p>
+<p>mysqld --skip-grant-tables (开启mysql的无验证登陆，对于遗失密码后）
+select host,user from user; (查看所有用户)</p>
+<p>create user 'cloud'@'%' identified by 'password'; drop user
+'root'@'%';</p>
+<p>rename user si to shi; (将si重命名为shi) set password =
+password('new'); (将当前用户密码改为new) set password for si =
+password(link); (将si用户密码重置为link)</p>
+<p>grant all privileges on **.** to 'cloud'@'%' with grant option;
+flush privileges;</p>
+<h2 id="privileges"><a class="header" href="#privileges">privileges</a></h2>
+<h3 id="creat"><a class="header" href="#creat">creat</a></h3>
+<p>create user shi identified by 'lining'; grant all privileges on
+**.** to 'shi'@'%' identified by 'lining' with grant option;
+flush privileges;</p>
+<p>grant all privileges on **.** to 'root'@'%' identified by
+'lining';</p>
+<h3 id="查询"><a class="header" href="#查询">查询</a></h3>
+<p>show grants for 'newuser'@'localhost'</p>
+<h3 id="授予"><a class="header" href="#授予">授予</a></h3>
+<p>grants 权限列表 on 数据库名.表明 to '用户'@'主机名' grants all on
+<strong>.</strong> 'newuser'@'localhost'</p>
+<h3 id="撤销"><a class="header" href="#撤销">撤销</a></h3>
+<p>revoke delete on <strong>.</strong> from 'newuser'@'localhost'</p>
+<h2 id="timezone"><a class="header" href="#timezone">timezone</a></h2>
+<p>set global time~zone~ = '+8:00';
+##修改mysql全局时区为北京时间，即我们所在的东8区 set time~zone~ =
+'+8:00'; ##修改当前会话时区 flush privileges; #立即生效</p>
+<h1 id="operations-for-sql"><a class="header" href="#operations-for-sql">Operations for SQL</a></h1>
+<h2 id="decripation"><a class="header" href="#decripation">decripation</a></h2>
+<p>there can available code to execute, change the dbhost and dbpassword</p>
+<h2 id="check-the-connection-in-0812erp"><a class="header" href="#check-the-connection-in-0812erp">check the connection in 0812erp</a></h2>
+<pre><code class="language-{=org}">#+name: myweb
+</code></pre>
+<pre><code class="language-{=org}">#+header: :engine mysql
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbhost localhost
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbuser cloud
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbpassword "password"
+</code></pre>
+<pre><code class="language-{=org}">#+header: :database 0812erp
+</code></pre>
+<pre><code class="language-{.sql results=&quot;output&quot;}">show tables;
+</code></pre>
+<pre><code class="language-example">Tables_in_0812erp
+bus_customer
+bus_goods
+bus_inport
+bus_outport
+bus_provider
+bus_sales
+bus_salesback
+sys_dept
+sys_loginfo
+sys_menu
+sys_notice
+sys_role
+sys_role_menu
+sys_role_user
+sys_user
+</code></pre>
+<pre><code class="language-{=org}">#+header: :engine mysql
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbhost localhost
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbuser cloud
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbpassword "password"
+</code></pre>
+<pre><code class="language-{=org}">#+header: :database 0812erp
+</code></pre>
+<pre><code class="language-{.sql results=&quot;output&quot;}">SELECT * FROM sys_menu          
+</code></pre>
+<h2 id="check-the-database"><a class="header" href="#check-the-database">check the database</a></h2>
+<pre><code class="language-{=org}">#+name: my-query
+</code></pre>
+<pre><code class="language-{=org}">#+header: :engine mysql
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbhost localhost
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbuser root
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbpassword "123456"
+</code></pre>
+<pre><code class="language-{=org}">#+header: :database testforjava
+</code></pre>
+<pre><code class="language-sql">show tables;
+</code></pre>
+<pre><code class="language-{=org}">#+RESULTS: my-query
+</code></pre>
+<h2 id="dump-database"><a class="header" href="#dump-database">dump database</a></h2>
+<pre><code class="language-{.bash org-language=&quot;sh&quot;}">mysqldump -uroot -p123456 testforjava &gt; ~/Desktop/mysql.sql
+</code></pre>
+<h2 id="delete-database"><a class="header" href="#delete-database">delete database</a></h2>
+<pre><code class="language-{=org}">#+name: my-query1
+</code></pre>
+<pre><code class="language-{=org}">#+header: :engine mysql
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbhost localhost
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbuser root
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbpassword "123456"
+</code></pre>
+<pre><code class="language-sql">drop database testforjava;
+show databases;
+</code></pre>
+<h2 id="database"><a class="header" href="#database">Database</a></h2>
+<p>information~schema~
+0812erp
+mysql
+performance~schema~
+sys</p>
+<h2 id="recover-testforjava"><a class="header" href="#recover-testforjava">recover testforjava</a></h2>
+<pre><code class="language-{=org}">#+name: my-query2
+</code></pre>
+<pre><code class="language-{=org}">#+header: :engine mysql
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbhost localhost
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbuser root
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbpassword "123456"
+</code></pre>
+<pre><code class="language-sql">create database testforjava;
+use testforjava;
+source ~/Desktop/mysql.sql
+show databases;
+</code></pre>
+<h2 id="database-1"><a class="header" href="#database-1">Database</a></h2>
+<p>information~schema~
+0812erp
+mysql
+performance~schema~
+sys
+testforjava</p>
+<h2 id="table-creation-update-delete"><a class="header" href="#table-creation-update-delete">Table creation update delete</a></h2>
+<pre><code class="language-{=org}">#+header: :engine mysql
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbhost localhost
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbuser cloud
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbpassword "password"
+</code></pre>
+<pre><code class="language-{=org}">#+header: :database tuto
+</code></pre>
+<pre><code class="language-{.sql results=&quot;output&quot;}">-- 班级表
+CREATE TABLE classe(
+    id INT PRIMARY KEY auto_increment,
+    caption VARCHAR(30) COMMENT '班级名'
+);
+
+-- 学生表
+CREATE TABLE student(
+    id INT UNSIGNED PRIMARY KEY auto_increment,
+    student_name CHAR(30) COMMENT '学生名',
+    gender CHAR(30) DEFAULT NULL    COMMENT '学生性别',
+    class_id INT DEFAULT NULL COMMENT '班级id'
+);
+
+-- 老师表
+CREATE TABLE teacher(
+    id INT UNSIGNED PRIMARY KEY auto_increment,
+    teacher_name CHAR(30) COMMENT '教师名'
+);
+
+-- 课程表
+CREATE TABLE course(
+ id INT UNSIGNED PRIMARY KEY auto_increment,
+ course_name CHAR(30) COMMENT '课程名',
+ teacher_id INT DEFAULT NULL COMMENT'教师id'
+);
+
+-- 成绩表
+CREATE TABLE score(
+    id INT UNSIGNED PRIMARY KEY auto_increment,
+    number INT DEFAULT NULL COMMENT '分数',
+    student_id INT DEFAULT NULL COMMENT '学生id',
+    course_id INT DEFAULT NULL COMMENT '课程id'
+);
+</code></pre>
+<pre><code class="language-{=org}">#+header: :engine mysql
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbhost localhost
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbuser cloud
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbpassword "password"
+</code></pre>
+<pre><code class="language-{=org}">#+header: :database tuto
+</code></pre>
+<pre><code class="language-{.sql results=&quot;output&quot;}">drop table score;
+drop table student;
+drop table course;
+drop table classe;
+drop table teacher;
+</code></pre>
+<pre><code class="language-{=org}">#+header: :engine mysql
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbhost localhost
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbuser cloud
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbpassword "password"
+</code></pre>
+<pre><code class="language-{=org}">#+header: :database tuto
+</code></pre>
+<pre><code class="language-{.sql results=&quot;output&quot;}">INSERT INTO student (student_name, gender, class_id) VALUES ('张三', 'M', 1);
+INSERT INTO student (student_name, gender, class_id) VALUES ('李四', 'M', 2);
+-- INSERT INTO student (student_name, gender, class_id) VALUES ('王五', 'F', 4);  
+INSERT INTO classe (caption) VALUES ('一班');
+INSERT INTO classe (caption) VALUES ('二班');
+INSERT INTO classe (caption) VALUES ('三班');           
+</code></pre>
+<h2 id="add-foreign-key"><a class="header" href="#add-foreign-key">add foreign key</a></h2>
+<p>add foreign key muss be careful, the references must exist, such as --
+INSERT INTO student (student~name~, gender, class~id~) VALUES ('王五',
+'F', 4); will give error with add foreign key, because there are no
+such item in classe with id=4!!!!</p>
+<pre><code class="language-{=org}">#+header: :engine mysql
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbhost localhost
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbuser cloud
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbpassword "password"
+</code></pre>
+<pre><code class="language-{=org}">#+header: :database tuto
+</code></pre>
+<pre><code class="language-{.sql results=&quot;output&quot;}">-- ALTER TABLE student DROP FOREIGN KEY student_class;
+ALTER TABLE student ADD 
+CONSTRAINT student_class 
+FOREIGN KEY (class_id) 
+REFERENCES classe(id)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+
+</code></pre>
+<pre><code class="language-{=org}">#+header: :engine mysql
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbhost localhost
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbuser cloud
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbpassword "password"
+</code></pre>
+<pre><code class="language-{=org}">#+header: :database tuto
+</code></pre>
+<pre><code class="language-{.sql results=&quot;output&quot;}">DELETE FROM classe WHERE id=2;
+</code></pre>
+<pre><code class="language-{=org}">#+header: :engine mysql
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbhost localhost
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbuser cloud
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbpassword "password"
+</code></pre>
+<pre><code class="language-{=org}">#+header: :database tuto
+</code></pre>
+<pre><code class="language-{.sql results=&quot;output&quot;}">UPDATE classe SET id=10 WHERE id=1;
+</code></pre>
+<h2 id="left-join"><a class="header" href="#left-join">left join</a></h2>
+<pre><code class="language-{=org}">#+header: :engine mysql
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbhost localhost
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbuser cloud
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbpassword "password"
+</code></pre>
+<pre><code class="language-{=org}">#+header: :database tuto
+</code></pre>
+<pre><code class="language-{.sql results=&quot;output&quot;}">select c.caption, s.student_name, s.gender from classe c left join student s on c.id=s.class_id;
+</code></pre>
+<h2 id="right-join"><a class="header" href="#right-join">right join</a></h2>
+<pre><code class="language-{=org}">#+header: :engine mysql
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbhost localhost
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbuser cloud
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbpassword "password"
+</code></pre>
+<pre><code class="language-{=org}">#+header: :database tuto
+</code></pre>
+<pre><code class="language-{.sql results=&quot;output&quot;}">select c.caption, s.student_name, s.gender from classe c right join student s on c.id=s.class_id;
+</code></pre>
+<h2 id="inner-join"><a class="header" href="#inner-join">inner join</a></h2>
+<pre><code class="language-{=org}">#+header: :engine mysql
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbhost localhost
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbuser cloud
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbpassword "password"
+</code></pre>
+<pre><code class="language-{=org}">#+header: :database tuto
+</code></pre>
+<pre><code class="language-{.sql results=&quot;output&quot;}">select c.caption, s.student_name, s.gender from classe c inner join student s on c.id=s.class_id;
+</code></pre>
+<h2 id="full-joipn"><a class="header" href="#full-joipn">full joipn</a></h2>
+<pre><code class="language-{=org}">#+header: :engine mysql
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbhost localhost
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbuser cloud
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbpassword "password"
+</code></pre>
+<pre><code class="language-{=org}">#+header: :database tuto
+</code></pre>
+<pre><code class="language-{.sql results=&quot;output&quot;}">select * from classe left join student on classe.id=student.class_id union  select * from classe right join student on classe.id=student.class_id;          
+</code></pre>
+<h2 id="many2one"><a class="header" href="#many2one">many2one</a></h2>
+<p>add more students to same class</p>
+<pre><code class="language-{=org}">#+header: :engine mysql
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbhost localhost
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbuser cloud
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbpassword "password"
+</code></pre>
+<pre><code class="language-{=org}">#+header: :database tuto
+</code></pre>
+<pre><code class="language-{.sql results=&quot;output&quot;}">INSERT INTO student (student_name, gender, class_id) VALUES ('张五', 'M', 1);
+INSERT INTO student (student_name, gender, class_id) VALUES ('李六', 'M', 2);
+INSERT INTO student (student_name, gender, class_id) VALUES ('李七', 'M', 1);
+INSERT INTO student (student_name, gender, class_id) VALUES ('李八', 'M', 1);
+INSERT INTO student (student_name, gender, class_id) VALUES ('李九', 'M', 1);
+</code></pre>
+<pre><code class="language-{=org}">#+header: :engine mysql
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbhost localhost
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbuser cloud
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbpassword "password"
+</code></pre>
+<pre><code class="language-{=org}">#+header: :database tuto
+</code></pre>
+<pre><code class="language-{.sql results=&quot;output&quot;}">SELECT c.caption ,COUNT(s.student_name) student_num 
+FROM classe c LEFT JOIN student s ON c.id=s.class_id 
+GROUP BY c.id;
+</code></pre>
+<pre><code class="language-{=org}">#+header: :engine mysql
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbhost localhost
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbuser cloud
+</code></pre>
+<pre><code class="language-{=org}">#+header: :dbpassword "password"
+</code></pre>
+<pre><code class="language-{=org}">#+header: :database tuto
+</code></pre>
+<pre><code class="language-{.sql results=&quot;output&quot;}">select c.caption , s.student_name, s.gender from classe c left join student s on c.id=s.class_id;          
+</code></pre>
+<h2 id="many2many"><a class="header" href="#many2many">many2many</a></h2>
+<pre><code class="language-sql">CREATE TABLE tag(
+id INT UNSIGNED PRIMARY KEY auto_increment,
+tag_name VARCHAR(50) NOT NULL
+)
+
+CREATE TABLE article(
+id INT UNSIGNED PRIMARY KEY auto_increment,
+title VARCHAR(100) NOT NULL
+)
+
+CREATE TABLE tag_article(
+id INT UNSIGNED PRIMARY KEY auto_increment,
+tag_id INT UNSIGNED DEFAULT NULL,
+article_id INT UNSIGNED DEFAULT NULL,
+FOREIGN KEY(tag_id) REFERENCES tag(id) ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(article_id) REFERENCES article(id) ON DELETE CASCADE ON UPDATE CASCADE,
+UNIQUE(tag_id,article_id)
+)
+
+
+SELECT a.title 
+FROM article a INNER JOIN tag_article t 
+ON a.id=t.article_id 
+WHERE tag_id=1
+
+
+
+
+
+
+
+</code></pre>
+<h1 id="operation-from-the-third-program-language"><a class="header" href="#operation-from-the-third-program-language">Operation from the third program language</a></h1>
+<h2 id="singal-python-file-connect-with-mysql"><a class="header" href="#singal-python-file-connect-with-mysql">singal python file connect with mysql</a></h2>
+<pre><code class="language-{.python results=&quot;output&quot;}">import pymysql
+db = pymysql.connect("localhost", "root", "123456", "testforjava")
+cursor = db.cursor()
+sql = """create table  IF NOT EXISTS course(id int,  kurs_name varchar(50), kurs_length varchar(50),teacher varchar(50), categeory varchar(50))"""
+cursor.execute(sql)
+sql = """insert into course values(7, 'CLI', 22, 'su', 'basic')"""
+cursor.execute(sql)
+sql = """insert into course values(8, 'CLI', 22, 'su', 'basic')"""
+cursor.execute(sql)
+db.commit()
+
+sql1 = """select * from course"""
+cursor.execute(sql1)
+results = cursor.fetchall()
+print('\n')
+for row in results:
+    num = row[0]
+    name = row[1]
+    age = row[2]
+    right = row[3]
+    dis = row[4]
+    print("num is %7s, name is %7s, age is %7s, right is %7s, dis is %7s" %
+          (num, name, age, right, dis))
+
+# if __name__ == "__main__":
+cursor.close()
+
+</code></pre>
+<pre><code class="language-{.python results=&quot;output&quot;}">from pymysql import connect
+from pymysql.cursors import DictCursor
+
+
+class Pymysqlconnection:
+    def __init__(self):
+        self.conn = connect(
+            host='localhost',
+            port=3306,
+            user='cloud',
+            password='password',
+            database='0812erp'
+        )
+        self.cursor = self.conn.cursor(DictCursor)
+
+    def __def__(self):
+        self.cursor.close()
+        self.conn.close()
+
+    def get_item(self):
+        sql = 'select * from sys_user'
+        self.cursor.execute(sql)
+        for temp in self.cursor.fetchall():
+            print(temp)
+
+
+if __name__ == '__main__':
+    pymysqlconnection = Pymysqlconnection()
+    pymysqlconnection.get_item()
+
+</code></pre>
+<h2 id="singal-java-file-connect-with-mysql"><a class="header" href="#singal-java-file-connect-with-mysql">singal java file connect with mysql</a></h2>
+<pre><code class="language-{.java classname=&quot;JavaConnSQL&quot; results=&quot;output&quot; dir=&quot;~/Desktop/&quot;}">import java.sql.*;
+public class JavaConnSQL
+{
+    static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";  
+    static final String DB_URL = "jdbc:mysql://localhost:3306/testforjava?useSSL=false&amp;serverTimezone=UTC";
+    static final String USER = "root";
+    static final String PASS = "123456";
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+        System.out.println("在dir中生成的代码， 如果dir中有驱动，则可以执行mysql的连接");
+        System.out.println("提前执行");
+        System.out.println("export CLASSPATH=mysql-connector-java-8.0.20.jar:. ");
+        Connection conn = null;
+        Statement stmt = null;
+        try{
+            Class.forName(JDBC_DRIVER);
+            System.out.println("连接数据库...");
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+            System.out.println(" 实例化Statement对象...");
+            stmt = conn.createStatement();
+            String sql;
+            sql = "SELECT id, kurs_name FROM course";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while(rs.next()){
+                int id  = rs.getInt("id");
+                String name = rs.getString("kurs_name");
+                // 输出数据
+                System.out.print("ID: " + id);
+                System.out.print(", kurs name 站点名称: " + name);
+                System.out.print("\n");
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+        }catch(SQLException se){
+            // 处理 JDBC 错误
+            se.printStackTrace();
+        }catch(Exception e){
+            // 处理 Class.forName 错误
+            e.printStackTrace();
+        }
+    }
+}
+
+</code></pre>
+<h1 id="footnotes"><a class="header" href="#footnotes">Footnotes</a></h1>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>此后，电脑的root用户将不能登陆，而此时电脑的普通,
+用户可以登陆，但是没有设置密码，不能用 -p 登陆</p>
+</div>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="Julia.org.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="postgressql.org.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="Julia.org.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="postgressql.org.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

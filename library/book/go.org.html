@@ -1,0 +1,1512 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Go - my collection</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="AI.org.html"><strong aria-hidden="true">1.</strong> AI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="MachineLearning.org.html"><strong aria-hidden="true">1.1.</strong> MachineLearning</a></li><li class="chapter-item expanded "><a href="DeepLearning.org.html"><strong aria-hidden="true">1.2.</strong> DeepLearning</a></li><li class="chapter-item expanded "><a href="NLP.org.html"><strong aria-hidden="true">1.3.</strong> NLP</a></li></ol></li><li class="chapter-item expanded "><a href="CS.org.html"><strong aria-hidden="true">2.</strong> CS</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="linux.org.html"><strong aria-hidden="true">2.1.</strong> Linux</a></li><li class="chapter-item expanded "><a href="Algorithm.org.html"><strong aria-hidden="true">2.2.</strong> Algorithm</a></li><li class="chapter-item expanded "><a href="DataStructure.org.html"><strong aria-hidden="true">2.3.</strong> DataStructure</a></li><li class="chapter-item expanded "><a href="Parallelisum.org.html"><strong aria-hidden="true">2.4.</strong> Parallelisum</a></li><li class="chapter-item expanded "><a href="cloud_service_computing.org.html"><strong aria-hidden="true">2.5.</strong> Cloud_service_computing</a></li><li class="chapter-item expanded "><a href="blockchain.org.html"><strong aria-hidden="true">2.6.</strong> Blockchain</a></li></ol></li><li class="chapter-item expanded "><a href="DataScience.org.html"><strong aria-hidden="true">3.</strong> DataScience</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="DAMA.org.html"><strong aria-hidden="true">3.1.</strong> DAMA</a></li></ol></li><li class="chapter-item expanded "><a href="Math.org.html"><strong aria-hidden="true">4.</strong> Math</a></li><li class="chapter-item expanded "><a href="Physik.org.html"><strong aria-hidden="true">5.</strong> Physik</a></li><li class="chapter-item expanded "><a href="QutuamComputation.org.html"><strong aria-hidden="true">6.</strong> QutuamComputation</a></li><li class="chapter-item expanded "><a href="ROS.org.html"><strong aria-hidden="true">7.</strong> ROS</a></li><li class="chapter-item expanded "><a href="tools.org.html"><strong aria-hidden="true">8.</strong> Tools</a></li><li class="chapter-item expanded "><a href="WebDesign.org.html"><strong aria-hidden="true">9.</strong> WebDesign</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vue.org.html"><strong aria-hidden="true">9.1.</strong> Vue</a></li><li class="chapter-item expanded "><a href="vscode.org.html"><strong aria-hidden="true">9.2.</strong> Vscode</a></li></ol></li><li class="chapter-item expanded "><a href="Language.org.html"><strong aria-hidden="true">10.</strong> Language</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c.org.html"><strong aria-hidden="true">10.1.</strong> C</a></li><li class="chapter-item expanded "><a href="ts.org.html"><strong aria-hidden="true">10.2.</strong> TS</a></li><li class="chapter-item expanded "><a href="scala.org.html"><strong aria-hidden="true">10.3.</strong> Scala</a></li><li class="chapter-item expanded "><a href="lisp.org.html"><strong aria-hidden="true">10.4.</strong> Lisp</a></li><li class="chapter-item expanded "><a href="Java.org.html"><strong aria-hidden="true">10.5.</strong> Java</a></li><li class="chapter-item expanded "><a href="JS.org.html"><strong aria-hidden="true">10.6.</strong> JS</a></li><li class="chapter-item expanded "><a href="go.org.html" class="active"><strong aria-hidden="true">10.7.</strong> Go</a></li><li class="chapter-item expanded "><a href="rust.org.html"><strong aria-hidden="true">10.8.</strong> Rust</a></li><li class="chapter-item expanded "><a href="python.org.html"><strong aria-hidden="true">10.9.</strong> Python</a></li><li class="chapter-item expanded "><a href="emacs.org.html"><strong aria-hidden="true">10.10.</strong> Emacs</a></li><li class="chapter-item expanded "><a href="haskell.org.html"><strong aria-hidden="true">10.11.</strong> Haskell</a></li><li class="chapter-item expanded "><a href="Julia.org.html"><strong aria-hidden="true">10.12.</strong> Julia</a></li><li class="chapter-item expanded "><a href="mysql.org.html"><strong aria-hidden="true">10.13.</strong> Mysql</a></li><li class="chapter-item expanded "><a href="postgressql.org.html"><strong aria-hidden="true">10.14.</strong> Postgressql</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">my collection</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<hr />
+<h2 id="title-go"><a class="header" href="#title-go">title: Go</a></h2>
+<pre><code class="language-{=org}">#+STARTUP: overview
+</code></pre>
+<h1 id="go-features"><a class="header" href="#go-features">Go Features</a></h1>
+<h2 id="note"><a class="header" href="#note">Note</a></h2>
+<h3 id="array"><a class="header" href="#array">Array</a></h3>
+<ul>
+<li>Array &amp; Slice: Array must with specialized length for [x]</li>
+<li>function:
+<ul>
+<li>must given specialized arguments(if point) when execution</li>
+</ul>
+</li>
+<li>method:
+<ul>
+<li>Must have a receiver</li>
+<li>if receiver is pointer of instance, the value of instance can be
+modified</li>
+<li>for execution: the instance of receiver can be pointer or not,
+will automatically convered</li>
+<li>if receiver is not a pointer, the receiver can still be a
+pointer</li>
+</ul>
+</li>
+</ul>
+<h3 id="interface"><a class="header" href="#interface">interface</a></h3>
+<ul>
+<li>def interface with its contains</li>
+<li>def receiver</li>
+<li>receiver implementing the contains with methods(just like method
+above)</li>
+<li>instancing of interface</li>
+<li>instancing of receiver</li>
+<li>passing receiver to interface(if the implementation is kind of
+pointer for receiver, here also pass pointer)</li>
+<li>executing methods of interface</li>
+</ul>
+<h3 id="slice"><a class="header" href="#slice">Slice</a></h3>
+<p>As you've noticed, when you slice from the end, it's the length that
+shrinks. The pointer to the first element and the capacity remain
+unchanged.</p>
+<p>When you slice from the beginning of the slice, though, what happens
+instead is the pointer to the first element is changed to be a pointer
+to the nth element that you're slicing from (i.e. sl = arr[2:] means
+to set the pointer to point to &amp;arr[2]). Because the head of the slice
+has moved forward 2, in this case, the length and capacity have to
+decrease by 2.</p>
+<h2 id="generics"><a class="header" href="#generics">Generics</a></h2>
+<pre><code class="language-{.go exports=&quot;both&quot; results=&quot;output&quot;}">package main
+import "fmt"
+func Sum[V int64 | float64](m ...V) V {
+        var s V
+        for _,v := range m {
+                s += v
+        }
+        return s
+}
+func main() {
+        fmt.Println(Sum([]int64{1,2,3,4,5}...))
+        fmt.Println(Sum(int64(1),int64(2),int64(3),int64(4)))
+        fmt.Println(Sum(1.1, 2.2, 3.3, 4.4))
+}  
+</code></pre>
+<pre><code class="language-{.go exports=&quot;both&quot; results=&quot;output&quot; tangle=&quot;./babel/go_generics_constraints.go&quot;}">package main
+import (
+        "fmt"
+        "golang.org/x/exp/constraints"
+)
+func Sum[V constraints.Float | constraints.Integer](m ...V) V {
+        var s V
+        for _,v := range m {
+                s += v
+        }
+        return s
+}
+func main() {
+        fmt.Println(Sum([]int64{1,2,3,4,5}...))
+        fmt.Println(Sum(1,2,3,4))
+        fmt.Println(Sum(1.1, 2.2, 3.3, 4.4))
+        fmt.Println(Sum(uint32(2), uint32(4)))
+}  
+</code></pre>
+<pre><code class="language-{.bash org-language=&quot;sh&quot; results=&quot;output&quot; exports=&quot;both&quot;}">cd babel
+go mod init go-generics-constraints
+go mod tidy
+go build go_generics_constraints.go
+rm main.go
+rm go.mod
+rm go.sum
+./go_generics_constraints
+</code></pre>
+<pre><code class="language-example">15
+10
+11
+6
+</code></pre>
+<h2 id="strings"><a class="header" href="#strings">Strings</a></h2>
+<pre><code class="language-{.go exports=&quot;both&quot; results=&quot;output&quot;}">package main
+import (
+        "fmt"
+        "strings"
+)
+func main() {
+        cut := func(sep string) {
+                s:= "hello|world"
+                before, after, found := strings.Cut(s, sep)
+                fmt.Printf("Cut(%q, %q): %q, %q, %v\n", s, sep, before, after, found)
+        }
+        cut("|")
+        cut("hello")
+        cut("nothing")
+}
+</code></pre>
+<pre><code class="language-example">Cut("hello|world", "|"): "hello", "world", true
+Cut("hello|world", "hello"): "", "|world", true
+Cut("hello|world", "nothing"): "hello|world", "", false
+</code></pre>
+<h2 id="array-1"><a class="header" href="#array-1">Array</a></h2>
+<pre><code class="language-{.go results=&quot;output&quot; exports=&quot;both&quot;}">package main
+import (
+        "fmt"
+)
+func test(array []int64) {
+        for i:= 0; i&lt; 3; i++{
+                array[i] = 10
+        }
+}
+
+func main() {
+        start := make([]int64, 3)
+        test(start)
+        fmt.Println(start)
+}
+
+
+
+</code></pre>
+<pre><code class="language-example">[10 10 10]
+</code></pre>
+<h2 id="map"><a class="header" href="#map">Map</a></h2>
+<p>three way to create a map</p>
+<pre><code class="language-{.go exports=&quot;both&quot; results=&quot;output&quot;}">package main
+import (
+        "fmt"
+)
+func main() {
+        myMap1 := make(map[string]string, 10)
+        fmt.Println(myMap1)
+        myMap1["one"] = "python"
+        fmt.Println(myMap1)
+        myMap2 := make(map[string]string)
+        myMap2["one"] = "python"
+        fmt.Println(myMap2)          
+        myMap3 := map[string]string{
+                "one": "python",
+        }
+        fmt.Println(myMap3)
+}
+</code></pre>
+<pre><code class="language-example">map[]
+map[one:python]
+map[one:python]
+map[one:python]
+</code></pre>
+<h2 id="methode"><a class="header" href="#methode">Methode</a></h2>
+<p>function(copy or pointer) methode(copy or pointer)</p>
+<h2 id="interface-1"><a class="header" href="#interface-1">interface</a></h2>
+<pre><code class="language-{.go exports=&quot;both&quot; results=&quot;output&quot;}">package main
+import (
+        "fmt"
+)
+type AnimalIF interface{
+        Sleep()
+        GetColor() string
+        GetType() string
+}
+
+type Cat struct{
+        color string
+}
+
+func (this *Cat) Sleep(){
+        fmt.Println("Cat is sleeping")
+}
+func (this *Cat) GetColor() string {
+        return this.color
+}
+func (this *Cat) GetType() string {
+        return "Cat"
+}
+
+type Dog struct{
+        color string
+}
+
+func (this *Dog) Sleep(){
+        fmt.Println("Dog is sleeping")
+}
+func (this *Dog) GetColor() string {
+        return this.color
+}
+func (this *Dog) GetType() string {
+        return "Dog"
+}
+func ShowInfo(animal AnimalIF){
+        animal.Sleep()
+        fmt.Println("color = ", animal.GetColor())
+        fmt.Println("type = ", animal.GetType())
+}
+
+func main() {
+        cat := Cat{"Green"}
+        dog := Dog{"Yellow"}
+        ShowInfo(&amp;cat)
+        ShowInfo(&amp;dog)
+}
+</code></pre>
+<pre><code class="language-example">Cat is sleeping
+color =  Green
+type =  Cat
+Dog is sleeping
+color =  Yellow
+type =  Dog
+</code></pre>
+<p>interface {} assert: arg.(string), if arg is not {}, it will be forced
+to convert to string can refer to every kind of value</p>
+<h2 id="polymorphism"><a class="header" href="#polymorphism">polymorphism</a></h2>
+<p>OpenFile already implemented Wirter and Reader</p>
+<pre><code class="language-{.go results=&quot;output&quot; exports=&quot;both&quot;}">package main
+
+import (
+    "fmt"
+    "io"
+    "os"
+)
+
+func main() {
+    tty, err := os.OpenFile("/dev/tty", os.O_RDWR, 0)
+    if err != nil {
+        fmt.Println("Open file with error", err)
+        return
+    }
+    var r io.Reader
+    r = tty
+    var w io.Writer
+    w = r.(io.Writer)
+    w.Write([]byte("HELLO from meb\n"))
+}
+
+
+</code></pre>
+<pre><code class="language-example">Open file with error open /dev/tty: no such device or address
+</code></pre>
+<h2 id="reflect"><a class="header" href="#reflect">reflect</a></h2>
+<pre><code class="language-{.go results=&quot;output&quot; exports=&quot;both&quot;}">package main
+
+import (
+        "fmt"
+        "reflect"
+)
+
+func reflectNum(arg interface{}){
+        fmt.Println("type: ", reflect.TypeOf(arg))
+        fmt.Println("value: ", reflect.ValueOf(arg))
+}
+
+func main(){
+        var num float64 = 3.1415926
+        reflectNum(num)
+}
+
+</code></pre>
+<pre><code class="language-example">type:  float64
+value:  3.1415926
+</code></pre>
+<pre><code class="language-{.go results=&quot;output&quot; exports=&quot;both&quot;}">package main
+import (
+        "fmt"
+        "reflect"
+)
+
+type User struct {
+        Id int
+        Name string
+        Age int
+}
+
+func (this User) Call(){
+        fmt.Println("user is calling")
+        fmt.Printf("%v\n", this)
+}
+
+func (this User) End_Call(id int){
+        fmt.Println(id)
+        fmt.Printf("%v\n", this)
+}
+
+func main(){
+        user := User{10, "Alice", 23}
+        reflectExample(user)
+}
+
+func reflectExample(input interface{}){
+        //get tpye
+        inputType := reflect.TypeOf(input)
+        fmt.Println("input Type is :", inputType.Name())
+
+
+        //get value
+        inputValue := reflect.ValueOf(input)
+        fmt.Println("value Type is :", inputValue)
+
+
+        //get fields in details
+        for i := 0; i&lt; inputType.NumField(); i++ {
+                field := inputType.Field(i)
+                value := inputValue.Field(i).Interface()
+                fmt.Printf("%s: %v = %v\n",field.Name, field.Type, value)
+        }
+
+        //get methods in details
+        for i := 0; i&lt; inputType.NumMethod(); i++ {
+                method := inputType.Method(i)
+                fmt.Printf("%s: %v\n", method.Name, method.Type)
+        }
+}
+</code></pre>
+<pre><code class="language-example">input Type is : User
+value Type is : {10 Alice 23}
+Id: int = 10
+Name: string = Alice
+Age: int = 23
+Call: func(main.User)
+End_Call: func(main.User, int)
+</code></pre>
+<h1 id="time"><a class="header" href="#time">time</a></h1>
+<pre><code class="language-{.go results=&quot;output&quot; exports=&quot;both&quot;}">package main
+import (
+    "fmt"
+    "time"
+)
+func test() {
+    start := time.Now()
+    sum := 0
+    for i := 0; i &lt; 100000; i++ {
+        sum++
+    }
+    elapsed := time.Since(start)
+    fmt.Println("该函数执行完成耗时：", elapsed)
+}
+
+func main() {
+    test()
+}
+
+</code></pre>
+<pre><code class="language-example">该函数执行完成耗时： 33.536µs
+</code></pre>
+<h1 id="sync"><a class="header" href="#sync">sync</a></h1>
+<pre><code class="language-{.go results=&quot;output&quot; exports=&quot;both&quot;}">package main
+
+import "fmt"
+
+func produce(c chan&lt;- int) {
+    for i := 0; i &lt; 10; i++ {
+        fmt.Printf(" Produced : %d\n", i)
+        c &lt;- i // synchronization
+    }
+}
+
+func consume(c &lt;-chan int) {
+    for true {
+        i := &lt;-c // synchronization
+        fmt.Printf(" Consumed : %d\n", i)
+    }
+}
+
+func main() {
+    c := make(chan int)
+    go consume(c)
+    produce(c)
+}
+</code></pre>
+<pre><code class="language-example">Produced : 0
+ Consumed : 0
+ Produced : 1
+ Produced : 2
+ Consumed : 1
+ Consumed : 2
+ Produced : 3
+ Produced : 4
+ Consumed : 3
+ Consumed : 4
+ Produced : 5
+ Produced : 6
+ Consumed : 5
+ Consumed : 6
+ Produced : 7
+ Produced : 8
+ Consumed : 7
+ Consumed : 8
+ Produced : 9
+</code></pre>
+<pre><code class="language-{.go results=&quot;output&quot; exports=&quot;both&quot;}">package main
+import (
+    "fmt"
+    "time"
+    "sync"
+)
+func main() {
+    var wg sync.WaitGroup
+    wg.Add(1)
+
+    go func(){
+        count("Sleep")
+        wg.Done()
+    }()
+    wg.Wait()
+}
+
+func count(thing string) {
+    for i := 1; i &lt;= 5; i++ {
+        fmt.Println(i, thing)
+        time.Sleep(time.Millisecond*500)
+    }
+
+}
+</code></pre>
+<pre><code class="language-example">1 Sleep
+2 Sleep
+3 Sleep
+4 Sleep
+5 Sleep
+</code></pre>
+<h1 id="go-1"><a class="header" href="#go-1">go</a></h1>
+<pre><code class="language-{.go results=&quot;output&quot; exports=&quot;both&quot;}">package main
+import (
+    "fmt"
+    "time"
+)
+func main() {
+    var times int
+    go func() {
+        for {
+        }
+    }()
+    go func() {
+        for {
+        }
+    }()
+    go func() {
+        for {
+        }
+    }()
+    go func() {
+        for {
+        }
+    }()
+    for times = 0; times &lt;= 10; times++ {
+        fmt.Println("tick", times)
+        time.Sleep(time.Second)
+    }
+}
+
+</code></pre>
+<pre><code class="language-example">tick 0
+tick 1
+tick 2
+tick 3
+tick 4
+tick 5
+tick 6
+tick 7
+tick 8
+tick 9
+tick 10
+</code></pre>
+<h1 id="chan"><a class="header" href="#chan">chan</a></h1>
+<h2 id="example"><a class="header" href="#example">example</a></h2>
+<pre><code class="language-{.go results=&quot;output&quot; exports=&quot;both&quot;}">package main
+import "fmt"
+func main() {
+    // 创建一个整型带两个缓冲的通道
+    ch := make(chan int, 2)
+
+    // 给通道放入两个数据
+    ch &lt;- 0
+    ch &lt;- 1
+
+    // 关闭缓冲
+    close(ch)
+    // 遍历缓冲所有数据, 且多遍历1个
+    for i := 0; i &lt; cap(ch)+1; i++ {
+
+        // 从通道中取出数据
+        v, ok := &lt;-ch
+
+        // 打印取出数据的状态
+        fmt.Println(v, ok)
+    }
+}
+</code></pre>
+<pre><code class="language-{=org}">#+RESULTS:
+</code></pre>
+<h2 id="dead-lock-unbuffer-channel"><a class="header" href="#dead-lock-unbuffer-channel">dead lock unbuffer channel</a></h2>
+<pre><code class="language-{.go results=&quot;output&quot; exports=&quot;both&quot;}">package main
+import "fmt"
+func main() {
+    // 创建一个整型带两个缓冲的通道
+    ch := make(chan int)
+
+    // 给通道放入两个数据
+    ch &lt;- 0
+    id := &lt;- ch
+    fmt.Println(id)
+
+    close(ch)
+}
+</code></pre>
+<p>*but can be saved with goroutine*</p>
+<pre><code class="language-{.go results=&quot;output&quot; exports=&quot;both&quot;}">package main
+import "fmt"
+func main() {
+    ch := make(chan int)
+    go func(){
+      ch &lt;- 0
+    }()
+    id := &lt;- ch
+    fmt.Println(id)
+    close(ch)
+}
+</code></pre>
+<pre><code class="language-example">0
+</code></pre>
+<h2 id="deal-lock-after-buffer-channel-is-full"><a class="header" href="#deal-lock-after-buffer-channel-is-full">deal lock after buffer channel is full</a></h2>
+<p><strong>buffer can be filled</strong></p>
+<pre><code class="language-{.go results=&quot;output&quot; exports=&quot;both&quot;}">package main
+import "fmt"
+func main() {
+    ch := make(chan int, 2)
+
+    ch &lt;- 0
+    ch &lt;- 1
+    id := &lt;- ch
+    fmt.Println(id)
+
+    close(ch)
+}
+</code></pre>
+<pre><code class="language-example">0
+</code></pre>
+<p><strong>but can not be exceeded</strong></p>
+<pre><code class="language-{.go results=&quot;output&quot; exports=&quot;both&quot;}">package main
+import "fmt"
+func main() {
+    ch := make(chan int, 2)
+
+    ch &lt;- 0
+    ch &lt;- 1
+    ch &lt;- 2
+    id := &lt;- ch
+    fmt.Println(id)
+
+    close(ch)
+}
+</code></pre>
+<pre><code class="language-example">0
+</code></pre>
+<h1 id="context" id="&quot;2bf1c325-6a98-43be-815c-a41934b02756&quot;">context</h1>
+<pre><code class="language-{.go results=&quot;output&quot; exports=&quot;both&quot;}">package main
+
+import (
+    "fmt"
+    "context"
+    "time"
+)
+
+func enrichContext(ctx context.Context) context.Context {
+    return context.WithValue(ctx, "request-id", "11212")
+
+}
+
+func doSomething(ctx context.Context){
+    rID := ctx.Value("request-id")
+    fmt.Println(rID)
+    for {
+        select {
+        case &lt;-ctx.Done():
+            fmt.Println("times out")
+            return
+        default:
+            fmt.Println("doing something cool")
+        }
+        time.Sleep(500*time.Millisecond)
+    }
+}
+
+
+func main (){
+    fmt.Println("Go Context example")
+    ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+    defer cancel()
+    fmt.Println(ctx.Err())
+    ctx = enrichContext(ctx)
+    go doSomething(ctx)
+    select {
+    case &lt;- ctx.Done():
+        fmt.Println("Oh, no, Time is execeed the deadline")
+        fmt.Println(ctx.Err())
+    }
+    time.Sleep(2*time.Second)
+}
+</code></pre>
+<pre><code class="language-example">Go Context example
+&lt;nil&gt;
+11212
+doing something cool
+doing something cool
+doing something cool
+doing something cool
+Oh, no, Time is execeed the deadline
+context deadline exceeded
+times out
+</code></pre>
+<pre><code class="language-{.go results=&quot;output&quot; exports=&quot;both&quot;}">package main
+
+import (
+    "context"
+    "fmt"
+    "log"
+    "time"
+)
+
+func main() {
+    start := time.Now
+    ctx := context.Background()
+    userId := 10
+    val, err := fetchUserData(ctx, userId)
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Println("result : ", val)
+    fmt.Println("took ", time.Since(start()))
+}
+
+type Response struct {
+    value int
+    err   error
+}
+
+func fetchUserData(ctx context.Context, userid int) (int, error) {
+    ctx, cancel := context.WithTimeout(ctx, time.Millisecond*200)
+    defer cancel()
+
+    respch := make(chan Response)
+
+    go func() {
+        val, err := fetchThirdPartyStuffWhichCanbeSlow()
+        respch &lt;- Response{
+            value: val,
+            err:   err,
+        }
+    }()
+
+    for {
+        select {
+        case &lt;-ctx.Done():
+            return 0, fmt.Errorf("Fetch data is time out")
+        case resp := &lt;-respch:
+            return resp.value, resp.err
+        }
+    }
+}
+
+func fetchThirdPartyStuffWhichCanbeSlow() (int, error) {
+    time.Sleep(time.Millisecond * 150)
+    return 666, nil
+}
+</code></pre>
+<h1 id="gonum"><a class="header" href="#gonum">gonum</a></h1>
+<h2 id="test-example"><a class="header" href="#test-example">Test example</a></h2>
+<pre><code class="language-{.go results=&quot;output&quot; exports=&quot;both&quot; tangle=&quot;./babel/main.go&quot;}">package main
+
+import (
+        "fmt"
+
+        "gonum.org/v1/gonum/blas/blas64"
+        "gonum.org/v1/gonum/mat"
+)
+
+func main() {
+        r := row{1, 2, 3, 4}
+        c := column{1, 2, 3}
+
+        var m mat.Dense
+        m.Mul(c, r)
+
+        fmt.Println(mat.Formatted(&amp;m))
+        n := c.RawVector().N
+        inc := c.RawVector().Inc
+        d := c.RawVector().Data
+        fmt.Println(n)
+        fmt.Println(inc)
+        fmt.Println(d)
+
+        u := mat.NewVecDense(3, []float64{1, 2, 3})
+        v := mat.NewVecDense(3, []float64{4, 5, 6})
+        fmt.Println("u :", u)
+        fmt.Println("v :", v)
+
+}
+
+// row is a user-defined row vector.
+type row []float64
+
+// Dims, At and T minimally satisfy the mat.Matrix interface.
+func (v row) Dims() (r, c int)    { return 1, len(v) }
+func (v row) At(_, j int) float64 { return v[j] }
+func (v row) T() mat.Matrix       { return column(v) }
+
+// RawVector allows fast path computation with the vector.
+func (v row) RawVector() blas64.Vector {
+        return blas64.Vector{N: len(v), Data: v, Inc: 1}
+}
+
+// column is a user-defined column vector.
+type column []float64
+
+// Dims, At and T minimally satisfy the mat.Matrix interface.
+func (v column) Dims() (r, c int)    { return len(v), 1 }
+func (v column) At(i, _ int) float64 { return v[i] }
+func (v column) T() mat.Matrix       { return row(v) }
+
+// RawVector allows fast path computation with the vector.
+func (v column) RawVector() blas64.Vector {
+        return blas64.Vector{N: len(v), Data: v, Inc: 1}
+}
+
+</code></pre>
+<h2 id="newdense"><a class="header" href="#newdense">NewDense</a></h2>
+<pre><code class="language-{.go tangle=&quot;./babel/main.go&quot;}">package main
+
+import (
+        "fmt"
+        "gonum.org/v1/gonum/mat"
+)
+
+func main() {
+        zeros := mat.NewDense(3,5,nil)
+        fmt.Println(zeros)
+}
+
+</code></pre>
+<h2 id="make"><a class="header" href="#make">make</a></h2>
+<pre><code class="language-{.go tangle=&quot;./babel/main.go&quot;}">package main
+
+import (
+        "fmt"
+        "math/rand"
+        "gonum.org/v1/gonum/mat"
+)
+
+func main() {
+        data := make([]float64, 36)
+        for i := range data {
+                data[i] = rand.NormFloat64()
+        }
+        a := mat.NewDense(6, 6, data)
+        zeros := mat.NewDense(3,5,nil)
+        // fmt.Println(mat.Formatted(zeros, mat.Prefix(""), mat.Squeeze()))
+        // fmt.Println(mat.Formatted(a, mat.Prefix(""), mat.Squeeze()))
+        eq := mat.Equal(a, zeros)
+        fmt.Println(eq)
+
+}
+
+</code></pre>
+<h2 id="gonum-execute"><a class="header" href="#gonum-execute">gonum execute</a></h2>
+<pre><code class="language-{.bash org-language=&quot;sh&quot; results=&quot;output&quot; exports=&quot;both&quot;}">cd babel
+go mod init babel-go
+go mod tidy
+go build main.go
+rm main.go
+rm go.mod
+rm go.sum
+./main
+</code></pre>
+<pre><code class="language-example">false
+</code></pre>
+<h1 id="patterndesign"><a class="header" href="#patterndesign">PatternDesign</a></h1>
+<h2 id="observer"><a class="header" href="#observer">Observer</a></h2>
+<pre><code class="language-{.go results=&quot;output&quot; exports=&quot;both&quot;}">package main
+
+import (
+        "fmt"
+        "sync"
+        "time"
+)
+
+type (
+        eventObserver struct {
+                id   int
+                time time.Time
+        }
+        eventSubject struct {
+                observers sync.Map
+        }
+        Event struct {
+                data int
+        }
+        Observer interface {
+                NotifyCallback(Event)
+        }
+        Subject interface {
+                AddListener(Observer)
+                RemoveListener(Observer)
+                Notify(Event)
+        }
+)
+
+// NotifyCallback ...
+func (e *eventObserver) NotifyCallback(event Event) {
+        fmt.Printf("Observer: %d Recieved: %d after %v\n", e.id, event.data, time.Since(e.time))
+}
+
+// AddListener ...
+func (s *eventSubject) AddListener(obs Observer) {
+        s.observers.Store(obs, struct{}{})
+}
+
+// RemoveListener ...
+func (s *eventSubject) RemoveListener(obs Observer) {
+        s.observers.Delete(obs)
+}
+
+// Notify  ...
+func (s *eventSubject) Notify(event Event) {
+        s.observers.Range(func(key interface{}, value interface{}) bool {
+                fmt.Printf("%T", key)
+                if key == nil || value == nil {
+                        return false
+                }
+                key.(Observer).NotifyCallback(event)
+                return true
+        })
+}
+
+func fib(n int) chan int {
+        out := make(chan int)
+        go // name ...
+        func() {
+                defer close(out)
+                for i, j := 0, 1; i &lt; n; i, j = i+j, i {
+                        out &lt;- i
+                }
+        }()
+        return out
+}
+
+func main() {
+        n := eventSubject{
+                observers: sync.Map{},
+        }
+        var obs1 = eventObserver{id: 1, time: time.Now()}
+        var obs2 = eventObserver{id: 2, time: time.Now()}
+
+        n.AddListener(&amp;obs1)
+        n.AddListener(&amp;obs2)
+        n.AddListener(&amp;eventObserver{id: 3, time: time.Now()})
+
+        go func() {
+                select {
+                case &lt;-time.After(time.Millisecond):
+                        n.RemoveListener(&amp;obs2)
+                }
+        }()
+
+        for x := range fib(1000000000000000000) {
+                n.Notify(Event{data: x})
+        }
+}
+
+</code></pre>
+<h2 id="factory"><a class="header" href="#factory">Factory</a></h2>
+<pre><code class="language-{.go results=&quot;output&quot; exports=&quot;both&quot;}">package main
+
+import (
+        "fmt"
+        "reflect"
+)
+
+type (
+        mongoDB struct {
+                database map[string]string
+        }
+        sqlite struct {
+                database map[string]string
+        }
+        Database interface {
+                GetData(string) string
+                PutData(string, string)
+        }
+        file struct {
+                name    string
+                content string
+        }
+        ntfs struct {
+                files map[string]file
+        }
+        ext4 struct {
+                files map[string]file
+        }
+        FileSystem interface {
+                CreateFile(string)
+                FindFile(string) file
+        }
+
+        Factory func(string) interface{}
+)
+
+func (mdb mongoDB) GetData(query string) string {
+        if _, ok := mdb.database[query]; !ok {
+                return ""
+        }
+        fmt.Println("MongoDB")
+        return mdb.database[query]
+}
+
+func (mdb mongoDB) PutData(query string, data string) {
+        mdb.database[query] = data
+}
+
+func (sql sqlite) GetData(query string) string {
+        if _, ok := sql.database[query]; !ok {
+                return ""
+        }
+        fmt.Println("Sqlite")
+        return sql.database[query]
+}
+
+func (sql sqlite) PutData(query string, data string) {
+        sql.database[query] = data
+}
+
+func (ntfs ntfs) CreateFile(path string) {
+        file := file{content: "NTFS file", name: path}
+        ntfs.files[path] = file
+        fmt.Println("NTFS")
+}
+
+func (ext ext4) CreateFile(path string) {
+        file := file{content: "EXT4 file", name: path}
+        ext.files[path] = file
+        fmt.Println("EXT4")
+}
+
+func (ntfs ntfs) FindFile(path string) file {
+        if _, ok := ntfs.files[path]; !ok {
+                return file{}
+        }
+        return ntfs.files[path]
+}
+
+func (ext ext4) FindFile(path string) file {
+        if _, ok := ext.files[path]; !ok {
+                return file{}
+        }
+        return ext.files[path]
+}
+
+// DatabaseFactory ...
+func DatabaseFactory(env string) interface{} {
+        switch env {
+        case "production":
+                return mongoDB{
+                        database: make(map[string]string),
+                }
+        case "development":
+                return sqlite{
+                        database: make(map[string]string),
+                }
+        default:
+                return nil
+        }
+}
+
+func FilesystemFactory(env string) interface{} {
+        switch env {
+        case "production":
+                return ntfs{
+                        files: make(map[string]file),
+                }
+        case "development":
+                return ext4{
+                        files: make(map[string]file),
+                }
+        default:
+                return nil
+        }
+}
+
+// AbstractFactoryy ...
+func AbstractFactory(fact string) func(string) interface{} {
+        switch fact {
+        case "database":
+                return DatabaseFactory
+        case "filesystem":
+                return FilesystemFactory
+        default:
+                return nil
+        }
+}
+
+func SetupConstructors(env string) (Database, FileSystem) {
+        fs := AbstractFactory("filesystem")
+        db := AbstractFactory("database")
+        return db(env).(Database), fs(env).(FileSystem)
+
+}
+
+func main() {
+        env1 := "production"
+        env2 := "development"
+
+        // db1 := DatabaseFactory(env1)
+        // db2 := DatabaseFactory(env2)
+
+        db1, fs1 := SetupConstructors(env1)
+        db2, fs2 := SetupConstructors(env2)
+
+        db1.PutData("test", "for test")
+        fmt.Println(db1.GetData("test"))
+        db2.PutData("test2", "for test2")
+        fmt.Println(db2.GetData("test2"))
+
+        fs1.CreateFile("../example/fts.txt")
+        fmt.Println(fs1.FindFile("../example/fts.txt"))
+
+        fs2.CreateFile("../example/et4.txt")
+        fmt.Println(fs2.FindFile("../example/et4.txt"))
+
+        fmt.Println(reflect.TypeOf(db1).Name())
+        fmt.Println(reflect.TypeOf(&amp;db1).Elem())
+        fmt.Println(reflect.TypeOf(db2).Name())
+        fmt.Println(reflect.TypeOf(&amp;db2).Elem())
+
+        fmt.Println(reflect.TypeOf(fs1).Name())
+        fmt.Println(reflect.TypeOf(&amp;fs1).Elem())
+        fmt.Println(reflect.TypeOf(fs2).Name())
+        fmt.Println(reflect.TypeOf(&amp;fs2).Elem())
+}
+
+</code></pre>
+<pre><code class="language-example">MongoDB
+for test
+Sqlite
+for test2
+NTFS
+{../example/fts.txt NTFS file}
+EXT4
+{../example/et4.txt EXT4 file}
+mongoDB
+main.Database
+sqlite
+main.Database
+ntfs
+main.FileSystem
+ext4
+main.FileSystem
+</code></pre>
+<h2 id="decorator"><a class="header" href="#decorator">Decorator</a></h2>
+<pre><code class="language-{.go results=&quot;output&quot; exports=&quot;both&quot;}">package main
+
+import (
+        "fmt"
+        "log"
+        "math"
+        "os"
+        "sync"
+        "time"
+)
+
+func Pi(n int) float64 {
+        ch := make(chan float64)
+        for k := 0; k &lt;= n; k++ {
+                go func(ch chan float64, k float64) {
+                        ch &lt;- 4 * math.Pow(-1, k) / (2*k + 1)
+                }(ch, float64(k))
+        }
+        result := 0.0
+        for k := 0; k &lt;= n; k++ {
+                result += &lt;-ch
+        }
+        return result
+}
+
+type piFunc func(int) float64
+
+func wraplogger(fun piFunc, logger *log.Logger) piFunc {
+        return func(n int) float64 {
+                fn := func(n int) (result float64) {
+                        defer func(t time.Time) {
+                                logger.Printf("took=%v, v=%v, result=%v", time.Since(t), n, result)
+                        }(time.Now())
+                        return fun(n)
+                }
+                return fn(n)
+        }
+}
+
+func wrapcache(fun piFunc, cache *sync.Map) piFunc {
+        return func(n int) float64 {
+                fn := func(n int) float64 {
+                        key := fmt.Sprintf("n=%d", n)
+                        val, ok := cache.Load(key)
+                        if ok {
+                                return val.(float64)
+                        }
+                        result := fun(n)
+                        cache.Store(key, result)
+                        return result
+                }
+                return fn(n)
+        }
+}
+
+func divide(n int) float64 {
+        return float64(n / 2)
+}
+
+func main() {
+        // 01
+        // fmt.Println(Pi(1000))
+        // fmt.Println(Pi(50000))
+        // 02
+        //f := wraplogger(Pi, log.New(os.Stdout, "test", 1))
+        // f(10000)
+        //03
+        f := wrapcache(Pi, &amp;sync.Map{})
+        g := wraplogger(f, log.New(os.Stdout, "test", 1))
+        g(100000)
+        g(200000)
+        g(500000)
+        g(500000)
+        // 04
+        f = wrapcache(divide, &amp;sync.Map{})
+        g = wraplogger(f, log.New(os.Stdout, "divide", 1))
+        g(100000)
+        g(200000)
+        g(500000)
+        g(500000)
+}
+
+
+</code></pre>
+<pre><code class="language-example">test2022/07/12 took=197.241951ms, v=100000, result=3.1416026534897195
+test2022/07/12 took=326.435601ms, v=200000, result=3.1415976535647596
+test2022/07/12 took=678.005443ms, v=500000, result=3.1415946535856927
+test2022/07/12 took=2.673µs, v=500000, result=3.1415946535856927
+divide2022/07/12 took=15.404µs, v=100000, result=50000
+divide2022/07/12 took=3.475µs, v=200000, result=100000
+divide2022/07/12 took=1.724µs, v=500000, result=250000
+divide2022/07/12 took=922ns, v=500000, result=250000
+</code></pre>
+<h2 id="单例模式"><a class="header" href="#单例模式">单例模式</a></h2>
+<pre><code class="language-{.go results=&quot;output&quot; exports=&quot;both&quot;}">package main
+
+import (
+        "fmt"
+)
+
+type User struct {
+        Name       string
+        Occupation string
+}
+
+
+type Moli interface {
+        Changename()
+        ChangeOccupation()
+}
+
+func  CreateUser() (Moli,  *User){
+        var moli Moli
+        u := new(User)
+        moli = u
+        return moli, u
+}
+
+func (u *User) Changename (){
+        u.Name = "Joke"
+}
+
+
+func (u *User) ChangeOccupation (){
+        u.Occupation = "driver"
+}
+
+
+func changeName(u User) {
+        u.Name = "Newi"
+}
+
+
+func changeOccupation(u User) {
+        u.Occupation = "driver"
+}
+
+func main() {
+        M, user := CreateUser()
+        fmt.Println("should be empty", user)
+
+        user.Name = "kji"
+        fmt.Println("Directly can change the name", *user)
+
+        user.Occupation = "Nothing"
+        fmt.Println("Directly can change the occupation", *user)
+
+        changeName(*user)
+        fmt.Println("In function, indieictly can not be changed", *user)
+
+        changeOccupation (*user)
+        fmt.Println("In function, idieictly can not be changed", *user)
+
+        M.Changename()
+        fmt.Println("In methode, indieictly can be changed its name", *user)
+
+        M.ChangeOccupation()
+        fmt.Println("In methode,  indieictly can be changed its occupation", *user)
+
+}
+
+</code></pre>
+<pre><code class="language-example">should be empty &amp;{ }
+Directly can change the name {kji }
+Directly can change the occupation {kji Nothing}
+In function, indieictly can not be changed {kji Nothing}
+In function, idieictly can not be changed {kji Nothing}
+In methode, indieictly can be changed its name {Joke Nothing}
+In methode,  indieictly can be changed its occupation {Joke driver}
+</code></pre>
+<h1 id="architecture"><a class="header" href="#architecture">Architecture</a></h1>
+<h2 id="package"><a class="header" href="#package">package</a></h2>
+<p>each folder can only has one named package, but it can be shared for
+many files, also for the test file</p>
+<h2 id="module"><a class="header" href="#module">module</a></h2>
+<p>it is the same designed as project, but only without main function and
+main package. it can be used by local package, module or project, but
+has to be replaced</p>
+<pre><code>go mod edit -replace modulename=folder  
+</code></pre>
+<ul>
+<li>modul name is defined in the go.mod file, and also at last one
+package should named as it</li>
+<li>floder can be relative path, or absolute path in the reference
+package, module or project.</li>
+<li>can be called from gore, but first :import</li>
+</ul>
+<h2 id="project"><a class="header" href="#project">project</a></h2>
+<ul>
+<li>the same with module, with main package and main func, can be call
+as go run xxx.go</li>
+<li>can not be called from gore for now (29.07.2022)</li>
+</ul>
+<p>here is also1 here is also2 here is also3 here is also4</p>
+<h1 id="pprof-allow-cpu-and-mem-profile"><a class="header" href="#pprof-allow-cpu-and-mem-profile">pprof, allow cpu and mem profile</a></h1>
+<pre><code class="language-go">  import (
+        "os"
+        "time"
+
+        "github.com/pkg/profile"
+        "runtime/pprof"
+)
+
+  cpuFile, _ := os.Create("cpu.pprof")
+  pprof.StartCPUProfile(cpuFile)
+  defer pprof.StopCPUProfile()
+
+  defer profile.Start(profile.MemProfile, profile.ProfilePath(".")).Stop()
+
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="JS.org.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="rust.org.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="JS.org.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="rust.org.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

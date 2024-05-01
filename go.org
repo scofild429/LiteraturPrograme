@@ -1,0 +1,1368 @@
+#+TITLE:  Go
+#+OPTIONS: num:nil
+#+STARTUP: overview
+* Go Features
+** Note
+*** Array
+- Array & Slice: Array must with specialized length for [x]
+- function:
+  + must given specialized arguments(if point) when execution
+- method:
+  + Must have a receiver
+  + if receiver is pointer of instance,  the value of instance can be modified
+  + for execution: the instance of receiver can be pointer or not, will automatically convered
+  + if receiver is not a pointer, the receiver can still be a pointer
+
+*** interface
+  + def interface with its contains
+  + def receiver
+  + receiver implementing the contains with methods(just like method above)
+  + instancing of interface
+  + instancing of receiver
+  + passing receiver to interface(if the implementation is kind of pointer for receiver, here also pass pointer)
+  + executing methods of interface
+*** Slice
+As you’ve noticed, when you slice from the end, it’s the length that shrinks. The pointer to the first element and the capacity remain unchanged.
+
+When you slice from the beginning of the slice, though, what happens instead is the pointer to the first element is changed to be a pointer to the nth element that you’re slicing from (i.e. sl = arr[2:] means to set the pointer to point to &arr[2]). Because the head of the slice has moved forward 2, in this case, the length and capacity have to decrease by 2.
+  
+** Generics
+#+begin_src go :exports both :results output
+  package main
+  import "fmt"
+  func Sum[V int64 | float64](m ...V) V {
+          var s V
+          for _,v := range m {
+                  s += v
+          }
+          return s
+  }
+  func main() {
+          fmt.Println(Sum([]int64{1,2,3,4,5}...))
+          fmt.Println(Sum(int64(1),int64(2),int64(3),int64(4)))
+          fmt.Println(Sum(1.1, 2.2, 3.3, 4.4))
+  }  
+#+end_src
+
+#+RESULTS:
+
+#+begin_src go :exports both :results output :tangle  ./babel/go_generics_constraints.go
+  package main
+  import (
+          "fmt"
+          "golang.org/x/exp/constraints"
+  )
+  func Sum[V constraints.Float | constraints.Integer](m ...V) V {
+          var s V
+          for _,v := range m {
+                  s += v
+          }
+          return s
+  }
+  func main() {
+          fmt.Println(Sum([]int64{1,2,3,4,5}...))
+          fmt.Println(Sum(1,2,3,4))
+          fmt.Println(Sum(1.1, 2.2, 3.3, 4.4))
+          fmt.Println(Sum(uint32(2), uint32(4)))
+  }  
+#+end_src
+
+#+begin_src sh :results output :exports both
+  cd babel
+  go mod init go-generics-constraints
+  go mod tidy
+  go build go_generics_constraints.go
+  rm main.go
+  rm go.mod
+  rm go.sum
+  ./go_generics_constraints
+#+end_src
+
+#+RESULTS:
+: 15
+: 10
+: 11
+: 6
+
+** Strings
+#+begin_src go :exports both :results output
+  package main
+  import (
+          "fmt"
+          "strings"
+  )
+  func main() {
+          cut := func(sep string) {
+                  s:= "hello|world"
+                  before, after, found := strings.Cut(s, sep)
+                  fmt.Printf("Cut(%q, %q): %q, %q, %v\n", s, sep, before, after, found)
+          }
+          cut("|")
+          cut("hello")
+          cut("nothing")
+  }
+#+end_src
+
+#+RESULTS:
+: Cut("hello|world", "|"): "hello", "world", true
+: Cut("hello|world", "hello"): "", "|world", true
+: Cut("hello|world", "nothing"): "hello|world", "", false
+
+** Array
+#+begin_src go :results output :exports both
+  package main
+  import (
+          "fmt"
+  )
+  func test(array []int64) {
+          for i:= 0; i< 3; i++{
+                  array[i] = 10
+          }
+  }
+
+  func main() {
+          start := make([]int64, 3)
+          test(start)
+          fmt.Println(start)
+  }
+
+
+
+#+end_src
+
+#+RESULTS:
+: [10 10 10]
+
+** Map
+three way to create a map
+#+begin_src go :exports both :results output
+  package main
+  import (
+          "fmt"
+  )
+  func main() {
+          myMap1 := make(map[string]string, 10)
+          fmt.Println(myMap1)
+          myMap1["one"] = "python"
+          fmt.Println(myMap1)
+          myMap2 := make(map[string]string)
+          myMap2["one"] = "python"
+          fmt.Println(myMap2)          
+          myMap3 := map[string]string{
+                  "one": "python",
+          }
+          fmt.Println(myMap3)
+  }
+#+end_src
+
+#+RESULTS:
+: map[]
+: map[one:python]
+: map[one:python]
+: map[one:python]
+
+** Methode
+function(copy or pointer)
+methode(copy or pointer)
+
+** interface
+#+begin_src go :exports both :results output
+  package main
+  import (
+          "fmt"
+  )
+  type AnimalIF interface{
+          Sleep()
+          GetColor() string
+          GetType() string
+  }
+
+  type Cat struct{
+          color string
+  }
+
+  func (this *Cat) Sleep(){
+          fmt.Println("Cat is sleeping")
+  }
+  func (this *Cat) GetColor() string {
+          return this.color
+  }
+  func (this *Cat) GetType() string {
+          return "Cat"
+  }
+
+  type Dog struct{
+          color string
+  }
+
+  func (this *Dog) Sleep(){
+          fmt.Println("Dog is sleeping")
+  }
+  func (this *Dog) GetColor() string {
+          return this.color
+  }
+  func (this *Dog) GetType() string {
+          return "Dog"
+  }
+  func ShowInfo(animal AnimalIF){
+          animal.Sleep()
+          fmt.Println("color = ", animal.GetColor())
+          fmt.Println("type = ", animal.GetType())
+  }
+
+  func main() {
+          cat := Cat{"Green"}
+          dog := Dog{"Yellow"}
+          ShowInfo(&cat)
+          ShowInfo(&dog)
+  }
+#+end_src
+
+#+RESULTS:
+: Cat is sleeping
+: color =  Green
+: type =  Cat
+: Dog is sleeping
+: color =  Yellow
+: type =  Dog
+
+ interface {}
+assert: arg.(string), if arg is not {}, it will be forced to convert to string
+can refer to every kind of value
+** polymorphism
+OpenFile already implemented Wirter and Reader 
+#+begin_src go :results output :exports both
+package main
+
+import (
+	"fmt"
+	"io"
+	"os"
+)
+
+func main() {
+	tty, err := os.OpenFile("/dev/tty", os.O_RDWR, 0)
+	if err != nil {
+		fmt.Println("Open file with error", err)
+		return
+	}
+	var r io.Reader
+	r = tty
+	var w io.Writer
+	w = r.(io.Writer)
+	w.Write([]byte("HELLO from meb\n"))
+}
+
+  
+#+end_src
+
+#+RESULTS:
+: Open file with error open /dev/tty: no such device or address
+
+** reflect
+#+begin_src go :results output :exports both
+  package main
+
+  import (
+          "fmt"
+          "reflect"
+  )
+
+  func reflectNum(arg interface{}){
+          fmt.Println("type: ", reflect.TypeOf(arg))
+          fmt.Println("value: ", reflect.ValueOf(arg))
+  }
+
+  func main(){
+          var num float64 = 3.1415926
+          reflectNum(num)
+  }
+
+#+end_src
+
+#+RESULTS:
+: type:  float64
+: value:  3.1415926
+
+
+#+begin_src go :results output :exports both
+  package main
+  import (
+          "fmt"
+          "reflect"
+  )
+
+  type User struct {
+          Id int
+          Name string
+          Age int
+  }
+
+  func (this User) Call(){
+          fmt.Println("user is calling")
+          fmt.Printf("%v\n", this)
+  }
+
+  func (this User) End_Call(id int){
+          fmt.Println(id)
+          fmt.Printf("%v\n", this)
+  }
+
+  func main(){
+          user := User{10, "Alice", 23}
+          reflectExample(user)
+  }
+
+  func reflectExample(input interface{}){
+          //get tpye
+          inputType := reflect.TypeOf(input)
+          fmt.Println("input Type is :", inputType.Name())
+
+
+          //get value
+          inputValue := reflect.ValueOf(input)
+          fmt.Println("value Type is :", inputValue)
+
+
+          //get fields in details
+          for i := 0; i< inputType.NumField(); i++ {
+                  field := inputType.Field(i)
+                  value := inputValue.Field(i).Interface()
+                  fmt.Printf("%s: %v = %v\n",field.Name, field.Type, value)
+          }
+
+          //get methods in details
+          for i := 0; i< inputType.NumMethod(); i++ {
+                  method := inputType.Method(i)
+                  fmt.Printf("%s: %v\n", method.Name, method.Type)
+          }
+  }
+#+end_src
+
+#+RESULTS:
+: input Type is : User
+: value Type is : {10 Alice 23}
+: Id: int = 10
+: Name: string = Alice
+: Age: int = 23
+: Call: func(main.User)
+: End_Call: func(main.User, int)
+
+* time
+#+begin_src go :results output :exports both
+  package main
+  import (
+      "fmt"
+      "time"
+  )
+  func test() {
+      start := time.Now()
+      sum := 0
+      for i := 0; i < 100000; i++ {
+          sum++
+      }
+      elapsed := time.Since(start)
+      fmt.Println("该函数执行完成耗时：", elapsed)
+  }
+
+  func main() {
+      test()
+  }
+
+#+end_src
+
+#+RESULTS:
+: 该函数执行完成耗时： 33.536µs
+
+* sync
+#+begin_src go :results output :exports both
+package main
+
+import "fmt"
+
+func produce(c chan<- int) {
+	for i := 0; i < 10; i++ {
+		fmt.Printf(" Produced : %d\n", i)
+		c <- i // synchronization
+	}
+}
+
+func consume(c <-chan int) {
+	for true {
+		i := <-c // synchronization
+		fmt.Printf(" Consumed : %d\n", i)
+	}
+}
+
+func main() {
+	c := make(chan int)
+	go consume(c)
+	produce(c)
+}
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Produced : 0
+ Consumed : 0
+ Produced : 1
+ Produced : 2
+ Consumed : 1
+ Consumed : 2
+ Produced : 3
+ Produced : 4
+ Consumed : 3
+ Consumed : 4
+ Produced : 5
+ Produced : 6
+ Consumed : 5
+ Consumed : 6
+ Produced : 7
+ Produced : 8
+ Consumed : 7
+ Consumed : 8
+ Produced : 9
+#+end_example
+
+
+#+begin_src go :results output :exports both
+  package main
+  import (
+      "fmt"
+      "time"
+      "sync"
+  )
+  func main() {
+      var wg sync.WaitGroup
+      wg.Add(1)
+
+      go func(){
+          count("Sleep")
+          wg.Done()
+      }()
+      wg.Wait()
+  }
+
+  func count(thing string) {
+      for i := 1; i <= 5; i++ {
+          fmt.Println(i, thing)
+          time.Sleep(time.Millisecond*500)
+      }
+
+  }
+#+end_src
+
+#+RESULTS:
+: 1 Sleep
+: 2 Sleep
+: 3 Sleep
+: 4 Sleep
+: 5 Sleep
+
+* go
+#+begin_src go :results output :exports both
+  package main
+  import (
+      "fmt"
+      "time"
+  )
+  func main() {
+      var times int
+      go func() {
+          for {
+          }
+      }()
+      go func() {
+          for {
+          }
+      }()
+      go func() {
+          for {
+          }
+      }()
+      go func() {
+          for {
+          }
+      }()
+      for times = 0; times <= 10; times++ {
+          fmt.Println("tick", times)
+          time.Sleep(time.Second)
+      }
+  }
+
+#+end_src
+
+#+RESULTS:
+#+begin_example
+tick 0
+tick 1
+tick 2
+tick 3
+tick 4
+tick 5
+tick 6
+tick 7
+tick 8
+tick 9
+tick 10
+#+end_example
+
+* chan
+** example
+#+begin_src go :results output :exports both
+  package main
+  import "fmt"
+  func main() {
+      // 创建一个整型带两个缓冲的通道
+      ch := make(chan int, 2)
+	
+      // 给通道放入两个数据
+      ch <- 0
+      ch <- 1
+	
+      // 关闭缓冲
+      close(ch)
+      // 遍历缓冲所有数据, 且多遍历1个
+      for i := 0; i < cap(ch)+1; i++ {
+		
+          // 从通道中取出数据
+          v, ok := <-ch
+		
+          // 打印取出数据的状态
+          fmt.Println(v, ok)
+      }
+  }
+#+end_src
+
+#+RESULTS:
+** dead lock unbuffer channel 
+#+begin_src go :results output :exports both
+  package main
+  import "fmt"
+  func main() {
+      // 创建一个整型带两个缓冲的通道
+      ch := make(chan int)
+
+      // 给通道放入两个数据
+      ch <- 0
+      id := <- ch
+      fmt.Println(id)
+
+      close(ch)
+  }
+#+end_src
+
+#+RESULTS:
+*but can be saved with goroutine*
+
+#+begin_src go :results output :exports both
+  package main
+  import "fmt"
+  func main() {
+      ch := make(chan int)
+      go func(){
+        ch <- 0
+      }()
+      id := <- ch
+      fmt.Println(id)
+      close(ch)
+  }
+#+end_src
+
+#+RESULTS:
+: 0
+
+
+
+** deal lock after buffer channel is full
+*buffer can be filled*
+#+begin_src go :results output :exports both
+  package main
+  import "fmt"
+  func main() {
+      ch := make(chan int, 2)
+
+      ch <- 0
+      ch <- 1
+      id := <- ch
+      fmt.Println(id)
+
+      close(ch)
+  }
+#+end_src
+
+#+RESULTS:
+: 0
+
+
+*but  can not  be exceeded*
+#+begin_src go :results output :exports both
+  package main
+  import "fmt"
+  func main() {
+      ch := make(chan int, 2)
+
+      ch <- 0
+      ch <- 1
+      ch <- 2
+      id := <- ch
+      fmt.Println(id)
+
+      close(ch)
+  }
+#+end_src
+
+#+RESULTS:
+: 0
+
+* context
+:PROPERTIES:
+:ID:       2bf1c325-6a98-43be-815c-a41934b02756
+:END:
+
+#+begin_src  go :results output :exports both
+  package main
+
+  import (
+      "fmt"
+      "context"
+      "time"
+  )
+
+  func enrichContext(ctx context.Context) context.Context {
+      return context.WithValue(ctx, "request-id", "11212")
+
+  }
+
+  func doSomething(ctx context.Context){
+      rID := ctx.Value("request-id")
+      fmt.Println(rID)
+      for {
+          select {
+          case <-ctx.Done():
+              fmt.Println("times out")
+              return
+          default:
+              fmt.Println("doing something cool")
+          }
+          time.Sleep(500*time.Millisecond)
+      }
+  }
+
+
+  func main (){
+      fmt.Println("Go Context example")
+      ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+      defer cancel()
+      fmt.Println(ctx.Err())
+      ctx = enrichContext(ctx)
+      go doSomething(ctx)
+      select {
+      case <- ctx.Done():
+          fmt.Println("Oh, no, Time is execeed the deadline")
+          fmt.Println(ctx.Err())
+      }
+      time.Sleep(2*time.Second)
+  }
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Go Context example
+<nil>
+11212
+doing something cool
+doing something cool
+doing something cool
+doing something cool
+Oh, no, Time is execeed the deadline
+context deadline exceeded
+times out
+#+end_example
+
+#+begin_src  go :results output :exports both
+package main
+
+import (
+	"context"
+	"fmt"
+	"log"
+	"time"
+)
+
+func main() {
+	start := time.Now
+	ctx := context.Background()
+	userId := 10
+	val, err := fetchUserData(ctx, userId)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println("result : ", val)
+	fmt.Println("took ", time.Since(start()))
+}
+
+type Response struct {
+	value int
+	err   error
+}
+
+func fetchUserData(ctx context.Context, userid int) (int, error) {
+	ctx, cancel := context.WithTimeout(ctx, time.Millisecond*200)
+	defer cancel()
+
+	respch := make(chan Response)
+
+	go func() {
+		val, err := fetchThirdPartyStuffWhichCanbeSlow()
+		respch <- Response{
+			value: val,
+			err:   err,
+		}
+	}()
+
+	for {
+		select {
+		case <-ctx.Done():
+			return 0, fmt.Errorf("Fetch data is time out")
+		case resp := <-respch:
+			return resp.value, resp.err
+		}
+	}
+}
+
+func fetchThirdPartyStuffWhichCanbeSlow() (int, error) {
+	time.Sleep(time.Millisecond * 150)
+	return 666, nil
+}
+#+end_src
+
+#+RESULTS:
+
+* gonum
+** Test example
+#+begin_src go :results output :exports both :tangle ./babel/main.go
+  package main
+
+  import (
+          "fmt"
+
+          "gonum.org/v1/gonum/blas/blas64"
+          "gonum.org/v1/gonum/mat"
+  )
+
+  func main() {
+          r := row{1, 2, 3, 4}
+          c := column{1, 2, 3}
+
+          var m mat.Dense
+          m.Mul(c, r)
+
+          fmt.Println(mat.Formatted(&m))
+          n := c.RawVector().N
+          inc := c.RawVector().Inc
+          d := c.RawVector().Data
+          fmt.Println(n)
+          fmt.Println(inc)
+          fmt.Println(d)
+
+          u := mat.NewVecDense(3, []float64{1, 2, 3})
+          v := mat.NewVecDense(3, []float64{4, 5, 6})
+          fmt.Println("u :", u)
+          fmt.Println("v :", v)
+
+  }
+
+  // row is a user-defined row vector.
+  type row []float64
+
+  // Dims, At and T minimally satisfy the mat.Matrix interface.
+  func (v row) Dims() (r, c int)    { return 1, len(v) }
+  func (v row) At(_, j int) float64 { return v[j] }
+  func (v row) T() mat.Matrix       { return column(v) }
+
+  // RawVector allows fast path computation with the vector.
+  func (v row) RawVector() blas64.Vector {
+          return blas64.Vector{N: len(v), Data: v, Inc: 1}
+  }
+
+  // column is a user-defined column vector.
+  type column []float64
+
+  // Dims, At and T minimally satisfy the mat.Matrix interface.
+  func (v column) Dims() (r, c int)    { return len(v), 1 }
+  func (v column) At(i, _ int) float64 { return v[i] }
+  func (v column) T() mat.Matrix       { return row(v) }
+
+  // RawVector allows fast path computation with the vector.
+  func (v column) RawVector() blas64.Vector {
+          return blas64.Vector{N: len(v), Data: v, Inc: 1}
+  }
+
+#+end_src
+
+#+RESULTS:
+
+** NewDense
+#+begin_src go :tangle ./babel/main.go
+  package main
+
+  import (
+          "fmt"
+          "gonum.org/v1/gonum/mat"
+  )
+
+  func main() {
+          zeros := mat.NewDense(3,5,nil)
+          fmt.Println(zeros)
+  }
+
+#+end_src
+
+#+RESULTS:
+
+** make
+#+begin_src go :tangle ./babel/main.go
+  package main
+
+  import (
+          "fmt"
+          "math/rand"
+          "gonum.org/v1/gonum/mat"
+  )
+
+  func main() {
+          data := make([]float64, 36)
+          for i := range data {
+                  data[i] = rand.NormFloat64()
+          }
+          a := mat.NewDense(6, 6, data)
+          zeros := mat.NewDense(3,5,nil)
+          // fmt.Println(mat.Formatted(zeros, mat.Prefix(""), mat.Squeeze()))
+          // fmt.Println(mat.Formatted(a, mat.Prefix(""), mat.Squeeze()))
+          eq := mat.Equal(a, zeros)
+          fmt.Println(eq)
+
+  }
+
+#+end_src
+
+** gonum execute  
+#+begin_src sh :results output :exports both
+  cd babel
+  go mod init babel-go
+  go mod tidy
+  go build main.go
+  rm main.go
+  rm go.mod
+  rm go.sum
+  ./main
+#+end_src
+
+#+RESULTS:
+: false
+
+* PatternDesign
+** Observer
+#+begin_src go :results output :exports both
+  package main
+
+  import (
+          "fmt"
+          "sync"
+          "time"
+  )
+
+  type (
+          eventObserver struct {
+                  id   int
+                  time time.Time
+          }
+          eventSubject struct {
+                  observers sync.Map
+          }
+          Event struct {
+                  data int
+          }
+          Observer interface {
+                  NotifyCallback(Event)
+          }
+          Subject interface {
+                  AddListener(Observer)
+                  RemoveListener(Observer)
+                  Notify(Event)
+          }
+  )
+
+  // NotifyCallback ...
+  func (e *eventObserver) NotifyCallback(event Event) {
+          fmt.Printf("Observer: %d Recieved: %d after %v\n", e.id, event.data, time.Since(e.time))
+  }
+
+  // AddListener ...
+  func (s *eventSubject) AddListener(obs Observer) {
+          s.observers.Store(obs, struct{}{})
+  }
+
+  // RemoveListener ...
+  func (s *eventSubject) RemoveListener(obs Observer) {
+          s.observers.Delete(obs)
+  }
+
+  // Notify  ...
+  func (s *eventSubject) Notify(event Event) {
+          s.observers.Range(func(key interface{}, value interface{}) bool {
+                  fmt.Printf("%T", key)
+                  if key == nil || value == nil {
+                          return false
+                  }
+                  key.(Observer).NotifyCallback(event)
+                  return true
+          })
+  }
+
+  func fib(n int) chan int {
+          out := make(chan int)
+          go // name ...
+          func() {
+                  defer close(out)
+                  for i, j := 0, 1; i < n; i, j = i+j, i {
+                          out <- i
+                  }
+          }()
+          return out
+  }
+
+  func main() {
+          n := eventSubject{
+                  observers: sync.Map{},
+          }
+          var obs1 = eventObserver{id: 1, time: time.Now()}
+          var obs2 = eventObserver{id: 2, time: time.Now()}
+
+          n.AddListener(&obs1)
+          n.AddListener(&obs2)
+          n.AddListener(&eventObserver{id: 3, time: time.Now()})
+
+          go func() {
+                  select {
+                  case <-time.After(time.Millisecond):
+                          n.RemoveListener(&obs2)
+                  }
+          }()
+
+          for x := range fib(1000000000000000000) {
+                  n.Notify(Event{data: x})
+          }
+  }
+
+#+end_src
+** Factory
+#+begin_src go :results output :exports both
+  package main
+
+  import (
+          "fmt"
+          "reflect"
+  )
+
+  type (
+          mongoDB struct {
+                  database map[string]string
+          }
+          sqlite struct {
+                  database map[string]string
+          }
+          Database interface {
+                  GetData(string) string
+                  PutData(string, string)
+          }
+          file struct {
+                  name    string
+                  content string
+          }
+          ntfs struct {
+                  files map[string]file
+          }
+          ext4 struct {
+                  files map[string]file
+          }
+          FileSystem interface {
+                  CreateFile(string)
+                  FindFile(string) file
+          }
+
+          Factory func(string) interface{}
+  )
+
+  func (mdb mongoDB) GetData(query string) string {
+          if _, ok := mdb.database[query]; !ok {
+                  return ""
+          }
+          fmt.Println("MongoDB")
+          return mdb.database[query]
+  }
+
+  func (mdb mongoDB) PutData(query string, data string) {
+          mdb.database[query] = data
+  }
+
+  func (sql sqlite) GetData(query string) string {
+          if _, ok := sql.database[query]; !ok {
+                  return ""
+          }
+          fmt.Println("Sqlite")
+          return sql.database[query]
+  }
+
+  func (sql sqlite) PutData(query string, data string) {
+          sql.database[query] = data
+  }
+
+  func (ntfs ntfs) CreateFile(path string) {
+          file := file{content: "NTFS file", name: path}
+          ntfs.files[path] = file
+          fmt.Println("NTFS")
+  }
+
+  func (ext ext4) CreateFile(path string) {
+          file := file{content: "EXT4 file", name: path}
+          ext.files[path] = file
+          fmt.Println("EXT4")
+  }
+
+  func (ntfs ntfs) FindFile(path string) file {
+          if _, ok := ntfs.files[path]; !ok {
+                  return file{}
+          }
+          return ntfs.files[path]
+  }
+
+  func (ext ext4) FindFile(path string) file {
+          if _, ok := ext.files[path]; !ok {
+                  return file{}
+          }
+          return ext.files[path]
+  }
+
+  // DatabaseFactory ...
+  func DatabaseFactory(env string) interface{} {
+          switch env {
+          case "production":
+                  return mongoDB{
+                          database: make(map[string]string),
+                  }
+          case "development":
+                  return sqlite{
+                          database: make(map[string]string),
+                  }
+          default:
+                  return nil
+          }
+  }
+
+  func FilesystemFactory(env string) interface{} {
+          switch env {
+          case "production":
+                  return ntfs{
+                          files: make(map[string]file),
+                  }
+          case "development":
+                  return ext4{
+                          files: make(map[string]file),
+                  }
+          default:
+                  return nil
+          }
+  }
+
+  // AbstractFactoryy ...
+  func AbstractFactory(fact string) func(string) interface{} {
+          switch fact {
+          case "database":
+                  return DatabaseFactory
+          case "filesystem":
+                  return FilesystemFactory
+          default:
+                  return nil
+          }
+  }
+
+  func SetupConstructors(env string) (Database, FileSystem) {
+          fs := AbstractFactory("filesystem")
+          db := AbstractFactory("database")
+          return db(env).(Database), fs(env).(FileSystem)
+
+  }
+
+  func main() {
+          env1 := "production"
+          env2 := "development"
+
+          // db1 := DatabaseFactory(env1)
+          // db2 := DatabaseFactory(env2)
+
+          db1, fs1 := SetupConstructors(env1)
+          db2, fs2 := SetupConstructors(env2)
+
+          db1.PutData("test", "for test")
+          fmt.Println(db1.GetData("test"))
+          db2.PutData("test2", "for test2")
+          fmt.Println(db2.GetData("test2"))
+
+          fs1.CreateFile("../example/fts.txt")
+          fmt.Println(fs1.FindFile("../example/fts.txt"))
+
+          fs2.CreateFile("../example/et4.txt")
+          fmt.Println(fs2.FindFile("../example/et4.txt"))
+
+          fmt.Println(reflect.TypeOf(db1).Name())
+          fmt.Println(reflect.TypeOf(&db1).Elem())
+          fmt.Println(reflect.TypeOf(db2).Name())
+          fmt.Println(reflect.TypeOf(&db2).Elem())
+
+          fmt.Println(reflect.TypeOf(fs1).Name())
+          fmt.Println(reflect.TypeOf(&fs1).Elem())
+          fmt.Println(reflect.TypeOf(fs2).Name())
+          fmt.Println(reflect.TypeOf(&fs2).Elem())
+  }
+
+#+end_src
+
+#+RESULTS:
+#+begin_example
+MongoDB
+for test
+Sqlite
+for test2
+NTFS
+{../example/fts.txt NTFS file}
+EXT4
+{../example/et4.txt EXT4 file}
+mongoDB
+main.Database
+sqlite
+main.Database
+ntfs
+main.FileSystem
+ext4
+main.FileSystem
+#+end_example
+
+** Decorator
+#+begin_src go :results output :exports both
+  package main
+
+  import (
+          "fmt"
+          "log"
+          "math"
+          "os"
+          "sync"
+          "time"
+  )
+
+  func Pi(n int) float64 {
+          ch := make(chan float64)
+          for k := 0; k <= n; k++ {
+                  go func(ch chan float64, k float64) {
+                          ch <- 4 * math.Pow(-1, k) / (2*k + 1)
+                  }(ch, float64(k))
+          }
+          result := 0.0
+          for k := 0; k <= n; k++ {
+                  result += <-ch
+          }
+          return result
+  }
+
+  type piFunc func(int) float64
+
+  func wraplogger(fun piFunc, logger *log.Logger) piFunc {
+          return func(n int) float64 {
+                  fn := func(n int) (result float64) {
+                          defer func(t time.Time) {
+                                  logger.Printf("took=%v, v=%v, result=%v", time.Since(t), n, result)
+                          }(time.Now())
+                          return fun(n)
+                  }
+                  return fn(n)
+          }
+  }
+
+  func wrapcache(fun piFunc, cache *sync.Map) piFunc {
+          return func(n int) float64 {
+                  fn := func(n int) float64 {
+                          key := fmt.Sprintf("n=%d", n)
+                          val, ok := cache.Load(key)
+                          if ok {
+                                  return val.(float64)
+                          }
+                          result := fun(n)
+                          cache.Store(key, result)
+                          return result
+                  }
+                  return fn(n)
+          }
+  }
+
+  func divide(n int) float64 {
+          return float64(n / 2)
+  }
+
+  func main() {
+          // 01
+          // fmt.Println(Pi(1000))
+          // fmt.Println(Pi(50000))
+          // 02
+          //f := wraplogger(Pi, log.New(os.Stdout, "test", 1))
+          // f(10000)
+          //03
+          f := wrapcache(Pi, &sync.Map{})
+          g := wraplogger(f, log.New(os.Stdout, "test", 1))
+          g(100000)
+          g(200000)
+          g(500000)
+          g(500000)
+          // 04
+          f = wrapcache(divide, &sync.Map{})
+          g = wraplogger(f, log.New(os.Stdout, "divide", 1))
+          g(100000)
+          g(200000)
+          g(500000)
+          g(500000)
+  }
+
+
+#+end_src
+
+#+RESULTS:
+: test2022/07/12 took=197.241951ms, v=100000, result=3.1416026534897195
+: test2022/07/12 took=326.435601ms, v=200000, result=3.1415976535647596
+: test2022/07/12 took=678.005443ms, v=500000, result=3.1415946535856927
+: test2022/07/12 took=2.673µs, v=500000, result=3.1415946535856927
+: divide2022/07/12 took=15.404µs, v=100000, result=50000
+: divide2022/07/12 took=3.475µs, v=200000, result=100000
+: divide2022/07/12 took=1.724µs, v=500000, result=250000
+: divide2022/07/12 took=922ns, v=500000, result=250000
+
+** 单例模式
+#+begin_src go :results output :exports both
+  package main
+
+  import (
+          "fmt"
+  )
+
+  type User struct {
+          Name       string
+          Occupation string
+  }
+
+
+  type Moli interface {
+          Changename()
+          ChangeOccupation()
+  }
+
+  func  CreateUser() (Moli,  *User){
+          var moli Moli
+          u := new(User)
+          moli = u
+          return moli, u
+  }
+
+  func (u *User) Changename (){
+          u.Name = "Joke"
+  }
+
+
+  func (u *User) ChangeOccupation (){
+          u.Occupation = "driver"
+  }
+
+
+  func changeName(u User) {
+          u.Name = "Newi"
+  }
+
+
+  func changeOccupation(u User) {
+          u.Occupation = "driver"
+  }
+
+  func main() {
+          M, user := CreateUser()
+          fmt.Println("should be empty", user)
+
+          user.Name = "kji"
+          fmt.Println("Directly can change the name", *user)
+
+          user.Occupation = "Nothing"
+          fmt.Println("Directly can change the occupation", *user)
+	
+          changeName(*user)
+          fmt.Println("In function, indieictly can not be changed", *user)
+
+          changeOccupation (*user)
+          fmt.Println("In function, idieictly can not be changed", *user)
+
+          M.Changename()
+          fmt.Println("In methode, indieictly can be changed its name", *user)
+
+          M.ChangeOccupation()
+          fmt.Println("In methode,  indieictly can be changed its occupation", *user)
+
+  }
+
+#+end_src
+
+#+RESULTS:
+: should be empty &{ }
+: Directly can change the name {kji }
+: Directly can change the occupation {kji Nothing}
+: In function, indieictly can not be changed {kji Nothing}
+: In function, idieictly can not be changed {kji Nothing}
+: In methode, indieictly can be changed its name {Joke Nothing}
+: In methode,  indieictly can be changed its occupation {Joke driver}
+
+* Architecture
+** package
+each folder can only has one named package,
+but it can be shared for many files, also for the test file
+** module
+it is the same designed as project, but only without main function and main package.
+it can be used by local package, module or project, but has to be replaced
+#+begin_src
+go mod edit -replace modulename=folder  
+#+end_src
+- modul name is defined in the go.mod file, and also at last one package should named as it
+- floder can be relative path, or absolute path in the reference package, module or project.
+- can be called from gore, but first :import  
+** project
+- the same with module, with main package and main func, can be call as go run xxx.go
+- can not  be called from gore for now (29.07.2022)
+
+
+    here is also1
+    here is also2
+    here is also3
+    here is also4
+                                                                    
+* pprof, allow cpu and mem profile
+#+begin_src go
+    import (
+          "os"
+          "time"
+
+          "github.com/pkg/profile"
+          "runtime/pprof"
+  )
+
+    cpuFile, _ := os.Create("cpu.pprof")
+    pprof.StartCPUProfile(cpuFile)
+    defer pprof.StopCPUProfile()
+  
+    defer profile.Start(profile.MemProfile, profile.ProfilePath(".")).Stop()
+
+#+end_src

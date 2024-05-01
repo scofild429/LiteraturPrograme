@@ -1,0 +1,969 @@
+#+TITLE:  Informatik
+#+OPTIONS: num:t
+#+STARTUP: overview
+* Schaltnetze
+**  Gatter und Haskell
+NOT AND OR NAND NOR
+
+let can not as sentence  use alone, but can be as a part in main
+
+#+begin_src haskell
+  table_row :: ([Bool] -> Bool) -> [Bool] -> String
+  table_row f xs = show xs ++ " : " ++ show(f xs)
+
+  table :: ([Bool] -> Bool) -> [[Bool]] -> String
+  table f xs
+    |xs == [] = ""
+    |otherwise = table_row f (head xs) ++ " \n " ++ table f (tail xs)
+
+  main = do
+    let boool_tri = [[ a,b,c ] | a <- [True, False, False],
+                    b <- [False, True, False],
+                    c <- [False, True, True]]
+
+    putStrLn (table and boool_tri)
+
+
+  tableA :: ([Bool] -> Bool) -> [[Bool]] -> String
+  tableA f [] = ""
+  tableA f (x:xs) = table_row f x ++ " \n  "++ tableA f xs
+#+end_src
+
+* Komplexitätstheorie
+** Landau Symbols
+
+\[ f = O(g) \leftrightarrow g = \Omega(f) \leftrightarrow \lim_{x \to
+\infty} Sup|\frac{f(x)}{g(x)}| < \infty \]
+
+\[ f = \Omega(g) \leftrightarrow g = O(f) \leftrightarrow \lim_{x \to
+\infty} Inf|\frac{f(x)}{g(x)}| > 0 \]
+
+\[ f = \Theta(g) \leftrightarrow g = \Theta(f) \leftrightarrow 0< \lim_{x \to
+\infty} Inf|\frac{f(x)}{g(x)}| < \lim_{x \to \infty} Sup|\frac{f(x)}{g(x)}| < \infty \]
+
+** Master Theorem
+*** description
+In a Recursive process, we can form this,  \[ T_n = a \cdot T(\frac{n}{b}) + f(n) \],
+for  $a \geq 1$, $b \geq 1$. T 代表递归符号,   a: 每次递归后重复的次数,
+n/b: 递归后每个部分的问题规模,  f(n): 递归后将所有部分融合的步骤, 作如
+下变换：
+
+$$ n^d = f(n) = O(n^{\log_b^a-\epsilon}) $$
+$$ n^d = f(n)  \le n^{\log_b^a-\epsilon} $$
+$$ d \le \log_b^a - \epsilon $$
+$$ d \le \log_b^a $$
+如果$\log_b^a$ 在减去一个存在的 $\epsilon$ 后仍然大于d, 则 ：$T_n = \Theta (n^{\log_b^a})$.
+直接$\log_b^{a}$
+
+$$  n^d = f(n) = \Theta (n^{\log_b^a})  $$
+$$  n^d = f(n)  = n^{\log_b^a} $$
+$$   d = \log_b^a $$
+如果$\log_b^a$ 恒等于 d, 则： $T_n = \Theta (n^{\log_b^a} \cdot \log^n)$ 直接用 $log_{b}^{a}$ 乘以   $log^{n}$ .
+
+注意： 此处是 $f(n) = \Theta (n^{\log_b^a} log^{k}_{n})$ 中k=0的特列, 完整的表达是
+if $f(n)=\Theta(n^{\log_b^a} (log_{n})^k)$, with k>=0, $T_n = \Theta (n^{\log_b^a} \cdot (\log^n)^{k+1})$
+
+
+
+$$   n^d = f(n) = \Omega(n^{\log_b^a+\epsilon}) $$
+$$   n^d = f(n)  \ge n^{\log_b^a+\epsilon} $$
+$$   d \ge \log_b^a +\epsilon $$
+$$   d \ge \log_b^a $$
+如果$\log_b^b$ 在加上一个存在的 \epsilon 后仍然小于d, 则 ：$T_n = \Theta (f(n))$.
+直接f(n)
+这种情况要检测正则性：
+if $ \exists c < 1$ so that, $af(n/b)  \le cf(n)$.
+if not, Master Theorem can't be used in this case
+
+*** 1 example
+
+$T(n) = 3T(n/2) + n^{2}$
+
+a = 3,
+
+b = 2,
+
+$log_{b}^{a} = log_2^{3}$
+
+$\exists \varepsilon$ so that, $f(n) = \Omega(n^{log_b^a+\varepsilon})$
+
+Regularity condition:
+$af(n/b) = 3(n/2)^2 = 3n^{2}/4$
+
+$\exists c > 1$ , so $3n^{2}/4 \le c \cdot n^{2}$, for example  c = 4/5
+
+so $T(n)  = \Omega(f(n)) = \Omega(n^{2})$
+
+*** 2 example
+$T(n) = 4T(n/2) + n^{2}$
+
+a = 4
+
+b = 2
+
+$n^{\log_{b}^{a}} = n^{2} = \Theta(f(n))$
+
+$T(n) = \Theta(f(n)logn) = \Theta(n^{2}\log n)$
+
+*** 3 example
+ $T(n) = T(n/2) + 2^{n}$
+
+a = 1, b = 2
+
+$n^{\log_{b}^{a}} = \Omega(f(n)) = \Omega(2^{n})$
+
+Regularity condition:
+$af(n/b) = 2^{n/2}$,
+$f(n) = 2^{n}$
+$\exists c < 1$, such $af(n/b) < cf(n)$
+
+$T(n) = \Theta(2^{n})$
+
+*** 4 example
+4 $T(n) = 2^{n}T(n/2) + n^{n}$
+
+$a = 2^{n}$, b = 2,
+
+
+$n^{\log_{b}^{a}} = n^{n} = \Theta(f(n))$
+
+$T(n) = \Theta(f(n)logn) = \Theta(n^{n}logn)$
+
+*** 5 example
+$T(n) = 16T(n/4) + n$
+
+a = 16, b = 4;
+
+$n^{\log_{b}^{a}} =n^{2} = O(f(n))$
+
+$T(n) = \Theta(n^{2})$
+
+*** 6 example
+$T(n) = 2T(n/2) + nlogn$
+a = 2, b = 2
+$n^{\log_{b}^{a}} =n$
+
+$\nexists  \epsilon$ so that, $n^{\log_{b}^{a}-\varepsilon}$ is polynomial bigger
+than $O(f(n))$, or  $n^{\log_{b}^{a}+\varepsilon}$ is polynomial smaller than O(f(n)),
+
+But in the extend of second case:
+$n^{\log_{b}^{a}} logn = \Theta(f(n))$ so $T(n) = \Theta(f(n)log^{2}n) = \Theta(n\log^{2}n)$
+
+*** 7 example
+$2T(n) = 2T(n/2) + n/logn$
+a = 2, b = 2,
+$n^{\log_{b}^{a}} =n$
+
+$\nexists  \epsilon$ so that, $n^{\log_{b}^{a}-\varepsilon}$ is polynomial bigger
+than $O(f(n))$, or  $n^{\log_{b}^{a}+\varepsilon}$ is polynomial smaller than O(f(n)),
+
+
+But in the extend of second case for k = -1:
+$T(n) = \Theta(f(n)loglog^n) = \Theta(n\log\log n)$
+
+*** 8 example
+$T(n) = 2T(n/4) + n^{0.51}$
+a = 2, b = 4,
+$n^{\log_{b}^{a}} = n^{1/2} = \Omega(n^{0.51})$
+
+Regularity Condition:
+$af(n/b)= 2(n/4)^{0.51}$
+$\exists c < 1$, that a(f(n/b)) < c f(n);
+
+
+$T(n) = \Theta(n^{0.51})$
+
+*** 9 example
+$T(n) = 0.5T(n/2) +1/n$
+
+a = 1/2, b = 2,
+
+$n^{\log_{b}^{a}} =n^{-1} = \Theta(f(n))$
+
+$T(n) = \Theta(f(n)\log n) = log n/n$
+
+*** 10 example
+$T(n) = 16T(n/4) + n!$
+
+a = 16, b = 4,
+$n^{\log_{b}^{a}} = n^{2} = \Omega(f(n))$
+
+Regularity condition:
+$af(n/b) = 16n!/24$,
+$\exists c < 1$, so that af(n/b) < cf(n).
+
+$T(n) = \Theta(f(n)) = \Theta(n!)$
+
+*** 11 example
+$T(n) = \sqrt{2} T(n/2) + logn$
+$a = \sqrt{2}$, b = 2,
+
+$n^{\log_{b}^{a}} = n^{1/2}= O(f(n))$
+
+$T(n) = \Theta(n^{1/2})$
+
+*** 12 example
+$T(n) = 3T(n/2) +n$
+
+a = 3, b = 2
+$n^{\log_{b}^{a}} =n^{\log_{2}^{3}} = O(f(n))$
+
+$T(n) = \Theta(n^{\log_{2}^{3}})$
+
+*** 13 example
+$T(n) = 3T(n/3) +\sqrt{n}$
+a = 3, b = 3
+
+$n^{\log_{b}^{a}} = n = O(f(n))$
+
+$T(n) = \Theta(n)$
+
+*** 14 example
+$T(n) = 4T(n/2) + cn$
+a = 4, b =2,
+
+
+$n^{\log_{b}^{a}} =n^{2} = O(f(n))$
+
+$T(n) = \Theta(n^{2})$
+
+*** 15 example
+$T(n) = 3T(n/4) + nlogn$
+a = 3, b = 4,
+
+$n^{\log_{b}^{a}} = n^{\log_{3}^{4}} =\Omega(f(n))$
+
+Regularity condition:
+$af(n/b) = 3nlog(n/4)/4$
+if \exists c < 1$, so that,af(n/b) < cf(n)
+
+
+$\frac{3}{4}n \log n -\frac{3}{4}n\log 4 < c \cdot n \cdot logn <1$
+for $n -> \infty$, $\frac{3}{4}-\frac{3}{4} \cdot \frac{log 4}{logn} < c < 1$;
+
+so, $T(n) = \Theta(n\log n)$
+
+*** 16 example
+$T(n) = 3T(n/3) + n/2$
+a = 3, b = 3,
+
+$n^{\log_{b}^{a}} = n = \Theta(f(n))$
+
+$T(n) = \Theta(f(n)logn) = \Theta(\frac{n}{2}log n)$
+
+*** 17 example
+$T(n) = 6T(n/3) +n^{2}logn$
+a = 6, b = 3
+$n^{\log_{b}^{a}} = n^{\log_{3}^{6}} = \Omega(f(n))$
+
+Regularity condition:
+$af(n/b) = \frac{2}{3} n^2 log(n/3) < c \cdot n^2 logn$
+$\exists c$ so that, $\frac{2}{3} log(1/3) < c < 1$
+
+$T(n) = \Theta(f(n)) = \Theta(n^{2} logn)$
+
+*** 18 example
+$T(n) = 4T(n/2) + n/logn$
+
+a = 4, b = 2,
+
+$n^{\log_{b}^{a}} = n^{2} = O(f(n))$
+
+$T(n) = \Theta(n^{2})$
+
+*** 19 example
+$T(n) = 64T(n/8) -n^{2}logn$
+a = 64, b = 8,
+$n^{\log_{b}^{a}} = n^{2}$
+
+for extend second case,
+$n^{\log_{b}^{a}} logn = \Theta(f(n))$,  for k = 1
+
+so $T(n) = \Theta(n^{2}log^{2}n)$
+
+*** 20 example
+$T(n) = 7T(n/3) + n^{2}$
+a = 7, b = 3,
+
+$n^{\log_{b}^{a}} = n^{\log_{3}^{7}} = \Omega(f(n))$
+
+Regularity condition:
+$af(n/b) = \frac{7}{9}n^2$
+$\exists c < 1$, so that af(n/b) < cf(n), such as c = 8/9;
+
+
+
+$T(n) = \Theta(f(n)) = \Theta(n^2)$
+
+*** 21 example
+$T(n) = 4T(n/2) + logn$
+
+a = 4, b = 2,
+
+$n^{\log_{b}^{a}} = n^2 = O(f(n))$
+
+$T(n) = \Theta(n^{2})$
+
+*** 22 example
+$T(n) = T(n/2) + n(2-cosn)$
+a = 1, b = 2,
+
+$n^{\log_{b}^{a}} = n^{0} = \Omega(n(2-cosn))$
+
+Regularity condition:
+if $af(n/b) < c f(n)$, for c <1.
+$\exists c$ so that $\frac{1}{2} \frac{\frac{n}{2} (2-cos(n/2))}{2-cosn} < c < 1$.
+
+$T(n) = \Theta(n(2-cosn))$
+* P & NP
+*** def
+|-----------------+----------------------------------------------------------------------------|
+| P problem       | Es gibt ein Polynom p(n) und eine p(n)-Zeitbeschrankte DTM m mit L=L(m)}   |
+| NP problem      | Es gibt ein Polynom p(n) und eine p(n)-Zeitbeschrankte NTM m mit L=L(m)}   |
+| ExpTime problem | Es gibt ein Polynom p(n) und eine 2^p(n)-Zeitbeschrankte DTM m mit L=L(m)} |
+|-----------------+----------------------------------------------------------------------------|
+
+Rudction
+Many-one-Rudction : alle  P Problem konnen auf one Problem reduzieren.
+
+*** NP
+
+SAT <- 3SAT <- 3 Farbarkeit
+            <- Clique
+            <- Independent Set
+            <- Vertex Set
+            Pa
+
+* computer vision
+** Ubungs 01
+Solution erkälerung
+Mediuem
+under Quantil 25%
+ober Quantil  75%
+
+Entopie
+$$ E = \sum h_{rel}(w) log^{\frac{1}{h_{rel}}(w)} = - \sum p log^{p}$$
+
+Anisotorpie
+
+Paar-Grauwertmatrix
+
+* Hash
+** Gerneral
+Verlastungsfaktor  $\alpha = \frac{n}{m}$
+n : elementen
+m : Hash Blukets
+
+For Kollision
+Offenes Hash :  mit verkertete List
+Universumes Hash : mit ein hash famliy function
+Geschlossens Hash : die weiter hash bluket besiten
+verdoppelungsstrategie : verkleinen order vergrossen die Hash Blukets
+** Universal Hash
+*** Definition
+We want to save a dataset A  localy into dataset B, with has m slots in B
+and fast access to search, insert, delete operation,
+
+assiging A has n elements.
+
+
+In oder to guarantee the elements from A will be randomly distributed in
+B to avoiding the unnecessary collision,
+we define our universal Hashing hat following property:
+
+$$Pr[h(x)=h(y)] \le 1/m$$
+
+where x, y belongs to dataset A and $x \neq y$, x < n, y < n,
+
+m is the bins of mapped Dataset B,
+
+h is the wanted universal hashing function instance, from Uninstall Hashing family H
+
+one example of h can be Carter-Wegman hash function
+
+*** Carter-Wegman hash function
+Carter-Wegman hash function is :
+
+#+begin_center
+h(x) = [(ax+b)mod p] mod m
+#+end_center
+assiging p is the nearest prime number bigger than n,
+
+and  0 < a, b < p,
+
+proof:
+for $x \neq y$,
+(ax+b)-(ay+b) = a(x-y) is  not divisible by p ? why?? Is the following  a theorem?
+
+*Theorem?*
+
+#+begin_center
+Assigning $b$( in our case: x-y ) is an arbitrary intergel number,
+and $p$ is the a prime number and bigger than $b$,
+there is not such $a$ (in our case is also denote as a ) exist,
+such than 0 < $a$ < $p$, and $ab$ is divisible by $p$
+#+end_center
+
+If the upper rule holds, then
+because (ax+b)-(ay+b) = a(x-y) is  not divisible by p,
+
+so (ax+b) mod p $\neq$ (ay+b) mod p
+
+for  arbitrary $a$ anb $b$,
+
+(ax+b)mod p  and (ay+b) mod  can have p possibilities and (p-1) possibilities.
+
+so for arbitrary a and b, there are p(p-1) possibilities to locate in B dataset,
+
+because p(p-1) is much more bigger than m, (normally m < n < p),
+
+So we can guarantee that the distribution of elements in B can be very randomly and average.
+
+*** Python example
+this example is from [[https://github.com/zydeon/universal-hashing/blob/master/main.py][zydeon github]]
+
+#+begin_src ipython :results output :exports both
+  from math import ceil, log2
+  from primesieve import nth_prime
+  from random import randint
+  import numpy as np
+
+  class UniversalHashing:
+      """ N = #bins
+          p = prime number st: p >= N """
+
+      def __init__(self, N, p=None):
+          self.N = N
+          if p is None:
+              p = nth_prime(1, 1 << max(32, ceil(log2(N))))
+          assert p >= N, 'Prime number p should be at least N!'
+          self.p = p
+
+      def draw(self):
+          a = randint(1, self.p - 1)
+          b = randint(0, self.p - 1)
+          return lambda x: ((a * x + b) % self.p) % self.N
+
+
+  if __name__ == '__main__':
+      N = 50  # bins
+      n = 100000  # elements
+      H = UniversalHashing(N)
+      h = H.draw()
+
+      T = [0] * N
+      for _ in range(n):
+          x = randint(0, n * 10)
+          T[h(x)] += 1
+
+  for i in range(len(T)):
+      print(T[i] / n)    # This should be approximately equal
+
+#+end_src
+
+#+RESULTS:
+#+begin_example
+0.02026
+0.02023
+0.02001
+0.02017
+0.01979
+0.01949
+0.01999
+0.01948
+0.01958
+0.02085
+0.02027
+0.02041
+0.02056
+0.02029
+0.01867
+0.01959
+0.02041
+0.02004
+0.0198
+0.02024
+0.01969
+0.02046
+0.02036
+0.01984
+0.02044
+0.02071
+0.02033
+0.01995
+0.01955
+0.02052
+0.01984
+0.01987
+0.01958
+0.01908
+0.01956
+0.01964
+0.02007
+0.02056
+0.01997
+0.02011
+0.02023
+0.02024
+0.01996
+0.01954
+0.01988
+0.02003
+0.01998
+0.02037
+0.02009
+0.01942
+#+end_example
+
+Here we can see all elements are randomly distributed in the mapped dataset,
+
+and in upper code a, b and input dataset, all are randomly generated.
+
+#+begin_src
+But the question is: this can't be reproduced, which means, if we hash the
+same input again, we will get totally different hash distribution.
+In practical applications, we have to remember the return index of hashtable,
+otherwise we can't find it again in hashtable, even we never know if it still in the table.
+#+end_src
+
+*** universal hash with reproducible
+
+So we want to overcome this problem with reproducible porperty.
+We fix the a and b, in our following assumpation we set a = b = p-1
+applying the Carter-Wegman hash function for the given input data.
+if the return index is empty, we use it as our hash value.
+
+if the index has been token, we reduce a and b by one, and apply
+Carter-Wegman hash function again to find a suitable index in hashtable.
+
+over loop this process until one empty hashtable index is return
+
+#+begin_center
+Here in our reproducible universal hash, if the half hashtable has been token,
+we double the size of hashtable, so than the over loop process will not be too long.
+Because the Carter-Wegman hash function use the hashtable size m, so the after resize
+the hashtable, all elements will be computed again in new hashtable, this take an enormous effort.
+#+end_center
+**** check the input data from 100000 to 100100
+#+begin_src ipython :results output :exports both
+  from math import ceil, log2
+  from primesieve import nth_prime
+  from random import randint
+  import numpy as np
+
+  class UniversalHashing:
+      """ N = #bins
+          p = prime number st: p >= N """
+
+      def __init__(self, N=200, p=None):
+          self.N = N
+          self.T = [0] * self.N
+          if p is None:
+              p = nth_prime(1, 1 << max(32, ceil(log2(N))))
+          assert p >= N, 'Prime number p should be at least N!'
+          self.p = p
+          self.a = p - 1
+          self.b = p - 1
+
+      def draw(self):
+          return lambda x: ((self.a * x + self.b) % self.p) % self.N
+
+  def hash(x, H):
+      H.a = H.p - 1
+      H.b = H.p - 1
+      while (H.T[H.draw()(x)] != 0):
+          H.a -= 1
+          H.b -= 1
+      H.T[H.draw()(x)] = x
+
+  def check(x, H):
+      H.a = H.p - 1
+      H.b = H.p - 1
+      while(x != H.T[H.draw()(x)] and H.T[H.draw()(x)] != 0):
+          H.a -= 1
+          H.b -= 1
+      if(x == H.T[H.draw()(x)]):
+          print("x :{} is in hashtable".format(x))
+          return 1
+
+      if H.T[H.draw()(x)] == 0:
+          print("x :{} is not in hashtable".format(x))
+          return 0
+
+
+  if __name__ == '__main__':
+      H = UniversalHashing()
+      Y = [i for i in range(100000, 100100, 1)]
+      print(Y)
+      for x in Y:
+          hash(x, H)
+
+      print(H.T)
+
+      check(9000, H)
+      check(100010, H)
+
+
+#+end_src
+
+#+RESULTS:
+: [100000, 100001, 100002, 100003, 100004, 100005, 100006, 100007, 100008, 100009, 100010, 100011, 100012, 100013, 100014, 100015, 100016, 100017, 100018, 100019, 100020, 100021, 100022, 100023, 100024, 100025, 100026, 100027, 100028, 100029, 100030, 100031, 100032, 100033, 100034, 100035, 100036, 100037, 100038, 100039, 100040, 100041, 100042, 100043, 100044, 100045, 100046, 100047, 100048, 100049, 100050, 100051, 100052, 100053, 100054, 100055, 100056, 100057, 100058, 100059, 100060, 100061, 100062, 100063, 100064, 100065, 100066, 100067, 100068, 100069, 100070, 100071, 100072, 100073, 100074, 100075, 100076, 100077, 100078, 100079, 100080, 100081, 100082, 100083, 100084, 100085, 100086, 100087, 100088, 100089, 100090, 100091, 100092, 100093, 100094, 100095, 100096, 100097, 100098, 100099]
+: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100099, 100098, 100097, 100096, 100095, 100094, 100093, 100092, 100091, 100090, 100089, 100088, 100087, 100086, 100085, 100084, 100083, 100082, 100081, 100080, 100079, 100078, 100077, 100076, 100075, 100074, 100073, 100072, 100071, 100070, 100069, 100068, 100067, 100066, 100065, 100064, 100063, 100062, 100061, 100060, 100059, 100058, 100057, 100056, 100055, 100054, 100053, 100052, 100051, 100050, 100049, 100048, 100047, 100046, 100045, 100044, 100043, 100042, 100041, 100040, 100039, 100038, 100037, 100036, 100035, 100034, 100033, 100032, 100031, 100030, 100029, 100028, 100027, 100026, 100025, 100024, 100023, 100022, 100021, 100020, 100019, 100018, 100017, 100016, 100015, 100014, 100013, 100012, 100011, 100010, 100009, 100008, 100007, 100006, 100005, 100004, 100003, 100002, 100001, 100000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+: x :9000 is not in hashtable
+: x :100010 is in hashtable
+
+
+**** check randint from 1 to 10000
+#+begin_src ipython :results output :exports both
+from math import ceil, log2
+from primesieve import nth_prime
+from random import randint
+import numpy as np
+
+
+class UniversalHashing:
+    """ N = #bins
+        p = prime number st: p >= N """
+
+    def __init__(self, N=200, p=None):
+        self.N = N
+        self.T = [0] * self.N
+        if p is None:
+            p = nth_prime(1, 1 << max(32, ceil(log2(N))))
+        assert p >= N, 'Prime number p should be at least N!'
+        self.p = p
+        self.a = p - 1
+        self.b = p - 1
+
+    def draw(self):
+        return lambda x: ((self.a * x + self.b) % self.p) % self.N
+
+
+def hash(x, H):
+    H.a = H.p - 1
+    H.b = H.p - 1
+    while (H.T[H.draw()(x)] != 0):
+        H.a -= 1
+        H.b -= 1
+    H.T[H.draw()(x)] = x
+
+
+def check(x, H):
+    H.a = H.p - 1
+    H.b = H.p - 1
+    while(x != H.T[H.draw()(x)] and H.T[H.draw()(x)] != 0):
+        H.a -= 1
+        H.b -= 1
+    if(x == H.T[H.draw()(x)]):
+        print("x :{} is in hashtable".format(x))
+        return 1
+
+    if H.T[H.draw()(x)] == 0:
+        print("x :{} is not in hashtable".format(x))
+        return 0
+
+
+if __name__ == '__main__':
+    H = UniversalHashing()
+    Y = [randint(1, 10000) for _ in range(100)]
+    print(Y)
+    for x in Y:
+        hash(x, H)
+
+    print(H.T)
+
+    check(9000, H)
+    check(100010, H)
+
+
+#+end_src
+
+#+RESULTS:
+: [9499, 7809, 9665, 6560, 686, 9560, 6894, 1930, 972, 2659, 50, 8111, 4054, 1588, 9634, 2645, 1875, 6573, 4764, 1851, 3661, 6733, 86, 787, 1139, 1558, 6823, 3650, 2438, 7334, 9074, 3704, 493, 8574, 4280, 6603, 1136, 870, 7313, 7619, 3580, 9129, 1421, 9342, 3873, 9500, 8961, 1279, 3997, 9743, 2565, 8310, 207, 6131, 604, 1294, 9481, 8943, 5951, 8554, 4773, 198, 8479, 8771, 941, 834, 8605, 9254, 3543, 6344, 428, 9841, 3361, 7714, 9908, 2579, 8696, 202, 3235, 6120, 5263, 3912, 2815, 2625, 190, 8407, 4294, 2638, 9100, 7234, 2782, 7793, 9647, 1053, 651, 1309, 9606, 6526, 5017, 2505]
+: [8310, 9254, 9908, 0, 0, 2505, 3704, 651, 0, 3650, 9500, 9499, 0, 0, 8696, 0, 6894, 493, 0, 0, 0, 0, 0, 8943, 686, 0, 4294, 0, 0, 9481, 4280, 1279, 0, 2638, 0, 1875, 9074, 3873, 0, 0, 870, 834, 0, 0, 0, 9665, 0, 5263, 0, 3661, 86, 2659, 0, 0, 0, 0, 4054, 1053, 0, 1851, 50, 0, 0, 9647, 0, 2645, 7234, 0, 0, 9841, 0, 8407, 2438, 0, 0, 3235, 9634, 0, 0, 3543, 0, 0, 428, 0, 0, 2625, 0, 6823, 0, 1421, 0, 7619, 0, 5017, 0, 2815, 0, 0, 0, 0, 0, 7809, 0, 207, 9606, 8605, 604, 6603, 202, 9100, 0, 0, 198, 3997, 0, 0, 0, 7793, 0, 0, 190, 1294, 1588, 787, 0, 0, 0, 0, 2782, 0, 3580, 2579, 0, 0, 0, 0, 8574, 6573, 972, 8771, 0, 0, 0, 0, 0, 2565, 4764, 0, 0, 8961, 6560, 8479, 1558, 0, 0, 0, 8554, 0, 0, 5951, 0, 1309, 0, 4773, 0, 0, 6344, 9743, 9342, 941, 0, 1139, 0, 0, 1136, 0, 7334, 6733, 0, 6131, 1930, 9129, 0, 0, 6526, 0, 0, 3361, 0, 9560, 6120, 0, 0, 0, 0, 0, 7714, 7313, 3912, 8111]
+: x :9000 is not in hashtable
+: x :100010 is not in hashtable
+
+
+**** check 100 special  input  data
+we use
+#+begin_src
+Y = [H.N*randint(1, 100) for _ in range(100)]
+#+end_src
+to generate 100 collision data,
+we can see all data collided into the same slot if we just use fixed a, b (seeing upper) without a -= 1 and b -= 1.
+and with the reduction, all special data are  average distributed.
+
+#+begin_src ipython :results output :exports both
+  from math import ceil, log2
+  from primesieve import nth_prime
+  from random import randint
+  import numpy as np
+
+  class UniversalHashing:
+      """ N = #bins
+          p = prime number st: p >= N """
+
+      def __init__(self, N, p=None):
+          self.N = N
+          if p is None:
+              p = nth_prime(1, 1 << max(32, ceil(log2(N))))
+          assert p >= N, 'Prime number p should be at least N!'
+          self.p = p
+
+      def draw(self):
+          a = self.p - 1
+          b = self.p - 1
+          # a = randint(1, self.p - 1)
+          # b = randint(0, self.p - 1)
+          return lambda x: ((a * x + b) % self.p) % self.N
+
+  if __name__ == '__main__':
+      N = 50  # bins
+      n = 100000  # elements
+      H = UniversalHashing(N)
+      h = H.draw()
+
+      T = [0] * N
+
+      # for _ in range(n):
+      #     x = randint(0, n * 10)
+      #     T[h(x)] += 1
+
+      Y = [H.N*randint(1, 100) for _ in range(100000)]
+      for x in Y:
+          T[h(x)] += 1
+
+
+  for i in range(len(T)):
+      print(T[i] / n)    # This should be approximately equal
+
+#+end_src
+
+#+RESULTS:
+#+begin_example
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+1.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+#+end_example
+
+
+#+begin_src ipython :results output :exports both
+  from math import ceil, log2
+  from primesieve import nth_prime
+  from random import randint
+  import numpy as np
+
+
+  class UniversalHashing:
+      """ N = #bins
+          p = prime number st: p >= N """
+
+      def __init__(self, N=200, p=None):
+          self.N = N
+          self.T = [0] * self.N
+          if p is None:
+              p = nth_prime(1, 1 << max(32, ceil(log2(N))))
+          assert p >= N, 'Prime number p should be at least N!'
+          self.p = p
+          self.a = p - 1
+          self.b = p - 1
+
+      def draw(self):
+          return lambda x: ((self.a * x + self.b) % self.p) % self.N
+
+
+  def hash(x, H):
+      H.a = H.p - 1
+      H.b = H.p - 1
+      while (H.T[H.draw()(x)] != 0):
+          H.a -= 1
+          H.b -= 1
+      H.T[H.draw()(x)] = x
+
+
+  def check(x, H):
+      H.a = H.p - 1
+      H.b = H.p - 1
+      while(x != H.T[H.draw()(x)] and H.T[H.draw()(x)] != 0):
+          H.a -= 1
+          H.b -= 1
+      if(x == H.T[H.draw()(x)]):
+          print("x :{} is in hashtable".format(x))
+          return 1
+
+      if H.T[H.draw()(x)] == 0:
+          print("x :{} is not in hashtable".format(x))
+          return 0
+
+
+  if __name__ == '__main__':
+      H = UniversalHashing()
+      Y = [H.N*randint(1, 100) for _ in range(100)]
+
+      print(Y)
+      for x in Y:
+          hash(x, H)
+
+      print(H.T)
+
+      check(9000, H)
+      check(100010, H)
+
+
+#+end_src
+
+#+RESULTS:
+: [14800, 10600, 1400, 4800, 3400, 17800, 12400, 19800, 10200, 9600, 15800, 5200, 8800, 15200, 18200, 1000, 6200, 6800, 16400, 1800, 8800, 12600, 12600, 9600, 16800, 12800, 14400, 3400, 5800, 11600, 19600, 5600, 5400, 9800, 2000, 7800, 15000, 1800, 18800, 16800, 17600, 9000, 18600, 11800, 19200, 16800, 200, 18800, 19200, 6400, 3000, 12000, 2800, 13600, 13600, 16400, 2000, 16400, 19200, 9200, 6200, 11600, 14800, 18200, 17000, 1200, 17800, 12000, 13200, 17200, 9600, 16200, 8200, 15200, 12000, 8400, 15600, 1800, 4000, 1600, 8200, 16000, 9200, 1400, 14000, 1400, 17000, 3200, 2200, 14800, 14200, 11000, 3600, 14200, 8600, 13000, 7400, 7200, 10600, 17600]
+: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17600, 10600, 7200, 7400, 13000, 8600, 14200, 3600, 11000, 14200, 14800, 2200, 3200, 17000, 1400, 14000, 1400, 9200, 16000, 8200, 1600, 4000, 1800, 15600, 8400, 12000, 15200, 8200, 16200, 9600, 17200, 13200, 12000, 17800, 1200, 17000, 18200, 14800, 11600, 6200, 9200, 19200, 16400, 2000, 16400, 13600, 13600, 2800, 12000, 3000, 6400, 19200, 18800, 200, 16800, 19200, 11800, 18600, 9000, 17600, 16800, 18800, 1800, 15000, 7800, 2000, 9800, 5400, 5600, 19600, 11600, 5800, 3400, 14400, 12800, 16800, 9600, 12600, 12600, 8800, 1800, 16400, 6800, 6200, 1000, 18200, 15200, 8800, 5200, 15800, 9600, 10200, 19800, 12400, 17800, 3400, 4800, 1400, 10600, 14800, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+: x :9000 is in hashtable
+: x :100010 is not in hashtable
+
+
+**** search key
+we also used the check function to check if the data is already in hashtable,
+the check can be done for with and without collision input data.
+we use 100, 200, 300,... to  20000 as input, so we can check some of it, such as 5000, 9000
+5000, or 9000 is in the hashtable even they collided many times.
+#+begin_src ipython :results output :exports both
+from math import ceil, log2
+from primesieve import nth_prime
+from random import randint
+import numpy as np
+
+class UniversalHashing:
+    """ N = #bins
+        p = prime number st: p >= N """
+
+    def __init__(self, N=200, p=None):
+        self.N = N
+        self.T = [0] * self.N
+        if p is None:
+            p = nth_prime(1, 1 << max(32, ceil(log2(N))))
+        assert p >= N, 'Prime number p should be at least N!'
+        self.p = p
+        self.a = p - 1
+        self.b = p - 1
+
+    def draw(self):
+        return lambda x: ((self.a * x + self.b) % self.p) % self.N
+
+
+def hash(x, H):
+    H.a = H.p - 1
+    H.b = H.p - 1
+    while (H.T[H.draw()(x)] != 0):
+        H.a -= 1
+        H.b -= 1
+    H.T[H.draw()(x)] = x
+
+
+def check(x, H):
+    H.a = H.p - 1
+    H.b = H.p - 1
+    while(x != H.T[H.draw()(x)] and H.T[H.draw()(x)] != 0):
+        H.a -= 1
+        H.b -= 1
+    if(x == H.T[H.draw()(x)]):
+        print("x :{} is in hashtable".format(x))
+        return 1
+
+    if H.T[H.draw()(x)] == 0:
+        print("x :{} is not in hashtable".format(x))
+        return 0
+
+
+if __name__ == '__main__':
+    H = UniversalHashing()
+    Y = [H.N*i for i in range(100)]
+
+    print(Y)
+    for x in Y:
+        hash(x, H)
+
+    print(H.T)
+
+    check(5000, H)
+    check(9000, H)
+    check(10300, H)
+
+
+#+end_src
+
+#+RESULTS:
+: [0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800, 3000, 3200, 3400, 3600, 3800, 4000, 4200, 4400, 4600, 4800, 5000, 5200, 5400, 5600, 5800, 6000, 6200, 6400, 6600, 6800, 7000, 7200, 7400, 7600, 7800, 8000, 8200, 8400, 8600, 8800, 9000, 9200, 9400, 9600, 9800, 10000, 10200, 10400, 10600, 10800, 11000, 11200, 11400, 11600, 11800, 12000, 12200, 12400, 12600, 12800, 13000, 13200, 13400, 13600, 13800, 14000, 14200, 14400, 14600, 14800, 15000, 15200, 15400, 15600, 15800, 16000, 16200, 16400, 16600, 16800, 17000, 17200, 17400, 17600, 17800, 18000, 18200, 18400, 18600, 18800, 19000, 19200, 19400, 19600, 19800]
+: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19800, 19600, 19400, 19200, 19000, 18800, 18600, 18400, 18200, 18000, 17800, 17600, 17400, 17200, 17000, 16800, 16600, 16400, 16200, 16000, 15800, 15600, 15400, 15200, 15000, 14800, 14600, 14400, 14200, 14000, 13800, 13600, 13400, 13200, 13000, 12800, 12600, 12400, 12200, 12000, 11800, 11600, 11400, 11200, 11000, 10800, 10600, 10400, 10200, 10000, 9800, 9600, 9400, 9200, 9000, 8800, 8600, 8400, 8200, 8000, 7800, 7600, 7400, 7200, 7000, 6800, 6600, 6400, 6200, 6000, 5800, 5600, 5400, 5200, 5000, 4800, 4600, 4400, 4200, 4000, 3800, 3600, 3400, 3200, 3000, 2800, 2600, 2400, 2200, 2000, 1800, 1600, 1400, 1200, 1000, 800, 600, 400, 200, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+: x :5000 is in hashtable
+: x :9000 is in hashtable
+: x :10300 is not in hashtable
+* Tree Theorem
+** Vorgänger(u)
+
+|--------------------+------------------+-------------------------------------|
+| if least(root) = u |                  | no Vorgänger                        |
+|--------------------+------------------+-------------------------------------|
+| if u.L exits       |                  | greatest(u.L)                       |
+|--------------------+------------------+-------------------------------------|
+| if u.L not exits   | u is right child | father node                         |
+| if u.L not exits   | u is left child  | (grand)father which has right child |
+|--------------------+------------------+-------------------------------------|
+
+** Nachfolger(v)
+
+|-----------------------+------------------+------------------------------------|
+| if greatest(root) = v |                  | no Nachfolger                      |
+|-----------------------+------------------+------------------------------------|
+| if v.R exits          |                  | least(u.L)                         |
+|-----------------------+------------------+------------------------------------|
+| if v.R not exits      | v is left child  | father node                        |
+| if v.R not exits      | v is right child | (grand)father which has left child |
+|-----------------------+------------------+------------------------------------|
+
+* Quantum Computation

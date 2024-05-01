@@ -1,0 +1,408 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Lisp - my collection</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="AI.org.html"><strong aria-hidden="true">1.</strong> AI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="MachineLearning.org.html"><strong aria-hidden="true">1.1.</strong> MachineLearning</a></li><li class="chapter-item expanded "><a href="DeepLearning.org.html"><strong aria-hidden="true">1.2.</strong> DeepLearning</a></li><li class="chapter-item expanded "><a href="NLP.org.html"><strong aria-hidden="true">1.3.</strong> NLP</a></li></ol></li><li class="chapter-item expanded "><a href="CS.org.html"><strong aria-hidden="true">2.</strong> CS</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="linux.org.html"><strong aria-hidden="true">2.1.</strong> Linux</a></li><li class="chapter-item expanded "><a href="Algorithm.org.html"><strong aria-hidden="true">2.2.</strong> Algorithm</a></li><li class="chapter-item expanded "><a href="DataStructure.org.html"><strong aria-hidden="true">2.3.</strong> DataStructure</a></li><li class="chapter-item expanded "><a href="Parallelisum.org.html"><strong aria-hidden="true">2.4.</strong> Parallelisum</a></li><li class="chapter-item expanded "><a href="cloud_service_computing.org.html"><strong aria-hidden="true">2.5.</strong> Cloud_service_computing</a></li><li class="chapter-item expanded "><a href="blockchain.org.html"><strong aria-hidden="true">2.6.</strong> Blockchain</a></li></ol></li><li class="chapter-item expanded "><a href="DataScience.org.html"><strong aria-hidden="true">3.</strong> DataScience</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="DAMA.org.html"><strong aria-hidden="true">3.1.</strong> DAMA</a></li></ol></li><li class="chapter-item expanded "><a href="Math.org.html"><strong aria-hidden="true">4.</strong> Math</a></li><li class="chapter-item expanded "><a href="Physik.org.html"><strong aria-hidden="true">5.</strong> Physik</a></li><li class="chapter-item expanded "><a href="QutuamComputation.org.html"><strong aria-hidden="true">6.</strong> QutuamComputation</a></li><li class="chapter-item expanded "><a href="ROS.org.html"><strong aria-hidden="true">7.</strong> ROS</a></li><li class="chapter-item expanded "><a href="tools.org.html"><strong aria-hidden="true">8.</strong> Tools</a></li><li class="chapter-item expanded "><a href="WebDesign.org.html"><strong aria-hidden="true">9.</strong> WebDesign</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vue.org.html"><strong aria-hidden="true">9.1.</strong> Vue</a></li><li class="chapter-item expanded "><a href="vscode.org.html"><strong aria-hidden="true">9.2.</strong> Vscode</a></li></ol></li><li class="chapter-item expanded "><a href="Language.org.html"><strong aria-hidden="true">10.</strong> Language</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c.org.html"><strong aria-hidden="true">10.1.</strong> C</a></li><li class="chapter-item expanded "><a href="ts.org.html"><strong aria-hidden="true">10.2.</strong> TS</a></li><li class="chapter-item expanded "><a href="scala.org.html"><strong aria-hidden="true">10.3.</strong> Scala</a></li><li class="chapter-item expanded "><a href="lisp.org.html" class="active"><strong aria-hidden="true">10.4.</strong> Lisp</a></li><li class="chapter-item expanded "><a href="Java.org.html"><strong aria-hidden="true">10.5.</strong> Java</a></li><li class="chapter-item expanded "><a href="JS.org.html"><strong aria-hidden="true">10.6.</strong> JS</a></li><li class="chapter-item expanded "><a href="go.org.html"><strong aria-hidden="true">10.7.</strong> Go</a></li><li class="chapter-item expanded "><a href="rust.org.html"><strong aria-hidden="true">10.8.</strong> Rust</a></li><li class="chapter-item expanded "><a href="python.org.html"><strong aria-hidden="true">10.9.</strong> Python</a></li><li class="chapter-item expanded "><a href="emacs.org.html"><strong aria-hidden="true">10.10.</strong> Emacs</a></li><li class="chapter-item expanded "><a href="haskell.org.html"><strong aria-hidden="true">10.11.</strong> Haskell</a></li><li class="chapter-item expanded "><a href="Julia.org.html"><strong aria-hidden="true">10.12.</strong> Julia</a></li><li class="chapter-item expanded "><a href="mysql.org.html"><strong aria-hidden="true">10.13.</strong> Mysql</a></li><li class="chapter-item expanded "><a href="postgressql.org.html"><strong aria-hidden="true">10.14.</strong> Postgressql</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">my collection</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<hr />
+<h2 id="title-lisp"><a class="header" href="#title-lisp">title: Lisp</a></h2>
+<pre><code class="language-{=org}">#+startup: content
+</code></pre>
+<h1 id="root"><a class="header" href="#root">root</a></h1>
+<p>S-express can be atmo or list car : get the first S-express cdr : get
+the rest list cons : need a S-express and a list : put the first
+S-express into the second list (null? l) if l is null? (atom? l) if l is
+atmo? (member? ele list) (rember ele list)</p>
+<h1 id="command"><a class="header" href="#command">command</a></h1>
+<h2 id="execute"><a class="header" href="#execute">execute</a></h2>
+<hr />
+<p>command    explain
+C-c C-e    result in minibuffer
+C-j        result under the cursor
+M-x ielm   in elisp interactive mode</p>
+<hr />
+<h1 id="list"><a class="header" href="#list">List</a></h1>
+<pre><code class="language-elisp">(concat "abd" "def")
+(+ 34 9)
+
+(substring "0123456789" 2 8)
+
+(setq Emacs 'My-favour)
+
+(message "Am today %s I start to learn emacs %d " "niaho" 09)
+;"Am today niaho I start to learn emacs 9 "
+(message "He saw %d %s"
+(- fill-column 32)
+(concat "red "
+(substring
+"The quick brown foxes jumped." 16 21)
+" leaping."))
+;"He saw 38 red foxes leaping."
+(setq trees '(pine fir oak maple)
+           herbivores '(gazelle antelope zebra))
+
+</code></pre>
+<h1 id="evaluation"><a class="header" href="#evaluation">Evaluation</a></h1>
+<pre><code class="language-elisp">
+(buffer-file-name)
+(setq a 300)
+(* 34 67 45
+</code></pre>
+<p>)</p>
+<h1 id="buffer"><a class="header" href="#buffer">Buffer</a></h1>
+<pre><code class="language-elisp">(buffer-name)
+
+(current-buffer)
+
+(other-buffer)
+
+(switch-to-buffer (other-buffer))
+
+(buffer-size)
+
+(point)
+
+(point-min)
+
+(point-max)
+
+(defun multipy-by-seven (number)
+"Multipy NUMBER by seven"
+(* 7 number))
+
+(multipy-by-seven 4)
+
+(defun multipy-by-seven (number))
+
+(interactive "p")
+
+(message "the result is %d" (* 7 number))
+</code></pre>
+<h1 id="let-and-let-"><a class="header" href="#let-and-let-">let and let *</a></h1>
+<p>let define the local variable</p>
+<pre><code class="language-{.commonlisp org-language=&quot;emacs-lisp&quot;}">(defun circle-area (radix)
+  (let ((pi 3.1415926)
+        area)
+    (setq area (* pi radix radix))
+    (message "直径为 %.2f 的圆面积是 %.2f" radix area)
+    ))
+(circle-area 5)
+
+</code></pre>
+<p>let* define local variable, which can be immediately used</p>
+<pre><code class="language-{.commonlisp org-language=&quot;emacs-lisp&quot;}">(defun circle-eara (radix)
+  (let* ((pi 3.1415926)
+         (area (pi*radix*radix))))
+    (message "直径为 %.2f 的圆面积是 %.2f" radix area))
+(circle-area 6)
+</code></pre>
+<h1 id="special-form"><a class="header" href="#special-form">Special Form</a></h1>
+<h3 id="defun"><a class="header" href="#defun">defun</a></h3>
+<p>(defun name-of-function (argument-list) "documentation..." body...)</p>
+<h3 id="let"><a class="header" href="#let">let</a></h3>
+<p>(let ((zebra "stripes") (tiger "fierce")) (message "One kind of
+animal has %s and another is %s." zebra tiger))</p>
+<h3 id="if"><a class="header" href="#if">if</a></h3>
+<pre><code class="language-{.commonlisp org-language=&quot;emacs-lisp&quot;}">(defun my-max (a b)
+  (if ( &gt; a b)
+    (message "aaaaa")
+    (message "bbbbb")
+    ))
+(my-max 3 0)  
+</code></pre>
+<p>(if true-or-false-test action-to-carry-out-if-the-test-returns-true)</p>
+<h3 id="if-then"><a class="header" href="#if-then">if-then</a></h3>
+<p>(if true-or-false-test action-to-carry-out-if-the-test-returns-true
+action-to-carry-out-if-the-test-returns-false)</p>
+<p>(if 4 'true 'false)</p>
+<p>(if nil 'true 'false)</p>
+<h3 id="save-excursion"><a class="header" href="#save-excursion">save-excursion</a></h3>
+<p>(message "We are %d characters into this buffer." (save-excursion (-
+(point) (goto-char (point-min)) (point))))</p>
+<h1 id="2-36-arbitrary-base"><a class="header" href="#2-36-arbitrary-base">2-36 arbitrary base</a></h1>
+<pre><code class="language-{.commonlisp org-language=&quot;emacs-lisp&quot;}">#36re
+#36r1
+#36ra
+#36ru
+#36rk
+</code></pre>
+<h1 id="code"><a class="header" href="#code">code</a></h1>
+<p>char count</p>
+<pre><code class="language-{.commonlisp org-language=&quot;emacs-lisp&quot;}">(defun cheap-count-words()
+  (interactive)
+  (let ((words 0))
+    (goto-char (point-min))
+    (while (forward-word)
+      (setq words (1+ words)))
+    (message (format "Words is Buffer : %s" words))
+    words)
+  )
+
+</code></pre>
+<h1 id="emacs-lisp-programm"><a class="header" href="#emacs-lisp-programm">Emacs lisp programm</a></h1>
+<h2 id="file-management"><a class="header" href="#file-management">file management</a></h2>
+<p>read file :: insert-file-contents and copy file :: write-region</p>
+<pre><code class="language-{.commonlisp org-language=&quot;emacs-lisp&quot;}">;;read file and print out
+(defun read-file-as-lines (file-path)
+  (with-temp-buffer
+    (insert-file-contents file-path)
+    (split-string (buffer-string) "\n" t)))
+
+(read-file-as-lines "~/Desktop/110.py")
+
+;;read file and copy to another
+(defun copy-file-to-file (fromfile tofile)
+  (with-temp-buffer
+    (insert-file-contents fromfile)
+    (setq copy-test-path tofile)
+    (write-region (point-min) (point-max) copy-test-path)
+    (write-region "new  content" nil copy-test-path t)))
+
+(copy-file-to-file "~/Desktop/110.py" "~/Desktop/112.py")
+
+
+
+
+</code></pre>
+<h1 id="function-in-orgmode"><a class="header" href="#function-in-orgmode">Function in orgmode</a></h1>
+<pre><code class="language-{.commonlisp org-language=&quot;emacs-lisp&quot;}">(+ 45 65)
+</code></pre>
+<pre><code class="language-{.commonlisp org-language=&quot;emacs-lisp&quot;}">(defun do-some-math(x y)
+  (* (+ x 20)
+     (- y 10) ) )
+</code></pre>
+<pre><code class="language-{.commonlisp org-language=&quot;emacs-lisp&quot;}">(defun multipy-many  (x &amp;rest operands)
+  (dolist (operand operands) 
+    (when operand 
+      (setq x (* x operand)))) x)
+</code></pre>
+<p>interactive function als commands</p>
+<pre><code class="language-{.commonlisp org-language=&quot;emacs-lisp&quot;}">(defun my-first-command()
+(interactive)
+(message "Hey , it works") )
+
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="scala.org.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="Java.org.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="scala.org.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="Java.org.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

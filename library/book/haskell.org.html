@@ -1,0 +1,599 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Haskell - my collection</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="AI.org.html"><strong aria-hidden="true">1.</strong> AI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="MachineLearning.org.html"><strong aria-hidden="true">1.1.</strong> MachineLearning</a></li><li class="chapter-item expanded "><a href="DeepLearning.org.html"><strong aria-hidden="true">1.2.</strong> DeepLearning</a></li><li class="chapter-item expanded "><a href="NLP.org.html"><strong aria-hidden="true">1.3.</strong> NLP</a></li></ol></li><li class="chapter-item expanded "><a href="CS.org.html"><strong aria-hidden="true">2.</strong> CS</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="linux.org.html"><strong aria-hidden="true">2.1.</strong> Linux</a></li><li class="chapter-item expanded "><a href="Algorithm.org.html"><strong aria-hidden="true">2.2.</strong> Algorithm</a></li><li class="chapter-item expanded "><a href="DataStructure.org.html"><strong aria-hidden="true">2.3.</strong> DataStructure</a></li><li class="chapter-item expanded "><a href="Parallelisum.org.html"><strong aria-hidden="true">2.4.</strong> Parallelisum</a></li><li class="chapter-item expanded "><a href="cloud_service_computing.org.html"><strong aria-hidden="true">2.5.</strong> Cloud_service_computing</a></li><li class="chapter-item expanded "><a href="blockchain.org.html"><strong aria-hidden="true">2.6.</strong> Blockchain</a></li></ol></li><li class="chapter-item expanded "><a href="DataScience.org.html"><strong aria-hidden="true">3.</strong> DataScience</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="DAMA.org.html"><strong aria-hidden="true">3.1.</strong> DAMA</a></li></ol></li><li class="chapter-item expanded "><a href="Math.org.html"><strong aria-hidden="true">4.</strong> Math</a></li><li class="chapter-item expanded "><a href="Physik.org.html"><strong aria-hidden="true">5.</strong> Physik</a></li><li class="chapter-item expanded "><a href="QutuamComputation.org.html"><strong aria-hidden="true">6.</strong> QutuamComputation</a></li><li class="chapter-item expanded "><a href="ROS.org.html"><strong aria-hidden="true">7.</strong> ROS</a></li><li class="chapter-item expanded "><a href="tools.org.html"><strong aria-hidden="true">8.</strong> Tools</a></li><li class="chapter-item expanded "><a href="WebDesign.org.html"><strong aria-hidden="true">9.</strong> WebDesign</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vue.org.html"><strong aria-hidden="true">9.1.</strong> Vue</a></li><li class="chapter-item expanded "><a href="vscode.org.html"><strong aria-hidden="true">9.2.</strong> Vscode</a></li></ol></li><li class="chapter-item expanded "><a href="Language.org.html"><strong aria-hidden="true">10.</strong> Language</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c.org.html"><strong aria-hidden="true">10.1.</strong> C</a></li><li class="chapter-item expanded "><a href="ts.org.html"><strong aria-hidden="true">10.2.</strong> TS</a></li><li class="chapter-item expanded "><a href="scala.org.html"><strong aria-hidden="true">10.3.</strong> Scala</a></li><li class="chapter-item expanded "><a href="lisp.org.html"><strong aria-hidden="true">10.4.</strong> Lisp</a></li><li class="chapter-item expanded "><a href="Java.org.html"><strong aria-hidden="true">10.5.</strong> Java</a></li><li class="chapter-item expanded "><a href="JS.org.html"><strong aria-hidden="true">10.6.</strong> JS</a></li><li class="chapter-item expanded "><a href="go.org.html"><strong aria-hidden="true">10.7.</strong> Go</a></li><li class="chapter-item expanded "><a href="rust.org.html"><strong aria-hidden="true">10.8.</strong> Rust</a></li><li class="chapter-item expanded "><a href="python.org.html"><strong aria-hidden="true">10.9.</strong> Python</a></li><li class="chapter-item expanded "><a href="emacs.org.html"><strong aria-hidden="true">10.10.</strong> Emacs</a></li><li class="chapter-item expanded "><a href="haskell.org.html" class="active"><strong aria-hidden="true">10.11.</strong> Haskell</a></li><li class="chapter-item expanded "><a href="Julia.org.html"><strong aria-hidden="true">10.12.</strong> Julia</a></li><li class="chapter-item expanded "><a href="mysql.org.html"><strong aria-hidden="true">10.13.</strong> Mysql</a></li><li class="chapter-item expanded "><a href="postgressql.org.html"><strong aria-hidden="true">10.14.</strong> Postgressql</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">my collection</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<hr />
+<h2 id="title-haskell"><a class="header" href="#title-haskell">title: Haskell</a></h2>
+<pre><code class="language-{=org}">#+startup:  content
+</code></pre>
+<h1 id="commands"><a class="header" href="#commands">commands</a></h1>
+<h2 id="in-filehs"><a class="header" href="#in-filehs">in file.hs</a></h2>
+<p>C-c C-l to execute file.hs and go to interactive environment Seeing
+./black.hs</p>
+<h2 id="c-c-c-c-call-in-src"><a class="header" href="#c-c-c-c-call-in-src">C-c C-c call in src</a></h2>
+<pre><code class="language-{.haskell results=&quot;value&quot;}">log2 :: Float -&gt; Float
+  log2 = logBase 2
+  log2 43
+
+</code></pre>
+<p>with :results value :eval (inferior-haskell-start-process)</p>
+<p>in src can multi functions be defined. and the last call will be printed</p>
+<p>with follow extension, can be easy C-c C-c executed, but not in send to
+haskell log file, but only output the last result</p>
+<p>Seeing Literatur Programm Grundlage</p>
+<h2 id="send-to-haskellorg-src-block"><a class="header" href="#send-to-haskellorg-src-block">send to haskell/org-src-block</a></h2>
+<pre><code class="language-{.haskell results=&quot;value&quot;}">log2 :: Float -&gt; Float
+  log2 = logBase 2
+  log2 43
+
+</code></pre>
+<pre><code class="language-{=org}">#+end_src
+</code></pre>
+<p>first to load file. ~/.emacs.d/packages/orgmode-babal-haskell.el in one
+of src block M-x : send to haskell/org-src-block</p>
+<p>in src block without any extension can be load in send buffer(after
+<del>src</del> haskell), and the be called function can be many type.</p>
+<p>important : in src block the calling syntax is NOT allowed</p>
+<p>Seeing Literatur Programm Alternativen</p>
+<h1 id="functional-programm"><a class="header" href="#functional-programm">Functional Programm</a></h1>
+<h2 id="grundlage"><a class="header" href="#grundlage">Grundlage</a></h2>
+<p>basic function call</p>
+<pre><code class="language-{.haskell results=&quot;value&quot;}">log2 :: Float -&gt; Float
+  log2 = logBase 2
+  log2 43
+
+</code></pre>
+<p>implication</p>
+<pre><code class="language-{.haskell results=&quot;value&quot;}">(==&gt;):: Bool -&gt; Bool -&gt; Bool
+a ==&gt; b = not a || not b
+Flase ==&gt; True
+False==&gt; False
+True ==&gt; True
+
+</code></pre>
+<p>--euler numbers</p>
+<pre><code class="language-{.haskell results=&quot;value&quot;}">e:: Float
+e = exp 1
+e 
+</code></pre>
+<h2 id="pattern-matching"><a class="header" href="#pattern-matching">Pattern Matching</a></h2>
+<p>one of the calling must match one case of pattern</p>
+<pre><code class="language-haskell">(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+  (&lt;#&gt;) False False = False
+  (&lt;#&gt;) False True = True
+  (&lt;#&gt;) True False = True
+  (&lt;#&gt;) True True = True
+
+
+True &lt;#&gt; True
+</code></pre>
+<pre><code class="language-{.haskell results=&quot;value&quot;}">
+(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+  (&lt;#&gt;) True True = True
+  (&lt;#&gt;) _ _ = False
+
+(&lt;#&gt;) True True
+(&lt;#&gt;) False True
+
+</code></pre>
+<pre><code class="language-haskell">(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+  (&lt;#&gt;) True True 
+
+</code></pre>
+<p>case : this can only be executed in a .hs file, in orgmode can NOT be
+imported, I don't know what is going on in Terminal can NOT also</p>
+<p>Here I made above mistake, this is no sense. so long the indentation is
+correct, so works</p>
+<pre><code class="language-haskell">(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+(&lt;#&gt;) a b
+  | a == b = False
+  | otherwise = True
+
+
+</code></pre>
+<h2 id="alternativen"><a class="header" href="#alternativen">Alternativen</a></h2>
+<p>if else then</p>
+<pre><code class="language-haskell">absolute :: Int -&gt; Int
+absolute x = if x &lt; 0 then -x else x
+
+</code></pre>
+<h2 id="recursion"><a class="header" href="#recursion">Recursion</a></h2>
+<p>easy fib</p>
+<pre><code class="language-haskell">heronA ::(Int, Double) -&gt; Double
+heronA (n,a)
+  | n &gt; 0     = (heronA(n-1,a) + a/heronA(n-1, a))/2
+  | otherwise = a
+
+absolute :: Int -&gt; Int
+absolute x = if x &lt; 0 then -x else x
+
+heronB :: Int -&gt; Double -&gt; Double
+heronB n a
+  | n &gt; 0     = (heronB (n-1) a + a/heronB(n-1) a)/2
+  | otherwise = a
+
+</code></pre>
+<p>where</p>
+<pre><code class="language-haskell">heronC :: Int -&gt; Double -&gt; Double
+heronC n a
+  |n &gt; 0      = (x + a/x)/2
+  |otherwise  = a
+  where x = heronC (n-1) a
+</code></pre>
+<p>fib &amp; where</p>
+<pre><code class="language-haskell">fibA :: Int -&gt; Int
+fibA n
+  |n == 0    = 0
+  |n == 1    = 1
+  |otherwise = x +y
+  where
+    x = fibA (n-1)
+    y = fibA (n-2)
+
+</code></pre>
+<p>fib &amp; where &amp; pattern matching</p>
+<pre><code class="language-haskell">fibB :: Int -&gt; Int
+fibB 0 = 0
+fibB 1 = 1
+fibB n = fibB (n-1) + fibB (n-2)
+
+
+fibC :: Int -&gt; Int
+fibC 0 = 0
+fibC 1 = 1
+fibC n
+  | n &lt; 0      = error "illegal arguement"
+  | otherwise  = fibB (n-1) + fibB (n-2)
+
+
+(&lt;##&gt;) :: Int -&gt; Double -&gt; Double
+0 &lt;##&gt; a   = a
+n &lt;##&gt; a  
+  | n &gt; 0  = (x + a/x)/2
+  | otherwise  = error "illegal arguement"
+  where x = (n-1) &lt;##&gt; a
+</code></pre>
+<h2 id="type-conversion1"><a class="header" href="#type-conversion1">Type conversion1</a></h2>
+<p>Guides</p>
+<pre><code class="language-haskell">vielleichtdreifach :: Bool -&gt; Bool -&gt; Integer -&gt; Integer
+vielleichtdreifach verdreifach nochmal n
+  | verdreifach &amp;&amp; nochmal = maldrei ( maldrei n)
+  | verdreifach            = maldrei n
+  | otherwise              = n
+  where maldrei n = 3*n 
+
+dreifach :: Integer -&gt; Integer
+dreifach = vielleichtdreifach True False 
+
+neudreifach :: Integer -&gt; Integer
+neudreifach = vielleichtdreifach True True
+
+</code></pre>
+<p>vielleichtdreifach Bool Bool -&gt; Integer</p>
+<h2 id="factorial"><a class="header" href="#factorial">Factorial</a></h2>
+<pre><code class="language-haskell">fac :: Integer -&gt; Integer
+fac n
+  | n == 0  = 1
+  | otherwise = fac (n-1) * n
+</code></pre>
+<h2 id="stern-brocot-floge"><a class="header" href="#stern-brocot-floge">Stern Brocot Floge</a></h2>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.6389em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathnormal mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6389em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span></span></span></span></p>
+<pre><code class="language-haskell">(*/*) :: Integer -&gt; Integer -&gt; Integer
+(*/*) = div
+
+(*%*) :: Integer -&gt; Integer -&gt; Integer
+(*%*) = rem
+
+sternBrocot :: Integer -&gt; Integer
+sternBrocot n
+  | n == 0      = 0
+  | n == 1      = 1
+  | n *%* 2 == 0 = sternBrocot half
+  | otherwise    = sternBrocot half + sternBrocot (half + 1)
+  where half = n */* 2
+
+suche :: Integer -&gt; Integer -&gt; Integer
+suche suchziel postionziel
+  | sternBrocot postionziel &gt; suchziel = postionziel
+  | otherwise                          = suche suchziel (postionziel +1)
+
+</code></pre>
+<h1 id="list"><a class="header" href="#list">List</a></h1>
+<p>字符串就是单一字符的列表</p>
+<h2 id="list-add"><a class="header" href="#list-add">List add</a></h2>
+<p>in prelude</p>
+<pre><code class="language-haskell">[1,2,3] ++ [3,4,5]
+2 : [3,4]
+</code></pre>
+<h1 id="symbol"><a class="header" href="#symbol">Symbol</a></h1>
+<p>需要时刻谨记是用 . 来做函数组合的，$ 是用来降低函数执行优先级的。</p>
+<h1 id="functional-programm-of-haskell"><a class="header" href="#functional-programm-of-haskell">Functional Programm of Haskell</a></h1>
+<h2 id="grundlage-1"><a class="header" href="#grundlage-1">Grundlage</a></h2>
+<p>basic function call</p>
+<pre><code class="language-{.haskell results=&quot;value&quot;}">  log2 :: Float -&gt; Float
+  log2 = logBase 2
+log2 43
+
+</code></pre>
+<p>implication</p>
+<pre><code class="language-{.haskell results=&quot;value&quot;}">
+(==&gt;):: Bool -&gt; Bool -&gt; Bool
+a ==&gt; b = not a || not b
+Flase ==&gt; True
+False==&gt; False
+True ==&gt; True
+
+</code></pre>
+<p>--euler numbers</p>
+<pre><code class="language-{.haskell results=&quot;value&quot;}">
+  e:: Float
+    e = exp 1
+e 
+</code></pre>
+<h2 id="pattern-matching-1"><a class="header" href="#pattern-matching-1">Pattern Matching</a></h2>
+<p>one of the calling must match one case of pattern</p>
+<pre><code class="language-haskell">(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+  (&lt;#&gt;) False False = False
+  (&lt;#&gt;) False True = True
+  (&lt;#&gt;) True False = True
+  (&lt;#&gt;) True True = True
+
+
+True &lt;#&gt; True
+</code></pre>
+<pre><code class="language-{.haskell results=&quot;value&quot;}">(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+  (&lt;#&gt;) True True = True
+  (&lt;#&gt;) _ _ = False
+
+(&lt;#&gt;) True True
+(&lt;#&gt;) False True
+
+</code></pre>
+<pre><code class="language-haskell">(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+  (&lt;#&gt;) True True = True
+
+</code></pre>
+<p>case : this can only be executed in a .hs file, in orgmode can NOT be
+imported, I don't know what is going on in Terminal can NOT also</p>
+<p>Here I made above mistake, this is no sense. so long the indentation is
+correct, so works</p>
+<pre><code class="language-haskell">(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+(&lt;#&gt;) a b
+  | a == b = False
+  | otherwise = True
+
+
+</code></pre>
+<h2 id="alternativen-1"><a class="header" href="#alternativen-1">Alternativen</a></h2>
+<p>if else then</p>
+<pre><code class="language-haskell">absolute :: Int -&gt; Int
+absolute x = if x &lt; 0 then -x else x
+
+</code></pre>
+<h2 id="recursion-1"><a class="header" href="#recursion-1">Recursion</a></h2>
+<p>easy fib</p>
+<pre><code class="language-haskell">heronA ::(Int, Double) -&gt; Double
+heronA (n,a)
+  | n &gt; 0     = (heronA(n-1,a) + a/heronA(n-1, a))/2
+  | otherwise = a
+
+absolute :: Int -&gt; Int
+absolute x = if x &lt; 0 then -x else x
+
+heronB :: Int -&gt; Double -&gt; Double
+heronB n a
+  | n &gt; 0     = (heronB (n-1) a + a/heronB(n-1) a)/2
+  | otherwise = a
+
+</code></pre>
+<p>where</p>
+<pre><code class="language-haskell">heronC :: Int -&gt; Double -&gt; Double
+heronC n a
+  |n &gt; 0      = (x + a/x)/2
+  |otherwise  = a
+  where x = heronC (n-1) a
+</code></pre>
+<p>fib &amp; where</p>
+<pre><code class="language-haskell">fibA :: Int -&gt; Int
+fibA n
+  |n == 0    = 0
+  |n == 1    = 1
+  |otherwise = x +y
+  where
+    x = fibA (n-1)
+    y = fibA (n-2)
+
+</code></pre>
+<p>fib &amp; where &amp; pattern matching</p>
+<pre><code class="language-haskell">fibB :: Int -&gt; Int
+fibB 0 = 0
+fibB 1 = 1
+fibB n = fibB (n-1) + fibB (n-2)
+
+
+fibC :: Int -&gt; Int
+fibC 0 = 0
+fibC 1 = 1
+fibC n
+  | n &lt; 0      = error "illegal arguement"
+  | otherwise  = fibB (n-1) + fibB (n-2)
+
+
+(&lt;##&gt;) :: Int -&gt; Double -&gt; Double
+0 &lt;##&gt; a   = a
+n &lt;##&gt; a  
+  | n &gt; 0  = (x + a/x)/2
+  | otherwise  = error "illegal arguement"
+  where x = (n-1) &lt;##&gt; a
+</code></pre>
+<h2 id="type-conversion"><a class="header" href="#type-conversion">type conversion</a></h2>
+<p>Guides</p>
+<pre><code class="language-haskell">vielleichtdreifach :: Bool -&gt; Bool -&gt; Integer -&gt; Integer
+vielleichtdreifach verdreifach nochmal n
+  | verdreifach &amp;&amp; nochmal = maldrei ( maldrei n)
+  | verdreifach            = maldrei n
+  | otherwise              = n
+  where maldrei n = 3*n 
+
+dreifach :: Integer -&gt; Integer
+dreifach = vielleichtdreifach True False 
+
+neudreifach :: Integer -&gt; Integer
+neudreifach = vielleichtdreifach True True
+
+</code></pre>
+<p>vielleichtdreifach Bool Bool -&gt; Integer</p>
+<h2 id="factorial-1"><a class="header" href="#factorial-1">Factorial</a></h2>
+<pre><code class="language-haskell">fac :: Integer -&gt; Integer
+fac n
+  | n == 0  = 1
+  | otherwise = fac (n-1) * n
+</code></pre>
+<h2 id="stern-brocot-floge-1"><a class="header" href="#stern-brocot-floge-1">Stern Brocot Floge</a></h2>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.6389em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathnormal mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6389em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span></span></span></span></p>
+<pre><code class="language-haskell">(*/*) :: Integer -&gt; Integer -&gt; Integer
+(*/*) = div
+
+(*%*) :: Integer -&gt; Integer -&gt; Integer
+(*%*) = rem
+
+sternBrocot :: Integer -&gt; Integer
+sternBrocot n
+  | n == 0      = 0
+  | n == 1      = 1
+  | n *%* 2 == 0 = sternBrocot half
+  | otherwise    = sternBrocot half + sternBrocot (half + 1)
+  where half = n */* 2
+
+suche :: Integer -&gt; Integer -&gt; Integer
+suche suchziel postionziel
+  | sternBrocot postionziel &gt; suchziel = postionziel
+  | otherwise                          = suche suchziel (postionziel +1)
+
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="emacs.org.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="Julia.org.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="emacs.org.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="Julia.org.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

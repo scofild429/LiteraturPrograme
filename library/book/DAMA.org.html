@@ -1,0 +1,628 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>DAMA - my collection</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+        <!-- MathJax -->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="AI.org.html"><strong aria-hidden="true">1.</strong> AI</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="MachineLearning.org.html"><strong aria-hidden="true">1.1.</strong> MachineLearning</a></li><li class="chapter-item expanded "><a href="DeepLearning.org.html"><strong aria-hidden="true">1.2.</strong> DeepLearning</a></li><li class="chapter-item expanded "><a href="NLP.org.html"><strong aria-hidden="true">1.3.</strong> NLP</a></li></ol></li><li class="chapter-item expanded "><a href="CS.org.html"><strong aria-hidden="true">2.</strong> CS</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="linux.org.html"><strong aria-hidden="true">2.1.</strong> Linux</a></li><li class="chapter-item expanded "><a href="Algorithm.org.html"><strong aria-hidden="true">2.2.</strong> Algorithm</a></li><li class="chapter-item expanded "><a href="DataStructure.org.html"><strong aria-hidden="true">2.3.</strong> DataStructure</a></li><li class="chapter-item expanded "><a href="Parallelisum.org.html"><strong aria-hidden="true">2.4.</strong> Parallelisum</a></li><li class="chapter-item expanded "><a href="cloud_service_computing.org.html"><strong aria-hidden="true">2.5.</strong> Cloud_service_computing</a></li><li class="chapter-item expanded "><a href="blockchain.org.html"><strong aria-hidden="true">2.6.</strong> Blockchain</a></li></ol></li><li class="chapter-item expanded "><a href="DataScience.org.html"><strong aria-hidden="true">3.</strong> DataScience</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="DAMA.org.html" class="active"><strong aria-hidden="true">3.1.</strong> DAMA</a></li></ol></li><li class="chapter-item expanded "><a href="Math.org.html"><strong aria-hidden="true">4.</strong> Math</a></li><li class="chapter-item expanded "><a href="Physik.org.html"><strong aria-hidden="true">5.</strong> Physik</a></li><li class="chapter-item expanded "><a href="QutuamComputation.org.html"><strong aria-hidden="true">6.</strong> QutuamComputation</a></li><li class="chapter-item expanded "><a href="ROS.org.html"><strong aria-hidden="true">7.</strong> ROS</a></li><li class="chapter-item expanded "><a href="tools.org.html"><strong aria-hidden="true">8.</strong> Tools</a></li><li class="chapter-item expanded "><a href="WebDesign.org.html"><strong aria-hidden="true">9.</strong> WebDesign</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="vue.org.html"><strong aria-hidden="true">9.1.</strong> Vue</a></li><li class="chapter-item expanded "><a href="vscode.org.html"><strong aria-hidden="true">9.2.</strong> Vscode</a></li></ol></li><li class="chapter-item expanded "><a href="Language.org.html"><strong aria-hidden="true">10.</strong> Language</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="c.org.html"><strong aria-hidden="true">10.1.</strong> C</a></li><li class="chapter-item expanded "><a href="ts.org.html"><strong aria-hidden="true">10.2.</strong> TS</a></li><li class="chapter-item expanded "><a href="scala.org.html"><strong aria-hidden="true">10.3.</strong> Scala</a></li><li class="chapter-item expanded "><a href="lisp.org.html"><strong aria-hidden="true">10.4.</strong> Lisp</a></li><li class="chapter-item expanded "><a href="Java.org.html"><strong aria-hidden="true">10.5.</strong> Java</a></li><li class="chapter-item expanded "><a href="JS.org.html"><strong aria-hidden="true">10.6.</strong> JS</a></li><li class="chapter-item expanded "><a href="go.org.html"><strong aria-hidden="true">10.7.</strong> Go</a></li><li class="chapter-item expanded "><a href="rust.org.html"><strong aria-hidden="true">10.8.</strong> Rust</a></li><li class="chapter-item expanded "><a href="python.org.html"><strong aria-hidden="true">10.9.</strong> Python</a></li><li class="chapter-item expanded "><a href="emacs.org.html"><strong aria-hidden="true">10.10.</strong> Emacs</a></li><li class="chapter-item expanded "><a href="haskell.org.html"><strong aria-hidden="true">10.11.</strong> Haskell</a></li><li class="chapter-item expanded "><a href="Julia.org.html"><strong aria-hidden="true">10.12.</strong> Julia</a></li><li class="chapter-item expanded "><a href="mysql.org.html"><strong aria-hidden="true">10.13.</strong> Mysql</a></li><li class="chapter-item expanded "><a href="postgressql.org.html"><strong aria-hidden="true">10.14.</strong> Postgressql</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">my collection</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<hr />
+<h2 id="title-dama"><a class="header" href="#title-dama">title: DAMA</a></h2>
+<pre><code class="language-{=org}">#+STARTUP: overview
+</code></pre>
+<h1 id="dama-1"><a class="header" href="#dama-1">DAMA</a></h1>
+<h2 id="motivation-for-data-management"><a class="header" href="#motivation-for-data-management">Motivation for Data Management</a></h2>
+<ul>
+<li>Visibility</li>
+<li>Reliability</li>
+<li>Security</li>
+<li>Scalability</li>
+</ul>
+<h2 id="challenges"><a class="header" href="#challenges">challenges</a></h2>
+<ul>
+<li>reduce cost</li>
+<li>increase storage</li>
+<li>deliver stream data for more IoT</li>
+</ul>
+<h2 id="motivation-for-research-data-management"><a class="header" href="#motivation-for-research-data-management">Motivation for Research Data Management</a></h2>
+<ul>
+<li>the amonut of data growth fast</li>
+<li>new technologies</li>
+<li>more accessible data due to standardisation</li>
+<li>Required by funding agency</li>
+<li>Scientific</li>
+</ul>
+<h2 id="key-difference-between-data-management-vs-data-science"><a class="header" href="#key-difference-between-data-management-vs-data-science">Key difference between Data management Vs Data Science</a></h2>
+<ul>
+<li>Acquisition</li>
+<li>Storage</li>
+<li>Quality</li>
+<li>Governance</li>
+<li>Integrity</li>
+</ul>
+<h2 id="data-science-life-cycle"><a class="header" href="#data-science-life-cycle">Data Science Life Cycle</a></h2>
+<p>Acquirement, clean, <strong>explore, preprocessing, model</strong>, validation,
+present</p>
+<h2 id="research-data-life-cycle"><a class="header" href="#research-data-life-cycle">Research Data Life Cycle</a></h2>
+<p><strong>Plan</strong>, Collect, Assure, Describe, Submit, Preserve, Discover,
+Integrate, Analysis, Publish</p>
+<h2 id="research-data-life-cycle-2"><a class="header" href="#research-data-life-cycle-2">Research Data Life Cycle 2</a></h2>
+<p>Analysis &lt;- discovery <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel">↓</span></span></span></span> <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel">↑</span></span></span></span> Archiving processing -&gt;
+Distribution</p>
+<ul>
+<li>version controll</li>
+<li>provenance</li>
+<li>normalization</li>
+<li>integrity preservation</li>
+<li>curation</li>
+</ul>
+<h2 id="storage--preseveration"><a class="header" href="#storage--preseveration">Storage &amp; Preseveration</a></h2>
+<ul>
+<li>storage, mid-term, on my own disk</li>
+<li>preseveration, long term, accessible for other</li>
+<li>321</li>
+<li>Accessibility, Authenticity, Longevity</li>
+</ul>
+<h1 id="data-model"><a class="header" href="#data-model">Data Model</a></h1>
+<h2 id="model"><a class="header" href="#model">model</a></h2>
+<ul>
+<li>why? to save the data in the database or information system,
+conceptual representation of data objects, associcated with other
+data object</li>
+<li>benefits, helpful for visual representation, busisses rules,
+regulatory compliances, consistancy conventions</li>
+</ul>
+<h2 id="data-moduling-technologies"><a class="header" href="#data-moduling-technologies">data moduling technologies</a></h2>
+<ul>
+<li>ERM, Entity Relation Model</li>
+<li>UML, Unified Modeling Language</li>
+</ul>
+<h2 id="data-modul-types"><a class="header" href="#data-modul-types">Data modul Types</a></h2>
+<ul>
+<li>Conceptual</li>
+<li>Logical</li>
+<li>Physical</li>
+</ul>
+<h2 id="data-type"><a class="header" href="#data-type">Data Type</a></h2>
+<h3 id="structured"><a class="header" href="#structured">Structured</a></h3>
+<h3 id="semi-structured"><a class="header" href="#semi-structured">Semi-Structured</a></h3>
+<p>self-describing structur json, XML, Email, Key-value-Store</p>
+<h3 id="unstuctured"><a class="header" href="#unstuctured">Unstuctured</a></h3>
+<h2 id="data-acquire"><a class="header" href="#data-acquire">Data Acquire</a></h2>
+<ul>
+<li>
+<p>Harvesting from external into system storage</p>
+</li>
+<li>
+<p>Ingesting from different storages to different step for processing</p>
+</li>
+</ul>
+<h1 id="database"><a class="header" href="#database">Database</a></h1>
+<h2 id="hierarchical-database"><a class="header" href="#hierarchical-database">Hierarchical database</a></h2>
+<ul>
+<li>hierarchical structured</li>
+<li>1 to 1, 1 to n,</li>
+<li>XML</li>
+</ul>
+<h2 id="network-database"><a class="header" href="#network-database">Network database</a></h2>
+<ul>
+<li>Predecessor of relational database</li>
+<li>more than one parent</li>
+<li>allow n to n</li>
+<li>uses a direct graph with direct link</li>
+<li>can becomes a complex structure</li>
+</ul>
+<h2 id="relational-database"><a class="header" href="#relational-database">Relational Database</a></h2>
+<ul>
+<li>not sufficient for fast growth of big data and its complexity</li>
+<li>hard to scale horizontally</li>
+<li>Normalization, reduce the disk space</li>
+<li>DeNormalization, fast and optimised for query</li>
+<li>Snowflake schema,
+<ul>
+<li>less disk space</li>
+<li>normalized</li>
+<li>minimal redundency</li>
+<li>powerful for data analysis</li>
+<li>allow many to many relationship</li>
+</ul>
+</li>
+<li>Star Schema(denormalization)
+<ul>
+<li>simple to understand and build</li>
+<li>fast querying, no join</li>
+</ul>
+</li>
+</ul>
+<h2 id="object-oriented-database"><a class="header" href="#object-oriented-database">Object-Oriented Database</a></h2>
+<h2 id="no-sql-database"><a class="header" href="#no-sql-database">No-SQL database</a></h2>
+<ul>
+<li>for big data</li>
+</ul>
+<h2 id="acid-compliance"><a class="header" href="#acid-compliance">ACID compliance</a></h2>
+<ul>
+<li>potential failures, server, power, OS</li>
+<li>Atomicity</li>
+<li>Consistency</li>
+<li>Isolation</li>
+<li>durablity <a href="https://www.ibm.com/docs/en/cics-ts/5.4?topic=processing-acid-properties-transactions">IMB
+Statement</a></li>
+</ul>
+<h2 id="cap-theorem"><a class="header" href="#cap-theorem">CAP Theorem</a></h2>
+<ul>
+<li>Consistency</li>
+<li>Availability</li>
+<li>Partition tolerance</li>
+<li>sql(CAx), no-sql(xAP)</li>
+</ul>
+<h2 id="etl-process"><a class="header" href="#etl-process">ETL Process</a></h2>
+<ul>
+<li>E, Extract: Read data from source</li>
+<li>L, Load, store data in the final data store</li>
+<li>T, Transform: modify data based on the requirement</li>
+<li>mostly is <strong>ELT</strong></li>
+<li>but if the data source allow modification, <strong>TEL</strong> is also possible</li>
+</ul>
+<h2 id="data-warehouse"><a class="header" href="#data-warehouse">Data Warehouse</a></h2>
+<ul>
+<li>integrated data from different source</li>
+<li>resructure data (denormalization)</li>
+<li>optimized for analysis</li>
+<li>Building
+<ul>
+<li>Data source Layer: integrate internal and external data</li>
+<li>Staging layer: conduct transformation</li>
+<li>Storage Layer: host a database</li>
+</ul>
+</li>
+</ul>
+<h2 id="dagtabase"><a class="header" href="#dagtabase">Dagtabase</a></h2>
+<ul>
+<li>real time data</li>
+<li>optimized for modification and querying(very efficient)</li>
+<li>normalized data</li>
+</ul>
+<h2 id="data-access-in-system"><a class="header" href="#data-access-in-system">Data access in system</a></h2>
+<ul>
+<li>OLTP: Normalized</li>
+<li>OLAP: Denormalized</li>
+</ul>
+<h2 id="data-marts"><a class="header" href="#data-marts">Data Marts</a></h2>
+<ul>
+<li>subject-oriented database</li>
+<li>to meet the specific group of users</li>
+<li>data access with higher performance</li>
+<li>Data maintenance, different department can have their own controll</li>
+<li>Easy setup, simple design, required less technical</li>
+<li>Analysis, KPIs,</li>
+<li>Easy input</li>
+</ul>
+<h2 id="data-lake"><a class="header" href="#data-lake">Data Lake</a></h2>
+<hr />
+<p>data Warehouse       Data Lake
+processed            raw
+structured           all possible and raw
+ready for analysis   open
+business user        data scientists
+costly               easy
+more secure          less
+sql                  no sql
+fast result          slow resulte</p>
+<hr />
+<h2 id="data-mesh"><a class="header" href="#data-mesh">Data Mesh</a></h2>
+<ul>
+<li>domain-oriented decentralized data owership and architecture</li>
+<li>data as a product</li>
+<li>self-serve data infrastructure as platform</li>
+<li>federated computational governance</li>
+<li>architecture for data governance</li>
+</ul>
+<h2 id="data-fabric"><a class="header" href="#data-fabric">Data Fabric</a></h2>
+<ul>
+<li>conceptual</li>
+<li>focus on highly automating and integrating</li>
+<li>need more matedata</li>
+</ul>
+<h1 id="meta-data"><a class="header" href="#meta-data">Meta Data</a></h1>
+<p>Meta data is must, a connect(descripation) data of data, necessary for
+control and efficiency while processing data, also important and
+required for access and discovery. problem, stored in different place
+also different form.</p>
+<h2 id="fair-principes"><a class="header" href="#fair-principes">FAIR Principes</a></h2>
+<ul>
+<li>Findable</li>
+<li>Accessable</li>
+<li>interoperable</li>
+<li>Reuseable</li>
+<li>The principles emphasise <strong>machine-actionability</strong>, because humans
+increasingly rely on computational support to deal with data as a
+result of the increase in volume, complexity, and creation speed of
+data.</li>
+</ul>
+<h2 id="type"><a class="header" href="#type">Type</a></h2>
+<h2 id="direction"><a class="header" href="#direction">direction</a></h2>
+<ul>
+<li>who created it, what it is, when, where, how, licence.</li>
+</ul>
+<h2 id="meaning"><a class="header" href="#meaning">Meaning</a></h2>
+<ul>
+<li>Controlled Vocabular
+<ul>
+<li>list of words, to tag the information</li>
+<li>predefined and authorized</li>
+<li>reduce ambiguities of natural language</li>
+<li>improve retrievablilty</li>
+<li>support interoperable</li>
+</ul>
+</li>
+<li>Texonomies
+<ul>
+<li>with hierarchical structur</li>
+</ul>
+</li>
+<li>Thesaui
+<ul>
+<li>control of terms</li>
+<li>Hierarchical, Equivalence, Association relationship within terms</li>
+<li>support consistent indexing</li>
+<li>serve interoperability</li>
+</ul>
+</li>
+<li>Ontologies, large Thesaui</li>
+</ul>
+<h2 id="linked-data"><a class="header" href="#linked-data">Linked Data</a></h2>
+<ul>
+<li>URIs (Uniform Resource Identifiers) to name individual things</li>
+<li>HTTP URIs to find things in web</li>
+<li>linked data 2, all conceptual things should start with http</li>
+</ul>
+<h2 id="signposting"><a class="header" href="#signposting">Signposting</a></h2>
+<p>An approach to make the scholarly web more friendly to machines.</p>
+<h2 id="pids"><a class="header" href="#pids">PIDs</a></h2>
+<p>standard, invariant and long-term reference of a digital resource,
+regardless of status location or current owner</p>
+<h3 id="actionable-ids"><a class="header" href="#actionable-ids">Actionable IDs</a></h3>
+<p>A Persistent Identifier (PID) policy for the European Open Science Cloud</p>
+<h3 id="machine-actionable"><a class="header" href="#machine-actionable">Machine Actionable</a></h3>
+<p>means that a formal statement is syntactically and semantically
+specified enabling computing systems to carry out automatic processing.</p>
+<h3 id="urls"><a class="header" href="#urls">URLS</a></h3>
+<ul>
+<li>subset of URIs</li>
+<li>related to IP address</li>
+</ul>
+<h3 id="sustainability-by-technology"><a class="header" href="#sustainability-by-technology">Sustainability by technology</a></h3>
+<ul>
+<li>reliable</li>
+<li>robust</li>
+<li>long term perspective</li>
+</ul>
+<h3 id="pid-data-type"><a class="header" href="#pid-data-type">PID data type</a></h3>
+<p>Types are Metadata Elements</p>
+<h1 id="data-governance"><a class="header" href="#data-governance">Data Governance</a></h1>
+<h2 id="define"><a class="header" href="#define">define</a></h2>
+<ul>
+<li>Data governance determines what the data represents and what it can
+be used for</li>
+<li>Authentication and Authorization required</li>
+</ul>
+<h2 id="dimensions"><a class="header" href="#dimensions">dimensions</a></h2>
+<ul>
+<li>Organization, roles, responsibilites(RACI model)</li>
+<li>Process,</li>
+<li>Technology</li>
+<li>People, Trust, Ethics</li>
+<li>Data</li>
+</ul>
+<h2 id="role"><a class="header" href="#role">Role</a></h2>
+<ul>
+<li>Formed</li>
+<li>Accountable</li>
+<li>Consulted</li>
+<li>Responsiable</li>
+</ul>
+<h1 id="data-quality"><a class="header" href="#data-quality">Data Quality</a></h1>
+<ul>
+<li>Data quality describes how good it fits for its intended use:
+Operations, Decision making, Planning, Researching</li>
+</ul>
+<h2 id="dimension"><a class="header" href="#dimension">Dimension</a></h2>
+<ul>
+<li>accessibility or availability</li>
+<li>accuracy or correctness</li>
+<li>comparability</li>
+<li>completeness or comprehensiveness</li>
+<li>consistency, coherence, or clarity
+<ul>
+<li>refers to whether the same data kept at different places do or
+do not match.</li>
+<li>ACID ensure from one valid to another</li>
+<li>peer-2-peer may be violated</li>
+</ul>
+</li>
+<li>credibility, reliability, or reputation</li>
+<li>flexibility</li>
+<li>plausibility</li>
+<li>relevance, pertinence, or usefulness</li>
+<li>timeliness or latency</li>
+<li>uniqueness</li>
+<li>validity or reasonableness</li>
+</ul>
+<h1 id="data-managementdama"><a class="header" href="#data-managementdama">Data Management(DAMA)</a></h1>
+<p>Dimension is defined as a measurable features of an object</p>
+<ul>
+<li>Accuracy</li>
+<li>Availability</li>
+<li>Clarity</li>
+<li>Completeness</li>
+</ul>
+<h1 id="data-security"><a class="header" href="#data-security">Data Security</a></h1>
+<p>Definition, planning, development, and execution of security policies
+and procedures to provide proper authentication, authorization, access,
+and auditing of data and information assets.</p>
+<h2 id="access"><a class="header" href="#access">Access</a></h2>
+<ul>
+<li>role based access control</li>
+<li>attribute-based access control</li>
+</ul>
+<h1 id="graphql"><a class="header" href="#graphql">GraphQL</a></h1>
+<p>It's smart API, query intersting data in a smart way</p>
+<h1 id="microservice-architecture"><a class="header" href="#microservice-architecture">Microservice Architecture</a></h1>
+<p>Api for difference Applications, also standardized</p>
+<h2 id="function-as-a-service"><a class="header" href="#function-as-a-service">Function as a service</a></h2>
+<p>S3 Amazon</p>
+<h1 id="data-operation"><a class="header" href="#data-operation">Data Operation</a></h1>
+<p>to improve the terms of time for data analysis</p>
+<h1 id="data-flow-diagram"><a class="header" href="#data-flow-diagram">Data Flow Diagram</a></h1>
+<p>representing the flow of data through a process or system</p>
+<h2 id="rules"><a class="header" href="#rules">Rules</a></h2>
+<ul>
+<li>a process must have at least one input data and one output data</li>
+<li>data stroe must have at least one data flow in and data flow out</li>
+<li>data stroage must through a process</li>
+<li>all prcesses will go to another process or end up with data store</li>
+<li>data can not flow between entities</li>
+</ul>
+<h2 id="event-dirven-data-handing"><a class="header" href="#event-dirven-data-handing">event dirven Data handing</a></h2>
+<ul>
+<li>Synchronous</li>
+<li>Asynchronous</li>
+</ul>
+<h2 id="message-queue"><a class="header" href="#message-queue">Message Queue</a></h2>
+<ul>
+<li>producer/consumer</li>
+<li>Eventual consistency / strong consistency(consistency)</li>
+<li>At-least-once/Exactly-once/At-most-once(Processing models)</li>
+</ul>
+<h1 id="read-only-data-store"><a class="header" href="#read-only-data-store">Read-only Data store</a></h1>
+<h2 id="principles"><a class="header" href="#principles">Principles</a></h2>
+<ul>
+<li>they are immutable</li>
+<li>only original data source can deliver to RDS</li>
+<li>one RDS for each application</li>
+<li>each are specific applications</li>
+<li>hosting near the original data</li>
+<li>data provider is responsible for data integrity</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="DataScience.org.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="Math.org.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="DataScience.org.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="Math.org.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

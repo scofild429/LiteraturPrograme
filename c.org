@@ -1,0 +1,975 @@
+#+TITLE: C
+#+OPTIONS: num:t
+#+STARTUP: content
+* Program
+** Decimal to Binary Octal Hexdecimal char
+#+BEGIN_SRC C++ :results output :exports both
+  #include <stdio.h>
+  int main( )
+  {
+    int a = 80;
+    printf("the input a is %d\n",a);
+    printf("converse to 8 base is %#o\n", a);
+    printf("converse to 16 base is %#X\n", a);
+    printf("converse to char is %c\n", a);
+    return 0;
+  }
+
+#+END_SRC
+
+#+RESULTS:
+: the input a is 80
+: converse to 8 base is 0120
+: converse to 16 base is 0X50
+: converse to char is P
+
+** Primzahl filter
+#+BEGIN_SRC C++ :results output
+  #include<stdio.h> 
+  #include"math.h"
+  int main( )
+  {
+    int i;
+    int j;
+    for (i = 2; i < 10; i++) {
+      int temp = (int)sqrt(i);
+      for (j = 1; j <= 1000; j++) {
+        if (j != 1 && i%j == 0 ) {
+          break;
+        }else {
+          if (j == temp) {
+            printf("%d \n",i);
+            break;
+          }
+        }
+      }
+    }
+    return 0;
+  }
+
+#+END_SRC
+
+#+RESULTS:
+: 2 
+: 3 
+: 5 
+: 7
+
+** itoa
+atoi, 如有非数字字符，就为0
+itoa , 非ASCII标准函数库，看collection.
+#+BEGIN_SRC C++ :results output
+#include <stdio.h>
+#include <stdlib.h>
+
+char* itoa(int val, int base){
+  static char buf[32] = {0};
+  int i = 30;
+  for(; val && i ; --i, val /= base)
+    buf[i] = "0123456789abcdef"[val % base];
+  return &buf[i+1];
+}
+
+int main(int argc, char *argv[])
+{
+  int a = 100;
+  char* str = itoa(a, 8);
+  printf("%s \n",str);
+  return 0;
+
+}
+
+#+END_SRC
+
+#+RESULTS:
+: 144
+
+** each time only reserive 3 agruments
+- Each time ask default 3 agreements, less is ok, the more will be ignored.
+- scanf("%s", a); can't deal with more agreements.
+ the more will be read next time
+- scanf("%[^\n]", a); can't deal with less agreements, 
+because without \n, I don't know where to stop 
+
+- scanf("c%",a); can use '\n' and ' ' to determine the stop and number
+  of agreements.
+
+#+BEGIN_SRC C :results output 
+  #include <stdio.h>
+  #include <string.h>
+  int main(int argc, char *argv[])
+  {
+    while(1){
+      char a[3][10] = {"", "", ""};
+      char b[100];
+      scanf("%[^\n]", b);
+      printf("b is %s\n", b);
+      int j = 0;
+      int i = 0;
+      do{
+        int k = 0;
+        do{
+          a[j][k] = b[i];
+          i++;
+          k++;
+        }while(b[i] != ' ');
+        printf("a[%d] iooooos %s\n", j, a[j]);
+        j++;
+        i++;
+      }  while (j<3);
+      scanf("%*[^\n]"); scanf("%*c");
+    }
+  //  return 0;
+    }
+
+#+END_SRC
+
+** SortingGiveNumbersWithExchangeSortedDirection
+** milisecond time
+#+begin_src C :tangle ./task1_q1.c
+  #include <sys/time.h>
+  #include <stdlib.h>
+  #include <stdio.h>
+  #include <unistd.h>
+
+  #define N 1000000
+
+  int current_timestamp() {
+    struct timeval te; 
+    gettimeofday(&te, NULL); // get current time
+    int milliseconds = te.tv_sec*1000 + te.tv_usec/1000; // calculate milliseconds
+    return milliseconds;
+  }
+
+  int main(int argc, char *argv[])
+  {
+    float arr[N];
+    float summation;
+    int start, stop;
+    for (int i = 0; i < N; ++i) {
+      arr[i] = rand() % 100 / (float)100 ;
+    }
+    start = current_timestamp();
+    for (int i = 0; i < N; ++i) {
+      summation += arr[i];
+    }
+    stop = current_timestamp();
+    printf("Summation is %f,  using time %d ", summation,  stop-start);
+    return 0;
+  }
+
+
+#+end_src
+
+
+#+begin_src sh :results output :exports both
+  gcc task1_q1.c -o task1_q1
+  ./task1_q1
+
+#+end_src
+
+#+RESULTS:
+: Summation is 494979.375000,  using time 4 
+
+* Point&array
+** pointer assignment
+
+*** int *c
+only exits *c, if assige 1 to c, segment default
+#+begin_src C :results output
+  int *c;
+  printf("format string is %d,  %d, %d\n" , *c, c, &c);
+  *c = 101;
+  printf("format string is %d,  %d, %d\n" , *c, c, &c);#+end_src
+
+#+RESULTS:
+: format string is 1,  -1754099728, -1754099984
+: format string is 101,  -1754099728, -1754099984
+
+segment default for this
+#+begin_src C :results output
+  int *c;
+  printf("format string is %d,  %d, %d\n" , *c, c, &c);
+  c = 101;
+  printf("format string is %d,  %d, %d\n" , *c, c, &c);
+#+end_src
+
+#+RESULTS:
+
+*** int * c = 100
+only exit c, if access to *c, segment default 
+#+begin_src C :results output
+  int *cc = 100;
+  printf("format string is  %d, %d\n" , cc, &cc);
+  cc = 101;
+  printf("format string is   %d, %d\n" , cc, &cc);
+#+end_src
+
+#+RESULTS:
+: format string is  100, 1205551536
+: format string is   101, 1205551536
+
+ assign a address, all exits now
+*** point to pass
+#+begin_src C :results output
+  void output(int *t){
+    printf("%d\n", *t );
+    (*t)++;
+  }
+
+  int c = 1;
+  printf("c : %d\n",c );
+  for (int i = 0; i< 10; i++){
+    output(&c);
+  }
+  printf("c : %d\n",c );
+#+end_src
+
+#+RESULTS:
+#+begin_example
+c : 1
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+c : 11
+#+end_example
+
+
+#+begin_src C :results output
+  void output(int t[2]){
+    printf("%d\n", t[1] );
+    (t[1])++;
+    t[0] = 100;
+  }
+
+  int c[2] = {1,2};
+  printf("c[1] : %d\n",c[1] );
+  for (int i = 0; i< 10; i++){
+    output(c);
+  }
+  printf("c[0] : %d\n",c[0] );
+  printf("c[1] : %d\n",c[1] );
+#+end_src
+
+#+RESULTS:
+#+begin_example
+c[1] : 2
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+c[0] : 100
+c[1] : 12
+#+end_example
+
+*** reference  to pass not to that
+#+begin_src C :results output
+  void output(int &t){
+    printf("%d\n", t );
+    t++;
+  }
+
+  int a = 10;
+  printf("a : %d\n",a );
+  for (int i = 0; i< 10; i++){
+    output(a);
+  }
+  printf("a : %d\n",a );
+#+end_src
+
+#+RESULTS:
+
+*** char *ptr;
+all exist
+#+begin_src C :results output
+  char *ptr ;
+  printf("format string %d is %s at %d \n" , *ptr, ptr, &ptr);
+  ptr = "lko";
+  printf("format string is %s \n" , ptr);
+
+#+end_src
+
+#+RESULTS:
+: format string 1 is  at 1805217488 
+: format string is lko 
+
+all exist
+#+begin_src  C :results output
+  char *ptrr = "ok";
+  printf("format string %d is %s at %d \n" , *ptrr, ptrr, &ptrr);
+  ptrr = "lko";
+  printf("format string is %s \n" , ptrr);
+
+#+end_src
+
+#+RESULTS:
+: format string 111 is ok at 2089099008 
+: format string is lko 
+
+** pointer and array description
+| *p = a[n]         | p             | a            |
+|-------------------+---------------+--------------|
+| the first Value   | *p    /  p[0] | *a  /  a[0]  |
+| the n-th Value    | *(p+n)/  p[n] | *a+n/  a[n]  |
+| the first Address | p     /       | a   /  &a[0] |
+| the n-th  Address | p+n   /       | &a[n]        |
+|-------------------+---------------+--------------|
+
+在传递过程中，
+数组的传递可以用指针来接受，
+指针的传递可以用数组来接受，但必须是指针类型的数组
+
+
+
+#+BEGIN_SRC C++ :results output :exports both
+  #include <iostream>
+  int main(){
+    int a[]={1,2,3,4,5};
+    int *p = a;
+    printf("Print this hallo!\n");
+    printf("for value\n");
+    printf("%d\n",*p);
+    printf("%d\n",*a);
+    printf("%d\n",a[0]);
+    printf("%d\n",p[0]);
+    printf("nihao :%d\n",*(p+1));
+    printf("%d\n",*a+1);
+    printf("%d\n",a[1]+1);
+    printf("%d\n",p[1]+1);
+    printf("for address:\n");
+    printf("%d\n",p);
+    printf("%d\n",a);
+    printf("%d\n",&a[0]);
+    printf("%d\n",p+2);
+    printf("%d\n",&a[2]);
+    printf("%c\n","0123456789abcdef"[3]);
+    char *list = "0123456789abcdef";
+    printf("%s\n",&list[10]);
+    return 0;
+  }
+
+#+END_SRC
+#+RESULTS:
+#+begin_example
+Print this hallo!
+for value
+1
+1
+1
+1
+nihao :2
+2
+3
+3
+for address:
+-1472166160
+-1472166160
+-1472166160
+-1472166152
+-1472166152
+3
+abcdef
+#+end_example
+
+** 2orderPoint assignment to *
+ 2 order Point assignment to (*a, a, &a)
+#+begin_src C :results output :exports both
+#include <stdio.h>
+void Point2order(int **a){
+  printf("**a : %d\n",**a );
+  printf("*a  : %d\n",*a );  
+  printf(" a  : %d\n", a );
+  printf("&a  : %d\n",&a );
+  printf("\n");
+  int *z = *a;
+  printf("  int *z = *a : if z = *a\n");
+  printf("z  : %d\n", z );
+  printf("*a : %d\n", *a );
+  printf("if *z = **a\n");
+  printf("*z :%d\n", *z );
+  printf("**a:%d\n",  **a );
+  printf("\n");
+  int *y = a;
+  printf("  int *y = a : if y = a\n");
+  printf("y  : %d\n", y );
+  printf("a  : %d\n", a );
+  printf("if *y = *a\n");
+  printf("*y : %d\n", *y );
+  printf("*a : %d\n",  *a );
+  printf("\n");
+  int *x = &a;
+  printf("  int *x = &a : if x = &a\n");
+  printf("x  : %d\n", x );
+  printf("&a : %d\n", &a );
+  printf("if *x = *(&a)\n");
+  printf("*x : %d\n", *x );
+  printf("*&a: %d\n",  *(&a) );
+}
+int main(int argc, char *argv[])
+{
+
+  int aa[] = {10,20,30};
+  int *a = aa;
+  Point2order(&a);
+  return 0;
+}
+#+end_src
+
+#+RESULTS:
+#+begin_example
+,**a : 10
+,*a  : 1886852988
+ a  : 1886852976
+&a  : 1886852904
+
+  int *z = *a : if z = *a
+z  : 1886852988
+,*a : 1886852988
+if *z = **a
+,*z :10
+,**a:10
+
+  int *y = a : if y = a
+y  : 1886852976
+a  : 1886852976
+if *y = *a
+,*y : 1886852988
+,*a : 1886852988
+
+  int *x = &a : if x = &a
+x  : 1886852904
+&a : 1886852904
+if *x = *(&a)
+,*x : 1886852976
+,*&a: 1886852976
+#+end_example
+
+** Important
+
+#+begin_src C :results output :exports both
+  #include <stdio.h>
+  int main(){
+    int a[3][4]={0,1,2,3,4,5,6,7,8,9,10,11};
+    int(*p)[4];
+    int i,j;
+    p=a;
+    for(i=0; i<3; i++){
+      for(j=0; j<4; j++) printf("%2d  ",*(*(p+i)+j));
+      printf("\n");
+    }
+    printf("\n");
+
+    int *m[4] = {a[0],a[1],a[2],a[3]};
+    for(i=0; i<3; i++){
+      for(j=0; j<4; j++) printf("%2d  ",*(*(m+i)+j));
+      printf("\n");
+    }
+
+    return 0;
+  }
+#+end_src
+
+#+RESULTS:
+: 0   1   2   3  
+: 4   5   6   7  
+: 8   9  10  11  
+: 
+: 0   1   2   3  
+: 4   5   6   7  
+: 8   9  10  11  
+
+
+** * assignment to 2orderPoint
+char / int 数组/指针数组 to 二级指针
+[] > * > +
+*(p+1)== p[1]  and *p+1 == (*p)+1 
+#+begin_src C :results output
+#include <stdio.h>
+void funaa(char **p){
+  printf("address mani after 2\n");
+  printf("funaa : %c\n", *p[0] );
+}
+void funbb(int **p){
+  printf("address mani after 2\n");
+  printf("funbb : %d\n", *p[0] );
+}
+void funa(char **p){
+  printf("value mani: \n");
+  printf("funa: the first %c\n", **p );
+  printf("funa: the third %c\n", *(   (*p+1)    +1)      );
+  char *pa = *p+2;
+  funaa(&pa);
+  }
+void funb(int **p){
+  printf("\n");
+  printf("value mani: \n");
+  printf("funb: the first %d\n", **p );
+  printf("funa: the third %d\n", *(   (*p+1)    +1)       );
+  int *pa = *p +2;
+  funbb(&pa);
+}
+
+void funChar2OrderPoint(char ** p){
+  printf("\n");
+  printf("point arrar[0][0]:%c\n", *( *(p+0) +0)           );
+  printf("point arrar[0][1]:%c\n", p[0][1]                 );
+  printf("point arrar[0][2]:%c\n", *( *(p+0) +2)           );
+  printf("point arrar[1][0]:%c\n", *( *(p+1) +0)           );
+  printf("point arrar[1][1]:%c\n", *( *(p+1) +1)           );
+  printf("point arrar[1][2]:%c\n", *( *(p+1) +2)           );
+  printf("point arrar[2][0]:%c\n", *( *(p+2) +0)           );
+  printf("point arrar[2][1]:%c\n", *( *(p+2) +1)           );
+  printf("point arrar[2][2]:%c\n", *( *(p+2) +2)           );
+}
+void funInt2OrderPoint(int ** p){
+  printf("\n");
+  printf("point arrar[0][0]:%d\n", *( *(p+0) +0)           );
+  printf("point arrar[0][1]:%d\n", *( *(p+0) +1)           );
+  printf("point arrar[0][2]:%d\n", p[0][2]                 );
+  printf("point arrar[1][0]:%d\n", *( *(p+1) +0)           );
+  printf("point arrar[1][1]:%d\n", *( *(p+1) +1)           );
+  printf("point arrar[1][2]:%d\n", *( *(p+1) +2)           );
+  printf("point arrar[2][0]:%d\n", *( *(p+2) +0)           );
+  printf("point arrar[2][1]:%d\n", *( *(p+2) +1)           );
+  printf("point arrar[2][2]:%d\n", *( *(p+2) +2)           );
+}
+int main(int argc, char *argv[])
+{
+  /* char 一维数组转二级指针 */
+  char a[] ="1234567";
+  char *pa = a;
+  funa(&pa);
+  /* int 一维数组转二级指针 */
+  int b[] = {1,2,3,4,5,6,7};
+  int *pb = b;
+  funb(&pb);
+  /* char 指针数组转二级指针 */
+  char a1[] ="123";
+  char a2[] = "456";
+  char a3[] = "789";
+  char *chara [] = {"123", "456", "789"};
+  char **poa = chara;
+  funChar2OrderPoint(poa);
+  printf("\n");
+  printf("%s\n", *chara+2 );
+  printf("%s\n", *chara+1 );
+  printf("%s\n", *chara   );
+  printf("\n");
+  printf("%s\n", chara[0] );
+  printf("%s\n", chara[1] );
+  printf("%s\n", chara[2] );
+  printf("\n");
+  printf("%c\n",      chara[1][2]         );
+  printf("%c\n",*(    chara[1]      +2)   );
+  printf("%c\n",*(   *(chara+1)     +2)   );
+
+  /* int 指针数组转二级指针 */
+  int b1[] = {1,2,3};
+  int b2[] = {4,5,6};
+  int b3[] = {7,8,9};
+  int *intb [3] = {b1, b2, b3};
+  int **pob = intb;
+  funInt2OrderPoint(pob);
+  printf("\n");
+  printf("如果打开评论，可以执行，但是会报警告，结果是对应元素的地址\n");
+  // printf("%d\n", *intb+2 ); //&3
+  // printf("%d\n", *intb+1 ); //&2
+  // printf("%d\n", *intb   ); //&1
+  // printf("\n");
+  // printf("%d\n", intb[0] );  //&123
+  // printf("%d\n", intb[1] );  //&456
+  // printf("%d\n", intb[2] );  //&789
+  printf("\n");
+  printf("%d\n",      intb[1][2]         );
+  printf("%d\n",*(    intb[1]      +2)   );
+  printf("%d\n",*(   *(intb+1)     +2)   );
+
+  return 0;
+}
+
+#+end_src
+
+#+RESULTS:
+#+begin_example
+value mani: 
+funa: the first 1
+funa: the third 3
+address mani after 2
+funaa : 3
+
+value mani: 
+funb: the first 1
+funa: the third 3
+address mani after 2
+funbb : 3
+
+point arrar[0][0]:1
+point arrar[0][1]:2
+point arrar[0][2]:3
+point arrar[1][0]:4
+point arrar[1][1]:5
+point arrar[1][2]:6
+point arrar[2][0]:7
+point arrar[2][1]:8
+point arrar[2][2]:9
+
+3
+23
+123
+
+123
+456
+789
+
+6
+6
+6
+
+point arrar[0][0]:1
+point arrar[0][1]:2
+point arrar[0][2]:3
+point arrar[1][0]:4
+point arrar[1][1]:5
+point arrar[1][2]:6
+point arrar[2][0]:7
+point arrar[2][1]:8
+point arrar[2][2]:9
+
+如果打开评论，可以执行，但是会报警告，结果是对应元素的地址
+
+6
+6
+6
+#+end_example
+
+** Summary
+|            | 1            | 3           | 2           | 4           |
+|------------+--------------+-------------+-------------+-------------|
+| Form       | char *argv[] | int *a3[]   | int *a2     | int a4[][2] |
+|------------+--------------+-------------+-------------+-------------|
+| 传递时时参 | argv         | a3          | &a2         | a4          |
+|------------+--------------+-------------+-------------+-------------|
+| 接收时形参 | char **p1    | int **p3    | int **p2    | int(*p4)[2] |
+|------------+--------------+-------------+-------------+-------------|
+|            | argv[1][2]   | a3[0][1]    | a2[2]       | a4[1][0]    |
+|            | p1[1][2]     | p3[0][1]    | p2[0][2]    | p4[1][0]    |
+
+|            | *(*(p+1)+2)  | *(*(p+0)+1) | *(*(p+0)+2) | *(*(p+1)+0) |
+
+#+BEGIN_SRC C :results output
+  #include <stdio.h>
+
+  int main(int argc, char *argv[])
+
+  { 
+    char **p1 = argv;
+    printf("%c \n", argv[1][2]   );
+    printf("%c \n", p1[1][2]     );
+    printf("%c \n", *(*(p1+1)+2) );
+
+
+    int b2[] = {1, 2, 3, 4, 5};
+    int *a2 = b2;
+    int **p2 = &a2;
+    printf("%d \n", a2[1]         );
+    printf("%d \n", *(a2+1)       );
+    printf("%d \n", p2[0][1]      );
+    printf("%d \n", *(*(p2+0)+1)  );
+
+    int m[] = {1,2};
+    int n[] = {3,4};
+    int *a3[] = {m, n};
+    int **p3 = a3;
+    printf("%d \n", a3[0][1]      );
+    printf("%d \n", p3[0][1]      );
+    printf("%d \n", *(*(p3+0)+1)  );
+
+    return 0;
+
+    int a4[][2]  ={{1,2},{3,4}};
+    int (*p4)[2] = a4;
+    printf("%d \n", a4[1][0]      );
+    printf("%d \n", p4[1][0]      );
+    printf("%d \n", *(*(p4+1)+0)  );
+
+  }
+
+
+#+END_SRC
+
+#+RESULTS:
+
+* Polymorphism
+** C++ 先生成基类实列后再生成子类实例并指向
+需要借助虚函数来实现对相应多态函数的调用，在函数前加上virtual
+#+BEGIN_SRC C++
+  #include <iostream>
+  using namespace std;
+
+  class Animal
+  {
+  public:
+    Animal();
+    virtual run();
+  };
+  Animal::Animal(){};
+  void Animal::run(){cout <<"Animal is running"<<endl;}
+
+  class Dog : public Animal
+  {
+  public:
+    Dog();
+    virtual run();
+  };
+  Dog::Dog(){};
+  void Dog::run(){cout <<"Dog is running"<<endl;}
+
+  Animal *p = new Animal;
+  p->run();
+  p = new Dog;
+  p->run();
+  //此时的p就是多态变量，但是只有这个变量先由基类生成，再指向子类
+  //反之时不能的
+#+END_SRC
+
+#+RESULTS:
+
+** Python 可基可子
+#+BEGIN_SRC python :results output :session
+  class Animal(object):
+      def __init__(self):
+          self.name ='Animal name'
+      def run(self):
+          print('Animal is running')
+
+  class Dog(Animal):
+      def __init__(self):
+          self.name ='Dog name'
+      def run(self):
+          print('Dog is running')
+
+  # Polymorphism, all Class or instance will be checked the best passing
+  # mothode or character
+  def run_twice(a):
+      a.run()
+  def name(b):
+      print(b.name)
+
+  ani = Animal()
+  ani.name
+  ani.run()
+
+  ani = Dog()
+  ani.name
+  ani.run()
+
+#+END_SRC
+## ani 可以先有基类实现再多态映射到子类，也可以反向实现
+
+#+RESULTS:
+#+begin_example
+Python 3.7.4 (default, Aug 13 2019, 20:35:49) 
+[GCC 7.3.0] :: Anaconda, Inc. on linux
+Type "help", "copyright", "credits" or "license" for more information.
+Animal is running
+Dog is running
+Cat is running
+Dog is running
+Animal name
+Dog name
+Dog name
+python.el: native completion setup loaded
+#+end_example
+
+** Java 子类实列指向父类引用
+在向上转型后，就可以调用在所有子类中的同名函数
+#+BEGIN_SRC java :classname TestfurPoly
+class Figure {
+    double dim1;
+    double dim2;
+    Figure(double d1, double d2) {
+        // 有参的构造方法
+        this.dim1 = d1;
+        this.dim2 = d2;
+    }
+    double area() {
+        // 用于计算对象的面积
+        System.out.println("父类中计算对象面积的方法，没有实际意义，需要在子类中重写。");
+        return 0;
+    }
+}
+
+class Rectangle extends Figure {
+    Rectangle(double d1, double d2) {
+        super(d1, d2);
+    }
+    double area() {
+        System.out.println("长方形的面积：");
+        return super.dim1 * super.dim2;
+    }
+}
+
+class Triangle extends Figure {
+    Triangle(double d1, double d2) {
+        super(d1, d2);
+    }
+    double area() {
+        System.out.println("三角形的面积：");
+        return super.dim1 * super.dim2 / 2;
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+
+        Figure figure = new Rectangle(9, 9);
+        System.out.println(figure.area());
+        System.out.println("===============================");
+        figure = new Triangle(6, 8);
+        System.out.println(figure.area());
+        System.out.println("===============================");
+        figure = new Figure(10, 10);
+        System.out.println(figure.area());
+
+    }
+}
+
+#+END_SRC
+
+* Scanf
+** input matching for multi input Scanf() 
+可以直接从控制台接受8， 10， 16 进制的数
+只有当控制字符串以格式控制符(%d、%c、%f) 开头时，键入的input才会忽略换行符,
+否则输入的空白符就不能忽略了，它会参与匹配过程
+** 清空每次输入的所有缓存
+scanf("%*[^\n]"); scanf("%*c");
+** Scanf(%{*}{width}type)
+其中，{ } 表示可有可无。各个部分的具体含义是：
+type表示读取什么类型的数据，例如 %d、%s、%[a-z]、%[^\n] 等；type 必须有。
+width表示最大读取宽度，可有可无。
+*表示丢弃读取到的数据，可有可无。
+
+* hits
+** malloc for 2 diamesion
+  char ** commands;
+  commands = (char **)malloc(NUMOFCOM * sizeof(char *));
+  for (int n = 0; n < NUMOFCOM; n++)
+    commands[n] = (char *)malloc(sizeof(char) * COMLONG);
+** reference
+#+BEGIN_SRC 
+1. 如果在函数体中修改了形参的数据，那么实参的数据也会被修改，从而拥有“在
+   函数内部影响函数外部数据”的效果
+2. 不能返回局部数据（例如局部变量、局部对象、局部数组等）的引用，因为
+   当函数调用完成后局部数据就会被销毁，有可能在下次使用时数据就不存在
+   了
+3. 给引用添加 const 限定后，不但可以将引用绑定到临时数据，还可以将引用
+   绑定到类型相近的数据，这使得引用更加灵活和通用，它们背后的机制都是
+   临时变量
+#+END_SRC
+
+** class
+#+BEGIN_SRC 
+
+1. 基类中的 protected 成员可以在派生类中使用，而基类中的 private 成员不能
+   在派生类中使用
+2. 只有一个作用域内的同名函数才具有重载关系，不同作用域内的同名函数是
+   会造成遮蔽
+3. 如果基类的成员变量被派生类的成员变量遮蔽， 基类成员仍会在实例化时被
+   创建，也可通过域解析符来访问。
+4. 构造函数会被逐级的显示或者默认的在派生类中被调用，并且可以被重载
+5. C++ 可以多继承不同的类（多继承和重继承），注意其构造函数的调用和成
+   员名称冲突，但是可以用域解析符来指明调用
+6. 即使是类的private成员，仍能通过创建的对象的地址偏移或者直接利用指针
+   进行访问。（有点花里胡哨的）
+7. C++中虚函数的唯一用处就是构成多态
+8. 引用不像指针灵活，指针可以随时改变指向，而引用只能指代固定的对象
+#+END_SRC
+
+** const
+#+BEGIN_SRC 
+const 的作用在C++中和宏很像#defind
+函数中const，修饰变量后可以将传入的参数，强制转换为设定的
+初始化 const 成员变量的唯一方法就是使用参数初始化
+类中的const， 变量，函数， 类， 只能互相承
+重要：在头文件中用const修饰全部变量后，就可以多次被引入了而不会出现重
+复定义的错
+#+END_SRC
+** static
+#+BEGIN_SRC 
+
+statis 变量， 函数，全部对象可以共用，访问，无this指针。不能调用普通变量和函数类
+static 多被用来计数，可以在外部被改
+#+END_SRC
+** GDB
+can be done in terminal or in Emacs, recommend later one
+|----------+---------------------------|
+| b        | add break point           |
+| run      | start the program         |
+| run argv | if argv needed            |
+| n        | next                      |
+| l        | list source code 10 lines |
+| p        | print variables           |
+| s        | go into functions         |
+| ignore   | pass the break point      |
+| q        | exit                      |
+| set      | set variable              |
+|----------+---------------------------|
+in emacs, if scanf, the input can not be given in
+gdb buffer. if it comes to scanf, go to the I/O buffer,
+and input the value , go back to gdb buffer, just next
+
+** Compile
+There are four different kinds of Methods to compile a source file.
+*** Makefile
+There is a folder called Makefile, into this folder, and call
+"make" in terminal, don't forget "make clean" to clean it.
+*** Terminal Compile
+In pthread_and_pid folder with terminal with "g++/gcc file.c -o file",
+and then "./file" to call it
+*** Emacs Compile
+Also in pthread_and_pid folder, open the resource code with Emacs,
+and then M-x compile(C-z k)
+call it in minibuffer with :
+"gcc -pthread create_pthread.c -o create_pthread && ./create_pthread"
+* Literatur programmierung 
+** pass the agruments to program
+#+BEGIN_SRC 
+在src block 中提前定义:var a = 3
+javac test.java &&  echo 1 |java test 可以将1向StdInt传入
+gcc test.c && echo 1 | ./a.out 可以将1向scanf("%d", &a)传入的a
+#+END_SRC
+** Beispile
+#+header:  :var input=23 :var b1 = 0 :var b2=1 :var b3=3
+#+BEGIN_SRC C :results output :exports both 
+int b[] = {b1, b2, b3};
+  printf("niiiiilhakkko\n");
+  printf("%d\n", input);
+  printf("%d\n", b2);
+  for(int i = 0; i<3;i++){
+    printf("%d", b[i]);
+   }
+#+END_SRC
+
+#+RESULTS:
+: niiiiilhakkko
+: 23
+: 1
+: 013
+
+
+
+** reference and Pointer in SRC
+
