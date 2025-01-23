@@ -1,0 +1,397 @@
+#+TITLE: Blockchain
+#+OPTIONS: num:t
+#+STARTUP: content
+#+EXPORT_FILE_NAME: /home/si/Dropbox/LiteraturPrograme/base/CS/Blockchain.html
+#+PROPERTY: header-args :eval no-export
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+
+
+* BTC: decentralized currency
+** 密码学原理
+*** Crypto-Currency
+1. cryptographic hash function: collision resistance
+2. hidding:
+3. digital commitment : digital equivalent of a sealed envelope
+4. puzzle friendly: nonce : H(block header)<= target for all possible
+input
+5. difficult to solve but easy to proof.
+*** SAH256 Secure Hash Algorithm
+
+*** Count
+**** public key : 加密
+
+**** private key : 解密 : asymmetric encryption algorithm
+
+*** Merkel Tree
+块内的交易以树的形状存放
+
+** 节点
+*** 重节点
+only block header
+**** block header
+version
+hash of previous block header
+merkel root hash
+target
+nonce
+
+*** 轻节点：Merkel Proof : Merkel Tree
+block header 
+block body
+proof of membership : proof of inclusion
+** distributed consensus
+*** FLP impossibility result
+asynchronous :faulty
+*** CAP theorem
+consistency : Avaliability : Partition tolerance
+** fork
+*** state fork
+forking attack : 挖矿时同时挖到两个块
+deliberate fork  :故意制造的
+*** protocd fork
+ hard fork : software update : block size limit :
+
+
+* ETH : decentralized contract
+memory hard
+mining puzzle
+proof of work -> proof of stake
+SAIC resistance
+smart contract
+** Patricia Tree
+
+* python
+** part1
+#+BEGIN_SRC python
+  import hashlib
+  import json
+
+  class Block():
+      def __init__(self, nonce,tstamp, transcation, prevhash=''):
+          self.nonce = nonce
+          self.tstamp = tstamp
+          self.transcation = transcation
+          self.prevhash = prevhash
+          self.hash =self.calcHash()
+      def __str__(self):
+          string = 'nonce:'+str(self.nonce)+'\n'
+          string += 'tstamp:'+str(self.tstamp)+'\n'
+          string += 'transcation:'+str(self.transcation)+'\n'
+          string += 'prevhash:'+str(self.prevhash)+'\n'
+          string += 'hash:'+str(self.hash)+'\n'
+          return string
+      def calcHash(self):
+          block_string = json.dumps({'nonce':self.nonce, 'tstamp':self.tstamp, 'transcation':self.transcation, 'prevhash':self.prevhash}, sort_keys=True).encode()
+          return hashlib.sha256(block_string).hexdigest()
+
+  class Blockchain():
+      def __init__(self):
+          self.chain=[self.generateGensisBlock(),]
+      def generateGensisBlock(self):
+          return Block(0,'Fri Oct 26 21:15:12 2018','Gensis Block')
+      def getLastBlock(self):
+          return self.chain[-1]
+      def addBlock(self,newBlock):
+          newBlock.prevhash=self.getLastBlock().hash
+          newBlock.hash=newBlock.calcHash()
+          self.chain.append(newBlock)
+      def isChainValid(self):
+          for i in range(1,len(self.chain)):
+              prevb = self.chain[i-1]
+              currb = self.chain[i]
+              if(currb.hash != currb.calcHash()):
+                  print('invalid block')
+                  return False
+              if(currb.prevhash != prevb.hash):
+                  print('invalid chain')
+                  return False
+          return True
+
+
+  shangCoin = Blockchain()
+  shangCoin.addBlock(Block(1,'Fri Oct 26 21:22:51 2018',100))
+  shangCoin.addBlock(Block(2,'Fri Oct 26 21:23:28 2018',200))
+
+  shangCoin.chain[1].transcation = 66
+  print('only change transcation:'+ '\n'+str(shangCoin.chain[1].calcHash()) +'\n'+ str(shangCoin.chain[1].hash))
+  #如果只是改了一个transaction的值，在执行calcHash之后的结果肯定不等于之前存在hash属性里的结果一致，会报错
+  shangCoin.chain[1].hash =shangCoin.chain[1].calcHash()
+  print('after change transcation, and hash all again:'+'\n'+str(shangCoin.chain[2].prevhash)+'\n'+str(shangCoin.chain[1].hash))
+  #如果在改变transaction后，再hash整个块，则存在下一个块内的prevhash将不会等于这个块内hash变化后的值
+
+  for b in shangCoin.chain:
+      print(b)
+      print(shangCoin.isChainValid())
+
+
+#+END_SRC
+** part2
+#+BEGIN_SRC python
+  import hashlib
+  import json
+
+  class Block():
+      def __init__(self, nonce,tstamp, transcation, prevhash=''):
+          self.nonce = nonce
+          self.tstamp = tstamp
+          self.transcation = transcation
+          self.prevhash = prevhash
+          self.hash =self.calcHash()
+      def __str__(self):
+          string = 'nonce:'+str(self.nonce)+'\n'
+          string += 'tstamp:'+str(self.tstamp)+'\n'
+          string += 'transcation:'+str(self.transcation)+'\n'
+          string += 'prevhash:'+str(self.prevhash)+'\n'
+          string += 'hash:'+str(self.hash)+'\n'
+          return string
+      def calcHash(self):
+          block_string = json.dumps({'nonce':self.nonce, 'tstamp':self.tstamp, 'transcation':self.transcation, 'prevhash':self.prevhash}, sort_keys=True).encode()
+          return hashlib.sha256(block_string).hexdigest()
+      def mineBlock(self,difficult):
+          while(self.hash[:difficult] != str('').zfill(difficult)):
+              self.nonce += 1
+              self.hash = self.calcHash()
+              print('the mineBlock is:',self.hash)
+
+  class Blockchain():
+      def __init__(self):
+          self.chain=[self.generateGensisBlock(),]
+          self.difficult = 3
+      def generateGensisBlock(self):
+          return Block(0,'Fri Oct 26 21:15:12 2018','Gensis Block')
+      def getLastBlock(self):
+          return self.chain[-1]
+      def addBlock(self,newBlock):
+          newBlock.prevhash=self.getLastBlock().hash
+          newBlock.hash=newBlock.calcHash()
+          newBlock.mineBlock(self.difficult)
+          self.chain.append(newBlock)
+      def isChainValid(self):
+          for i in range(1,len(self.chain)):
+              prevb = self.chain[i-1]
+              currb = self.chain[i]
+              if(currb.hash != currb.calcHash()):
+                  print('invalid block')
+                  return False
+              if(currb.prevhash != prevb.hash):
+                  print('invalid chain')
+                  return False
+          return True
+
+
+  shangCoin = Blockchain()
+  print('Adding the first block')
+  shangCoin.addBlock(Block(1,'Fri Oct 26 21:22:51 2018',100))
+  print('Adding the second block')
+  shangCoin.addBlock(Block(2,'Fri Oct 26 21:23:28 2018',200))
+
+  # shangCoin.chain[1].transcation = 66
+  # print('only change transcation:'+ '\n'+str(shangCoin.chain[1].calcHash()) +'\n'+ str(shangCoin.chain[1].hash))
+  # #如果只是改了一个transaction的值，在执行calcHash之后的结果肯定不等于之前存在hash属性里的结果一致，会报错
+  # shangCoin.chain[1].hash =shangCoin.chain[1].calcHash()
+  # print('after change transcation, and hash all again:'+'\n'+str(shangCoin.chain[2].prevhash)+'\n'+str(shangCoin.chain[1].hash))
+  # #如果在改变transaction后，再hash整个块，则存在下一个块内的prevhash将不会等于这个块内hash变化后的值
+
+  for b in shangCoin.chain:
+      print(b)
+
+  if(shangCoin.isChainValid()):
+
+      print('valid blockchain')
+  else:
+      print('hacked blockchain')
+
+
+
+#+END_SRC
+** part3
+#+BEGIN_SRC python
+  import hashlib
+  import json
+  from datetime import datetime 
+  class Transaction():
+      def __init__(self, from_address,to_address, amount):
+          self.from_address = from_address
+          self.to_address = to_address
+          self.amount = amount
+
+  class Block():
+      def __init__(self,tstamp, transcationList, prevhash=''):
+          self.nonce = 0
+          self.tstamp = tstamp
+          self.transcationList = transcationList
+          self.prevhash = prevhash
+          self.hash =self.calcHash()
+      def __str__(self):
+          string = 'nonce:'+str(self.nonce)+'\n'
+          string += 'tstamp:'+str(self.tstamp)+'\n'
+          string += 'transcation:'+str(self.transcation)+'\n'
+          string += 'prevhash:'+str(self.prevhash)+'\n'
+          string += 'hash:'+str(self.hash)+'\n'
+          return string
+      def calcHash(self):
+          block_string = json.dumps({'nonce':self.nonce, 'tstamp':str(self.tstamp), 'transcation':self.transcationList[0].amount, 'prevhash':self.prevhash}, sort_keys=True).encode()
+          return hashlib.sha256(block_string).hexdigest()
+      def mineBlock(self,difficult):
+          while(self.hash[:difficult] != str('').zfill(difficult)):
+              self.nonce += 1
+              self.hash = self.calcHash()
+              print('the mineBlock is:',self.hash)
+
+  class Blockchain():
+      def __init__(self):
+          self.chain=[self.generateGensisBlock(),]
+          self.difficult = 3
+          self.pendingTransactions = []
+          self.mining_reward = 100
+
+      def generateGensisBlock(self):
+          return Block('Fri Oct 26 21:15:12 2018', [Transaction(None,None,0),])
+
+      def getLastBlock(self):
+          return self.chain[-1]
+
+      # def addBlock(self,newBlock):
+      #     newBlock.prevhash=self.getLastBlock().hash
+      #     newBlock.hash=newBlock.calcHash()
+      #     newBlock.mineBlock(self.difficult)
+      #     self.chain.append(newBlock)
+      def minePendingTranaction(self,mining_reward_address):
+          block = Block(datetime.now(), self.pendingTransactions)
+          block.mineBlock(self.difficult)
+          print('Block is mined to get reward:',self.mining_reward)
+          self.chain.append(block)
+          self.pendingTransactions = [Transaction(None,mining_reward_address, self.mining_reward)]
+
+      def createTransaction(self,T):
+          self.pendingTransactions.append(T)
+
+      def getBalence(self,address):
+          balance = 0
+          for b in self.chain:
+              for t in b.transcationList:
+                  if t.to_address==address:
+                      balance += t.amount
+                  if t.from_address==address:
+                      balance -= t.amount
+          return balance
+
+      def isChainValid(self):
+          for i in range(1,len(self.chain)):
+              prevb = self.chain[i-1]
+              currb = self.chain[i]
+              if(currb.hash != currb.calcHash()):
+                  print('invalid block')
+                  return False
+              if(currb.prevhash != prevb.hash):
+                  print('invalid chain')
+                  return False
+          return True
+
+
+  shangCoin = Blockchain()
+  shangCoin.createTransaction(Transaction('address1', 'address2',100))
+  shangCoin.createTransaction(Transaction('address2', 'address1',50))
+  print('starting mining:')
+  shangCoin.minePendingTranaction('shangaddress')
+  print('shangCoin miner balance is:', shangCoin.getBalence('shangaddress'))
+
+  shangCoin.createTransaction(Transaction('address1', 'address2',200))
+  shangCoin.createTransaction(Transaction('address2', 'address1',150))
+  print('starting mining again:')
+  shangCoin.minePendingTranaction('shangaddress')
+  print('shangCoin miner balance is:', shangCoin.getBalence('shangaddress'))
+
+
+#+END_SRC
+** part4 (has error)
+#+BEGIN_SRC python
+  import hashlib
+  import json
+  from datetime import datetime 
+  from flask import Flask
+  from flask import jsonify
+  from time import time
+
+  class Block():
+      def __init__(self, nonce, tstamp, transationList, prevhash='', hash =''):
+          self.nonce = nonce
+          self.tstamp = tstamp
+          self.transationList = transationList
+          self.prevhash = prevhash
+          if hash == '':
+              self.hash = self.calcHash
+          else:
+              self.hash =hash
+
+      def toDict(self):
+          return {'nonce':self.nonce, 'tstamp':str(self.tstamp), 'transation':self.transationList, 'prevhash':self.prevhash, 'hash':self.hash}
+
+      def calcHash(self):
+          block_string = json.dumps({'nonce':self.nonce, 'tstamp':str(self.tstamp), 'transation':self.transationList, 'prevhash':self.prevhash}, sort_keys=True).encode()
+          return hashlib.sha256(block_string).hexdigest()
+      def mineBlock(self, difficult):
+          while(self.hash[:difficult] != str('').zfill(difficult)):
+              self.nonce += 1
+              self.hash = self.calcHash()
+              print('the mineBlock is:',self.hash)
+
+  class Blockchain():
+      def __init__(self):
+          self.chain=[]
+          self.difficult=3
+          self.pendingTransations = []
+          self.mining_reward = 100
+          self.generateGensisBlock()
+      def generateGensisBlock(self):
+          dect = {'nonce':0, 'tstamp':'Sun Oct 28 12:54:03 2018', 'transationList':[{'from_address':None, 'to_address':None, 'amount':0},],'hash':''}
+          b = Block(**dect)
+          self.chain.append(b.toDict())
+
+      def getLastBlock(self):
+          return Block(**self.chain[-1])
+
+      def minePendingTransation(self, mining_reward_address):
+          self.pendingTransations = [{'from_address':None,'to_address':mining_reward_address,'amount':self.mining_reward},]
+          block = Block(0, str(datetime.now()),self.pendingTransations)
+          block.prevhash = self.getLastBlock().hash
+          block.mineBlock(self.difficult)
+          print('Block is mined to get reward:',self.mining_reward)
+          self.chain.append(block.toDict())
+
+      def createTransation(self, from_address, to_address,amount):
+          self.pendingTransations.append({'from_adress':from_address,'to_address':to_address, 'amount':amount})
+
+      def getBalence(self,address):
+          balance = 0
+          for index in range(len(self.chain)):
+              dictList=self.chain[index]['transationList']
+              for dic in dictList:
+                  if dic['to_address']==address:
+                      balance += dic['amount']
+                  if dic['from_address']==address:
+                      balance -= dic['amount']
+          return balance
+
+      def isChainValid(self):
+          for i in range(1,len(self.chain)):
+              prevb =Block(**self.chain[i-1])
+              currb =Block(**self.chain[i])
+              if(currb.hash != currb.calcHash()):
+                  print('invalid block')
+                  return False
+              if(currb.prevhash != prevb.hash):
+                  print('invalid chain')
+                  return False
+          return True
+
+
+  shangCoin = Blockchain()
+  shangCoin.createTransation('address1', 'address2',100)
+  shangCoin.createTransation('address2', 'address1',50)
+  print('starting mining:')
+  shangCoin.minePendingTransation("shangaddress")
+  print('shangCoin miner balance is:', shangCoin.getBalence("shangaddress"))
+  print(shangCoin.isChainValid())
+
+#+END_SRC

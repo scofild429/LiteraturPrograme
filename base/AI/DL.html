@@ -1,0 +1,1188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-01-23 Do 21:44 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DeepLearning</title>
+<meta name="author" content="si" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">DeepLearning</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org37feff6">1. Batch Size Problem</a>
+<ul>
+<li><a href="#org8e10301">1.1. Batch Gradient descent</a></li>
+<li><a href="#orgdadbf5f">1.2. Stochastic gradient descent</a></li>
+<li><a href="#org0b1c249">1.3. mini-batch gradient descent</a>
+<ul>
+<li><a href="#org226bbe7">1.3.1. big batch size</a></li>
+<li><a href="#org6bd26ea">1.3.2. small batch size</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgc6864cc">2. Learning rate</a>
+<ul>
+<li><a href="#org591fd3a">2.1. Second order optimizer</a></li>
+<li><a href="#org4f1c5b2">2.2. SGD with momentum</a></li>
+<li><a href="#orgdf99515">2.3. learning rate decay</a></li>
+</ul>
+</li>
+<li><a href="#org51a9b3e">3. Pytorch</a></li>
+<li><a href="#org3bd947b">4. Regularization</a></li>
+<li><a href="#org2c2969c">5. Multi-layer perceptrons</a>
+<ul>
+<li><a href="#org5d7c273">5.1. Perceptron</a></li>
+<li><a href="#org109c9fa">5.2. Gradient Descent</a></li>
+<li><a href="#orgea319e1">5.3. Advance gradient descent</a>
+<ul>
+<li><a href="#org53503b0">5.3.1. Second-order optimizers</a></li>
+<li><a href="#org4290b9f">5.3.2. SGD with momentum</a></li>
+<li><a href="#orga0251de">5.3.3. AdaGrad</a></li>
+<li><a href="#org48784af">5.3.4. RMSProp</a></li>
+<li><a href="#org2663e17">5.3.5. Adam</a></li>
+</ul>
+</li>
+<li><a href="#org0ff60fd">5.4. Regularization of MLP</a></li>
+<li><a href="#orga95b9ac">5.5. Dropout</a></li>
+<li><a href="#org6d087d5">5.6. Early stop</a></li>
+<li><a href="#org6fcf5fb">5.7. Active funtion</a></li>
+</ul>
+</li>
+<li><a href="#org88c1a44">6. Babysitting training neural network</a></li>
+<li><a href="#org2eaf18c">7. Hyperparameter search</a></li>
+<li><a href="#org01bd4a2">8. Data Augmentation</a></li>
+<li><a href="#orgbbfc713">9. CNN</a>
+<ul>
+<li><a href="#orgf93ba61">9.1. Output size</a></li>
+<li><a href="#org43b6b04">9.2. Receptive field</a></li>
+<li><a href="#org721e81d">9.3. Zero Padding</a></li>
+<li><a href="#orgcbab980">9.4. pooling</a></li>
+<li><a href="#org7436b71">9.5. Feather abstact</a></li>
+<li><a href="#org70002da">9.6. Normalization</a></li>
+<li><a href="#orgd228bdd">9.7. regular convolution</a></li>
+<li><a href="#org7cad0b1">9.8. Depthwise separable convolution</a></li>
+<li><a href="#org7e4d0cf">9.9. learning rate decay</a></li>
+<li><a href="#org2d99e28">9.10. Linear Warmup</a></li>
+<li><a href="#org164dd76">9.11. Modul ensembling</a></li>
+</ul>
+</li>
+<li><a href="#orge880f19">10. ResNet</a></li>
+<li><a href="#org97be616">11. GAN (Generative Adersarial models)</a>
+<ul>
+<li><a href="#orga515961">11.1. step 1  Generater stay, Discriminater update</a></li>
+<li><a href="#org90120d0">11.2. step 2  Discriminater stay, Generater update</a></li>
+<li><a href="#orgc70a4f0">11.3. summary</a></li>
+</ul>
+</li>
+<li><a href="#orgdd3b0ae">12. Autoencoder</a></li>
+<li><a href="#org03623ef">13. VAE (Variational Autoencoders)</a></li>
+<li><a href="#orgbb366ac">14. PixelCNN (Autoregressive models)</a></li>
+<li><a href="#org0215c56">15. Diffusion Model</a></li>
+<li><a href="#org156751a">16. RNN</a></li>
+<li><a href="#org717e2e7">17. LSTM</a></li>
+<li><a href="#org99a4243">18. Semi-supervised learning</a>
+<ul>
+<li><a href="#orge5b3f1c">18.1. consistentcy loss SSL</a></li>
+<li><a href="#org4566a35">18.2. Pseudo-label based SSL</a></li>
+</ul>
+</li>
+<li><a href="#org09e727e">19. Weakly-supervised learing</a></li>
+<li><a href="#orgef09dd7">20. Self-supervised learing</a>
+<ul>
+<li><a href="#org1c1c3f6">20.1. Colorization</a></li>
+<li><a href="#org4f13feb">20.2. Context Prediciton</a></li>
+</ul>
+</li>
+<li><a href="#orgdfee7b0">21. Contrastive Learning</a>
+<ul>
+<li><a href="#orgd28c9be">21.1. Contrastive Predictive Coding (CPC)</a></li>
+<li><a href="#org5c610ef">21.2. SimCLR</a></li>
+<li><a href="#orgae9bf77">21.3. Cross-model contrastive learning(CLIP)</a></li>
+</ul>
+</li>
+<li><a href="#orgbd2ab66">22. Semantic segmentation</a>
+<ul>
+<li><a href="#org9659861">22.1. methods</a></li>
+<li><a href="#org6bac4ec">22.2. FCN</a></li>
+<li><a href="#orgc17e852">22.3. U-net</a></li>
+<li><a href="#org3859d23">22.4. Deep Lab</a></li>
+</ul>
+</li>
+<li><a href="#org2c2186b">23. Object Detection</a>
+<ul>
+<li><a href="#org31ec65d">23.1. two stage mothode</a></li>
+<li><a href="#orgf7da550">23.2. single stage mothode</a></li>
+</ul>
+</li>
+<li><a href="#orgad53bdd">24. Instance Segmentation</a></li>
+<li><a href="#orgcb1cdf4">25. image to image</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org37feff6" class="outline-2">
+<h2 id="org37feff6"><span class="section-number-2">1.</span> Batch Size Problem</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org8e10301" class="outline-3">
+<h3 id="org8e10301"><span class="section-number-3">1.1.</span> Batch Gradient descent</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>all data as input once</li>
+<li>loss graph is quite smooth</li>
+<li>need great calculation power</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgdadbf5f" class="outline-3">
+<h3 id="orgdadbf5f"><span class="section-number-3">1.2.</span> Stochastic gradient descent</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>input each time only one data sample</li>
+<li>cost will fluctuate over the training</li>
+<li>fast update the weights</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0b1c249" class="outline-3">
+<h3 id="org0b1c249"><span class="section-number-3">1.3.</span> mini-batch gradient descent</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>only a subset of all data points in each</li>
+</ul>
+</div>
+<div id="outline-container-org226bbe7" class="outline-4">
+<h4 id="org226bbe7"><span class="section-number-4">1.3.1.</span> big batch size</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+Advantages: the descension of weights has a more accuary direction, less oscillation.
+Disadvantages: memery explotion, and fall into locally minimum
+</p>
+</div>
+</div>
+<div id="outline-container-org6bd26ea" class="outline-4">
+<h4 id="org6bd26ea"><span class="section-number-4">1.3.2.</span> small batch size</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<p>
+Advantages: more times  weights update, more chance to overcome locally minimum,
+Disadvantages: difficult to convergence
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc6864cc" class="outline-2">
+<h2 id="orgc6864cc"><span class="section-number-2">2.</span> Learning rate</h2>
+<div class="outline-text-2" id="text-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">too small</td>
+<td class="org-left">converge slowly or find local minimum</td>
+</tr>
+
+<tr>
+<td class="org-left">too large</td>
+<td class="org-left">oscillation or divergence</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-org591fd3a" class="outline-3">
+<h3 id="org591fd3a"><span class="section-number-3">2.1.</span> Second order optimizer</h3>
+</div>
+<div id="outline-container-org4f1c5b2" class="outline-3">
+<h3 id="org4f1c5b2"><span class="section-number-3">2.2.</span> SGD with momentum</h3>
+</div>
+<div id="outline-container-orgdf99515" class="outline-3">
+<h3 id="orgdf99515"><span class="section-number-3">2.3.</span> learning rate decay</h3>
+</div>
+</div>
+<div id="outline-container-org51a9b3e" class="outline-2">
+<h2 id="org51a9b3e"><span class="section-number-2">3.</span> Pytorch</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+automatic differentiation
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3bd947b" class="outline-2">
+<h2 id="org3bd947b"><span class="section-number-2">4.</span> Regularization</h2>
+</div>
+<div id="outline-container-org2c2969c" class="outline-2">
+<h2 id="org2c2969c"><span class="section-number-2">5.</span> Multi-layer perceptrons</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org5d7c273" class="outline-3">
+<h3 id="org5d7c273"><span class="section-number-3">5.1.</span> Perceptron</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+<b>Universal Approximation Theorem</b>
+Perceptrons solves linearly separable problem
+One hidden layer is enough to approximate
+any continuons funtion, to an arbitrary degree of accuracy
+</p>
+
+<p>
+<b>Perceptron Learning Algorithm(PLA)</b>:
+\(\omega \gets 0\)
+Iterate over training examples until convergence
+\(\hat{y}^{i} \gets \omega^{T} x^i\)
+\(e \gets y^{i}-\hat{y}^{i}\)
+\(\omega \gets \omega + e \cdot x^i\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org109c9fa" class="outline-3">
+<h3 id="org109c9fa"><span class="section-number-3">5.2.</span> Gradient Descent</h3>
+</div>
+<div id="outline-container-orgea319e1" class="outline-3">
+<h3 id="orgea319e1"><span class="section-number-3">5.3.</span> Advance gradient descent</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+Gradient-based optimization does neither always
+find the absolute minimum, nor does it find the
+optimal direction
+</p>
+</div>
+<div id="outline-container-org53503b0" class="outline-4">
+<h4 id="org53503b0"><span class="section-number-4">5.3.1.</span> Second-order optimizers</h4>
+<div class="outline-text-4" id="text-5-3-1">
+<p>
+Theorical  besser performance, but generally too expensive and not work with minibatches
+</p>
+</div>
+</div>
+<div id="outline-container-org4290b9f" class="outline-4">
+<h4 id="org4290b9f"><span class="section-number-4">5.3.2.</span> SGD with momentum</h4>
+<div class="outline-text-4" id="text-5-3-2">
+<p>
+\[ w \gets w - v\]
+\[ v \gets \beta v + \eta\nabla_{w}L\]
+\[ \beta \in [0, 1]\]
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">too small</td>
+<td class="org-left">get stuck in  local minimum or saddle points</td>
+</tr>
+
+<tr>
+<td class="org-left">too large</td>
+<td class="org-left">overshoot optimum or spiral around it</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orga0251de" class="outline-4">
+<h4 id="orga0251de"><span class="section-number-4">5.3.3.</span> AdaGrad</h4>
+<div class="outline-text-4" id="text-5-3-3">
+<p>
+adaptive gradient algorithm(DL<sub>03</sub><sub>MLP.pdf</sub>/12 )
+</p>
+</div>
+</div>
+
+<div id="outline-container-org48784af" class="outline-4">
+<h4 id="org48784af"><span class="section-number-4">5.3.4.</span> RMSProp</h4>
+<div class="outline-text-4" id="text-5-3-4">
+<p>
+root mean square propagation(DL<sub>03</sub><sub>MLP.pdf</sub>/13 )
+</p>
+</div>
+</div>
+<div id="outline-container-org2663e17" class="outline-4">
+<h4 id="org2663e17"><span class="section-number-4">5.3.5.</span> Adam</h4>
+</div>
+</div>
+<div id="outline-container-org0ff60fd" class="outline-3">
+<h3 id="org0ff60fd"><span class="section-number-3">5.4.</span> Regularization of MLP</h3>
+</div>
+<div id="outline-container-orga95b9ac" class="outline-3">
+<h3 id="orga95b9ac"><span class="section-number-3">5.5.</span> Dropout</h3>
+</div>
+<div id="outline-container-org6d087d5" class="outline-3">
+<h3 id="org6d087d5"><span class="section-number-3">5.6.</span> Early stop</h3>
+</div>
+<div id="outline-container-org6fcf5fb" class="outline-3">
+<h3 id="org6fcf5fb"><span class="section-number-3">5.7.</span> Active funtion</h3>
+<div class="outline-text-3" id="text-5-7">
+<p>
+Sigmoids vanish for large postive and negative inputs
+Rectified Linear Unit(ReLu)
+LeakyReLU
+Exponential linear unit
+Absolute value activation
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org88c1a44" class="outline-2">
+<h2 id="org88c1a44"><span class="section-number-2">6.</span> Babysitting training neural network</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>check initial loss make sense</li>
+<li>overfit training model to 100% accuracy of small samples, such as few minibatches
+<ul class="org-ul">
+<li>adjust the initialization and learning rate</li>
+</ul></li>
+<li>find the learning rate, which reduce loss significantly</li>
+<li>rough train few epochs with learning rate nearby from previous step</li>
+<li>use the best options from previous step, training longer</li>
+<li>watch out the loss curves
+<ul class="org-ul">
+<li>if learning rate decay needed</li>
+<li>accuracy of train vs validation, overfit, underfit, go back to step 5</li>
+</ul></li>
+<li>Early strop Idea: Stop training when generalization error increases</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2eaf18c" class="outline-2">
+<h2 id="org2eaf18c"><span class="section-number-2">7.</span> Hyperparameter search</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li>grid search and random search</li>
+<li>Multipy learning rate by N where you increase the batchsize by factor of N</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org01bd4a2" class="outline-2">
+<h2 id="org01bd4a2"><span class="section-number-2">8.</span> Data Augmentation</h2>
+<div class="outline-text-2" id="text-8">
+<ul class="org-ul">
+<li>data artifacts
+<ul class="org-ul">
+<li>flips</li>
+<li>crops and scales</li>
+<li>randomize color</li>
+<li>rotate</li>
+</ul></li>
+<li>advance data augmentation
+<ul class="org-ul">
+<li>Mixup: take linear combination of input and target of two training samples</li>
+<li>CutMit: mix patches of the two input,  Target is linear combination with weight according to patch ratio</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgbbfc713" class="outline-2">
+<h2 id="orgbbfc713"><span class="section-number-2">9.</span> CNN</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+Modern CNN architectures tend to use strided convolutions instead of max pooling.
+</p>
+</div>
+<div id="outline-container-orgf93ba61" class="outline-3">
+<h3 id="orgf93ba61"><span class="section-number-3">9.1.</span> Output size</h3>
+<div class="outline-text-3" id="text-9-1">
+<p>
+valid: \(M=\lfloor  \frac{N - k}{s} \rfloor +1\)
+padding: \(M=\lfloor \frac{N  - k +2p}{s} \rfloor+1\)
+N: input size
+M: output size
+p: padding
+k: kernel size
+s: stride size
+</p>
+</div>
+</div>
+<div id="outline-container-org43b6b04" class="outline-3">
+<h3 id="org43b6b04"><span class="section-number-3">9.2.</span> Receptive field</h3>
+<div class="outline-text-3" id="text-9-2">
+<p>
+\[RF = 1 + \sum^{L}_{l=1}(k_{l}-1)*s \]
+\[ RF_{i} = (RF_{i+1} -1)*s + k \]
+</p>
+
+<p>
+From where I want to calcalete to the input layer.
+and set the current calcalete layer's RF as 1
+</p>
+</div>
+</div>
+
+<div id="outline-container-org721e81d" class="outline-3">
+<h3 id="org721e81d"><span class="section-number-3">9.3.</span> Zero Padding</h3>
+<div class="outline-text-3" id="text-9-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">valid</td>
+<td class="org-left">without padding</td>
+<td class="org-left">shape reduce k-1</td>
+</tr>
+
+<tr>
+<td class="org-left">same</td>
+<td class="org-left">with padding</td>
+<td class="org-left">shape stay the same</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgcbab980" class="outline-3">
+<h3 id="orgcbab980"><span class="section-number-3">9.4.</span> pooling</h3>
+<div class="outline-text-3" id="text-9-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">max pooling</td>
+<td class="org-left">only chose the maximum one of block</td>
+</tr>
+
+<tr>
+<td class="org-left">average pooling</td>
+<td class="org-left">use the average of block</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org7436b71" class="outline-3">
+<h3 id="org7436b71"><span class="section-number-3">9.5.</span> Feather abstact</h3>
+<div class="outline-text-3" id="text-9-5">
+<p>
+The layer can extract image features,
+ and finally determine the convolution kernel parameters
+ through backpropagation to obtain the final features
+</p>
+</div>
+</div>
+<div id="outline-container-org70002da" class="outline-3">
+<h3 id="org70002da"><span class="section-number-3">9.6.</span> Normalization</h3>
+<div class="outline-text-3" id="text-9-6">
+<p>
+For Vanishing/exploding gradients: 
+each example in layer all data are normalized
+\[ \mu = \frac{1}{N} \sum_{i=1} ^{N} x_{i, j}\]
+</p>
+
+
+<p>
+\[ \sigma_{j}^{2} = \frac{1}{N} \sum_{i=1}^{n} (x_{i, j} - \mu_{j})^{2}\]
+</p>
+
+
+<p>
+\[\hat{x}_{i,j} = \frac{x_{i, j} - \mu_{j}}{\sqrt{\sigma_{j}^{2} + \epsilon}} \]
+</p>
+
+<p>
+\[ y_{i, j} = \gamma_{j}\hat{x}_{i, j} + \beta_{j}\]
+</p>
+
+<ul class="org-ul">
+<li>Batch Normalization
+norm each channel</li>
+<li>Layer Normalization
+norm each sample</li>
+<li>Instance Normalization
+norm each sample and each  channel</li>
+<li>Group  Normalization
+norm multi channel and sample</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd228bdd" class="outline-3">
+<h3 id="orgd228bdd"><span class="section-number-3">9.7.</span> regular convolution</h3>
+</div>
+<div id="outline-container-org7cad0b1" class="outline-3">
+<h3 id="org7cad0b1"><span class="section-number-3">9.8.</span> Depthwise separable convolution</h3>
+<div class="outline-text-3" id="text-9-8">
+<ul class="org-ul">
+<li>Depthwise Convolution: channel-wise</li>
+<li>Pointwise Convolution: 1*1 convolution</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7e4d0cf" class="outline-3">
+<h3 id="org7e4d0cf"><span class="section-number-3">9.9.</span> learning rate decay</h3>
+<div class="outline-text-3" id="text-9-9">
+<p>
+dacay schudle
+</p>
+</div>
+</div>
+<div id="outline-container-org2d99e28" class="outline-3">
+<h3 id="org2d99e28"><span class="section-number-3">9.10.</span> Linear Warmup</h3>
+<div class="outline-text-3" id="text-9-10">
+<p>
+small learing rate increase very fast, and decay slowly
+can deal with bad initialization
+</p>
+</div>
+</div>
+
+<div id="outline-container-org164dd76" class="outline-3">
+<h3 id="org164dd76"><span class="section-number-3">9.11.</span> Modul ensembling</h3>
+<div class="outline-text-3" id="text-9-11">
+<ul class="org-ul">
+<li>training N model, and take the averate</li>
+<li>take N snapshots of training</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge880f19" class="outline-2">
+<h2 id="orge880f19"><span class="section-number-2">10.</span> ResNet</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+Vanishing gradient and exploding gradient
+</p>
+</div>
+</div>
+<div id="outline-container-org97be616" class="outline-2">
+<h2 id="org97be616"><span class="section-number-2">11.</span> GAN (Generative Adersarial models)</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+<b>Implicit density</b>
+</p>
+</div>
+<div id="outline-container-orga515961" class="outline-3">
+<h3 id="orga515961"><span class="section-number-3">11.1.</span> step 1  Generater stay, Discriminater update</h3>
+<div class="outline-text-3" id="text-11-1">
+<ul class="org-ul">
+<li>randomly initialization of G and D</li>
+<li>inputs (Distribution: \({z_{1}, z_{2}, z_{3}, z_{4}... } : Z\)) from known distribution to G get rough outputs (Distribution: \({z^{'}_{1}, z^{'}_{2}, z^{'}_{3}, z^{'}_{4}... } : Z^{'}\))</li>
+<li>rough outputs and real image (Examples: \({x_{1}, x_{2}, x_{3}, x_{4}.....  } : X\)) feed to D</li>
+<li>training D to classify them with mark,  and update D
+Max \(V = \frac{1}{m} \sum^{m}_{i=1} log D(X)\) to 1
+Min \(V = \frac{1}{m} \sum^{m}_{i=1} log D(G(Z))\) to 0,
+so \[max_{d}[E_{x\backsim data} \log D_{d}(x) + E_{z \backsim p(z)} \log (1-D_{d}(G_{g}(z)))]\]</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org90120d0" class="outline-3">
+<h3 id="org90120d0"><span class="section-number-3">11.2.</span> step 2  Discriminater stay, Generater update</h3>
+<div class="outline-text-3" id="text-11-2">
+<ul class="org-ul">
+<li>fix D, feed new inputs from known distribution to G</li>
+<li>get rough outputs again, and pass them to D, and evaluated with mark</li>
+<li><p>
+training G, for getting better mark
+</p>
+
+<p>
+max \(V = \frac{1}{m} \sum^{m}_{i=1} log D(G(Z)) = \frac{1}{m} \sum^{m}_{i=1} log D(Z')\) to 1,
+so \[min_{g}[E_{z \backsim p(z)} \log (1-D_{d}(G_{g}(z)))]\]
+</p>
+
+<p>
+Just like training normal neural network with minimum cross enteopy
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc70a4f0" class="outline-3">
+<h3 id="orgc70a4f0"><span class="section-number-3">11.3.</span> summary</h3>
+<div class="outline-text-3" id="text-11-3">
+<p>
+\[min_{g}max_{d}[E_{x\backsim data} \log D_{d}(x) + E_{z \backsim p(z)} \log (1-D_{d}(G_{g}(z)))]\]
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdd3b0ae" class="outline-2">
+<h2 id="orgdd3b0ae"><span class="section-number-2">12.</span> Autoencoder</h2>
+<div class="outline-text-2" id="text-12">
+<p>
+input data \(\to\) Feathers \(\to\) predicted labels
+predicted labels + Classifier \(\to\) loss function
+</p>
+</div>
+</div>
+<div id="outline-container-org03623ef" class="outline-2">
+<h2 id="org03623ef"><span class="section-number-2">13.</span> VAE (Variational Autoencoders)</h2>
+<div class="outline-text-2" id="text-13">
+<p>
+<b>optimizes variational lower bound on likelihood</b>
+<b>Approximate density search the latent implimentation, reduce the dimensionality to capture meaningful factors in data</b>
+x: examples
+z: latent parameters
+\[p_{\theta}(x)  = \int p_{\theta}(z)p_{\theta}(x|z)dz\], simple gaussian prior, encoder neural network
+\(\log p(x) = \log \frac{p(x|z)p(z)}{p(z|x)}\)
+\(\log p(x) = E_{x\backsim p(x|z)} logp(z|x) - KL[q(z|x)||p(z)] + KL[q(z|x)||p(z|x)]\)
+</p>
+<ul class="org-ul">
+<li>decoder network</li>
+<li>KL term between gaussian encoder and z latent.  make approximate posterior distribution close to prior.</li>
+<li>mostly similarity between q and p, KL[q(z|x)||p(z|x)], bigger than 0, so maxmized data likelihood \(\log p(x)\) can only have a lower bound value</li>
+</ul>
+
+<p>
+Intractability of p(x), because We want \(p(z|x)\), but it's too difficult, so we use \(q(z|x)\) as approximation:
+</p>
+
+<p>
+\[KL[q(z|x)||p(z|x)]\]
+\[= \int q(z|x) \cdot \log\frac{q(z|x)}{p(z|x)} dz\]
+\[ = \int q(z|x) \cdot \log\frac{q(z|x) p(x)}{p(x|z)p(z)}dz\]
+\[ = \int q(z|x) \cdot \log q(z|x)dz  + \int q(z|x)\cdot \log p(x)dz - \int q(z|x) \cdot \log p(x|z) dz -\int q(z|x) \cdot \log p(x)dz\]
+\[= log p(x) + KL[q(z|x)||p(z)] - E_{x\backsim p(x|z)} logp(z|x)\]
+</p>
+
+<p>
+We randomly example the z from the normal Gaussian for VAE
+</p>
+</div>
+</div>
+<div id="outline-container-orgbb366ac" class="outline-2">
+<h2 id="orgbb366ac"><span class="section-number-2">14.</span> PixelCNN (Autoregressive models)</h2>
+<div class="outline-text-2" id="text-14">
+<p>
+<b>Explicit density, optimizes exact likelihood</b>
+exact likelihood(chain rule), and training slowly
+maxmize likelihood   \[p(x) = \prod_{i=1}^{n} p(x_{i}|x_{1}, x_{2}, x_{3},...x_{i-1})\]
+Mask converlutions: kernel filter pixel in the  future  are set to be 0
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0215c56" class="outline-2">
+<h2 id="org0215c56"><span class="section-number-2">15.</span> Diffusion Model</h2>
+<div class="outline-text-2" id="text-15">
+<p>
+image to noise : forward process
+noise to image : backward process
+</p>
+</div>
+</div>
+<div id="outline-container-org156751a" class="outline-2">
+<h2 id="org156751a"><span class="section-number-2">16.</span> RNN</h2>
+<div class="outline-text-2" id="text-16">
+<p>
+this is many to one,
+\[h(t) = \tanh(A * [h(t-1), x(t)]^{T})\]
+A[shape(h), shap(h)+shap(x)] is shared by all step
+there is no  big difference for prediction with only h(t) or conta(h(1), h(t))
+</p>
+</div>
+</div>
+<div id="outline-container-org717e2e7" class="outline-2">
+<h2 id="org717e2e7"><span class="section-number-2">17.</span> LSTM</h2>
+<div class="outline-text-2" id="text-17">
+<p>
+many gate,
+output elementweise product
+Stacked, Bedirection
+</p>
+<ul class="org-ul">
+<li>Forget Gate: \(f_t = \sigma(W_f \cdot \begin{bmatrix} h_{t-1} \\ x_t \end{bmatrix} )\)</li>
+<li>Input Gate: \(i_t = \sigma(W_i \cdot \begin{bmatrix} h_{t-1} \\ x_t \end{bmatrix} )\)</li>
+<li>New Value: \(n_t = \tanh(W_n \cdot \begin{bmatrix} h_{t-1} \\ x_t \end{bmatrix} )\)</li>
+<li>Output Gate: \(o_t = \sigma(W_o \cdot \begin{bmatrix} h_{t-1} \\ x_t \end{bmatrix} )\)</li>
+
+<li>input of C : \(C_t = f_t \otimes C_{t-1} + i_t \otimes n_t\)</li>
+<li>output of C : \(h_t = o_t \otimes \tanh(C_t)\)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org99a4243" class="outline-2">
+<h2 id="org99a4243"><span class="section-number-2">18.</span> Semi-supervised learning</h2>
+<div class="outline-text-2" id="text-18">
+<p>
+train model jointly on labeled and unlabled data
+\[L = L_{S} + \mu(t)L_{\mu}\]
+supervised loss, time dependent weight*unsupervised loss(\(L_{\mu}\))
+</p>
+</div>
+<div id="outline-container-orge5b3f1c" class="outline-3">
+<h3 id="orge5b3f1c"><span class="section-number-3">18.1.</span> consistentcy loss SSL</h3>
+<div class="outline-text-3" id="text-18-1">
+<p>
+consider the consistency loss on all examples between Student model and Teacher model.
+</p>
+<ol class="org-ol">
+<li>training the student model with labeled data as usual,</li>
+<li>difference augmented view methodes(scala, rotate&#x2026;) applying on each unlabled data.</li>
+<li>passing augmented views(x', x'') of the same data(x) to student and teacher model</li>
+<li>minimizing the consistency loss of both output \(L_{\mu} = ||f(x') -g(x'')||^{2}\).</li>
+<li>updating weight of teacher model, \(\Theta'_{t} = \alpha \Theta''_{t-1} + (1-\alpha)\Theta_{t}\)</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org4566a35" class="outline-3">
+<h3 id="org4566a35"><span class="section-number-3">18.2.</span> Pseudo-label based SSL</h3>
+<div class="outline-text-3" id="text-18-2">
+<ol class="org-ol">
+<li>training Teacher model with labeled data as usual</li>
+<li>using well trianed teacher model to predict unlabled data</li>
+<li>taking over the  confident prediciton(threshold) lable as new labeled data</li>
+<li>training student model with original and new  label data</li>
+<li>passing the student model weights to teacher model, and predict all data again</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org09e727e" class="outline-2">
+<h2 id="org09e727e"><span class="section-number-2">19.</span> Weakly-supervised learing</h2>
+<div class="outline-text-2" id="text-19">
+<p>
+use simple and cheaper labels for training
+</p>
+<ul class="org-ul">
+<li>Classification: hashtags</li>
+<li>Object detection: images tags</li>
+<li>Semantic Segmentation: scribble annotations</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgef09dd7" class="outline-2">
+<h2 id="orgef09dd7"><span class="section-number-2">20.</span> Self-supervised learing</h2>
+<div class="outline-text-2" id="text-20">
+<p>
+pre-training unsupervised model with  large unlabled data,
+then fineturn it with small label dataset
+</p>
+</div>
+<div id="outline-container-org1c1c3f6" class="outline-3">
+<h3 id="org1c1c3f6"><span class="section-number-3">20.1.</span> Colorization</h3>
+<div class="outline-text-3" id="text-20-1">
+<p>
+Reference Frame \(f_{i}\), color \(c_{i}\),
+Target Frame \(f_{j}\), predect color \(y_{j}\).
+\[A_{ij} = \frac{exp(f_{i}^{T}f_{j})}{\sum_{k}exp(f_{k}^{T}f_{j})}, y_{j}=\sum_{i}A_{ij}c_{i}\]
+</p>
+</div>
+</div>
+<div id="outline-container-org4f13feb" class="outline-3">
+<h3 id="org4f13feb"><span class="section-number-3">20.2.</span> Context Prediciton</h3>
+<div class="outline-text-3" id="text-20-2">
+<p>
+picture divied into  patches, predict the relative position of patches.
+</p>
+<ul class="org-ul">
+<li>Gap between batches, jitter location of patches</li>
+<li>Chromatic abberation, predict the absolute position of  patches</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdfee7b0" class="outline-2">
+<h2 id="orgdfee7b0"><span class="section-number-2">21.</span> Contrastive Learning</h2>
+<div class="outline-text-2" id="text-21">
+</div>
+<div id="outline-container-orgd28c9be" class="outline-3">
+<h3 id="orgd28c9be"><span class="section-number-3">21.1.</span> Contrastive Predictive Coding (CPC)</h3>
+<div class="outline-text-3" id="text-21-1">
+<p>
+Idea: Learn to predict future embeddings linearly. \(Z_{t+k} = W_{k}C_{t}\)
+Loss: mean squared error not helpful, because encoding = 0 will give perfect loss,
+positive example are close, and negative example are distant
+</p>
+</div>
+</div>
+<div id="outline-container-org5c610ef" class="outline-3">
+<h3 id="org5c610ef"><span class="section-number-3">21.2.</span> SimCLR</h3>
+<div class="outline-text-3" id="text-21-2">
+<p>
+Maxmize agreement between representations of two views,
+good contrastive learning need many negative examples.
+</p>
+<ul class="org-ul">
+<li>MoCo:
+ \(\theta_{k} <- m\theta_{k} +(1-m)\theta_{q}\),
+decouples batch size of large number of negative exsamples,
+more complex model</li>
+<li>BYOL:
+no need for negative examples</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgae9bf77" class="outline-3">
+<h3 id="orgae9bf77"><span class="section-number-3">21.3.</span> Cross-model contrastive learning(CLIP)</h3>
+</div>
+</div>
+<div id="outline-container-orgbd2ab66" class="outline-2">
+<h2 id="orgbd2ab66"><span class="section-number-2">22.</span> Semantic segmentation</h2>
+<div class="outline-text-2" id="text-22">
+</div>
+<div id="outline-container-org9659861" class="outline-3">
+<h3 id="org9659861"><span class="section-number-3">22.1.</span> methods</h3>
+<div class="outline-text-3" id="text-22-1">
+<ul class="org-ul">
+<li>in CNN model, replace  the last fully connected layer with 1x1 converlutions layer</li>
+<li>at last upsampling to original size</li>
+<li>ouput original weight * original height * class  number with one-hot coding.</li>
+<li>loss funtion, cross entry of pixel-wise: \(\frac{1}{N} \sum_{ij}\sum_{k} \log p_{ij}^{k} t_{ij}^{k}\),
+<ul class="org-ul">
+<li>imbalanced background not work good for target prediciton, using balanced loss function</li>
+<li>weight factor r inverse to class frequency</li>
+<li>dice loss</li>
+<li>Focal loss</li>
+</ul></li>
+<li>upsampling: nearest neighbor interpolation, transposed convolutions</li>
+<li>upsampling combining with  the corresponding pooling</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6bac4ec" class="outline-3">
+<h3 id="org6bac4ec"><span class="section-number-3">22.2.</span> FCN</h3>
+<div class="outline-text-3" id="text-22-2">
+<p>
+tranposed convolution can cause artifacts, can avoid by using fixed upsampling(nearest neighbor)
+</p>
+</div>
+</div>
+<div id="outline-container-orgc17e852" class="outline-3">
+<h3 id="orgc17e852"><span class="section-number-3">22.3.</span> U-net</h3>
+<div class="outline-text-3" id="text-22-3">
+<ul class="org-ul">
+<li>Contraction: extract semantic  information</li>
+<li>Expansion:  produce detail segmentation</li>
+<li>Skip connection: copy high-resolution information into decoder</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3859d23" class="outline-3">
+<h3 id="org3859d23"><span class="section-number-3">22.4.</span> Deep Lab</h3>
+<div class="outline-text-3" id="text-22-4">
+<p>
+combine feathers representations at multiple scale
+atrous converlution: dilate filter by implicit zeros in between kenerl elements
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2c2186b" class="outline-2">
+<h2 id="org2c2186b"><span class="section-number-2">23.</span> Object Detection</h2>
+<div class="outline-text-2" id="text-23">
+<p>
+<b>Predict the Bounding box and predict the class</b>
+</p>
+</div>
+<div id="outline-container-org31ec65d" class="outline-3">
+<h3 id="org31ec65d"><span class="section-number-3">23.1.</span> two stage mothode</h3>
+<div class="outline-text-3" id="text-23-1">
+<p>
+Faster R-CNN:
+</p>
+<ul class="org-ul">
+<li>Loss = \(\sum\) classification loss + \(\sum\) region proposal loss</li>
+<li>RoI pooling: all object map to Rol convolutional features(C*H*W) for region proposal</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf7da550" class="outline-3">
+<h3 id="orgf7da550"><span class="section-number-3">23.2.</span> single stage mothode</h3>
+<div class="outline-text-3" id="text-23-2">
+<p>
+change the mask size, and predect all at once
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgad53bdd" class="outline-2">
+<h2 id="orgad53bdd"><span class="section-number-2">24.</span> Instance Segmentation</h2>
+<div class="outline-text-2" id="text-24">
+<p>
+<b>segment individual object from image</b>
+<b>Instance segmentation is invariant under relabeling</b>
+</p>
+<ul class="org-ul">
+<li>Proposal-based instance segmentation, perform object detection at first, the predict each mask instance with  bounding box
+L = classification loss + region proposal loss(bounding box) + mask loss</li>
+<li>proposal-free instance segmentation, predict intermediate representations,
+<ul class="org-ul">
+<li>foreground prediciton</li>
+<li>boundary prediciton</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgcb1cdf4" class="outline-2">
+<h2 id="orgcb1cdf4"><span class="section-number-2">25.</span> image to image</h2>
+<div class="outline-text-2" id="text-25">
+<ul class="org-ul">
+<li>colorization</li>
+<li>super resolution</li>
+<li>Denoising</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: si</p>
+<p class="date">Created: 2025-01-23 Do 21:44</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-01-23 Do 21:18 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blockchain</title>
+<meta name="author" content="si" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Blockchain</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgdea65f9">1. BTC: decentralized currency</a>
+<ul>
+<li><a href="#org44d8855">1.1. 密码学原理</a>
+<ul>
+<li><a href="#org5f2fda8">1.1.1. Crypto-Currency</a></li>
+<li><a href="#org79b4f7f">1.1.2. SAH256 Secure Hash Algorithm</a></li>
+<li><a href="#org61ab493">1.1.3. Count</a></li>
+<li><a href="#org9c05e25">1.1.4. Merkel Tree</a></li>
+</ul>
+</li>
+<li><a href="#orgd42b102">1.2. 节点</a>
+<ul>
+<li><a href="#org060ddcd">1.2.1. 重节点</a></li>
+<li><a href="#org44ff5ab">1.2.2. 轻节点：Merkel Proof : Merkel Tree</a></li>
+</ul>
+</li>
+<li><a href="#orgd0dd57e">1.3. distributed consensus</a>
+<ul>
+<li><a href="#orgc51b28c">1.3.1. FLP impossibility result</a></li>
+<li><a href="#org64247c5">1.3.2. CAP theorem</a></li>
+</ul>
+</li>
+<li><a href="#org485f912">1.4. fork</a>
+<ul>
+<li><a href="#org9c0da85">1.4.1. state fork</a></li>
+<li><a href="#orgd91b8e1">1.4.2. protocd fork</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgad97fa9">2. ETH : decentralized contract</a>
+<ul>
+<li><a href="#org8b1d12b">2.1. Patricia Tree</a></li>
+</ul>
+</li>
+<li><a href="#org5aec5d4">3. python</a>
+<ul>
+<li><a href="#orgf9166ab">3.1. part1</a></li>
+<li><a href="#org4e2dce6">3.2. part2</a></li>
+<li><a href="#orgb6017fb">3.3. part3</a></li>
+<li><a href="#orgb1e8f49">3.4. part4 (has error)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgdea65f9" class="outline-2">
+<h2 id="orgdea65f9"><span class="section-number-2">1.</span> BTC: decentralized currency</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org44d8855" class="outline-3">
+<h3 id="org44d8855"><span class="section-number-3">1.1.</span> 密码学原理</h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+<div id="outline-container-org5f2fda8" class="outline-4">
+<h4 id="org5f2fda8"><span class="section-number-4">1.1.1.</span> Crypto-Currency</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<ol class="org-ol">
+<li>cryptographic hash function: collision resistance</li>
+<li>hidding:</li>
+<li>digital commitment : digital equivalent of a sealed envelope</li>
+<li>puzzle friendly: nonce : H(block header)&lt;= target for all possible</li>
+</ol>
+<p>
+input
+</p>
+<ol class="org-ol">
+<li>difficult to solve but easy to proof.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org79b4f7f" class="outline-4">
+<h4 id="org79b4f7f"><span class="section-number-4">1.1.2.</span> SAH256 Secure Hash Algorithm</h4>
+</div>
+
+<div id="outline-container-org61ab493" class="outline-4">
+<h4 id="org61ab493"><span class="section-number-4">1.1.3.</span> Count</h4>
+<div class="outline-text-4" id="text-1-1-3">
+</div>
+<ol class="org-ol">
+<li><a id="orga5980de"></a>public key : 加密<br /></li>
+
+<li><a id="org09052f9"></a>private key : 解密 : asymmetric encryption algorithm<br /></li>
+</ol>
+</div>
+
+<div id="outline-container-org9c05e25" class="outline-4">
+<h4 id="org9c05e25"><span class="section-number-4">1.1.4.</span> Merkel Tree</h4>
+<div class="outline-text-4" id="text-1-1-4">
+<p>
+块内的交易以树的形状存放
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd42b102" class="outline-3">
+<h3 id="orgd42b102"><span class="section-number-3">1.2.</span> 节点</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-org060ddcd" class="outline-4">
+<h4 id="org060ddcd"><span class="section-number-4">1.2.1.</span> 重节点</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+only block header
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="orga2f54a3"></a>block header<br />
+<div class="outline-text-5" id="text-1-2-1-1">
+<p>
+version
+hash of previous block header
+merkel root hash
+target
+nonce
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org44ff5ab" class="outline-4">
+<h4 id="org44ff5ab"><span class="section-number-4">1.2.2.</span> 轻节点：Merkel Proof : Merkel Tree</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+block header 
+block body
+proof of membership : proof of inclusion
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd0dd57e" class="outline-3">
+<h3 id="orgd0dd57e"><span class="section-number-3">1.3.</span> distributed consensus</h3>
+<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-orgc51b28c" class="outline-4">
+<h4 id="orgc51b28c"><span class="section-number-4">1.3.1.</span> FLP impossibility result</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+asynchronous :faulty
+</p>
+</div>
+</div>
+<div id="outline-container-org64247c5" class="outline-4">
+<h4 id="org64247c5"><span class="section-number-4">1.3.2.</span> CAP theorem</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<p>
+consistency : Avaliability : Partition tolerance
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org485f912" class="outline-3">
+<h3 id="org485f912"><span class="section-number-3">1.4.</span> fork</h3>
+<div class="outline-text-3" id="text-1-4">
+</div>
+<div id="outline-container-org9c0da85" class="outline-4">
+<h4 id="org9c0da85"><span class="section-number-4">1.4.1.</span> state fork</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<p>
+forking attack : 挖矿时同时挖到两个块
+deliberate fork  :故意制造的
+</p>
+</div>
+</div>
+<div id="outline-container-orgd91b8e1" class="outline-4">
+<h4 id="orgd91b8e1"><span class="section-number-4">1.4.2.</span> protocd fork</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<p>
+hard fork : software update : block size limit :
+</p>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgad97fa9" class="outline-2">
+<h2 id="orgad97fa9"><span class="section-number-2">2.</span> ETH : decentralized contract</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+memory hard
+mining puzzle
+proof of work -&gt; proof of stake
+SAIC resistance
+smart contract
+</p>
+</div>
+<div id="outline-container-org8b1d12b" class="outline-3">
+<h3 id="org8b1d12b"><span class="section-number-3">2.1.</span> Patricia Tree</h3>
+</div>
+</div>
+
+<div id="outline-container-org5aec5d4" class="outline-2">
+<h2 id="org5aec5d4"><span class="section-number-2">3.</span> python</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgf9166ab" class="outline-3">
+<h3 id="orgf9166ab"><span class="section-number-3">3.1.</span> part1</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> hashlib
+<span style="color: #4f97d7; font-weight: bold;">import</span> json
+
+<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Block</span>():
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>, nonce,tstamp, transcation, prevhash=<span style="color: #2d9574;">''</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">nonce</span> = nonce
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">tstamp</span> = tstamp
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">transcation</span> = transcation
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">prevhash</span> = prevhash
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">hash</span> =<span style="color: #4f97d7; font-weight: bold;">self</span>.calcHash()
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__str__</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">string</span> = <span style="color: #2d9574;">'nonce:'</span>+<span style="color: #4f97d7;">str</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.nonce)+<span style="color: #2d9574;">'</span><span style="color: #a45bad;">\n</span><span style="color: #2d9574;">'</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">string</span> += <span style="color: #2d9574;">'tstamp:'</span>+<span style="color: #4f97d7;">str</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.tstamp)+<span style="color: #2d9574;">'</span><span style="color: #a45bad;">\n</span><span style="color: #2d9574;">'</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">string</span> += <span style="color: #2d9574;">'transcation:'</span>+<span style="color: #4f97d7;">str</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.transcation)+<span style="color: #2d9574;">'</span><span style="color: #a45bad;">\n</span><span style="color: #2d9574;">'</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">string</span> += <span style="color: #2d9574;">'prevhash:'</span>+<span style="color: #4f97d7;">str</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.prevhash)+<span style="color: #2d9574;">'</span><span style="color: #a45bad;">\n</span><span style="color: #2d9574;">'</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">string</span> += <span style="color: #2d9574;">'hash:'</span>+<span style="color: #4f97d7;">str</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">hash</span>)+<span style="color: #2d9574;">'</span><span style="color: #a45bad;">\n</span><span style="color: #2d9574;">'</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> string
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">calcHash</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">block_string</span> = json.dumps({<span style="color: #2d9574;">'nonce'</span>:<span style="color: #4f97d7; font-weight: bold;">self</span>.nonce, <span style="color: #2d9574;">'tstamp'</span>:<span style="color: #4f97d7; font-weight: bold;">self</span>.tstamp, <span style="color: #2d9574;">'transcation'</span>:<span style="color: #4f97d7; font-weight: bold;">self</span>.transcation, <span style="color: #2d9574;">'prevhash'</span>:<span style="color: #4f97d7; font-weight: bold;">self</span>.prevhash}, sort_keys=<span style="color: #a45bad;">True</span>).encode()
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> hashlib.sha256(block_string).hexdigest()
+
+<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Blockchain</span>():
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">chain</span>=[<span style="color: #4f97d7; font-weight: bold;">self</span>.generateGensisBlock(),]
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">generateGensisBlock</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> Block(0,<span style="color: #2d9574;">'Fri Oct 26 21:15:12 2018'</span>,<span style="color: #2d9574;">'Gensis Block'</span>)
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">getLastBlock</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #4f97d7; font-weight: bold;">self</span>.chain[-1]
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">addBlock</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>,newBlock):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   newBlock.<span style="color: #7590db;">prevhash</span>=<span style="color: #4f97d7; font-weight: bold;">self</span>.getLastBlock().<span style="color: #4f97d7;">hash</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   newBlock.<span style="color: #4f97d7;">hash</span>=newBlock.calcHash()
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.chain.append(newBlock)
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">isChainValid</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> i <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(1,<span style="color: #4f97d7;">len</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.chain)):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">prevb</span> = <span style="color: #4f97d7; font-weight: bold;">self</span>.chain[i-1]
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">currb</span> = <span style="color: #4f97d7; font-weight: bold;">self</span>.chain[i]
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">if</span>(currb.<span style="color: #4f97d7;">hash</span> != currb.calcHash()):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'invalid block'</span>)
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">False</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">if</span>(currb.prevhash != prevb.<span style="color: #4f97d7;">hash</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'invalid chain'</span>)
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">False</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">True</span>
+
+
+<span style="color: #7590db;">shangCoin</span> = Blockchain()
+shangCoin.addBlock(Block(1,<span style="color: #2d9574;">'Fri Oct 26 21:22:51 2018'</span>,100))
+shangCoin.addBlock(Block(2,<span style="color: #2d9574;">'Fri Oct 26 21:23:28 2018'</span>,200))
+
+shangCoin.chain[1].<span style="color: #7590db;">transcation</span> = 66
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'only change transcation:'</span>+ <span style="color: #2d9574;">'</span><span style="color: #a45bad;">\n</span><span style="color: #2d9574;">'</span>+<span style="color: #4f97d7;">str</span>(shangCoin.chain[1].calcHash()) +<span style="color: #2d9574;">'</span><span style="color: #a45bad;">\n</span><span style="color: #2d9574;">'</span>+ <span style="color: #4f97d7;">str</span>(shangCoin.chain[1].<span style="color: #4f97d7;">hash</span>))
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524;&#21482;&#26159;&#25913;&#20102;&#19968;&#20010;transaction&#30340;&#20540;&#65292;&#22312;&#25191;&#34892;calcHash&#20043;&#21518;&#30340;&#32467;&#26524;&#32943;&#23450;&#19981;&#31561;&#20110;&#20043;&#21069;&#23384;&#22312;hash&#23646;&#24615;&#37324;&#30340;&#32467;&#26524;&#19968;&#33268;&#65292;&#20250;&#25253;&#38169;</span>
+shangCoin.chain[1].<span style="color: #4f97d7;">hash</span> =shangCoin.chain[1].calcHash()
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'after change transcation, and hash all again:'</span>+<span style="color: #2d9574;">'</span><span style="color: #a45bad;">\n</span><span style="color: #2d9574;">'</span>+<span style="color: #4f97d7;">str</span>(shangCoin.chain[2].prevhash)+<span style="color: #2d9574;">'</span><span style="color: #a45bad;">\n</span><span style="color: #2d9574;">'</span>+<span style="color: #4f97d7;">str</span>(shangCoin.chain[1].<span style="color: #4f97d7;">hash</span>))
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524;&#22312;&#25913;&#21464;transaction&#21518;&#65292;&#20877;hash&#25972;&#20010;&#22359;&#65292;&#21017;&#23384;&#22312;&#19979;&#19968;&#20010;&#22359;&#20869;&#30340;prevhash&#23558;&#19981;&#20250;&#31561;&#20110;&#36825;&#20010;&#22359;&#20869;hash&#21464;&#21270;&#21518;&#30340;&#20540;</span>
+
+<span style="color: #4f97d7; font-weight: bold;">for</span> b <span style="color: #4f97d7; font-weight: bold;">in</span> shangCoin.chain:
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(b)
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(shangCoin.isChainValid())
+
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org4e2dce6" class="outline-3">
+<h3 id="org4e2dce6"><span class="section-number-3">3.2.</span> part2</h3>
+<div class="outline-text-3" id="text-3-2">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> hashlib
+<span style="color: #4f97d7; font-weight: bold;">import</span> json
+
+<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Block</span>():
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>, nonce,tstamp, transcation, prevhash=<span style="color: #2d9574;">''</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">nonce</span> = nonce
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">tstamp</span> = tstamp
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">transcation</span> = transcation
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">prevhash</span> = prevhash
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">hash</span> =<span style="color: #4f97d7; font-weight: bold;">self</span>.calcHash()
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__str__</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">string</span> = <span style="color: #2d9574;">'nonce:'</span>+<span style="color: #4f97d7;">str</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.nonce)+<span style="color: #2d9574;">'</span><span style="color: #a45bad;">\n</span><span style="color: #2d9574;">'</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">string</span> += <span style="color: #2d9574;">'tstamp:'</span>+<span style="color: #4f97d7;">str</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.tstamp)+<span style="color: #2d9574;">'</span><span style="color: #a45bad;">\n</span><span style="color: #2d9574;">'</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">string</span> += <span style="color: #2d9574;">'transcation:'</span>+<span style="color: #4f97d7;">str</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.transcation)+<span style="color: #2d9574;">'</span><span style="color: #a45bad;">\n</span><span style="color: #2d9574;">'</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">string</span> += <span style="color: #2d9574;">'prevhash:'</span>+<span style="color: #4f97d7;">str</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.prevhash)+<span style="color: #2d9574;">'</span><span style="color: #a45bad;">\n</span><span style="color: #2d9574;">'</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">string</span> += <span style="color: #2d9574;">'hash:'</span>+<span style="color: #4f97d7;">str</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">hash</span>)+<span style="color: #2d9574;">'</span><span style="color: #a45bad;">\n</span><span style="color: #2d9574;">'</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> string
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">calcHash</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">block_string</span> = json.dumps({<span style="color: #2d9574;">'nonce'</span>:<span style="color: #4f97d7; font-weight: bold;">self</span>.nonce, <span style="color: #2d9574;">'tstamp'</span>:<span style="color: #4f97d7; font-weight: bold;">self</span>.tstamp, <span style="color: #2d9574;">'transcation'</span>:<span style="color: #4f97d7; font-weight: bold;">self</span>.transcation, <span style="color: #2d9574;">'prevhash'</span>:<span style="color: #4f97d7; font-weight: bold;">self</span>.prevhash}, sort_keys=<span style="color: #a45bad;">True</span>).encode()
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> hashlib.sha256(block_string).hexdigest()
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">mineBlock</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>,difficult):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">while</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">hash</span>[:difficult] != <span style="color: #4f97d7;">str</span>(<span style="color: #2d9574;">''</span>).zfill(difficult)):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">nonce</span> += 1
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">hash</span> = <span style="color: #4f97d7; font-weight: bold;">self</span>.calcHash()
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'the mineBlock is:'</span>,<span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">hash</span>)
+
+<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Blockchain</span>():
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">chain</span>=[<span style="color: #4f97d7; font-weight: bold;">self</span>.generateGensisBlock(),]
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">difficult</span> = 3
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">generateGensisBlock</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> Block(0,<span style="color: #2d9574;">'Fri Oct 26 21:15:12 2018'</span>,<span style="color: #2d9574;">'Gensis Block'</span>)
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">getLastBlock</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #4f97d7; font-weight: bold;">self</span>.chain[-1]
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">addBlock</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>,newBlock):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   newBlock.<span style="color: #7590db;">prevhash</span>=<span style="color: #4f97d7; font-weight: bold;">self</span>.getLastBlock().<span style="color: #4f97d7;">hash</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   newBlock.<span style="color: #4f97d7;">hash</span>=newBlock.calcHash()
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   newBlock.mineBlock(<span style="color: #4f97d7; font-weight: bold;">self</span>.difficult)
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.chain.append(newBlock)
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">isChainValid</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> i <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(1,<span style="color: #4f97d7;">len</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.chain)):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">prevb</span> = <span style="color: #4f97d7; font-weight: bold;">self</span>.chain[i-1]
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">currb</span> = <span style="color: #4f97d7; font-weight: bold;">self</span>.chain[i]
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">if</span>(currb.<span style="color: #4f97d7;">hash</span> != currb.calcHash()):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'invalid block'</span>)
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">False</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">if</span>(currb.prevhash != prevb.<span style="color: #4f97d7;">hash</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'invalid chain'</span>)
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">False</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">True</span>
+
+
+<span style="color: #7590db;">shangCoin</span> = Blockchain()
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'Adding the first block'</span>)
+shangCoin.addBlock(Block(1,<span style="color: #2d9574;">'Fri Oct 26 21:22:51 2018'</span>,100))
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'Adding the second block'</span>)
+shangCoin.addBlock(Block(2,<span style="color: #2d9574;">'Fri Oct 26 21:23:28 2018'</span>,200))
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">shangCoin.chain[1].transcation = 66</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">print('only change transcation:'+ '\n'+str(shangCoin.chain[1].calcHash()) +'\n'+ str(shangCoin.chain[1].hash))</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">#&#22914;&#26524;&#21482;&#26159;&#25913;&#20102;&#19968;&#20010;transaction&#30340;&#20540;&#65292;&#22312;&#25191;&#34892;calcHash&#20043;&#21518;&#30340;&#32467;&#26524;&#32943;&#23450;&#19981;&#31561;&#20110;&#20043;&#21069;&#23384;&#22312;hash&#23646;&#24615;&#37324;&#30340;&#32467;&#26524;&#19968;&#33268;&#65292;&#20250;&#25253;&#38169;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">shangCoin.chain[1].hash =shangCoin.chain[1].calcHash()</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">print('after change transcation, and hash all again:'+'\n'+str(shangCoin.chain[2].prevhash)+'\n'+str(shangCoin.chain[1].hash))</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">#&#22914;&#26524;&#22312;&#25913;&#21464;transaction&#21518;&#65292;&#20877;hash&#25972;&#20010;&#22359;&#65292;&#21017;&#23384;&#22312;&#19979;&#19968;&#20010;&#22359;&#20869;&#30340;prevhash&#23558;&#19981;&#20250;&#31561;&#20110;&#36825;&#20010;&#22359;&#20869;hash&#21464;&#21270;&#21518;&#30340;&#20540;</span>
+
+<span style="color: #4f97d7; font-weight: bold;">for</span> b <span style="color: #4f97d7; font-weight: bold;">in</span> shangCoin.chain:
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(b)
+
+<span style="color: #4f97d7; font-weight: bold;">if</span>(shangCoin.isChainValid()):
+
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'valid blockchain'</span>)
+<span style="color: #4f97d7; font-weight: bold;">else</span>:
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'hacked blockchain'</span>)
+
+
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb6017fb" class="outline-3">
+<h3 id="orgb6017fb"><span class="section-number-3">3.3.</span> part3</h3>
+<div class="outline-text-3" id="text-3-3">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> hashlib
+<span style="color: #4f97d7; font-weight: bold;">import</span> json
+<span style="color: #4f97d7; font-weight: bold;">from</span> datetime <span style="color: #4f97d7; font-weight: bold;">import</span> datetime 
+<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Transaction</span>():
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>, from_address,to_address, amount):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">from_address</span> = from_address
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">to_address</span> = to_address
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">amount</span> = amount
+
+<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Block</span>():
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>,tstamp, transcationList, prevhash=<span style="color: #2d9574;">''</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">nonce</span> = 0
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">tstamp</span> = tstamp
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">transcationList</span> = transcationList
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">prevhash</span> = prevhash
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">hash</span> =<span style="color: #4f97d7; font-weight: bold;">self</span>.calcHash()
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__str__</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">string</span> = <span style="color: #2d9574;">'nonce:'</span>+<span style="color: #4f97d7;">str</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.nonce)+<span style="color: #2d9574;">'</span><span style="color: #a45bad;">\n</span><span style="color: #2d9574;">'</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">string</span> += <span style="color: #2d9574;">'tstamp:'</span>+<span style="color: #4f97d7;">str</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.tstamp)+<span style="color: #2d9574;">'</span><span style="color: #a45bad;">\n</span><span style="color: #2d9574;">'</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">string</span> += <span style="color: #2d9574;">'transcation:'</span>+<span style="color: #4f97d7;">str</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.transcation)+<span style="color: #2d9574;">'</span><span style="color: #a45bad;">\n</span><span style="color: #2d9574;">'</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">string</span> += <span style="color: #2d9574;">'prevhash:'</span>+<span style="color: #4f97d7;">str</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.prevhash)+<span style="color: #2d9574;">'</span><span style="color: #a45bad;">\n</span><span style="color: #2d9574;">'</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">string</span> += <span style="color: #2d9574;">'hash:'</span>+<span style="color: #4f97d7;">str</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">hash</span>)+<span style="color: #2d9574;">'</span><span style="color: #a45bad;">\n</span><span style="color: #2d9574;">'</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> string
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">calcHash</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">block_string</span> = json.dumps({<span style="color: #2d9574;">'nonce'</span>:<span style="color: #4f97d7; font-weight: bold;">self</span>.nonce, <span style="color: #2d9574;">'tstamp'</span>:<span style="color: #4f97d7;">str</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.tstamp), <span style="color: #2d9574;">'transcation'</span>:<span style="color: #4f97d7; font-weight: bold;">self</span>.transcationList[0].amount, <span style="color: #2d9574;">'prevhash'</span>:<span style="color: #4f97d7; font-weight: bold;">self</span>.prevhash}, sort_keys=<span style="color: #a45bad;">True</span>).encode()
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> hashlib.sha256(block_string).hexdigest()
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">mineBlock</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>,difficult):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">while</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">hash</span>[:difficult] != <span style="color: #4f97d7;">str</span>(<span style="color: #2d9574;">''</span>).zfill(difficult)):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">nonce</span> += 1
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">hash</span> = <span style="color: #4f97d7; font-weight: bold;">self</span>.calcHash()
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'the mineBlock is:'</span>,<span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">hash</span>)
+
+<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Blockchain</span>():
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">chain</span>=[<span style="color: #4f97d7; font-weight: bold;">self</span>.generateGensisBlock(),]
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">difficult</span> = 3
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">pendingTransactions</span> = []
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">mining_reward</span> = 100
+
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">generateGensisBlock</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> Block(<span style="color: #2d9574;">'Fri Oct 26 21:15:12 2018'</span>, [Transaction(<span style="color: #a45bad;">None</span>,<span style="color: #a45bad;">None</span>,0),])
+
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">getLastBlock</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #4f97d7; font-weight: bold;">self</span>.chain[-1]
+
+<span style="background-color: #292e34;"> </span>   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">def addBlock(self,newBlock):</span>
+<span style="background-color: #292e34;"> </span>   <span style="color: #2aa1ae; background-color: #292e34;">#     </span><span style="color: #2aa1ae; background-color: #292e34;">newBlock.prevhash=self.getLastBlock().hash</span>
+<span style="background-color: #292e34;"> </span>   <span style="color: #2aa1ae; background-color: #292e34;">#     </span><span style="color: #2aa1ae; background-color: #292e34;">newBlock.hash=newBlock.calcHash()</span>
+<span style="background-color: #292e34;"> </span>   <span style="color: #2aa1ae; background-color: #292e34;">#     </span><span style="color: #2aa1ae; background-color: #292e34;">newBlock.mineBlock(self.difficult)</span>
+<span style="background-color: #292e34;"> </span>   <span style="color: #2aa1ae; background-color: #292e34;">#     </span><span style="color: #2aa1ae; background-color: #292e34;">self.chain.append(newBlock)</span>
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">minePendingTranaction</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>,mining_reward_address):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">block</span> = Block(datetime.now(), <span style="color: #4f97d7; font-weight: bold;">self</span>.pendingTransactions)
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   block.mineBlock(<span style="color: #4f97d7; font-weight: bold;">self</span>.difficult)
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'Block is mined to get reward:'</span>,<span style="color: #4f97d7; font-weight: bold;">self</span>.mining_reward)
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.chain.append(block)
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">pendingTransactions</span> = [Transaction(<span style="color: #a45bad;">None</span>,mining_reward_address, <span style="color: #4f97d7; font-weight: bold;">self</span>.mining_reward)]
+
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">createTransaction</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>,T):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.pendingTransactions.append(T)
+
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">getBalence</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>,address):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">balance</span> = 0
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> b <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7; font-weight: bold;">self</span>.chain:
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> t <span style="color: #4f97d7; font-weight: bold;">in</span> b.transcationList:
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">if</span> t.to_address==address:
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">balance</span> += t.amount
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">if</span> t.from_address==address:
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">balance</span> -= t.amount
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> balance
+
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">isChainValid</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> i <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(1,<span style="color: #4f97d7;">len</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.chain)):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">prevb</span> = <span style="color: #4f97d7; font-weight: bold;">self</span>.chain[i-1]
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">currb</span> = <span style="color: #4f97d7; font-weight: bold;">self</span>.chain[i]
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">if</span>(currb.<span style="color: #4f97d7;">hash</span> != currb.calcHash()):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'invalid block'</span>)
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">False</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">if</span>(currb.prevhash != prevb.<span style="color: #4f97d7;">hash</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'invalid chain'</span>)
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">False</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">True</span>
+
+
+<span style="color: #7590db;">shangCoin</span> = Blockchain()
+shangCoin.createTransaction(Transaction(<span style="color: #2d9574;">'address1'</span>, <span style="color: #2d9574;">'address2'</span>,100))
+shangCoin.createTransaction(Transaction(<span style="color: #2d9574;">'address2'</span>, <span style="color: #2d9574;">'address1'</span>,50))
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'starting mining:'</span>)
+shangCoin.minePendingTranaction(<span style="color: #2d9574;">'shangaddress'</span>)
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'shangCoin miner balance is:'</span>, shangCoin.getBalence(<span style="color: #2d9574;">'shangaddress'</span>))
+
+shangCoin.createTransaction(Transaction(<span style="color: #2d9574;">'address1'</span>, <span style="color: #2d9574;">'address2'</span>,200))
+shangCoin.createTransaction(Transaction(<span style="color: #2d9574;">'address2'</span>, <span style="color: #2d9574;">'address1'</span>,150))
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'starting mining again:'</span>)
+shangCoin.minePendingTranaction(<span style="color: #2d9574;">'shangaddress'</span>)
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'shangCoin miner balance is:'</span>, shangCoin.getBalence(<span style="color: #2d9574;">'shangaddress'</span>))
+
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb1e8f49" class="outline-3">
+<h3 id="orgb1e8f49"><span class="section-number-3">3.4.</span> part4 (has error)</h3>
+<div class="outline-text-3" id="text-3-4">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> hashlib
+<span style="color: #4f97d7; font-weight: bold;">import</span> json
+<span style="color: #4f97d7; font-weight: bold;">from</span> datetime <span style="color: #4f97d7; font-weight: bold;">import</span> datetime 
+<span style="color: #4f97d7; font-weight: bold;">from</span> flask <span style="color: #4f97d7; font-weight: bold;">import</span> Flask
+<span style="color: #4f97d7; font-weight: bold;">from</span> flask <span style="color: #4f97d7; font-weight: bold;">import</span> jsonify
+<span style="color: #4f97d7; font-weight: bold;">from</span> time <span style="color: #4f97d7; font-weight: bold;">import</span> time
+
+<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Block</span>():
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>, nonce, tstamp, transationList, prevhash=<span style="color: #2d9574;">''</span>, <span style="color: #4f97d7;">hash</span> =<span style="color: #2d9574;">''</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">nonce</span> = nonce
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">tstamp</span> = tstamp
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">transationList</span> = transationList
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">prevhash</span> = prevhash
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">if</span> <span style="color: #4f97d7;">hash</span> == <span style="color: #2d9574;">''</span>:
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">hash</span> = <span style="color: #4f97d7; font-weight: bold;">self</span>.calcHash
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">else</span>:
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">hash</span> =<span style="color: #4f97d7;">hash</span>
+
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">toDict</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> {<span style="color: #2d9574;">'nonce'</span>:<span style="color: #4f97d7; font-weight: bold;">self</span>.nonce, <span style="color: #2d9574;">'tstamp'</span>:<span style="color: #4f97d7;">str</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.tstamp), <span style="color: #2d9574;">'transation'</span>:<span style="color: #4f97d7; font-weight: bold;">self</span>.transationList, <span style="color: #2d9574;">'prevhash'</span>:<span style="color: #4f97d7; font-weight: bold;">self</span>.prevhash, <span style="color: #2d9574;">'hash'</span>:<span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">hash</span>}
+
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">calcHash</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">block_string</span> = json.dumps({<span style="color: #2d9574;">'nonce'</span>:<span style="color: #4f97d7; font-weight: bold;">self</span>.nonce, <span style="color: #2d9574;">'tstamp'</span>:<span style="color: #4f97d7;">str</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.tstamp), <span style="color: #2d9574;">'transation'</span>:<span style="color: #4f97d7; font-weight: bold;">self</span>.transationList, <span style="color: #2d9574;">'prevhash'</span>:<span style="color: #4f97d7; font-weight: bold;">self</span>.prevhash}, sort_keys=<span style="color: #a45bad;">True</span>).encode()
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> hashlib.sha256(block_string).hexdigest()
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">mineBlock</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>, difficult):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">while</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">hash</span>[:difficult] != <span style="color: #4f97d7;">str</span>(<span style="color: #2d9574;">''</span>).zfill(difficult)):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">nonce</span> += 1
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">hash</span> = <span style="color: #4f97d7; font-weight: bold;">self</span>.calcHash()
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'the mineBlock is:'</span>,<span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #4f97d7;">hash</span>)
+
+<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Blockchain</span>():
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">chain</span>=[]
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">difficult</span>=3
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">pendingTransations</span> = []
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">mining_reward</span> = 100
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.generateGensisBlock()
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">generateGensisBlock</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">dect</span> = {<span style="color: #2d9574;">'nonce'</span>:0, <span style="color: #2d9574;">'tstamp'</span>:<span style="color: #2d9574;">'Sun Oct 28 12:54:03 2018'</span>, <span style="color: #2d9574;">'transationList'</span>:[{<span style="color: #2d9574;">'from_address'</span>:<span style="color: #a45bad;">None</span>, <span style="color: #2d9574;">'to_address'</span>:<span style="color: #a45bad;">None</span>, <span style="color: #2d9574;">'amount'</span>:0},],<span style="color: #2d9574;">'hash'</span>:<span style="color: #2d9574;">''</span>}
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">b</span> = Block(**dect)
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.chain.append(b.toDict())
+
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">getLastBlock</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> Block(**<span style="color: #4f97d7; font-weight: bold;">self</span>.chain[-1])
+
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">minePendingTransation</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>, mining_reward_address):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">pendingTransations</span> = [{<span style="color: #2d9574;">'from_address'</span>:<span style="color: #a45bad;">None</span>,<span style="color: #2d9574;">'to_address'</span>:mining_reward_address,<span style="color: #2d9574;">'amount'</span>:<span style="color: #4f97d7; font-weight: bold;">self</span>.mining_reward},]
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">block</span> = Block(0, <span style="color: #4f97d7;">str</span>(datetime.now()),<span style="color: #4f97d7; font-weight: bold;">self</span>.pendingTransations)
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   block.<span style="color: #7590db;">prevhash</span> = <span style="color: #4f97d7; font-weight: bold;">self</span>.getLastBlock().<span style="color: #4f97d7;">hash</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   block.mineBlock(<span style="color: #4f97d7; font-weight: bold;">self</span>.difficult)
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'Block is mined to get reward:'</span>,<span style="color: #4f97d7; font-weight: bold;">self</span>.mining_reward)
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.chain.append(block.toDict())
+
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">createTransation</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>, from_address, to_address,amount):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.pendingTransations.append({<span style="color: #2d9574;">'from_adress'</span>:from_address,<span style="color: #2d9574;">'to_address'</span>:to_address, <span style="color: #2d9574;">'amount'</span>:amount})
+
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">getBalence</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>,address):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">balance</span> = 0
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> index <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(<span style="color: #4f97d7;">len</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.chain)):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">dictList</span>=<span style="color: #4f97d7; font-weight: bold;">self</span>.chain[index][<span style="color: #2d9574;">'transationList'</span>]
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> dic <span style="color: #4f97d7; font-weight: bold;">in</span> dictList:
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">if</span> dic[<span style="color: #2d9574;">'to_address'</span>]==address:
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">balance</span> += dic[<span style="color: #2d9574;">'amount'</span>]
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">if</span> dic[<span style="color: #2d9574;">'from_address'</span>]==address:
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">balance</span> -= dic[<span style="color: #2d9574;">'amount'</span>]
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> balance
+
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">isChainValid</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> i <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(1,<span style="color: #4f97d7;">len</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>.chain)):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">prevb</span> =Block(**<span style="color: #4f97d7; font-weight: bold;">self</span>.chain[i-1])
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">currb</span> =Block(**<span style="color: #4f97d7; font-weight: bold;">self</span>.chain[i])
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">if</span>(currb.<span style="color: #4f97d7;">hash</span> != currb.calcHash()):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'invalid block'</span>)
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">False</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">if</span>(currb.prevhash != prevb.<span style="color: #4f97d7;">hash</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'invalid chain'</span>)
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">False</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">True</span>
+
+
+<span style="color: #7590db;">shangCoin</span> = Blockchain()
+shangCoin.createTransation(<span style="color: #2d9574;">'address1'</span>, <span style="color: #2d9574;">'address2'</span>,100)
+shangCoin.createTransation(<span style="color: #2d9574;">'address2'</span>, <span style="color: #2d9574;">'address1'</span>,50)
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'starting mining:'</span>)
+shangCoin.minePendingTransation(<span style="color: #2d9574;">"shangaddress"</span>)
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'shangCoin miner balance is:'</span>, shangCoin.getBalence(<span style="color: #2d9574;">"shangaddress"</span>))
+<span style="color: #4f97d7;">print</span>(shangCoin.isChainValid())
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: si</p>
+<p class="date">Created: 2025-01-23 Do 21:18</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

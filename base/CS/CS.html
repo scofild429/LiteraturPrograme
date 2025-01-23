@@ -1,0 +1,1827 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-01-23 Do 21:42 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Informatik</title>
+<meta name="author" content="si" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Informatik</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org15dec53">1. Schaltnetze</a>
+<ul>
+<li><a href="#orgbb2467d">1.1. Gatter und Haskell</a></li>
+</ul>
+</li>
+<li><a href="#org1a538d6">2. Komplexitätstheorie</a>
+<ul>
+<li><a href="#orgba3a8e2">2.1. Landau Symbols</a></li>
+<li><a href="#orgbcc39be">2.2. Master Theorem</a>
+<ul>
+<li><a href="#org1bf06ac">2.2.1. description</a></li>
+<li><a href="#org8c1d5f7">2.2.2. 1 example</a></li>
+<li><a href="#org77bca81">2.2.3. 2 example</a></li>
+<li><a href="#org0ab888f">2.2.4. 3 example</a></li>
+<li><a href="#orgefaf019">2.2.5. 4 example</a></li>
+<li><a href="#orgac0a748">2.2.6. 5 example</a></li>
+<li><a href="#orgfa106f8">2.2.7. 6 example</a></li>
+<li><a href="#org1700af1">2.2.8. 7 example</a></li>
+<li><a href="#orge3fdb8e">2.2.9. 8 example</a></li>
+<li><a href="#orge5233d8">2.2.10. 9 example</a></li>
+<li><a href="#org97352a7">2.2.11. 10 example</a></li>
+<li><a href="#org516d2d7">2.2.12. 11 example</a></li>
+<li><a href="#org453a613">2.2.13. 12 example</a></li>
+<li><a href="#org8d03580">2.2.14. 13 example</a></li>
+<li><a href="#org23c1874">2.2.15. 14 example</a></li>
+<li><a href="#org664ddb8">2.2.16. 15 example</a></li>
+<li><a href="#orga26104f">2.2.17. 16 example</a></li>
+<li><a href="#org951b747">2.2.18. 17 example</a></li>
+<li><a href="#orgb697292">2.2.19. 18 example</a></li>
+<li><a href="#orgb8251e6">2.2.20. 19 example</a></li>
+<li><a href="#org25a0248">2.2.21. 20 example</a></li>
+<li><a href="#orga027c84">2.2.22. 21 example</a></li>
+<li><a href="#org314b89d">2.2.23. 22 example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgada2042">3. P &amp; NP</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org648177f">3.0.1. def</a></li>
+<li><a href="#orgb55c00d">3.0.2. NP</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org29ed079">4. computer vision</a>
+<ul>
+<li><a href="#orgf0d74ab">4.1. Ubungs 01</a></li>
+</ul>
+</li>
+<li><a href="#org84c1d49">5. Hash</a>
+<ul>
+<li><a href="#org0d9e3a0">5.1. Gerneral</a></li>
+<li><a href="#orgd944787">5.2. Universal Hash</a>
+<ul>
+<li><a href="#orged079b3">5.2.1. Definition</a></li>
+<li><a href="#orga3cb4f9">5.2.2. Carter-Wegman hash function</a></li>
+<li><a href="#orgc2b83fe">5.2.3. Python example</a></li>
+<li><a href="#orgfe1e26c">5.2.4. universal hash with reproducible</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org45a1a78">6. Tree Theorem</a>
+<ul>
+<li><a href="#org5068873">6.1. Vorgänger(u)</a></li>
+<li><a href="#orge89be98">6.2. Nachfolger(v)</a></li>
+</ul>
+</li>
+<li><a href="#orgdc89fbe">7. Quantum Computation</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org15dec53" class="outline-2">
+<h2 id="org15dec53"><span class="section-number-2">1.</span> Schaltnetze</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgbb2467d" class="outline-3">
+<h3 id="orgbb2467d"><span class="section-number-3">1.1.</span> Gatter und Haskell</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+NOT AND OR NAND NOR
+</p>
+
+<p>
+let can not as sentence  use alone, but can be as a part in main
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">table_row</span> <span style="color: #7590db;">::</span> ([<span style="color: #ce537a; font-weight: bold;">Bool</span>] <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span>) <span style="color: #7590db;">-&gt;</span> [<span style="color: #ce537a; font-weight: bold;">Bool</span>] <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">String</span>
+<span style="color: #bc6ec5; font-weight: bold;">table_row</span> f xs <span style="color: #7590db;">=</span> show xs <span style="color: #7590db;">++</span> <span style="color: #2d9574;">" : "</span> <span style="color: #7590db;">++</span> show(f xs)
+
+<span style="color: #bc6ec5; font-weight: bold;">table</span> <span style="color: #7590db;">::</span> ([<span style="color: #ce537a; font-weight: bold;">Bool</span>] <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span>) <span style="color: #7590db;">-&gt;</span> [[<span style="color: #ce537a; font-weight: bold;">Bool</span>]] <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">String</span>
+<span style="color: #bc6ec5; font-weight: bold;">table</span> f xs
+  <span style="color: #7590db;">|</span>xs <span style="color: #7590db;">==</span> <span style="color: #ce537a; font-weight: bold;">[]</span> <span style="color: #7590db;">=</span> <span style="color: #2d9574;">""</span>
+  <span style="color: #7590db;">|</span>otherwise <span style="color: #7590db;">=</span> table_row f (head xs) <span style="color: #7590db;">++</span> <span style="color: #2d9574;">" \n "</span> <span style="color: #7590db;">++</span> table f (tail xs)
+
+<span style="color: #bc6ec5; font-weight: bold;">main</span> <span style="color: #7590db;">=</span> <span style="color: #4f97d7; font-weight: bold;">do</span>
+  <span style="color: #4f97d7; font-weight: bold;">let</span> boool_tri <span style="color: #7590db;">=</span> [[ a,b,c ] <span style="color: #7590db;">|</span> a <span style="color: #7590db;">&lt;-</span> [<span style="color: #ce537a; font-weight: bold;">True</span>, <span style="color: #ce537a; font-weight: bold;">False</span>, <span style="color: #ce537a; font-weight: bold;">False</span>],
+                  b <span style="color: #7590db;">&lt;-</span> [<span style="color: #ce537a; font-weight: bold;">False</span>, <span style="color: #ce537a; font-weight: bold;">True</span>, <span style="color: #ce537a; font-weight: bold;">False</span>],
+                  c <span style="color: #7590db;">&lt;-</span> [<span style="color: #ce537a; font-weight: bold;">False</span>, <span style="color: #ce537a; font-weight: bold;">True</span>, <span style="color: #ce537a; font-weight: bold;">True</span>]]
+
+  putStrLn (table and boool_tri)
+
+
+<span style="color: #bc6ec5; font-weight: bold;">tableA</span> <span style="color: #7590db;">::</span> ([<span style="color: #ce537a; font-weight: bold;">Bool</span>] <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span>) <span style="color: #7590db;">-&gt;</span> [[<span style="color: #ce537a; font-weight: bold;">Bool</span>]] <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">String</span>
+<span style="color: #bc6ec5; font-weight: bold;">tableA</span> f <span style="color: #ce537a; font-weight: bold;">[]</span> <span style="color: #7590db;">=</span> <span style="color: #2d9574;">""</span>
+<span style="color: #bc6ec5; font-weight: bold;">tableA</span> f (x<span style="color: #ce537a; font-weight: bold;">:</span>xs) <span style="color: #7590db;">=</span> table_row f x <span style="color: #7590db;">++</span> <span style="color: #2d9574;">" \n  "</span><span style="color: #7590db;">++</span> tableA f xs
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1a538d6" class="outline-2">
+<h2 id="org1a538d6"><span class="section-number-2">2.</span> Komplexitätstheorie</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgba3a8e2" class="outline-3">
+<h3 id="orgba3a8e2"><span class="section-number-3">2.1.</span> Landau Symbols</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+\[ f = O(g) \leftrightarrow g = \Omega(f) \leftrightarrow \lim_{x \to
+\infty} Sup|\frac{f(x)}{g(x)}| < \infty \]
+</p>
+
+<p>
+\[ f = \Omega(g) \leftrightarrow g = O(f) \leftrightarrow \lim_{x \to
+\infty} Inf|\frac{f(x)}{g(x)}| > 0 \]
+</p>
+
+<p>
+\[ f = \Theta(g) \leftrightarrow g = \Theta(f) \leftrightarrow 0< \lim_{x \to
+\infty} Inf|\frac{f(x)}{g(x)}| < \lim_{x \to \infty} Sup|\frac{f(x)}{g(x)}| < \infty \]
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbcc39be" class="outline-3">
+<h3 id="orgbcc39be"><span class="section-number-3">2.2.</span> Master Theorem</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+<div id="outline-container-org1bf06ac" class="outline-4">
+<h4 id="org1bf06ac"><span class="section-number-4">2.2.1.</span> description</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+In a Recursive process, we can form this,  \[ T_n = a \cdot T(\frac{n}{b}) + f(n) \],
+for  \(a \geq 1\), \(b \geq 1\). T 代表递归符号,   a: 每次递归后重复的次数,
+n/b: 递归后每个部分的问题规模,  f(n): 递归后将所有部分融合的步骤, 作如
+下变换：
+</p>
+
+<p>
+\[ n^d = f(n) = O(n^{\log_b^a-\epsilon}) \]
+\[ n^d = f(n)  \le n^{\log_b^a-\epsilon} \]
+\[ d \le \log_b^a - \epsilon \]
+\[ d \le \log_b^a \]
+如果\(\log_b^a\) 在减去一个存在的 \(\epsilon\) 后仍然大于d, 则 ：\(T_n = \Theta (n^{\log_b^a})\).
+直接\(\log_b^{a}\)
+</p>
+
+<p>
+\[  n^d = f(n) = \Theta (n^{\log_b^a})  \]
+\[  n^d = f(n)  = n^{\log_b^a} \]
+\[   d = \log_b^a \]
+如果\(\log_b^a\) 恒等于 d, 则： \(T_n = \Theta (n^{\log_b^a} \cdot \log^n)\) 直接用 \(log_{b}^{a}\) 乘以   \(log^{n}\) .
+</p>
+
+<p>
+注意： 此处是 \(f(n) = \Theta (n^{\log_b^a} log^{k}_{n})\) 中k=0的特列, 完整的表达是
+if \(f(n)=\Theta(n^{\log_b^a} (log_{n})^k)\), with k&gt;=0, \(T_n = \Theta (n^{\log_b^a} \cdot (\log^n)^{k+1})\)
+</p>
+
+
+
+<p>
+\[   n^d = f(n) = \Omega(n^{\log_b^a+\epsilon}) \]
+\[   n^d = f(n)  \ge n^{\log_b^a+\epsilon} \]
+\[   d \ge \log_b^a +\epsilon \]
+\[   d \ge \log_b^a \]
+如果\(\log_b^b\) 在加上一个存在的 &epsilon; 后仍然小于d, 则 ：\(T_n = \Theta (f(n))\).
+直接f(n)
+这种情况要检测正则性：
+if $ &exist; c &lt; 1$ so that, \(af(n/b)  \le cf(n)\).
+if not, Master Theorem can't be used in this case
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8c1d5f7" class="outline-4">
+<h4 id="org8c1d5f7"><span class="section-number-4">2.2.2.</span> 1 example</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+\(T(n) = 3T(n/2) + n^{2}\)
+</p>
+
+<p>
+a = 3,
+</p>
+
+<p>
+b = 2,
+</p>
+
+<p>
+\(log_{b}^{a} = log_2^{3}\)
+</p>
+
+<p>
+\(\exists \varepsilon\) so that, \(f(n) = \Omega(n^{log_b^a+\varepsilon})\)
+</p>
+
+<p>
+Regularity condition:
+\(af(n/b) = 3(n/2)^2 = 3n^{2}/4\)
+</p>
+
+<p>
+\(\exists c > 1\) , so \(3n^{2}/4 \le c \cdot n^{2}\), for example  c = 4/5
+</p>
+
+<p>
+so \(T(n)  = \Omega(f(n)) = \Omega(n^{2})\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org77bca81" class="outline-4">
+<h4 id="org77bca81"><span class="section-number-4">2.2.3.</span> 2 example</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+\(T(n) = 4T(n/2) + n^{2}\)
+</p>
+
+<p>
+a = 4
+</p>
+
+<p>
+b = 2
+</p>
+
+<p>
+\(n^{\log_{b}^{a}} = n^{2} = \Theta(f(n))\)
+</p>
+
+<p>
+\(T(n) = \Theta(f(n)logn) = \Theta(n^{2}\log n)\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0ab888f" class="outline-4">
+<h4 id="org0ab888f"><span class="section-number-4">2.2.4.</span> 3 example</h4>
+<div class="outline-text-4" id="text-2-2-4">
+<p>
+\(T(n) = T(n/2) + 2^{n}\)
+</p>
+
+<p>
+a = 1, b = 2
+</p>
+
+<p>
+\(n^{\log_{b}^{a}} = \Omega(f(n)) = \Omega(2^{n})\)
+</p>
+
+<p>
+Regularity condition:
+\(af(n/b) = 2^{n/2}\),
+\(f(n) = 2^{n}\)
+\(\exists c < 1\), such \(af(n/b) < cf(n)\)
+</p>
+
+<p>
+\(T(n) = \Theta(2^{n})\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgefaf019" class="outline-4">
+<h4 id="orgefaf019"><span class="section-number-4">2.2.5.</span> 4 example</h4>
+<div class="outline-text-4" id="text-2-2-5">
+<p>
+4 \(T(n) = 2^{n}T(n/2) + n^{n}\)
+</p>
+
+<p>
+\(a = 2^{n}\), b = 2,
+</p>
+
+
+<p>
+\(n^{\log_{b}^{a}} = n^{n} = \Theta(f(n))\)
+</p>
+
+<p>
+\(T(n) = \Theta(f(n)logn) = \Theta(n^{n}logn)\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgac0a748" class="outline-4">
+<h4 id="orgac0a748"><span class="section-number-4">2.2.6.</span> 5 example</h4>
+<div class="outline-text-4" id="text-2-2-6">
+<p>
+\(T(n) = 16T(n/4) + n\)
+</p>
+
+<p>
+a = 16, b = 4;
+</p>
+
+<p>
+\(n^{\log_{b}^{a}} =n^{2} = O(f(n))\)
+</p>
+
+<p>
+\(T(n) = \Theta(n^{2})\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfa106f8" class="outline-4">
+<h4 id="orgfa106f8"><span class="section-number-4">2.2.7.</span> 6 example</h4>
+<div class="outline-text-4" id="text-2-2-7">
+<p>
+\(T(n) = 2T(n/2) + nlogn\)
+a = 2, b = 2
+\(n^{\log_{b}^{a}} =n\)
+</p>
+
+<p>
+\(\nexists  \epsilon\) so that, \(n^{\log_{b}^{a}-\varepsilon}\) is polynomial bigger
+than \(O(f(n))\), or  \(n^{\log_{b}^{a}+\varepsilon}\) is polynomial smaller than O(f(n)),
+</p>
+
+<p>
+But in the extend of second case:
+\(n^{\log_{b}^{a}} logn = \Theta(f(n))\) so \(T(n) = \Theta(f(n)log^{2}n) = \Theta(n\log^{2}n)\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1700af1" class="outline-4">
+<h4 id="org1700af1"><span class="section-number-4">2.2.8.</span> 7 example</h4>
+<div class="outline-text-4" id="text-2-2-8">
+<p>
+\(2T(n) = 2T(n/2) + n/logn\)
+a = 2, b = 2,
+\(n^{\log_{b}^{a}} =n\)
+</p>
+
+<p>
+\(\nexists  \epsilon\) so that, \(n^{\log_{b}^{a}-\varepsilon}\) is polynomial bigger
+than \(O(f(n))\), or  \(n^{\log_{b}^{a}+\varepsilon}\) is polynomial smaller than O(f(n)),
+</p>
+
+
+<p>
+But in the extend of second case for k = -1:
+\(T(n) = \Theta(f(n)loglog^n) = \Theta(n\log\log n)\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge3fdb8e" class="outline-4">
+<h4 id="orge3fdb8e"><span class="section-number-4">2.2.9.</span> 8 example</h4>
+<div class="outline-text-4" id="text-2-2-9">
+<p>
+\(T(n) = 2T(n/4) + n^{0.51}\)
+a = 2, b = 4,
+\(n^{\log_{b}^{a}} = n^{1/2} = \Omega(n^{0.51})\)
+</p>
+
+<p>
+Regularity Condition:
+\(af(n/b)= 2(n/4)^{0.51}\)
+\(\exists c < 1\), that a(f(n/b)) &lt; c f(n);
+</p>
+
+
+<p>
+\(T(n) = \Theta(n^{0.51})\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge5233d8" class="outline-4">
+<h4 id="orge5233d8"><span class="section-number-4">2.2.10.</span> 9 example</h4>
+<div class="outline-text-4" id="text-2-2-10">
+<p>
+\(T(n) = 0.5T(n/2) +1/n\)
+</p>
+
+<p>
+a = 1/2, b = 2,
+</p>
+
+<p>
+\(n^{\log_{b}^{a}} =n^{-1} = \Theta(f(n))\)
+</p>
+
+<p>
+\(T(n) = \Theta(f(n)\log n) = log n/n\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org97352a7" class="outline-4">
+<h4 id="org97352a7"><span class="section-number-4">2.2.11.</span> 10 example</h4>
+<div class="outline-text-4" id="text-2-2-11">
+<p>
+\(T(n) = 16T(n/4) + n!\)
+</p>
+
+<p>
+a = 16, b = 4,
+\(n^{\log_{b}^{a}} = n^{2} = \Omega(f(n))\)
+</p>
+
+<p>
+Regularity condition:
+\(af(n/b) = 16n!/24\),
+\(\exists c < 1\), so that af(n/b) &lt; cf(n).
+</p>
+
+<p>
+\(T(n) = \Theta(f(n)) = \Theta(n!)\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org516d2d7" class="outline-4">
+<h4 id="org516d2d7"><span class="section-number-4">2.2.12.</span> 11 example</h4>
+<div class="outline-text-4" id="text-2-2-12">
+<p>
+\(T(n) = \sqrt{2} T(n/2) + logn\)
+\(a = \sqrt{2}\), b = 2,
+</p>
+
+<p>
+\(n^{\log_{b}^{a}} = n^{1/2}= O(f(n))\)
+</p>
+
+<p>
+\(T(n) = \Theta(n^{1/2})\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org453a613" class="outline-4">
+<h4 id="org453a613"><span class="section-number-4">2.2.13.</span> 12 example</h4>
+<div class="outline-text-4" id="text-2-2-13">
+<p>
+\(T(n) = 3T(n/2) +n\)
+</p>
+
+<p>
+a = 3, b = 2
+\(n^{\log_{b}^{a}} =n^{\log_{2}^{3}} = O(f(n))\)
+</p>
+
+<p>
+\(T(n) = \Theta(n^{\log_{2}^{3}})\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8d03580" class="outline-4">
+<h4 id="org8d03580"><span class="section-number-4">2.2.14.</span> 13 example</h4>
+<div class="outline-text-4" id="text-2-2-14">
+<p>
+\(T(n) = 3T(n/3) +\sqrt{n}\)
+a = 3, b = 3
+</p>
+
+<p>
+\(n^{\log_{b}^{a}} = n = O(f(n))\)
+</p>
+
+<p>
+\(T(n) = \Theta(n)\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org23c1874" class="outline-4">
+<h4 id="org23c1874"><span class="section-number-4">2.2.15.</span> 14 example</h4>
+<div class="outline-text-4" id="text-2-2-15">
+<p>
+\(T(n) = 4T(n/2) + cn\)
+a = 4, b =2,
+</p>
+
+
+<p>
+\(n^{\log_{b}^{a}} =n^{2} = O(f(n))\)
+</p>
+
+<p>
+\(T(n) = \Theta(n^{2})\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org664ddb8" class="outline-4">
+<h4 id="org664ddb8"><span class="section-number-4">2.2.16.</span> 15 example</h4>
+<div class="outline-text-4" id="text-2-2-16">
+<p>
+\(T(n) = 3T(n/4) + nlogn\)
+a = 3, b = 4,
+</p>
+
+<p>
+\(n^{\log_{b}^{a}} = n^{\log_{3}^{4}} =\Omega(f(n))\)
+</p>
+
+<p>
+Regularity condition:
+\(af(n/b) = 3nlog(n/4)/4\)
+if &exist; c &lt; 1$, so that,af(n/b) &lt; cf(n)
+</p>
+
+
+<p>
+\(\frac{3}{4}n \log n -\frac{3}{4}n\log 4 < c \cdot n \cdot logn <1\)
+for \(n -> \infty\), \(\frac{3}{4}-\frac{3}{4} \cdot \frac{log 4}{logn} < c < 1\);
+</p>
+
+<p>
+so, \(T(n) = \Theta(n\log n)\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga26104f" class="outline-4">
+<h4 id="orga26104f"><span class="section-number-4">2.2.17.</span> 16 example</h4>
+<div class="outline-text-4" id="text-2-2-17">
+<p>
+\(T(n) = 3T(n/3) + n/2\)
+a = 3, b = 3,
+</p>
+
+<p>
+\(n^{\log_{b}^{a}} = n = \Theta(f(n))\)
+</p>
+
+<p>
+\(T(n) = \Theta(f(n)logn) = \Theta(\frac{n}{2}log n)\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org951b747" class="outline-4">
+<h4 id="org951b747"><span class="section-number-4">2.2.18.</span> 17 example</h4>
+<div class="outline-text-4" id="text-2-2-18">
+<p>
+\(T(n) = 6T(n/3) +n^{2}logn\)
+a = 6, b = 3
+\(n^{\log_{b}^{a}} = n^{\log_{3}^{6}} = \Omega(f(n))\)
+</p>
+
+<p>
+Regularity condition:
+\(af(n/b) = \frac{2}{3} n^2 log(n/3) < c \cdot n^2 logn\)
+\(\exists c\) so that, \(\frac{2}{3} log(1/3) < c < 1\)
+</p>
+
+<p>
+\(T(n) = \Theta(f(n)) = \Theta(n^{2} logn)\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb697292" class="outline-4">
+<h4 id="orgb697292"><span class="section-number-4">2.2.19.</span> 18 example</h4>
+<div class="outline-text-4" id="text-2-2-19">
+<p>
+\(T(n) = 4T(n/2) + n/logn\)
+</p>
+
+<p>
+a = 4, b = 2,
+</p>
+
+<p>
+\(n^{\log_{b}^{a}} = n^{2} = O(f(n))\)
+</p>
+
+<p>
+\(T(n) = \Theta(n^{2})\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb8251e6" class="outline-4">
+<h4 id="orgb8251e6"><span class="section-number-4">2.2.20.</span> 19 example</h4>
+<div class="outline-text-4" id="text-2-2-20">
+<p>
+\(T(n) = 64T(n/8) -n^{2}logn\)
+a = 64, b = 8,
+\(n^{\log_{b}^{a}} = n^{2}\)
+</p>
+
+<p>
+for extend second case,
+\(n^{\log_{b}^{a}} logn = \Theta(f(n))\),  for k = 1
+</p>
+
+<p>
+so \(T(n) = \Theta(n^{2}log^{2}n)\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org25a0248" class="outline-4">
+<h4 id="org25a0248"><span class="section-number-4">2.2.21.</span> 20 example</h4>
+<div class="outline-text-4" id="text-2-2-21">
+<p>
+\(T(n) = 7T(n/3) + n^{2}\)
+a = 7, b = 3,
+</p>
+
+<p>
+\(n^{\log_{b}^{a}} = n^{\log_{3}^{7}} = \Omega(f(n))\)
+</p>
+
+<p>
+Regularity condition:
+\(af(n/b) = \frac{7}{9}n^2\)
+\(\exists c < 1\), so that af(n/b) &lt; cf(n), such as c = 8/9;
+</p>
+
+
+
+<p>
+\(T(n) = \Theta(f(n)) = \Theta(n^2)\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga027c84" class="outline-4">
+<h4 id="orga027c84"><span class="section-number-4">2.2.22.</span> 21 example</h4>
+<div class="outline-text-4" id="text-2-2-22">
+<p>
+\(T(n) = 4T(n/2) + logn\)
+</p>
+
+<p>
+a = 4, b = 2,
+</p>
+
+<p>
+\(n^{\log_{b}^{a}} = n^2 = O(f(n))\)
+</p>
+
+<p>
+\(T(n) = \Theta(n^{2})\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org314b89d" class="outline-4">
+<h4 id="org314b89d"><span class="section-number-4">2.2.23.</span> 22 example</h4>
+<div class="outline-text-4" id="text-2-2-23">
+<p>
+\(T(n) = T(n/2) + n(2-cosn)\)
+a = 1, b = 2,
+</p>
+
+<p>
+\(n^{\log_{b}^{a}} = n^{0} = \Omega(n(2-cosn))\)
+</p>
+
+<p>
+Regularity condition:
+if \(af(n/b) < c f(n)\), for c &lt;1.
+\(\exists c\) so that \(\frac{1}{2} \frac{\frac{n}{2} (2-cos(n/2))}{2-cosn} < c < 1\).
+</p>
+
+<p>
+\(T(n) = \Theta(n(2-cosn))\)
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgada2042" class="outline-2">
+<h2 id="orgada2042"><span class="section-number-2">3.</span> P &amp; NP</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org648177f" class="outline-4">
+<h4 id="org648177f"><span class="section-number-4">3.0.1.</span> def</h4>
+<div class="outline-text-4" id="text-3-0-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">P problem</td>
+<td class="org-left">Es gibt ein Polynom p(n) und eine p(n)-Zeitbeschrankte DTM m mit L=L(m)}</td>
+</tr>
+
+<tr>
+<td class="org-left">NP problem</td>
+<td class="org-left">Es gibt ein Polynom p(n) und eine p(n)-Zeitbeschrankte NTM m mit L=L(m)}</td>
+</tr>
+
+<tr>
+<td class="org-left">ExpTime problem</td>
+<td class="org-left">Es gibt ein Polynom p(n) und eine 2<sup>p</sup>(n)-Zeitbeschrankte DTM m mit L=L(m)}</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Rudction
+Many-one-Rudction : alle  P Problem konnen auf one Problem reduzieren.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb55c00d" class="outline-4">
+<h4 id="orgb55c00d"><span class="section-number-4">3.0.2.</span> NP</h4>
+<div class="outline-text-4" id="text-3-0-2">
+<p>
+SAT &lt;- 3SAT &lt;- 3 Farbarkeit
+            &lt;- Clique
+            &lt;- Independent Set
+            &lt;- Vertex Set
+            Pa
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org29ed079" class="outline-2">
+<h2 id="org29ed079"><span class="section-number-2">4.</span> computer vision</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orgf0d74ab" class="outline-3">
+<h3 id="orgf0d74ab"><span class="section-number-3">4.1.</span> Ubungs 01</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Solution erkälerung
+Mediuem
+under Quantil 25%
+ober Quantil  75%
+</p>
+
+<p>
+Entopie
+\[ E = \sum h_{rel}(w) log^{\frac{1}{h_{rel}}(w)} = - \sum p log^{p}\]
+</p>
+
+<p>
+Anisotorpie
+</p>
+
+<p>
+Paar-Grauwertmatrix
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org84c1d49" class="outline-2">
+<h2 id="org84c1d49"><span class="section-number-2">5.</span> Hash</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org0d9e3a0" class="outline-3">
+<h3 id="org0d9e3a0"><span class="section-number-3">5.1.</span> Gerneral</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Verlastungsfaktor  \(\alpha = \frac{n}{m}\)
+n : elementen
+m : Hash Blukets
+</p>
+
+<p>
+For Kollision
+Offenes Hash :  mit verkertete List
+Universumes Hash : mit ein hash famliy function
+Geschlossens Hash : die weiter hash bluket besiten
+verdoppelungsstrategie : verkleinen order vergrossen die Hash Blukets
+</p>
+</div>
+</div>
+<div id="outline-container-orgd944787" class="outline-3">
+<h3 id="orgd944787"><span class="section-number-3">5.2.</span> Universal Hash</h3>
+<div class="outline-text-3" id="text-5-2">
+</div>
+<div id="outline-container-orged079b3" class="outline-4">
+<h4 id="orged079b3"><span class="section-number-4">5.2.1.</span> Definition</h4>
+<div class="outline-text-4" id="text-5-2-1">
+<p>
+We want to save a dataset A  localy into dataset B, with has m slots in B
+and fast access to search, insert, delete operation,
+</p>
+
+<p>
+assiging A has n elements.
+</p>
+
+
+<p>
+In oder to guarantee the elements from A will be randomly distributed in
+B to avoiding the unnecessary collision,
+we define our universal Hashing hat following property:
+</p>
+
+<p>
+\[Pr[h(x)=h(y)] \le 1/m\]
+</p>
+
+<p>
+where x, y belongs to dataset A and \(x \neq y\), x &lt; n, y &lt; n,
+</p>
+
+<p>
+m is the bins of mapped Dataset B,
+</p>
+
+<p>
+h is the wanted universal hashing function instance, from Uninstall Hashing family H
+</p>
+
+<p>
+one example of h can be Carter-Wegman hash function
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga3cb4f9" class="outline-4">
+<h4 id="orga3cb4f9"><span class="section-number-4">5.2.2.</span> Carter-Wegman hash function</h4>
+<div class="outline-text-4" id="text-5-2-2">
+<p>
+Carter-Wegman hash function is :
+</p>
+
+<div class="org-center">
+<p>
+h(x) = [(ax+b)mod p] mod m
+</p>
+</div>
+<p>
+assiging p is the nearest prime number bigger than n,
+</p>
+
+<p>
+and  0 &lt; a, b &lt; p,
+</p>
+
+<p>
+proof:
+for \(x \neq y\),
+(ax+b)-(ay+b) = a(x-y) is  not divisible by p ? why?? Is the following  a theorem?
+</p>
+
+<p>
+<b>Theorem?</b>
+</p>
+
+<div class="org-center">
+<p>
+Assigning \(b\)( in our case: x-y ) is an arbitrary intergel number,
+and \(p\) is the a prime number and bigger than \(b\),
+there is not such \(a\) (in our case is also denote as a ) exist,
+such than 0 &lt; \(a\) &lt; \(p\), and \(ab\) is divisible by \(p\)
+</p>
+</div>
+
+<p>
+If the upper rule holds, then
+because (ax+b)-(ay+b) = a(x-y) is  not divisible by p,
+</p>
+
+<p>
+so (ax+b) mod p \(\neq\) (ay+b) mod p
+</p>
+
+<p>
+for  arbitrary \(a\) anb \(b\),
+</p>
+
+<p>
+(ax+b)mod p  and (ay+b) mod  can have p possibilities and (p-1) possibilities.
+</p>
+
+<p>
+so for arbitrary a and b, there are p(p-1) possibilities to locate in B dataset,
+</p>
+
+<p>
+because p(p-1) is much more bigger than m, (normally m &lt; n &lt; p),
+</p>
+
+<p>
+So we can guarantee that the distribution of elements in B can be very randomly and average.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc2b83fe" class="outline-4">
+<h4 id="orgc2b83fe"><span class="section-number-4">5.2.3.</span> Python example</h4>
+<div class="outline-text-4" id="text-5-2-3">
+<p>
+this example is from <a href="https://github.com/zydeon/universal-hashing/blob/master/main.py">zydeon github</a>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ipython">from math import ceil, log2
+from primesieve import nth_prime
+from random import randint
+import numpy as np
+
+class UniversalHashing:
+    """ N = #bins
+        p = prime number st: p &gt;= N """
+
+    def __init__(self, N, p=None):
+        self.N = N
+        if p is None:
+            p = nth_prime(1, 1 &lt;&lt; max(32, ceil(log2(N))))
+        assert p &gt;= N, 'Prime number p should be at least N!'
+        self.p = p
+
+    def draw(self):
+        a = randint(1, self.p - 1)
+        b = randint(0, self.p - 1)
+        return lambda x: ((a * x + b) % self.p) % self.N
+
+
+if __name__ == '__main__':
+    N = 50  # bins
+    n = 100000  # elements
+    H = UniversalHashing(N)
+    h = H.draw()
+
+    T = [0] * N
+    for _ in range(n):
+        x = randint(0, n * 10)
+        T[h(x)] += 1
+
+for i in range(len(T)):
+    print(T[i] / n)    # This should be approximately equal
+
+</pre>
+</div>
+
+<pre class="example" id="org23d9c7d">
+0.02026
+0.02023
+0.02001
+0.02017
+0.01979
+0.01949
+0.01999
+0.01948
+0.01958
+0.02085
+0.02027
+0.02041
+0.02056
+0.02029
+0.01867
+0.01959
+0.02041
+0.02004
+0.0198
+0.02024
+0.01969
+0.02046
+0.02036
+0.01984
+0.02044
+0.02071
+0.02033
+0.01995
+0.01955
+0.02052
+0.01984
+0.01987
+0.01958
+0.01908
+0.01956
+0.01964
+0.02007
+0.02056
+0.01997
+0.02011
+0.02023
+0.02024
+0.01996
+0.01954
+0.01988
+0.02003
+0.01998
+0.02037
+0.02009
+0.01942
+</pre>
+
+<p>
+Here we can see all elements are randomly distributed in the mapped dataset,
+</p>
+
+<p>
+and in upper code a, b and input dataset, all are randomly generated.
+</p>
+
+<pre class="example">
+But the question is: this can't be reproduced, which means, if we hash the
+same input again, we will get totally different hash distribution.
+In practical applications, we have to remember the return index of hashtable,
+otherwise we can't find it again in hashtable, even we never know if it still in the table.
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgfe1e26c" class="outline-4">
+<h4 id="orgfe1e26c"><span class="section-number-4">5.2.4.</span> universal hash with reproducible</h4>
+<div class="outline-text-4" id="text-5-2-4">
+<p>
+So we want to overcome this problem with reproducible porperty.
+We fix the a and b, in our following assumpation we set a = b = p-1
+applying the Carter-Wegman hash function for the given input data.
+if the return index is empty, we use it as our hash value.
+</p>
+
+<p>
+if the index has been token, we reduce a and b by one, and apply
+Carter-Wegman hash function again to find a suitable index in hashtable.
+</p>
+
+<p>
+over loop this process until one empty hashtable index is return
+</p>
+
+<div class="org-center">
+<p>
+Here in our reproducible universal hash, if the half hashtable has been token,
+we double the size of hashtable, so than the over loop process will not be too long.
+Because the Carter-Wegman hash function use the hashtable size m, so the after resize
+the hashtable, all elements will be computed again in new hashtable, this take an enormous effort.
+</p>
+</div>
+</div>
+<ol class="org-ol">
+<li><a id="org214d952"></a>check the input data from 100000 to 100100<br />
+<div class="outline-text-5" id="text-5-2-4-1">
+<div class="org-src-container">
+<pre class="src src-ipython">from math import ceil, log2
+from primesieve import nth_prime
+from random import randint
+import numpy as np
+
+class UniversalHashing:
+    """ N = #bins
+        p = prime number st: p &gt;= N """
+
+    def __init__(self, N=200, p=None):
+        self.N = N
+        self.T = [0] * self.N
+        if p is None:
+            p = nth_prime(1, 1 &lt;&lt; max(32, ceil(log2(N))))
+        assert p &gt;= N, 'Prime number p should be at least N!'
+        self.p = p
+        self.a = p - 1
+        self.b = p - 1
+
+    def draw(self):
+        return lambda x: ((self.a * x + self.b) % self.p) % self.N
+
+def hash(x, H):
+    H.a = H.p - 1
+    H.b = H.p - 1
+    while (H.T[H.draw()(x)] != 0):
+        H.a -= 1
+        H.b -= 1
+    H.T[H.draw()(x)] = x
+
+def check(x, H):
+    H.a = H.p - 1
+    H.b = H.p - 1
+    while(x != H.T[H.draw()(x)] and H.T[H.draw()(x)] != 0):
+        H.a -= 1
+        H.b -= 1
+    if(x == H.T[H.draw()(x)]):
+        print("x :{} is in hashtable".format(x))
+        return 1
+
+    if H.T[H.draw()(x)] == 0:
+        print("x :{} is not in hashtable".format(x))
+        return 0
+
+
+if __name__ == '__main__':
+    H = UniversalHashing()
+    Y = [i for i in range(100000, 100100, 1)]
+    print(Y)
+    for x in Y:
+        hash(x, H)
+
+    print(H.T)
+
+    check(9000, H)
+    check(100010, H)
+
+
+</pre>
+</div>
+
+<pre class="example">
+[100000, 100001, 100002, 100003, 100004, 100005, 100006, 100007, 100008, 100009, 100010, 100011, 100012, 100013, 100014, 100015, 100016, 100017, 100018, 100019, 100020, 100021, 100022, 100023, 100024, 100025, 100026, 100027, 100028, 100029, 100030, 100031, 100032, 100033, 100034, 100035, 100036, 100037, 100038, 100039, 100040, 100041, 100042, 100043, 100044, 100045, 100046, 100047, 100048, 100049, 100050, 100051, 100052, 100053, 100054, 100055, 100056, 100057, 100058, 100059, 100060, 100061, 100062, 100063, 100064, 100065, 100066, 100067, 100068, 100069, 100070, 100071, 100072, 100073, 100074, 100075, 100076, 100077, 100078, 100079, 100080, 100081, 100082, 100083, 100084, 100085, 100086, 100087, 100088, 100089, 100090, 100091, 100092, 100093, 100094, 100095, 100096, 100097, 100098, 100099]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100099, 100098, 100097, 100096, 100095, 100094, 100093, 100092, 100091, 100090, 100089, 100088, 100087, 100086, 100085, 100084, 100083, 100082, 100081, 100080, 100079, 100078, 100077, 100076, 100075, 100074, 100073, 100072, 100071, 100070, 100069, 100068, 100067, 100066, 100065, 100064, 100063, 100062, 100061, 100060, 100059, 100058, 100057, 100056, 100055, 100054, 100053, 100052, 100051, 100050, 100049, 100048, 100047, 100046, 100045, 100044, 100043, 100042, 100041, 100040, 100039, 100038, 100037, 100036, 100035, 100034, 100033, 100032, 100031, 100030, 100029, 100028, 100027, 100026, 100025, 100024, 100023, 100022, 100021, 100020, 100019, 100018, 100017, 100016, 100015, 100014, 100013, 100012, 100011, 100010, 100009, 100008, 100007, 100006, 100005, 100004, 100003, 100002, 100001, 100000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+x :9000 is not in hashtable
+x :100010 is in hashtable
+</pre>
+</div>
+</li>
+
+
+<li><a id="org1488825"></a>check randint from 1 to 10000<br />
+<div class="outline-text-5" id="text-5-2-4-2">
+<div class="org-src-container">
+<pre class="src src-ipython">from math import ceil, log2
+from primesieve import nth_prime
+from random import randint
+import numpy as np
+
+
+class UniversalHashing:
+    """ N = #bins
+        p = prime number st: p &gt;= N """
+
+    def __init__(self, N=200, p=None):
+        self.N = N
+        self.T = [0] * self.N
+        if p is None:
+            p = nth_prime(1, 1 &lt;&lt; max(32, ceil(log2(N))))
+        assert p &gt;= N, 'Prime number p should be at least N!'
+        self.p = p
+        self.a = p - 1
+        self.b = p - 1
+
+    def draw(self):
+        return lambda x: ((self.a * x + self.b) % self.p) % self.N
+
+
+def hash(x, H):
+    H.a = H.p - 1
+    H.b = H.p - 1
+    while (H.T[H.draw()(x)] != 0):
+        H.a -= 1
+        H.b -= 1
+    H.T[H.draw()(x)] = x
+
+
+def check(x, H):
+    H.a = H.p - 1
+    H.b = H.p - 1
+    while(x != H.T[H.draw()(x)] and H.T[H.draw()(x)] != 0):
+        H.a -= 1
+        H.b -= 1
+    if(x == H.T[H.draw()(x)]):
+        print("x :{} is in hashtable".format(x))
+        return 1
+
+    if H.T[H.draw()(x)] == 0:
+        print("x :{} is not in hashtable".format(x))
+        return 0
+
+
+if __name__ == '__main__':
+    H = UniversalHashing()
+    Y = [randint(1, 10000) for _ in range(100)]
+    print(Y)
+    for x in Y:
+        hash(x, H)
+
+    print(H.T)
+
+    check(9000, H)
+    check(100010, H)
+
+
+</pre>
+</div>
+
+<pre class="example">
+[9499, 7809, 9665, 6560, 686, 9560, 6894, 1930, 972, 2659, 50, 8111, 4054, 1588, 9634, 2645, 1875, 6573, 4764, 1851, 3661, 6733, 86, 787, 1139, 1558, 6823, 3650, 2438, 7334, 9074, 3704, 493, 8574, 4280, 6603, 1136, 870, 7313, 7619, 3580, 9129, 1421, 9342, 3873, 9500, 8961, 1279, 3997, 9743, 2565, 8310, 207, 6131, 604, 1294, 9481, 8943, 5951, 8554, 4773, 198, 8479, 8771, 941, 834, 8605, 9254, 3543, 6344, 428, 9841, 3361, 7714, 9908, 2579, 8696, 202, 3235, 6120, 5263, 3912, 2815, 2625, 190, 8407, 4294, 2638, 9100, 7234, 2782, 7793, 9647, 1053, 651, 1309, 9606, 6526, 5017, 2505]
+[8310, 9254, 9908, 0, 0, 2505, 3704, 651, 0, 3650, 9500, 9499, 0, 0, 8696, 0, 6894, 493, 0, 0, 0, 0, 0, 8943, 686, 0, 4294, 0, 0, 9481, 4280, 1279, 0, 2638, 0, 1875, 9074, 3873, 0, 0, 870, 834, 0, 0, 0, 9665, 0, 5263, 0, 3661, 86, 2659, 0, 0, 0, 0, 4054, 1053, 0, 1851, 50, 0, 0, 9647, 0, 2645, 7234, 0, 0, 9841, 0, 8407, 2438, 0, 0, 3235, 9634, 0, 0, 3543, 0, 0, 428, 0, 0, 2625, 0, 6823, 0, 1421, 0, 7619, 0, 5017, 0, 2815, 0, 0, 0, 0, 0, 7809, 0, 207, 9606, 8605, 604, 6603, 202, 9100, 0, 0, 198, 3997, 0, 0, 0, 7793, 0, 0, 190, 1294, 1588, 787, 0, 0, 0, 0, 2782, 0, 3580, 2579, 0, 0, 0, 0, 8574, 6573, 972, 8771, 0, 0, 0, 0, 0, 2565, 4764, 0, 0, 8961, 6560, 8479, 1558, 0, 0, 0, 8554, 0, 0, 5951, 0, 1309, 0, 4773, 0, 0, 6344, 9743, 9342, 941, 0, 1139, 0, 0, 1136, 0, 7334, 6733, 0, 6131, 1930, 9129, 0, 0, 6526, 0, 0, 3361, 0, 9560, 6120, 0, 0, 0, 0, 0, 7714, 7313, 3912, 8111]
+x :9000 is not in hashtable
+x :100010 is not in hashtable
+</pre>
+</div>
+</li>
+
+
+<li><a id="orgf098d4c"></a>check 100 special  input  data<br />
+<div class="outline-text-5" id="text-5-2-4-3">
+<p>
+we use
+</p>
+<pre class="example">
+Y = [H.N*randint(1, 100) for _ in range(100)]
+</pre>
+<p>
+to generate 100 collision data,
+we can see all data collided into the same slot if we just use fixed a, b (seeing upper) without a -= 1 and b -= 1.
+and with the reduction, all special data are  average distributed.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ipython">from math import ceil, log2
+from primesieve import nth_prime
+from random import randint
+import numpy as np
+
+class UniversalHashing:
+    """ N = #bins
+        p = prime number st: p &gt;= N """
+
+    def __init__(self, N, p=None):
+        self.N = N
+        if p is None:
+            p = nth_prime(1, 1 &lt;&lt; max(32, ceil(log2(N))))
+        assert p &gt;= N, 'Prime number p should be at least N!'
+        self.p = p
+
+    def draw(self):
+        a = self.p - 1
+        b = self.p - 1
+        # a = randint(1, self.p - 1)
+        # b = randint(0, self.p - 1)
+        return lambda x: ((a * x + b) % self.p) % self.N
+
+if __name__ == '__main__':
+    N = 50  # bins
+    n = 100000  # elements
+    H = UniversalHashing(N)
+    h = H.draw()
+
+    T = [0] * N
+
+    # for _ in range(n):
+    #     x = randint(0, n * 10)
+    #     T[h(x)] += 1
+
+    Y = [H.N*randint(1, 100) for _ in range(100000)]
+    for x in Y:
+        T[h(x)] += 1
+
+
+for i in range(len(T)):
+    print(T[i] / n)    # This should be approximately equal
+
+</pre>
+</div>
+
+<pre class="example" id="org4ab81f1">
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+1.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+0.0
+</pre>
+
+
+<div class="org-src-container">
+<pre class="src src-ipython">from math import ceil, log2
+from primesieve import nth_prime
+from random import randint
+import numpy as np
+
+
+class UniversalHashing:
+    """ N = #bins
+        p = prime number st: p &gt;= N """
+
+    def __init__(self, N=200, p=None):
+        self.N = N
+        self.T = [0] * self.N
+        if p is None:
+            p = nth_prime(1, 1 &lt;&lt; max(32, ceil(log2(N))))
+        assert p &gt;= N, 'Prime number p should be at least N!'
+        self.p = p
+        self.a = p - 1
+        self.b = p - 1
+
+    def draw(self):
+        return lambda x: ((self.a * x + self.b) % self.p) % self.N
+
+
+def hash(x, H):
+    H.a = H.p - 1
+    H.b = H.p - 1
+    while (H.T[H.draw()(x)] != 0):
+        H.a -= 1
+        H.b -= 1
+    H.T[H.draw()(x)] = x
+
+
+def check(x, H):
+    H.a = H.p - 1
+    H.b = H.p - 1
+    while(x != H.T[H.draw()(x)] and H.T[H.draw()(x)] != 0):
+        H.a -= 1
+        H.b -= 1
+    if(x == H.T[H.draw()(x)]):
+        print("x :{} is in hashtable".format(x))
+        return 1
+
+    if H.T[H.draw()(x)] == 0:
+        print("x :{} is not in hashtable".format(x))
+        return 0
+
+
+if __name__ == '__main__':
+    H = UniversalHashing()
+    Y = [H.N*randint(1, 100) for _ in range(100)]
+
+    print(Y)
+    for x in Y:
+        hash(x, H)
+
+    print(H.T)
+
+    check(9000, H)
+    check(100010, H)
+
+
+</pre>
+</div>
+
+<pre class="example">
+[14800, 10600, 1400, 4800, 3400, 17800, 12400, 19800, 10200, 9600, 15800, 5200, 8800, 15200, 18200, 1000, 6200, 6800, 16400, 1800, 8800, 12600, 12600, 9600, 16800, 12800, 14400, 3400, 5800, 11600, 19600, 5600, 5400, 9800, 2000, 7800, 15000, 1800, 18800, 16800, 17600, 9000, 18600, 11800, 19200, 16800, 200, 18800, 19200, 6400, 3000, 12000, 2800, 13600, 13600, 16400, 2000, 16400, 19200, 9200, 6200, 11600, 14800, 18200, 17000, 1200, 17800, 12000, 13200, 17200, 9600, 16200, 8200, 15200, 12000, 8400, 15600, 1800, 4000, 1600, 8200, 16000, 9200, 1400, 14000, 1400, 17000, 3200, 2200, 14800, 14200, 11000, 3600, 14200, 8600, 13000, 7400, 7200, 10600, 17600]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17600, 10600, 7200, 7400, 13000, 8600, 14200, 3600, 11000, 14200, 14800, 2200, 3200, 17000, 1400, 14000, 1400, 9200, 16000, 8200, 1600, 4000, 1800, 15600, 8400, 12000, 15200, 8200, 16200, 9600, 17200, 13200, 12000, 17800, 1200, 17000, 18200, 14800, 11600, 6200, 9200, 19200, 16400, 2000, 16400, 13600, 13600, 2800, 12000, 3000, 6400, 19200, 18800, 200, 16800, 19200, 11800, 18600, 9000, 17600, 16800, 18800, 1800, 15000, 7800, 2000, 9800, 5400, 5600, 19600, 11600, 5800, 3400, 14400, 12800, 16800, 9600, 12600, 12600, 8800, 1800, 16400, 6800, 6200, 1000, 18200, 15200, 8800, 5200, 15800, 9600, 10200, 19800, 12400, 17800, 3400, 4800, 1400, 10600, 14800, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+x :9000 is in hashtable
+x :100010 is not in hashtable
+</pre>
+</div>
+</li>
+
+
+<li><a id="org0d99484"></a>search key<br />
+<div class="outline-text-5" id="text-5-2-4-4">
+<p>
+we also used the check function to check if the data is already in hashtable,
+the check can be done for with and without collision input data.
+we use 100, 200, 300,&#x2026; to  20000 as input, so we can check some of it, such as 5000, 9000
+5000, or 9000 is in the hashtable even they collided many times.
+</p>
+<div class="org-src-container">
+<pre class="src src-ipython">from math import ceil, log2
+from primesieve import nth_prime
+from random import randint
+import numpy as np
+
+class UniversalHashing:
+    """ N = #bins
+        p = prime number st: p &gt;= N """
+
+    def __init__(self, N=200, p=None):
+        self.N = N
+        self.T = [0] * self.N
+        if p is None:
+            p = nth_prime(1, 1 &lt;&lt; max(32, ceil(log2(N))))
+        assert p &gt;= N, 'Prime number p should be at least N!'
+        self.p = p
+        self.a = p - 1
+        self.b = p - 1
+
+    def draw(self):
+        return lambda x: ((self.a * x + self.b) % self.p) % self.N
+
+
+def hash(x, H):
+    H.a = H.p - 1
+    H.b = H.p - 1
+    while (H.T[H.draw()(x)] != 0):
+        H.a -= 1
+        H.b -= 1
+    H.T[H.draw()(x)] = x
+
+
+def check(x, H):
+    H.a = H.p - 1
+    H.b = H.p - 1
+    while(x != H.T[H.draw()(x)] and H.T[H.draw()(x)] != 0):
+        H.a -= 1
+        H.b -= 1
+    if(x == H.T[H.draw()(x)]):
+        print("x :{} is in hashtable".format(x))
+        return 1
+
+    if H.T[H.draw()(x)] == 0:
+        print("x :{} is not in hashtable".format(x))
+        return 0
+
+
+if __name__ == '__main__':
+    H = UniversalHashing()
+    Y = [H.N*i for i in range(100)]
+
+    print(Y)
+    for x in Y:
+        hash(x, H)
+
+    print(H.T)
+
+    check(5000, H)
+    check(9000, H)
+    check(10300, H)
+
+
+</pre>
+</div>
+
+<pre class="example">
+[0, 200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800, 3000, 3200, 3400, 3600, 3800, 4000, 4200, 4400, 4600, 4800, 5000, 5200, 5400, 5600, 5800, 6000, 6200, 6400, 6600, 6800, 7000, 7200, 7400, 7600, 7800, 8000, 8200, 8400, 8600, 8800, 9000, 9200, 9400, 9600, 9800, 10000, 10200, 10400, 10600, 10800, 11000, 11200, 11400, 11600, 11800, 12000, 12200, 12400, 12600, 12800, 13000, 13200, 13400, 13600, 13800, 14000, 14200, 14400, 14600, 14800, 15000, 15200, 15400, 15600, 15800, 16000, 16200, 16400, 16600, 16800, 17000, 17200, 17400, 17600, 17800, 18000, 18200, 18400, 18600, 18800, 19000, 19200, 19400, 19600, 19800]
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19800, 19600, 19400, 19200, 19000, 18800, 18600, 18400, 18200, 18000, 17800, 17600, 17400, 17200, 17000, 16800, 16600, 16400, 16200, 16000, 15800, 15600, 15400, 15200, 15000, 14800, 14600, 14400, 14200, 14000, 13800, 13600, 13400, 13200, 13000, 12800, 12600, 12400, 12200, 12000, 11800, 11600, 11400, 11200, 11000, 10800, 10600, 10400, 10200, 10000, 9800, 9600, 9400, 9200, 9000, 8800, 8600, 8400, 8200, 8000, 7800, 7600, 7400, 7200, 7000, 6800, 6600, 6400, 6200, 6000, 5800, 5600, 5400, 5200, 5000, 4800, 4600, 4400, 4200, 4000, 3800, 3600, 3400, 3200, 3000, 2800, 2600, 2400, 2200, 2000, 1800, 1600, 1400, 1200, 1000, 800, 600, 400, 200, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+x :5000 is in hashtable
+x :9000 is in hashtable
+x :10300 is not in hashtable
+</pre>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org45a1a78" class="outline-2">
+<h2 id="org45a1a78"><span class="section-number-2">6.</span> Tree Theorem</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org5068873" class="outline-3">
+<h3 id="org5068873"><span class="section-number-3">6.1.</span> Vorgänger(u)</h3>
+<div class="outline-text-3" id="text-6-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">if least(root) = u</th>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">no Vorgänger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">if u.L exits</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">greatest(u.L)</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">if u.L not exits</td>
+<td class="org-left">u is right child</td>
+<td class="org-left">father node</td>
+</tr>
+
+<tr>
+<td class="org-left">if u.L not exits</td>
+<td class="org-left">u is left child</td>
+<td class="org-left">(grand)father which has right child</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orge89be98" class="outline-3">
+<h3 id="orge89be98"><span class="section-number-3">6.2.</span> Nachfolger(v)</h3>
+<div class="outline-text-3" id="text-6-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">if greatest(root) = v</th>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">no Nachfolger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">if v.R exits</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">least(u.L)</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">if v.R not exits</td>
+<td class="org-left">v is left child</td>
+<td class="org-left">father node</td>
+</tr>
+
+<tr>
+<td class="org-left">if v.R not exits</td>
+<td class="org-left">v is right child</td>
+<td class="org-left">(grand)father which has left child</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdc89fbe" class="outline-2">
+<h2 id="orgdc89fbe"><span class="section-number-2">7.</span> Quantum Computation</h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: si</p>
+<p class="date">Created: 2025-01-23 Do 21:42</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

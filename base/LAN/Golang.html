@@ -1,0 +1,1844 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-01-23 Do 21:58 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Go</title>
+<meta name="author" content="si" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Go</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgfc7cbaa">Go Features</a>
+<ul>
+<li><a href="#org2449be8">Note</a>
+<ul>
+<li><a href="#org1b2d19c">Array</a></li>
+<li><a href="#orga8c0704">interface</a></li>
+<li><a href="#orga410195">Slice</a></li>
+</ul>
+</li>
+<li><a href="#org174fef8">Generics</a></li>
+<li><a href="#orgc863936">Strings</a></li>
+<li><a href="#org2e38a4a">Array</a></li>
+<li><a href="#org3e3a2f7">Map</a></li>
+<li><a href="#orgd71ac0e">Methode</a></li>
+<li><a href="#org6a9d5a0">interface</a></li>
+<li><a href="#org5bdc276">polymorphism</a></li>
+<li><a href="#org9659989">reflect</a></li>
+</ul>
+</li>
+<li><a href="#orgbbc6610">time</a></li>
+<li><a href="#org79a7fb1">sync</a></li>
+<li><a href="#orgcc815d7">go</a></li>
+<li><a href="#orgb756e9f">chan</a>
+<ul>
+<li><a href="#org5f20de9">example</a></li>
+<li><a href="#orgee97f7e">dead lock unbuffer channel</a></li>
+<li><a href="#org6bff3f7">deal lock after buffer channel is full</a></li>
+</ul>
+</li>
+<li><a href="#org6ec70ec">context</a></li>
+<li><a href="#org42de7cb">gonum</a>
+<ul>
+<li><a href="#org07d6b16">Test example</a></li>
+<li><a href="#org3a114fe">NewDense</a></li>
+<li><a href="#orgb6e1d8c">make</a></li>
+<li><a href="#org91386ce">gonum execute</a></li>
+</ul>
+</li>
+<li><a href="#org7bf134d">PatternDesign</a>
+<ul>
+<li><a href="#org12f7a1a">Observer</a></li>
+<li><a href="#org4dbaed8">Factory</a></li>
+<li><a href="#org8d49cf0">Decorator</a></li>
+<li><a href="#orgd6626e9">单例模式</a></li>
+</ul>
+</li>
+<li><a href="#org18cf76a">Architecture</a>
+<ul>
+<li><a href="#org30be337">package</a></li>
+<li><a href="#orgb9e3952">module</a></li>
+<li><a href="#org36fa2e4">project</a></li>
+</ul>
+</li>
+<li><a href="#orgde3891b">pprof, allow cpu and mem profile</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfc7cbaa" class="outline-2">
+<h2 id="orgfc7cbaa">Go Features</h2>
+<div class="outline-text-2" id="text-orgfc7cbaa">
+</div>
+<div id="outline-container-org2449be8" class="outline-3">
+<h3 id="org2449be8">Note</h3>
+<div class="outline-text-3" id="text-org2449be8">
+</div>
+<div id="outline-container-org1b2d19c" class="outline-4">
+<h4 id="org1b2d19c">Array</h4>
+<div class="outline-text-4" id="text-org1b2d19c">
+<ul class="org-ul">
+<li>Array &amp; Slice: Array must with specialized length for [x]</li>
+<li>function:
+<ul class="org-ul">
+<li>must given specialized arguments(if point) when execution</li>
+</ul></li>
+<li>method:
+<ul class="org-ul">
+<li>Must have a receiver</li>
+<li>if receiver is pointer of instance,  the value of instance can be modified</li>
+<li>for execution: the instance of receiver can be pointer or not, will automatically convered</li>
+<li>if receiver is not a pointer, the receiver can still be a pointer</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga8c0704" class="outline-4">
+<h4 id="orga8c0704">interface</h4>
+<div class="outline-text-4" id="text-orga8c0704">
+<ul class="org-ul">
+<li>def interface with its contains</li>
+<li>def receiver</li>
+<li>receiver implementing the contains with methods(just like method above)</li>
+<li>instancing of interface</li>
+<li>instancing of receiver</li>
+<li>passing receiver to interface(if the implementation is kind of pointer for receiver, here also pass pointer)</li>
+<li>executing methods of interface</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga410195" class="outline-4">
+<h4 id="orga410195">Slice</h4>
+<div class="outline-text-4" id="text-orga410195">
+<p>
+As you’ve noticed, when you slice from the end, it’s the length that shrinks. The pointer to the first element and the capacity remain unchanged.
+</p>
+
+<p>
+When you slice from the beginning of the slice, though, what happens instead is the pointer to the first element is changed to be a pointer to the nth element that you’re slicing from (i.e. sl = arr[2:] means to set the pointer to point to &amp;arr[2]). Because the head of the slice has moved forward 2, in this case, the length and capacity have to decrease by 2.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org174fef8" class="outline-3">
+<h3 id="org174fef8">Generics</h3>
+<div class="outline-text-3" id="text-org174fef8">
+<div class="org-src-container">
+<pre class="src src-go">package main
+import "fmt"
+func Sum[V int64 | float64](m ...V) V {
+        var s V
+        for _,v := range m {
+                s += v
+        }
+        return s
+}
+func main() {
+        fmt.Println(Sum([]int64{1,2,3,4,5}...))
+        fmt.Println(Sum(int64(1),int64(2),int64(3),int64(4)))
+        fmt.Println(Sum(1.1, 2.2, 3.3, 4.4))
+}  
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-go">package main
+import (
+        "fmt"
+        "golang.org/x/exp/constraints"
+)
+func Sum[V constraints.Float | constraints.Integer](m ...V) V {
+        var s V
+        for _,v := range m {
+                s += v
+        }
+        return s
+}
+func main() {
+        fmt.Println(Sum([]int64{1,2,3,4,5}...))
+        fmt.Println(Sum(1,2,3,4))
+        fmt.Println(Sum(1.1, 2.2, 3.3, 4.4))
+        fmt.Println(Sum(uint32(2), uint32(4)))
+}  
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #4f97d7;">cd</span> babel
+go mod init go-generics-constraints
+go mod tidy
+go build go_generics_constraints.go
+rm main.go
+rm go.mod
+rm go.sum
+./go_generics_constraints
+</pre>
+</div>
+
+<pre class="example">
+15
+10
+11
+6
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgc863936" class="outline-3">
+<h3 id="orgc863936">Strings</h3>
+<div class="outline-text-3" id="text-orgc863936">
+<div class="org-src-container">
+<pre class="src src-go">package main
+import (
+        "fmt"
+        "strings"
+)
+func main() {
+        cut := func(sep string) {
+                s:= "hello|world"
+                before, after, found := strings.Cut(s, sep)
+                fmt.Printf("Cut(%q, %q): %q, %q, %v\n", s, sep, before, after, found)
+        }
+        cut("|")
+        cut("hello")
+        cut("nothing")
+}
+</pre>
+</div>
+
+<pre class="example">
+Cut("hello|world", "|"): "hello", "world", true
+Cut("hello|world", "hello"): "", "|world", true
+Cut("hello|world", "nothing"): "hello|world", "", false
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org2e38a4a" class="outline-3">
+<h3 id="org2e38a4a">Array</h3>
+<div class="outline-text-3" id="text-org2e38a4a">
+<div class="org-src-container">
+<pre class="src src-go">package main
+import (
+        "fmt"
+)
+func test(array []int64) {
+        for i:= 0; i&lt; 3; i++{
+                array[i] = 10
+        }
+}
+
+func main() {
+        start := make([]int64, 3)
+        test(start)
+        fmt.Println(start)
+}
+
+
+
+</pre>
+</div>
+
+<pre class="example">
+[10 10 10]
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org3e3a2f7" class="outline-3">
+<h3 id="org3e3a2f7">Map</h3>
+<div class="outline-text-3" id="text-org3e3a2f7">
+<p>
+three way to create a map
+</p>
+<div class="org-src-container">
+<pre class="src src-go">package main
+import (
+        "fmt"
+)
+func main() {
+        myMap1 := make(map[string]string, 10)
+        fmt.Println(myMap1)
+        myMap1["one"] = "python"
+        fmt.Println(myMap1)
+        myMap2 := make(map[string]string)
+        myMap2["one"] = "python"
+        fmt.Println(myMap2)          
+        myMap3 := map[string]string{
+                "one": "python",
+        }
+        fmt.Println(myMap3)
+}
+</pre>
+</div>
+
+<pre class="example">
+map[]
+map[one:python]
+map[one:python]
+map[one:python]
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgd71ac0e" class="outline-3">
+<h3 id="orgd71ac0e">Methode</h3>
+<div class="outline-text-3" id="text-orgd71ac0e">
+<p>
+function(copy or pointer)
+methode(copy or pointer)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6a9d5a0" class="outline-3">
+<h3 id="org6a9d5a0">interface</h3>
+<div class="outline-text-3" id="text-org6a9d5a0">
+<div class="org-src-container">
+<pre class="src src-go">package main
+import (
+        "fmt"
+)
+type AnimalIF interface{
+        Sleep()
+        GetColor() string
+        GetType() string
+}
+
+type Cat struct{
+        color string
+}
+
+func (this *Cat) Sleep(){
+        fmt.Println("Cat is sleeping")
+}
+func (this *Cat) GetColor() string {
+        return this.color
+}
+func (this *Cat) GetType() string {
+        return "Cat"
+}
+
+type Dog struct{
+        color string
+}
+
+func (this *Dog) Sleep(){
+        fmt.Println("Dog is sleeping")
+}
+func (this *Dog) GetColor() string {
+        return this.color
+}
+func (this *Dog) GetType() string {
+        return "Dog"
+}
+func ShowInfo(animal AnimalIF){
+        animal.Sleep()
+        fmt.Println("color = ", animal.GetColor())
+        fmt.Println("type = ", animal.GetType())
+}
+
+func main() {
+        cat := Cat{"Green"}
+        dog := Dog{"Yellow"}
+        ShowInfo(&amp;cat)
+        ShowInfo(&amp;dog)
+}
+</pre>
+</div>
+
+<pre class="example">
+Cat is sleeping
+color =  Green
+type =  Cat
+Dog is sleeping
+color =  Yellow
+type =  Dog
+</pre>
+
+
+<p>
+ interface {}
+assert: arg.(string), if arg is not {}, it will be forced to convert to string
+can refer to every kind of value
+</p>
+</div>
+</div>
+<div id="outline-container-org5bdc276" class="outline-3">
+<h3 id="org5bdc276">polymorphism</h3>
+<div class="outline-text-3" id="text-org5bdc276">
+<p>
+OpenFile already implemented Wirter and Reader 
+</p>
+<div class="org-src-container">
+<pre class="src src-go">package main
+
+import (
+        "fmt"
+        "io"
+        "os"
+)
+
+func main() {
+        tty, err := os.OpenFile("/dev/tty", os.O_RDWR, 0)
+        if err != nil {
+                fmt.Println("Open file with error", err)
+                return
+        }
+        var r io.Reader
+        r = tty
+        var w io.Writer
+        w = r.(io.Writer)
+        w.Write([]byte("HELLO from meb\n"))
+}
+
+
+</pre>
+</div>
+
+<pre class="example">
+Open file with error open /dev/tty: no such device or address
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org9659989" class="outline-3">
+<h3 id="org9659989">reflect</h3>
+<div class="outline-text-3" id="text-org9659989">
+<div class="org-src-container">
+<pre class="src src-go">package main
+
+import (
+        "fmt"
+        "reflect"
+)
+
+func reflectNum(arg interface{}){
+        fmt.Println("type: ", reflect.TypeOf(arg))
+        fmt.Println("value: ", reflect.ValueOf(arg))
+}
+
+func main(){
+        var num float64 = 3.1415926
+        reflectNum(num)
+}
+
+</pre>
+</div>
+
+<pre class="example">
+type:  float64
+value:  3.1415926
+</pre>
+
+
+
+<div class="org-src-container">
+<pre class="src src-go">package main
+import (
+        "fmt"
+        "reflect"
+)
+
+type User struct {
+        Id int
+        Name string
+        Age int
+}
+
+func (this User) Call(){
+        fmt.Println("user is calling")
+        fmt.Printf("%v\n", this)
+}
+
+func (this User) End_Call(id int){
+        fmt.Println(id)
+        fmt.Printf("%v\n", this)
+}
+
+func main(){
+        user := User{10, "Alice", 23}
+        reflectExample(user)
+}
+
+func reflectExample(input interface{}){
+        //get tpye
+        inputType := reflect.TypeOf(input)
+        fmt.Println("input Type is :", inputType.Name())
+
+
+        //get value
+        inputValue := reflect.ValueOf(input)
+        fmt.Println("value Type is :", inputValue)
+
+
+        //get fields in details
+        for i := 0; i&lt; inputType.NumField(); i++ {
+                field := inputType.Field(i)
+                value := inputValue.Field(i).Interface()
+                fmt.Printf("%s: %v = %v\n",field.Name, field.Type, value)
+        }
+
+        //get methods in details
+        for i := 0; i&lt; inputType.NumMethod(); i++ {
+                method := inputType.Method(i)
+                fmt.Printf("%s: %v\n", method.Name, method.Type)
+        }
+}
+</pre>
+</div>
+
+<pre class="example">
+input Type is : User
+value Type is : {10 Alice 23}
+Id: int = 10
+Name: string = Alice
+Age: int = 23
+Call: func(main.User)
+End_Call: func(main.User, int)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbbc6610" class="outline-2">
+<h2 id="orgbbc6610">time</h2>
+<div class="outline-text-2" id="text-orgbbc6610">
+<div class="org-src-container">
+<pre class="src src-go">package main
+import (
+    "fmt"
+    "time"
+)
+func test() {
+    start := time.Now()
+    sum := 0
+    for i := 0; i &lt; 100000; i++ {
+        sum++
+    }
+    elapsed := time.Since(start)
+    fmt.Println("该函数执行完成耗时：", elapsed)
+}
+
+func main() {
+    test()
+}
+
+</pre>
+</div>
+
+<pre class="example">
+该函数执行完成耗时： 33.536µs
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org79a7fb1" class="outline-2">
+<h2 id="org79a7fb1">sync</h2>
+<div class="outline-text-2" id="text-org79a7fb1">
+<div class="org-src-container">
+<pre class="src src-go">package main
+
+import "fmt"
+
+func produce(c chan&lt;- int) {
+        for i := 0; i &lt; 10; i++ {
+                fmt.Printf(" Produced : %d\n", i)
+                c &lt;- i // synchronization
+        }
+}
+
+func consume(c &lt;-chan int) {
+        for true {
+                i := &lt;-c // synchronization
+                fmt.Printf(" Consumed : %d\n", i)
+        }
+}
+
+func main() {
+        c := make(chan int)
+        go consume(c)
+        produce(c)
+}
+</pre>
+</div>
+
+<pre class="example" id="org4dfee9e">
+Produced : 0
+ Consumed : 0
+ Produced : 1
+ Produced : 2
+ Consumed : 1
+ Consumed : 2
+ Produced : 3
+ Produced : 4
+ Consumed : 3
+ Consumed : 4
+ Produced : 5
+ Produced : 6
+ Consumed : 5
+ Consumed : 6
+ Produced : 7
+ Produced : 8
+ Consumed : 7
+ Consumed : 8
+ Produced : 9
+</pre>
+
+
+<div class="org-src-container">
+<pre class="src src-go">package main
+import (
+    "fmt"
+    "time"
+    "sync"
+)
+func main() {
+    var wg sync.WaitGroup
+    wg.Add(1)
+
+    go func(){
+        count("Sleep")
+        wg.Done()
+    }()
+    wg.Wait()
+}
+
+func count(thing string) {
+    for i := 1; i &lt;= 5; i++ {
+        fmt.Println(i, thing)
+        time.Sleep(time.Millisecond*500)
+    }
+
+}
+</pre>
+</div>
+
+<pre class="example">
+1 Sleep
+2 Sleep
+3 Sleep
+4 Sleep
+5 Sleep
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgcc815d7" class="outline-2">
+<h2 id="orgcc815d7">go</h2>
+<div class="outline-text-2" id="text-orgcc815d7">
+<div class="org-src-container">
+<pre class="src src-go">package main
+import (
+    "fmt"
+    "time"
+)
+func main() {
+    var times int
+    go func() {
+        for {
+        }
+    }()
+    go func() {
+        for {
+        }
+    }()
+    go func() {
+        for {
+        }
+    }()
+    go func() {
+        for {
+        }
+    }()
+    for times = 0; times &lt;= 10; times++ {
+        fmt.Println("tick", times)
+        time.Sleep(time.Second)
+    }
+}
+
+</pre>
+</div>
+
+<pre class="example" id="org70751f5">
+tick 0
+tick 1
+tick 2
+tick 3
+tick 4
+tick 5
+tick 6
+tick 7
+tick 8
+tick 9
+tick 10
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgb756e9f" class="outline-2">
+<h2 id="orgb756e9f">chan</h2>
+<div class="outline-text-2" id="text-orgb756e9f">
+</div>
+<div id="outline-container-org5f20de9" class="outline-3">
+<h3 id="org5f20de9">example</h3>
+<div class="outline-text-3" id="text-org5f20de9">
+<div class="org-src-container">
+<pre class="src src-go">package main
+import "fmt"
+func main() {
+    // 创建一个整型带两个缓冲的通道
+    ch := make(chan int, 2)
+
+    // 给通道放入两个数据
+    ch &lt;- 0
+    ch &lt;- 1
+
+    // 关闭缓冲
+    close(ch)
+    // 遍历缓冲所有数据, 且多遍历1个
+    for i := 0; i &lt; cap(ch)+1; i++ {
+
+        // 从通道中取出数据
+        v, ok := &lt;-ch
+
+        // 打印取出数据的状态
+        fmt.Println(v, ok)
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgee97f7e" class="outline-3">
+<h3 id="orgee97f7e">dead lock unbuffer channel</h3>
+<div class="outline-text-3" id="text-orgee97f7e">
+<div class="org-src-container">
+<pre class="src src-go">package main
+import "fmt"
+func main() {
+    // 创建一个整型带两个缓冲的通道
+    ch := make(chan int)
+
+    // 给通道放入两个数据
+    ch &lt;- 0
+    id := &lt;- ch
+    fmt.Println(id)
+
+    close(ch)
+}
+</pre>
+</div>
+
+<p>
+<b>but can be saved with goroutine</b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go">package main
+import "fmt"
+func main() {
+    ch := make(chan int)
+    go func(){
+      ch &lt;- 0
+    }()
+    id := &lt;- ch
+    fmt.Println(id)
+    close(ch)
+}
+</pre>
+</div>
+
+<pre class="example">
+0
+</pre>
+</div>
+</div>
+
+
+
+<div id="outline-container-org6bff3f7" class="outline-3">
+<h3 id="org6bff3f7">deal lock after buffer channel is full</h3>
+<div class="outline-text-3" id="text-org6bff3f7">
+<p>
+<b>buffer can be filled</b>
+</p>
+<div class="org-src-container">
+<pre class="src src-go">package main
+import "fmt"
+func main() {
+    ch := make(chan int, 2)
+
+    ch &lt;- 0
+    ch &lt;- 1
+    id := &lt;- ch
+    fmt.Println(id)
+
+    close(ch)
+}
+</pre>
+</div>
+
+<pre class="example">
+0
+</pre>
+
+
+
+<p>
+<b>but  can not  be exceeded</b>
+</p>
+<div class="org-src-container">
+<pre class="src src-go">package main
+import "fmt"
+func main() {
+    ch := make(chan int, 2)
+
+    ch &lt;- 0
+    ch &lt;- 1
+    ch &lt;- 2
+    id := &lt;- ch
+    fmt.Println(id)
+
+    close(ch)
+}
+</pre>
+</div>
+
+<pre class="example">
+0
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6ec70ec" class="outline-2">
+<h2 id="org6ec70ec">context</h2>
+<div class="outline-text-2" id="text-org6ec70ec">
+<div class="org-src-container">
+<pre class="src src-go">package main
+
+import (
+    "fmt"
+    "context"
+    "time"
+)
+
+func enrichContext(ctx context.Context) context.Context {
+    return context.WithValue(ctx, "request-id", "11212")
+
+}
+
+func doSomething(ctx context.Context){
+    rID := ctx.Value("request-id")
+    fmt.Println(rID)
+    for {
+        select {
+        case &lt;-ctx.Done():
+            fmt.Println("times out")
+            return
+        default:
+            fmt.Println("doing something cool")
+        }
+        time.Sleep(500*time.Millisecond)
+    }
+}
+
+
+func main (){
+    fmt.Println("Go Context example")
+    ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+    defer cancel()
+    fmt.Println(ctx.Err())
+    ctx = enrichContext(ctx)
+    go doSomething(ctx)
+    select {
+    case &lt;- ctx.Done():
+        fmt.Println("Oh, no, Time is execeed the deadline")
+        fmt.Println(ctx.Err())
+    }
+    time.Sleep(2*time.Second)
+}
+</pre>
+</div>
+
+<pre class="example" id="org993598c">
+Go Context example
+&lt;nil&gt;
+11212
+doing something cool
+doing something cool
+doing something cool
+doing something cool
+Oh, no, Time is execeed the deadline
+context deadline exceeded
+times out
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-go">package main
+
+import (
+        "context"
+        "fmt"
+        "log"
+        "time"
+)
+
+func main() {
+        start := time.Now
+        ctx := context.Background()
+        userId := 10
+        val, err := fetchUserData(ctx, userId)
+        if err != nil {
+                log.Fatal(err)
+        }
+        fmt.Println("result : ", val)
+        fmt.Println("took ", time.Since(start()))
+}
+
+type Response struct {
+        value int
+        err   error
+}
+
+func fetchUserData(ctx context.Context, userid int) (int, error) {
+        ctx, cancel := context.WithTimeout(ctx, time.Millisecond*200)
+        defer cancel()
+
+        respch := make(chan Response)
+
+        go func() {
+                val, err := fetchThirdPartyStuffWhichCanbeSlow()
+                respch &lt;- Response{
+                        value: val,
+                        err:   err,
+                }
+        }()
+
+        for {
+                select {
+                case &lt;-ctx.Done():
+                        return 0, fmt.Errorf("Fetch data is time out")
+                case resp := &lt;-respch:
+                        return resp.value, resp.err
+                }
+        }
+}
+
+func fetchThirdPartyStuffWhichCanbeSlow() (int, error) {
+        time.Sleep(time.Millisecond * 150)
+        return 666, nil
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org42de7cb" class="outline-2">
+<h2 id="org42de7cb">gonum</h2>
+<div class="outline-text-2" id="text-org42de7cb">
+</div>
+<div id="outline-container-org07d6b16" class="outline-3">
+<h3 id="org07d6b16">Test example</h3>
+<div class="outline-text-3" id="text-org07d6b16">
+<div class="org-src-container">
+<pre class="src src-go">package main
+
+import (
+        "fmt"
+
+        "gonum.org/v1/gonum/blas/blas64"
+        "gonum.org/v1/gonum/mat"
+)
+
+func main() {
+        r := row{1, 2, 3, 4}
+        c := column{1, 2, 3}
+
+        var m mat.Dense
+        m.Mul(c, r)
+
+        fmt.Println(mat.Formatted(&amp;m))
+        n := c.RawVector().N
+        inc := c.RawVector().Inc
+        d := c.RawVector().Data
+        fmt.Println(n)
+        fmt.Println(inc)
+        fmt.Println(d)
+
+        u := mat.NewVecDense(3, []float64{1, 2, 3})
+        v := mat.NewVecDense(3, []float64{4, 5, 6})
+        fmt.Println("u :", u)
+        fmt.Println("v :", v)
+
+}
+
+// row is a user-defined row vector.
+type row []float64
+
+// Dims, At and T minimally satisfy the mat.Matrix interface.
+func (v row) Dims() (r, c int)    { return 1, len(v) }
+func (v row) At(_, j int) float64 { return v[j] }
+func (v row) T() mat.Matrix       { return column(v) }
+
+// RawVector allows fast path computation with the vector.
+func (v row) RawVector() blas64.Vector {
+        return blas64.Vector{N: len(v), Data: v, Inc: 1}
+}
+
+// column is a user-defined column vector.
+type column []float64
+
+// Dims, At and T minimally satisfy the mat.Matrix interface.
+func (v column) Dims() (r, c int)    { return len(v), 1 }
+func (v column) At(i, _ int) float64 { return v[i] }
+func (v column) T() mat.Matrix       { return row(v) }
+
+// RawVector allows fast path computation with the vector.
+func (v column) RawVector() blas64.Vector {
+        return blas64.Vector{N: len(v), Data: v, Inc: 1}
+}
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3a114fe" class="outline-3">
+<h3 id="org3a114fe">NewDense</h3>
+<div class="outline-text-3" id="text-org3a114fe">
+<div class="org-src-container">
+<pre class="src src-go">package main
+
+import (
+        "fmt"
+        "gonum.org/v1/gonum/mat"
+)
+
+func main() {
+        zeros := mat.NewDense(3,5,nil)
+        fmt.Println(zeros)
+}
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb6e1d8c" class="outline-3">
+<h3 id="orgb6e1d8c">make</h3>
+<div class="outline-text-3" id="text-orgb6e1d8c">
+<div class="org-src-container">
+<pre class="src src-go">package main
+
+import (
+        "fmt"
+        "math/rand"
+        "gonum.org/v1/gonum/mat"
+)
+
+func main() {
+        data := make([]float64, 36)
+        for i := range data {
+                data[i] = rand.NormFloat64()
+        }
+        a := mat.NewDense(6, 6, data)
+        zeros := mat.NewDense(3,5,nil)
+        // fmt.Println(mat.Formatted(zeros, mat.Prefix(""), mat.Squeeze()))
+        // fmt.Println(mat.Formatted(a, mat.Prefix(""), mat.Squeeze()))
+        eq := mat.Equal(a, zeros)
+        fmt.Println(eq)
+
+}
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org91386ce" class="outline-3">
+<h3 id="org91386ce">gonum execute</h3>
+<div class="outline-text-3" id="text-org91386ce">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #4f97d7;">cd</span> babel
+go mod init babel-go
+go mod tidy
+go build main.go
+rm main.go
+rm go.mod
+rm go.sum
+./main
+</pre>
+</div>
+
+<pre class="example">
+false
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7bf134d" class="outline-2">
+<h2 id="org7bf134d">PatternDesign</h2>
+<div class="outline-text-2" id="text-org7bf134d">
+</div>
+<div id="outline-container-org12f7a1a" class="outline-3">
+<h3 id="org12f7a1a">Observer</h3>
+<div class="outline-text-3" id="text-org12f7a1a">
+<div class="org-src-container">
+<pre class="src src-go">package main
+
+import (
+        "fmt"
+        "sync"
+        "time"
+)
+
+type (
+        eventObserver struct {
+                id   int
+                time time.Time
+        }
+        eventSubject struct {
+                observers sync.Map
+        }
+        Event struct {
+                data int
+        }
+        Observer interface {
+                NotifyCallback(Event)
+        }
+        Subject interface {
+                AddListener(Observer)
+                RemoveListener(Observer)
+                Notify(Event)
+        }
+)
+
+// NotifyCallback ...
+func (e *eventObserver) NotifyCallback(event Event) {
+        fmt.Printf("Observer: %d Recieved: %d after %v\n", e.id, event.data, time.Since(e.time))
+}
+
+// AddListener ...
+func (s *eventSubject) AddListener(obs Observer) {
+        s.observers.Store(obs, struct{}{})
+}
+
+// RemoveListener ...
+func (s *eventSubject) RemoveListener(obs Observer) {
+        s.observers.Delete(obs)
+}
+
+// Notify  ...
+func (s *eventSubject) Notify(event Event) {
+        s.observers.Range(func(key interface{}, value interface{}) bool {
+                fmt.Printf("%T", key)
+                if key == nil || value == nil {
+                        return false
+                }
+                key.(Observer).NotifyCallback(event)
+                return true
+        })
+}
+
+func fib(n int) chan int {
+        out := make(chan int)
+        go // name ...
+        func() {
+                defer close(out)
+                for i, j := 0, 1; i &lt; n; i, j = i+j, i {
+                        out &lt;- i
+                }
+        }()
+        return out
+}
+
+func main() {
+        n := eventSubject{
+                observers: sync.Map{},
+        }
+        var obs1 = eventObserver{id: 1, time: time.Now()}
+        var obs2 = eventObserver{id: 2, time: time.Now()}
+
+        n.AddListener(&amp;obs1)
+        n.AddListener(&amp;obs2)
+        n.AddListener(&amp;eventObserver{id: 3, time: time.Now()})
+
+        go func() {
+                select {
+                case &lt;-time.After(time.Millisecond):
+                        n.RemoveListener(&amp;obs2)
+                }
+        }()
+
+        for x := range fib(1000000000000000000) {
+                n.Notify(Event{data: x})
+        }
+}
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org4dbaed8" class="outline-3">
+<h3 id="org4dbaed8">Factory</h3>
+<div class="outline-text-3" id="text-org4dbaed8">
+<div class="org-src-container">
+<pre class="src src-go">package main
+
+import (
+        "fmt"
+        "reflect"
+)
+
+type (
+        mongoDB struct {
+                database map[string]string
+        }
+        sqlite struct {
+                database map[string]string
+        }
+        Database interface {
+                GetData(string) string
+                PutData(string, string)
+        }
+        file struct {
+                name    string
+                content string
+        }
+        ntfs struct {
+                files map[string]file
+        }
+        ext4 struct {
+                files map[string]file
+        }
+        FileSystem interface {
+                CreateFile(string)
+                FindFile(string) file
+        }
+
+        Factory func(string) interface{}
+)
+
+func (mdb mongoDB) GetData(query string) string {
+        if _, ok := mdb.database[query]; !ok {
+                return ""
+        }
+        fmt.Println("MongoDB")
+        return mdb.database[query]
+}
+
+func (mdb mongoDB) PutData(query string, data string) {
+        mdb.database[query] = data
+}
+
+func (sql sqlite) GetData(query string) string {
+        if _, ok := sql.database[query]; !ok {
+                return ""
+        }
+        fmt.Println("Sqlite")
+        return sql.database[query]
+}
+
+func (sql sqlite) PutData(query string, data string) {
+        sql.database[query] = data
+}
+
+func (ntfs ntfs) CreateFile(path string) {
+        file := file{content: "NTFS file", name: path}
+        ntfs.files[path] = file
+        fmt.Println("NTFS")
+}
+
+func (ext ext4) CreateFile(path string) {
+        file := file{content: "EXT4 file", name: path}
+        ext.files[path] = file
+        fmt.Println("EXT4")
+}
+
+func (ntfs ntfs) FindFile(path string) file {
+        if _, ok := ntfs.files[path]; !ok {
+                return file{}
+        }
+        return ntfs.files[path]
+}
+
+func (ext ext4) FindFile(path string) file {
+        if _, ok := ext.files[path]; !ok {
+                return file{}
+        }
+        return ext.files[path]
+}
+
+// DatabaseFactory ...
+func DatabaseFactory(env string) interface{} {
+        switch env {
+        case "production":
+                return mongoDB{
+                        database: make(map[string]string),
+                }
+        case "development":
+                return sqlite{
+                        database: make(map[string]string),
+                }
+        default:
+                return nil
+        }
+}
+
+func FilesystemFactory(env string) interface{} {
+        switch env {
+        case "production":
+                return ntfs{
+                        files: make(map[string]file),
+                }
+        case "development":
+                return ext4{
+                        files: make(map[string]file),
+                }
+        default:
+                return nil
+        }
+}
+
+// AbstractFactoryy ...
+func AbstractFactory(fact string) func(string) interface{} {
+        switch fact {
+        case "database":
+                return DatabaseFactory
+        case "filesystem":
+                return FilesystemFactory
+        default:
+                return nil
+        }
+}
+
+func SetupConstructors(env string) (Database, FileSystem) {
+        fs := AbstractFactory("filesystem")
+        db := AbstractFactory("database")
+        return db(env).(Database), fs(env).(FileSystem)
+
+}
+
+func main() {
+        env1 := "production"
+        env2 := "development"
+
+        // db1 := DatabaseFactory(env1)
+        // db2 := DatabaseFactory(env2)
+
+        db1, fs1 := SetupConstructors(env1)
+        db2, fs2 := SetupConstructors(env2)
+
+        db1.PutData("test", "for test")
+        fmt.Println(db1.GetData("test"))
+        db2.PutData("test2", "for test2")
+        fmt.Println(db2.GetData("test2"))
+
+        fs1.CreateFile("../example/fts.txt")
+        fmt.Println(fs1.FindFile("../example/fts.txt"))
+
+        fs2.CreateFile("../example/et4.txt")
+        fmt.Println(fs2.FindFile("../example/et4.txt"))
+
+        fmt.Println(reflect.TypeOf(db1).Name())
+        fmt.Println(reflect.TypeOf(&amp;db1).Elem())
+        fmt.Println(reflect.TypeOf(db2).Name())
+        fmt.Println(reflect.TypeOf(&amp;db2).Elem())
+
+        fmt.Println(reflect.TypeOf(fs1).Name())
+        fmt.Println(reflect.TypeOf(&amp;fs1).Elem())
+        fmt.Println(reflect.TypeOf(fs2).Name())
+        fmt.Println(reflect.TypeOf(&amp;fs2).Elem())
+}
+
+</pre>
+</div>
+
+<pre class="example" id="org48dcbb6">
+MongoDB
+for test
+Sqlite
+for test2
+NTFS
+{../example/fts.txt NTFS file}
+EXT4
+{../example/et4.txt EXT4 file}
+mongoDB
+main.Database
+sqlite
+main.Database
+ntfs
+main.FileSystem
+ext4
+main.FileSystem
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org8d49cf0" class="outline-3">
+<h3 id="org8d49cf0">Decorator</h3>
+<div class="outline-text-3" id="text-org8d49cf0">
+<div class="org-src-container">
+<pre class="src src-go">package main
+
+import (
+        "fmt"
+        "log"
+        "math"
+        "os"
+        "sync"
+        "time"
+)
+
+func Pi(n int) float64 {
+        ch := make(chan float64)
+        for k := 0; k &lt;= n; k++ {
+                go func(ch chan float64, k float64) {
+                        ch &lt;- 4 * math.Pow(-1, k) / (2*k + 1)
+                }(ch, float64(k))
+        }
+        result := 0.0
+        for k := 0; k &lt;= n; k++ {
+                result += &lt;-ch
+        }
+        return result
+}
+
+type piFunc func(int) float64
+
+func wraplogger(fun piFunc, logger *log.Logger) piFunc {
+        return func(n int) float64 {
+                fn := func(n int) (result float64) {
+                        defer func(t time.Time) {
+                                logger.Printf("took=%v, v=%v, result=%v", time.Since(t), n, result)
+                        }(time.Now())
+                        return fun(n)
+                }
+                return fn(n)
+        }
+}
+
+func wrapcache(fun piFunc, cache *sync.Map) piFunc {
+        return func(n int) float64 {
+                fn := func(n int) float64 {
+                        key := fmt.Sprintf("n=%d", n)
+                        val, ok := cache.Load(key)
+                        if ok {
+                                return val.(float64)
+                        }
+                        result := fun(n)
+                        cache.Store(key, result)
+                        return result
+                }
+                return fn(n)
+        }
+}
+
+func divide(n int) float64 {
+        return float64(n / 2)
+}
+
+func main() {
+        // 01
+        // fmt.Println(Pi(1000))
+        // fmt.Println(Pi(50000))
+        // 02
+        //f := wraplogger(Pi, log.New(os.Stdout, "test", 1))
+        // f(10000)
+        //03
+        f := wrapcache(Pi, &amp;sync.Map{})
+        g := wraplogger(f, log.New(os.Stdout, "test", 1))
+        g(100000)
+        g(200000)
+        g(500000)
+        g(500000)
+        // 04
+        f = wrapcache(divide, &amp;sync.Map{})
+        g = wraplogger(f, log.New(os.Stdout, "divide", 1))
+        g(100000)
+        g(200000)
+        g(500000)
+        g(500000)
+}
+
+
+</pre>
+</div>
+
+<pre class="example">
+test2022/07/12 took=197.241951ms, v=100000, result=3.1416026534897195
+test2022/07/12 took=326.435601ms, v=200000, result=3.1415976535647596
+test2022/07/12 took=678.005443ms, v=500000, result=3.1415946535856927
+test2022/07/12 took=2.673µs, v=500000, result=3.1415946535856927
+divide2022/07/12 took=15.404µs, v=100000, result=50000
+divide2022/07/12 took=3.475µs, v=200000, result=100000
+divide2022/07/12 took=1.724µs, v=500000, result=250000
+divide2022/07/12 took=922ns, v=500000, result=250000
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgd6626e9" class="outline-3">
+<h3 id="orgd6626e9">单例模式</h3>
+<div class="outline-text-3" id="text-orgd6626e9">
+<div class="org-src-container">
+<pre class="src src-go">package main
+
+import (
+        "fmt"
+)
+
+type User struct {
+        Name       string
+        Occupation string
+}
+
+
+type Moli interface {
+        Changename()
+        ChangeOccupation()
+}
+
+func  CreateUser() (Moli,  *User){
+        var moli Moli
+        u := new(User)
+        moli = u
+        return moli, u
+}
+
+func (u *User) Changename (){
+        u.Name = "Joke"
+}
+
+
+func (u *User) ChangeOccupation (){
+        u.Occupation = "driver"
+}
+
+
+func changeName(u User) {
+        u.Name = "Newi"
+}
+
+
+func changeOccupation(u User) {
+        u.Occupation = "driver"
+}
+
+func main() {
+        M, user := CreateUser()
+        fmt.Println("should be empty", user)
+
+        user.Name = "kji"
+        fmt.Println("Directly can change the name", *user)
+
+        user.Occupation = "Nothing"
+        fmt.Println("Directly can change the occupation", *user)
+
+        changeName(*user)
+        fmt.Println("In function, indieictly can not be changed", *user)
+
+        changeOccupation (*user)
+        fmt.Println("In function, idieictly can not be changed", *user)
+
+        M.Changename()
+        fmt.Println("In methode, indieictly can be changed its name", *user)
+
+        M.ChangeOccupation()
+        fmt.Println("In methode,  indieictly can be changed its occupation", *user)
+
+}
+
+</pre>
+</div>
+
+<pre class="example">
+should be empty &amp;{ }
+Directly can change the name {kji }
+Directly can change the occupation {kji Nothing}
+In function, indieictly can not be changed {kji Nothing}
+In function, idieictly can not be changed {kji Nothing}
+In methode, indieictly can be changed its name {Joke Nothing}
+In methode,  indieictly can be changed its occupation {Joke driver}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org18cf76a" class="outline-2">
+<h2 id="org18cf76a">Architecture</h2>
+<div class="outline-text-2" id="text-org18cf76a">
+</div>
+<div id="outline-container-org30be337" class="outline-3">
+<h3 id="org30be337">package</h3>
+<div class="outline-text-3" id="text-org30be337">
+<p>
+each folder can only has one named package,
+but it can be shared for many files, also for the test file
+</p>
+</div>
+</div>
+<div id="outline-container-orgb9e3952" class="outline-3">
+<h3 id="orgb9e3952">module</h3>
+<div class="outline-text-3" id="text-orgb9e3952">
+<p>
+it is the same designed as project, but only without main function and main package.
+it can be used by local package, module or project, but has to be replaced
+</p>
+<pre class="example">
+go mod edit -replace modulename=folder  
+</pre>
+<ul class="org-ul">
+<li>modul name is defined in the go.mod file, and also at last one package should named as it</li>
+<li>floder can be relative path, or absolute path in the reference package, module or project.</li>
+<li>can be called from gore, but first :import</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org36fa2e4" class="outline-3">
+<h3 id="org36fa2e4">project</h3>
+<div class="outline-text-3" id="text-org36fa2e4">
+<ul class="org-ul">
+<li>the same with module, with main package and main func, can be call as go run xxx.go</li>
+<li>can not  be called from gore for now (29.07.2022)</li>
+</ul>
+
+
+<p>
+here is also1
+here is also2
+here is also3
+here is also4
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgde3891b" class="outline-2">
+<h2 id="orgde3891b">pprof, allow cpu and mem profile</h2>
+<div class="outline-text-2" id="text-orgde3891b">
+<div class="org-src-container">
+<pre class="src src-go">  import (
+        "os"
+        "time"
+
+        "github.com/pkg/profile"
+        "runtime/pprof"
+)
+
+  cpuFile, _ := os.Create("cpu.pprof")
+  pprof.StartCPUProfile(cpuFile)
+  defer pprof.StopCPUProfile()
+
+  defer profile.Start(profile.MemProfile, profile.ProfilePath(".")).Stop()
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: si</p>
+<p class="date">Created: 2025-01-23 Do 21:58</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

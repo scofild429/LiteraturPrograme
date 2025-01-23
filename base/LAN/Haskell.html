@@ -1,0 +1,946 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-01-23 Do 21:58 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Haskell</title>
+<meta name="author" content="si" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Haskell</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org3004b2f">1. commands</a>
+<ul>
+<li><a href="#org7c6b088">1.1. in file.hs</a></li>
+<li><a href="#org309a5a8">1.2. C-c C-c call in src</a></li>
+<li><a href="#org3376fc8">1.3. send to haskell/org-src-block</a></li>
+</ul>
+</li>
+<li><a href="#orgc51fb0d">2. Functional Programm</a>
+<ul>
+<li><a href="#org9f337ec">2.1. Grundlage</a></li>
+<li><a href="#orgd06a15a">2.2. Pattern Matching</a></li>
+<li><a href="#org2bbafaa">2.3. Alternativen</a></li>
+<li><a href="#orgd83b00f">2.4. Recursion</a></li>
+<li><a href="#org2c6aa84">2.5. Type conversion1</a></li>
+<li><a href="#orgb6b544b">2.6. Factorial</a></li>
+<li><a href="#orgbc4301d">2.7. Stern Brocot Floge</a></li>
+</ul>
+</li>
+<li><a href="#org376b401">3. List</a>
+<ul>
+<li><a href="#orge9ce79e">3.1. List  add</a></li>
+</ul>
+</li>
+<li><a href="#org2f56a3c">4. Symbol</a></li>
+<li><a href="#org44791a8">5. Functional Programm of Haskell</a>
+<ul>
+<li><a href="#orgf7cff72">5.1. Grundlage</a></li>
+<li><a href="#orgb1165b7">5.2. Pattern Matching</a></li>
+<li><a href="#org5ce4694">5.3. Alternativen</a></li>
+<li><a href="#orgf83cfb7">5.4. Recursion</a></li>
+<li><a href="#org70a52f3">5.5. type conversion</a></li>
+<li><a href="#org9c5b1ad">5.6. Factorial</a></li>
+<li><a href="#orge21be30">5.7. Stern Brocot Floge</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3004b2f" class="outline-2">
+<h2 id="org3004b2f"><span class="section-number-2">1.</span> commands</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org7c6b088" class="outline-3">
+<h3 id="org7c6b088"><span class="section-number-3">1.1.</span> in file.hs</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+C-c C-l  to execute file.hs and go to interactive environment 
+Seeing ./black.hs
+</p>
+</div>
+</div>
+<div id="outline-container-org309a5a8" class="outline-3">
+<h3 id="org309a5a8"><span class="section-number-3">1.2.</span> C-c C-c call in src</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">log2</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Float</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Float</span>
+  log2 <span style="color: #7590db;">=</span> logBase 2
+  log2 43
+
+</pre>
+</div>
+
+<p>
+with  :results value :eval (inferior-haskell-start-process)
+</p>
+
+<p>
+in src can multi functions be defined. and the last call will be printed
+</p>
+
+<p>
+with follow extension, can be easy C-c C-c executed, but not in send
+to haskell log file, but only output the last result
+</p>
+
+
+<p>
+Seeing Literatur Programm Grundlage
+</p>
+</div>
+</div>
+<div id="outline-container-org3376fc8" class="outline-3">
+<h3 id="org3376fc8"><span class="section-number-3">1.3.</span> send to haskell/org-src-block</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">log2</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Float</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Float</span>
+  log2 <span style="color: #7590db;">=</span> logBase 2
+  log2 43
+
+</pre>
+</div>
+
+
+
+
+<p>
+#+end<sub>src</sub>
+</p>
+
+<p>
+first to load file. ~/.emacs.d/packages/orgmode-babal-haskell.el
+in one of src block M-x : send to haskell/org-src-block
+</p>
+
+<p>
+in src block  without any extension can be load in send buffer(after
+_src haskell), and the be called function can be many type.
+</p>
+
+<p>
+important : in src block the calling syntax is NOT allowed
+</p>
+
+<p>
+Seeing Literatur Programm Alternativen
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc51fb0d" class="outline-2">
+<h2 id="orgc51fb0d"><span class="section-number-2">2.</span> Functional Programm</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org9f337ec" class="outline-3">
+<h3 id="org9f337ec"><span class="section-number-3">2.1.</span> Grundlage</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+basic function call
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">log2</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Float</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Float</span>
+  log2 <span style="color: #7590db;">=</span> logBase 2
+  log2 43
+
+</pre>
+</div>
+<p>
+implication
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">(<span style="color: #bc6ec5; font-weight: bold;">==&gt;</span>)<span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span>
+<span style="color: #bc6ec5; font-weight: bold;">a</span> <span style="color: #bc6ec5; font-weight: bold;">==&gt;</span> b <span style="color: #7590db;">=</span> not a <span style="color: #7590db;">||</span> not b
+<span style="color: #ce537a; font-weight: bold;">Flase</span> <span style="color: #bc6ec5; font-weight: bold;">==&gt;</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+<span style="color: #ce537a; font-weight: bold;">False</span><span style="color: #bc6ec5; font-weight: bold;">==&gt;</span> <span style="color: #ce537a; font-weight: bold;">False</span>
+<span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #bc6ec5; font-weight: bold;">==&gt;</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+
+</pre>
+</div>
+
+
+<p>
+&#x2013;euler numbers
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">e<span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Float</span>
+<span style="color: #bc6ec5; font-weight: bold;">e</span> <span style="color: #7590db;">=</span> exp 1
+e 
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd06a15a" class="outline-3">
+<h3 id="orgd06a15a"><span class="section-number-3">2.2.</span> Pattern Matching</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+one of the calling must match one case of pattern
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span>
+  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">False</span> <span style="color: #ce537a; font-weight: bold;">False</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">False</span>
+  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">False</span> <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">False</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+
+
+<span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-haskell">
+(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span>
+  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #4f97d7; font-weight: bold;">_</span> <span style="color: #4f97d7; font-weight: bold;">_</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">False</span>
+
+(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">False</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-haskell">(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span>
+  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">True</span> 
+
+</pre>
+</div>
+
+<p>
+case : this can only be executed in a .hs file,
+ in orgmode can NOT be imported, I don't know what is going on
+ in Terminal can NOT also
+</p>
+
+<p>
+Here I made above mistake, this is no sense.
+so long the indentation is correct, so works
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell">(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span>
+(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) a b
+  <span style="color: #7590db;">|</span> a <span style="color: #7590db;">==</span> b <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">False</span>
+  <span style="color: #7590db;">|</span> otherwise <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2bbafaa" class="outline-3">
+<h3 id="org2bbafaa"><span class="section-number-3">2.3.</span> Alternativen</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+if else then
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">absolute</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Int</span>
+<span style="color: #bc6ec5; font-weight: bold;">absolute</span> x <span style="color: #7590db;">=</span> <span style="color: #4f97d7; font-weight: bold;">if</span> x <span style="color: #7590db;">&lt;</span> 0 <span style="color: #4f97d7; font-weight: bold;">then</span> <span style="color: #7590db;">-</span>x <span style="color: #4f97d7; font-weight: bold;">else</span> x
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd83b00f" class="outline-3">
+<h3 id="orgd83b00f"><span class="section-number-3">2.4.</span> Recursion</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+easy fib
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">heronA</span> <span style="color: #7590db;">::</span>(<span style="color: #ce537a; font-weight: bold;">Int</span>, <span style="color: #ce537a; font-weight: bold;">Double</span>) <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span>
+<span style="color: #bc6ec5; font-weight: bold;">heronA</span> (n,a)
+  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">&gt;</span> 0     <span style="color: #7590db;">=</span> (heronA(n<span style="color: #7590db;">-</span>1,a) <span style="color: #7590db;">+</span> a<span style="color: #7590db;">/</span>heronA(n<span style="color: #7590db;">-</span>1, a))<span style="color: #7590db;">/</span>2
+  <span style="color: #7590db;">|</span> otherwise <span style="color: #7590db;">=</span> a
+
+<span style="color: #bc6ec5; font-weight: bold;">absolute</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Int</span>
+<span style="color: #bc6ec5; font-weight: bold;">absolute</span> x <span style="color: #7590db;">=</span> <span style="color: #4f97d7; font-weight: bold;">if</span> x <span style="color: #7590db;">&lt;</span> 0 <span style="color: #4f97d7; font-weight: bold;">then</span> <span style="color: #7590db;">-</span>x <span style="color: #4f97d7; font-weight: bold;">else</span> x
+
+<span style="color: #bc6ec5; font-weight: bold;">heronB</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span>
+<span style="color: #bc6ec5; font-weight: bold;">heronB</span> n a
+  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">&gt;</span> 0     <span style="color: #7590db;">=</span> (heronB (n<span style="color: #7590db;">-</span>1) a <span style="color: #7590db;">+</span> a<span style="color: #7590db;">/</span>heronB(n<span style="color: #7590db;">-</span>1) a)<span style="color: #7590db;">/</span>2
+  <span style="color: #7590db;">|</span> otherwise <span style="color: #7590db;">=</span> a
+
+</pre>
+</div>
+
+
+<p>
+where 
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">heronC</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span>
+<span style="color: #bc6ec5; font-weight: bold;">heronC</span> n a
+  <span style="color: #7590db;">|</span>n <span style="color: #7590db;">&gt;</span> 0      <span style="color: #7590db;">=</span> (x <span style="color: #7590db;">+</span> a<span style="color: #7590db;">/</span>x)<span style="color: #7590db;">/</span>2
+  <span style="color: #7590db;">|</span>otherwise  <span style="color: #7590db;">=</span> a
+  <span style="color: #4f97d7; font-weight: bold;">where</span> x <span style="color: #7590db;">=</span> heronC (n<span style="color: #7590db;">-</span>1) a
+</pre>
+</div>
+
+<p>
+fib &amp; where
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">fibA</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Int</span>
+<span style="color: #bc6ec5; font-weight: bold;">fibA</span> n
+  <span style="color: #7590db;">|</span>n <span style="color: #7590db;">==</span> 0    <span style="color: #7590db;">=</span> 0
+  <span style="color: #7590db;">|</span>n <span style="color: #7590db;">==</span> 1    <span style="color: #7590db;">=</span> 1
+  <span style="color: #7590db;">|</span>otherwise <span style="color: #7590db;">=</span> x <span style="color: #7590db;">+</span>y
+  <span style="color: #4f97d7; font-weight: bold;">where</span>
+    x <span style="color: #7590db;">=</span> fibA (n<span style="color: #7590db;">-</span>1)
+    y <span style="color: #7590db;">=</span> fibA (n<span style="color: #7590db;">-</span>2)
+
+</pre>
+</div>
+
+<p>
+fib &amp; where &amp; pattern matching
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">fibB</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Int</span>
+<span style="color: #bc6ec5; font-weight: bold;">fibB</span> 0 <span style="color: #7590db;">=</span> 0
+<span style="color: #bc6ec5; font-weight: bold;">fibB</span> 1 <span style="color: #7590db;">=</span> 1
+<span style="color: #bc6ec5; font-weight: bold;">fibB</span> n <span style="color: #7590db;">=</span> fibB (n<span style="color: #7590db;">-</span>1) <span style="color: #7590db;">+</span> fibB (n<span style="color: #7590db;">-</span>2)
+
+
+<span style="color: #bc6ec5; font-weight: bold;">fibC</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Int</span>
+<span style="color: #bc6ec5; font-weight: bold;">fibC</span> 0 <span style="color: #7590db;">=</span> 0
+<span style="color: #bc6ec5; font-weight: bold;">fibC</span> 1 <span style="color: #7590db;">=</span> 1
+<span style="color: #bc6ec5; font-weight: bold;">fibC</span> n
+  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">&lt;</span> 0      <span style="color: #7590db;">=</span> error <span style="color: #2d9574;">"illegal arguement"</span>
+  <span style="color: #7590db;">|</span> otherwise  <span style="color: #7590db;">=</span> fibB (n<span style="color: #7590db;">-</span>1) <span style="color: #7590db;">+</span> fibB (n<span style="color: #7590db;">-</span>2)
+
+
+(<span style="color: #bc6ec5; font-weight: bold;">&lt;##&gt;</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span>
+0 <span style="color: #7590db;">&lt;##&gt;</span> a   <span style="color: #7590db;">=</span> a
+n <span style="color: #bc6ec5; font-weight: bold;">&lt;##&gt;</span> a  
+  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">&gt;</span> 0  <span style="color: #7590db;">=</span> (x <span style="color: #7590db;">+</span> a<span style="color: #7590db;">/</span>x)<span style="color: #7590db;">/</span>2
+  <span style="color: #7590db;">|</span> otherwise  <span style="color: #7590db;">=</span> error <span style="color: #2d9574;">"illegal arguement"</span>
+  <span style="color: #4f97d7; font-weight: bold;">where</span> x <span style="color: #7590db;">=</span> (n<span style="color: #7590db;">-</span>1) <span style="color: #7590db;">&lt;##&gt;</span> a
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2c6aa84" class="outline-3">
+<h3 id="org2c6aa84"><span class="section-number-3">2.5.</span> Type conversion1</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+Guides
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">vielleichtdreifach</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
+<span style="color: #bc6ec5; font-weight: bold;">vielleichtdreifach</span> verdreifach nochmal n
+  <span style="color: #7590db;">|</span> verdreifach <span style="color: #7590db;">&amp;&amp;</span> nochmal <span style="color: #7590db;">=</span> maldrei ( maldrei n)
+  <span style="color: #7590db;">|</span> verdreifach            <span style="color: #7590db;">=</span> maldrei n
+  <span style="color: #7590db;">|</span> otherwise              <span style="color: #7590db;">=</span> n
+  <span style="color: #4f97d7; font-weight: bold;">where</span> maldrei n <span style="color: #7590db;">=</span> 3<span style="color: #7590db;">*</span>n 
+
+<span style="color: #bc6ec5; font-weight: bold;">dreifach</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
+<span style="color: #bc6ec5; font-weight: bold;">dreifach</span> <span style="color: #7590db;">=</span> vielleichtdreifach <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">False</span> 
+
+<span style="color: #bc6ec5; font-weight: bold;">neudreifach</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
+<span style="color: #bc6ec5; font-weight: bold;">neudreifach</span> <span style="color: #7590db;">=</span> vielleichtdreifach <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+
+</pre>
+</div>
+
+<p>
+vielleichtdreifach Bool Bool -&gt; Integer
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb6b544b" class="outline-3">
+<h3 id="orgb6b544b"><span class="section-number-3">2.6.</span> Factorial</h3>
+<div class="outline-text-3" id="text-2-6">
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">fac</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
+<span style="color: #bc6ec5; font-weight: bold;">fac</span> n
+  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">==</span> 0  <span style="color: #7590db;">=</span> 1
+  <span style="color: #7590db;">|</span> otherwise <span style="color: #7590db;">=</span> fac (n<span style="color: #7590db;">-</span>1) <span style="color: #7590db;">*</span> n
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbc4301d" class="outline-3">
+<h3 id="orgbc4301d"><span class="section-number-3">2.7.</span> Stern Brocot Floge</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+\(\\s_{0} = 0 \\ s_{1} = 1 \\ s_{2n} = s_{n} \\ s_{2n+1} = s_{n} + s_{n+1}\)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell">(<span style="color: #bc6ec5; font-weight: bold;">*/*</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
+(<span style="color: #bc6ec5; font-weight: bold;">*/*</span>) <span style="color: #7590db;">=</span> div
+
+(<span style="color: #bc6ec5; font-weight: bold;">*%*</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
+(<span style="color: #bc6ec5; font-weight: bold;">*%*</span>) <span style="color: #7590db;">=</span> rem
+
+<span style="color: #bc6ec5; font-weight: bold;">sternBrocot</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
+<span style="color: #bc6ec5; font-weight: bold;">sternBrocot</span> n
+  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">==</span> 0      <span style="color: #7590db;">=</span> 0
+  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">==</span> 1      <span style="color: #7590db;">=</span> 1
+  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">*%*</span> 2 <span style="color: #7590db;">==</span> 0 <span style="color: #7590db;">=</span> sternBrocot half
+  <span style="color: #7590db;">|</span> otherwise    <span style="color: #7590db;">=</span> sternBrocot half <span style="color: #7590db;">+</span> sternBrocot (half <span style="color: #7590db;">+</span> 1)
+  <span style="color: #4f97d7; font-weight: bold;">where</span> half <span style="color: #7590db;">=</span> n <span style="color: #7590db;">*/*</span> 2
+
+<span style="color: #bc6ec5; font-weight: bold;">suche</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
+<span style="color: #bc6ec5; font-weight: bold;">suche</span> suchziel postionziel
+  <span style="color: #7590db;">|</span> sternBrocot postionziel <span style="color: #7590db;">&gt;</span> suchziel <span style="color: #7590db;">=</span> postionziel
+  <span style="color: #7590db;">|</span> otherwise                          <span style="color: #7590db;">=</span> suche suchziel (postionziel <span style="color: #7590db;">+</span>1)
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org376b401" class="outline-2">
+<h2 id="org376b401"><span class="section-number-2">3.</span> List</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+字符串就是单一字符的列表
+</p>
+</div>
+<div id="outline-container-orge9ce79e" class="outline-3">
+<h3 id="orge9ce79e"><span class="section-number-3">3.1.</span> List  add</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+in prelude
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">[1,2,3] <span style="color: #7590db;">++</span> [3,4,5]
+2 <span style="color: #ce537a; font-weight: bold;">:</span> [3,4]
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org2f56a3c" class="outline-2">
+<h2 id="org2f56a3c"><span class="section-number-2">4.</span> Symbol</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+需要时刻谨记是用  .  来做函数组合的，$ 是用来降低函数执行优先级的。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org44791a8" class="outline-2">
+<h2 id="org44791a8"><span class="section-number-2">5.</span> Functional Programm of Haskell</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-orgf7cff72" class="outline-3">
+<h3 id="orgf7cff72"><span class="section-number-3">5.1.</span> Grundlage</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+basic function call
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">  log2 <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Float</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Float</span>
+  log2 <span style="color: #7590db;">=</span> logBase 2
+<span style="color: #bc6ec5; font-weight: bold;">log2</span> 43
+
+</pre>
+</div>
+
+<p>
+implication
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">
+(<span style="color: #bc6ec5; font-weight: bold;">==&gt;</span>)<span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span>
+<span style="color: #bc6ec5; font-weight: bold;">a</span> <span style="color: #bc6ec5; font-weight: bold;">==&gt;</span> b <span style="color: #7590db;">=</span> not a <span style="color: #7590db;">||</span> not b
+<span style="color: #ce537a; font-weight: bold;">Flase</span> <span style="color: #bc6ec5; font-weight: bold;">==&gt;</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+<span style="color: #ce537a; font-weight: bold;">False</span><span style="color: #bc6ec5; font-weight: bold;">==&gt;</span> <span style="color: #ce537a; font-weight: bold;">False</span>
+<span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #bc6ec5; font-weight: bold;">==&gt;</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+
+</pre>
+</div>
+
+<p>
+&#x2013;euler numbers
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">
+  e<span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Float</span>
+    e <span style="color: #7590db;">=</span> exp 1
+e 
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb1165b7" class="outline-3">
+<h3 id="orgb1165b7"><span class="section-number-3">5.2.</span> Pattern Matching</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+one of the calling must match one case of pattern
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell">(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span>
+  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">False</span> <span style="color: #ce537a; font-weight: bold;">False</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">False</span>
+  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">False</span> <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">False</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+
+
+<span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+</pre>
+</div>
+
+
+
+<div class="org-src-container">
+<pre class="src src-haskell">(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span>
+  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #4f97d7; font-weight: bold;">_</span> <span style="color: #4f97d7; font-weight: bold;">_</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">False</span>
+
+(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">False</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-haskell">(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span>
+  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+
+</pre>
+</div>
+
+<p>
+case : this can only be executed in a .hs file,
+ in orgmode can NOT be imported, I don't know what is going on
+ in Terminal can NOT also
+</p>
+
+<p>
+Here I made above mistake, this is no sense.
+so long the indentation is correct, so works
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell">(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span>
+(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) a b
+  <span style="color: #7590db;">|</span> a <span style="color: #7590db;">==</span> b <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">False</span>
+  <span style="color: #7590db;">|</span> otherwise <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5ce4694" class="outline-3">
+<h3 id="org5ce4694"><span class="section-number-3">5.3.</span> Alternativen</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+if else then
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">absolute</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Int</span>
+<span style="color: #bc6ec5; font-weight: bold;">absolute</span> x <span style="color: #7590db;">=</span> <span style="color: #4f97d7; font-weight: bold;">if</span> x <span style="color: #7590db;">&lt;</span> 0 <span style="color: #4f97d7; font-weight: bold;">then</span> <span style="color: #7590db;">-</span>x <span style="color: #4f97d7; font-weight: bold;">else</span> x
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf83cfb7" class="outline-3">
+<h3 id="orgf83cfb7"><span class="section-number-3">5.4.</span> Recursion</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+easy fib
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">heronA</span> <span style="color: #7590db;">::</span>(<span style="color: #ce537a; font-weight: bold;">Int</span>, <span style="color: #ce537a; font-weight: bold;">Double</span>) <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span>
+<span style="color: #bc6ec5; font-weight: bold;">heronA</span> (n,a)
+  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">&gt;</span> 0     <span style="color: #7590db;">=</span> (heronA(n<span style="color: #7590db;">-</span>1,a) <span style="color: #7590db;">+</span> a<span style="color: #7590db;">/</span>heronA(n<span style="color: #7590db;">-</span>1, a))<span style="color: #7590db;">/</span>2
+  <span style="color: #7590db;">|</span> otherwise <span style="color: #7590db;">=</span> a
+
+<span style="color: #bc6ec5; font-weight: bold;">absolute</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Int</span>
+<span style="color: #bc6ec5; font-weight: bold;">absolute</span> x <span style="color: #7590db;">=</span> <span style="color: #4f97d7; font-weight: bold;">if</span> x <span style="color: #7590db;">&lt;</span> 0 <span style="color: #4f97d7; font-weight: bold;">then</span> <span style="color: #7590db;">-</span>x <span style="color: #4f97d7; font-weight: bold;">else</span> x
+
+<span style="color: #bc6ec5; font-weight: bold;">heronB</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span>
+<span style="color: #bc6ec5; font-weight: bold;">heronB</span> n a
+  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">&gt;</span> 0     <span style="color: #7590db;">=</span> (heronB (n<span style="color: #7590db;">-</span>1) a <span style="color: #7590db;">+</span> a<span style="color: #7590db;">/</span>heronB(n<span style="color: #7590db;">-</span>1) a)<span style="color: #7590db;">/</span>2
+  <span style="color: #7590db;">|</span> otherwise <span style="color: #7590db;">=</span> a
+
+</pre>
+</div>
+
+
+<p>
+where 
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">heronC</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span>
+<span style="color: #bc6ec5; font-weight: bold;">heronC</span> n a
+  <span style="color: #7590db;">|</span>n <span style="color: #7590db;">&gt;</span> 0      <span style="color: #7590db;">=</span> (x <span style="color: #7590db;">+</span> a<span style="color: #7590db;">/</span>x)<span style="color: #7590db;">/</span>2
+  <span style="color: #7590db;">|</span>otherwise  <span style="color: #7590db;">=</span> a
+  <span style="color: #4f97d7; font-weight: bold;">where</span> x <span style="color: #7590db;">=</span> heronC (n<span style="color: #7590db;">-</span>1) a
+</pre>
+</div>
+
+<p>
+fib &amp; where
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">fibA</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Int</span>
+<span style="color: #bc6ec5; font-weight: bold;">fibA</span> n
+  <span style="color: #7590db;">|</span>n <span style="color: #7590db;">==</span> 0    <span style="color: #7590db;">=</span> 0
+  <span style="color: #7590db;">|</span>n <span style="color: #7590db;">==</span> 1    <span style="color: #7590db;">=</span> 1
+  <span style="color: #7590db;">|</span>otherwise <span style="color: #7590db;">=</span> x <span style="color: #7590db;">+</span>y
+  <span style="color: #4f97d7; font-weight: bold;">where</span>
+    x <span style="color: #7590db;">=</span> fibA (n<span style="color: #7590db;">-</span>1)
+    y <span style="color: #7590db;">=</span> fibA (n<span style="color: #7590db;">-</span>2)
+
+</pre>
+</div>
+
+<p>
+fib &amp; where &amp; pattern matching
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">fibB</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Int</span>
+<span style="color: #bc6ec5; font-weight: bold;">fibB</span> 0 <span style="color: #7590db;">=</span> 0
+<span style="color: #bc6ec5; font-weight: bold;">fibB</span> 1 <span style="color: #7590db;">=</span> 1
+<span style="color: #bc6ec5; font-weight: bold;">fibB</span> n <span style="color: #7590db;">=</span> fibB (n<span style="color: #7590db;">-</span>1) <span style="color: #7590db;">+</span> fibB (n<span style="color: #7590db;">-</span>2)
+
+
+<span style="color: #bc6ec5; font-weight: bold;">fibC</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Int</span>
+<span style="color: #bc6ec5; font-weight: bold;">fibC</span> 0 <span style="color: #7590db;">=</span> 0
+<span style="color: #bc6ec5; font-weight: bold;">fibC</span> 1 <span style="color: #7590db;">=</span> 1
+<span style="color: #bc6ec5; font-weight: bold;">fibC</span> n
+  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">&lt;</span> 0      <span style="color: #7590db;">=</span> error <span style="color: #2d9574;">"illegal arguement"</span>
+  <span style="color: #7590db;">|</span> otherwise  <span style="color: #7590db;">=</span> fibB (n<span style="color: #7590db;">-</span>1) <span style="color: #7590db;">+</span> fibB (n<span style="color: #7590db;">-</span>2)
+
+
+(<span style="color: #bc6ec5; font-weight: bold;">&lt;##&gt;</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span>
+0 <span style="color: #7590db;">&lt;##&gt;</span> a   <span style="color: #7590db;">=</span> a
+n <span style="color: #bc6ec5; font-weight: bold;">&lt;##&gt;</span> a  
+  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">&gt;</span> 0  <span style="color: #7590db;">=</span> (x <span style="color: #7590db;">+</span> a<span style="color: #7590db;">/</span>x)<span style="color: #7590db;">/</span>2
+  <span style="color: #7590db;">|</span> otherwise  <span style="color: #7590db;">=</span> error <span style="color: #2d9574;">"illegal arguement"</span>
+  <span style="color: #4f97d7; font-weight: bold;">where</span> x <span style="color: #7590db;">=</span> (n<span style="color: #7590db;">-</span>1) <span style="color: #7590db;">&lt;##&gt;</span> a
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org70a52f3" class="outline-3">
+<h3 id="org70a52f3"><span class="section-number-3">5.5.</span> type conversion</h3>
+<div class="outline-text-3" id="text-5-5">
+<p>
+Guides
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">vielleichtdreifach</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
+<span style="color: #bc6ec5; font-weight: bold;">vielleichtdreifach</span> verdreifach nochmal n
+  <span style="color: #7590db;">|</span> verdreifach <span style="color: #7590db;">&amp;&amp;</span> nochmal <span style="color: #7590db;">=</span> maldrei ( maldrei n)
+  <span style="color: #7590db;">|</span> verdreifach            <span style="color: #7590db;">=</span> maldrei n
+  <span style="color: #7590db;">|</span> otherwise              <span style="color: #7590db;">=</span> n
+  <span style="color: #4f97d7; font-weight: bold;">where</span> maldrei n <span style="color: #7590db;">=</span> 3<span style="color: #7590db;">*</span>n 
+
+<span style="color: #bc6ec5; font-weight: bold;">dreifach</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
+<span style="color: #bc6ec5; font-weight: bold;">dreifach</span> <span style="color: #7590db;">=</span> vielleichtdreifach <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">False</span> 
+
+<span style="color: #bc6ec5; font-weight: bold;">neudreifach</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
+<span style="color: #bc6ec5; font-weight: bold;">neudreifach</span> <span style="color: #7590db;">=</span> vielleichtdreifach <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+
+</pre>
+</div>
+<p>
+vielleichtdreifach Bool Bool -&gt; Integer
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9c5b1ad" class="outline-3">
+<h3 id="org9c5b1ad"><span class="section-number-3">5.6.</span> Factorial</h3>
+<div class="outline-text-3" id="text-5-6">
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">fac</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
+<span style="color: #bc6ec5; font-weight: bold;">fac</span> n
+  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">==</span> 0  <span style="color: #7590db;">=</span> 1
+  <span style="color: #7590db;">|</span> otherwise <span style="color: #7590db;">=</span> fac (n<span style="color: #7590db;">-</span>1) <span style="color: #7590db;">*</span> n
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge21be30" class="outline-3">
+<h3 id="orge21be30"><span class="section-number-3">5.7.</span> Stern Brocot Floge</h3>
+<div class="outline-text-3" id="text-5-7">
+<p>
+\(\\s_{0} = 0 \\ s_{1} = 1 \\ s_{2n} = s_{n} \\ s_{2n+1} = s_{n} + s_{n+1}\)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell">(<span style="color: #bc6ec5; font-weight: bold;">*/*</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
+(<span style="color: #bc6ec5; font-weight: bold;">*/*</span>) <span style="color: #7590db;">=</span> div
+
+(<span style="color: #bc6ec5; font-weight: bold;">*%*</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
+(<span style="color: #bc6ec5; font-weight: bold;">*%*</span>) <span style="color: #7590db;">=</span> rem
+
+<span style="color: #bc6ec5; font-weight: bold;">sternBrocot</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
+<span style="color: #bc6ec5; font-weight: bold;">sternBrocot</span> n
+  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">==</span> 0      <span style="color: #7590db;">=</span> 0
+  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">==</span> 1      <span style="color: #7590db;">=</span> 1
+  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">*%*</span> 2 <span style="color: #7590db;">==</span> 0 <span style="color: #7590db;">=</span> sternBrocot half
+  <span style="color: #7590db;">|</span> otherwise    <span style="color: #7590db;">=</span> sternBrocot half <span style="color: #7590db;">+</span> sternBrocot (half <span style="color: #7590db;">+</span> 1)
+  <span style="color: #4f97d7; font-weight: bold;">where</span> half <span style="color: #7590db;">=</span> n <span style="color: #7590db;">*/*</span> 2
+
+<span style="color: #bc6ec5; font-weight: bold;">suche</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
+<span style="color: #bc6ec5; font-weight: bold;">suche</span> suchziel postionziel
+  <span style="color: #7590db;">|</span> sternBrocot postionziel <span style="color: #7590db;">&gt;</span> suchziel <span style="color: #7590db;">=</span> postionziel
+  <span style="color: #7590db;">|</span> otherwise                          <span style="color: #7590db;">=</span> suche suchziel (postionziel <span style="color: #7590db;">+</span>1)
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: si</p>
+<p class="date">Created: 2025-01-23 Do 21:58</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
