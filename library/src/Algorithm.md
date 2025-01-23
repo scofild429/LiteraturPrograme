@@ -1,0 +1,2837 @@
+Bubble
+======
+
+Algorithm {#algorithm-1}
+---------
+
+each time compare itself with the next, if smaller, exchange them after
+each epoch, the biggest will be right localed. with the cursor moving,
+always with the so far biggest
+
+    A[a] for a -> 0, 1, 2, 3....l
+    FOR i -> 0, 1, 2...l-2:
+        FOR j -> 0, 1, 2...l-2-i:
+            IF A[j] > A[j+1]:
+                exchange A[j]:A[j+1]
+
+Python
+------
+
+``` {.python results="output" exports="both"}
+A = [2,5,6,8,45,68,98,42,12,7,156,158,9]
+lang = len(A)
+for i in range(lang-2):
+    for j in range(lang-i-1):
+        if A[j] > A[j+1]:
+            A[j], A[j+1] = A[j+1], A[j]
+print(A)            
+```
+
+``` {.example}
+[2, 5, 6, 7, 8, 9, 12, 42, 45, 68, 98, 156, 158]
+```
+
+java
+----
+
+``` {.java classname="BubbleSorting" results="output" exports="both"}
+class BubbleSorting
+{
+    public static void main(String[] args)
+    {
+        int A[] = {2,5,6,8,45,68,98,42,12,7,156,158,9};
+        int langdu = A.length;
+
+        for (int i = 0; i <= langdu-2; i++) {
+            for (int j = 0; j <= langdu-2-i; j++) {
+                if (A[j] > A[j+1]) {
+                    int tmp = A[j+1];
+                    A[j+1] = A[j];
+                    A[j] = tmp;
+                }
+            }
+        }
+        for (int a:A){
+            System.out.printf("%d ", a);
+        }
+    }
+}
+
+```
+
+``` {.example}
+2 5 6 7 8 9 12 42 45 68 98 156 158 
+```
+
+C/C++
+-----
+
+``` {.c org-language="C" results="output" exports="both"}
+int main(int argc, char *argv[])
+{
+  int list[] = {2,5,6,8,45,68,98,42,12,7,156,158,9};
+  int langdu = sizeof(list) / sizeof(int);
+
+  void swap(int *a, int *b){
+    int tmp = *b;
+    *b = *a;
+    *a = tmp;
+  }
+
+  for (int i = 0; i <= langdu-2; ++i) {
+    for ( int j=0; j <= langdu-2-i;++j) {
+      if (list[j] > list[j+1]) {
+        swap(&list[j], &list[j+1]);
+      }
+    }
+  };
+
+  for (int k = 0; k < langdu; ++k) {
+    printf("%d  ",*(list+k));
+  }
+  return 0;
+}
+
+```
+
+``` {.example}
+2  5  6  7  8  9  12  42  45  68  98  156  158
+```
+
+Select
+======
+
+Algorithm {#algorithm-2}
+---------
+
+find the sofar biggest or smallest one of each epoch at the front of
+list, after each epoch put it to the right place.
+
+    A[a] for a -> 0, 1, 2....l
+    FOR i -> 0, 1, 2...l-1:
+        FOR j -> 0, 1, 2....l-1-i:
+            IF A[j] > A[0]:
+                exchange(A[j], A[0])
+        exchange(A[0], A[l-1-i])
+
+Python
+------
+
+``` {.ipython results="output" exports="both"}
+A = [2,5,6,8,45,68,98,42,12,7,156,158,9]
+lang = len(A)
+for i in range(lang):
+    for j in range(lang-i):
+        if A[j] > A[0]:
+            A[j], A[0] = A[0], A[j]
+    A[0], A[lang-1-i] = A[lang-1-i], A[0]
+print(A)
+
+```
+
+``` {.example}
+[2, 5, 6, 7, 8, 9, 12, 42, 45, 68, 98, 156, 158]
+```
+
+Java
+----
+
+``` {.java classname="SelectSorting" results="output" exports="both"}
+class SelectSorting
+{
+    public static void main(String[] args)
+    {
+        int A[] = {2,5,6,8,45,68,98,42,12,7,156,158,9};
+        int langdu = A.length;
+        for (int i = 0; i <= langdu-1; i++) {
+            for (int j = 0; j <= langdu-1-i; j++) {
+                if (A[j] > A[0]) {
+                    int tmp = A[j];
+                    A[j] = A[0];
+                    A[0] = tmp;
+                }
+            }
+            int tmp = A[langdu-1-i];
+            A[langdu-1-i] = A[0];
+            A[0] = tmp;
+        }
+        for (int var : A) {
+            System.out.printf("%d ", var);
+        }
+    }
+}
+
+```
+
+``` {.example}
+2 5 6 7 8 9 12 42 45 68 98 156 158 
+```
+
+C/C++
+-----
+
+``` {.c org-language="C" results="output" exports="both"}
+int main(int argc, char *argv[])
+{
+  int list[] = {2,5,6,8,45,68,98,42,12,7,156,158,9};
+  int langdu = sizeof(list) / sizeof(int);
+  int i, j;
+  void swap(int *a, int *b){
+    int tmp = *b;
+    *b = *a;
+    *a = tmp;
+  }
+  for (i = 0; i <= langdu -1; ++i) {
+    for (j = 0; j <= langdu-1-i; ++j) {
+      if (list[j] > list[0]) {
+        swap(&list[j], &list[0]);
+      }
+    }
+    swap(&list[0], &list[langdu-1-i]);
+  }
+  for (int k = 0; k < langdu; ++k) {
+    printf("%d ",*(list+k));
+  }
+  return 0;
+}
+
+
+```
+
+``` {.example}
+2 5 6 7 8 9 12 42 45 68 98 156 158
+```
+
+Insert
+======
+
+Algorithm {#algorithm-3}
+---------
+
+    A[a] for a -> 0, 1, 2....l-1
+    for i -> 1, 2...l-1:
+        value <- A[i]
+        index <- i
+        while(A[index-1] > value && index > 0)
+            A[index] = A[index-1]
+            index--        
+        A[index] <- value
+
+Python
+------
+
+``` {.python results="output" exports="both"}
+list1 = [2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 19]
+langdu = len(list1)
+for i in range(1, langdu):
+    value = list1[i]
+    index = i
+    while(index > 0 and list1[index-1] > value):
+        list1[index] = list1[index-1]
+        index -= 1
+    list1[index] = value
+print(list1)
+```
+
+``` {.example}
+[1, 2, 3, 3, 4, 4, 5, 6, 7, 8, 9, 9, 19, 20, 23, 34, 45, 90, 345, 546, 23465]
+```
+
+Java
+----
+
+``` {.java results="output" exports="both" classname="Inserting"}
+class Inserting
+{
+    public static void main(String[] args)
+    {
+        int list1 [] = {2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 19};
+        int langdu = list1.length;
+        for (int i = 1; i < langdu; i++) {
+            int value = list1[i];
+            int index = i;
+            while(index > 0 && list1[index-1] > value) {
+                list1[index] = list1[index-1];
+                index--;
+            }
+            list1[index] = value;
+        }
+        for (int var :list1) {
+            System.out.printf("%d ", var);        
+        }
+    }
+}
+```
+
+``` {.example}
+1 2 3 3 4 4 5 6 7 8 9 9 19 20 23 34 45 90 345 546 23465 
+```
+
+C/C++
+-----
+
+``` {.c org-language="C" results="output" exports="both"}
+int main(int argc, char *argv[])
+{
+  int A[] = {2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 19};
+  int langdu = sizeof(A)/sizeof(int);
+  for (int i = 1; i < langdu; ++i) {
+    int value = A[i];
+    int index = i;
+    while (index > 0 && A[index-1] > value) {
+      A[index] = A[index-1];
+      index--;
+    }
+    A[index] = value;
+  }
+  for (int i = 0; i < langdu; ++i) {
+    printf("%d ",A[i] );
+  }
+  return 0;
+}
+
+```
+
+``` {.example}
+1 2 3 3 4 4 5 6 7 8 9 9 19 20 23 34 45 90 345 546 23465
+```
+
+``` {.c org-language="C" results="output" exports="both"}
+int main(int argc, char *argv[])
+{
+  int A[] = {2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 19};
+  int langdu = sizeof(A)/sizeof(int);
+  insert(A, langdu);
+  for (int i = 0; i < langdu; ++i) {
+    printf("%d ",A[i] );
+  }
+  return 0;
+}
+void insert(int A[], int langdu){
+  for (int i = 1; i < langdu; ++i) {
+    int value = A[i];
+    int index = i;
+    while (index > 0 && A[index-1] > value) {
+      A[index] = A[index-1];
+      index--;
+    }
+    A[index] = value;
+  }
+  return;
+
+}
+
+```
+
+``` {.example}
+1 2 3 3 4 4 5 6 7 8 9 9 19 20 23 34 45 90 345 546 23465
+```
+
+merge
+=====
+
+Algorithm {#algorithm-4}
+---------
+
+    A[a] for a -> 0, 1, 2.....l-1
+    ll = 0
+    rr = l-1
+    mergersort(A, ll, rr)
+
+    mergersort(A, ll, rr)
+      solang ll < rr
+        dd = (ll+rr)/2
+        A1[a] for a-> ll...dd
+        A2[a] for a -> dd+1..rr
+        mergersort(A1, ll, dd)
+        mergersort(A2, dd+1, rr)
+        merge(A1, ll, dd, A2, dd+1, rr)
+      else return
+
+    merge(A1, A2)
+      A1[i] for i -> 0...I
+      A2[j] for j -> 0...J
+      C[k]  for k -> 0....I+J
+      if A1[i] > A2[j] && i < I && j < J
+        C[k] <- A2[j]
+        k++
+        j++
+      if i < I
+      C[k...k+(I-i)] <- A1[i...I]
+      if J < J
+      C[k...k+(J-j)] <- A2[j...J]
+
+    A[a] for a -> 0, 1, 2....l-1
+    mergersort(A)
+
+    mergersort(A):
+      if len(A) > 1:
+        A1, A2 <- A
+        A1 =  mergersort(A1)
+        A2 =  mergersort(A2)
+        return  merge(A1, A2)
+      else return A
+    merge(A1, A2):
+      A1[i] for i -> 0...I
+      A2[j] for j -> 0...J
+      C[k] for k -> 0...I+J
+      while i < I and j < J:
+        if A1[i] > A2[j]:
+          C[k] <- A2[j]
+          j++
+        else C[k] <- A1[i]
+          i++
+        k++
+      while i <= I
+       C[k] <- A1[i]
+      while j <= J
+      C[k] <- A2[j]
+     return C
+
+Python
+------
+
+``` {.ipython results="output" exports="both"}
+def mergesort(list1):
+    if len(list1) <= 1:
+        return list1
+    mid = int(len(list1)/2)
+    lista = list1[:mid]
+    listb = list1[mid:]
+    lista = mergesort(lista)
+    listb = mergesort(listb)
+    return merge(lista, listb)
+
+def merge(lista, listb):
+    result = []
+    i = 0
+    j = 0
+    while(i < len(lista) and j < len(listb)):
+        if lista[i] > listb[j]:
+            result.append(listb[j])
+            j += 1
+        else:
+            result.append(lista[i])
+            i += 1
+    result += lista[i:]
+    result += listb[j:]
+    return result
+list1 = [2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 19]
+langdu = len(list1)
+list1 = mergesort(list1)
+print(list1)
+```
+
+``` {.example}
+[1, 2, 3, 3, 4, 4, 5, 6, 7, 8, 9, 9, 19, 20, 23, 34, 45, 90, 345, 546, 23465]
+```
+
+Java
+----
+
+mit index augenment
+
+``` {.java classname="Merging" results="output" exports="both"}
+import java.util.*;
+class Merging
+{
+    public static void main(String[] args)
+    {
+        int a [] = {2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 19};
+        int langdu = a.length-1;
+        mergsort(a, 0, langdu );
+        for(int var : a){
+            System.out.printf("%d ", var);
+        }
+    }
+    private static void mergsort(int [] a, int lo, int hi){
+        if (lo >= hi) {
+            return;
+        }
+        int mid = lo + (hi-lo)/2;
+        mergsort(a, lo, mid);
+        mergsort(a, mid+1, hi);
+        merge(a, lo, mid, hi);
+    }
+    private static void merge(int [] a, int lo, int mid, int hi){
+        int [] news = new int [hi-lo+1];
+        int p = lo;
+        int q = mid+1;
+        int index = 0;
+        while(p <= mid && q <= hi){
+            if (a[p] > a[q]) {
+                news[index++] = a[q++];
+            }else{
+                news[index++] = a[p++];
+            }
+        }
+        while(p <= mid){
+            news[index++] = a[p++];
+        }
+
+        while(q <= hi){
+            news[index++] = a[q++];
+        }
+        System.arraycopy(news, 0, a, lo, hi-lo+1);
+    }
+}
+
+```
+
+``` {.example}
+1 2 3 3 4 4 5 6 7 8 9 9 19 20 23 34 45 90 345 546 23465 
+```
+
+without index augenment
+
+``` {.java classname="Merginge" results="output" exports="both"}
+import java.util.*;
+class Merginge
+{
+    public static void main(String[] args)
+    {
+        int a [] = {2, 1, 3, 4, 5, 9, 7, 8, 6, 10, 2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 19};
+        int [] result = mergsort(a);
+        for(int var : result){
+            System.out.printf("%d ", var);
+        }
+    }
+    private static int [] mergsort(int [] a){
+        if (a.length <= 1) {
+            return a;
+        }
+        int mid = a.length/2;
+        int [] left = new int [mid];
+        int [] right = new int [a.length - mid];
+        for (int i = 0; i < mid; i++) {
+            left[i] = a[i];
+                }
+        for (int i = mid; i < a.length; i++) {
+            right[i-mid] = a[i];
+                }
+        left = mergsort(left);
+        right = mergsort(right);
+        return merge(left, right);
+    }
+    private static int[] merge(int [] left, int [] right){
+        int lenleft = left.length-1;
+        int leftindex = 0;
+        int lenright = right.length-1;
+        int rightindex = 0;
+        int [] result = new int[lenleft+lenright+2];
+        int index = 0;
+        while(leftindex <= lenleft && rightindex <= lenright){
+            if (left[leftindex] > right[rightindex]) {
+                result[index++] = right[rightindex++];
+            }else{
+                result[index++] = left[leftindex++];
+            }
+        }
+        while(leftindex <= lenleft){
+            result[index++] = left[leftindex++];
+        }
+        while(rightindex <= lenright){
+            result[index++] = right[rightindex++];
+        }
+        return result;
+    }
+}
+
+```
+
+``` {.example}
+1 1 2 2 3 3 3 4 4 4 5 5 6 6 7 7 8 8 9 9 9 10 19 20 23 34 45 90 345 546 23465 
+```
+
+C/C++
+-----
+
+``` {.c org-language="C" results="output" exports="both"}
+#include <stdio.h>
+#include <stdlib.h>
+#define N 7
+void merge(int arr[], int low, int mid, int high){
+    int i, k;
+    int *tmp = (int *)malloc((high-low+1)*sizeof(int));
+    int left_low = low;
+    int left_high = mid;
+    int right_low = mid + 1;
+    int right_high = high;
+    for(k=0; left_low<=left_high && right_low<=right_high; k++){
+        if(arr[left_low]<=arr[right_low]){
+            tmp[k] = arr[left_low++];
+        }else{
+            tmp[k] = arr[right_low++];
+        }
+    }
+    if(left_low <= left_high){  
+      for(i=left_low;i<=left_high;i++)
+        tmp[k++] = arr[i];
+    }
+    if(right_low <= right_high){
+      for(i=right_low; i<=right_high; i++)
+        tmp[k++] = arr[i];
+    }
+    for(i=0; i<high-low+1; i++)
+        arr[low+i] = tmp[i];
+    free(tmp);
+    return;
+}
+void merge_sort(int arr[], unsigned int first, unsigned int last){
+    int mid = 0;
+    if(first<last){
+        mid = (first+last)/2; /* 注意防止溢出 */
+        merge_sort(arr, first, mid);
+        merge_sort(arr, mid+1,last);
+        merge(arr,first,mid,last);
+    }
+    return;
+}
+int main(){
+    int i;
+    int a[N]={32,12,56,78,76,45,36};
+    printf ("排序前 \n");
+    for(i=0;i<N;i++)
+        printf("%d\t",a[i]);
+    merge_sort(a,0,N-1);  // 排序
+    printf ("\n 排序后 \n");
+    for(i=0;i<N;i++)
+        printf("%d\t",a[i]); printf("\n");
+    system("pause");
+    return 0;
+}
+
+```
+
+``` {.example}
+排序前 
+32    12  56  78  76  45  36  
+ 排序后 
+12    32  36  45  56  76  78
+```
+
+quick
+=====
+
+Algorithm {#algorithm-5}
+---------
+
+    A[a] for a -> 0, 1, 2...l-1:
+    quicksort(A, 0, l-1)
+
+    quicksort(A, start, end):
+      if  start >= end:
+        return;
+      else:
+        pivot = A[start]
+        int i = start
+        int j = end
+        while(i != j):
+          whil (j > i && A[j] > pivot):
+              j--
+          exchange(A[i], A[j])
+          while(i < j && A[i] < pivot):
+              i++
+          exchange(A[i], A[j])
+
+        quicksort(A, start, i+1)
+        quicksort(A, i+1, end)
+
+Python
+------
+
+``` {.ipython results="output" exports="both"}
+def quicksort(A, start, end):
+    if start >= end:
+        return
+    pivot = A[start]
+    i = start
+    j = end
+    while i != j:
+        while j > i and A[j] >= pivot:
+            j -= 1
+        A[i], A[j] = A[j], A[i]
+        while i < j and A[i] <= pivot:
+            i += 1
+        A[i], A[j] = A[j], A[i]
+    quicksort(A, start, j-1)
+    quicksort(A, i+1, end)
+    return
+
+
+
+list1 = [2, 1, 3, 4, 5, 3, 5, 7, 8, 45,  9, 25,
+         34, 23, 345, 546, 20, 23465, 90, 19]
+langdu = len(list1)
+quicksort(list1, 0, langdu-1)
+print(list1)
+```
+
+``` {.example}
+[1, 2, 3, 3, 4, 5, 5, 7, 8, 9, 19, 20, 23, 25, 34, 45, 90, 345, 546, 23465]
+```
+
+Java
+----
+
+``` {.java classname="Quicking" results="output" exports="both"}
+class Quicking
+{
+    public static void main(String[] args)
+    {
+        int a [] = {2, 1, 3, 4, 5,9087, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 19};
+        int langdu = a.length-1;
+        quicksort(a, 0, langdu);
+        for (int var: a) {
+            System.out.printf("%d ", var);
+        }
+    }
+    private static void quicksort(int [] a, int start, int end ){
+        if (start >= end) {
+            return;
+        }
+        int pivot = a[start];
+        int i = start;
+        int j = end;
+        while(i != j){
+            while(j > i && a[j] >= pivot){
+                j--;
+            }
+            int tmp = a[j];
+            a[j] = a[i];
+            a[i] = tmp;
+            while(i < j && a[i] <= pivot){
+                i++;
+            }
+            tmp = a[j];
+            a[j] = a[i];
+            a[i] = tmp;
+        }
+        quicksort(a, start, i-1);
+        quicksort(a, i+1, end);
+    }
+}
+
+```
+
+``` {.example}
+1 2 3 3 4 4 5 6 7 8 9 9 19 20 23 34 45 90 345 546 9087 23465 
+```
+
+C/C++
+-----
+
+``` {.c org-language="C" results="output" exports="both"}
+  void swap(int *a, int *b){
+    int tmp = *b;
+    *b = *a;
+    *a = tmp;
+  }
+
+  void quicksort(int a[], int start, int end){
+    if (start >= end) {
+      return;
+    }
+    int pivot = a[start];
+    int i = start;
+    int j = end;
+    while (i != j) {
+      while (j > i && a[j] > pivot) 
+        j--;
+      swap(&a[i], &a[j]);
+      while (i < j && a[i] < pivot) 
+        i++;
+      swap(&a[i], &a[j]);
+      quicksort(a, start, i-1);
+      quicksort(a, i+1, end);
+      return;
+    }
+  }
+
+int main(int argc, char *argv[])
+{
+  int A[] = {2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 190};
+  int langdu = sizeof(A)/sizeof(int);
+  quicksort(A, 0, langdu-1);
+  for (int i = 0; i < langdu; ++i) {
+    printf("%d ", A[i]);
+  }
+  return 0;
+}
+```
+
+``` {.example}
+1 2 3 4 3 4 5 6 7 8 9 9 20 23 34 45 190 345 546 90 23465
+```
+
+heap
+====
+
+Algorithm {#algorithm-6}
+---------
+
+  --------------------- -----------------------------------------------------------
+  build~heap~()         build all the data to heap
+  heapify(list, n, i)   from i on, can only grante that, the frist is the biggest
+  --------------------- -----------------------------------------------------------
+
+at frist build the heap, and then each time take the biggest one
+n:length, i the startup
+
+    heapify(list, n, i){  
+      leftchild = 2i+1
+      rightchild = 2i+2
+      maxindex = i
+      if leftchild < n && list[leftchild] > list[maxindex]:
+        maxindex = leftchild
+      if rightchild < n && list[rightchild] > list[maxindex]:
+        maxindex = rightchild
+      if maxindex != i:
+        exchange(list[maxindex], list[i])
+        heapify(list, n, maxindex)
+      }
+    build_heap(list, n){
+      last_parent = (n-1)/2
+      for i -> last_parent....0:
+        heapify(list, n, i) 
+      }
+
+
+    build_heap(list, n)
+    for i -> n-1....0:
+      swap(list, i, 0)
+      heapify(list, i, 0)
+
+python
+------
+
+``` {.ipython results="output" exports="both"}
+def heapify(list1, n, i):
+    leftchild = 2*i+1
+    rightchild = 2*i +2
+    maxindex = i
+    if leftchild < n and list1[leftchild] > list1[maxindex]:
+        maxindex = leftchild
+    if rightchild < n and list1[rightchild] > list1[maxindex]:
+        maxindex = rightchild
+    if maxindex != i:
+        list1[maxindex], list1[i] = list1[i], list1[maxindex]
+        heapify(list1, n, maxindex)
+
+def heap_build(list1, n):
+    last_parent = (n-1)//2
+    for i in range(last_parent+1):
+        j = last_parent-i
+        heapify(list1, n, j)
+
+
+list1 = [2, 1, 3, 4, 5, 3, 5, 7, 8, 45,  9, 25, 34, 23, 345, 546, 20, 23465, 90, 19]
+langdu = len(list1)
+heap_build(list1, langdu)
+print(list1)
+for i in range(langdu):
+    j = langdu-1-i
+    list1[0], list1[j] = list1[j], list1[0]
+    heapify(list1, j, 0)
+
+print(list1)
+
+```
+
+``` {.example}
+[23465, 546, 345, 90, 45, 34, 23, 20, 8, 19, 9, 25, 3, 3, 5, 7, 1, 2, 4, 5]
+[1, 2, 3, 3, 4, 5, 5, 7, 8, 9, 19, 20, 23, 25, 34, 45, 90, 345, 546, 23465]
+```
+
+Java
+----
+
+``` {.java classname="HeapSorting" results="output" exports="both"}
+class HeapSorting
+{
+    public static void main(String[] args)
+    {
+        int a [] = {2, 1, 3, 4, 5,9087, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 190};
+        int langdu = a.length;
+        build_heap(a, langdu);
+        for (int i = langdu-1; i >= 0; i--) {
+            int tmp = a[0];
+            a[0] = a[i];
+            a[i] = tmp;
+            heapify(a, i, 0);
+        }
+        for (int i = 0; i < langdu; i++) {
+            System.out.printf("%d ", a[i]);
+        }
+    }
+    private static void heapify(int a[], int n, int i){
+        int leftchild = i*2+1;
+        int rightchild = i*2+2;
+        int maxindex = i;
+        if (leftchild < n && a[leftchild] > a[maxindex] ) {
+            maxindex = leftchild;
+        }
+        if (rightchild < n && a[rightchild] > a[maxindex]) {
+            maxindex = rightchild;
+        }
+        if (maxindex != i) {
+            int tmp = a[maxindex];
+            a[maxindex] = a[i];
+            a[i] = tmp;
+            heapify(a, n, maxindex);
+        }
+    }
+    private static void build_heap(int a[], int n){
+        int last_parent = (n-1-1)/2;
+        for (int i = last_parent; i >= 0; i--) {
+            heapify(a, n, i);
+        }
+    }
+}
+```
+
+``` {.example}
+1 2 3 3 4 4 5 6 7 8 9 9 20 23 34 45 90 190 345 546 9087 23465 
+```
+
+C/C++
+-----
+
+``` {.c org-language="C" results="output" exports="both"}
+  void swap(int *a, int *b){
+    int tmp = *a;
+    *a = *b;
+    *b = tmp;
+  }
+  void heapify(int A[], int N, int i){
+    int leftchild = i*2+1;
+    int rightchild = i*2+2;
+    int maxindex = i;
+    if (leftchild < N && A[leftchild] > A[maxindex]) {
+      maxindex = leftchild;
+    }
+    if (rightchild < N && A[rightchild] > A[maxindex]) {
+      maxindex = rightchild;
+    }
+    if (maxindex != i) {
+      swap(&A[maxindex], &A[i]);
+      heapify(A, N, maxindex);
+    }
+  }
+
+  void build_heap(int A[], int N){
+    int last_parent = (N-1-1)/2;
+    int i;
+    for (i = last_parent; i >= 0; i--) {
+      heapify(A, N, i);
+    }
+  }
+
+int main(int argc, char *argv[])
+{
+  int A[] = {2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 190};
+  int N = sizeof(A)/sizeof(int);
+  build_heap(A, N);
+  for (int i = N-1; i >= 0; i--) {
+    swap(&A[i], &A[0]);
+    heapify(A, i, 0);
+  }
+
+  for (int j = 0; j < N; ++j) {
+    printf("%d ",A[j]);
+  }
+  return 0;
+}
+
+
+```
+
+``` {.example}
+1 2 3 3 4 4 5 6 7 8 9 9 20 23 34 45 90 190 345 546 23465
+```
+
+Typescript
+----------
+
+swap in-place
+
+``` {.typescript exports="both" results="both"}
+// let swap = function (left:number, right:number){
+//       var temp = left
+//       left = right
+//       right = temp
+//   }
+
+let heapfly =  function(list:number[], length:number, index:number){
+      var leftchild = index*2+1
+      var rightchild = index*2+2
+      var maxindex = index
+      if (leftchild < length && list[leftchild] >list[maxindex]) {
+          let temp = leftchild
+          leftchild = maxindex
+          maxindex = temp
+//          swap(leftchild, minindex)
+      }
+
+    if (rightchild < length && list[rightchild]>list[maxindex]) {
+        let tmp = rightchild
+        rightchild = maxindex
+        maxindex = tmp
+        //  swap(leftchild, minindex)
+      }
+      if (maxindex != index) {
+          let tp = list[maxindex]
+          list[maxindex] = list[index]
+          list[index] = tp
+          heapfly(list, length, maxindex)
+      }
+  }
+
+ let build_heap = function (list:number[], lenght:number){
+      var lastperent = Math.floor((length-1-1) / 2);
+      for (var i = lastperent; i >= 0; i--) {
+          heapfly(list, length, i);
+      }
+  }
+
+  var list: number[] = [2, 1, 3, 4, 5, 3, 5, 7, 8, 45,  9, 25, 34, 23, 345, 546, 20, 23465, 90, 19];
+  console.log(list)
+  var length: number = list.length;
+  build_heap(list, length)
+
+  for (var i = length-1; i >= 0; i--) {
+      let temp = list[i]
+      list[i] = list[0]
+      list[0] = temp
+      heapfly(list, i, 0)
+  }
+
+  console.log(list)
+
+```
+
+swap in function
+
+``` {.typescript exports="both" results="both"}
+let swap = function (left:number, right:number){
+  return [right, left]
+  }
+
+let heapfly =  function(list:number[], length:number, index:number){
+      var leftchild = index*2+1
+      var rightchild = index*2+2
+      var maxindex = index
+      if (leftchild < length && list[leftchild] >list[maxindex]) {
+          [leftchild, maxindex] = swap(leftchild, maxindex)
+      }
+
+    if (rightchild < length && list[rightchild]>list[maxindex]) {
+        [rightchild, maxindex] = swap(rightchild, maxindex)
+      }
+      if (maxindex != index) {
+          [list[maxindex], list[index]] = swap(list[maxindex], list[index])
+          heapfly(list, length, maxindex)
+      }
+  }
+ let build_heap = function (list:number[], lenght:number){
+      var lastperent = Math.floor((length-1-1) / 2);
+      for (var i = lastperent; i >= 0; i--) {
+          heapfly(list, length, i);
+      }
+  }
+  var list: number[] = [2, 1, 3, 4, 5, 3, 5, 7, 8, 45,  9, 25, 34, 23, 345, 546, 20, 23465, 90, 19];
+  console.log(list)
+  var length: number = list.length;
+  build_heap(list, length)
+
+  for (var i = length-1; i >= 0; i--) {
+      [list[i], list[0]]= swap(list[i], list[0])
+      heapfly(list, i, 0)
+  }
+  console.log(list)
+
+```
+
+``` {.example}
+[
+    2,  1,     3,  4,   5,
+    3,  5,     7,  8,  45,
+    9, 25,    34, 23, 345,
+  546, 20, 23465, 90,  19
+]
+[
+   1,  2,   3,   3,     4,
+   5,  5,   7,   8,     9,
+  19, 20,  23,  25,    34,
+  45, 90, 345, 546, 23465
+]
+```
+
+Shell Sort
+==========
+
+Algorithm {#algorithm-7}
+---------
+
+    A[a] for a -> 0, 1, 2....l-1
+    for G[g] for g -> 0, 1, ...m
+    for j -> 0, 1, 2...m-1:
+      d = G[j]
+      for i -> d, 2d, 3d   
+        value <- A[i]
+        index <- i
+        while(A[index-d] > value && index > 0)
+            A[index] = A[index-d]
+            index -= d        
+        A[index] <- value
+
+Python
+------
+
+``` {.ipython results="output" exports="both"}
+def shellsort(list1, N):
+    G = [7, 5, 3, 1]
+    for d in G:
+        i = d
+        while i < N:
+            value = list1[i]
+            index = i
+            while index > 0 and list1[index-d] > value:
+                list1[index] = list1[index-d]
+                index -= d
+            i += d
+            list1[index] = value
+
+list1 = [2, 1, 3, 4, 5, 3, 5, 7, 8, 45,  9, 25, 34, 23, 345, 546, 20, 23465, 90, 19, 900]
+langdu = len(list1)
+shellsort(list1, langdu)
+print(list1)
+```
+
+``` {.example}
+[1, 2, 3, 3, 4, 5, 5, 7, 8, 9, 19, 20, 23, 25, 34, 45, 90, 345, 546, 900, 23465]
+```
+
+Java
+----
+
+``` {.java classname="ShellSorting" results="output" exports="both"}
+class ShellSorting
+{
+    public static void main(String[] args)
+    {
+        int a [] = {2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 19};
+        int langdu = a.length;
+        shellsort(a, langdu);
+        for (int i = 0; i < langdu; i++) {
+            System.out.printf("%d ", a[i]);
+        }
+    }
+    private static void shellsort(int []A, int N){
+        int Grap [] = {7, 5, 3, 1};
+        for (int i = 0; i < Grap.length; i++) {
+            int d = Grap[i];
+            for (int j = d; j < N; j+=d) {
+                int value = A[j];
+                int index = j;
+                while(index > 0 && A[index-d] > value){
+                    A[index] = A[index-d];
+                    index -= d;
+                }
+                A[index] = value;
+            }
+        }
+    }
+}
+
+```
+
+``` {.example}
+1 2 3 3 4 4 5 6 7 8 9 9 19 20 23 34 45 90 345 546 23465 
+```
+
+C/C++
+-----
+
+``` {.c org-language="C" results="output" exports="both"}
+int main(int argc, char *argv[])
+{
+  int A[] = {2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 19, 23, 45,78};
+  int langdu = sizeof(A)/sizeof(int);
+  shellsort(A, langdu);
+  for (int i = 0; i < langdu; ++i) {
+    printf("%d ",A[i] );
+  }
+  return 0;
+}
+void shellsort(int A[], int langdu){
+  int grap[] ={7, 5, 3, 1};
+  int N = sizeof(grap) / sizeof(int);
+  for (int j = 0; j < N; ++j) {
+    int d = grap[j];
+    for (int i = d; i < langdu; i=i+d) {
+      int value = A[i];
+      int index = i;
+      while (index > 0 && A[index-d] > value) {
+        A[index] = A[index-d];
+        index -= d;
+      }
+      A[index] = value;
+    }
+  }
+  return;
+}
+
+```
+
+``` {.example}
+1 2 3 3 4 4 5 6 7 8 9 9 19 20 23 23 34 45 45 78 90 345 546 23465
+```
+
+Redix
+=====
+
+Description
+-----------
+
+    N numbers are waiting to be sorted,
+    each number has maxmum d digit,
+    and each digit is from 0 to k
+
+Algorithmu
+----------
+
+    Least significant digital OR Most significant digital
+
+    LSD: from right to left, only sort all numbers according to the last digit(better with conut sort)
+    and then move  to left on the second digit, do it again
+    Time complexity  $\Theta (d(n+k))$
+
+Bucket Sort
+===========
+
+Algorithm {#algorithm-8}
+---------
+
+    all data are uniformly distributed in a range
+    spilt the range into n equal-sized intervals
+    independently chosen data and put them into corresponding interval
+    sort each interval(better with insert sort)
+    output by list in order of all buckets
+
+Count Sort
+==========
+
+Algorithm {#algorithm-9}
+---------
+
+    A[n] for n from 1 to N will be sorted
+    using additional array C[k]
+    where k from min(A) to max(A)
+    output B[n] for n from 1 to N
+
+    for i from 1 to n: C[i] <- 0
+    for n from 1 to N: C[A[n]]++
+    for i from 2 to n: C[i] = C[i]+C[i-1]
+    for n from N to 1: B[C[A[n]]] = A[n], C[A[n]]--
+
+Python
+------
+
+``` {.ipython results="output" exports="both"}
+A = [1,4,2,5,3,6,2,5,3,6,3,4,7,8,4]
+print(A)
+lengthA = len(A)
+minA = min(A)
+maxA = max(A)
+lengthC = maxA-minA+1
+
+C = [0]*lengthC
+
+for n in range(lengthA):
+  C[A[n]-1] = C[A[n]-1]+1
+print(C)
+
+for i in range(1, lengthC,1):
+  C[i] = C[i]+C[i-1]
+print(C)
+
+B = [0]*lengthA
+for n in range(lengthA-1,-1,-1):
+  B[C[A[n]-1]-1] = A[n]
+  C[A[n]-1] = C[A[n]-1]-1
+
+print(B)
+
+
+```
+
+``` {.example}
+[1, 4, 2, 5, 3, 6, 2, 5, 3, 6, 3, 4, 7, 8, 4]
+[1, 2, 3, 3, 2, 2, 1, 1]
+[1, 3, 6, 9, 11, 13, 14, 15]
+[1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7, 8]
+```
+
+Dichotomy
+=========
+
+C/C++
+-----
+
+``` {.c org-language="C" results="output" exports="both"}
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int dichotomy(int **p, int *start, int *end, int x){
+  if (*p == NULL) {
+    printf(" This array is empty !\n");
+    return -1;
+  }
+  if (x < *start || x > *end) {
+    printf("this element is not in the array\n");
+    return -1;
+  }
+  if (x == *start || x == *end) {
+    return x;
+  }
+  int len = 0;
+  for (int *temp = *p; *temp != *end; temp++) {
+    len++;
+  }
+
+  int mid = *(*p+len/2);
+  if (mid == *start || x == *end) {
+    return -1;
+  }
+
+  if (mid >= x) {
+    return dichotomy(p, start, &mid, x);
+  }else {
+    int * newp = *p+len/2;
+    return dichotomy(&newp, &mid, end, x);
+  }
+}
+
+int main(int argc, char *argv[])
+{
+  int array[] = {1,3,7,12,45,78,234,678,5678};
+  int x = 690;
+  int *p = array;
+  int *start = array;
+  int *end1 = &array[8];
+  int *end = (int *)(&array+1);
+  int a = dichotomy(&p, start, (end-1), x);
+  if (a == x) {
+      printf("the element is found !\n");
+  }else {
+      printf("the element is not found !\n");
+  }
+  return 0;
+}
+
+
+```
+
+Using (int \*)(&list+1)-1 to find the last elemenet of list\[\]
+
+``` {.c org-language="C" results="output" exports="both"}
+#include <stdio.h>
+int isinarray(int **p, int *start, int *end, int x){
+  if (*p == NULL) {
+    return 0;
+  }
+  if (x < *start || x > *end) {
+    return 0;
+  }
+
+  if (x == *start || x == *end) {
+    return 1;
+  }
+
+  int i = 0;
+  for (int *temp = *p; *temp != *end; temp++) {
+    i++;
+  }
+  if (i == 1 && (x != *start || x != *end)) {
+    return 0;
+  }
+
+  int medium = *(*p+i/2);
+  if (medium >= x) {
+    return isinarray(p, start, &medium, x);
+  }else {
+    int *m = *p+i/2;
+    return isinarray(&m, &medium, end , x);
+  }
+}
+
+
+int main(int argc, char *argv[])
+{
+  int list [] = {1,3,6,9,12,34,56,78,90,123,456,789};
+  int *p = list;
+  int x = 39;
+  if (isinarray(&p, list, (int *)(&list+1)-1, x)) {
+    printf("IN");
+  }else {
+    printf("NOT IN");
+  }
+  return 0;
+}
+
+```
+
+``` {.example}
+NOT IN
+```
+
+Stupidmax
+=========
+
+``` {.c org-language="C"}
+  #include <stdio.h>
+#include <math.h>
+#define N 5
+
+int Mdiff(int a[N][N]){
+  int myglobaldiff = 0;
+  int mylocaldiff = 0;
+  int mylocaldiff_tmp = 0;
+  int diff = 0;
+  for (int x = 0; x < N; x++) {
+    for (int i = 0; i < N; ++i) {
+      mylocaldiff_tmp = a[x][i]-a[x][i];
+      for (int y = 0; y < N; y++) {
+    diff = fabs(a[x][i] - a[x][y+i]);
+    if (y+i < N && diff > mylocaldiff_tmp){
+      mylocaldiff_tmp = diff;
+    }
+      }
+      if (mylocaldiff_tmp > mylocaldiff){
+    mylocaldiff =  mylocaldiff_tmp;
+      }
+    }
+    if (mylocaldiff > myglobaldiff){
+      myglobaldiff = mylocaldiff;
+    }
+  }
+  return myglobaldiff;
+}
+
+
+int main(int argc, char *argv[])
+{
+
+  int a [5][5] = {
+    {
+      1,2,3,4,52220
+    },
+    {
+      3,4,62,56,2
+    },
+    {
+      3,4,62,56,82
+    },
+    {
+      10,20,62,56,2220,
+    },
+    {
+      3,4,62,56,29
+    }
+  };
+  int tmpmax = Mdiff(a);
+  printf("%d", tmpmax);
+  return 0;
+}
+
+
+```
+
+HoffmannCode
+============
+
+C/C++
+-----
+
+``` {.c org-language="C" results="output" exports="both"}
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+typedef struct {
+  int data;
+  int parent, lboy, rboy;
+}HTNode, *HoffmanTree;
+typedef char ** HoffmanCode;
+void Select(HoffmanTree HT, int *s1, int *s2, int end){
+  int min1, min2;
+  int i = 1;
+  while (HT[i].parent != 0 && i <= end) {
+    i++;
+  }
+  min1 =  HT[i].data;
+  *s1 = i;
+  i++;
+  while (HT[i].parent != 0 && i <= end) {
+    i++;
+  }
+  if (HT[i].data <= min1) {
+    min2 = min1;
+    *s2 = *s1;
+    min1 = HT[i].data;
+    *s1 = i;
+  }else {
+    min2 = HT[i].data;
+    *s2 = i;
+  }
+  for (int j = i+1; j <= end; j++) {
+    if (HT[j].parent != 0) {
+      continue;
+    }
+    if (HT[j].data <= min1) {
+      min2 = min1;
+      *s2 = *s1;
+      min1 = HT[j].data;
+      *s1 = j;
+    }else {
+      min1 = HT[j].data;
+      *s2 = j;
+    }
+  }
+}
+
+
+void CreateHoffman(HoffmanTree *HT, int *list, int length){
+  if (length <= 1) {
+    return;
+  }
+  int m = 2*length-1;
+  *HT = (HoffmanTree)malloc(sizeof(HTNode) * m);
+  int i;
+  for (i = 1; i <= length; i++) {
+    (*HT+i)->data = *(list+i-1);
+    (*HT+i)->parent = 0;
+    (*HT+i)->lboy = 0;
+    (*HT+i)->rboy = 0;
+  }
+  for (i = length+1; i <= m; i++) {
+    (*HT+i)->data = 0;
+    (*HT+i)->parent = 0;
+    (*HT+i)->lboy = 0;
+    (*HT+i)->rboy = 0;
+  }
+
+  for (i = length+1; i <=m; i++) {
+      int s1, s2;
+      Select(*HT, &s1, &s2, i-1);
+      (*HT)[s1].parent = (*HT)[s2].parent = i;
+      (*HT)[i].lboy = s1;
+      (*HT)[i].rboy = s2;
+      (*HT)[i].data = (*HT)[s1].data + (*HT)[s2].data;
+  }
+}
+
+void CreateHoffmanCode(HoffmanCode *hcode, HoffmanTree HT, int length){
+  *hcode = (HoffmanCode)malloc(sizeof(char * ) * length+1);
+  char *cd = (char *)malloc(sizeof(char) * length);
+  cd[length-1] = '\n';
+  for (int i  = 1; i <= length; i++) {
+    int start = length -1;
+    int c = i;
+    int j = HT[c].parent;
+    while (j != 0) {
+      if (HT[j].lboy == c) {
+    cd[--start] = '1';
+      }
+      else {
+    cd[--start] = '0';
+      }
+      c = j;
+      j = HT[j].parent;
+    }
+    (*hcode)[i] = (char *)malloc(sizeof(char )*length-start);
+    strcpy((*hcode)[i], &cd[start]);
+  }
+  free(cd);
+}
+void showHoffmanCode(HoffmanCode hcode, int *list, int length){
+  printf("Here we go\n");
+  for (int i = 1; i <= length; i++) {
+    printf("%d : is %s\n",list[i-1], hcode[i]);
+  }
+}
+
+int main(int argc, char *argv[])
+{
+  HoffmanTree htree;
+  HoffmanCode hcode;
+  int list[] = {1,18,2,56,3,4, 44,5,7,34,78,90,234,789};
+  int length = sizeof(list)/sizeof(int);
+  CreateHoffman(&htree, list, length);
+  CreateHoffmanCode(&hcode, htree, length);
+  showHoffmanCode(hcode, list, length);
+  return 0;
+}
+
+
+```
+
+``` {.example}
+Here we go
+1 : is 0000001
+
+18 : is 00001
+
+2 : is 000001
+
+56 : is 0001
+
+3 : is 0000000001
+
+4 : is 000000001
+
+44 : is 00000001
+
+5 : is 0000000000001
+
+7 : is 000000000001
+
+34 : is 00000000001
+
+78 : is 001
+
+90 : is 01
+
+234 : is 0
+
+789 : is 0000000000000
+```
+
+JosephusRing
+============
+
+C/C++
+-----
+
+    #include <stdio.h>
+    #include <stdlib.h>
+    typedef struct node{
+      int number;
+      struct node * next;
+    }person;
+    person * initLink(int n){
+      person * head=(person*)malloc(sizeof(person));
+      head->number=1;
+      head->next=NULL;
+      person * cyclic=head;
+      for (int i=2; i<=n; i++) {
+        person * body=(person*)malloc(sizeof(person));
+        body->number=i;
+        body->next=NULL; 
+        cyclic->next=body;
+        cyclic=cyclic->next;
+      }
+      cyclic->next=head;//首尾相连
+      return head;
+    }
+
+    void findAndKillK(person * head,int k,int m){
+
+      person * tail=head;
+      //找到链表第一个结点的上一个结点，为删除操作做准备
+      while (tail->next!=head) {
+        tail=tail->next;
+      }
+      person * p=head;
+      //找到编号为k的人
+      while (p->number!=k) {
+        tail=p;
+        p=p->next;
+      }
+      //从编号为k的人开始，只有符合p->next==p时，说明链表中除了p结点，所有编号都出列了，
+      while (p->next!=p) {
+        //找到从p报数1开始，报m的人，并且还要知道数m-1de人的位置tail，方便做删除操作。
+        for (int i=1; i<m; i++) {
+          tail=p;
+          p=p->next;
+        }
+        tail->next=p->next;//从链表上将p结点摘下来
+        printf("出列人的编号为:%d\n",p->number);
+        free(p);
+        p=tail->next;//继续使用p指针指向出列编号的下一个编号，游戏继续
+      }
+      printf("出列人的编号为:%d\n",p->number);
+      free(p);
+    }
+
+    int main() {
+      printf("输入圆桌上的人数n:");
+      /* int n; */
+      /* scanf("%d",&n); */
+      person * head=initLink(n);
+      printf("从第k人开始报数(k>1且k<%d)：",n);
+      /* int k; */
+      /* scanf("%d",&k); */
+      printf("数到m的人出列：");
+      /* int m; */
+      /* scanf("%d",&m); */
+      findAndKillK(head, k, m);
+      return 0;
+    }
+
+KMPmachting
+===========
+
+C/C++
+-----
+
+``` {.c org-language="C" results="output" exports="both"}
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void genertarray(char pattern[], int prefix[], int n){
+  prefix[0] = 0;
+  int len = 0;
+  int i =1;
+  while (i < n) {
+    if (pattern[i] == pattern[len]) {
+      len++;
+      prefix[i] = len;
+      i++;
+    }else {
+      if (len > 0) {
+    len = prefix[len-1];   //go the preious len, and matching again
+      }else {
+    prefix[i] = len;        // in case len <= 0, bzw, the first and second is not matching
+    i++;
+      }
+    }
+  }
+}
+
+void move_array(int prefix [], int n){
+  int i;
+  for ( i = n-1; i > 0; i--) {
+    prefix[i] = prefix[i-1];
+  }
+  prefix[0] = -1;
+}
+
+void kmp_search(char text[], char pattern[]){
+  int k = strlen(pattern);
+  int* prefix =(int *) (malloc(sizeof(int )* k));
+  genertarray(pattern, prefix, k);
+  move_array(prefix, k);
+
+  // text    index i, max n
+  // pattern index j, max m
+
+  int i = 0; int j = 0;
+  int n = strlen(text);
+  int m = strlen(pattern);
+  while (i < n) {
+    if (j == m-1 && text[i] == pattern[j]) { // if found
+      printf("Fonund at %d \n", i-j);
+      j = prefix[j];                         // still go forward
+    }
+    if (text[i] == pattern[j]) {            
+      i++;j++;
+    }else {
+      j = prefix[j];                        //if not matching
+      if (j == -1) {                        //if the first is not matching
+    i++;j++;
+      }
+    }
+  }
+}
+
+int main(int argc, char *argv[])
+{
+  char pattern[] = "ABABBBA"; 
+  char text[]    = "JUHkSABABBBABABA";
+  kmp_search(text, pattern);
+  return 0;
+}
+
+```
+
+``` {.example}
+Fonund at 5
+```
+
+C/C++
+-----
+
+``` {.c org-language="C" results="output" exports="both"}
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+//sort only the pure given numbers, and change each time the sort direction
+int recSort(int *start, int *end, int reverse){
+  int count = 0;
+
+  if (start == NULL || end == NULL) {
+    return 0;
+  }
+
+  if (start == end || start +1 == end) {
+    return 0;
+  }
+
+
+  int* p;
+  if (reverse) 
+    p = end -1;
+  else
+    p = start+1;
+
+
+  while (p < end && p > start ) {
+    if (*(p-1) < *p) {
+      int temp = *(p-1);
+      *(p-1) = *p;
+      *p = temp;
+      count++;
+    }
+
+    if (reverse)
+      p--;
+    else
+      p++;
+  }
+
+  if (reverse)
+    return count +  recSort(start+1, end, 0);
+  else
+    return count +  recSort(start, end-1, 1);
+
+}
+
+
+int main(int argc, char *argv[]) {
+
+  if (argc < 1) {
+    recSort(NULL, NULL, 0);
+    return -2;
+  }
+
+  int* f = malloc(sizeof(int) * (argc-1));
+  if (f == NULL) {
+    return -3;
+  }
+
+  for (int i = 1; i < argc; i++) {
+    f[i-1] =atoi(argv[i]);
+  }
+
+  printf("before the sort \n");
+  for (int i =1 ; i < argc; i++) {
+    printf("%d\n",f[i-1]);
+  }
+
+  int i=  recSort(f, &f[argc-1] , 0);
+  printf("alles in allem, %d times change  \n",i);
+
+  printf("after the sort \n");
+  for (int i =1 ; i < argc; i++) {
+    printf("%d\n",f[i-1]);
+ }
+
+
+  free(f);
+  return 0;
+}
+
+
+```
+
+Longest Substring Without Repeating Characters
+==============================================
+
+python
+------
+
+``` {.ipython results="output" exports="both"}
+class Solution:
+    def lengthOfLongestSubstring(self, s):
+        hashmap = {}
+        lastindex = 0
+        maxlen = 0
+        for i in range(len(s)):
+            if s[i] in hashmap:
+                lastindex = max(lastindex, hashmap[s[i]]+1)
+            maxlen = max(maxlen, i-lastindex+1)
+            hashmap[s[i]] = i
+        return maxlen
+
+ss = Solution()
+
+print(ss.lengthOfLongestSubstring("abcabcbb"))
+print(ss.lengthOfLongestSubstring("abcdefkj"))
+print(ss.lengthOfLongestSubstring("abc"))
+print(ss.lengthOfLongestSubstring("pwwkew"))
+print(ss.lengthOfLongestSubstring("abb"))
+print(ss.lengthOfLongestSubstring("abba"))
+```
+
+``` {.example}
+3
+8
+3
+3
+2
+2
+```
+
+k-way Merge
+===========
+
+description
+-----------
+
+L1, L2...Lk are all sorted array with n elements, will be mereged into
+one sorted array
+
+Naive merge
+-----------
+
+
+    merge L1 with L2 get l2
+    merge l2 with L3 get l3
+    ...
+    Time Compexity $$\Theta(n \cdot logk)$$
+
+rund merge
+----------
+
+    L1 with L2 for l2
+    L3 with L4 for l4
+    ...
+    L2 with L4 for l4
+    ...
+
+Heap merge
+----------
+
+build a heap with k element, which are from each array L, extract
+Max-Heap, and rebuild the Heap, in removed array L with new (next)
+element
+
+Dynamic program
+===============
+
+Description
+-----------
+
+变量类型， 坐标， 限标 都可以是一维或者多维 在状态转移函数中自己影响自己
+
+Maximum subarray
+================
+
+  A1.   $O(n^3)$        Erschöpfende Suche/ Brute-Force-Suche/ Exhaustive Search
+  ----- --------------- ----------------------------------------------------------
+  A2.   $O(n^2)$        Zwischen Prozessen mehr anwenden
+  A3.   $O(n \log n)$   Rekursive
+  A4.   $O(n)$          Max Maxsuffix
+
+blunt force $O(n^{3})$
+----------------------
+
+    A[a] for = 0 to n-1
+    max -> -Infty
+    for i = 1 to n
+      for j = i to n
+        for k = i to j
+          sum = sum+A[k]
+        if sum > max:
+          max = sum
+    return max
+
+iterative based $O(n^{2})$
+--------------------------
+
+    A[a] for a = 0 to n-1
+    max = -Infty
+    for i = 1 to n:
+      sum = 0
+      for j = i to n:
+        sum = sum + A[j]
+      if sum > max:
+        max = sum
+    return max
+
+dynamic programmierung $O(n)$
+-----------------------------
+
+    A[a] for a = 0 to n-1
+    max = - Infty
+    init array S with n elemenets 0
+    S[0] = A[0]
+    for i = 1 to n-1:
+      S[i] = max{S[i-1]+A[i], A[i]}
+      if S[i] > max:
+        max = S[i]
+    return max
+
+### Algorithm {#algorithm-10}
+
+    A[a] for a = 0 to n-1
+    max = 0
+    Stmp = 0
+    for i = 1 to n-1:
+      Stmp = max{Stmp+A[i], A[i]}
+      if Stmp > max:
+        max = Stmp
+    return max
+
+### C/C++
+
+``` {.c org-language="C" results="output" exports="both"}
+int main(int argc, char *argv[])
+{
+  int MaxSubArray(int A[], int N){
+    int i, b = 0, maxsum = 0;
+    for (i = 0; i < N; ++i) {
+      if (b > 0) {
+        b += A[i];
+      }else{
+        b = A[i];
+      }
+      if (b > maxsum) {
+        maxsum = b;
+      }
+    }
+    return maxsum;
+  }
+
+  int A[] = {2, 1, 3, 4, 5, 3, 6, 7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 19, 23, 45,78};
+  int length = sizeof(A)/sizeof(int);
+  int max = MaxSubArray(A, length);
+  printf("%d \n",max);
+  return 0;
+}
+
+```
+
+``` {.example}
+24794
+```
+
+maximum submatrix
+=================
+
+Brute force solution
+--------------------
+
+    list all submatrix,
+    sum = 0 
+    for xstart -> 0,1...l:
+        for xstop -> xstart+1, xstart+2...l:
+            for ystart -> 0, 1, 2....l:
+                for ystop -> ystart+1, ystart+2...l:
+                    for x -> xstart .... xstop:
+                        for y -> ystart .... ystop:
+                           sumsub += A[x][y]
+                    if sumsub > sum:
+                       sum = sumsub
+
+``` {.ipython results="output"}
+import random
+import numpy
+def maxsublist(arr, n):
+    b = 0
+    sumlist = 0
+    for j in range(n):
+        if b > 0:
+            b += arr[j]
+        else:
+            b = arr[j]
+        if b > sumlist:
+            sumlist = b
+    return sumlist
+
+
+def maxsubmatrix(A, l):
+    Acolmun = np.zeros(l)
+    summaxtrix = 0
+    for i in range(l):
+        if summaxtrix > 0:
+            Acolmun += A[i,:]
+            sumlist = maxsublist(Acolmun, l)
+            print(Acolmun)
+            print("the maximum sublist is: {}".format(sumlist))
+            print("the maximum submatrix is: {}".format(summaxtrix))
+        else:
+            Acolmun = A[i,:]
+            sumlist = maxsublist(Acolmun, l)
+            print(Acolmun)
+            print("the maximum sublist is: {}".format(sumlist))
+            print("the maximum submatrix is: {}".format(summaxtrix))
+        if sumlist > summaxtrix:
+            summaxtrix = sumlist
+    return summaxtrix
+
+import random
+l = 8
+a = [[]]*l
+gsm = [[]]*l
+#initialization a random matrix with shape of 8x8
+for i in range(l):
+    a[i] = [random.randint(-5, 5) for x in range(l)]
+
+print("Original random matrix  \n")
+a = np.array(a)
+print(a)
+max = 0
+for i in range(1, l):
+    for xstart in range(i-1, l):                            # x start  of submatrix
+        for xstop in range(i+xstart, l+1-i+1):              # x stop    of submatrix
+            for j in range(1, l):
+                for ystart in range(j-1, l):                 # y start of submatrix
+                    for ystop in range(j+ystart, l+1-j+1):   # y stop of submatrix
+                        lip = [[] for x in range(l)]
+                        count = 0
+                        for x in range(xstart, xstop):
+                            for y in range(ystart, ystop):
+                                lip[x].append(a[x][y])
+                                count += a[x][y]
+                        # if (xstart ==6 and xstop == 8 and ystart == 6 and ystop == 8): #test small submatrix
+                        #     print (count);
+
+                        if count > max:
+                            lipmax = [[] for x in range(l)]
+                            max = count
+                            lipmax = lip
+print("maximux submatrix :\n")
+lipmax = np.array(lipmax)
+for i in range(len(lipmax)):
+    print("\n")
+    for j in lipmax[i]:
+        print("{:>4d}".format(j), end="")
+
+print("\n")
+print("The summary is ", max)
+print("with dynamic programmierung is {}".format(maxsubmatrix(a, l)))
+
+```
+
+dynamic programmierung
+----------------------
+
+``` {.ipython results="output" exports="both"}
+import random
+import numpy as np
+
+def maxsublist(arr, n):
+    b = 0
+    sumlist = 0
+    for j in range(n):
+        if b > 0:
+            b += arr[j]
+        else:
+            b = arr[j]
+        if b > sumlist:
+            sumlist = b
+    return sumlist
+
+def maxsubmatrix(A, l):
+    Acolmun = np.zeros(l)
+    summaxtrix = 0
+    for i in range(l):
+        if summaxtrix > 0:
+            Acolmun += A[i,:]
+            sumlist = maxsublist(Acolmun, l)
+        else:
+            Acolmun = A[i,:]
+            sumlist = maxsublist(Acolmun, l)
+        if sumlist > summaxtrix:
+            summaxtrix = sumlist
+    return summaxtrix
+l = 8
+A = [[]]*l
+for i in range(l):
+    A[i] = [random.randint(-5, 5) for x in range(l)]
+A = np.array(A)
+print(A)
+print(maxsubmatrix(A, l))    
+```
+
+``` {.example}
+[[ 5 -2  3  4 -1  4 -3  4]
+ [ 2 -1  1 -2 -1  2 -4 -5]
+ [ 2 -4  0  5 -4  5  3  4]
+ [ 3 -5 -2 -2  1 -4  4 -3]
+ [ 5 -2  5  4 -2  4 -3  0]
+ [ 5 -2  0  4 -4 -1  3  4]
+ [-3 -4 -3  1  1 -3 -5  4]
+ [ 4  3  5 -5  0 -3 -2  0]]
+29
+```
+
+Find the sum of a specific value in a list
+==========================================
+
+在一个列表中找到一个特定数值的和
+
+Python
+------
+
+### with recursive
+
+``` {.ipython results="output" exports="both"}
+ arr = [3, 34, 4, 12, 5, 2]
+ def res_subset(arr, i, s):
+     if s == 0:
+         return True
+     elif i == 0:
+         return arr[0] == s
+     elif arr[i] > s:
+         return res_subset(arr, i-1, s)
+     else:
+         A = res_subset(arr, i-1, s-arr[i])
+         B = res_subset(arr, i-1, s)
+         return A or B
+print(res_subset(arr, len(arr)-1, 9))
+print(res_subset(arr, len(arr)-1, 10))
+print(res_subset(arr, len(arr)-1, 11))
+print(res_subset(arr, len(arr)-1, 12))
+print(res_subset(arr, len(arr)-1, 13))
+
+```
+
+``` {.example}
+True
+True
+True
+True
+False
+```
+
+### without rekursive
+
+``` {.ipython results="output" exports="both"}
+import numpy as np
+arr = [3, 34, 4, 12, 5, 2]
+target = 13
+result = np.zeros((len(arr), target+1), dtype = bool)
+result[: , 0] = True
+result[0 , :] = False
+result[0 , arr[0]] = True
+for i in range(1, len(arr)):
+    for j in range(1, target+1):
+        if arr[i] > j:
+            result[i, j] = result[i-1, j]
+        else:
+            A = result[i-1, j-arr[i]]
+            B = result[i-1, j]
+            result[i, j] = A or B
+print(result[-1][-1])            
+
+```
+
+``` {.example}
+False
+```
+
+Langest increasing subsequence (LIS)
+====================================
+
+Python
+------
+
+``` {.python results="output"}
+list1 = [2, 1, 3, 45, 76, 89, 457, 54, 4, 5, 3, 6, 7, 8, 4, 9]
+l = len(list1)
+a = [1]*l
+b = [[] for x in range(l)]
+
+for i in range(l):
+    for j in range(i):
+        if (list1[i] > list1[j]) and (a[i] < (a[j] + 1)):
+            a[i] = a[j]+1
+            b[i].append(list1[j])
+    b[i].append(list1[i])
+
+print(a)
+maxa = a.index(max(a))
+print("the maximun length of LIS of list1 is {}".format(max(a)))
+print("the LIS is {}".format(b[maxa]))
+
+```
+
+``` {.python results="output"}
+list1 = [2, 1, 3, 45, 76, 89, 457, 54, 4, 5, 3, 6, 7, 8, 4, 9]
+l = len(list1)
+a = [1]*l
+
+for i in range(l):
+    for j in range(i):
+        if (list1[i] > list1[j]):
+            a[i] = max(a[i], a[j]+1)
+print(a)
+print("the maximun length of LIS of list1 is {}".format(max(a)))
+```
+
+packsack
+========
+
+0-1 sack
+--------
+
+$dp[i][j] = max(dp[i-1][j], dp[i-1][j-A[i]] + V[i])$
+
+complete sack
+-------------
+
+k is the total number, if 背包全放每一种时的最大份数
+$dp[i][j] = max(dp[i-1][j], dp[i-1][j-k*A[i]] + k*V[i])$
+
+bund sack
+---------
+
+n is the bunded number for each variante
+$dp[i][j] = max(dp[i-1][j], dp[i-1][j-n*A[i]] + n*V[i])$
+
+Order Statistics
+================
+
+description
+-----------
+
+    For Array a[i], i from 0 to n-1
+    we want to find the the k-th biggest element in linear time
+    1-th biggest is the minimun
+    n-1-th biggest is the maximum
+
+for minimun and maximum
+-----------------------
+
+normal iterative: need 2n-2, each n-1 2 terms iterative:
+
+    (min_1, max_1) <- (a[0],a[1])
+    (min_2, max_2) <- (a[2],a[3])
+    (min_3, max_3) <- (a[4],a[5])
+    ...
+    (min_n/2, max_n/2) <- (a[n-2],a[n-1])
+
+    min = min_1, max = max_1
+    for i from 2 to n/2:
+        if min_i < min:
+            min = min_i
+        if max_i > max:
+            max = max_i
+    return min, max
+
+linear approach
+---------------
+
+index: i
+
+  --- --- --- --- --- --- --- --- --- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+  1   2   3   4   5   6   7   8   9   10   11   12   13   14   15   16   17   18   19   20   21   22   23   24
+
+  --- --- --- --- --- --- --- --- --- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+
+array a\[\]:
+
+~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---+
+
+  --- ---- --- ---- --- ---- ---- --- ---- ---- ---- ---- ---- --- ---- ---- ---- --- ---- ---- ---- --- ---- ----
+  2   14   6   27   4   67   24   9   16   45   26   17   20   8   41   23   34   5   36   77   44   3   25   22
+  --- ---- --- ---- --- ---- ---- --- ---- ---- ---- ---- ---- --- ---- ---- ---- --- ---- ---- ---- --- ---- ----
+
+~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---~~---+
+looking for the k-th biggest elemenet
+
+divide array a\[\] into length/5 groups, each group has 5 elemenets, and
+the last is not required to be 5
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+  --- -- ---- -- ---- -- ---- -- ----
+  2      67      26      23      44
+  --- -- ---- -- ---- -- ---- -- ----
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+  ---- -- ---- -- ---- -- ---- -- ---
+  14      24      17      34      3
+  ---- -- ---- -- ---- -- ---- -- ---
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+  --- -- --- -- ---- -- --- -- ----
+  6      9      20      5      25
+  --- -- --- -- ---- -- --- -- ----
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+  ---- -- ---- -- --- -- ---- -- ----
+  27      16      8      36      22
+  ---- -- ---- -- --- -- ---- -- ----
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+  --- -- ---- -- ---- -- ---- -- --
+  4      45      41      77      
+  --- -- ---- -- ---- -- ---- -- --
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+sort all group with insert sorting
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+  --- -- --- -- --- -- --- -- ---
+  2      9      8      5      3
+  --- -- --- -- --- -- --- -- ---
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+  --- -- ---- -- ---- -- ---- -- ----
+  4      16      17      23      22
+  --- -- ---- -- ---- -- ---- -- ----
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+  --- -- ---- -- ---- -- ---- -- ----
+  6      24      20      34      25
+  --- -- ---- -- ---- -- ---- -- ----
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+  ---- -- ---- -- ---- -- ---- -- ----
+  14      45      26      36      44
+  ---- -- ---- -- ---- -- ---- -- ----
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+  ---- -- ---- -- ---- -- ---- -- --
+  27      67      41      77      
+  ---- -- ---- -- ---- -- ---- -- --
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+get the mediums of each group
+
+  --- ---- ---- ---- ----
+  6   24   20   34   25
+
+  --- ---- ---- ---- ----
+
+if at this step, the number of elemenets are more than 5, recursive
+spilt again
+
+sort group
+
+  --- ---- ---- ---- ----
+  6   20   24   25   34
+
+  --- ---- ---- ---- ----
+
+get the medium 24. at spilt the array a\[\] with this element a\[7\]=24.
+
+if k==7 return 24
+
+if k\< 7 looking for k-th biggest elemenet in
+
+  --- ---- --- ---- --- ----
+  2   14   6   27   4   67
+
+  --- ---- --- ---- --- ----
+
+if k\> 7 looking for the (k-16)-th biggest elemenet in
+
+  --- ---- ---- ---- ---- ---- --- ---- ---- ---- --- ---- ---- ---- --- ---- ----
+  9   16   45   26   17   20   8   41   23   34   5   36   77   44   3   25   22
+
+  --- ---- ---- ---- ---- ---- --- ---- ---- ---- --- ---- ---- ---- --- ---- ----
+
+complexity
+----------
+
+no matter for k \> i (i = 7, a\[7\]=24), we can exculsive the black
+position
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+  --- -- --- -- --- -- --- -- ---
+  2      8      9      3      5
+  --- -- --- -- --- -- --- -- ---
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+  --- -- ---- -- ---- -- ---- -- ----
+  4      17      16      22      23
+  --- -- ---- -- ---- -- ---- -- ----
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+  --- -- ---- -- ---- -- ---- -- ----
+  6      20      24      25      34
+  --- -- ---- -- ---- -- ---- -- ----
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+  ---- -- ---- -- ---- -- ---- -- ----
+  14      26      45      44      36
+  ---- -- ---- -- ---- -- ---- -- ----
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+  ---- -- ---- -- ---- -- -- -- ----
+  27      41      67            77
+  ---- -- ---- -- ---- -- -- -- ----
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+  -- -- -- -- -- -- --- -- ---
+                    3      5
+  -- -- -- -- -- -- --- -- ---
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+  -- -- -- -- -- -- ---- -- ----
+                    22      23
+  -- -- -- -- -- -- ---- -- ----
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+  -- -- -- -- -- -- ---- -- ----
+                    25      34
+  -- -- -- -- -- -- ---- -- ----
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+  ---- -- ---- -- ---- -- ---- -- ----
+  14      26      45      44      36
+  ---- -- ---- -- ---- -- ---- -- ----
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+  ---- -- ---- -- ---- -- -- -- ----
+  27      41      67            77
+  ---- -- ---- -- ---- -- -- -- ----
+
+~~---~~ ~~---~~ ~~---~~ ~~---~~ ~~---~~
+
+$$ \frac{3}{5} \cdot \frac{n}{2} + O(1) = \frac{3n}{10} + O(1)$$
+elements are definitely excluded
+
+The recursive format is
+$$ T(n) = T(\frac{n}{5}) + T(\frac{7n}{10}+6) + O(n)$$ $$T(n) = O(n)$$
+
+Range Minimun Query
+===================
+
+description
+-----------
+
+    array A[i] for i from 0 to n-1
+    given two number j, k, so 0 < i< j<n-1
+    return the minimun elements of range A[j]...A[k]
+
+naiv approach
+-------------
+
+    min = A[0]
+    for n from 0 to n-2:
+      for m from 1 to n-1:
+        for o from n to m:
+          if A[o] < min:
+            min = A[o]
+
+obviously the time compexity is $O(n^{3})$
+
+DP naiv approach
+----------------
+
+with Dynamic Program to iterative scan.
+
+    set M[n][n] as empty matrix to save RMQ of array A[n].
+    M[i][i] = A[i]
+    for i from 0 to n-2:
+      M[i][j] = A[i]        if A[i] < M[i-1][j]
+              = M[i-1][j]   otherwise
+      for j from 1 to n-1:
+        M[i][j] = A[j]        if A[j] < M[i][j-1]
+                = M[i][j-1]   otherwise
+
+obviously the time compexity is $O(n^{2})$
+
+addation M approach
+-------------------
+
+set K=ceiling ($log_2^n$)
+
+set M´\[i\]\[k\] = RMQ(i, i+2^k^-1)
+
+---o-------------------oo------------------------o------
+
+---+i
+
+-----------------------+$i+2^{k-1}-1$
+
+------------------------+$i+2^{k-1}$
+
+--------------------------------------------------+$i+2^k-1$
+
+    M´[*][1] = RMQ(i, i+1)
+    for i from 0 to n-1:
+      for k from 2 to K:
+        M´[i][k] = M´[i][k-1]           if A[M´[i][k-1]] < A[M´[i+2^{k-1}][k-1]] 
+                 = M´[i+2^{k-1}][k-1]   otherwise
+
+get RMQ(i,j)
+
+s = floor(log^j-i^)
+
+---o------------0-------o------------------------o------
+
+---i
+
+----------------j-2^s^+1
+
+------------------------i+2^s^-1
+
+-------------------------------------------------j
+
+    for i to i+2^s-1: M´[i][s]
+    for j-2^s-1 to j: M´[j-2^s-1][s]
+    RMQ(i,j)= A[M´[i][s]]      if  A[M´[i][s]] < A[M´[j-2^s-1][s]]
+            = M´[j-2^s-1][s]   otherwise
+
+the time compexity is $O(n \cdot log^{n})$
+
+partional approach
+------------------
+
+Array A\[n\]
+
+  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+                                                           
+
+  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+spilt Array A into block size of $s = floor(\frac{log^n}{2})$ we have
+n/s blocks
+
+~~--~~--~~--~~--+ ~~--~~--~~--~~--+ ~~--~~--~~--~~--+ ~~--~~--~~--~~--+
+~~--~~--~~--~~--+
+
+  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+                                                                       
+  -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+~~--~~--~~--~~--+ ~~--~~--~~--~~--+ ~~--~~--~~--~~--+ ~~--~~--~~--~~--+
+~~--~~--~~--~~--+
+
+we build 2 array h\[n/s\] and pos\[n/s\] h\[n/s\]: contains the minimum
+element of each block
+
+  -- -- -- -- --
+              
+
+  -- -- -- -- --
+
+pos\[n/s\]: contains the position of the corresponding elements in h
+when it is still in A.
+
+  -- -- -- -- --
+              
+
+  -- -- -- -- --
+
+    For RMQ(i, j)
+    i´ = i/s+1
+    j´ = j/s
+    l = RMQ_h(i´, j´)
+    pos[l] = RMQ(i´s, j´s-1)
+
+    but the RMQ can still be in [i...i´s] or [j´s...j]
+    so l´ = RMQ[i, i´s] and
+    l´´ = RMQ[j´s, j]
+    return min(l, l´, l´´)
+
+Now comes the question, how to get l´ and l´´ in constant time (in a
+block)? this can only be solved in special situation
+
+($\pm 1$)RMQ
+------------
+
+it called Normalisation.
+
+normalise all block (x,\[....\]) to (0,x) where $x \in (-1, +1)^{s}$
+
+for one block, there are $2^{s}$ permutation of -1 and +1,
+
+this have time compexity $O(2^{s}) = O(\sqrt{n})$
+
+and we compute all permutation probability into a sxs matrix.
+
+for all RMQ query in this block can be saved in this matrix.
+
+this have time compexity of $s^{2}$
+
+all together we habe $O(2^{s} \cdot s^{2}) = O(n)$
+
+oooo--------ooooo--------ooooo-----ooooo------oooooo------ooooooo
+
+  -- -- --
+        
+  -- -- --
+
+(0, $x_1$) (0,$x_2$) (0, $x_3$) (0,$x_{n/s}$) $m_x_{1}$ $m_{x_{2}}$
+$m_{x_{3}}$ $m_{x_{n/s}}$ $M_x_{1}$ $M_{x_{2}}$ $M_{x_{3}}$
+$M_{x_{n/s}}$
+
+(0,x) normalisation $m_x$: performance $M_x$: sxs matrix for permutation
+
+for query of RMQ in a block, auch as for l´ = RMQ\[i, i´s\], we find the
+representation of i, i´s in $m_x$, we can get the corresponding RMQ
+
+($\pm 1$)RMQ for LCA in rooted tree
+-----------------------------------
+
+    for a rooted tree, we want to find the Lowest Common Ancestor.
+    for two node u and v, we want to find the common ancestor of u and v
+    and most far away from its root.
+
+    for the rooted tree, we do the preprcess to get the following 3 array
+    E[*] (Euler tour) list all the node in tree with DFS, (2n-1) elements
+    L[*] the level of each element in E, this comply with the $\pm$1 property
+    R[*] each element position when they are first time occur in E R[i]= min(E[j]=i|1<j<2n)
+
+    find the u and v in R,
+    in R get the corresponding positions in E, get the range from u position to v position
+    find the min in L with the same range  we get in E, and return the position of minimum in L
+    get the LCA in E with the position we get in L
+
+LCA(u, v) -\> RMQ~L~(E\[R\[u\]\], E\[R\[v\]\])
+
+Cartesian tree
+--------------
+
+    this tree has two property,
+    1, it's a heap, which mean, the parents are all smaller than their childen
+    2, we can get the original array with the IN-order scan of the tree
+
+    How to build cartesian tree
+    for inserting a new node, we compare it to the root and the rightest edge,
+    if it is smaller than the root, trun the all(include the root) to be new node's left child
+    if it is bigger, go down to the next node, if go to the leaf, add it just as right child
+    if it is bigger, go down to the next node, if it is smaller than one node,
+                                               trun all to be the left child, and new node as right chilc
+
+this can be done in $O(n)$ time compexity
+
+LCA and RMQ
+-----------
+
+$$RMQ_{A}(i, j) = LCA_{T_{A}}(i,j)$$ where $T_{A}$ is the cartesian tree
+of A the root of subtree, which contains i and j, is the RMQ(i,j)
+
+Computional Geometry
+====================
+
+Convex combinations
+-------------------
+
+all points p(x, y) between $p_{1} (x_{1}, y_{1})$ and
+$p_{2}(x_{2}, y_{2})$, x1\< x \< x2 and y1 \< y \< y2
+
+Cross Product
+-------------
+
+$p_{1} \times p_{2} = det$
+$\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$
+$=x_{1}y_{2} - x_{2}y_{1}$ cross Product = (sign) \* (Aera of
+Parallelogram）
+
+sign is +: p1 is clockweise from p2 with respect of their common origin,
+from p1 to (p2-p1) trun to right sign is -: p1 is connterclockweise from
+p2 with respect of their common origin, from p1 to (p2-p1) trun to left
+
+### Application of intersection
+
+Direction:
+$d (p_{i}, p_{j}, p_{k}) = (p_{k}-p_{i}) \times (p_{j}-p_{i})$
+On-Segment: if one end-point of one Segment is convex combinations of
+the other Segment
+
+Algorithm: first check if two segments straddles, $d1 \cdot d2 < 0$ and
+$d3 \cdot d4 < 0$ else if any d = 0, check if On-segment otherwise
+return No
+
+### Application of Polar Angle
+
+$p_{1} \times p_{2} = det$
+$\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$
+$=x_{1}y_{2} - x_{2}y_{1} > 0$ the sign is positive, p1 to p2 have right
+trun,
+
+The Polar Angle is p1 \< p2
+
+Sweeping
+--------
+
+Check if any two Segments intersect in a Segments Set
+
+sort endpoints of the segments in S from left to right, breaking ties by
+putting left endpoints before right endpoints, and then by y
+-coordinates.
+
+    T = ∅;
+    for each point p in the sorted list of endpoints:
+        if p is the left endpoint of a segment s
+            Insert(s, T )
+            if (Above(s, T ) exists and intersects s) or  (Below(s, T ) exists and intersects s)
+                return TRUE
+
+        if p is the right endpoint of a segment s
+            if both Above(s, T ) and Below(s, T ) exist and Above(s, T ) and Below(s, T ) intersect
+                return TRUE
+
+         Delete(s, T )
+    return FALSE
+
+Convex Hull
+-----------
+
+For a Set of points \<p0...pn\>, we want to find the small Hull, to
+cover all points.
+
+### Graham\'s Scan
+
+let p0 is the smallest y value in set, and Sorted all other points
+counterclockweise with their polar angle: $O(n logn)$
+
+    let S = empty stack
+    push (p0, S), Push(p1, S), Push(p2, S)
+    for i from 3 to n:
+        while from nextTop(S), Top(S) to pi trun left:
+            pop (S)
+        push(pi)
+    return S
+
+This take $O(n)$
+
+### Jarvis\'s march
+
+We roll the Paper until we find the point with smallest polar angle,
+Build a Sequence H, start with p0 just like in Graham\'s Scan(with
+smallest y value in Set
+
+    start with p0, find the next vertex p1 with smallest polar angle with respect to p0
+    start with p1, find the next vertex p2 with smallest polar angle with respect to p1
+    start with p2, find the next vertex p3 with smallest polar angle with respect to p2
+    ...
+    when we reach the highest y-value vertex,left chain is finished, start to right chain,
+    But from the negative x-axis, until we come back to p0
+
+This take $O(nh)$

@@ -1,0 +1,2420 @@
+Stack with Array
+================
+
+Java
+----
+
+build a Stack from Array, and fulfil its methods, remember, it is
+METHODS One example of its porperties: decimal to binary convertion
+
+``` {.javascript org-language="js" results="output" exports="both"}
+function StackwithArray(){
+    this.items = [];
+
+    StackwithArray.prototype.push = function (value){
+        this.items.push(value);
+    };
+
+    StackwithArray.prototype.pop = function(){
+        return this.items.pop();
+    };
+
+    StackwithArray.prototype.peek = function(){
+        return this.items[this.items.length-1];
+    };
+    StackwithArray.prototype.isEmpty = function(){
+        return this.items.length <= 0;
+    };
+    StackwithArray.prototype.size = function(){
+        return this.items.length;
+    };
+    StackwithArray.prototype.toString = function(){
+        tostring = '';
+        for (var i = this.items.length-1; i >= 0; i--) {
+            tostring += this.items[i]+' ';
+        }
+        return tostring;
+    };
+}
+
+var stackwithArray = new StackwithArray();
+stackwithArray.push(2);
+stackwithArray.push(3);
+stackwithArray.push(4);
+stackwithArray.push(5);
+stackwithArray.push(6);
+console.log(stackwithArray.toString());
+console.log('Size of  stackwitharray is: '+stackwithArray.size());
+stackwithArray.pop();
+console.log(stackwithArray.toString());
+console.log('Size of  stackwitharray is: '+stackwithArray.size());
+stackwithArray.peek();
+console.log(stackwithArray.toString());
+console.log('Size of  stackwitharray is: '+stackwithArray.size());
+console.log(stackwithArray.isEmpty());
+
+function decimal2binary (value){
+    var stack = new StackwithArray();
+    while(value > 0){
+        stack.push(value%2);
+        value = Math.floor(value/2);
+    }
+    var output = '';
+    while(!stack.isEmpty()){
+        output += stack.pop();
+    }
+    return output;
+};
+
+var target = 100090; 
+decimal2binary(89);
+console.log(target + ' convert to binary is '+ decimal2binary(target));
+```
+
+``` {.example}
+6 5 4 3 2 
+Size of  stackwitharray is: 5
+5 4 3 2 
+Size of  stackwitharray is: 4
+5 4 3 2 
+Size of  stackwitharray is: 4
+false
+100090 convert to binary is 11000011011111010
+```
+
+Queue with Array
+================
+
+JS
+--
+
+### Queeu rebuild
+
+build a Queue from an Array and its methods, one example is Johnausking.
+
+``` {.javascript org-language="js" results="output" exports="both"}
+function QueueWithArray(){
+    this.items = [];
+
+    QueueWithArray.prototype.enqueue = function(value){
+        this.items.push(value);
+    };
+
+    QueueWithArray.prototype.dequeue = function(){
+        return this.items.shift();
+    };
+
+    QueueWithArray.prototype.front = function(){
+        return this.items[0];
+    };
+
+    QueueWithArray.prototype.isEmpty = function(){
+        return this.items.length <= 0;
+    };
+
+    QueueWithArray.prototype.size = function(){
+        return this.items.length;
+    };
+
+    QueueWithArray.prototype.toString = function(){
+        var tostring = ' ';
+        for (var i = this.items.length -1; i >= 0; i--) {
+            tostring += this.items[i]+' ';
+        };
+        return tostring;
+    };
+}
+
+var queue = new QueueWithArray();
+queue.enqueue(1);
+queue.enqueue(2);
+queue.enqueue(3);
+queue.enqueue(4);
+queue.enqueue(5);
+console.log(queue.toString());
+queue.dequeue();
+console.log(queue.toString());
+queue.front();
+console.log(queue.toString());
+console.log(queue.isEmpty());
+
+var personen = ['zhangsan', 'lisi', 'wangwu', 'zhaoliu', 'wuqi'];
+function Johnausking(person, number){
+    var queueplay = new QueueWithArray();
+    for (var i = 0; i < person.length; i++) {
+        queueplay.enqueue(person[i]);
+    }
+
+    while(queueplay.size() > 1){
+        for (var j = 0; j <number-1; j++) {
+            queueplay.enqueue(queueplay.dequeue());
+        }
+        queueplay.dequeue();
+    }
+
+    if (queueplay.size() == 1) {
+        console.log('the left person is '+ queueplay.front());
+        return person.indexOf(queueplay.front());
+    }
+    else
+        return 'there are not only one person left';
+}
+console.log(Johnausking(personen, 3));
+```
+
+``` {.example}
+ 5 4 3 2 1 
+ 5 4 3 2 
+ 5 4 3 2 
+false
+the left person is zhaoliu
+3
+```
+
+### Priority Queue
+
+save all the information with priority, from small to big inner class
+can\'t use prototype
+
+``` {.javascript org-language="js" results="output" exports="both"}
+   function Priorityqueue(){
+       this.array = [];
+       function Node(value, priority){
+           this.value = value;
+           this.priority = priority;
+       }
+
+       Priorityqueue.prototype.enqueue = function(value, priority) {
+           var element = new Node(value, priority);
+           if (this.array.length == 0) {
+               this.array.push(element);
+           }else{
+               var flag = false;
+               for (var i = 0; i < this.array.length; i++) {
+                   if (element.priority < this.array[i].priority) {
+                       this.array.splice(i, 0, element);
+                       flag = true;
+                       break;
+                   }
+               }
+               if (!flag) {
+                   this.array.push(element);
+               }
+           }
+       }
+
+       Priorityqueue.prototype.dequeue = function(){
+           return this.items.shift();
+       };
+
+       Priorityqueue.prototype.front = function(){
+           return this.items[0];
+       };
+
+       Priorityqueue.prototype.isEmpty = function(){
+           return this.items.length <= 0;
+       };
+
+       Priorityqueue.prototype.size = function(){
+           return this.items.length;
+       };
+
+       Priorityqueue.prototype.toString = function(){
+           var tostring = ' ';
+           for (var i = this.array.length -1; i >= 0; i--) {
+               tostring += this.array[i].value+':'+ this.array[i].priority+'   ';
+           };
+           return tostring;
+       };
+
+   }
+   var priorityqueue = new Priorityqueue();
+   priorityqueue.enqueue('m', 01);
+   priorityqueue.enqueue('d', 59);
+   priorityqueue.enqueue('l', 19);
+   priorityqueue.enqueue('z', 251);
+   priorityqueue.enqueue('x', 50);
+   priorityqueue.enqueue('w', 504);
+
+console.log(priorityqueue.toString());
+
+
+
+```
+
+``` {.example}
+ w:504   z:251   d:59   x:50   l:19   m:1   
+```
+
+Linkedlist
+==========
+
+JS
+--
+
+  ---------------------------- --------------------------------------------
+  append(elemenet)             append element at the end of list
+  insert(elemenet, position)   insert elemenet at position of position
+  update(position, elemenet)   update the data to elemenet at position
+  get(position)                get the elemenet at position
+  indexOf(elemenet)            return the position of elemenet
+  removeAt(position)           remove the elemenet at position
+  remove(elemenet)             remove the elemenet no matater where it is
+  isEmpty()                    
+  size()                       length of list
+  toString()                   
+  ---------------------------- --------------------------------------------
+
+in the update process, we have two ideas, one is normal, just change the
+node data the other is create a node with new data, so insert or update
+can be relavant
+
+``` {.javascript org-language="js" results="output" exports="both"}
+function Linkedlist()
+{
+    //initialization
+    this.head = null;
+    this.size = 0;
+    function Node(data){
+        this.data = data;
+        this.next = null;
+    }
+
+    //append(data)
+    Linkedlist.prototype.append = function(data){
+        var node = new Node(data);
+        var current = this.head;
+        if (this.size == 0) {
+            this.head = node;
+        }else{
+            while(current.next){
+                current = current.next;
+            }
+            current.next = node;
+        }
+        this.size+= 1;
+        return;
+    };
+    //insert(element, position)
+    Linkedlist.prototype.insert = function(data, position){
+        if (position < 0 || position > this.size) {
+            console.log('position is not vaild');
+            return;
+        }
+        var node = new Node(data);
+        var current = this.head;
+        var pervies = null;
+        var tmp = 0;
+        while(tmp++ < position){
+            pervies = current;
+            current = current.next;
+        }
+        node.next = current;
+        pervies.next= node;
+        this.size += 1;
+        return;
+    };
+
+    //update(element, position)
+    Linkedlist.prototype.update = function(data, position){
+        if (position < 0 || position > this.size) {
+            console.log('position is not vaild');
+            return;
+        }
+        // var node = new Node(data);
+        // var current = this.head;
+        // var pervies = null;
+        // var tmp = 0;
+        // while(tmp++ < position){
+        //     pervies = current;
+        //     current = current.next;
+        // }
+        // node.next = current.next;
+        // pervies.next= node;
+
+        var current = this.head;
+        var tmp = 0;
+        while(tmp++ < position){
+            current = current.next;
+        }
+        current.data = data;
+    };
+
+    //get(position)
+    Linkedlist.prototype.get = function(position){
+        if (position < 0 || position > this.size) {
+            console.log('position is not vaild');
+            return;
+        }
+        let current = this.head;
+        let tmp = 0;
+        while(tmp++ < position){
+            current = current.next;
+        }
+        console.log('at Position of '+position+' is: '+current.data);
+        return;
+    };
+
+    //indexOf(elemenet)
+    Linkedlist.prototype.indexOf = function(data){
+        let current = this.head;
+        let tmp = 0;
+        while (current){
+            if (current.data == data) {
+                console.log('the elemenet '+data+' is at position of '+tmp);
+                return tmp ;
+            }
+            current = current.next;
+            tmp +=1;
+        };
+        if (!current) {
+            console.log('the elemenet '+data+' is not exist');
+            return;
+        }
+    };
+
+    //removeAt(position)
+    Linkedlist.prototype.removeAt = function(position){
+        if (position < 0 || position >= this.size) {
+            console.log('position is not vaild');
+            return;
+        }
+        if (position == 0) {
+            this.head = this.head.next;
+        }else{
+            var index = 0;
+            var current = this.head;
+            var pervies = null;
+            while(index++ < position){
+                pervies = current;
+                current = current.next;
+            }
+            pervies.next =  current.next;
+        }
+
+        this.size -= 1;
+    };
+
+    //remove(elemenet)
+    Linkedlist.prototype.remove = function(data){
+        let tmp = this.indexOf(data);
+        this.removeAt(tmp);
+
+        // var current = this.head;
+        // var pervies = null;
+        // while(current && current.data != data){
+        //     pervies = current;
+        //     current = current.next;
+        // }
+        // if (current) {
+        //     if (current == this.head) {
+        //         this.head = this.head.next;
+        //     }else{
+        //         pervies.next = current.next;
+        //     }
+        // }else{
+        //     console.log('the elemenet '+data+' is not exist');
+        // }
+    };
+
+    //isEmpty()
+    Linkedlist.prototype.isEmpty = function(){
+        console.log(this.size ==0);
+        return;
+    };
+
+    //size()
+    Linkedlist.prototype.length = function(){
+        console.log('the size of linkedlist is '+this.size);
+        return;
+    };
+
+    // toString
+    Linkedlist.prototype.toString = function(){
+        if (this.size == 0) {
+            console.log('No Elemenet');
+            return;
+        }
+        let current = this.head;
+        let liststring = "";
+        while(current){
+            liststring += current.data+" ";
+            current = current.next;
+        }
+        console.log(liststring);
+        return;
+    };
+}
+
+var linkedlist = new Linkedlist;
+linkedlist.append(1);
+linkedlist.append(2);
+linkedlist.append(30);
+linkedlist.append(4);
+linkedlist.append(5);
+linkedlist.append(6);
+linkedlist.toString();
+linkedlist.insert('a', 2);
+linkedlist.toString();
+linkedlist.update('b', 2);
+linkedlist.toString();
+linkedlist.get(2);
+linkedlist.isEmpty();
+linkedlist.length();
+linkedlist.toString();
+linkedlist.indexOf('4');
+linkedlist.removeAt(0);
+linkedlist.toString();
+linkedlist.length();
+linkedlist.removeAt(5);
+linkedlist.toString();
+linkedlist.remove(2);
+linkedlist.toString();
+```
+
+``` {.example}
+1 2 30 4 5 6 
+1 2 a 30 4 5 6 
+1 2 b 30 4 5 6 
+at Position of 2 is: b
+false
+the size of linkedlist is 7
+1 2 b 30 4 5 6 
+the elemenet 4 is at position of 4
+2 b 30 4 5 6 
+the size of linkedlist is 6
+2 b 30 4 5 
+the elemenet 2 is at position of 0
+b 30 4 5 
+```
+
+Python
+------
+
+``` {.python results="output" exports="both"}
+class LinkNode:
+    def __init__(self, data=None, next=None):
+        self.data = data
+        self.next = next
+
+
+class Demo:
+    def __init__(this):
+        this.LinkedList = LinkNode(0)
+        this.point = this.LinkedList
+
+    def insert(this, x):
+        this.point.next = LinkNode(x)
+        this.point = this.point.next
+
+    def create(this, numbers):
+        for i in numbers:
+            this.point.next = LinkNode(i)
+            this.point = this.point.next
+
+    def delete(this, value):
+        # while(this.LinkedList.data != value):
+        #     this.LinkedList = this.LinkedList.next
+        # this.LinkedList = this.LinkedList.next
+        index = this.LinkedList
+        while(index.data != value):
+            prev = index
+            index = index.next
+        prev.next = index.next
+
+
+if __name__ == "__main__":
+    demo = Demo()
+    demo.create([1, 2, 3, 4, 5, 6, 7])
+    demo.insert(10)
+    demo.delete(5)
+    while (demo.LinkedList):
+        print(demo.LinkedList.data)
+        demo.LinkedList = demo.LinkedList.next
+
+```
+
+``` {.example}
+0
+1
+2
+3
+4
+6
+7
+10
+```
+
+DoubleVerketteList
+==================
+
+C/C++
+-----
+
+``` {.c org-language="C" results="output" exports="both"}
+#include <stdio.h>
+#include <stdlib.h>
+#define N 10
+
+typedef struct node{
+  struct node* pronode;
+  int data;
+  struct node *nextnode;
+}node;
+
+node *initnode( node *p){
+  p = (node *)malloc(sizeof(node));
+  p->pronode = NULL;
+  p->nextnode = NULL;
+  p->data = 1;
+  node *temp = p;
+  for (int i = 1; i < N; ++i) {
+    node *a =(node *)malloc(sizeof(node));
+    a->nextnode = NULL;
+    a->pronode = NULL;
+    a->data = i+1;
+    temp->nextnode = a;
+    a->pronode = temp;
+    temp = temp->nextnode;
+  }
+  return p;
+}
+
+void display(node *p){
+  node *temp = p;
+  while (temp) {
+    while (temp->nextnode) {
+      printf("%d ",temp->data );
+      temp = temp->nextnode;
+    }
+    printf(", and  the last is %d\n",temp->data );
+    temp = temp->nextnode;
+  }
+}
+
+void insert(node *p, int x, int pos){
+  node *a =(node *)malloc(sizeof(node));
+  a->data = x;
+  a->nextnode = NULL;
+  a->pronode = NULL;
+  if (x == 1) {
+    a->nextnode = p;
+    p->pronode = a;
+    p = a;
+  }else {
+    node *temp = p;
+    for (int i = 1; i < pos-1; i++) {
+      temp = temp->nextnode;
+    }
+    if (temp->nextnode == NULL) {
+      temp->nextnode = a;
+      a->pronode = temp;
+    }else {
+      a->nextnode = temp->nextnode;
+      temp->nextnode = a;
+      a->pronode = temp;
+      a->nextnode->pronode = a;   
+      /* temp->nextnode->pronode = a; */  // this line do the same as last one, why???
+      printf("%s\n", "nihao");
+    }
+  }
+}
+
+node *delete(node *p, int x){
+  node *temp = p;  
+  if (p->data == x) {
+    p = p->nextnode;
+    free(temp);
+    return p;
+  }
+
+  while (temp->nextnode->nextnode != NULL && temp->nextnode->data != x) {
+    temp = temp->nextnode;
+  }
+  if (temp->nextnode->nextnode == NULL) { // check if it is the last element
+    if (temp->nextnode->data == x) {      // check if it is what we want 
+      temp->nextnode = NULL;
+      free(temp->nextnode);
+      return p;
+    }else {
+      printf("there is no element of %d\n", x);
+      return p;
+    }
+  }else {
+    temp->nextnode = temp->nextnode->nextnode;
+    temp->nextnode->pronode= temp;
+    return p;
+  }
+}
+
+int main(int argc, char *argv[])
+{
+  node *head = NULL;
+  head = initnode(head);
+  display(head);
+  insert(head, 100, 6);
+  display(head);
+  delete(head, 100);
+  display(head);
+  /* 1, if only one elemenet in list */
+  /* 2, execute : temp->nextnode->nextnode != NULL && temp->nextnode->data != x */
+  /* 3, if while stop, check if temp->nextnode is the last element */
+  /* 4, if temp->nextnode is what we want */
+  node * p = delete(head, 2);
+  display(p);
+  return 0;
+}
+```
+
+``` {.example}
+1 2 3 4 5 6 7 8 9 , and  the last is 10
+nihao
+1 2 3 4 5 100 6 7 8 9 , and  the last is 10
+1 2 3 4 5 6 7 8 9 , and  the last is 10
+1 3 4 5 6 7 8 9 , and  the last is 10
+```
+
+JS
+--
+
+  ---------------------------- --------------------------------------------
+  append(elemenet)             append element at the end of list
+  insert(elemenet, position)   insert elemenet at position of position
+  update(position, elemenet)   update the data to elemenet at position
+  get(position)                get the elemenet at position
+  indexOf(elemenet)            return the position of elemenet
+  removeAt(position)           remove the elemenet at position
+  remove(elemenet)             remove the elemenet no matater where it is
+  isEmpty()                    
+  size()                       length of list
+  toString()                   
+  forwardtoString()            
+  backwardtoString()           
+  ---------------------------- --------------------------------------------
+
+``` {.javascript org-language="js" results="output" exports="both"}
+function Doublelinkedlist(){
+    //initialization
+    this.head = null;
+    this.tail = null;
+    this.size = 0;
+    function Node(data){
+        this.data = data;
+        this.perv = null;
+        this.next = null;
+    }
+    // append(data)
+    Doublelinkedlist.prototype.append = function(data){
+        var node = new Node(data);
+        if (this.size == 0) {
+            this.head = node;
+            this.tail = node;
+        }else{
+            var current = this.head;
+            while(current.next){
+                current = current.next;
+            }
+            current.next = node;
+            node.perv = current;
+            this.tail = node;
+        }
+        this.size += 1;
+    };
+    // insert(elemenet, position)
+    Doublelinkedlist.prototype.insert = function(data, position){
+        if (position < 0 || position >= this.size) {
+            console.log('the position to insert is invalid');
+            return;
+        };
+        var node = new Node(data);
+        if (position == 0) {
+            this.head.perv = node;
+            node.next = this.head;
+            this.head = node;
+            this.size += 1;
+            return;
+        }else if(position == this.size-1){
+            this.tail.next = node;
+            node.perv = this.tail;
+            this.tail = node;
+            this.size += 1;
+            return;
+        }else{
+            let tmp = 0;
+            var current = this.head;
+            while(tmp++ < position){
+                current = current.next;
+            }
+            current.perv.next = node;
+            node.perv = current.perv;
+            node.next = current;
+            current.perv = node;
+            this.size += 1;
+            return;
+        }
+    };
+    // update(elemenet, position)
+    Doublelinkedlist.prototype.update = function(data, position){
+        if (position < 0 || position >= this.size) {
+            console.log('the position to insert is invalid');
+            return;
+        };
+        let tmp = 0;
+        let current = this.head;
+        while(tmp++ < position){
+            current = current.next;
+        }
+        current.data = data;
+    };
+    // get(position)
+    Doublelinkedlist.prototype.get = function(position){
+        if (position < 0 || position >= this.size) {
+            console.log('the position to insert is invalid');
+            return;
+        };
+        var current = this.head;
+        let tmp = 0;
+        while(tmp++ < position){
+            current = current.next;
+        }
+        return current.data;
+    };
+
+
+    // indexOf(elemenet)
+    Doublelinkedlist.prototype.indexOf = function(data){
+        var tmp = 0;
+        var current = this.head;
+        while(current){
+            if (current.data == data) {
+                return tmp;       
+            }
+            current = current.next;
+            tmp += 1;
+        };
+        if (!current) {
+            console.log('elemenet '+data+' is not in list');
+            return -1;
+        }
+    };
+
+    // removeAt(position)
+    Doublelinkedlist.prototype.removeAt = function(position){
+        if (position < 0 || position >= this.size) {
+            console.log('the position to insert is invalid');
+            return;
+        };
+        if (position == 0) {
+            this.head.next.perv = null;
+            this.head = this.head.next;
+            this.size -= 1;
+            return;
+        }else if(position == this.size-1){
+            this.tail.perv.next = null;
+            this.tail = this.tail.perv;
+            this.size -= 1;
+            return;
+        }else{
+            var tmp = 0;
+            var current = this.head;
+            while(tmp++ < position){
+                current = current.next;
+            }
+            current.perv.next = current.next;
+            current.next.perv = current.perv;
+            this.size -= 1;
+            return;
+        }
+    };
+
+
+    // remove(elemenet)
+    Doublelinkedlist.prototype.remove = function(data){
+        var index = this.indexOf(data);
+        this.removeAt(index);
+    };
+
+    // isEmpty()
+    Doublelinkedlist.prototype.isEmpty = function(){
+        return this.size == 0;
+    };
+    //  length()
+    Doublelinkedlist.prototype.length = function(){
+        return this.size;
+    };
+    //forwardtoString()
+    Doublelinkedlist.prototype.forwardtoString = function(){
+        let current = this.head;
+        let string = '';
+        while(current){
+            string += current.data + '  ';
+            current = current.next;
+        }
+        console.log(string);
+    };
+    //backwardtoString()
+    Doublelinkedlist.prototype.backwardtoString = function(){
+        let current = this.tail;
+        let string = '';
+        while(current){
+            string += current.data + '  ';
+            current = current.perv;
+        }
+        console.log(string);
+    };
+    //toString
+    Doublelinkedlist.prototype.toString = function(){
+        this.forwardtoString();
+    };
+}
+
+var doublelinkedlist = new Doublelinkedlist();
+doublelinkedlist.append(1);
+doublelinkedlist.append(2);
+doublelinkedlist.append(3);
+doublelinkedlist.append(4);
+doublelinkedlist.append(5);
+doublelinkedlist.append(6);
+doublelinkedlist.forwardtoString();
+doublelinkedlist.backwardtoString();
+doublelinkedlist.toString();
+console.log(doublelinkedlist.isEmpty());
+console.log(doublelinkedlist.length());
+doublelinkedlist.insert('a', 0);
+doublelinkedlist.insert('b', doublelinkedlist.length()-1);
+doublelinkedlist.insert('c', 1);
+doublelinkedlist.toString();
+doublelinkedlist.update('A', 0);
+doublelinkedlist.update('B', doublelinkedlist.length()-1);
+doublelinkedlist.update('C', 1);
+doublelinkedlist.toString();
+console.log(doublelinkedlist.get(0));
+console.log(doublelinkedlist.indexOf('B'));
+doublelinkedlist.removeAt(0)
+doublelinkedlist.removeAt(doublelinkedlist.length()-1);
+doublelinkedlist.toString();
+doublelinkedlist.removeAt(1)
+doublelinkedlist.toString();
+doublelinkedlist.remove('C')
+doublelinkedlist.remove(6)
+doublelinkedlist.remove(4)
+doublelinkedlist.toString();
+```
+
+``` {.example}
+1  2  3  4  5  6  
+6  5  4  3  2  1  
+1  2  3  4  5  6  
+false
+6
+a  c  1  2  3  4  5  6  b  
+A  C  1  2  3  4  5  6  B  
+A
+8
+C  1  2  3  4  5  6  
+C  2  3  4  5  6  
+2  3  5  
+```
+
+SingelKetteLinkeWithHead
+========================
+
+C/C++
+-----
+
+``` {.c org-language="C" results="output" exports="both"}
+/* 带头节点 */
+/* 建（创建C1） */
+/* 查（ 全查R1,  靠值查R2,   靠位查R3 ） */
+/* 改 (         靠值改U1，  靠位改U2） */
+/* 增（头插A1， 尾插A2，中值插A3， 中位插A4) */
+/* 删（头删D1， 尾删D2，中值删D3， 中位删D4) */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Link{
+  int elem;
+  struct Link *next;
+}link;
+
+link *initLinkC1(int j){
+  link *p = (link *)malloc(sizeof(link));
+  link *temp = p;
+  int i;
+  for (i=1; i <= j; i++) {
+    link *a = (link *)malloc(sizeof(link));
+    a->elem = i;
+    a->next = NULL;
+    temp->next = a;
+    temp = temp->next;
+  }
+  return p;
+}
+
+void displayR1(link *p){
+  link *temp = p;
+  while(temp->next){
+    printf("%d ",temp->next->elem);
+    temp = temp->next;
+  }
+  printf("\n");
+}
+
+int displayR2(link *p, int k){
+  link *temp = p;
+  while (temp->next) {
+    if (temp->next->elem == k) {
+      return temp->next->elem;
+    }
+    temp = temp->next;
+  }
+  if (temp->next == NULL) {
+    printf("the %d is not found \n", k);
+  }
+  return k;
+}
+
+int displayR3(link *p, int k){
+  link *temp = p;
+  int i = 0;
+  while (i < k && temp->next) {
+    temp = temp->next;
+    i++;
+  }
+  if (i != k) {
+    printf("the %d postion element is not found\n",k );
+    return -1;
+  }
+  return temp->elem;
+}
+
+void changeelementU1(link *p, int i, int k){
+  link *temp = p;
+  while (temp->next != NULL){
+    if (temp->elem == i){
+      break;
+    }
+    temp = temp->next;
+  }
+
+  if (temp->next == NULL) {   // if temp is the last element,
+    if (temp->elem != i) {    // if the last element is not what we want
+      printf("there is no element which contains %d\n",i );
+    }else {
+      temp->elem = k;        // if the last one is what we want
+    }
+  }else {
+    temp->elem = k;          // if temp is not the last one
+  }
+}
+
+void changeelementU2(link *p, int i, int k){
+  link *temp = p;
+  int m = 0;
+  while (m < i && temp->next != NULL){
+    temp = temp->next;
+    m++;
+  }
+  if (m != i) {             // if the length of list is shorter than given i
+    printf("the %d postion element is not found\n",i );    
+  }else {
+    temp->elem = k;
+  }
+}
+
+void addelementA1(link *p, int k){
+  link *a = (link *)malloc(sizeof(link));
+  a->elem = k;
+  a->next = p->next;
+  p->next = a;
+}
+
+void addelementA2(link *p, int k){
+  link *temp = p;
+  while (temp->next->next != NULL) {
+    temp = temp->next;
+  }
+  link *a = (link *)malloc(sizeof(link));
+  a->elem = k;
+  a->next = NULL;
+  temp->next->next = a;
+}
+
+void addelementA3(link *p, int i, int k){
+  link *temp = p;
+  while (temp->next != NULL) {
+    if (temp->next->elem == i) {
+      break;
+    }
+    temp = temp->next;
+  }
+  if (temp->next == NULL) {    // if temp is the last element
+    if (temp->elem != i) {     // if the last element is not what we want :temp->elem != k
+      printf("there is no element which contains %d\n",k );
+    }else {                     // if the last element is what we want: temp->elem == k
+      link *a = (link *)malloc(sizeof(link));
+      a->elem = k;
+      a->next = NULL;
+      temp->next = a;
+    }
+  }else {                       // if temp->next->elem == k
+    link *a = (link *)malloc(sizeof(link));
+    a->elem = k;
+    a->next = NULL;
+    /* add the element behind i */
+    a->next = temp->next->next;
+    temp->next->next = a;
+    /* add the element front of i */
+    /* a->next = temp->next; */
+    /* temp->next = a; */
+  }
+}
+
+void addelementA4(link *p, int i, int k){
+  link *temp = p;
+  int m = 0;
+  while (m < i && temp->next != NULL) {
+    temp = temp->next;
+    m++;
+  }
+  if (m != i) {                    // the length of list is shorter than i
+      printf("the %d postion element is not found\n",i);
+  }else if(!temp->next) {            // if temp is the last element of list      
+      link *a = (link *)malloc(sizeof(link));
+      a->elem = k;
+      a->next = NULL;
+      temp->next = a;
+  }else {                           // if temp is not the element of list
+    link *a = (link *)malloc(sizeof(link));
+    a->elem = k;
+    a->next = NULL;
+    a->next = temp->next->next;
+    temp->next->next = a;
+    /* add the element front of i */
+    /* a->next = temp->next; */
+    /* temp->next = a; */
+  }
+}
+
+void deleteelementD1(link *p){
+  p->next = p->next->next;
+}
+
+void deleteelementD2(link *p){
+  link *temp = p;
+  while(temp->next->next){
+    temp = temp->next;
+  }
+  temp->next = NULL;
+  free(temp->next);
+}
+
+void deleteelementD3(link *p, int k){
+  link *temp = p;
+  while (temp->next->next != NULL){
+    if (temp->next->elem == k){
+      break;
+    }
+    temp = temp->next;
+  }
+  if (temp->next->next == NULL) {      // if temp->next is the last element
+    if(temp->next->elem != k) {         // temp->next is the last, but it's not what we want
+      printf("there is no element which contains %d\n",k );
+    }else{                               // temp->next is the last, but is what we want
+      temp->next = NULL;
+      free(temp->next);
+    }
+  }else{                               // temp->next is not the last, so it must be what we look for
+    temp->next = temp->next->next;
+  }
+}
+
+void deleteelementD4(link *p, int k){
+  link *temp = p;
+  if (k == 1) {
+    if (temp->next->next == NULL) {   // only one element auf dem List
+      temp->next = NULL;
+      free(temp->next);
+      return;
+    }else {
+      temp->next = temp->next->next;
+      return;
+    }
+  }
+  // if k >=  2 and there are more than or equal 2 elements in list
+  int m = 0;             
+  while (m < k-1 && temp->next->next != NULL){
+    temp = temp->next;
+    m++;
+  }
+  if (m != k-1) {                              // list is shorter than k
+    printf("the %d postion element is not found\n",k);
+  }else if(temp->next->next == NULL){            // if temp->next->next is the last element
+    temp->next = NULL;
+    free(temp->next);
+  }else{                                        // if temp->next->next is not the last element
+    temp->next = temp->next->next;
+  }
+}
+
+link *reserve(link* p){
+  link * begin = NULL;
+  link * mid = p->next;
+  link * end = p->next->next;
+  while (end) {
+    mid->next = begin;
+    begin = mid;
+    mid = end;
+    end = end->next;
+  }
+  mid->next = begin;
+  link *m =(link *)malloc(sizeof(link));
+  m->next = mid;
+  return m;
+}
+
+int main(int argc, char *argv[])
+{
+  /* 建（创建C1） */
+  link *p = initLinkC1(9);
+  printf("generate the list from 1 to 9 \n");
+  /* 查（ 全查R1,  靠值查R2,   靠位查R3 ） */  
+  displayR1(p);
+  int r2 = 3;
+  printf("check if we can find %d in the list, and  to be %d\n", r2, displayR2(p, r2));
+  int r3 = 10;
+  printf("check if we can find %d postion in the list, and to be %d\n", r3, displayR3(p, r3));
+  /* 改 (         靠值改U1，  靠位改U2） */
+  printf("change the element 9 to 10 \n");
+  changeelementU1(p, 9, 10);
+  displayR1(p);
+  printf("change the postion 9 to 10 \n");
+  changeelementU2(p, 9, 11);
+  displayR1(p);
+  /* 增（头插A1， 尾插A2，中值插A3， 中位插A4) */
+  printf("add 0 to the begin of list \n");
+  addelementA1(p, 0);
+  displayR1(p);
+  printf("add 20 to the end of list \n");
+  addelementA2(p, 20);
+  displayR1(p);
+  printf("add 18 to the list behind element 2 \n");
+  addelementA3(p, 2, 15);
+  displayR1(p);
+  printf("add 18 to the list behind  postion 2 \n");
+  addelementA4(p, 1, 18);
+  displayR1(p);
+  /* 删（头删D1， 尾删D2，中值删D3， 中位删D4) */
+  printf("delete the frist lement \n");
+  deleteelementD1(p);
+  displayR1(p); 
+  printf("delete the the last element \n");
+  deleteelementD2(p);
+  displayR1(p);
+  printf("delete the element 1 \n");
+  deleteelementD3(p, 1);
+  displayR1(p);
+  printf("delete the postion 2 \n");
+  deleteelementD4(p, 2);
+  displayR1(p);
+  /* reverse倒叙  */
+  /* 1 去掉头节点 */
+  /*   2 从第一个元素开始反转，并连接 */
+  /*   3 到end = null 停止 */
+  /*   4 连接最后一个元素 */
+  /*   5 开辟新的头节点 */
+  /*   6 连接头节点，并返回 */
+  printf("reserve the list\n");
+  link *m = reserve(p);
+  displayR1(m);
+  return 0;
+}
+
+
+```
+
+``` {.example}
+generate the list from 1 to 9 
+1 2 3 4 5 6 7 8 9 
+check if we can find 3 in the list, and  to be 3
+the 10 postion element is not found
+check if we can find 10 postion in the list, and to be -1
+change the element 9 to 10 
+1 2 3 4 5 6 7 8 10 
+change the postion 9 to 10 
+1 2 3 4 5 6 7 8 11 
+add 0 to the begin of list 
+0 1 2 3 4 5 6 7 8 11 
+add 20 to the end of list 
+0 1 2 3 4 5 6 7 8 11 20 
+add 18 to the list behind element 2 
+0 1 2 15 3 4 5 6 7 8 11 20 
+add 18 to the list behind  postion 2 
+0 1 18 2 15 3 4 5 6 7 8 11 20 
+delete the frist lement 
+1 18 2 15 3 4 5 6 7 8 11 20 
+delete the the last element 
+1 18 2 15 3 4 5 6 7 8 11 
+delete the element 1 
+18 2 15 3 4 5 6 7 8 11 
+delete the postion 2 
+18 15 3 4 5 6 7 8 11 
+reserve the list
+11 8 7 6 5 4 3 15 18
+```
+
+DoubleRecycleVerketteList
+=========================
+
+C/C++
+-----
+
+``` {.c org-language="C" results="output" exports="both"}
+#include <stdio.h>
+#include <stdlib.h>
+#define N 10
+typedef struct node {
+  struct node * Nnode;
+  struct node * Pnode;
+  int data;
+}node;
+
+node *initDoubleRecycleVerketteList(int x){
+  node * head = (node *)malloc(sizeof(node));
+  head->data = 1;
+  head->Nnode = NULL;
+  head->Pnode = NULL;
+  node * temp = head;
+  for (int i = 2; i <=x; i++){
+    node * a = (node *)malloc(sizeof(node));
+    a->data = i;
+    a->Nnode = NULL;
+    a->Pnode = NULL;
+
+    temp->Nnode = a;
+    a->Pnode = temp;
+    temp = temp->Nnode;
+  }
+  temp->Nnode = head;
+  head->Pnode = temp;
+  return head;
+}
+
+void display(node *p){
+  node *temp = p;
+  if (p != NULL) {
+    do{
+      printf("%d ", temp->data);
+      temp = temp->Nnode;
+    } while (temp != p);
+  }else {
+    printf("the list is empty\n");
+  }
+}  
+
+int main(int argc, char *argv[])
+{
+  node * head = initDoubleRecycleVerketteList(N);
+  display(head);
+  return 0;
+}
+
+```
+
+``` {.example}
+1 2 3 4 5 6 7 8 9 10
+```
+
+Priority Queues
+===============
+
+description
+-----------
+
+    Priority Queues is a set of instances, which
+    are sorted according to their keys
+    This can be implemented by binary heap
+    Heap sort all key with a Max-heap A
+
+show-Max(A)
+-----------
+
+    return A[0]
+
+Extract-Max(A)
+--------------
+
+    max = A[0]
+    A[0] <- A[A.heap_size]
+    A.heap_size--
+    Max-heap(A,A.heap_size, 0)
+    return max
+
+Heap-increase-key(A, i, k)
+--------------------------
+
+increase the elemenet with i priority to k priority
+
+    A[i] <- k
+    while i > 1 and A[i] > A[parent(i)]:
+        exchange (A[i], A[parent(i)])
+        exchange (i, parent(i))
+
+Heap-insert(A, k)
+-----------------
+
+    A.heap_size++
+    A[A.heap_size] = -\inf
+    Heap-include-key(A, A.heap_size, k)
+
+StaticKetteList
+===============
+
+C/C++
+-----
+
+``` {.c org-language="C" results="output" exports="both"}
+#include <stdio.h>
+#define maxSize 6
+typedef struct {
+    int data;
+    int cur;
+}component;
+//将结构体数组中所有分量链接到备用链表中
+void reserveArr(component *array);
+//初始化静态链表
+int initArr(component *array);
+//输出函数
+void displayArr(component * array,int body);
+//从备用链表上摘下空闲节点的函数
+int mallocArr(component * array);
+int main() {
+    component array[maxSize];
+    int body=initArr(array);
+    printf("静态链表为：\n");
+    displayArr(array, body);
+    return 0;
+}
+//创建备用链表
+void reserveArr(component *array){
+    for (int i=0; i<maxSize; i++) {
+        array[i].cur=i+1;//将每个数组分量链接到一起
+        array[i].data=-1;
+    }
+    array[maxSize-1].cur=0;//链表最后一个结点的游标值为0
+}
+//提取分配空间
+int mallocArr(component * array){
+    //若备用链表非空，则返回分配的结点下标，否则返回 0（当分配最后一个结点时，该结点的游标值为 0）
+    int i=array[0].cur;
+    if (array[0].cur) {
+        array[0].cur=array[i].cur;
+    }
+    return i;
+}
+//初始化静态链表
+int initArr(component *array){
+    reserveArr(array);
+    int body=mallocArr(array);
+    //声明一个变量，把它当指针使，指向链表的最后的一个结点，因为链表为空，所以和头结点重合
+    int tempBody=body;
+    for (int i=1; i<4; i++) {
+        int j=mallocArr(array);//从备用链表中拿出空闲的分量
+        array[tempBody].cur=j;//将申请的空闲分量链接在链表的最后一个结点后面
+        array[j].data=i;//给新申请的分量的数据域初始化
+        tempBody=j;//将指向链表最后一个结点的指针后移
+    }
+    array[tempBody].cur=0;//新的链表最后一个结点的指针设置为0
+    return body;
+}
+
+void displayArr(component * array,int body){
+  int tempBody=body;//tempBody准备做遍历使用
+    while (array[tempBody].cur) {
+        printf("%d,%d ",array[tempBody].data,array[tempBody].cur);
+        tempBody=array[tempBody].cur;
+    }
+    printf("%d,%d\n",array[tempBody].data,array[tempBody].cur);
+}
+
+```
+
+``` {.example}
+静态链表为：
+-1,2 1,3 2,4 3,0
+```
+
+Lookup Table
+============
+
+C/C++
+-----
+
+``` {.c org-language="C" results="output" exports="both"}
+#include <stdio.h>
+#include <stdlib.h>
+#define  KeyType int
+typedef struct{
+  KeyType key;
+}ElemType;
+
+typedef struct{
+  ElemType *elem;
+  int length;
+}SSTable;
+
+void create(SSTable ** table, int *context , int length){
+  (*table)=(SSTable*)malloc(sizeof(SSTable));
+  (*table)->length = length;
+  (*table)->elem = (ElemType*)malloc((length+1)*sizeof(ElemType));
+  for (int i =1; i <= length; i++) {
+    (*table)->elem[i].key = *(context+i-1);
+  }
+}
+
+int search(SSTable *table, int lookup){
+  table->elem[0].key = lookup;
+  int i = table->length;
+  while (table->elem[i].key != table->elem[0].key) {
+    i--;
+  }
+  return i;
+}
+
+int main(int argc, char *argv[])
+{
+  int context[] = {1, 3, 7, 23, 56, 89, 345};
+  int length =  sizeof(context)/sizeof(int);
+  SSTable *table;
+  create(&table, context, length);
+  int lookup = 3;
+  int localation = search(table, lookup);
+  if (localation) {
+    printf("In\n");
+  }else {
+    printf("NOT In\n");
+  }
+  return 0;
+}
+
+```
+
+``` {.example}
+In
+```
+
+Set
+===
+
+JS
+--
+
+``` {.javascript org-language="js" results="output" exports="both"}
+function Dictionay() {
+    // initialization
+    this.items = {};
+    Dictionay.prototype.set = function (key, value) {
+        this.items[key] = value;
+    };
+
+    //has(key)
+    Dictionay.prototype.has = function (key) {
+        return this.items.hasOwnProperty(key);
+    };
+
+    //remove(key)
+    Dictionay.prototype.remove = function (key) {
+
+        if (!this.has(key)) return false;
+
+
+        delete this.items[key];
+        return true;
+    };
+    //get(key)
+    Dictionay.prototype.get = function (key) {
+        return this.has(key) ? this.items[key] : undefined;
+    };
+
+    //keys()
+    Dictionay.prototype.keys = function () {
+        return Object.keys(this.items);
+    };
+
+    //values()
+    Dictionay.prototype.values = function () {
+        return Object.values(this.items);
+    };
+
+    //size()
+    Dictionay.prototype.size = function () {
+        return this.keys().length;
+    };
+
+    //clear()
+    Dictionay.prototype.clear = function () {
+        this.items = {};
+    };
+}
+
+
+var dict = new Dictionay();
+
+dict.set("age", 18);
+dict.set("name", "Coderwhy");
+dict.set("height", 1.88);
+dict.set("address", "广州市");
+
+console.log(dict.keys()); // age,name,height,address
+console.log(dict.values()); // 18,Coderwhy,1.88,广州市
+console.log(dict.size()); // 4
+console.log(dict.get("name")); // Coderwhy
+dict.remove("height");
+console.log(dict.keys());// age,name,address
+dict.clear();
+
+```
+
+``` {.example}
+[ 'age', 'name', 'height', 'address' ]
+[ 18, 'Coderwhy', 1.88, '广州市' ]
+4
+Coderwhy
+[ 'age', 'name', 'address' ]
+```
+
+HashTable
+=========
+
+JS
+--
+
+### simple example
+
+``` {.javascript org-language="js" results="output" exports="both"}
+function HashTable(){
+    //initialization
+    this.limit = 7;
+    this.storage = [];
+    this.conut = 0;
+
+    //hash()
+    HashTable.prototype.hash = function(key){
+        var hashCode = 0;
+        for (var i = 0; i < key.length; i++) {
+            hashCode =37*hashCode + key.charCodeAt(i);
+        }
+        hashCode = hashCode % this.limit;
+        return hashCode;
+    };
+    //put(key, value)
+    HashTable.prototype.put = function(key, value){
+        var index = this.hash(key);
+        var bucket = this.storage[index];
+        if (bucket == null) {
+            bucket = [];
+            this.storage[index] = bucket;
+        }
+        var override = false;
+        for (var i = 0; i < bucket.length; i++) {
+            var tuple = bucket[i];
+            if (tuple[0] == key) {
+                tuple[1] = value;
+                override = true;
+            }
+        }
+        if (!override) {
+            bucket.push([key, value]);
+            this.conut += 1;
+        }
+    };
+
+    //get(key)
+    HashTable.prototype.get = function(key){
+        var index = this.hash(key);
+        var bucket = this.storage[index];
+        if (bucket == null) {
+            return null;
+        }
+        for (var i = 0; i < bucket.length; i++) {
+            var tuple = bucket[i];
+            if (tuple[0] == key) {
+                return tuple[1];
+            };
+        };
+        return null;
+    };
+    //remove(key)
+    HashTable.prototype.remove = function(key){
+        var index = this.hash(key);
+        var bucket = this.storage[index];
+        if (bucket == null) {
+            return null;
+        }
+        for (var i = 0; i < bucket.length; i++) {
+            var tuple = bucket[i];
+            if (tuple[0]== key){
+                bucket.splice(i, 1);
+                this.conut--;
+                return tuple[1];
+            }
+        };
+        return null;
+    };
+    //isEmpty()
+    HashTable.prototype.isEmpty = function(){
+        return this.conut == 0;
+    };
+    //size()
+    HashTable.prototype.size = function(){
+        return this.conut;
+    };
+}
+
+var ht = new HashTable();
+ht.put("abc", 1);
+ht.put("bcd", 2);
+ht.put("cde", 3);
+ht.put("def", 4);
+ht.put("efg", 5);
+ht.put("fgh", 6);
+
+console.log(ht.get("aaa"));
+Console.log(ht.get("abc"));
+console.log(ht.remove("bcd"));
+console.log(ht.get("def"));
+
+
+```
+
+``` {.example}
+null
+1
+2
+4
+```
+
+void swap(int \*a, int \*b){ int tmp = \*a; ,\*a = \*b; ,\*b = tmp; }
+void heapify(int A\[\], int N, int i){ int leftchild = i\*2+1; int
+rightchild = i\*2+2; int maxindex = i; if (leftchild \< N &&
+A\[leftchild\] \> A\[maxindex\]) { maxindex = leftchild; } if
+(rightchild \< N && A\[rightchild\] \> A\[maxindex\]) { maxindex =
+rightchild; } if (maxindex != i) { swap(A\[maxindex\], A\[i\]);
+heapify(A, N, maxindex); } }
+
+void build~heap~(int A\[\], int N){ int last~parent~ = (N-1-1)/2; int i;
+for (i = last~parent~; i \>= 0; i--) { heapify(A, N, i); } }
+
+int main(int argc, char \*argv\[\]) { int A\[\] = {2, 1, 3, 4, 5, 3, 6,
+7, 8, 4, 9, 45, 9,34, 23,345, 546,20, 23465, 90, 19}; int N =
+sizeof(A)/sizeof(int); build~heap~(A, N); for (int i = N-1; i \>= 0;
+i--) { swap(A\[i\], A\[0\]); heapify(A, i, 0); }
+
+for (int j = 0; j \< N; ++j) { printf(\"%d \",A\[j\]); } return 0; }
+
+### vollstangdig example
+
+``` {.javascript org-language="js" results="output" exports="both"}
+function HashTable() {
+    // 定义属性
+    this.storage = []
+    this.count = 0
+    this.limit = 8
+
+    // 定义相关方法
+    // 判断是否是质数
+    HashTable.prototype.isPrime = function (num) {
+        var temp = parseInt(Math.sqrt(num))
+        // 2.循环判断
+        for (var i = 2; i <= temp; i++) {
+            if (num % i == 0) {
+                return false
+            }
+        }
+        return true
+    }
+
+    // 获取质数
+    HashTable.prototype.getPrime = function (num) {
+        while (!isPrime(num)) {
+            num++
+        }
+        return num
+    }
+
+    // 哈希函数
+    HashTable.prototype.hashFunc = function(str, max) {
+        // 1.初始化hashCode的值
+        var hashCode = 0
+
+        // 2.霍纳算法, 来计算hashCode的数值
+        for (var i = 0; i < str.length; i++) {
+            hashCode = 37 * hashCode + str.charCodeAt(i)
+        }
+
+        // 3.取模运算
+        hashCode = hashCode % max
+        return hashCode
+    }
+
+    // 插入数据方法
+    HashTable.prototype.put = function (key, value) {
+        // 1.获取key对应的index
+        var index = this.hashFunc(key, this.limit)
+
+        // 2.取出数组(也可以使用链表)
+        // 数组中放置数据的方式: [[ [k,v], [k,v], [k,v] ] , [ [k,v], [k,v] ]  [ [k,v] ] ]
+        var bucket = this.storage[index]
+
+        // 3.判断这个数组是否存在
+        if (bucket === undefined) {
+            // 3.1创建桶
+            bucket = []
+            this.storage[index] = bucket
+        }
+
+        // 4.判断是新增还是修改原来的值.
+        var override = false
+        for (var i = 0; i < bucket.length; i++) {
+            var tuple = bucket[i]
+            if (tuple[0] === key) {
+                tuple[1] = value
+                override = true
+            }
+        }
+
+        // 5.如果是新增, 前一步没有覆盖
+        if (!override) {
+            bucket.push([key, value])
+            this.count++
+
+            if (this.count > this.limit * 0.75) {
+                var primeNum = this.getPrime(this.limit * 2)
+                this.resize(primeNum)
+            }
+        }
+    }
+
+    // 获取存放的数据
+    HashTable.prototype.get = function (key) {
+        // 1.获取key对应的index
+        var index = this.hashFunc(key, this.limit)
+
+        // 2.获取对应的bucket
+        var bucket = this.storage[index]
+
+        // 3.如果bucket为null, 那么说明这个位置没有数据
+        if (bucket == null) {
+            return null
+        }
+
+        // 4.有bucket, 判断是否有对应的key
+        for (var i = 0; i < bucket.length; i++) {
+            var tuple = bucket[i]
+            if (tuple[0] === key) {
+                return tuple[1]
+            }
+        }
+
+        // 5.没有找到, return null
+        return null
+    }
+
+    // 删除数据
+    HashTable.prototype.remove = function (key) {
+        // 1.获取key对应的index
+        var index = this.hashFunc(key, this.limit)
+
+        // 2.获取对应的bucket
+        var bucket = this.storage[index]
+
+        // 3.判断同是否为null, 为null则说明没有对应的数据
+        if (bucket == null) {
+            return null
+        }
+
+        // 4.遍历bucket, 寻找对应的数据
+        for (var i = 0; i < bucket.length; i++) {
+            var tuple = bucket[i]
+            if (tuple[0] === key) {
+                bucket.splice(i, 1)
+                this.count--
+
+                // 缩小数组的容量
+                if (this.limit > 7 && this.count < this.limit * 0.25) {
+                    var primeNum = this.getPrime(Math.floor(this.limit / 2))
+                    this.resize(primeNum)
+                }
+            }
+            return tuple[1]
+        }
+
+        // 5.来到该位置, 说明没有对应的数据, 那么返回null
+        return null
+    }
+
+    // isEmpty方法
+    HashTable.prototype.isEmpty = function () {
+        return this.count == 0
+    }
+
+    // size方法
+    HashTable.prototype.size = function () {
+        return this.count
+    }
+
+    // 哈希表扩容
+    HashTable.prototype.resize = function (newLimit) {
+        // 1.保存旧的数组内容
+        var oldStorage = this.storage
+
+        // 2.重置属性
+        this.limit = newLimit
+        this.count = 0
+        this.storage = []
+
+        // 3.遍历旧数组中的所有数据项, 并且重新插入到哈希表中
+        oldStorage.forEach(function (bucket) {
+            // 1.bucket为null, 说明这里面没有数据
+            if (bucket == null) {
+                return
+            }
+
+            // 2.bucket中有数据, 那么将里面的数据重新哈希化插入
+            for (var i = 0; i < bucket.length; i++) {
+                var tuple = bucket[i]
+                this.put(tuple[0], tuple[1])
+            }
+        }).bind(this)
+    }
+}
+
+
+```
+
+Binary tree
+===========
+
+**By delete**:
+
+  ---------------- --------------------------------------------------------
+  without child    just delete
+  with one child   just overwirte itself
+  with two child   with precursor or Successor and recursive if necessary
+  ---------------- --------------------------------------------------------
+
+RedBlack tree
+=============
+
+**5 Rules**
+
+-   alle node red or black
+-   root black
+-   leaf black null
+-   red can\'t together
+-   all path has the same number of black
+
+**2 whirl**
+
+-   left whirl, Counterclockwise
+-   right whirl, clockwise
+
+just whirl, if there is a node or a branch between the two whirled node,
+after the whirling, it\'s still in the between!!!
+
+**5 casese to add new red node**
+
+  --- -------------------------------------- ---------------------------------------------------------
+  1   no root                                add root
+  2   black father                           just add new node
+  3   red father, red uncle                  black father, black uncle, red grandfather
+  4   red father, black uncle, left child    black father, black uncle, red grandfather, right whirl
+  5   red father, black uncle, right child   left whirl, to step 4
+  --- -------------------------------------- ---------------------------------------------------------
+
+3,4,5 will be repeated if necessary!
+
+Cartesian tree
+==============
+
+    this tree has two property,
+    1, it's a heap, which mean, the parents are all smaller than their childen
+    2, we can get the original array with the IN-order scan of the tree
+
+    How to build cartesian tree
+    for inserting a new node, we compare it to the root and the rightest edge,
+    if it is smaller than the root, trun the all(include the root) to be new node's left child
+    if it is bigger, go down to the next node, if go to the leaf, add it just as right child
+    if it is bigger, go down to the next node, if it is smaller than one node,
+                                               trun all to be the left child, and new node as right chilc
+
+this can be done in $O(n)$ time compexity
+
+Binary Heap
+===========
+
+Binary Heap example deviced by heap sort
+
+``` {.typescript exports="both" results="both"}
+let swap = function (left:number, right:number){
+  return [right, left]
+  }
+
+let heapfly =  function(list:number[], length:number, index:number){
+      var leftchild = index*2+1
+      var rightchild = index*2+2
+      var maxindex = index
+      if (leftchild < length && list[leftchild] >list[maxindex]) {
+          [leftchild, maxindex] = swap(leftchild, maxindex)
+      }
+
+    if (rightchild < length && list[rightchild]>list[maxindex]) {
+        [rightchild, maxindex] = swap(rightchild, maxindex)
+      }
+      if (maxindex != index) {
+          [list[maxindex], list[index]] = swap(list[maxindex], list[index])
+          heapfly(list, length, maxindex)
+      }
+  }
+ let build_heap = function (list:number[], lenght:number){
+      var lastperent = Math.floor((length-1-1) / 2);
+      for (var i = lastperent; i >= 0; i--) {
+          heapfly(list, length, i);
+      }
+  }
+  var list: number[] = [2, 1, 3, 4, 5, 3, 5, 7, 8, 45,  9, 25, 34, 23, 345, 546, 20, 23465, 90, 19];
+  console.log(list)
+  var length: number = list.length;
+  build_heap(list, length)
+
+  for (var i = length-1; i >= 0; i--) {
+      [list[i], list[0]]= swap(list[i], list[0])
+      heapfly(list, i, 0)
+  }
+  console.log(list)
+
+```
+
+``` {.example}
+[
+    2,  1,     3,  4,   5,
+    3,  5,     7,  8,  45,
+    9, 25,    34, 23, 345,
+  546, 20, 23465, 90,  19
+]
+[
+   1,  2,   3,   3,     4,
+   5,  5,   7,   8,     9,
+  19, 20,  23,  25,    34,
+  45, 90, 345, 546, 23465
+]
+```
+
+Binomial-tree
+=============
+
+Definition: if k \> 0, $B_{k} = {B_{0}, B_{1}, B_{2}....B_{k-1}}$.
+
+``` {.dot file="./foto/BinomialTree.jpg"}
+digraph diagramm {
+A0;
+B0 -> B1;
+C0 -> C1;
+C0 -> C2;
+C2 -> C3;
+D0 -> D1; 
+D0 -> D2;
+D0 -> D3;
+D2 -> D4;
+D3 -> D5;
+D3 -> D6;
+D6 -> D7;
+
+}   
+```
+
+Binomial Heap
+=============
+
+    Binomial Heap is a forest of binomial Tree
+    1. all binomial tree are min(max)imum heap property
+    2. with different order Binomial Tree consist Binomial Heap, non duplicated order binomial tree
+
+``` {.dot file="./foto/BinomialHeap.jpg"}
+digraph diagramm {
+A0;
+A0 -> B0;
+B0 -> B1;
+
+B0 -> C0;
+C0 -> C1;
+C0 -> C2;
+C2 -> C3;
+
+C0 -> D0;
+D0 -> D1; 
+D0 -> D2;
+D0 -> D3;
+D2 -> D4;
+D3 -> D5;
+D3 -> D6;
+D6 -> D7;
+}   
+```
+
+Each order has only one Binomial Tree, conlidataion is required at each
+min-extract, merge
+
+Fibonacci Heap
+==============
+
+lazy Binomial Heap
+------------------
+
+    For merge Operation:
+    Just concatenate the two binomial Heap, without the consolidation step
+
+    For Min-extra:
+    after extracte the minmum we merge  the root list.
+    the conlidataion will not be executed after merge, until now
+    clean the masse
+
+key-decrease O(1)
+-----------------
+
+key-decrease is also lazy, just cut it off, and add to rootlist
+
+amortised Min-extra to $O(log n)$
+---------------------------------
+
+amortised operation reduce Min-extra to $O(log n)$
+
+damaged Fibonacci Heap
+----------------------
+
+For all perents, if one child is loss, will be marked as red, if the
+second also loss, the perent will be cut off, and add to root list.
+
+Max-damaged-Fibonacci-Heap
+--------------------------
+
+Max-damaged-Fibonacci-Heap has Fibonacci number nodes
+
+Van Emde Boas Tree
+==================
+
+description
+-----------
+
+we want to have a data structure, which can inert, delete, succ, pred,
+in $\log log(n)$
+
+Open Address
+------------
+
+for a dynamical Set S, we maintain an array A\[n\] only with bit 0 or 1.
+if i $\in$ S, A\[i\] = 1 Set S:
+
+  --- --- --- --- --- --- --- ---- ---- ---- ---- ---- ---- ---
+  1   3   4   2   5   7   8   12   11   15   14   17   20   9
+
+  --- --- --- --- --- --- --- ---- ---- ---- ---- ---- ---- ---
+
+Array A\[\]
+
+  --- --- --- --- --- --- --- --- --- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+  1   2   3   4   5   6   7   8   9   10   11   12   13   14   15   16   17   18   19   20
+
+  1   1   1   1   1   0   1   1   1   0    1    0    0    1    1    0    1    0    0    1
+  --- --- --- --- --- --- --- --- --- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+
+  ------------ --------
+  min:         $O(n)$
+  max          $O(n)$
+  membership   $O(1)$
+  insert       $O(1)$
+  delete       $O(1)$
+  succ         $O(n)$
+  pred         $O(n)$
+  ------------ --------
+
+open address + binary tree
+--------------------------
+
+Build a binary tree with array A\[\], which are repersentation of set S.
+Set S:
+
+  --- --- --- --- --- --- --- ---- ---- ---- ---- ---- ---- ---
+  1   3   4   2   5   7   8   12   11   15   14   17   20   9
+
+  --- --- --- --- --- --- --- ---- ---- ---- ---- ---- ---- ---
+
+Array A\[\]
+
+  --- --- --- --- --- --- --- --- --- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+  1   2   3   4   5   6   7   8   9   10   11   12   13   14   15   16   17   18   19   20
+
+  1   1   1   1   1   0   1   1   1   0    1    0    0    1    1    0    1    0    0    1
+  --- --- --- --- --- --- --- --- --- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+
+  ------------ ------------
+  min:         $O(log n)$
+  max          $O(lon n)$
+  membership   $O(1)$
+  insert       $O(log n)$
+  delete       $O(log n)$
+  succ         $O(log n)$
+  pred         $O(log n)$
+  ------------ ------------
+
+Open address + squart n tree
+----------------------------
+
+This is the same idea like with binary tree, just reduce the level to 3
+we assume that the number of elements is $u=2^{2^{k}}$
+
+  ------------ --------------
+  min:         $O(\sqrt n)$
+  max          $O(lon n)$
+  membership   $O(1)$
+  insert       $O(1)$
+  delete       $O(\sqrt n)$
+  succ         $O(\sqrt n)$
+  pred         $O(\sqrt n)$
+  ------------ --------------
+
+photo van Emde Boas tree
+------------------------
+
+### description
+
+    Array A[] in recursive stored in a tree,
+    this tree has many block recursively, and each block has three components,
+    1. integel u: indicate the elements of such block
+    2. point to summary, which is also a block
+    3. a array of lenght $\sqrt u$, each elemenet in array point to a such block recursively
+
+    the smallest block only contains two elemenet, and it's u=2 and no sammary pointer
+
+we start with the block, which integel u is the smallest $2^{2^{k}}$ we
+define: high(x) = floor$(x/ \sqrt u)$ low(x) = x mod $\sqrt u$
+index(x,y) = $x \cdot \sqrt u + y$ so x = index(high(x), low(x))
+
+### membership
+
+    Prototype_veb_member(V,x)
+    if V.u == 2:
+      return V[x]
+    else return Prototype_veb_member(V.cluster[high(x)], low(x))
+
+### insert
+
+### delete
+
+### secc
+
+### pred
+
+Van Emde Boas Tree
+------------------
+
+**q** implement
+
+    /* 
+     * Code for van emde boas tree. Try to implement function for predecessor as
+     * an exercise.
+     */
+
+    #include <cmath>
+    #include <iostream>
+    #include <vector>
+
+    class vEB
+    {
+      int u;
+      int min;
+      int max;
+      vEB *summary;
+      std::vector<vEB *> children;
+
+      int high(int k){
+        int x = std::ceil(std::sqrt(u));
+        return std::floor(k / x);
+      }
+
+      int low(int k){
+        int x = std::ceil(std::sqrt(u));
+        return k % x;
+      }
+
+      int index(int k, int kk){
+        return (k * (int)std::sqrt(u)) + kk;
+      }
+
+    public:
+      vEB(int U){
+        // u = std::pow(std::sqrt(U), 2);
+        u = U;
+        min = U;
+        max = -1;
+
+        if (u <= 2){
+          summary = nullptr;
+          children = std::vector<vEB *> (0, nullptr);
+        }
+        else{
+          int children_count = std::ceil(std::sqrt(u));
+          int children_size = std::ceil(u / std::sqrt(u));
+
+          summary = new vEB(children_count);
+          children = std::vector<vEB *> (children_count, nullptr);
+          for(int i = 0; i < children_count; ++i){
+            children[i] = new vEB(children_count);
+          }
+        }
+      }
+
+      void insert(int k){
+        if(min > max){
+          min = max = k;
+          return;
+        }
+
+        if(k < min){
+          int temp;
+          temp = min;
+          min = k;
+          k = temp;
+        }
+
+        if(k > max)
+          max = k;
+
+        if(u == 2){
+          max = k;
+          return;
+        }
+
+        int i = high(k);
+        int j = low(k);
+
+        children[i]->insert(j);
+
+        if(children[i]->max == children[i]->min)
+          summary->insert(i);
+      }
+
+      void remove(int k){
+        if(min > max)
+          return;
+
+        if(min == max){
+          min = u;
+          max = -1;
+          return;
+        }
+
+        if(u == 2){
+          if(k == 1){
+            if(min == 1){
+              min = u;
+              max = -1;
+            }
+            else if(min == 0)
+              max = 0;
+          }
+          else
+            if(max == 0){
+              min = u;
+              max = -1;
+            }
+            else if(max == 1)
+              min = 1;
+          return;
+        }
+
+        if(k == min){
+          int i = summary->min;
+          min = index(i, children[i]->min);
+          return;
+        }
+
+        int i = high(k);
+        int j = low(k);
+
+        children[i]->remove(j);
+
+        if(children[i]->min > children[i]->max){
+          summary->remove(i);
+        }
+
+        if(k == max){
+          if(summary->min > summary->max){
+            max = min;
+          }
+          else{
+            i = summary->min;
+            max = index(i, children[i]->max);
+          }
+        }
+      }
+
+      int getMin(){
+        return min;
+      }
+      int getMax(){
+        return max;
+      }
+
+      int universe(){
+        return u;
+      }
+
+      int successor(int k){
+        if(k <= min)
+          return min;
+        else if(k > max)
+          return u;
+
+        int i = high(k);
+        int j = low(k);
+
+        if(j <= children[i]->max){
+          int res = children[i]->successor(j);
+          if(res >= (u / (int)std::sqrt(u)))
+            return u;
+          return k - j + res;
+        }
+        else{
+          int res = children[summary->successor(i)]->min;
+          if(res >= children[summary->min]->u)
+            return u;
+          return index(summary->successor(i), res);
+        }
+      }
+    };
+
+    int main(){
+      vEB tree(1 << 4);
+      std::cout << "Insert 12, 10, 13, 14\n";
+      tree.insert(3);
+      tree.insert(5);
+      tree.insert(7);
+      tree.insert(9);
+      tree.insert(10);
+      tree.insert(13);
+      tree.insert(14);
+      std::cout << "Successor of 12 is\n";
+      std::cout << tree.successor(12) << '\n';
+      tree.remove(13);
+      std::cout << "Removing 13. Now successor of 13 is\n";
+      std::cout << tree.successor(13) << '\n';
+      tree.remove(14);
+      std::cout << "Removing 14. Now successor of 13 is\n";
+      std::cout << tree.successor(13) << '\n';
+      std::cout << "16, which is universe size, means no successor.\n";
+
+      return 0;
+    }
+

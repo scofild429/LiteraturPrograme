@@ -1,3 +1,1 @@
-add such into keybindings.json for vscode, snippet for django-template {
-\"key\": \"ctrl+y\", \"command\": \"editor.action.insertSnippet\",
-\"args\": { \"name\": \"trans\" } }
+# Vscode
