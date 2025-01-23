@@ -2,14 +2,16 @@
 #+OPTIONS: num:t
 #+STARTUP: overview
 * basic OP
-#+begin_src
+#+begin_src sh
 sudo apt install postgresql-client-common
 
 sudo apt install postgresql postgresql-contrib
 #+end_src
+
 sudo -i -u postgres
 psql
 : swith to psql user (postgres, auto created), and then login in
+
 sudo -u postgres psql
 : login psql from current user
 
@@ -28,9 +30,9 @@ psql -h localhost -U 'user_name' (with be asked for password)
 
  psql "sslmode=require host=141.5.103.1 port=5432 dbname=postgres" --username=postgres
 
-
+\l
 \c database
-\du
+\dt
 \q
 
 
@@ -55,7 +57,7 @@ create table personv (
  gender varchar(6),
  dataofbirth DATE
 ) ;
-#+end_src
+#+end_psrc
 
 #+RESULTS:
 |---|

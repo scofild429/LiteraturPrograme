@@ -5,6 +5,24 @@ title: RUST
 ```{=org}
 #+startup: content
 ```
+# str String &\[\] Vec convert
+
+  ----------- ----------- ----------------------------------------------------
+  s           to          function
+  &str        String      String::from(s) or s.to~string~() or s.to~owned~()
+  &str        &\[u8\]     s.as~bytes~()
+  &str        Vec\<u8\>   s.as~bytes~().to~vec~()
+  String      &\[u8\]     s.as~bytes~()
+  String      &str        s.as~str~() or &s
+  String      Vec\<u8\>   s.into~bytes~()
+  &\[u8\]     &str        std::str::from~utf8~(s).unwrap()
+  &\[u8\]     String      String::from~utf8~(s).unwrap()
+  &\[u8\]     Vec\<u8\>   s.to~vec~()
+  Vec\<u8\>   &str        std::str::from~utf8~(&s).unwrap()
+  Vec\<u8\>   String      String::from~utf8~(s).unwrap()
+  Vec\<u8\>   &\[u8\]     &s or s.as~slice~()
+  ----------- ----------- ----------------------------------------------------
+
 # 所有权
 
 ``` {.rust results="output"}

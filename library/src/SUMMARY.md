@@ -4,6 +4,7 @@
   - [MachineLearning](./MachineLearning.org.md)
   - [DeepLearning](./DeepLearning.org.md)
   - [NLP](./NLP.org.md)
+  - [CUDA](./CUDA.org.md)
 
 
 - [CS](./CS.org.md)

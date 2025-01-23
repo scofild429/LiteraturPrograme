@@ -2,6 +2,29 @@
 #+OPTIONS: num:t
 #+startup: content
 
+* array and slienc
+数组类型表示为[T; N]，数组的引用类型表示为&[T;N]，Slice类型表示为[T]，Slice的引用类型表示为&[T]。
+
+
+* str String &[] Vec convert
+|---------+---------+--------------------------------------------------|
+| s       | to      | function                                         |
+| &str    | String  | String::from(s) or s.to_string() or s.to_owned() |
+| &str    | &[u8]   | s.as_bytes()                                     |
+| &str    | Vec<u8> | s.as_bytes().to_vec()                            |
+| String  | &[u8]   | s.as_bytes()                                     |
+| String  | &str    | s.as_str() or &s                                |
+| String  | Vec<u8> | s.into_bytes()                                   |
+| &[u8]   | &str    | std::str::from_utf8(s).unwrap()                  |
+| &[u8]   | String  | String::from_utf8(s).unwrap()                    |
+| &[u8]   | Vec<u8> | s.to_vec()                                       |
+| Vec<u8> | &str    | std::str::from_utf8(&s).unwrap()                 |
+| Vec<u8> | String  | String::from_utf8(s).unwrap()                    |
+| Vec<u8> | &[u8]   | &s or s.as_slice()                              |
+|---------+---------+--------------------------------------------------|
+
+
+
 * 所有权
 #+begin_src rust :results output
   fn main() {

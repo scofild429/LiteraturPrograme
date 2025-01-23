@@ -101,6 +101,15 @@ emc xxx.org
 if by configuration failed, emacs --debug-init find the postion M-x:
 goto-char postion
 
+## Orgmode modeline configuration
+
+-   install doom-modeline
+-   customize face -\> modeline -\> background -\> gray35
+
+## Orgmode title configuation
+
+-   M-x: customize face -\> org document title -\> foreground height
+
 # EMACS Commands
 
   commands      functions                      explain

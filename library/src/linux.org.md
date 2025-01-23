@@ -189,6 +189,13 @@ screensaver.
 
 -   now test the keyshort
 
+## Powerlevel10 with zsh
+
+-   apt install zsh
+-   download MesloLGS NF font
+-   download powerlevel10 with git
+-   exec zsh
+
 # System configuration collection
 
 ## check port of application

@@ -7,9 +7,11 @@ title: Postgresql
 ```
 # basic OP
 
-    sudo apt install postgresql-client-common
+``` {.bash org-language="sh"}
+sudo apt install postgresql-client-common
 
-    sudo apt install postgresql postgresql-contrib
+sudo apt install postgresql postgresql-contrib
+```
 
 sudo -i -u postgres psql
 
@@ -43,7 +45,7 @@ if remotely, please check if the port is open
 psql \"sslmode=require host=141.5.103.1 port=5432 dbname=postgres\"
 --username=postgres
 
-ḑatabase `\du`{=latex} `\q`{=latex}
+ł ḑatabase `\dt`{=latex} `\q`{=latex}
 
     DROP SCHEMA public CASCADE;
     CREATE SCHEMA public;
@@ -79,24 +81,18 @@ create table personv (
  gender varchar(6),
  dataofbirth DATE
 ) ;
-```
+#+end_psrc
 
-```{=org}
+#+RESULTS:
+|---|
+
+
 #+header: :engine postgresql
-```
-```{=org}
 #+header: :dbhost 141.5.103.1
-```
-```{=org}
 #+header: :dbuser postgres
-```
-```{=org}
 #+header: :dbpassword "xxx"
-```
-```{=org}
 #+header: :database postgres
-```
-``` sql
+#+begin_src sql 
 CREATE TABLE articles (
   id SERIAL PRIMARY KEY,
   title VARCHAR(255),
