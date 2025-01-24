@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-01-24 Fr 19:49 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quantum Computation</title>
+<meta name="author" content="si" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Quantum Computation</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org6d48974">1. Basic states and operations</a>
+<ul>
+<li><a href="#org82c60b3">1.1. ketbra</a></li>
+<li><a href="#org9f25b6f">1.2. states</a></li>
+<li><a href="#orgaa5452c">1.3. Measurements</a></li>
+<li><a href="#org2289d25">1.4. Single Qutantum circuits</a></li>
+<li><a href="#orgf5f52f5">1.5. Multipartite quantum states</a></li>
+<li><a href="#org9559da4">1.6. XOR gate</a></li>
+<li><a href="#org30f76d3">1.7. Bell states</a></li>
+<li><a href="#org6fad5c8">1.8. Teleportion</a></li>
+</ul>
+</li>
+<li><a href="#org49fc242">2. Deutsche-Jose</a>
+<ul>
+<li><a href="#org8fefc6a">2.1. Bit oracle</a></li>
+<li><a href="#org9daa86c">2.2. Hadamard on n qubits</a></li>
+<li><a href="#org2e78d40">2.3. Deutsche Jose algorithm</a></li>
+</ul>
+</li>
+<li><a href="#org83779e9">3. Gover's Algrithmus</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6d48974" class="outline-2">
+<h2 id="org6d48974"><span class="section-number-2">1.</span> Basic states and operations</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org82c60b3" class="outline-3">
+<h3 id="org82c60b3"><span class="section-number-3">1.1.</span> ketbra</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Ket:  \[ |a\rangle = \begin{pmatrix} a_{1} \\ a_{2} \end{pmatrix} \]</li>
+<li>Bra: \[\langle b| = |b\rangle^+  = \begin{pmatrix} b_{1} \\ b_{2} \end{pmatrix}^+ = \begin{pmatrix} b_{1}^* & b_{2}^* \end{pmatrix} \]</li>
+
+<li>Production of Ket and Bra:</li>
+</ul>
+<p>
+\[  \langle b|a \rangle  = \begin{pmatrix} b_{1}^* & b_{2}^* \end{pmatrix} \cdot  \begin{pmatrix} a_{1} \\ a_{2} \end{pmatrix} = a_1b_1^* + a_2b_2^*\]
+</p>
+</div>
+</div>
+<div id="outline-container-org9f25b6f" class="outline-3">
+<h3 id="org9f25b6f"><span class="section-number-3">1.2.</span> states</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+\[|0\rangle := \begin{pmatrix} 1 \\ 0 \end{pmatrix} \]
+</p>
+
+<p>
+\[|1\rangle := \begin{pmatrix} 0 \\ 1 \end{pmatrix} \]
+If a measurement will collapse either on |0&rang; or |1&rang;,
+which means |0&rang; or |1&rang; is its eigentstate, we call it as Z-measurement, and denote as \(\sigma_{z}\).
+</p>
+
+<p>
+\[|+\rangle := \frac{1}{\sqrt{2}}(|0\rangle + |1\rangle)\]
+</p>
+
+<p>
+\[|-\rangle := \frac{1}{\sqrt{2}}(|0\rangle - |1\rangle)\]
+If a measurement will collapse either on |+&rang; or |-&rang;,
+which means |+&rang; or |-&rang; is its eigentstate, we call it as X-measurement, and denote as \(\sigma_{x}\).
+</p>
+
+<p>
+\[|+i\rangle := \frac{1}{\sqrt{2}}(|0\rangle + i|1\rangle)\]
+</p>
+
+
+<p>
+\[|-i\rangle := \frac{1}{\sqrt{2}}(|0\rangle - i|1\rangle)\]
+If a measurement will collapse either on |+i&rang; or |-i&rang;,
+which means |+i&rang; or |-i&rang; is its eigentstate, we call it as Y-measurement, and denote as \(\sigma_{y}\).
+</p>
+
+<p>
+The coefficient has to be \(\frac{1}{\sqrt{2}}\) because of normalisation\(\langle\phi|\phi\rangle = 1\).
+</p>
+</div>
+</div>
+<div id="outline-container-orgaa5452c" class="outline-3">
+<h3 id="orgaa5452c"><span class="section-number-3">1.3.</span> Measurements</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+for states basis of{ \(x_1\) } and { \(x_2\) }, the measurement of state \(\phi\) on { \(x_{1}\) } is \(\langle x_{1}|\phi\rangle^2\).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2289d25" class="outline-3">
+<h3 id="org2289d25"><span class="section-number-3">1.4.</span> Single Qutantum circuits</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li><p>
+bit flip: \(\sigma_{x}|0 \rangle = |1 \rangle\) :
+</p>
+
+<p>
+\[\sigma_{x} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \]
+</p></li>
+<li>phase flip:  \(\sigma_{z}|+ \rangle = |- \rangle\) :
+\[\sigma_{z} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \]</li>
+<li>bit &amp; phase filp:   \(\sigma_{y}|+i \rangle = |-i \rangle\) :
+\[\sigma_{y} = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} \]</li>
+
+<li>Hadamard gate: \(H|0\rangle = |+ \rangle\),  \(H|1\rangle = |- \rangle\),
+\[ H =\frac{1}{\sqrt{2}}  \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} \]</li>
+
+<li>Phase gate: \(S|+ \rangle = |+i\rangle\), \(S|- \rangle = |-i\rangle\)
+\[ S = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix} \]</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf5f52f5" class="outline-3">
+<h3 id="orgf5f52f5"><span class="section-number-3">1.5.</span> Multipartite quantum states</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+we use tensor products to describe multiple states
+\[|a \rangle \oplus | b \rangle = \begin{pmatrix} a_{1} \\ a_{2} \end{pmatrix} \oplus \begin{pmatrix} b_{1} \\ b_{2} \end{pmatrix}  =
+\begin{pmatrix} a_{1}b_{1} \\ a_{1}b_{2} \\  a_{2}b_{1} \\a_{2}b_{2} \end{pmatrix} \]
+only such can to described by \(\oplus\) of other states are called uncorrelated,
+otherweise it's correlated, and  when some fully correlated are called entangled.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9559da4" class="outline-3">
+<h3 id="org9559da4"><span class="section-number-3">1.6.</span> XOR gate</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+\[CNOT = \begin{pmatrix} 1 & 0 & 0 & 0  \\ 0 & 1 & 0 & 0  \\ 0 & 0 & 1 & 0  \\ 0 & 0 & 0 & 1    \end{pmatrix} \]
+</p>
+
+
+
+<p>
+<img src="./foto/QCCNOT.png" alt="QCCNOT.png" />
+Photo <a href="https://github.com/scofild429/LiteraturPrograme/blob/main/content/foto/QCCNOT.png">Link</a> here
+</p>
+</div>
+</div>
+
+<div id="outline-container-org30f76d3" class="outline-3">
+<h3 id="org30f76d3"><span class="section-number-3">1.7.</span> Bell states</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+Example of fully correlated states (maximally entangled),
+</p>
+
+<p>
+\[| \varphi^{00}  \rangle  = \frac{1}{\sqrt{2}}( |00 \rangle_{AB} + |11 \rangle_{AB})\]
+\[| \varphi^{01}  \rangle  = \frac{1}{\sqrt{2}}( |01 \rangle_{AB} + |10 \rangle_{AB})\]
+\[| \varphi^{10}  \rangle  = \frac{1}{\sqrt{2}}( |00 \rangle_{AB} -  |11 \rangle_{AB})\]
+\[| \varphi^{11}  \rangle  = \frac{1}{\sqrt{2}}( |01 \rangle_{AB} - |10 \rangle_{AB})\]
+</p>
+
+<p>
+Create Bell states
+</p>
+
+<p>
+<img src="./foto/QCBellstates.png" alt="QCBellstates.png" />
+Photo <a href="https://github.com/scofild429/LiteraturPrograme/blob/main/content/foto/QCBellstates.png">Link</a> here
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6fad5c8" class="outline-3">
+<h3 id="org6fad5c8"><span class="section-number-3">1.8.</span> Teleportion</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+If Alise and Bob share the same bell states \(| \varphi^{00}_{AB}  \rangle  = \frac{1}{\sqrt{2}}( |00 \rangle_{AB} + |11 \rangle_{AB})\),
+Now Alias want to send stetas \(|\phi \rangle_{S} = \alpha |0 \rangle_{S} + \beta|1 \rangle_{S}\) to Bob,
+</p>
+
+
+<p>
+\[ \varPhi =  |\phi \rangle_{S} \oplus \varphi^{00}_{AB} \rangle
+ =  (\alpha |0 \rangle_{S} + \beta|1 \rangle_{S})\oplus \frac{1}{\sqrt{2}}( |00 \rangle_{AB} + |11 \rangle_{AB})\]
+</p>
+
+<p>
+\[ \varPhi  = \frac{1}{\sqrt{2}} ( \alpha |000 \rangle_{SAB} + \alpha|011 \rangle_{SAB} + \beta|100 \rangle_{SAB} + \beta|111 \rangle_{SAB} ) \]
+\[ \varPhi = \frac{1}{2\sqrt{2}} ( \alpha |000 \rangle_{SAB} + \beta |001 \rangle_{SAB} + \alpha|110 \rangle_{SAB} + \beta|111 \rangle_{SAB} +
+\alpha |011 \rangle_{SAB} + \alpha |101 \rangle_{SAB} + \beta|010 \rangle_{SAB} +\beta|100 \rangle_{SAB} +
+\alpha |000 \rangle_{SAB} - \beta |001 \rangle_{SAB} - \alpha|110 \rangle_{SAB} + \beta|111 \rangle_{SAB} +
+\alpha |011 \rangle_{SAB} - \alpha |101 \rangle_{SAB} - \beta|010 \rangle_{SAB} +\beta|100 \rangle_{SAB}) \]
+\[ \varPhi  = \frac{1}{2\sqrt{2}} [(|00 \rangle_{SA} + |11\rangle_{SA}) ]\oplus (\alpha |0\rangle_B + \beta|1\rangle_B) +
+(|01 \rangle_{SA} + |10\rangle_{SA}) ]\oplus (\alpha |1\rangle_B + \beta|0\rangle_B) \\
+ +(|00 \rangle_{SA} - |11\rangle_{SA}) ]\oplus (\alpha |0\rangle_B - \beta|1\rangle_B)  +
+(|01 \rangle_{SA} - |10\rangle_{SA}) ]\oplus (\alpha |1\rangle_B - \beta|0\rangle_B) ] \]
+\[ \varPhi = \frac{1}{2\sqrt{2}} [| \varphi^{00}_{AB} \rangle \oplus |\phi \rangle_{B} + | \varphi^{01}_{AB} \rangle \oplus \sigma_x |\phi \rangle_{B}+ |\varphi^{10}_{AB} \rangle \oplus \sigma_z |\phi \rangle_{B} + | \varphi^{11}_{AB} \rangle \oplus \sigma_x  \sigma_z |\phi \rangle_{B}]  \]
+</p>
+
+<ul class="org-ul">
+<li>Alice preforms a measurement in the Bell basis</li>
+<li>she send her classical output (i,j) to Bob</li>
+<li>Bob apply \(\sigma_{z}^{i}\sigma_{x}^{j}\) to get the orignal \(|\phi\rangle\).</li>
+</ul>
+
+
+
+<div id="org9a4862f" class="figure">
+<p><img src="./foto/QCteleportation.png" alt="QCteleportation.png" />
+</p>
+</div>
+
+<p>
+Photo  <a href="https://github.com/scofild429/LiteraturPrograme/blob/main/content/foto/QCteleportation.png">Link</a> Here
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org49fc242" class="outline-2">
+<h2 id="org49fc242"><span class="section-number-2">2.</span> Deutsche-Jose</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org8fefc6a" class="outline-3">
+<h3 id="org8fefc6a"><span class="section-number-3">2.1.</span> Bit oracle</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+<img src="./foto/QCbitoracle.png" alt="QCbitoracle.png" />
+Photo <a href="https://github.com/scofild429/LiteraturPrograme/blob/main/content/foto/QCbitoracle.png">Link</a> here
+</p>
+
+
+<p>
+\(O_{f}|x\rangle |y\rangle = |x\rangle |y \oplus f(x)\rangle\),  \(U_{f}\) : phase oracle, which is independt of y,
+\[U_{f}|x\rangle = (-1)^{f(x)}|x\rangle\].
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9daa86c" class="outline-3">
+<h3 id="org9daa86c"><span class="section-number-3">2.2.</span> Hadamard on n qubits</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+for \(x \in \{0, 1\}\),
+\[ |x\rangle -> H -> |y\rangle\] ,
+\[ |y\rangle = \frac{1}{\sqrt{2}} \sum_{k \in \{0, 1 \}} (-1)^{k \cdot x}|k\rangle\]
+</p>
+
+<p>
+for for \(x \in \{0, 1\}^{n}\),
+\[ |x_{0}\rangle -> H -> |y_{0}\rangle\] ,
+\[ |x_{1}\rangle -> H -> |y_{1}\rangle\] ,
+\[ |x_{2}\rangle -> H -> |y_{2}\rangle\] ,
+\[ |y\rangle  = H^{\otimes n} = \frac{1}{\sqrt{2^{n}}} \sum_{k \in \{0, 1 \}^{n}} (-1)^{k \cdot x}|k\rangle\]
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2e78d40" class="outline-3">
+<h3 id="org2e78d40"><span class="section-number-3">2.3.</span> Deutsche Jose algorithm</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+<img src="./foto/QCDeutschJose.png" alt="QCDeutschJose.png" />
+Photo  <a href="https://github.com/scofild429/LiteraturPrograme/blob/main/content/foto/QCDeutschJose.png">Link</a> here
+</p>
+
+
+<p>
+Proof:
+\[|\varphi_{0}\rangle = |0000.....0\rangle^{\otimes n}\]
+</p>
+
+<p>
+\[|\varphi_{1} \rangle = H^{\otimes n} |\varphi_{0}\rangle = \frac{1}{\sqrt{2^{n}}} \sum_{x \in \{0, 1 \}^{n}} (-1)^{x \cdot \varphi_{0}}|x\rangle\]
+because \(x \cdot \varphi_{0} = 0\), so ,
+\[|\varphi_{1} \rangle = \frac{1}{\sqrt{2^{n}}} \sum_{x \in \{0, 1 \}^{n}} |x\rangle\]
+</p>
+
+<p>
+\[ |\varphi_{2}\rangle = U_{f}|\varphi_{1} \rangle =    \frac{1}{\sqrt{2^{n}}} \sum_{x \in \{0, 1 \}^{n}} U_{f} |x\rangle =  \frac{1}{\sqrt{2^{n}}} \sum_{x \in \{0, 1 \}^{n}} (-1)^{f(x)} |x\rangle\]
+</p>
+
+<p>
+\[|\varphi_{3}  \rangle = H^{\otimes n}|\varphi_{2} \rangle = \frac{1}{\sqrt{2^{n}}} \sum_{x \in \{0, 1 \}^{n}} (-1)^{f(x)} H^{\otimes n} |x\rangle\]
+\[|\varphi_{3} \rangle = \frac{1}{2^{n}} \sum_{x \in \{0, 1 \}^{n}} (-1)^{f(x)} \sum_{k \in \{0, 1\}^{n}} (-1)^{k \cdot x}  |k\rangle\]
+\[ |\varphi_{3} \rangle =  = \sum_{k \in \{0, 1\}^{n}} [ \frac{1}{2^{n}} \sum_{x \in \{0, 1 \}^{n}} (-1)^{f(x) + k \cdot x}] \cdot |k\rangle =   \sum_{k \in \{0, 1\}^{n}} C_{k} |k\rangle\]
+</p>
+
+<p>
+The Probability to measure the Zero(
+\(\varphi_{0}\)) string is:
+\[P[y=|0000...0\rangle] = | \langle 00000...0|\varphi_{3}\rangle |^{2}  =| \sum_{k \in \{0, 1\}^{n}} C_{k} \langle 0000..0 |k\rangle|^{2} = |C_{000..0}|^{2}\]
+\[P =  | \frac{1}{2^{n}} \sum_{x \in \{0, 1\}^{n}} (-1)^{f(x)}|^{2}\]
+\(P=1\) if f is constant,
+and \(P=0\) if f is balanced
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org83779e9" class="outline-2">
+<h2 id="org83779e9"><span class="section-number-2">3.</span> Gover's Algrithmus</h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: si</p>
+<p class="date">Created: 2025-01-24 Fr 19:49</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,1352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-01-24 Fr 19:30 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MySql</title>
+<meta name="author" content="si" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">MySql</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org4317bc5">1. configuation</a>
+<ul>
+<li><a href="#orgce907d9">1.1. 安装</a>
+<ul>
+<li><a href="#org5faa1e9">1.1.1. install</a></li>
+<li><a href="#org20f78b9">1.1.2. 电脑的root用户</a></li>
+<li><a href="#orga542453">1.1.3. sudo</a></li>
+<li><a href="#org28d4f05">1.1.4. with password</a></li>
+<li><a href="#org665d801">1.1.5. remote connect</a></li>
+<li><a href="#org0828770">1.1.6. Chinese</a></li>
+<li><a href="#org5067dbd">1.1.7. Plugin is not loaded</a></li>
+<li><a href="#org266e0a7">1.1.8. 电脑的普通用户进入配置 This is not needed</a></li>
+</ul>
+</li>
+<li><a href="#org260d440">1.2. 给数据库添加用户</a></li>
+<li><a href="#orgf6d3337">1.3. 查看数据库及添加数据库</a></li>
+<li><a href="#orge500c98">1.4. 中文设置</a></li>
+<li><a href="#org6b60f49">1.5. 特殊字符</a></li>
+<li><a href="#org8088ee3">1.6. execute file 执行sql文件</a></li>
+<li><a href="#org94e9b3b">1.7. remote</a></li>
+<li><a href="#orgeb4618a">1.8. reboot</a></li>
+</ul>
+</li>
+<li><a href="#orgc2f45dc">2. Operation</a>
+<ul>
+<li><a href="#org520de1c">2.1. 进入数据库</a></li>
+<li><a href="#org1c0dd20">2.2. 插入表格</a></li>
+<li><a href="#orgbe91f99">2.3. 插入值</a></li>
+<li><a href="#org34b4fda">2.4. 查看表格</a></li>
+<li><a href="#orgae6a507">2.5. 编辑表格</a></li>
+<li><a href="#org25dd65c">2.6. 读取内容</a></li>
+<li><a href="#org95cb3f7">2.7. 高级条件查询</a></li>
+<li><a href="#org1bd291d">2.8. delete</a></li>
+<li><a href="#orga25eb4d">2.9. update</a></li>
+<li><a href="#org27c3145">2.10. backup</a></li>
+</ul>
+</li>
+<li><a href="#org0542536">3. Management</a>
+<ul>
+<li><a href="#orge77c319">3.1. user</a></li>
+<li><a href="#org9d31bf7">3.2. privileges</a>
+<ul>
+<li><a href="#org32b0a29">3.2.1. creat</a></li>
+<li><a href="#orgfb429ba">3.2.2. 查询</a></li>
+<li><a href="#org843c9a7">3.2.3. 授予</a></li>
+<li><a href="#org57321cd">3.2.4. 撤销</a></li>
+</ul>
+</li>
+<li><a href="#org4e64015">3.3. timezone</a></li>
+</ul>
+</li>
+<li><a href="#orgaf26060">4. Operations for SQL</a>
+<ul>
+<li><a href="#orgd27644b">4.1. decripation</a></li>
+<li><a href="#org119935b">4.2. check the connection in 0812erp</a></li>
+<li><a href="#orgd060060">4.3. check the database</a></li>
+<li><a href="#org935fb21">4.4. dump database</a></li>
+<li><a href="#org699af25">4.5. delete database</a></li>
+<li><a href="#org01a8816">4.6. recover testforjava</a></li>
+<li><a href="#org75465af">4.7. Table creation update delete</a></li>
+<li><a href="#org7fed78e">4.8. add foreign key</a></li>
+<li><a href="#org6dd6d26">4.9. left join</a></li>
+<li><a href="#org2c6c15f">4.10. right join</a></li>
+<li><a href="#orgebd9d12">4.11. inner join</a></li>
+<li><a href="#orge7be757">4.12. full joipn</a></li>
+<li><a href="#orgc35f17e">4.13. many2one</a></li>
+<li><a href="#orgc2ceb68">4.14. many2many</a></li>
+</ul>
+</li>
+<li><a href="#org99da6c4">5. Operation from the third program language</a>
+<ul>
+<li><a href="#org67c151a">5.1. singal python file connect with mysql</a></li>
+<li><a href="#org84cbef4">5.2. singal java  file  connect with mysql</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4317bc5" class="outline-2">
+<h2 id="org4317bc5"><span class="section-number-2">1.</span> configuation</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgce907d9" class="outline-3">
+<h3 id="orgce907d9"><span class="section-number-3">1.1.</span> 安装</h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+<div id="outline-container-org5faa1e9" class="outline-4">
+<h4 id="org5faa1e9"><span class="section-number-4">1.1.1.</span> install</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<pre class="example">
+sudo apt install mysql-server
+sudo mysql_secure_installation
+</pre>
+
+<p>
+此时是给电脑的root用户，创建了一个mysql里root用户的数据库
+</p>
+</div>
+</div>
+<div id="outline-container-org20f78b9" class="outline-4">
+<h4 id="org20f78b9"><span class="section-number-4">1.1.2.</span> 电脑的root用户</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+sudo apt install mysql-server
+sudo mysql<sub>secure</sub><sub>installation</sub>
+</p>
+</div>
+</div>
+<div id="outline-container-orga542453" class="outline-4">
+<h4 id="orga542453"><span class="section-number-4">1.1.3.</span> sudo</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<p>
+上面默认设置的是电脑root用户的密码，也就是说只能 sudo 登陆 : sudo mysql -u root -p
+create new user  后可以用非sudo 登录
+</p>
+</div>
+</div>
+<div id="outline-container-org28d4f05" class="outline-4">
+<h4 id="org28d4f05"><span class="section-number-4">1.1.4.</span> with password</h4>
+<div class="outline-text-4" id="text-1-1-4">
+<p>
+关闭无密码登录
+</p>
+<pre class="example">
+USE mysql;
+UPDATE user SET plugin='mysql_native_password' WHERE User='root';
+FLUSH PRIVILEGES;
+exit;
+</pre>
+<p>
+sudo systemctl restart mysql.service
+sudo mysql<sub>secure</sub><sub>installation</sub>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org665d801" class="outline-4">
+<h4 id="org665d801"><span class="section-number-4">1.1.5.</span> remote connect</h4>
+<div class="outline-text-4" id="text-1-1-5">
+<p>
+sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+</p>
+
+<p>
+bind-address = 127.0.0.1
+</p>
+</div>
+</div>
+<div id="outline-container-org0828770" class="outline-4">
+<h4 id="org0828770"><span class="section-number-4">1.1.6.</span> Chinese</h4>
+<div class="outline-text-4" id="text-1-1-6">
+<p>
+对该 my.ini 文件下进行配置修改 ：
+</p>
+<pre class="example">
+[client]
+default-character-set = utf8
+
+[mysql]
+default-character-set = utf8
+
+[mysqld]
+character-set-client-handshake = FALSE
+character-set-server = utf8
+collation-server = utf8_unicode_ci
+init_connect=’SET NAMES utf8’
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org5067dbd" class="outline-4">
+<h4 id="org5067dbd"><span class="section-number-4">1.1.7.</span> Plugin is not loaded</h4>
+<div class="outline-text-4" id="text-1-1-7">
+<p>
+if  Plugin <b><b>*</b></b> is not loaded:  修改mysql.cnf 在 [mysqld]下添加skip-grant-tables
+</p>
+</div>
+</div>
+<div id="outline-container-org266e0a7" class="outline-4">
+<h4 id="org266e0a7"><span class="section-number-4">1.1.8.</span> 电脑的普通用户进入配置 This is not needed</h4>
+<div class="outline-text-4" id="text-1-1-8">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">step</td>
+<td class="org-left">env</td>
+<td class="org-left">command</td>
+<td class="org-left">explain</td>
+</tr>
+
+<tr>
+<td class="org-right">01</td>
+<td class="org-left">terminal</td>
+<td class="org-left">sudo mysql -u root -p</td>
+<td class="org-left">电脑root进入mysql的root</td>
+</tr>
+
+<tr>
+<td class="org-right">02</td>
+<td class="org-left">mysql</td>
+<td class="org-left">select User, Host, plugin from user;</td>
+<td class="org-left">获取</td>
+</tr>
+
+<tr>
+<td class="org-right">03</td>
+<td class="org-left">mysql</td>
+<td class="org-left">update user set plugin='mysql_ native_ password';</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">04</td>
+<td class="org-left">mysql</td>
+<td class="org-left">select User, Host, plugin from user;</td>
+<td class="org-left">获取</td>
+</tr>
+
+<tr>
+<td class="org-right">05</td>
+<td class="org-left">mysql</td>
+<td class="org-left">flush privileges;</td>
+<td class="org-left">权限更新 in mysqld:skip-grant-tables</td>
+</tr>
+
+<tr>
+<td class="org-right">06</td>
+<td class="org-left">mysql <sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></td>
+<td class="org-left">C-d C-d</td>
+<td class="org-left">退出</td>
+</tr>
+
+<tr>
+<td class="org-right">07</td>
+<td class="org-left">terminal</td>
+<td class="org-left">mysql -u root    BUT NOT (mysql -u root -p)</td>
+<td class="org-left">不能 -p, 密码为空，直接Enter进入</td>
+</tr>
+
+<tr>
+<td class="org-right">08</td>
+<td class="org-left">mysql</td>
+<td class="org-left">set password for root@localhost = '123'</td>
+<td class="org-left">老版本  = password('123');</td>
+</tr>
+
+<tr>
+<td class="org-right">09</td>
+<td class="org-left">error</td>
+<td class="org-left">123 is too simple, just not satisfy the</td>
+<td class="org-left">check the password requirement.</td>
+</tr>
+
+<tr>
+<td class="org-right">10</td>
+<td class="org-left">mysql</td>
+<td class="org-left">show variables like 'validate_ password%';</td>
+<td class="org-left">显示密码设置要求</td>
+</tr>
+
+<tr>
+<td class="org-right">11</td>
+<td class="org-left">mysql</td>
+<td class="org-left">set global validate_ password_ length=3;</td>
+<td class="org-left">设置密码长度要求 为 3</td>
+</tr>
+
+<tr>
+<td class="org-right">12</td>
+<td class="org-left">mysql</td>
+<td class="org-left">set global validate_ password_ policy=0;</td>
+<td class="org-left">设置密码要求概要  为 0</td>
+</tr>
+
+<tr>
+<td class="org-right">13</td>
+<td class="org-left">mysql</td>
+<td class="org-left">set password for root@localhost = '123'</td>
+<td class="org-left">老版本  = password('123');</td>
+</tr>
+
+<tr>
+<td class="org-right">14</td>
+<td class="org-left">mysql</td>
+<td class="org-left">flush privileges;</td>
+<td class="org-left">权限更新 in mysqld:skip-grant-tables</td>
+</tr>
+
+<tr>
+<td class="org-right">15</td>
+<td class="org-left">terminal</td>
+<td class="org-left">mysql -u root -p</td>
+<td class="org-left">密码 123 , 登陆时不需要 sudo 开头</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org260d440" class="outline-3">
+<h3 id="org260d440"><span class="section-number-3">1.2.</span> 给数据库添加用户</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+在进入数据库的root后，mysql 添加普通用户 <a href="https://www.jianshu.com/p/d7b9c468f20d">简书连接</a> .
+</p>
+
+<p>
+create USER 'sx'@'localhost' IDENTIFIED BY 'scofild';
+创建sx用户，只能本地连接，秘密scofild
+</p>
+
+<p>
+GRANT ALL ON testforjava.course TO 'sx'@'localhost';
+开放testforjava数据集中的course数据表的所有全线给sx 用户
+</p>
+
+<p>
+退出后登陆 sx 用户
+mysql -u sx -p 
+scofild
+</p>
+
+<p>
+便只能看到有权限的数据集
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf6d3337" class="outline-3">
+<h3 id="orgf6d3337"><span class="section-number-3">1.3.</span> 查看数据库及添加数据库</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+show databases;
+</p>
+
+<p>
+create databese kurs;
+</p>
+
+<p>
+drop databases kurs;
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge500c98" class="outline-3">
+<h3 id="orge500c98"><span class="section-number-3">1.4.</span> 中文设置</h3>
+<div class="outline-text-3" id="text-1-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">show variables like 'character%';</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>
+听说mysql的utf8不是真的utf8，需要使用utf8mb4.
+在用户登陆后用set charactater server database = utf8 或者utf8mb4， 只要重开接入，设置就复原。
+只有在/etc/mysql/中的mysql.cnf中的clint/mysqld/mysql字段加入以上设定，重启生效
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">在[client]下追加</td>
+<td class="org-left">default-character-set=utf8</td>
+</tr>
+
+<tr>
+<td class="org-left">在[mysqld]下追加</td>
+<td class="org-left">character-set-server=utf8</td>
+</tr>
+
+<tr>
+<td class="org-left">在[mysql]下追加</td>
+<td class="org-left">default-character-set=utf8</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org6b60f49" class="outline-3">
+<h3 id="org6b60f49"><span class="section-number-3">1.5.</span> 特殊字符</h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li>用`ry-vue`</li>
+</ul>
+<p>
+create database `ry-vue`;
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8088ee3" class="outline-3">
+<h3 id="org8088ee3"><span class="section-number-3">1.6.</span> execute file 执行sql文件</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+mysql -u root  -p xxxx
+use database;
+source &#x2026;/file.sql 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org94e9b3b" class="outline-3">
+<h3 id="org94e9b3b"><span class="section-number-3">1.7.</span> remote</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+alter user 'root'@'localhost' indentified by '110011';
+</p>
+</div>
+</div>
+<div id="outline-container-orgeb4618a" class="outline-3">
+<h3 id="orgeb4618a"><span class="section-number-3">1.8.</span> reboot</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+sudo systemctl restart mysql
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc2f45dc" class="outline-2">
+<h2 id="orgc2f45dc"><span class="section-number-2">2.</span> Operation</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org520de1c" class="outline-3">
+<h3 id="org520de1c"><span class="section-number-3">2.1.</span> 进入数据库</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+create databese testforjava;
+use testforjava;
+</p>
+</div>
+</div>
+<div id="outline-container-org1c0dd20" class="outline-3">
+<h3 id="org1c0dd20"><span class="section-number-3">2.2.</span> 插入表格</h3>
+<div class="outline-text-3" id="text-2-2">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #4f97d7; font-weight: bold;">create</span> <span style="color: #4f97d7; font-weight: bold;">table</span> <span style="color: #bc6ec5; font-weight: bold;">course</span>(
+       id <span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #4f97d7; font-weight: bold;">primary</span> <span style="color: #4f97d7; font-weight: bold;">key</span> atuo_increment,
+       kurs_name <span style="color: #ce537a; font-weight: bold;">varchar</span>(50),
+       kurs_length  <span style="color: #ce537a; font-weight: bold;">varchar</span>(50),
+       teacher <span style="color: #ce537a; font-weight: bold;">varchar</span>(50),
+       categeory <span style="color: #ce537a; font-weight: bold;">varchar</span>(50)
+       );
+</pre>
+</div>
+<p>
+for later version, only works for auto<sub>increment</sub>, not for identity(m,n)
+</p>
+</div>
+</div>
+<div id="outline-container-orgbe91f99" class="outline-3">
+<h3 id="orgbe91f99"><span class="section-number-3">2.3.</span> 插入值</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+insert into kurs values(1, 'C++', 23, 'su', 'basic');
+insert into kurs values (2, 'Python', 50, 'morvan', 'hard');
+insert into kurs values(3, 'CLI', 22, 'su', 'basic');
+</p>
+
+
+<p>
+或者 不完整信息
+</p>
+
+<p>
+insert into kurs(id, kurs<sub>name</sub>, categeory) values(4, 'java', 'basic'); 
+(指定属性给值)
+</p>
+</div>
+</div>
+<div id="outline-container-org34b4fda" class="outline-3">
+<h3 id="org34b4fda"><span class="section-number-3">2.4.</span> 查看表格</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+show tables;
+</p>
+
+<p>
+describe course;
+</p>
+</div>
+</div>
+<div id="outline-container-orgae6a507" class="outline-3">
+<h3 id="orgae6a507"><span class="section-number-3">2.5.</span> 编辑表格</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+alter table course rename kurs;  (重命名)
+</p>
+
+<p>
+alter table kurs add link varchar(50); (添加属性，列)
+</p>
+
+<p>
+alter table kurs drop column link;   (将该列删除)
+</p>
+
+<p>
+alter table kurs modify teacher varchar(100); (修改该列的属性，增加容量)
+</p>
+
+<p>
+alter table kurs change column teacher lecture varchar(100); (修改该列的名称，和属性，)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org25dd65c" class="outline-3">
+<h3 id="org25dd65c"><span class="section-number-3">2.6.</span> 读取内容</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+select * from kurs;
+</p>
+
+<p>
+select kurs<sub>name</sub>, lecture from kurs;
+</p>
+
+<p>
+读取内容时，不重复显示
+</p>
+
+<p>
+select distinct lecture from kurs;
+</p>
+</div>
+</div>
+
+<div id="outline-container-org95cb3f7" class="outline-3">
+<h3 id="org95cb3f7"><span class="section-number-3">2.7.</span> 高级条件查询</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+select * from course where course<sub>name</sub> = 'gnome';
+</p>
+
+<p>
+select * from course where course<sub>length</sub> &gt; 10;
+</p>
+
+<p>
+select * from course where lecture='su' and categeory='adv';
+(满足这两个要求的)
+select * from course order by  course<sub>length</sub> desc;
+(由课程长度有小到大排序) 后面加desc 则反序排序
+</p>
+</div>
+</div>
+<div id="outline-container-org1bd291d" class="outline-3">
+<h3 id="org1bd291d"><span class="section-number-3">2.8.</span> delete</h3>
+<div class="outline-text-3" id="text-2-8">
+<p>
+delete from course where id =2;
+delete from table where key=value
+</p>
+</div>
+</div>
+<div id="outline-container-orga25eb4d" class="outline-3">
+<h3 id="orga25eb4d"><span class="section-number-3">2.9.</span> update</h3>
+<div class="outline-text-3" id="text-2-9">
+<p>
+update course set lecture = 'Lee'  where id =3;
+</p>
+</div>
+</div>
+<div id="outline-container-org27c3145" class="outline-3">
+<h3 id="org27c3145"><span class="section-number-3">2.10.</span> backup</h3>
+<div class="outline-text-3" id="text-2-10">
+<p>
+mysqldump -u root -p kurs &gt; firstForFun.sql;
+(在root下将kurs数据库备份为FirstForFun.sql)
+</p>
+
+<p>
+mysql -u root -p kurs &lt; Firstforfun.sql
+(将备份文件FirstForFun.sql恢复为kurs数据库)
+</p>
+
+<p>
+(此两个语句是在退出sql后的terminal执行的)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0542536" class="outline-2">
+<h2 id="org0542536"><span class="section-number-2">3.</span> Management</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orge77c319" class="outline-3">
+<h3 id="orge77c319"><span class="section-number-3">3.1.</span> user</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+show databases;
+use mysql;
+show tables;
+</p>
+
+<p>
+mysqld &#x2013;skip-grant-tables (开启mysql的无验证登陆，对于遗失密码后）
+select host,user from user; (查看所有用户)
+</p>
+
+<p>
+create user 'cloud'@'%' identified by 'password';
+drop user 'root'@'%';
+</p>
+
+<p>
+rename user si to shi; (将si重命名为shi)
+set password = password('new');  (将当前用户密码改为new)
+set password for si = password(link); (将si用户密码重置为link)
+</p>
+
+<p>
+grant all privileges on <b><b>.</b></b> to 'cloud'@'%' with grant option;
+flush privileges;
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9d31bf7" class="outline-3">
+<h3 id="org9d31bf7"><span class="section-number-3">3.2.</span> privileges</h3>
+<div class="outline-text-3" id="text-3-2">
+</div>
+<div id="outline-container-org32b0a29" class="outline-4">
+<h4 id="org32b0a29"><span class="section-number-4">3.2.1.</span> creat</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+create user shi identified by 'lining';
+grant all privileges on <b><b>.</b></b> to 'shi'@'%' identified by 'lining' with grant option;
+flush privileges;
+</p>
+
+<p>
+grant all privileges on <b><b>.</b></b> to 'root'@'%' identified by 'lining';
+</p>
+</div>
+</div>
+<div id="outline-container-orgfb429ba" class="outline-4">
+<h4 id="orgfb429ba"><span class="section-number-4">3.2.2.</span> 查询</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<p>
+show grants for 'newuser'@'localhost'
+</p>
+</div>
+</div>
+<div id="outline-container-org843c9a7" class="outline-4">
+<h4 id="org843c9a7"><span class="section-number-4">3.2.3.</span> 授予</h4>
+<div class="outline-text-4" id="text-3-2-3">
+<p>
+grants 权限列表 on 数据库名.表明 to '用户'@'主机名'
+grants all on <b>.</b> 'newuser'@'localhost'
+</p>
+</div>
+</div>
+<div id="outline-container-org57321cd" class="outline-4">
+<h4 id="org57321cd"><span class="section-number-4">3.2.4.</span> 撤销</h4>
+<div class="outline-text-4" id="text-3-2-4">
+<p>
+revoke delete on <b>.</b> from 'newuser'@'localhost'
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4e64015" class="outline-3">
+<h3 id="org4e64015"><span class="section-number-3">3.3.</span> timezone</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+set global time<sub>zone</sub> = '+8:00';  ##修改mysql全局时区为北京时间，即我们所在的东8区
+set time<sub>zone</sub> = '+8:00';  ##修改当前会话时区
+flush privileges;  #立即生效
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgaf26060" class="outline-2">
+<h2 id="orgaf26060"><span class="section-number-2">4.</span> Operations for SQL</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orgd27644b" class="outline-3">
+<h3 id="orgd27644b"><span class="section-number-3">4.1.</span> decripation</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+there can available code to execute,  change the dbhost and dbpassword
+</p>
+</div>
+</div>
+<div id="outline-container-org119935b" class="outline-3">
+<h3 id="org119935b"><span class="section-number-3">4.2.</span> check the connection in 0812erp</h3>
+<div class="outline-text-3" id="text-4-2">
+<div class="org-src-container">
+<pre class="src src-sql" id="orgd26e26c">show tables;
+</pre>
+</div>
+
+
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #4f97d7; font-weight: bold;">SELECT</span> * <span style="color: #4f97d7; font-weight: bold;">FROM</span> sys_menu          
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd060060" class="outline-3">
+<h3 id="orgd060060"><span class="section-number-3">4.3.</span> check the database</h3>
+<div class="outline-text-3" id="text-4-3">
+<div class="org-src-container">
+<pre class="src src-sql" id="org930ee9c">show tables;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org935fb21" class="outline-3">
+<h3 id="org935fb21"><span class="section-number-3">4.4.</span> dump database</h3>
+<div class="outline-text-3" id="text-4-4">
+<div class="org-src-container">
+<pre class="src src-sh">mysqldump -uroot -p123456 testforjava &gt; ~/Desktop/mysql.sql
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org699af25" class="outline-3">
+<h3 id="org699af25"><span class="section-number-3">4.5.</span> delete database</h3>
+<div class="outline-text-3" id="text-4-5">
+<div class="org-src-container">
+<pre class="src src-sql" id="org784c879"><span style="color: #4f97d7; font-weight: bold;">drop</span> database testforjava;
+show databases;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org01a8816" class="outline-3">
+<h3 id="org01a8816"><span class="section-number-3">4.6.</span> recover testforjava</h3>
+<div class="outline-text-3" id="text-4-6">
+<div class="org-src-container">
+<pre class="src src-sql" id="org647f2a5"><span style="color: #4f97d7; font-weight: bold;">create</span> database testforjava;
+use testforjava;
+<span style="color: #4f97d7; font-weight: bold;">source</span> ~/Desktop/mysql.<span style="color: #4f97d7; font-weight: bold;">sql</span>
+show databases;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org75465af" class="outline-3">
+<h3 id="org75465af"><span class="section-number-3">4.7.</span> Table creation update delete</h3>
+<div class="outline-text-3" id="text-4-7">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #2aa1ae; background-color: #292e34;">-- </span><span style="color: #2aa1ae; background-color: #292e34;">&#29677;&#32423;&#34920;</span>
+<span style="color: #4f97d7; font-weight: bold;">CREATE</span> <span style="color: #4f97d7; font-weight: bold;">TABLE</span> <span style="color: #bc6ec5; font-weight: bold;">classe</span>(
+        id <span style="color: #ce537a; font-weight: bold;">INT</span> <span style="color: #4f97d7; font-weight: bold;">PRIMARY</span> <span style="color: #4f97d7; font-weight: bold;">KEY</span> auto_increment,
+        caption <span style="color: #ce537a; font-weight: bold;">VARCHAR</span>(30) COMMENT <span style="color: #2d9574;">'&#29677;&#32423;&#21517;'</span>
+);
+
+<span style="color: #2aa1ae; background-color: #292e34;">-- </span><span style="color: #2aa1ae; background-color: #292e34;">&#23398;&#29983;&#34920;</span>
+<span style="color: #4f97d7; font-weight: bold;">CREATE</span> <span style="color: #4f97d7; font-weight: bold;">TABLE</span> <span style="color: #bc6ec5; font-weight: bold;">student</span>(
+        id <span style="color: #ce537a; font-weight: bold;">INT</span> UNSIGNED <span style="color: #4f97d7; font-weight: bold;">PRIMARY</span> <span style="color: #4f97d7; font-weight: bold;">KEY</span> auto_increment,
+        student_name <span style="color: #ce537a; font-weight: bold;">CHAR</span>(30) COMMENT <span style="color: #2d9574;">'&#23398;&#29983;&#21517;'</span>,
+        gender <span style="color: #ce537a; font-weight: bold;">CHAR</span>(30) <span style="color: #4f97d7; font-weight: bold;">DEFAULT</span> <span style="color: #4f97d7; font-weight: bold;">NULL</span>    COMMENT <span style="color: #2d9574;">'&#23398;&#29983;&#24615;&#21035;'</span>,
+        class_id <span style="color: #ce537a; font-weight: bold;">INT</span> <span style="color: #4f97d7; font-weight: bold;">DEFAULT</span> <span style="color: #4f97d7; font-weight: bold;">NULL</span> COMMENT <span style="color: #2d9574;">'&#29677;&#32423;id'</span>
+);
+
+<span style="color: #2aa1ae; background-color: #292e34;">-- </span><span style="color: #2aa1ae; background-color: #292e34;">&#32769;&#24072;&#34920;</span>
+<span style="color: #4f97d7; font-weight: bold;">CREATE</span> <span style="color: #4f97d7; font-weight: bold;">TABLE</span> <span style="color: #bc6ec5; font-weight: bold;">teacher</span>(
+        id <span style="color: #ce537a; font-weight: bold;">INT</span> UNSIGNED <span style="color: #4f97d7; font-weight: bold;">PRIMARY</span> <span style="color: #4f97d7; font-weight: bold;">KEY</span> auto_increment,
+        teacher_name <span style="color: #ce537a; font-weight: bold;">CHAR</span>(30) COMMENT <span style="color: #2d9574;">'&#25945;&#24072;&#21517;'</span>
+);
+
+<span style="color: #2aa1ae; background-color: #292e34;">-- </span><span style="color: #2aa1ae; background-color: #292e34;">&#35838;&#31243;&#34920;</span>
+<span style="color: #4f97d7; font-weight: bold;">CREATE</span> <span style="color: #4f97d7; font-weight: bold;">TABLE</span> <span style="color: #bc6ec5; font-weight: bold;">course</span>(
+ id <span style="color: #ce537a; font-weight: bold;">INT</span> UNSIGNED <span style="color: #4f97d7; font-weight: bold;">PRIMARY</span> <span style="color: #4f97d7; font-weight: bold;">KEY</span> auto_increment,
+ course_name <span style="color: #ce537a; font-weight: bold;">CHAR</span>(30) COMMENT <span style="color: #2d9574;">'&#35838;&#31243;&#21517;'</span>,
+ teacher_id <span style="color: #ce537a; font-weight: bold;">INT</span> <span style="color: #4f97d7; font-weight: bold;">DEFAULT</span> <span style="color: #4f97d7; font-weight: bold;">NULL</span> COMMENT<span style="color: #2d9574;">'&#25945;&#24072;id'</span>
+);
+
+<span style="color: #2aa1ae; background-color: #292e34;">-- </span><span style="color: #2aa1ae; background-color: #292e34;">&#25104;&#32489;&#34920;</span>
+<span style="color: #4f97d7; font-weight: bold;">CREATE</span> <span style="color: #4f97d7; font-weight: bold;">TABLE</span> <span style="color: #bc6ec5; font-weight: bold;">score</span>(
+        id <span style="color: #ce537a; font-weight: bold;">INT</span> UNSIGNED <span style="color: #4f97d7; font-weight: bold;">PRIMARY</span> <span style="color: #4f97d7; font-weight: bold;">KEY</span> auto_increment,
+        <span style="color: #4f97d7; font-weight: bold;">number</span> <span style="color: #ce537a; font-weight: bold;">INT</span> <span style="color: #4f97d7; font-weight: bold;">DEFAULT</span> <span style="color: #4f97d7; font-weight: bold;">NULL</span> COMMENT <span style="color: #2d9574;">'&#20998;&#25968;'</span>,
+        student_id <span style="color: #ce537a; font-weight: bold;">INT</span> <span style="color: #4f97d7; font-weight: bold;">DEFAULT</span> <span style="color: #4f97d7; font-weight: bold;">NULL</span> COMMENT <span style="color: #2d9574;">'&#23398;&#29983;id'</span>,
+        course_id <span style="color: #ce537a; font-weight: bold;">INT</span> <span style="color: #4f97d7; font-weight: bold;">DEFAULT</span> <span style="color: #4f97d7; font-weight: bold;">NULL</span> COMMENT <span style="color: #2d9574;">'&#35838;&#31243;id'</span>
+);
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #4f97d7; font-weight: bold;">drop</span> <span style="color: #4f97d7; font-weight: bold;">table</span> <span style="color: #bc6ec5; font-weight: bold;">score</span>;
+<span style="color: #4f97d7; font-weight: bold;">drop</span> <span style="color: #4f97d7; font-weight: bold;">table</span> <span style="color: #bc6ec5; font-weight: bold;">student</span>;
+<span style="color: #4f97d7; font-weight: bold;">drop</span> <span style="color: #4f97d7; font-weight: bold;">table</span> <span style="color: #bc6ec5; font-weight: bold;">course</span>;
+<span style="color: #4f97d7; font-weight: bold;">drop</span> <span style="color: #4f97d7; font-weight: bold;">table</span> <span style="color: #bc6ec5; font-weight: bold;">classe</span>;
+<span style="color: #4f97d7; font-weight: bold;">drop</span> <span style="color: #4f97d7; font-weight: bold;">table</span> <span style="color: #bc6ec5; font-weight: bold;">teacher</span>;
+</pre>
+</div>
+
+
+
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #4f97d7; font-weight: bold;">INSERT</span> <span style="color: #4f97d7; font-weight: bold;">INTO</span> student (student_name, gender, class_id) <span style="color: #4f97d7; font-weight: bold;">VALUES</span> (<span style="color: #2d9574;">'&#24352;&#19977;'</span>, <span style="color: #2d9574;">'M'</span>, 1);
+<span style="color: #4f97d7; font-weight: bold;">INSERT</span> <span style="color: #4f97d7; font-weight: bold;">INTO</span> student (student_name, gender, class_id) <span style="color: #4f97d7; font-weight: bold;">VALUES</span> (<span style="color: #2d9574;">'&#26446;&#22235;'</span>, <span style="color: #2d9574;">'M'</span>, 2);
+<span style="color: #2aa1ae; background-color: #292e34;">-- </span><span style="color: #2aa1ae; background-color: #292e34;">INSERT INTO student (student_name, gender, class_id) VALUES ('&#29579;&#20116;', 'F', 4);  </span>
+<span style="color: #4f97d7; font-weight: bold;">INSERT</span> <span style="color: #4f97d7; font-weight: bold;">INTO</span> classe (caption) <span style="color: #4f97d7; font-weight: bold;">VALUES</span> (<span style="color: #2d9574;">'&#19968;&#29677;'</span>);
+<span style="color: #4f97d7; font-weight: bold;">INSERT</span> <span style="color: #4f97d7; font-weight: bold;">INTO</span> classe (caption) <span style="color: #4f97d7; font-weight: bold;">VALUES</span> (<span style="color: #2d9574;">'&#20108;&#29677;'</span>);
+<span style="color: #4f97d7; font-weight: bold;">INSERT</span> <span style="color: #4f97d7; font-weight: bold;">INTO</span> classe (caption) <span style="color: #4f97d7; font-weight: bold;">VALUES</span> (<span style="color: #2d9574;">'&#19977;&#29677;'</span>);           
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7fed78e" class="outline-3">
+<h3 id="org7fed78e"><span class="section-number-3">4.8.</span> add foreign key</h3>
+<div class="outline-text-3" id="text-4-8">
+<p>
+add foreign key muss be careful, the references must exist,  such as
+&#x2013; INSERT INTO student (student<sub>name</sub>, gender, class<sub>id</sub>) VALUES ('王五', 'F', 4);
+will give error with add foreign key,
+because there are no such item in classe with id=4!!!!
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #2aa1ae; background-color: #292e34;">-- </span><span style="color: #2aa1ae; background-color: #292e34;">ALTER TABLE student DROP FOREIGN KEY student_class;</span>
+<span style="color: #4f97d7; font-weight: bold;">ALTER</span> <span style="color: #4f97d7; font-weight: bold;">TABLE</span> <span style="color: #bc6ec5; font-weight: bold;">student</span> <span style="color: #4f97d7; font-weight: bold;">ADD</span> 
+<span style="color: #4f97d7; font-weight: bold;">CONSTRAINT</span> student_class 
+<span style="color: #4f97d7; font-weight: bold;">FOREIGN</span> <span style="color: #4f97d7; font-weight: bold;">KEY</span> (class_id) 
+<span style="color: #4f97d7; font-weight: bold;">REFERENCES</span> classe(id)
+<span style="color: #4f97d7; font-weight: bold;">ON</span> <span style="color: #4f97d7; font-weight: bold;">DELETE</span> <span style="color: #4f97d7; font-weight: bold;">CASCADE</span>
+<span style="color: #4f97d7; font-weight: bold;">ON</span> <span style="color: #4f97d7; font-weight: bold;">UPDATE</span> <span style="color: #4f97d7; font-weight: bold;">CASCADE</span>;
+
+</pre>
+</div>
+
+
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #4f97d7; font-weight: bold;">DELETE</span> <span style="color: #4f97d7; font-weight: bold;">FROM</span> classe <span style="color: #4f97d7; font-weight: bold;">WHERE</span> id=2;
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #4f97d7; font-weight: bold;">UPDATE</span> classe <span style="color: #4f97d7; font-weight: bold;">SET</span> id=10 <span style="color: #4f97d7; font-weight: bold;">WHERE</span> id=1;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6dd6d26" class="outline-3">
+<h3 id="org6dd6d26"><span class="section-number-3">4.9.</span> left join</h3>
+<div class="outline-text-3" id="text-4-9">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #4f97d7; font-weight: bold;">select</span> c.caption, s.student_name, s.gender <span style="color: #4f97d7; font-weight: bold;">from</span> classe c <span style="color: #4f97d7; font-weight: bold;">left</span> <span style="color: #4f97d7; font-weight: bold;">join</span> student s <span style="color: #4f97d7; font-weight: bold;">on</span> c.id=s.class_id;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2c6c15f" class="outline-3">
+<h3 id="org2c6c15f"><span class="section-number-3">4.10.</span> right join</h3>
+<div class="outline-text-3" id="text-4-10">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #4f97d7; font-weight: bold;">select</span> c.caption, s.student_name, s.gender <span style="color: #4f97d7; font-weight: bold;">from</span> classe c <span style="color: #4f97d7; font-weight: bold;">right</span> <span style="color: #4f97d7; font-weight: bold;">join</span> student s <span style="color: #4f97d7; font-weight: bold;">on</span> c.id=s.class_id;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgebd9d12" class="outline-3">
+<h3 id="orgebd9d12"><span class="section-number-3">4.11.</span> inner join</h3>
+<div class="outline-text-3" id="text-4-11">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #4f97d7; font-weight: bold;">select</span> c.caption, s.student_name, s.gender <span style="color: #4f97d7; font-weight: bold;">from</span> classe c <span style="color: #4f97d7; font-weight: bold;">inner</span> <span style="color: #4f97d7; font-weight: bold;">join</span> student s <span style="color: #4f97d7; font-weight: bold;">on</span> c.id=s.class_id;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge7be757" class="outline-3">
+<h3 id="orge7be757"><span class="section-number-3">4.12.</span> full joipn</h3>
+<div class="outline-text-3" id="text-4-12">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #4f97d7; font-weight: bold;">select</span> * <span style="color: #4f97d7; font-weight: bold;">from</span> classe <span style="color: #4f97d7; font-weight: bold;">left</span> <span style="color: #4f97d7; font-weight: bold;">join</span> student <span style="color: #4f97d7; font-weight: bold;">on</span> classe.id=student.class_id <span style="color: #4f97d7; font-weight: bold;">union</span>  <span style="color: #4f97d7; font-weight: bold;">select</span> * <span style="color: #4f97d7; font-weight: bold;">from</span> classe <span style="color: #4f97d7; font-weight: bold;">right</span> <span style="color: #4f97d7; font-weight: bold;">join</span> student <span style="color: #4f97d7; font-weight: bold;">on</span> classe.id=student.class_id;          
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc35f17e" class="outline-3">
+<h3 id="orgc35f17e"><span class="section-number-3">4.13.</span> many2one</h3>
+<div class="outline-text-3" id="text-4-13">
+<p>
+add more students to same class
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #4f97d7; font-weight: bold;">INSERT</span> <span style="color: #4f97d7; font-weight: bold;">INTO</span> student (student_name, gender, class_id) <span style="color: #4f97d7; font-weight: bold;">VALUES</span> (<span style="color: #2d9574;">'&#24352;&#20116;'</span>, <span style="color: #2d9574;">'M'</span>, 1);
+<span style="color: #4f97d7; font-weight: bold;">INSERT</span> <span style="color: #4f97d7; font-weight: bold;">INTO</span> student (student_name, gender, class_id) <span style="color: #4f97d7; font-weight: bold;">VALUES</span> (<span style="color: #2d9574;">'&#26446;&#20845;'</span>, <span style="color: #2d9574;">'M'</span>, 2);
+<span style="color: #4f97d7; font-weight: bold;">INSERT</span> <span style="color: #4f97d7; font-weight: bold;">INTO</span> student (student_name, gender, class_id) <span style="color: #4f97d7; font-weight: bold;">VALUES</span> (<span style="color: #2d9574;">'&#26446;&#19971;'</span>, <span style="color: #2d9574;">'M'</span>, 1);
+<span style="color: #4f97d7; font-weight: bold;">INSERT</span> <span style="color: #4f97d7; font-weight: bold;">INTO</span> student (student_name, gender, class_id) <span style="color: #4f97d7; font-weight: bold;">VALUES</span> (<span style="color: #2d9574;">'&#26446;&#20843;'</span>, <span style="color: #2d9574;">'M'</span>, 1);
+<span style="color: #4f97d7; font-weight: bold;">INSERT</span> <span style="color: #4f97d7; font-weight: bold;">INTO</span> student (student_name, gender, class_id) <span style="color: #4f97d7; font-weight: bold;">VALUES</span> (<span style="color: #2d9574;">'&#26446;&#20061;'</span>, <span style="color: #2d9574;">'M'</span>, 1);
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #4f97d7; font-weight: bold;">SELECT</span> c.caption ,<span style="color: #4f97d7;">COUNT</span>(s.student_name) student_num 
+<span style="color: #4f97d7; font-weight: bold;">FROM</span> classe c <span style="color: #4f97d7; font-weight: bold;">LEFT</span> <span style="color: #4f97d7; font-weight: bold;">JOIN</span> student s <span style="color: #4f97d7; font-weight: bold;">ON</span> c.id=s.class_id 
+<span style="color: #4f97d7; font-weight: bold;">GROUP</span> <span style="color: #4f97d7; font-weight: bold;">BY</span> c.id;
+</pre>
+</div>
+
+
+
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #4f97d7; font-weight: bold;">select</span> c.caption , s.student_name, s.gender <span style="color: #4f97d7; font-weight: bold;">from</span> classe c <span style="color: #4f97d7; font-weight: bold;">left</span> <span style="color: #4f97d7; font-weight: bold;">join</span> student s <span style="color: #4f97d7; font-weight: bold;">on</span> c.id=s.class_id;          
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc2ceb68" class="outline-3">
+<h3 id="orgc2ceb68"><span class="section-number-3">4.14.</span> many2many</h3>
+<div class="outline-text-3" id="text-4-14">
+<div class="org-src-container">
+<pre class="src src-sql"><span style="color: #4f97d7; font-weight: bold;">CREATE</span> <span style="color: #4f97d7; font-weight: bold;">TABLE</span> <span style="color: #bc6ec5; font-weight: bold;">tag</span>(
+id <span style="color: #ce537a; font-weight: bold;">INT</span> UNSIGNED <span style="color: #4f97d7; font-weight: bold;">PRIMARY</span> <span style="color: #4f97d7; font-weight: bold;">KEY</span> auto_increment,
+tag_name <span style="color: #ce537a; font-weight: bold;">VARCHAR</span>(50) <span style="color: #4f97d7; font-weight: bold;">NOT</span> <span style="color: #4f97d7; font-weight: bold;">NULL</span>
+)
+
+<span style="color: #4f97d7; font-weight: bold;">CREATE</span> <span style="color: #4f97d7; font-weight: bold;">TABLE</span> <span style="color: #bc6ec5; font-weight: bold;">article</span>(
+id <span style="color: #ce537a; font-weight: bold;">INT</span> UNSIGNED <span style="color: #4f97d7; font-weight: bold;">PRIMARY</span> <span style="color: #4f97d7; font-weight: bold;">KEY</span> auto_increment,
+title <span style="color: #ce537a; font-weight: bold;">VARCHAR</span>(100) <span style="color: #4f97d7; font-weight: bold;">NOT</span> <span style="color: #4f97d7; font-weight: bold;">NULL</span>
+)
+
+<span style="color: #4f97d7; font-weight: bold;">CREATE</span> <span style="color: #4f97d7; font-weight: bold;">TABLE</span> <span style="color: #bc6ec5; font-weight: bold;">tag_article</span>(
+id <span style="color: #ce537a; font-weight: bold;">INT</span> UNSIGNED <span style="color: #4f97d7; font-weight: bold;">PRIMARY</span> <span style="color: #4f97d7; font-weight: bold;">KEY</span> auto_increment,
+tag_id <span style="color: #ce537a; font-weight: bold;">INT</span> UNSIGNED <span style="color: #4f97d7; font-weight: bold;">DEFAULT</span> <span style="color: #4f97d7; font-weight: bold;">NULL</span>,
+article_id <span style="color: #ce537a; font-weight: bold;">INT</span> UNSIGNED <span style="color: #4f97d7; font-weight: bold;">DEFAULT</span> <span style="color: #4f97d7; font-weight: bold;">NULL</span>,
+<span style="color: #4f97d7; font-weight: bold;">FOREIGN</span> <span style="color: #4f97d7; font-weight: bold;">KEY</span>(tag_id) <span style="color: #4f97d7; font-weight: bold;">REFERENCES</span> tag(id) <span style="color: #4f97d7; font-weight: bold;">ON</span> <span style="color: #4f97d7; font-weight: bold;">DELETE</span> <span style="color: #4f97d7; font-weight: bold;">CASCADE</span> <span style="color: #4f97d7; font-weight: bold;">ON</span> <span style="color: #4f97d7; font-weight: bold;">UPDATE</span> <span style="color: #4f97d7; font-weight: bold;">CASCADE</span>,
+<span style="color: #4f97d7; font-weight: bold;">FOREIGN</span> <span style="color: #4f97d7; font-weight: bold;">KEY</span>(article_id) <span style="color: #4f97d7; font-weight: bold;">REFERENCES</span> article(id) <span style="color: #4f97d7; font-weight: bold;">ON</span> <span style="color: #4f97d7; font-weight: bold;">DELETE</span> <span style="color: #4f97d7; font-weight: bold;">CASCADE</span> <span style="color: #4f97d7; font-weight: bold;">ON</span> <span style="color: #4f97d7; font-weight: bold;">UPDATE</span> <span style="color: #4f97d7; font-weight: bold;">CASCADE</span>,
+<span style="color: #4f97d7; font-weight: bold;">UNIQUE</span>(tag_id,article_id)
+)
+
+
+<span style="color: #4f97d7; font-weight: bold;">SELECT</span> a.title 
+<span style="color: #4f97d7; font-weight: bold;">FROM</span> article a <span style="color: #4f97d7; font-weight: bold;">INNER</span> <span style="color: #4f97d7; font-weight: bold;">JOIN</span> tag_article t 
+<span style="color: #4f97d7; font-weight: bold;">ON</span> a.id=t.article_id 
+<span style="color: #4f97d7; font-weight: bold;">WHERE</span> tag_id=1
+
+
+
+
+
+
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org99da6c4" class="outline-2">
+<h2 id="org99da6c4"><span class="section-number-2">5.</span> Operation from the third program language</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org67c151a" class="outline-3">
+<h3 id="org67c151a"><span class="section-number-3">5.1.</span> singal python file connect with mysql</h3>
+<div class="outline-text-3" id="text-5-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> pymysql
+<span style="color: #7590db;">db</span> = pymysql.connect(<span style="color: #2d9574;">"localhost"</span>, <span style="color: #2d9574;">"root"</span>, <span style="color: #2d9574;">"123456"</span>, <span style="color: #2d9574;">"testforjava"</span>)
+<span style="color: #7590db;">cursor</span> = db.cursor()
+<span style="color: #7590db;">sql</span> = <span style="color: #2d9574;">"""create table  IF NOT EXISTS course(id int,  kurs_name varchar(50), kurs_length varchar(50),teacher varchar(50), categeory varchar(50))"""</span>
+cursor.execute(sql)
+<span style="color: #7590db;">sql</span> = <span style="color: #2d9574;">"""insert into course values(7, 'CLI', 22, 'su', 'basic')"""</span>
+cursor.execute(sql)
+<span style="color: #7590db;">sql</span> = <span style="color: #2d9574;">"""insert into course values(8, 'CLI', 22, 'su', 'basic')"""</span>
+cursor.execute(sql)
+db.commit()
+
+<span style="color: #7590db;">sql1</span> = <span style="color: #2d9574;">"""select * from course"""</span>
+cursor.execute(sql1)
+<span style="color: #7590db;">results</span> = cursor.fetchall()
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">'</span><span style="color: #a45bad;">\n</span><span style="color: #2d9574;">'</span>)
+<span style="color: #4f97d7; font-weight: bold;">for</span> row <span style="color: #4f97d7; font-weight: bold;">in</span> results:
+<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">num</span> = row[0]
+<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">name</span> = row[1]
+<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">age</span> = row[2]
+<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">right</span> = row[3]
+<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">dis</span> = row[4]
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"num is %7s, name is %7s, age is %7s, right is %7s, dis is %7s"</span> %
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span> (num, name, age, right, dis))
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">if __name__ == "__main__":</span>
+cursor.close()
+
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">from</span> pymysql <span style="color: #4f97d7; font-weight: bold;">import</span> connect
+<span style="color: #4f97d7; font-weight: bold;">from</span> pymysql.cursors <span style="color: #4f97d7; font-weight: bold;">import</span> DictCursor
+
+
+<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Pymysqlconnection</span>:
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">conn</span> = connect(
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   host=<span style="color: #2d9574;">'localhost'</span>,
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   port=3306,
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   user=<span style="color: #2d9574;">'cloud'</span>,
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   password=<span style="color: #2d9574;">'password'</span>,
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   database=<span style="color: #2d9574;">'0812erp'</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   )
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">cursor</span> = <span style="color: #4f97d7; font-weight: bold;">self</span>.conn.cursor(DictCursor)
+
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__def__</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.cursor.close()
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.conn.close()
+
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">get_item</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">sql</span> = <span style="color: #2d9574;">'select * from sys_user'</span>
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.cursor.execute(sql)
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> temp <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7; font-weight: bold;">self</span>.cursor.fetchall():
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(temp)
+
+
+<span style="color: #4f97d7; font-weight: bold;">if</span> <span style="color: #4f97d7;">__name__</span> == <span style="color: #2d9574;">'__main__'</span>:
+<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">pymysqlconnection</span> = Pymysqlconnection()
+<span style="background-color: #292e34;"> </span>   pymysqlconnection.get_item()
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org84cbef4" class="outline-3">
+<h3 id="org84cbef4"><span class="section-number-3">5.2.</span> singal java  file  connect with mysql</h3>
+<div class="outline-text-3" id="text-5-2">
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #4f97d7; font-weight: bold;">import</span> <span style="color: #a45bad;">java</span>.<span style="color: #a45bad;">sql</span>.*;
+<span style="color: #4f97d7; font-weight: bold;">public</span> <span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">JavaConnSQL</span>
+{
+    <span style="color: #4f97d7; font-weight: bold;">static</span> <span style="color: #4f97d7; font-weight: bold;">final</span> <span style="color: #ce537a; font-weight: bold;">String</span> <span style="color: #7590db;">JDBC_DRIVER</span> = <span style="color: #2d9574;">"com.mysql.cj.jdbc.Driver"</span>;  
+    <span style="color: #4f97d7; font-weight: bold;">static</span> <span style="color: #4f97d7; font-weight: bold;">final</span> <span style="color: #ce537a; font-weight: bold;">String</span> <span style="color: #7590db;">DB_URL</span> = <span style="color: #2d9574;">"jdbc:mysql://localhost:3306/testforjava?useSSL=false&amp;serverTimezone=UTC"</span>;
+    <span style="color: #4f97d7; font-weight: bold;">static</span> <span style="color: #4f97d7; font-weight: bold;">final</span> <span style="color: #ce537a; font-weight: bold;">String</span> <span style="color: #7590db;">USER</span> = <span style="color: #2d9574;">"root"</span>;
+    <span style="color: #4f97d7; font-weight: bold;">static</span> <span style="color: #4f97d7; font-weight: bold;">final</span> <span style="color: #ce537a; font-weight: bold;">String</span> <span style="color: #7590db;">PASS</span> = <span style="color: #2d9574;">"123456"</span>;
+    <span style="color: #4f97d7; font-weight: bold;">public</span> <span style="color: #4f97d7; font-weight: bold;">static</span> <span style="color: #ce537a; font-weight: bold;">void</span> <span style="color: #bc6ec5; font-weight: bold;">main</span>( <span style="color: #ce537a; font-weight: bold;">String</span>[] <span style="color: #7590db;">args</span> )
+    {
+        System.out.println( <span style="color: #2d9574;">"Hello World!"</span> );
+        System.out.println(<span style="color: #2d9574;">"&#22312;dir&#20013;&#29983;&#25104;&#30340;&#20195;&#30721;&#65292; &#22914;&#26524;dir&#20013;&#26377;&#39537;&#21160;&#65292;&#21017;&#21487;&#20197;&#25191;&#34892;mysql&#30340;&#36830;&#25509;"</span>);
+        System.out.println(<span style="color: #2d9574;">"&#25552;&#21069;&#25191;&#34892;"</span>);
+        System.out.println(<span style="color: #2d9574;">"export CLASSPATH=mysql-connector-java-8.0.20.jar:. "</span>);
+        <span style="color: #ce537a; font-weight: bold;">Connection</span> <span style="color: #7590db;">conn</span> = <span style="color: #a45bad;">null</span>;
+        <span style="color: #ce537a; font-weight: bold;">Statement</span> <span style="color: #7590db;">stmt</span> = <span style="color: #a45bad;">null</span>;
+        <span style="color: #4f97d7; font-weight: bold;">try</span>{
+            Class.forName(JDBC_DRIVER);
+            System.out.println(<span style="color: #2d9574;">"&#36830;&#25509;&#25968;&#25454;&#24211;..."</span>);
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+            System.out.println(<span style="color: #2d9574;">" &#23454;&#20363;&#21270;Statement&#23545;&#35937;..."</span>);
+            stmt = conn.createStatement();
+            <span style="color: #ce537a; font-weight: bold;">String</span> <span style="color: #7590db;">sql</span>;
+            sql = <span style="color: #2d9574;">"SELECT id, kurs_name FROM course"</span>;
+            <span style="color: #ce537a; font-weight: bold;">ResultSet</span> <span style="color: #7590db;">rs</span> = stmt.executeQuery(sql);
+
+            <span style="color: #4f97d7; font-weight: bold;">while</span>(rs.next()){
+                <span style="color: #ce537a; font-weight: bold;">int</span> <span style="color: #7590db;">id</span>  = rs.getInt(<span style="color: #2d9574;">"id"</span>);
+                <span style="color: #ce537a; font-weight: bold;">String</span> <span style="color: #7590db;">name</span> = rs.getString(<span style="color: #2d9574;">"kurs_name"</span>);
+                <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#36755;&#20986;&#25968;&#25454;</span>
+                System.out.print(<span style="color: #2d9574;">"ID: "</span> + id);
+                System.out.print(<span style="color: #2d9574;">", kurs name &#31449;&#28857;&#21517;&#31216;: "</span> + name);
+                System.out.print(<span style="color: #2d9574;">"\n"</span>);
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+        }<span style="color: #4f97d7; font-weight: bold;">catch</span>(SQLException se){
+            <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#22788;&#29702; JDBC &#38169;&#35823;</span>
+            se.printStackTrace();
+        }<span style="color: #4f97d7; font-weight: bold;">catch</span>(Exception e){
+            <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#22788;&#29702; Class.forName &#38169;&#35823;</span>
+            e.printStackTrace();
+        }
+    }
+}
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+此后，电脑的root用户将不能登陆，而此时电脑的普通,  用户可以登陆，但是没有设置密码，不能用 -p 登陆
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: si</p>
+<p class="date">Created: 2025-01-24 Fr 19:30</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,2382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-01-24 Fr 19:30 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MachineLearning</title>
+<meta name="author" content="si" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">MachineLearning</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2e620e1">1. Math for ML</a>
+<ul>
+<li><a href="#org5b12b60">1.1. Self Entropy</a></li>
+<li><a href="#org1f23e22">1.2. Information Entropy</a></li>
+<li><a href="#org9a33f66">1.3. cross Enteopy</a></li>
+<li><a href="#org63c1ba4">1.4. Conditional enteopy</a></li>
+<li><a href="#orgf7a1674">1.5. Gini</a></li>
+<li><a href="#org37ab39a">1.6. KL</a></li>
+<li><a href="#org5514515">1.7. Matrix</a>
+<ul>
+<li><a href="#org561b15e">1.7.1. Conjugate transpose Matrix</a></li>
+<li><a href="#org342f70b">1.7.2. Normal Matrix</a></li>
+<li><a href="#org3b043c2">1.7.3. Unitary Matrix</a></li>
+<li><a href="#org448dbe2">1.7.4. orthogonal matrix</a></li>
+<li><a href="#orgfa2a05e">1.7.5. Hermitian matrix</a></li>
+</ul>
+</li>
+<li><a href="#orga1f93b2">1.8. Eigenwertzerlegung eigende decompostion</a></li>
+<li><a href="#org3aede4d">1.9. SVD Singular value decompostion</a></li>
+<li><a href="#orgb84edd0">1.10. Bayes's Rule</a></li>
+<li><a href="#org7bd464d">1.11. Kovarianz Matrix</a></li>
+<li><a href="#org44747ac">1.12. Regularization</a></li>
+<li><a href="#org3ed4af3">1.13. Error Bias-Variance-trade-off</a></li>
+<li><a href="#orgc03b18f">1.14. Multi variable Gaussian distribution</a></li>
+<li><a href="#org5325b9e">1.15. Mahalanobis distance</a></li>
+<li><a href="#org8659e31">1.16. K-fold Cross Validation</a></li>
+<li><a href="#org21a78aa">1.17. confusion matrix</a>
+<ul>
+<li><a href="#orged9c522">1.17.1. Ture Positive Rate (recall)</a></li>
+<li><a href="#orga8c4132">1.17.2. False Postive Rate</a></li>
+<li><a href="#org40d777d">1.17.3. ROC Receivert Operator Characteristic</a></li>
+<li><a href="#orgd497826">1.17.4. AUC Area under the Curve</a></li>
+<li><a href="#orgba906af">1.17.5. F1</a></li>
+</ul>
+</li>
+<li><a href="#orge57aeeb">1.18. Macro Micro Average</a>
+<ul>
+<li><a href="#org689eec1">1.18.1. Macro Average</a></li>
+<li><a href="#orgfb22090">1.18.2. Micro Average</a></li>
+</ul>
+</li>
+<li><a href="#org64baa6f">1.19. Jacobin matrix</a></li>
+<li><a href="#orgba106c8">1.20. 预剪枝和后剪枝</a></li>
+<li><a href="#org7547346">1.21. 属性有连续值和缺失值</a></li>
+</ul>
+</li>
+<li><a href="#orgc43cd9f">2. activation function</a>
+<ul>
+<li><a href="#orga323a22">2.1. activation</a></li>
+<li><a href="#org6f17b24">2.2. Sigmoid</a></li>
+<li><a href="#org3b62026">2.3. ReLU</a></li>
+<li><a href="#org7d1cffe">2.4. LeakyReLU</a></li>
+<li><a href="#orgc708853">2.5. Tanh</a></li>
+<li><a href="#org5b533f6">2.6. MSE</a></li>
+<li><a href="#orge462a9b">2.7. inf entropy</a></li>
+<li><a href="#orgd6466c7">2.8. softmax</a></li>
+<li><a href="#org02f10b4">2.9. cross entropy</a></li>
+</ul>
+</li>
+<li><a href="#orga37dcf5">3. example bagging</a></li>
+<li><a href="#org6480d20">4. Boosting</a></li>
+<li><a href="#orgf65e920">5. gradient decent</a></li>
+<li><a href="#org9a90b38">6. Ordinary Least Squares(OLS)</a>
+<ul>
+<li><a href="#org3a3602b">6.1. 正规化方程</a></li>
+<li><a href="#orgea394a9">6.2. 正则化正规化方程</a></li>
+</ul>
+</li>
+<li><a href="#orga360c27">7. Lasso regression</a></li>
+<li><a href="#org87a94d6">8. Ridge regression</a></li>
+<li><a href="#orge32d8b8">9. Elastic Net regression</a></li>
+<li><a href="#orgdc111ef">10. Decision List</a></li>
+<li><a href="#orgaa62d6b">11. linear regression</a></li>
+<li><a href="#orgb0df331">12. linear Discriminate Analysis</a>
+<ul>
+<li><a href="#org9c2cab7">12.1. Fisher's linear discriminant</a></li>
+<li><a href="#org9cbcaed">12.2. Fisher's linear discriminant with Kernel method</a></li>
+<li><a href="#org293d201">12.3. Probabilistic Generative Model</a></li>
+<li><a href="#orgcd1eab1">12.4. Probabilistic Discriminant Model</a></li>
+</ul>
+</li>
+<li><a href="#org91796f2">13. Principe Component Analysis</a>
+<ul>
+<li><a href="#org8824246">13.1. PCA Algorithms</a></li>
+<li><a href="#org3deb736">13.2. Probabilistic generative model for PCA</a></li>
+</ul>
+</li>
+<li><a href="#org25bbd18">14. K-Nearest Neighbor&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></a>
+<ul>
+<li><a href="#orgeca9d23">14.1. Algorithms</a></li>
+</ul>
+</li>
+<li><a href="#org8a32907">15. Decision tree&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></a>
+<ul>
+<li><a href="#org98811fe">15.1. Algorithms</a></li>
+</ul>
+</li>
+<li><a href="#org7aaddcd">16. Random Forest&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></a>
+<ul>
+<li><a href="#org84ce22e">16.1. algorithms on decision tree</a></li>
+</ul>
+</li>
+<li><a href="#org1abe1f4">17. Naivi Bayes's&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></a></li>
+<li><a href="#org188b66f">18. logistic regression&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></a>
+<ul>
+<li><a href="#org8965e36">18.1. Odd</a></li>
+<li><a href="#org89752e3">18.2. Odd ratio</a></li>
+<li><a href="#org17c5468">18.3. algorithms</a></li>
+</ul>
+</li>
+<li><a href="#orgeea398b">19. Support Vector Machine&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></a>
+<ul>
+<li><a href="#org535f2a4">19.1. without soft margin</a></li>
+<li><a href="#org37b483e">19.2. with soft margin</a></li>
+<li><a href="#orge6cf6e1">19.3. kernel function</a></li>
+</ul>
+</li>
+<li><a href="#org39c913a">20. Neural network&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></a>
+<ul>
+<li><a href="#orgefa7dc4">20.1. Backpropagation</a>
+<ul>
+<li><a href="#orgbe8e554">20.1.1. 感知机</a></li>
+<li><a href="#org2e643a6">20.1.2. 多层神经网络</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org2a6fffd">21. K-Means&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></a>
+<ul>
+<li><a href="#orgf5828b1">21.1. algothism</a></li>
+<li><a href="#org798b48c">21.2. select the best k</a>
+<ul>
+<li><a href="#org3d734ac">21.2.1. based on domain knowlegde:</a></li>
+<li><a href="#org0510324">21.2.2. Visualizations</a></li>
+<li><a href="#org38552ee">21.2.3. Within-Sum-of-Squares</a></li>
+</ul>
+</li>
+<li><a href="#orgcfb764c">21.3. Problems</a></li>
+</ul>
+</li>
+<li><a href="#org0b79f5d">22. EM algorithms for Gaussian Mixture model&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></a>
+<ul>
+<li><a href="#org56de894">22.1. k selecting</a></li>
+<li><a href="#orga350ebd">22.2. Algorithm</a></li>
+<li><a href="#orgc4d4cc4">22.3. problem</a></li>
+</ul>
+</li>
+<li><a href="#org8c5b665">23. DBSCAN&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></a>
+<ul>
+<li><a href="#org1889a68">23.1. concepts \(\epsilon\)  minPts</a></li>
+<li><a href="#org83428c1">23.2. Algorithm</a></li>
+<li><a href="#orge802f56">23.3. select \(\epsilon\) and minpts</a></li>
+<li><a href="#org749893c">23.4. problems</a></li>
+</ul>
+</li>
+<li><a href="#orgde9fb44">24. Single Linkage Clustering&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></a>
+<ul>
+<li><a href="#orge43557c">24.1. Algorithm</a></li>
+<li><a href="#org39a1ad1">24.2. problems</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2e620e1" class="outline-2">
+<h2 id="org2e620e1"><span class="section-number-2">1.</span> Math for ML</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org5b12b60" class="outline-3">
+<h3 id="org5b12b60"><span class="section-number-3">1.1.</span> Self Entropy</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+One thing happens, how much information can be persent. how meanful it is
+\[I(p_{i}) = -\log(p_{i})\]
+</p>
+</div>
+</div>
+<div id="outline-container-org1f23e22" class="outline-3">
+<h3 id="org1f23e22"><span class="section-number-3">1.2.</span> Information Entropy</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+\[H(p) = E_{x\backsim p}[I(p_i)] = -E_{x\backsim p}[\log(p_{i})]\]
+\[H(p) = -\sum^{n}_{i=1} p(x_{i}) \log p(x_{i})\]
+\[H(p) = - \int_{x} p(x)\log p(x) dx\]
+</p>
+</div>
+</div>
+<div id="outline-container-org9a33f66" class="outline-3">
+<h3 id="org9a33f66"><span class="section-number-3">1.3.</span> cross Enteopy</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+\[H(p, q) = E_{x\backsim p}[I(q_i)] = -E_{x\backsim p}[\log(q_{i})]\]
+\[H(p, q) = -\sum^{n}_{i=1} p(x_{i}) \log q(x_{i})\]
+\[H(p, q) = - \int_{x} p(x)\log q(x) dx\]
+</p>
+</div>
+</div>
+<div id="outline-container-org63c1ba4" class="outline-3">
+<h3 id="org63c1ba4"><span class="section-number-3">1.4.</span> Conditional enteopy</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+Under the condition than Y has been happened, estimate the
+Enteopy of X to be happened
+\[H(X|Y) = \sum^{n}_{i=1}p_{i}H(X|Y=y_{i})\]
+\[H(X|Y) = H(X,Y)-H(X)\]
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf7a1674" class="outline-3">
+<h3 id="orgf7a1674"><span class="section-number-3">1.5.</span> Gini</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+吉尼系数
+\[ Gini(D) = \sum^{|y|}_{k=1}\sum_{k^{'}\not = k} p_{k}p_{k^{'}} = 1- \sum^{|y|}_{k=1}p_{k}^{2}\]
+</p>
+</div>
+</div>
+
+<div id="outline-container-org37ab39a" class="outline-3">
+<h3 id="org37ab39a"><span class="section-number-3">1.6.</span> KL</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+the difference between p and q
+\[KL(p||q) = E_{x \backsim p} [\frac{ \log p(x)}{ \log q(x)}] = \sum^{n}_{i=1} p(x_{i}) \frac{ \log p(x)}{ \log q(x)} \]
+\[KL(p||q) = H(p, q) - H(p)\]
+</p>
+</div>
+</div>
+<div id="outline-container-org5514515" class="outline-3">
+<h3 id="org5514515"><span class="section-number-3">1.7.</span> Matrix</h3>
+<div class="outline-text-3" id="text-1-7">
+</div>
+<div id="outline-container-org561b15e" class="outline-4">
+<h4 id="org561b15e"><span class="section-number-4">1.7.1.</span> Conjugate transpose Matrix</h4>
+<div class="outline-text-4" id="text-1-7-1">
+<p>
+\[ A^{*} = (\bar{A})^{T} = \bar{A^{T}}\]
+共轭转置矩阵, 先共轭再转置，还是先转置再共轭都可以。
+</p>
+</div>
+</div>
+<div id="outline-container-org342f70b" class="outline-4">
+<h4 id="org342f70b"><span class="section-number-4">1.7.2.</span> Normal Matrix</h4>
+<div class="outline-text-4" id="text-1-7-2">
+<p>
+\[ A^{*}A = A A^{*}\]
+正定矩阵, 是转置和本身满足交换律
+\[ A = URDU^{-1} \]
+可酉变换
+</p>
+</div>
+</div>
+<div id="outline-container-org3b043c2" class="outline-4">
+<h4 id="org3b043c2"><span class="section-number-4">1.7.3.</span> Unitary Matrix</h4>
+<div class="outline-text-4" id="text-1-7-3">
+<p>
+\[ A^{*}A = A A^{*} = I \]
+ 酉矩阵，是正定矩阵, 即转置和本身满足交换律，而且等于 I
+</p>
+</div>
+</div>
+
+<div id="outline-container-org448dbe2" class="outline-4">
+<h4 id="org448dbe2"><span class="section-number-4">1.7.4.</span> orthogonal matrix</h4>
+<div class="outline-text-4" id="text-1-7-4">
+<p>
+实数酉矩阵
+</p>
+
+<p>
+\[
+{\displaystyle Q^{T}=Q^{-1}\Leftrightarrow Q^{T}Q=QQ^{T}=I}
+\]
+得该矩阵的转置矩阵为其逆矩阵
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfa2a05e" class="outline-4">
+<h4 id="orgfa2a05e"><span class="section-number-4">1.7.5.</span> Hermitian matrix</h4>
+<div class="outline-text-4" id="text-1-7-5">
+<p>
+\[ A = A^{H}\], \(a_{i,j} = \bar{a_{j,i}}\)
+共轭对称
+埃尔米特矩阵，厄米特矩阵，厄米矩阵,所有元素对称出共轭
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orga1f93b2" class="outline-3">
+<h3 id="orga1f93b2"><span class="section-number-3">1.8.</span> Eigenwertzerlegung eigende decompostion</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+对于矩阵求特征值特征向量，特征值分解，但是要求必须是方阵，如果不是，先
+要转换： A = a*a.T
+</p>
+
+
+<p>
+\[ A=UBU^T \]
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
+<span style="color: #7590db;">a</span> = np.mat([[1,2,3,4],[1,1,1,1]])
+<span style="color: #7590db;">A</span> = a*a.T
+<span style="color: #7590db;">B</span>, <span style="color: #7590db;">U</span> = np.linalg.eig(A)
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"eigenvalue of A : "</span>)
+<span style="color: #4f97d7;">print</span>(B)
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"eigenvalue of a :(should be equal to the following) "</span>)
+<span style="color: #4f97d7;">print</span>(np.sqrt(B))
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"eigenvactor : "</span>)
+<span style="color: #4f97d7;">print</span>(U)
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3aede4d" class="outline-3">
+<h3 id="org3aede4d"><span class="section-number-3">1.9.</span> SVD Singular value decompostion</h3>
+<div class="outline-text-3" id="text-1-9">
+<p>
+但是对于一般矩阵，不是方阵，可以奇异值分解：
+\[ a = UBV^T , a^{t} = VBU^{T} \]
+\[ A = aa^{T} = UB^{2}U^{T}\]
+\[ A^{'}=a^{T}a=VB^{2}V^{T}\]
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
+<span style="color: #7590db;">a</span> = np.mat([[1,2,3,4],[1,1,1,1]])
+<span style="color: #7590db;">U</span>, <span style="color: #7590db;">B</span>, <span style="color: #7590db;">Vt</span> = np.linalg.svd(a)
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"left eigenvalue : "</span>)
+<span style="color: #4f97d7;">print</span>(U)
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"eigenvactor of a : "</span>)
+<span style="color: #4f97d7;">print</span>(B)
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"right eigenvalue : "</span>)
+<span style="color: #4f97d7;">print</span>(Vt)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb84edd0" class="outline-3">
+<h3 id="orgb84edd0"><span class="section-number-3">1.10.</span> Bayes's Rule</h3>
+<div class="outline-text-3" id="text-1-10">
+<p>
+if x and y are independent:
+\[ p(x,y) =  p(y)p(x) = p(x) p(y) = p(y,x) \]
+</p>
+
+<pre class="example">
+条件概率：
+条件概率 = 联合概率/边缘概率
+先验概率和后验概率都是条件概率，但是条件已知是先验
+</pre>
+<p>
+\[ P(y|x) = \frac{ P(x,y)}{P(x)}\]
+</p>
+<pre class="example">
+全概率公式
+</pre>
+<p>
+\[ p(y) = \sum_{i=1}^{n} p(y,x_{i}) \]
+</p>
+<pre class="example">
+贝叶斯公式
+</pre>
+
+<p>
+\[ P(AB)=P(BA) \]
+\[ P(y|x)P(x) = P(x|y)P(y)\]
+\[ P(y|x) = \frac{ P(x|y) P(y)}{P(x)}\]
+</p>
+
+<pre class="example">
+贝叶斯公式 + 全概率公式 + 条件概率
+</pre>
+
+\begin{eqnarray*}
+P(A|B) &= \frac{P(B|A)P(A)}{P(B)} \\
+       &= \frac{P(B|A)P(A)}{\sum_{i=1}^{n} p(B,A_{i})} \\
+       &= \frac{P(B|A)P(A)}{\sum_{i=1}^{n} P(B|A_{i})P(A)} \\
+\end{eqnarray*}
+</div>
+</div>
+
+<div id="outline-container-org7bd464d" class="outline-3">
+<h3 id="org7bd464d"><span class="section-number-3">1.11.</span> Kovarianz Matrix</h3>
+<div class="outline-text-3" id="text-1-11">
+<p>
+for i = {1&#x2026;n}, \(x_{i}\) is a random variable, which belongs to
+Gaussian distribution
+</p>
+
+<p>
+set
+ \[ X = \left( \begin{aligned}  x_{1} \\ x_{2}\\ . \\. \\x_{n}  \end{aligned}\right) \]
+</p>
+
+<p>
+\[ \bar{X} = \left( \begin{aligned}  \bar{x}_{1}
+\\ \bar{x}_{2}\\ . \\. \\ \bar{x}_{n}  \end{aligned} \right) \]
+</p>
+
+<p>
+co-variance matrix \(\Sigma = E [(X-\bar{X})(X-\bar{X})^{T} ]\)
+</p>
+
+\begin{equation}
+\Sigma =
+  \left(
+  \begin{array}{c}
+          x_{1}-\bar{x}_{1} \\
+          x_{2}-\bar{x}_{2} \\
+          x_{3}-\bar{x}_{3} \\
+          ..                \\
+          x_{n}-\bar{x}_{n}
+ \end{array}
+ \right)
+  \left(
+  \begin{array}{ccccc}
+          x_{1}-\bar{x}_{1} &
+          x_{2}-\bar{x}_{2} &
+          x_{3}-\bar{x}_{3} &
+          ..                &
+          x_{n}-\bar{x}_{n}
+  \end{array}
+  \right)
+\end{equation}
+<p>
+对角线上是对应元素的方差，其他是相对于两个元素的协方差
+</p>
+</div>
+</div>
+
+<div id="outline-container-org44747ac" class="outline-3">
+<h3 id="org44747ac"><span class="section-number-3">1.12.</span> Regularization</h3>
+<div class="outline-text-3" id="text-1-12">
+<p>
+L Regularization
+\(x_{i}\) is the weight in network, it's a scalar
+</p>
+
+<p>
+\[||x||_{p} := (\sum^{n}_{i=1}|x_{i}|^{p})^{\frac{1}{p}}\]
+\[||x||_{1} := \sum^{n}_{i=1}|x_{i}|\]
+\[||x||_{2} := (\sum^{n}_{i=1}|x_{i}|^{2})^{\frac{1}{2}}\]
+</p>
+
+
+<p>
+\[ Loss = \frac{1}{2}\sum^{N}_{i=1}(y_{i}-w^{t}\phi(x_{i}))^{2}+\frac{\lambda}{2}\sum^{M}_{j=1}|w_{j}|^{q} \]
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">N</td>
+<td class="org-left">example number</td>
+</tr>
+
+<tr>
+<td class="org-left">M</td>
+<td class="org-left">Eigenschaften Number, Diemension number</td>
+</tr>
+
+<tr>
+<td class="org-left">L0</td>
+<td class="org-left">控制网络中的非零权重</td>
+</tr>
+
+<tr>
+<td class="org-left">L1</td>
+<td class="org-left">网络中的所有元素的绝对值之和,促使网络生成更多的稀疏矩阵</td>
+</tr>
+
+<tr>
+<td class="org-left">L2</td>
+<td class="org-left">网络中的所有元素平方和,促使网络生成小比重的权值</td>
+</tr>
+
+<tr>
+<td class="org-left">w</td>
+<td class="org-left">w<sub>1</sub>, w<sub>2</sub></td>
+</tr>
+
+<tr>
+<td class="org-left">q=1</td>
+<td class="org-left">l1 regularization</td>
+</tr>
+
+<tr>
+<td class="org-left">q=2</td>
+<td class="org-left">l2 regularization</td>
+</tr>
+
+<tr>
+<td class="org-left">&lambda;</td>
+<td class="org-left">learning rate</td>
+</tr>
+
+<tr>
+<td class="org-left">\(\sum^{N}_{i=1}(y_{i}-w^{t}\phi(x_{i}))^{2}\)</td>
+<td class="org-left">依据w的同心圆</td>
+</tr>
+
+<tr>
+<td class="org-left">\(\sum^{M}_{j=1}w_{j}^{q}\)</td>
+<td class="org-left">q=1, 菱形， q=2, 圆形</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>
+Loss 要最小，part1 刚好和 part2 相接，l1会在坐标轴上，所以如果有较小分
+量，会被直接设为0
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3ed4af3" class="outline-3">
+<h3 id="org3ed4af3"><span class="section-number-3">1.13.</span> Error Bias-Variance-trade-off</h3>
+<div class="outline-text-3" id="text-1-13">
+<pre class="example">
+Error = Bias + Variance + noise
+</pre>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Bias</td>
+<td class="org-left">偏差</td>
+<td class="org-left">欠拟合</td>
+<td class="org-left">发挥，观测等主观因素影响</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Variance</td>
+<td class="org-left">方差</td>
+<td class="org-left">过过拟合</td>
+<td class="org-left">稳定性，模型的构建决定</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">noise</td>
+<td class="org-left">噪音</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">统难度</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgc03b18f" class="outline-3">
+<h3 id="orgc03b18f"><span class="section-number-3">1.14.</span> Multi variable Gaussian distribution</h3>
+<div class="outline-text-3" id="text-1-14">
+<p>
+seeing the link 知乎
+</p>
+
+<p>
+\[
+{\displaystyle f_{\mathbf {X} }(x_{1},\ldots ,x_{k})={\frac {\exp
+\left(-{\frac {1}{2}}({\mathbf {x} }-{\boldsymbol {\mu }})^{\mathrm
+{T} }{\boldsymbol {\Sigma }}^{-1}({\mathbf {x} }-{\boldsymbol {\mu
+}})\right)}{\sqrt {(2\pi )^{k}|{\boldsymbol {\Sigma
+}}|}}}}
+\]
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">gaussian</span>(x,mean,cov):
+<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">dim</span> = np.shape(cov)[0] <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#32500;&#24230;</span>
+<span style="background-color: #292e34;"> </span>   <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#20043;&#25152;&#20197;&#21152;&#20837;&#21333;&#20301;&#30697;&#38453;&#26159;&#20026;&#20102;&#38450;&#27490;&#34892;&#21015;&#24335;&#20026;0&#30340;&#24773;&#20917;</span>
+<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">covdet</span> = np.linalg.det(cov+np.eye(dim)*0.01) <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#21327;&#26041;&#24046;&#30697;&#38453;&#30340;&#34892;&#21015;&#24335;</span>
+<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">covinv</span> = np.linalg.inv(cov+np.eye(dim)*0.01) <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#21327;&#26041;&#24046;&#30697;&#38453;&#30340;&#36870;</span>
+<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">xdiff</span> = x - mean
+<span style="background-color: #292e34;"> </span>   <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#27010;&#29575;&#23494;&#24230;</span>
+<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">prob</span> = 1.0/np.power(2*np.pi,1.0*dim/2)/np.sqrt(np.<span style="color: #4f97d7;">abs</span>(covdet))*np.exp(-1.0/2*np.dot(np.dot(xdiff,covinv),xdiff))
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> prob
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5325b9e" class="outline-3">
+<h3 id="org5325b9e"><span class="section-number-3">1.15.</span> Mahalanobis distance</h3>
+<div class="outline-text-3" id="text-1-15">
+<p>
+\[ \Delta = \left(-{\frac {1}{2}}({\mathbf {x} }-{\boldsymbol {\mu }})^{\mathrm
+{T} }{\boldsymbol {\Sigma }}^{-1}({\mathbf {x} }-{\boldsymbol {\mu
+}})\right)
+\]
+\[ \Sigma = \sum U \Lambda U^{T} \]
+\[ \Sigma^{-1} = \sum U \Lambda^{-1} U^{T} \]
+</p>
+
+<p>
+\[ \Delta = -{\frac {1}{2}}({\mathbf {x} }-{\boldsymbol {\mu }})^{\mathrm
+{T} }{\boldsymbol {\Sigma }}^{-1}({\mathbf {x} }-{\boldsymbol {\mu
+}}) = -{\frac {1}{2}}({\mathbf {x} }-{\boldsymbol {\mu }})^{\mathrm
+{T} }  U \Lambda^{-1} U^{T}({\mathbf {x} }-{\boldsymbol {\mu
+}})
+\]
+马氏距离所使用的变换 : \[ Z = U^{T}(X - \mu) \],
+</p>
+
+
+<p>
+\[ D = \sqrt{ZZ^{T}} \]
+关于新的坐标，U 是变换的旋转，\(\Lambda\) 是基底的延伸，\((x-\mu)\) 是在其
+上的投影，此后，在新坐标上，即为多变量，标准，不相关高斯分布
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8659e31" class="outline-3">
+<h3 id="org8659e31"><span class="section-number-3">1.16.</span> K-fold Cross Validation</h3>
+<div class="outline-text-3" id="text-1-16">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">N</td>
+<td class="org-left">total examples</td>
+</tr>
+
+<tr>
+<td class="org-left">K</td>
+<td class="org-left">number of sub-fold</td>
+</tr>
+
+<tr>
+<td class="org-left">m</td>
+<td class="org-left">number of each sub-fold</td>
+</tr>
+
+<tr>
+<td class="org-left">big K</td>
+<td class="org-left">small bias, with over fitting, big variance</td>
+</tr>
+
+<tr>
+<td class="org-left">small K</td>
+<td class="org-left">big bias, without fitting, low variance</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org21a78aa" class="outline-3">
+<h3 id="org21a78aa"><span class="section-number-3">1.17.</span> confusion matrix</h3>
+<div class="outline-text-3" id="text-1-17">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Actually Ture</td>
+<td class="org-left">Actually False</td>
+</tr>
+
+<tr>
+<td class="org-left">predict Positive</td>
+<td class="org-left">TP</td>
+<td class="org-left">FP</td>
+</tr>
+
+<tr>
+<td class="org-left">predict Negative</td>
+<td class="org-left">FN</td>
+<td class="org-left">TN</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="outline-container-orged9c522" class="outline-4">
+<h4 id="orged9c522"><span class="section-number-4">1.17.1.</span> Ture Positive Rate (recall)</h4>
+<div class="outline-text-4" id="text-1-17-1">
+<p>
+namely, Ture Positive Rate, y axes of ROC
+</p>
+
+<p>
+\[ Sensitivity = \frac{TP}{TP+FN} \]
+</p>
+</div>
+</div>
+<div id="outline-container-orga8c4132" class="outline-4">
+<h4 id="orga8c4132"><span class="section-number-4">1.17.2.</span> False Postive Rate</h4>
+<div class="outline-text-4" id="text-1-17-2">
+<p>
+namely, false Position, x axes of ROC
+</p>
+
+<p>
+\[ 1 -  Sensitivity = \frac{FP}{FP + TN} \]
+</p>
+</div>
+</div>
+
+<div id="outline-container-org40d777d" class="outline-4">
+<h4 id="org40d777d"><span class="section-number-4">1.17.3.</span> ROC Receivert Operator Characteristic</h4>
+<div class="outline-text-4" id="text-1-17-3">
+<p>
+under the acceptable  x (1 -  Sensitivity) , we want the best  y (Sensitivity).
+from side to side is all classifed to Positive to all classifed to negative
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd497826" class="outline-4">
+<h4 id="orgd497826"><span class="section-number-4">1.17.4.</span> AUC Area under the Curve</h4>
+<div class="outline-text-4" id="text-1-17-4">
+<p>
+je mehr Fachsgebiet, desto besser for the Method,
+we use this target to choice our Method
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgba906af" class="outline-4">
+<h4 id="orgba906af"><span class="section-number-4">1.17.5.</span> F1</h4>
+<div class="outline-text-4" id="text-1-17-5">
+<p>
+harmonic mean of recall and precision
+\[ F_{1} = \frac{1}{2} \cdot (\frac{1}{P}+\frac{1}{R})\]
+\[ F_{\beta} = \frac{1}{\beta^{2}} \cdot
+(\frac{\beta^{2}}{P}+\frac{1}{R})\]
+</p>
+
+<p>
+关联性属性 ： 高中低 （3,2,1）
+非关联性属性： 猪狗羊 （(1,0,0), (0,1,0),(0,0,1)）
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge57aeeb" class="outline-3">
+<h3 id="orge57aeeb"><span class="section-number-3">1.18.</span> Macro Micro Average</h3>
+<div class="outline-text-3" id="text-1-18">
+<p>
+This is for non-binary classification
+at frist calcalete for all feather the confusion matrix als binary classification
+</p>
+</div>
+<div id="outline-container-org689eec1" class="outline-4">
+<h4 id="org689eec1"><span class="section-number-4">1.18.1.</span> Macro Average</h4>
+<div class="outline-text-4" id="text-1-18-1">
+<p>
+\[TPR_{macro} = \frac{1}{|C|}\sum_{c \in C}\frac{TP_{c}}{TP_{c}+FN_{c}}\]
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfb22090" class="outline-4">
+<h4 id="orgfb22090"><span class="section-number-4">1.18.2.</span> Micro Average</h4>
+<div class="outline-text-4" id="text-1-18-2">
+<p>
+\[TPR_{micro}=\frac{\sum_{c \in C} TP_{c} }{\sum_{c \in C}TP_{c}+ \sum_{c \in C}FN_{c} }\]
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org64baa6f" class="outline-3">
+<h3 id="org64baa6f"><span class="section-number-3">1.19.</span> Jacobin matrix</h3>
+<div class="outline-text-3" id="text-1-19">
+<p>
+for \[ Y_{m} = f(X_{n}), Y =(y_{1}, y_{2}, y_{3}....y_{m}), X = (x_{1}
+,x_{2}....x_{n}) \]
+\[ d_{Y} = J d_{x}\],
+\[
+{\displaystyle \mathbf {J} ={\begin{bmatrix}{\dfrac {\partial \mathbf
+{f} }{\partial x_{1}}}&\cdots &{\dfrac {\partial \mathbf {f}
+}{\partial x_{n}}}\end{bmatrix}}={\begin{bmatrix}{\dfrac {\partial
+f_{1}}{\partial x_{1}}}&\cdots &{\dfrac {\partial f_{1}}{\partial
+x_{n}}}\\\vdots &\ddots &\vdots \\{\dfrac {\partial f_{m}}{\partial
+x_{1}}}&\cdots &{\dfrac {\partial f_{m}}{\partial
+x_{n}}}\end{bmatrix}}}
+\]
+由球坐标系到直角坐标系的转化由 F: ℝ+ × [0, π] × [0, 2π) → ℝ3 函数给出，
+其分量为：
+\[
+{\displaystyle {\begin{aligned}x&=r\sin \theta \cos \varphi
+;\\y&=r\sin \theta \sin \varphi ;\\z&=r\cos \theta
+.\end{aligned}}}
+\]
+此坐标变换的雅可比矩阵是
+\[
+{\displaystyle \mathbf {J} _{\mathbf {F} }(r,\theta ,\varphi
+)={\begin{bmatrix}{\dfrac {\partial x}{\partial r}}&{\dfrac {\partial
+x}{\partial \theta }}&{\dfrac {\partial x}{\partial \varphi
+}}\\[1em]{\dfrac {\partial y}{\partial r}}&{\dfrac {\partial
+y}{\partial \theta }}&{\dfrac {\partial y}{\partial \varphi
+}}\\[1em]{\dfrac {\partial z}{\partial r}}&{\dfrac {\partial
+z}{\partial \theta }}&{\dfrac {\partial z}{\partial \varphi
+}}\end{bmatrix}}={\begin{bmatrix}\sin \theta \cos \varphi &r\cos
+\theta \cos \varphi &-r\sin \theta \sin \varphi \\\sin \theta \sin
+\varphi &r\cos \theta \sin \varphi &r\sin \theta \cos \varphi \\\cos
+\theta &-r\sin \theta &0\end{bmatrix}}.}
+\]
+其雅可比行列式为 r2 sin θ，由于 dV = dx dy dz，如果做变数变换的话其体
+积元(Volume element)，dV，会变成：dV = r2 sin θ dr dθ dφ。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgba106c8" class="outline-3">
+<h3 id="orgba106c8"><span class="section-number-3">1.20.</span> 预剪枝和后剪枝</h3>
+<div class="outline-text-3" id="text-1-20">
+<p>
+在利用训练集的最大信息增益确定划分属性后，用验证集来检验划分，如果验证
+集的信息熵增加，（泛化结果不好)否定此次划分，设为叶节点
+</p>
+
+<p>
+后剪枝是在这个树完成后，用验证集去检验每一个内节点，从下到上，如果去掉
+该划分有更小的信息熵，则废除该划分。
+</p>
+</div>
+</div>
+<div id="outline-container-org7547346" class="outline-3">
+<h3 id="org7547346"><span class="section-number-3">1.21.</span> 属性有连续值和缺失值</h3>
+<div class="outline-text-3" id="text-1-21">
+<p>
+连续值离散化：排列该属性的所有取值n个，在n-1个区间中去中间值为离散值，
+遍历所有离散值，找到最大信息增益的离散值，作二分。
+</p>
+
+<p>
+缺失值，取出该属性的非缺失子集，再配以相应的比率计算信息增益，处理和以
+前一样。如果选出的划分属性有缺失值，则给划分不作用到缺失样本，复制到每
+个划分子集
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc43cd9f" class="outline-2">
+<h2 id="orgc43cd9f"><span class="section-number-2">2.</span> activation function</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orga323a22" class="outline-3">
+<h3 id="orga323a22"><span class="section-number-3">2.1.</span> activation</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+输出为实数空间或某个区间， 连续变化。直接有输出值和真实值比较
+</p>
+</div>
+</div>
+<div id="outline-container-org6f17b24" class="outline-3">
+<h3 id="org6f17b24"><span class="section-number-3">2.2.</span> Sigmoid</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+\[ Sigmoid(x) = \frac{1}{1+e^{-x}}\]
+</p>
+
+<p>
+导数：\[ \sigma'(x) = \sigma(x)(1-\sigma(x))\]
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3b62026" class="outline-3">
+<h3 id="org3b62026"><span class="section-number-3">2.3.</span> ReLU</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+\[ Relu(x) =
+\begin{cases}
+x&  x >=0 \\
+0&  x < 0
+\end{cases}\]
+</p>
+
+<p>
+\[ Relu(x) = max(0,x)\]
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7d1cffe" class="outline-3">
+<h3 id="org7d1cffe"><span class="section-number-3">2.4.</span> LeakyReLU</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+\[ LeakyReLU(x) = \begin{cases}
+x& x >=0 \\
+px& x <0, 0<p<<1
+\end{cases}\]
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc708853" class="outline-3">
+<h3 id="orgc708853"><span class="section-number-3">2.5.</span> Tanh</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+\[ tanh(x) = \frac{e^{x}-e^{-x}}{e^{x}+e^{-x}}\]
+\[ tanh(x) = 2.sigmoid(2x)-1\]
+导数：\[\tanh'(x) = 1- \tanh^{2}(x)\]
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5b533f6" class="outline-3">
+<h3 id="org5b533f6"><span class="section-number-3">2.6.</span> MSE</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+\[ \mathcal{L} = MSE(y, o) =
+\frac{1}{d_{out}}\sum_{i=1}^{d_{out}}(y_{i}-o^{i})^{2}\]
+导数 ：\[ \frac{\partial \mathcal{L}}{\partial o_{i}}= (o_{i}-y_{i})\]
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge462a9b" class="outline-3">
+<h3 id="orge462a9b"><span class="section-number-3">2.7.</span> inf entropy</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+\[ H(p) = -\sum_{i}P(i)\log_{2}^{P_{i}}\]
+</p>
+</div>
+</div>
+<div id="outline-container-orgd6466c7" class="outline-3">
+<h3 id="orgd6466c7"><span class="section-number-3">2.8.</span> softmax</h3>
+<div class="outline-text-3" id="text-2-8">
+<p>
+\[ p_{z_{i}} = \frac{e^{z_{i}}}{\sum_{j}e^{z_{j}}}\]
+所有种类的概率之和为1
+导数:
+\[ \frac{ \partial p_{z_{i}}}{\partial z_{j}} =
+\begin{cases}
+p_{i}(1-p_{j}) &  if i =j \\
+-p_{i}p_{j}    & if \neq j
+\end{cases}\]
+</p>
+</div>
+</div>
+
+<div id="outline-container-org02f10b4" class="outline-3">
+<h3 id="org02f10b4"><span class="section-number-3">2.9.</span> cross entropy</h3>
+<div class="outline-text-3" id="text-2-9">
+<p>
+在计算交叉熵时， 一般是和 softmax 函数一起使用的
+\[ H(p||q) = -\sum_{i} p(i) \log_{2}^{q_{i}}\]
+\[H(p||q) = H(p) + D_{KL}(p||q)\]
+</p>
+
+<p>
+for One-hot coding
+\[ H(p||q) = D_{KL}(p||q) = \sum_{i}y_{i}log(\frac{y_{j}}{o_{j}}) =
+1 \cdot \log\frac{1}{o_{i}} + \sum_{j!=i}0 \cdot \log \frac{0}{o_{j}}
+= -\log o_{i}\]
+\(o_i\) 为1 时，预测正确，交叉熵为0。
+导数：
+\[ \mathcal{L} = -\sum_{k}y_{k}\log(p_{k})\]
+\[\begin{aligned}
+ \frac{\partial \mathcal{L}}{\partial z_{i}} & =
+-\sum_{k} y_{k} \frac{\partial \log(p_{k})}{\partial z_{i}} \\
+&= -\sum_{k} y_{k} \frac{\partial \log(p_{k})}{\partial p_{k}} \cdot
+\frac{\partial p_{k}}{\partial z_{i}} \\
+&= -\sum_{k} y_{k} \frac{1}{\partial p_{k}} \cdot
+\frac{\partial p_{k}}{\partial z_{i}} \\
+\end{aligned}
+\]
+</p>
+
+<p>
+用上面 softmax 的导数结果，分为k=i 和k!=i两种情况
+\[ \frac{\partial \mathcal{L}}{z_{i}}=p_{i}-y_{i}\]
+</p>
+
+<p>
+\[C = - \frac{1}{n}\sum_{x}[y\cdot \ln(a) + (1-y)\cdot \ln(1-a)]\]
+\[\frac{\partial C}{\partial w} = X(a-y)\]
+\[\frac{\partial C}{\partial b} = a-y\]
+</p>
+
+<p>
+This is why Cross Enterpy can train the loss very fast.
+if a is far away from y, the update will be its difference
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga37dcf5" class="outline-2">
+<h2 id="orga37dcf5"><span class="section-number-2">3.</span> example bagging</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+多次放回抽样，用不同抽样的数据集在多棵树上并行计算，
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">More Tree</td>
+<td class="org-left">Bias remained</td>
+<td class="org-left">Variance reduce to limit</td>
+</tr>
+</tbody>
+</table>
+<p>
+所以刚开始选择偏差小，方差大的强模型
+</p>
+</div>
+</div>
+<div id="outline-container-org6480d20" class="outline-2">
+<h2 id="org6480d20"><span class="section-number-2">4.</span> Boosting</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+固定数据集，在多个串行的模型上顺序计算，模型间强相关，防止过拟合，用弱
+相关模型
+</p>
+</div>
+</div>
+<div id="outline-container-orgf65e920" class="outline-2">
+<h2 id="orgf65e920"><span class="section-number-2">5.</span> gradient decent</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+当数据点很多是，正则化方法计算量将非常大，此时较多使用梯度下降
+</p>
+
+<pre class="example">
+sklearn API
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
+<span style="color: #4f97d7; font-weight: bold;">import</span> random
+<span style="color: #4f97d7; font-weight: bold;">from</span> sklearn <span style="color: #4f97d7; font-weight: bold;">import</span> linear_model
+<span style="color: #7590db;">testsize</span> = 5
+
+<span style="color: #7590db;">x</span> = np.array([a <span style="color: #4f97d7; font-weight: bold;">for</span> a <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(100)])
+<span style="color: #7590db;">onesx</span> = np.ones(x.shape)
+<span style="color: #7590db;">X</span> = np.c_[x, 2*x, onesx]
+<span style="color: #7590db;">y</span> = np.array([a*5 + 20 + random.randint(0,3) <span style="color: #4f97d7; font-weight: bold;">for</span> a <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(100)])
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"the X shape is {}, and y shape is {}"</span>.<span style="color: #4f97d7;">format</span>(X.shape, y.shape))
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Sklearn API</span>
+<span style="color: #7590db;">reg</span> = linear_model.LinearRegression()
+<span style="color: #7590db;">model</span> = reg.fit(X,y)
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"Sklearn: the weith is {}, and the intercept is {}"</span>.<span style="color: #4f97d7;">format</span>(model.coef_[:-1] ,model.intercept_))
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"the predect of 3 ele is {}"</span>.<span style="color: #4f97d7;">format</span>(model.predict(np.c_[np.arange(testsize), np.arange(testsize),np.ones(testsize)])))
+
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">manual</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">featureNormalize</span>(X):
+<span style="background-color: #292e34;"> </span>   (<span style="color: #7590db;">m</span>,<span style="color: #7590db;">n</span>) = X.shape
+<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">X_norm</span> = X
+<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">mu</span> = np.zeros(n);
+<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">sigma</span> = np.zeros(n);
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> i <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(n):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">mu</span>[i] = np.mean(X[:,i])
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">sigma</span>[i] = np.std(X[:,i])
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">X_norm</span>[:,i] = (X_norm[:,i]-mu[i])/sigma[i]
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> X_norm
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">computeCost</span>(X, y, theta):
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> np.<span style="color: #4f97d7;">sum</span>((np.dot(X,theta) -y)**2)/(2*<span style="color: #4f97d7;">len</span>(y));
+
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">gradientDescent</span>(X, y, theta, alpha, num_iters):
+<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">m</span> = <span style="color: #4f97d7;">len</span>(y)
+<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">J_history</span> = np.zeros(num_iters);
+<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">theta_len</span> = <span style="color: #4f97d7;">len</span>(theta);
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> num_iter <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(num_iters):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">theta</span> = theta - (alpha/m)*np.dot(X.T,(np.dot(X,theta).reshape(-1)-y))
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">J_history</span>[num_iter] = computeCost(X, y, theta)
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> theta, J_history
+
+<span style="color: #7590db;">alpha</span> = 0.0001
+<span style="color: #7590db;">num_iters</span> = 400000
+<span style="color: #7590db;">theta</span> = np.zeros(2+1)
+<span style="color: #7590db;">theta</span>, <span style="color: #7590db;">J_history</span> = gradientDescent(X, y, theta, alpha, num_iters)
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"Greadient decent: the weight is {}, and the intercept is {}"</span>.<span style="color: #4f97d7;">format</span>(theta[:-1],theta[-1]))
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"the predect of 3 ele is {}"</span>.<span style="color: #4f97d7;">format</span>(np.dot(np.c_[np.arange(testsize), np.arange(testsize),np.ones(testsize)], theta)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org9a90b38" class="outline-2">
+<h2 id="org9a90b38"><span class="section-number-2">6.</span> Ordinary Least Squares(OLS)</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org3a3602b" class="outline-3">
+<h3 id="org3a3602b"><span class="section-number-3">6.1.</span> 正规化方程</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+正则化方程的推导，用高斯分布的多变量分布的Maxisum likelihood,能一起求得对weight和bias值 :
+</p>
+
+<p>
+但是要添加一列1到 train 和 test，至于在前面还是后面有点怪异。
+</p>
+
+<p>
+目前认为，在后面的话，多变量和参数可以按需求访问
+</p>
+
+<p>
+Loss function:
+\[ J = \frac{1}{2m}\sum(h_{\theta}(x_{i})-y_{i})^{2}\]
+\[ \sigma = \frac{1}{2m}(X \theta -y)^{T} (X \theta -y)\]
+对\(\theta\) 求导，并令其为0，
+\[\theta = (X^{T}X)^{-1}X^{T}y \]
+但是要求\(X^{T}X\) 必须可逆。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgea394a9" class="outline-3">
+<h3 id="orgea394a9"><span class="section-number-3">6.2.</span> 正则化正规化方程</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+\[w = (\Phi^{T}\Phi + \lambda I)^{-1} \Phi^{T}y \]
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
+<span style="color: #4f97d7; font-weight: bold;">import</span> random
+<span style="color: #4f97d7; font-weight: bold;">from</span> sklearn <span style="color: #4f97d7; font-weight: bold;">import</span> linear_model
+<span style="color: #7590db;">testsize</span> = 5
+
+<span style="color: #7590db;">x</span> = np.array([a <span style="color: #4f97d7; font-weight: bold;">for</span> a <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(100)])
+<span style="color: #7590db;">onesx</span> = np.ones(x.shape)
+<span style="color: #7590db;">X</span> = np.c_[x,onesx]
+<span style="color: #7590db;">y</span> = np.array([a*5 + 20 + random.randint(0,3) <span style="color: #4f97d7; font-weight: bold;">for</span> a <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(100)])
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"the X shape is {}, and y shape is {}"</span>.<span style="color: #4f97d7;">format</span>(X.shape, y.shape))
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">weight = np.dot(np.dot(np.linalg.pinv(np.dot(X.T, X)), X.T), y)</span>
+<span style="color: #7590db;">weight</span> = np.linalg.inv(X.T.dot(X)).dot(X.T).dot(y)
+
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"OLS : the weight is{}, and the bais is {} "</span>.<span style="color: #4f97d7;">format</span>(weight[:-1], weight[-1]))
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"the predect of 5 ele is {}"</span>.<span style="color: #4f97d7;">format</span>(np.dot(np.c_[np.arange(testsize),np.ones(testsize)], weight)))
+
+
+</pre>
+</div>
+
+<pre class="example">
+也可以是对变量 with multi variables
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
+<span style="color: #4f97d7; font-weight: bold;">import</span> random
+<span style="color: #4f97d7; font-weight: bold;">from</span> sklearn <span style="color: #4f97d7; font-weight: bold;">import</span> linear_model
+<span style="color: #7590db;">testsize</span> = 5
+
+<span style="color: #7590db;">x</span> = np.array([a <span style="color: #4f97d7; font-weight: bold;">for</span> a <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(100)])
+<span style="color: #7590db;">onesx</span> = np.ones(x.shape)
+<span style="color: #7590db;">X</span> = np.c_[onesx, x, 2*x]
+<span style="color: #7590db;">y</span> = np.array([a*5 + 20 + random.randint(0,3) <span style="color: #4f97d7; font-weight: bold;">for</span> a <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(100)])
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"the X shape is {}, and y shape is {}"</span>.<span style="color: #4f97d7;">format</span>(X.shape, y.shape))
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">ordinary  least squares (&#27491;&#35268;&#21270;&#26041;&#27861;&#65289;</span>
+<span style="color: #7590db;">weight</span> = np.dot(np.dot(np.linalg.pinv(np.dot(X.T, X)), X.T), y)
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"OLS : the weight is{}, and the bais is {} "</span>.<span style="color: #4f97d7;">format</span>(weight[:-1], weight[-1]))
+<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"the predect of 5 ele is {}"</span>.<span style="color: #4f97d7;">format</span>(np.dot(np.c_[np.arange(testsize), np.arange(testsize),np.ones(testsize)], weight)))
+
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga360c27" class="outline-2">
+<h2 id="orga360c27"><span class="section-number-2">7.</span> Lasso regression</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+we reform the Loss function from OLS
+\[ L = \frac{1}{2m}\sum(h_{\theta}(x_{i})-y_{i})^{2}\]
+as
+\[ \frac{1}{2N}\sum_{i=1}^{N}(H_{\theta}(x^{i}) -y^{i})^{2}\]
+and add the regularity term (Manhattan norm) of Lasso regression
+\[L_{1} = \frac{\lambda}{2}|\theta|\]
+put all together, for Lasso regession:
+\[ L = \frac{1}{2m}\sum(h_{\theta}(x_{i})-y_{i})^{2} + \frac{\lambda}{2}|\theta|\]
+</p>
+
+<p>
+the minimun of \(L\) should be a the interaction
+of the first term, which is the solution of OLS
+and the second term, which is the Lasso regularity
+term.
+</p>
+
+<p>
+This reduce many feather coefficient to be 0,
+</p>
+</div>
+</div>
+
+<div id="outline-container-org87a94d6" class="outline-2">
+<h2 id="org87a94d6"><span class="section-number-2">8.</span> Ridge regression</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+we reform the Loss function from OLS
+\[ L = \frac{1}{2m}\sum(h_{\theta}(x_{i})-y_{i})^{2}\]
+as
+\[ \frac{1}{2N}\sum_{i=1}^{N}(H_{\theta}(x^{i}) -y^{i})^{2}\]
+and add the regularity term of (Euclidean norm) Lasso regression
+\[L_{1} = \frac{\lambda}{2}||\theta||^{2}\]
+put all together, for Lasso regession:
+\[ L = \frac{1}{2m}\sum(h_{\theta}(x_{i})-y_{i})^{2} + \frac{\lambda}{2}||\theta||^{2}\]
+</p>
+
+
+<p>
+the minimun of \(L\) should be a the interaction
+of the first term, which is the solution of OLS
+and the second term, which is the Ridge regularity
+term.
+</p>
+
+<p>
+This reduce many feather coefficient to be as small as possible
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge32d8b8" class="outline-2">
+<h2 id="orge32d8b8"><span class="section-number-2">9.</span> Elastic Net regression</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+combinate Lasso regession and Ridge regression
+</p>
+
+<p>
+\[ L = \frac{1}{2m}\sum(h_{\theta}(x_{i})-y_{i})^{2} + p\cdot \frac{\lambda}{2}|\theta| + \frac{1-p}{2} \cdot \frac{\lambda}{2}||\theta||^{2}\]
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdc111ef" class="outline-2">
+<h2 id="orgdc111ef"><span class="section-number-2">10.</span> Decision List</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+(f1,v1),(f2,v2)&#x2026;.(fr,vr)
+fi is a term in CNF, vi belongs {0,1}, and the last term fr is always
+true. and each term can be viewed as if else extended. if fi is
+matched, so vi is its value.
+</p>
+
+<pre class="example">
+for 0&lt;k&lt;n, k-CNF and k-DNF are proper
+
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgaa62d6b" class="outline-2">
+<h2 id="orgaa62d6b"><span class="section-number-2">11.</span> linear regression</h2>
+</div>
+<div id="outline-container-orgb0df331" class="outline-2">
+<h2 id="orgb0df331"><span class="section-number-2">12.</span> linear Discriminate Analysis</h2>
+<div class="outline-text-2" id="text-12">
+</div>
+<div id="outline-container-org9c2cab7" class="outline-3">
+<h3 id="org9c2cab7"><span class="section-number-3">12.1.</span> Fisher's linear discriminant</h3>
+<div class="outline-text-3" id="text-12-1">
+<p>
+输入为j=0，1类样本，每类分别 \(N_{j}\) 个样本
+\(\mu_j = \frac{1}{N_{j}} \sum x\) \(x \in N_{j}\)
+\(\Sigma_{j} = \sum(x-\mu_{j})(x-\mu_{j})^{T}\), \(x \in N_{j}\)
+</p>
+
+<p>
+\(argmax(J) = \frac{\omega^{T} (\mu_0-\mu_1)(\mu_0-\mu_1)^T
+\omega}{\omega^T(\Sigma_0+\Sigma_1)\omega } =  \frac{\omega^{T} S_{b}
+\omega}{\omega^T S_{w} \omega }\)
+</p>
+</div>
+</div>
+<div id="outline-container-org9cbcaed" class="outline-3">
+<h3 id="org9cbcaed"><span class="section-number-3">12.2.</span> Fisher's linear discriminant with Kernel method</h3>
+<div class="outline-text-3" id="text-12-2">
+<p>
+\[ J(w) = \frac{(m_{2}-m_{1})^{2}}{s_{1}^{2} + s_{2}^{2}} =
+  \frac{w^{T}(m_{2}-m_{1})^{T}(m_{2}-m_{1}) w}{ w^{T}(s_{1}^{2} +
+  s_{2}^{2})w}\]
+</p>
+
+<p>
+\[ w = \sum^{L}_{k=1} \alpha_{k} \phi(x_{k}) \]
+</p>
+
+<p>
+\[ m = \frac{1}{L_{i}} \sum^{Li}_{n=1}\phi(x_{n}^{i})\]
+</p>
+
+<p>
+\[ w^{T} m_{i} = \alpha^{T}M_{i}\]
+</p>
+
+<p>
+\[ M_{i} = \frac{1}{L_{i}}\sum^{L}_{k=1}\sum^{L_{i}}_{n=1}
+k(x_{k},x_{n}^{i})\]
+</p>
+
+<p>
+Numerator:\[w^{t}S_{B}w = \alpha^{T}M\alpha\]
+Denominator:
+\[ w^{T}S_{w}w = \alpha^{T} N \alpha\]
+\[ N = \sum_{i=1,2}K_{i}(I-1/L)K_{i}^{T} \]
+\[ (K_{i})_{n,m} = k(x_{n}, x_{m}^{i})\]
+</p>
+</div>
+</div>
+
+<div id="outline-container-org293d201" class="outline-3">
+<h3 id="org293d201"><span class="section-number-3">12.3.</span> Probabilistic Generative Model</h3>
+<div class="outline-text-3" id="text-12-3">
+<p>
+用贝叶斯定理求出每个可能的概率，再取最大的值
+</p>
+<pre class="example">
+one two class case
+</pre>
+<p>
+\[ P(C_{1}|x) = \frac{P(C_{1}|x)P(C_{1})}{P(C_{1}|x)P(C_{1}) +
+P(C_{2}|x)P(C_{2})} = \frac{1}{1+exp(log
+\frac{P(C_{1}|x)P(C_{1})}{P(C_{2}|x)P(C_{2})} )}\]
+即可以 Logistic sigmoid 函数求解
+</p>
+
+<pre class="example">
+multi class case
+</pre>
+
+<p>
+\[P(C_{k}|x) = \frac{P(x|C_{k})P(C_{k})}{\sum_{j} P(x|C_{j})P(C_{j})}\]
+</p>
+
+<p>
+即可以用 Softmax funtion 来求解
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcd1eab1" class="outline-3">
+<h3 id="orgcd1eab1"><span class="section-number-3">12.4.</span> Probabilistic Discriminant Model</h3>
+<div class="outline-text-3" id="text-12-4">
+<p>
+Better predictive performance if assumptions about class-conditional
+distributions not correct.
+</p>
+
+<p>
+和 generative model 一样求解，同样也有二分和多分类，但是该类问题设为
+logical regression, See logical regression
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org91796f2" class="outline-2">
+<h2 id="org91796f2"><span class="section-number-2">13.</span> Principe Component Analysis</h2>
+<div class="outline-text-2" id="text-13">
+</div>
+<div id="outline-container-org8824246" class="outline-3">
+<h3 id="org8824246"><span class="section-number-3">13.1.</span> PCA Algorithms</h3>
+<div class="outline-text-3" id="text-13-1">
+<p>
+将原来的数据坐标进行线性组合，组成新的坐标基底，让数据在新基底
+上投影最小化，以去除，压缩该些维度
+</p>
+<ol class="org-ol">
+<li>将数据中心化</li>
+<li>求出数据在所有特性的协方差矩阵</li>
+<li>如果矩阵是方阵，则可以直接特征值分解</li>
+<li>如果矩阵不是方阵，则先乘以转置，再特征值分解，注意此时求得特征值要开方</li>
+<li>如果不是方阵，也可以直接奇异值分解</li>
+<li>取出前面的需要的维度，多余的被压缩了</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org3deb736" class="outline-3">
+<h3 id="org3deb736"><span class="section-number-3">13.2.</span> Probabilistic generative model for PCA</h3>
+<div class="outline-text-3" id="text-13-2">
+<p>
+State the probabilistic generative model underlying Probabilistic PCA
+with a K-dimensional latent space and observations \(x\in R^{D}\) . Define
+all three random variables and their distribution.
+</p>
+
+<p>
+Hidden Variable z in K-dimension from probabilistic generative PCA:
+we can transfer z into standard gaussian distribution,
+\[p(\vec{z}) = N(0, I), \vec{z} \in R^{K}, \vec{z} \sim N(0, I)\]
+</p>
+
+<p>
+observation variable x in D-dimension giving z:
+\[p(\vec{x}|\vec{z}) = N(\vec{W}\vec{z} + u, \sigma^{2}I), \vec{x} \in
+R^{D}\]
+\[\vec{x} = Wz + u + \epsilon, \epsilon \sim N(0, \sigma^{2}I)\]
+</p>
+
+<p>
+So, \(p(x) = \int p(x|z)p(z)dz\)
+\[E(x) = E(Z + u + \epsilon) = u\]
+\[Cove[x] = E[(Wz + u + \epsilon)(Wz + u + \epsilon)^{T}]
+= E(W^{T}W) + E(\epsilon \epsilon^{T}) = WW^{T} + \sigma^{2}I\]
+</p>
+
+<p>
+\[ x \sim N(u, Cov[x])\]
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org25bbd18" class="outline-2">
+<h2 id="org25bbd18"><span class="section-number-2">14.</span> K-Nearest Neighbor&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></h2>
+<div class="outline-text-2" id="text-14">
+<p>
+This is based on the idea that instances of the same class are close to each othera
+</p>
+</div>
+<div id="outline-container-orgeca9d23" class="outline-3">
+<h3 id="orgeca9d23"><span class="section-number-3">14.1.</span> Algorithms</h3>
+<div class="outline-text-3" id="text-14-1">
+<p>
+selecting the k nearest neighbor from the new instance, and leabel it as the
+majority target from k nearest neighbor instance
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8a32907" class="outline-2">
+<h2 id="org8a32907"><span class="section-number-2">15.</span> Decision tree&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></h2>
+<div class="outline-text-2" id="text-15">
+<p>
+to find the "most informative feature"
+</p>
+</div>
+<div id="outline-container-org98811fe" class="outline-3">
+<h3 id="org98811fe"><span class="section-number-3">15.1.</span> Algorithms</h3>
+<div class="outline-text-3" id="text-15-1">
+<p>
+在训练集内以最大信息增益来确定划分属性，在各个子区内再重复剩下的属性
+信息熵增益 = Entropy - conditional Entropy
+\[ Gain(D,a) = H(D)-\sum^{V}_{v=1}\frac{|D^{v}|}{|D|}H(D^{v}) \]
+</p>
+
+<p>
+\[Gain(D,a) = H(D) - H(D|a)\]
+</p>
+
+<p>
+For all remained feathers, get the biggest Gain(D, a) for one feather,
+and using this feather as Criteria for the classification.
+over this again and again
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7aaddcd" class="outline-2">
+<h2 id="org7aaddcd"><span class="section-number-2">16.</span> Random Forest&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></h2>
+<div class="outline-text-2" id="text-16">
+<p>
+combining multiple decision trees into a single classifier.
+Random Forest = Decision Tree + Bagging + random Eigenschaften
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">More deeper</td>
+<td class="org-left">Bias reduce</td>
+</tr>
+
+<tr>
+<td class="org-left">More Eigenschaft</td>
+<td class="org-left">Bias reduce</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-org84ce22e" class="outline-3">
+<h3 id="org84ce22e"><span class="section-number-3">16.1.</span> algorithms on decision tree</h3>
+<div class="outline-text-3" id="text-16-1">
+<p>
+1, examples randomization for training
+2, features randomization for training
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1abe1f4" class="outline-2">
+<h2 id="org1abe1f4"><span class="section-number-2">17.</span> Naivi Bayes's&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></h2>
+<div class="outline-text-2" id="text-17">
+<p>
+\[P(y|x_{1},x_{2},,x_{i}) = \frac{P(x_{1},x_{2},,x_{i}|y) P(y)}{P(x_{1},x_{2},,x_{i})}\]
+</p>
+
+<p>
+\[P(y|x_{1},x_{2},,x_{i}) \varpropto P(x_{1},x_{2},,x_{i}|y) P(y) = \prod^{i}_{k=1}P(x_{k}|y)P(y)\]
+</p>
+
+<p>
+\[P(\bar{y}|x_{1},x_{2},,x_{i}) \varpropto P(x_{1},x_{2},,x_{i}|\bar{y}) P(\bar{y}) = \prod^{i}_{k=1}P(x_{k}|\bar{y})P(\bar{y})\]
+</p>
+
+<p>
+For \(\prod^{i}_{k=i}P(x_{k}|y)\) can be calcaleted with Multinomial Navie Bayes
+and Graussian Navie Bayes, later one is better for continuons examples
+</p>
+
+<pre class="example">
+假设各个属性完全独立的条件下
+
+要计算在某些条件下某个事件出现的概率（分数）等于
+在每个条件下该事件发生的条件概率的连乘再乘以该事件发生的总概率
+再计算在同样的条件下该事件不出现的概率，再归一化
+
+最后谁大选谁（注意样本不足引起的某属性的条件为零）
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org188b66f" class="outline-2">
+<h2 id="org188b66f"><span class="section-number-2">18.</span> logistic regression&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></h2>
+<div class="outline-text-2" id="text-18">
+</div>
+<div id="outline-container-org8965e36" class="outline-3">
+<h3 id="org8965e36"><span class="section-number-3">18.1.</span> Odd</h3>
+<div class="outline-text-3" id="text-18-1">
+<p>
+\[Odd(x) = \frac{p_{x}}{1-p_{x}}\], which is the probability of x happen to it not happen
+</p>
+
+<p>
+fit logit with linear regression: \(logit(P)=W^{T}X\)
+</p>
+
+<p>
+\[Odd(x)= \frac{P(X=x)}{1-P(X=x)} = e^{W^{T}x}\]
+</p>
+</div>
+</div>
+
+<div id="outline-container-org89752e3" class="outline-3">
+<h3 id="org89752e3"><span class="section-number-3">18.2.</span> Odd ratio</h3>
+<div class="outline-text-3" id="text-18-2">
+<p>
+Odd ratio of \(X_{i}\):
+\[Odd Ratio(X_{i}) = e^{W_{i}}\]
+</p>
+
+<p>
+if Odd ratio eqaul 2, means when feather x increase by one,
+Odd will increase 2.
+</p>
+
+<p>
+if Odd ratio bigger than one, Odd increase if x increase
+if Odd ratio smaller than one, Odd decrease if x increase
+</p>
+</div>
+</div>
+
+<div id="outline-container-org17c5468" class="outline-3">
+<h3 id="org17c5468"><span class="section-number-3">18.3.</span> algorithms</h3>
+<div class="outline-text-3" id="text-18-3">
+<pre class="example">
+Logistic regression tries to estimate the logarithm of odds that an instance belongs to a class
+i.e., that is nothing else but the logarithm of the odds that the instance is of that class.
+</pre>
+<p>
+\[Logit(P(X=x)) = \ln (\frac{P(X=x)}{P(X!=x)}) = \ln (\frac{P(X=x)}{1-P(X=x)})\]
+</p>
+
+
+<p>
+\[P(X=x) = \frac{1}{1+e^{-W^{T}X}}\]
+This is also the same form of sigmoid function
+用 logical sigmoid function 来作二分类判断，检验概率是否过半
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgeea398b" class="outline-2">
+<h2 id="orgeea398b"><span class="section-number-2">19.</span> Support Vector Machine&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></h2>
+<div class="outline-text-2" id="text-19">
+</div>
+<div id="outline-container-org535f2a4" class="outline-3">
+<h3 id="org535f2a4"><span class="section-number-3">19.1.</span> without soft margin</h3>
+<div class="outline-text-3" id="text-19-1">
+<p>
+对于点的划分，由decision theory:
+\[\vec{w}\vec{u} +c \ge 0\]
+距此线一个单位对点标注
+\[\vec{w}{x_{+}}+b \ge 1\]
+then y =
+\[\vec{w}{x_{-}}+b \le 1\]
+then y = -1
+So,
+\[y(\vec{w}x+b) -1 \ge 0\]
+最大化标+点和标-点的距离：
+\[D_{max} = (x_{+}-x_{1})\frac{\vec{w}}{||w||} = \frac{2}{||w||}\]
+等价于最小化\(\frac{1}{2}||w||^{2}\), 再加上约束条件
+\[L= \frac{1}{2}||w||^{2} -\sum
+\alpha_{i}[y_{i}(\vec{w}\vec{x}+b)-1]\]
+设L对w和b的偏导为0，\(\vec{w} = \sum \alpha_{i}x_{i}y_{i}\),\(\sum
+\alpha_{i}y_{i}=0\).
+再代回L，\[L=\sum \alpha_{i} - \frac{1}{2} \sum \sum \alpha_{i}
+\alpha_{j} y_{i} y_{j}(x_{i}x_{j})\]
+</p>
+</div>
+</div>
+
+<div id="outline-container-org37b483e" class="outline-3">
+<h3 id="org37b483e"><span class="section-number-3">19.2.</span> with soft margin</h3>
+<div class="outline-text-3" id="text-19-2">
+<p>
+对于不能绝对线性分割的，可以允许某些点进入空白分割区域（从-1到1的区域）
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">slack variable</td>
+<td class="org-left">\(\epsilon\)</td>
+<td class="org-left">\(t_n y(x_n) \ge 1-\epsilon_n\)</td>
+<td class="org-left">\(\epsilon > 0\)</td>
+</tr>
+
+<tr>
+<td class="org-left">Controls trade-off between slack and margin</td>
+<td class="org-left">C</td>
+<td class="org-left">\(C= \infty\), if misclassified</td>
+<td class="org-left">\(C \sum \epsilon_n\)</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+this L satisfied the KKT condition, and can be solved.
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">good classified</td>
+<td class="org-left">a = 0</td>
+<td class="org-left">&epsilon; = 0</td>
+<td class="org-left">C = 0</td>
+</tr>
+
+<tr>
+<td class="org-left">on the margin</td>
+<td class="org-left">a &lt; C</td>
+<td class="org-left">&epsilon; = 0</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">violate the margin</td>
+<td class="org-left">a = C</td>
+<td class="org-left">&epsilon; &gt; 0</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">misclassified</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&epsilon; &gt; 1</td>
+<td class="org-left">\(C = \infty\)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orge6cf6e1" class="outline-3">
+<h3 id="orge6cf6e1"><span class="section-number-3">19.3.</span> kernel function</h3>
+<div class="outline-text-3" id="text-19-3">
+<p>
+high dimension separable
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org39c913a" class="outline-2">
+<h2 id="org39c913a"><span class="section-number-2">20.</span> Neural network&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></h2>
+<div class="outline-text-2" id="text-20">
+</div>
+<div id="outline-container-orgefa7dc4" class="outline-3">
+<h3 id="orgefa7dc4"><span class="section-number-3">20.1.</span> Backpropagation</h3>
+<div class="outline-text-3" id="text-20-1">
+</div>
+<div id="outline-container-orgbe8e554" class="outline-4">
+<h4 id="orgbe8e554"><span class="section-number-4">20.1.1.</span> 感知机</h4>
+<div class="outline-text-4" id="text-20-1-1">
+<p>
+对x的向后更正，\(x^{'}= x - \eta \cdot \frac{dy}{dx}\).
+对于感知机的传递功能，\(y = w^{T}x + b\).
+由于感知机没有激活函数，所以直接对\[\mathcal{L} = \frac{1}{n}
+\sum^{n}_{i=1}(w\cdot x^{i} +b -y^{i})^{2}\].
+\[ \frac{\partial \mathcal{L}}{\partial w} = \frac{2}{n}
+\sum^{n}_{i=1}(wx^{i}+b-y^{i})x^{i}\]
+\[ \frac{\partial \mathcal{L}}{\partial b}= \frac{2}{n}\sum^{n}_{i=1}(wx^{i}+b -y^{i})\]
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2e643a6" class="outline-4">
+<h4 id="org2e643a6"><span class="section-number-4">20.1.2.</span> 多层神经网络</h4>
+<div class="outline-text-4" id="text-20-1-2">
+<p>
+而对于多层神经网络，\(z = w^{T}x + b\), \(\frac{\partial z}{\partial w} =x\),  \(\frac{\partial z}{\partial b} = 1\).
+每层之间具有激活函数, \(\sigma(z) = \frac{1}{1 + e^{-z}}\),  \(\frac{\partial \sigma}{\partial z} = z (1-z)\).
+损失函数, \(\mathcal{L} = \frac{1}{2}(\sigma - y^{i})^{2}\), \[\frac{\partial \mathcal{L}}{\partial \sigma} = (\sigma -y^{i})\]
+</p>
+
+
+<p>
+\[\frac{\partial \mathcal{L}}{\partial w} = \frac{\partial
+\mathcal{L}}{\partial \sigma} \cdot \frac{\partial \sigma }{\partial z} \cdot
+\frac{\partial z}{\partial w} = (\sigma -y)z(1-z) \cdot x\]
+</p>
+
+
+
+<p>
+\[\frac{\partial \mathcal{L}}{\partial b} = \frac{\partial
+\mathcal{L}}{\partial \sigma} \cdot \frac{\partial \sigma }{\partial z} \cdot
+\frac{\partial z}{\partial b} = (\sigma -y)z(1-z)\]
+</p>
+
+
+<p>
+如果对于多层神经网络，则需要逐层计算，其中\(\frac{\partial
+\mathcal{L}}{\partial w}\) 中的w就是相应层的权重，由最后的
+L逐步回推到w。
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2a6fffd" class="outline-2">
+<h2 id="org2a6fffd"><span class="section-number-2">21.</span> K-Means&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></h2>
+<div class="outline-text-2" id="text-21">
+<p>
+K-means is an example for centroid-based clustering.
+We can determine the cluster of any instance \(x \in F\) as \(c(x) = argmin_{i=1,..k}d(x,C_{i})\).
+</p>
+</div>
+<div id="outline-container-orgf5828b1" class="outline-3">
+<h3 id="orgf5828b1"><span class="section-number-3">21.1.</span> algothism</h3>
+<div class="outline-text-3" id="text-21-1">
+<pre class="example">
+输入样本集 D: $x_{1}, x_{1}, x_{2},,,x_{m}$
+聚类数 k,
+最大迭代数 N,
+期望输出: $C_{1}, C_{2},,,C_{k}$
+
+随机初始化k个聚类中心，并作不同类别的标记
+for i= 1,2,..N:
+    随机初始化所有C个中心
+    计算每个点到每个中心的距离（arithmetic mean），并被最小距离的聚类中心标记，以此划分所有X
+    对于所有相同标记的聚类X更新中心，再重复上一步骤，直到没有变化为止,或者达到迭代次数限制
+
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> random
+<span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
+<span style="color: #4f97d7; font-weight: bold;">import</span> matplotlib.pyplot <span style="color: #4f97d7; font-weight: bold;">as</span> plt
+
+<span style="color: #7590db;">b</span> = []
+<span style="color: #4f97d7; font-weight: bold;">for</span> i <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(100):
+<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">a</span> = np.array(<span style="color: #4f97d7;">list</span>([(20,50),(30,10),(60,30)]))
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> j <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(a.shape[0]):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> k <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(a.shape[1]):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   a[j][k] += random.randint(0,30)
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   b.append(a[j])
+
+<span style="color: #7590db;">b</span> = np.array(b)
+plt.plot(b[:,0], b[:,1], <span style="color: #2d9574;">'ro'</span>)
+plt.title(<span style="color: #2d9574;">"toy data"</span>)
+plt.show()
+
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">sklearn API</span>
+<span style="color: #4f97d7; font-weight: bold;">from</span> sklearn.cluster <span style="color: #4f97d7; font-weight: bold;">import</span> KMeans
+<span style="color: #7590db;">y_pred</span> = KMeans(n_clusters=3, random_state=9).fit_predict(b)
+plt.scatter(b[:, 0], b[:, 1], c=y_pred)
+plt.title(<span style="color: #2d9574;">"toy data with sklearn API"</span>)
+plt.show()
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">manual</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">findClosestCentroids</span>(X, centroids):
+<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">distance</span> = np.zeros((<span style="color: #4f97d7;">len</span>(X),<span style="color: #4f97d7;">len</span>(centroids)))
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> i <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(<span style="color: #4f97d7;">len</span>(X)):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> j <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(<span style="color: #4f97d7;">len</span>(centroids)):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">distance</span>[<span style="color: #7590db;">i</span>,<span style="color: #7590db;">j</span>] = np.linalg.norm(X[i,:]-centroids[j,:])
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> np.argmin(distance,axis=1)
+
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">computeCentroids</span>(X, idx, K):
+<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">centroids</span> = np.zeros((K,X.shape[1]))
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> i <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(K):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">centroids</span>[i,:] = np.mean(X[idx == i],axis = 0)
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> centroids
+
+
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">runkMeans</span>(X,K,max_iters):
+<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">indexs</span> = np.random.choice(np.array(<span style="color: #4f97d7;">range</span>(<span style="color: #4f97d7;">len</span>(X))), K,replace=<span style="color: #a45bad;">False</span>)
+<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">centroids</span> = X[indexs]
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> max_iter <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(max_iters):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">idx</span> = findClosestCentroids(X, centroids)
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">centroids</span> = computeCentroids(X, idx, K)
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">colors</span> = [<span style="color: #2d9574;">''</span>,<span style="color: #2d9574;">''</span>,<span style="color: #2d9574;">''</span>]
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> i <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(K):
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   plt.scatter(X[idx==i, 0], X[idx==i, 1])
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   plt.scatter(centroids[:, 0], centroids[:, 1], c=<span style="color: #2d9574;">'r'</span>)
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   plt.title(<span style="color: #2d9574;">"toy data with manual {} time"</span>.<span style="color: #4f97d7;">format</span>(max_iter))
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   plt.show()
+<span style="color: #7590db;">K</span> = 3
+<span style="color: #7590db;">max_iters</span> = 3
+runkMeans(b,K,max_iters)
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org798b48c" class="outline-3">
+<h3 id="org798b48c"><span class="section-number-3">21.2.</span> select the best k</h3>
+<div class="outline-text-3" id="text-21-2">
+</div>
+<div id="outline-container-org3d734ac" class="outline-4">
+<h4 id="org3d734ac"><span class="section-number-4">21.2.1.</span> based on domain knowlegde:</h4>
+<div class="outline-text-4" id="text-21-2-1">
+<p>
+cluster are not internally similar, increase k
+similar objects are in different clusters, decrease k
+</p>
+</div>
+</div>
+<div id="outline-container-org0510324" class="outline-4">
+<h4 id="org0510324"><span class="section-number-4">21.2.2.</span> Visualizations</h4>
+<div class="outline-text-4" id="text-21-2-2">
+<p>
+this give us a intuitive aspects
+</p>
+</div>
+</div>
+<div id="outline-container-org38552ee" class="outline-4">
+<h4 id="org38552ee"><span class="section-number-4">21.2.3.</span> Within-Sum-of-Squares</h4>
+<div class="outline-text-4" id="text-21-2-3">
+<p>
+minimizing the intra-cluster variance
+\[WSS = \sum^{k}_{i=1}\sum^{}_{x \in X_{i}}d(x, C_{i})^{2}\]
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcfb764c" class="outline-3">
+<h3 id="orgcfb764c"><span class="section-number-3">21.3.</span> Problems</h3>
+<div class="outline-text-3" id="text-21-3">
+<p>
+1, k -Means is sensitive to the initial clusters.
+</p>
+
+<p>
+2, An unsuitable value of k  may lead to bad results.
+</p>
+
+<p>
+3, All features must have a similar range of values,
+</p>
+
+<p>
+4, Because the cluster assignment is based on the distance, clusters tend to be round.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0b79f5d" class="outline-2">
+<h2 id="org0b79f5d"><span class="section-number-2">22.</span> EM algorithms for Gaussian Mixture model&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></h2>
+<div class="outline-text-2" id="text-22">
+<p>
+This concept is called distribution-based clustering.
+Each instance is assigned to the most likely cluster with \(c(x) = max_{i=1,2...k}P(C_{i}=x)\)
+and the initialization means random mean values and random covariance matrices at first.
+</p>
+</div>
+<div id="outline-container-org56de894" class="outline-3">
+<h3 id="org56de894"><span class="section-number-3">22.1.</span> k selecting</h3>
+<div class="outline-text-3" id="text-22-1">
+<p>
+Bayesian Information Criterion for clusters K
+\[BIC = \log(|X|)\cdot k^{'} -2\cdot \log( \hat{L} (C_{1},,,C_{k};X))\]
+for \(k^{'} =k \cdot (d + \frac{d(d+1)}{2})\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga350ebd" class="outline-3">
+<h3 id="orga350ebd"><span class="section-number-3">22.2.</span> Algorithm</h3>
+<div class="outline-text-3" id="text-22-2">
+<p>
+\(x_{1}\), \(x_{2}\)&#x2026;.\(x_{n}\) \(\in N_{1...k}\) for \(N_{i}(\mu_{i}, \sigma^{2}_{i})\)
+</p>
+
+<p>
+E step: compute responsibilites \(\gamma_{nk}\) given current \(\pi_{k},
+\mu_{k}, \Sigma_{k}\)
+\[ \gamma_{nk} = \frac{\pi_{k} N(x_{n}|\mu_{k}, \Sigma_{k})}{
+\sum_{k=1}^{K}\pi_{k}N(x_{n}|\mu_{k},\Sigma_{k})}\]
+</p>
+
+<p>
+\(\gamma_{n k}\) descripte the probabilistic of example n belongs to k distribution.
+</p>
+
+
+<p>
+M step: update  \(\pi_{k},\mu_{k}, \Sigma_{k}\) given \(\gamma_{nk}\).
+according to the derivative of
+$log p(x|&pi;, &mu;, &Sigma;) =
+&sum;<sup>N</sup><sub>n=1</sub>log &sum;<sup>K</sup><sub>k=1</sub> &pi; N(x<sub>k</sub>|&mu;<sub>k</sub>, &Sigma;<sub>k</sub>)$with respect to the \(\pi_{k},\mu_{k}, \Sigma_{k}\),
+</p>
+
+<p>
+cluster number: \[N_{k} =  \sum^{N}_{n=1} \gamma_{nk}\]
+</p>
+
+<p>
+cluster means: \[\mu_{k} = \frac{1}{N_{k}} \sum^{N}_{n=1} \gamma_{nk} x_{n}\]
+</p>
+
+<p>
+cluster covariances: \[\Sigma_{k} =
+\frac{1}{N_{k}}\sum^{N}_{n=1}\gamma_{nk}(x_{n}-\mu_{k})(x_{n}-\mu_{k})^{T}\]
+</p>
+
+<p>
+cluster priors:\[\pi_{k} = \frac{N_{k}}{N}\]
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc4d4cc4" class="outline-3">
+<h3 id="orgc4d4cc4"><span class="section-number-3">22.3.</span> problem</h3>
+<div class="outline-text-3" id="text-22-3">
+<p>
+1, This is  also sensitive to the initination.
+</p>
+
+<p>
+2, An unsuitable value of k  may lead to bad results.
+</p>
+
+<p>
+3, clusters tend to be round or ellipse, but still not suit for half mood
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8c5b665" class="outline-2">
+<h2 id="org8c5b665"><span class="section-number-2">23.</span> DBSCAN&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></h2>
+<div class="outline-text-2" id="text-23">
+<p>
+This is density-based clustering
+</p>
+</div>
+<div id="outline-container-org1889a68" class="outline-3">
+<h3 id="org1889a68"><span class="section-number-3">23.1.</span> concepts \(\epsilon\)  minPts</h3>
+<div class="outline-text-3" id="text-23-1">
+<p>
+neighbors(x) = {x' \(\in\) X: d(x, x') &lt;= \(\epsilon\)}
+</p>
+
+<p>
+neighbors(x) is dense if |neighbors(x)| &gt;= minPts
+</p>
+
+<p>
+core(x) = {x \(\in\) X: |neighbors(x)| &gt;= minPts} called core points
+each dense neighbors exist at last on core point
+</p>
+</div>
+</div>
+
+<div id="outline-container-org83428c1" class="outline-3">
+<h3 id="org83428c1"><span class="section-number-3">23.2.</span> Algorithm</h3>
+<div class="outline-text-3" id="text-23-2">
+<p>
+1, randomly select one core point as the first cluster
+2, growing the first cluster with neighbors,
+3, growing again with core points in neighbors again and again
+4, select the other core point as other cluster repeat
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge802f56" class="outline-3">
+<h3 id="orge802f56"><span class="section-number-3">23.3.</span> select \(\epsilon\) and minpts</h3>
+<div class="outline-text-3" id="text-23-3">
+<p>
+with largest curvature ,sharpest change in lines for difference \(\epsilon\) and minPts
+</p>
+</div>
+</div>
+<div id="outline-container-org749893c" class="outline-3">
+<h3 id="org749893c"><span class="section-number-3">23.4.</span> problems</h3>
+<div class="outline-text-3" id="text-23-4">
+<p>
+1, difficult selection of \(\epsilon\) and minPts
+2, different density matters
+3, scale sensitive
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgde9fb44" class="outline-2">
+<h2 id="orgde9fb44"><span class="section-number-2">24.</span> Single Linkage Clustering&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></h2>
+<div class="outline-text-2" id="text-24">
+<p>
+hierarchical clustering
+</p>
+</div>
+<div id="outline-container-orge43557c" class="outline-3">
+<h3 id="orge43557c"><span class="section-number-3">24.1.</span> Algorithm</h3>
+<div class="outline-text-3" id="text-24-1">
+<p>
+1, every instance as a cluster
+2, growing the distance to merge cluster to 1 cluster
+</p>
+</div>
+</div>
+
+<div id="outline-container-org39a1ad1" class="outline-3">
+<h3 id="org39a1ad1"><span class="section-number-3">24.2.</span> problems</h3>
+<div class="outline-text-3" id="text-24-2">
+<p>
+large storage of scalability
+no noise leads to small cluster
+scale sensitive
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: si</p>
+<p class="date">Created: 2025-01-24 Fr 19:30</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

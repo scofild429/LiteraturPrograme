@@ -1,0 +1,755 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-01-24 Fr 19:30 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NLP</title>
+<meta name="author" content="si" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">NLP</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orga2427be">1. Data process</a>
+<ul>
+<li><a href="#orgf619440">1.1. Data load</a></li>
+<li><a href="#orga63f217">1.2. Alpha filter</a></li>
+<li><a href="#org7db2b0a">1.3. Stop words</a></li>
+<li><a href="#org4e55645">1.4. Lemmatization</a></li>
+<li><a href="#orgb86b0e0">1.5. Stemming</a></li>
+<li><a href="#orge41b819">1.6. Part of speech Tagging</a></li>
+<li><a href="#org57fa794">1.7. Named Entity Recognition (NER)</a></li>
+<li><a href="#org99df95c">1.8. Frequency Analysis</a></li>
+<li><a href="#org9937729">1.9. one-hot coding</a></li>
+<li><a href="#org2723d9e">1.10. Tokenizationn</a>
+<ul>
+<li><a href="#org6d6abd6">1.10.1. Tokenize with nltk</a></li>
+</ul>
+</li>
+<li><a href="#orgb116e69">1.11. Word Embedding</a></li>
+<li><a href="#org3450da8">1.12. Words Count</a></li>
+<li><a href="#orgd4b0cec">1.13. TF-IDF for weight title and body</a></li>
+<li><a href="#org2426b62">1.14. Vectorizing tf-idf</a></li>
+</ul>
+</li>
+<li><a href="#org5e391a6">2. language model</a>
+<ul>
+<li><a href="#org8a44269">2.1. skip-gram</a></li>
+<li><a href="#orgdd57d94">2.2. CBOW</a></li>
+</ul>
+</li>
+<li><a href="#org61c7529">3. text generatation</a></li>
+<li><a href="#orgdc147c2">4. seq2seq</a></li>
+<li><a href="#orgc35ffb7">5. Transformer</a>
+<ul>
+<li><a href="#org87e7b40">5.1. simple RNN + attention</a></li>
+<li><a href="#orgad0e969">5.2. simple RNN + self attention</a></li>
+<li><a href="#org99b2d14">5.3. attention layer</a></li>
+<li><a href="#org56b471e">5.4. self attention layer</a></li>
+<li><a href="#org4372f68">5.5. transformer model</a></li>
+</ul>
+</li>
+<li><a href="#org905f838">6. Bert</a></li>
+<li><a href="#org79bbd5f">7. ViT</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga2427be" class="outline-2">
+<h2 id="orga2427be"><span class="section-number-2">1.</span> Data process</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgf619440" class="outline-3">
+<h3 id="orgf619440"><span class="section-number-3">1.1.</span> Data load</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> nltk
+nltk.download(<span style="color: #2d9574;">'punkt'</span>)
+
+<span style="color: #4f97d7; font-weight: bold;">with</span> <span style="color: #4f97d7;">open</span>(<span style="color: #2d9574;">'/home/si/Desktop/textPreprocessing/frankenstein.txt'</span>) <span style="color: #4f97d7; font-weight: bold;">as</span> f:
+<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span><span style="color: #7590db;">frankensteintext</span> = f.read()
+<span style="color: #7590db;">sentences</span> = nltk.sent_tokenize(frankensteintext)
+<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">'the length of frankenstein txt is </span>{<span style="color: #4f97d7;">len</span>(sentences)}<span style="color: #2d9574;">!'</span>)  
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orga63f217" class="outline-3">
+<h3 id="orga63f217"><span class="section-number-3">1.2.</span> Alpha filter</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #7590db;">AlphaFilter_words</span> = nltk.word_tokenize(sentences[0])
+<span style="color: #7590db;">AlphaFilter_words</span> = [token <span style="color: #4f97d7; font-weight: bold;">for</span> token <span style="color: #4f97d7; font-weight: bold;">in</span> AlphaFilter_words <span style="color: #4f97d7; font-weight: bold;">if</span> token[0].isalpha()]
+<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">'the length of the first sentence is </span>{<span style="color: #4f97d7;">len</span>(AlphaFilter_words)}<span style="color: #2d9574;">'</span>)
+<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">'the word is </span>{AlphaFilter_words}<span style="color: #2d9574;">'</span>)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7db2b0a" class="outline-3">
+<h3 id="org7db2b0a"><span class="section-number-3">1.3.</span> Stop words</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> nltk
+nltk.download(<span style="color: #2d9574;">'stopwords'</span>)
+<span style="color: #4f97d7; font-weight: bold;">from</span> nltk.corpus <span style="color: #4f97d7; font-weight: bold;">import</span> stopwords
+<span style="color: #4f97d7; font-weight: bold;">from</span> nltk.tokenize <span style="color: #4f97d7; font-weight: bold;">import</span> word_tokenize
+<span style="color: #7590db;">stopwords</span> = stopwords.words(<span style="color: #2d9574;">"english"</span>)
+<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">"the length of stop words is </span>{<span style="color: #4f97d7;">len</span>(stopwords)}<span style="color: #2d9574;">"</span>)
+
+<span style="color: #7590db;">words</span> = word_tokenize(sentences[0])
+<span style="color: #7590db;">words</span> = [token <span style="color: #4f97d7; font-weight: bold;">for</span> token <span style="color: #4f97d7; font-weight: bold;">in</span> words <span style="color: #4f97d7; font-weight: bold;">if</span> <span style="color: #4f97d7; font-weight: bold;">not</span> token <span style="color: #4f97d7; font-weight: bold;">in</span> stopwords]
+<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">'the length of the first sentence is </span>{<span style="color: #4f97d7;">len</span>(words)}<span style="color: #2d9574;">'</span>)
+<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">'the word is </span>{words}<span style="color: #2d9574;">'</span>)
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org4e55645" class="outline-3">
+<h3 id="org4e55645"><span class="section-number-3">1.4.</span> Lemmatization</h3>
+<div class="outline-text-3" id="text-1-4">
+<div class="org-src-container">
+<pre class="src src-python">nltk.download(<span style="color: #2d9574;">"wordnet"</span>)
+<span style="color: #4f97d7; font-weight: bold;">from</span> nltk.stem <span style="color: #4f97d7; font-weight: bold;">import</span> PorterStemmer
+<span style="color: #4f97d7; font-weight: bold;">from</span> nltk.stem <span style="color: #4f97d7; font-weight: bold;">import</span> WordNetLemmatizer
+<span style="color: #4f97d7; font-weight: bold;">from</span> nltk.tokenize <span style="color: #4f97d7; font-weight: bold;">import</span> word_tokenize
+<span style="color: #4f97d7; font-weight: bold;">import</span> spacy
+
+<span style="color: #7590db;">ps</span> = PorterStemmer()
+<span style="color: #7590db;">stemmed_words</span> = []
+<span style="color: #7590db;">words</span> = word_tokenize(sentences[0])
+<span style="color: #4f97d7; font-weight: bold;">for</span> token <span style="color: #4f97d7; font-weight: bold;">in</span> words:
+<span style="background-color: #292e34;"> </span>   stemmed_words.append(ps.stem(token))
+<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">'the length of the first sentence is </span>{<span style="color: #4f97d7;">len</span>(stemmed_words)}<span style="color: #2d9574;">'</span>)
+<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">'the word is </span>{stemmed_words}<span style="color: #2d9574;">'</span>)
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb86b0e0" class="outline-3">
+<h3 id="orgb86b0e0"><span class="section-number-3">1.5.</span> Stemming</h3>
+<div class="outline-text-3" id="text-1-5">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #7590db;">nlp</span> = spacy.load(<span style="color: #2d9574;">'en_core_web_sm'</span>)
+<span style="color: #7590db;">doc</span> = nlp(sentences[0])
+<span style="color: #7590db;">lemma_words</span> = [token.lemma_ <span style="color: #4f97d7; font-weight: bold;">for</span> token <span style="color: #4f97d7; font-weight: bold;">in</span> doc]
+<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">'the length of the first sentence is </span>{<span style="color: #4f97d7;">len</span>(lemma_words)}<span style="color: #2d9574;">'</span>)
+<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">'the word is </span>{lemma_words}<span style="color: #2d9574;">'</span>)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge41b819" class="outline-3">
+<h3 id="orge41b819"><span class="section-number-3">1.6.</span> Part of speech Tagging</h3>
+<div class="outline-text-3" id="text-1-6">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> spacy
+<span style="color: #4f97d7; font-weight: bold;">from</span> spacy.lang.en.examples <span style="color: #4f97d7; font-weight: bold;">import</span> sentences
+
+<span style="color: #7590db;">nlp</span> = spacy.load(<span style="color: #2d9574;">'en_core_web_sm'</span>)
+<span style="color: #7590db;">doc</span> = nlp(sentences[0])
+
+<span style="color: #4f97d7;">print</span>(doc.text)
+
+<span style="color: #4f97d7; font-weight: bold;">for</span> token <span style="color: #4f97d7; font-weight: bold;">in</span> doc:
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(token.text, token.pos_, token.dep_)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org57fa794" class="outline-3">
+<h3 id="org57fa794"><span class="section-number-3">1.7.</span> Named Entity Recognition (NER)</h3>
+<div class="outline-text-3" id="text-1-7">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4f97d7;">print</span>(doc.text)
+
+<span style="color: #4f97d7; font-weight: bold;">for</span> token <span style="color: #4f97d7; font-weight: bold;">in</span> doc.ents:
+<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(token.text, token.label_)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org99df95c" class="outline-3">
+<h3 id="org99df95c"><span class="section-number-3">1.8.</span> Frequency Analysis</h3>
+<div class="outline-text-3" id="text-1-8">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> nltk
+<span style="color: #4f97d7; font-weight: bold;">from</span> nltk <span style="color: #4f97d7; font-weight: bold;">import</span> FreqDist
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Assuming 'tokens' are already generated from the text</span>
+<span style="color: #4f97d7;">print</span>(sentences[0])
+<span style="color: #7590db;">freq_dist</span> = FreqDist(sentences[0])
+<span style="color: #4f97d7;">print</span>(freq_dist.most_common(10))
+
+<span style="color: #7590db;">words</span> = word_tokenize(sentences[0])
+<span style="color: #4f97d7;">print</span>(words)
+<span style="color: #7590db;">freq_dist</span> = FreqDist(words)
+<span style="color: #4f97d7;">print</span>(freq_dist.most_common(10))
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9937729" class="outline-3">
+<h3 id="org9937729"><span class="section-number-3">1.9.</span> one-hot coding</h3>
+<div class="outline-text-3" id="text-1-9">
+<p>
+all input should numerical,
+categorized character shoud be one-hot coded, starting with 1
+</p>
+</div>
+</div>
+<div id="outline-container-org2723d9e" class="outline-3">
+<h3 id="org2723d9e"><span class="section-number-3">1.10.</span> Tokenizationn</h3>
+<div class="outline-text-3" id="text-1-10">
+<ul class="org-ul">
+<li><b>Breaking</b> text to words (There are many steps to consider )</li>
+<li><b>CountWordFrequencies</b>  (counted key-value dictionary)
+<ul class="org-ul">
+<li>list all sorted dictionary</li>
+<li>if the list is too big, removing infrequent words(because of incorrection, or neame&#x2026;) good for one-hot coding</li>
+</ul></li>
+<li><b>encode</b> to sequences
+<ul class="org-ul">
+<li>with counted dictionary index</li>
+<li>index length is one-hot coding vector length</li>
+</ul></li>
+<li><b>one-hot</b> coding all sequences
+<ul class="org-ul">
+<li>if one-hot code vector is not so lang, word embedding is not needed</li>
+</ul></li>
+</ul>
+<pre class="example">
+tests[5] = "this is a cat and a"
+tests_dict = {"this": {1:1}, "is": {2:1}, "a":{3:2}, "cat":{4:1}, "and":{5:1}}
+tests_sequences = [1,2,3,4,3]
+</pre>
+</div>
+
+<div id="outline-container-org6d6abd6" class="outline-4">
+<h4 id="org6d6abd6"><span class="section-number-4">1.10.1.</span> Tokenize with nltk</h4>
+<div class="outline-text-4" id="text-1-10-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #7590db;">tokenize_words</span> = nltk.word_tokenize(sentences[0])
+<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">'the length of the first sentence is </span>{<span style="color: #4f97d7;">len</span>(tokenize_words)}<span style="color: #2d9574;">'</span>)
+<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">'the word is </span>{tokenize_words}<span style="color: #2d9574;">'</span>)
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb116e69" class="outline-3">
+<h3 id="orgb116e69"><span class="section-number-3">1.11.</span> Word Embedding</h3>
+<div class="outline-text-3" id="text-1-11">
+<p>
+compose high dimension one-hot vector to low dimension
+\[ X_{i}    = P^{T} \cdot e^{i}\]
+\(e^{i}\) is high dimensional vector after one-hot coding(v,1) of collected data
+\(P^{T}\) is the parameter matrix trained by data(d,v),
+\(X_{i}\) is low dimensional vector(d,1), for further training
+\(d\) :  The dimension parameter d  is important, can be vertified with corss validation.
+Each row of \(P\)  is called (words vector词向量), can be interpreted with classification
+</p>
+
+<p>
+<b>Embedding</b> layer need the number of vocabulary(v), embedding<sub>dim</sub>(d), and word<sub>num</sub>(cuted words number)
+v*d : parameters for this layer
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3450da8" class="outline-3">
+<h3 id="org3450da8"><span class="section-number-3">1.12.</span> Words Count</h3>
+</div>
+
+
+
+<div id="outline-container-orgd4b0cec" class="outline-3">
+<h3 id="orgd4b0cec"><span class="section-number-3">1.13.</span> TF-IDF for weight title and body</h3>
+<div class="outline-text-3" id="text-1-13">
+<p>
+the idea is to give weights for title and text. Afterwards the title has a huge impact for document = body + title
+\(TF-IDF(document) = TF-IDF(title) * alpha + TF-IDF(body) * (1-alpha)\)
+</p>
+</div>
+</div>
+<div id="outline-container-org2426b62" class="outline-3">
+<h3 id="org2426b62"><span class="section-number-3">1.14.</span> Vectorizing tf-idf</h3>
+</div>
+</div>
+
+
+
+<div id="outline-container-org5e391a6" class="outline-2">
+<h2 id="org5e391a6"><span class="section-number-2">2.</span> language model</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+A model that computes \(P(W)\) or \(P(W_{n}|W_{1},W_{2},W_{3},W_{4}....W_{n-1})\) is called  a language model.
+</p>
+</div>
+
+
+
+<div id="outline-container-org8a44269" class="outline-3">
+<h3 id="org8a44269"><span class="section-number-3">2.1.</span> skip-gram</h3>
+</div>
+<div id="outline-container-orgdd57d94" class="outline-3">
+<h3 id="orgdd57d94"><span class="section-number-3">2.2.</span> CBOW</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+continuous bag of words
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org61c7529" class="outline-2">
+<h2 id="org61c7529"><span class="section-number-2">3.</span> text generatation</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Encoder:
+A is RNN layer or LMST layer,
+all input(x1 to xm) share the same A,
+hm is the last result,
+only give hm to decoder, we can generate text,
+but many content of input will be forget
+</p>
+</div>
+</div>
+<div id="outline-container-orgdc147c2" class="outline-2">
+<h2 id="orgdc147c2"><span class="section-number-2">4.</span> seq2seq</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+After one resulte in Decode is generated,
+With Corss Enteopy to update the Network,
+using all the resulte we get, to predict the next resulte until all is finished
+consuming the previously generated symbols as additional input when generating the next.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc35ffb7" class="outline-2">
+<h2 id="orgc35ffb7"><span class="section-number-2">5.</span> Transformer</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org87e7b40" class="outline-3">
+<h3 id="org87e7b40"><span class="section-number-3">5.1.</span> simple RNN + attention</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Encoder Input  E\(X = x_{1}, x_{2},,,,x_{m}\)
+Decoder Input  \(X^{'} = x_{1}^{'}, x_{2}^{'},,,,x_m^{'}\)
+after RNN or LSTM we get \(H = h_{0}, h_{1},,,,,h_{m}\)
+Now unlike before only pass the last element \(h_{m}\)  to Decoder,
+we use attention skill to mix all input information
+</p>
+<ol class="org-ol">
+<li><p>
+Notion:
+</p>
+<ul class="org-ul">
+<li>Encoder, lower index \(i\) stands for the index of input order in Encoder</li>
+<li>Decoder, high index \(j\) stands for the index of generated items in Decoder</li>
+</ul>
+<p>
+\(a^{j}_{i}\) stands for the parameter for generate the j-th item (\(s_j\))in Decoder with respect of the i-th input(\(x_{i}\)) in X.
+</p></li>
+<li>Variables
+<ul class="org-ul">
+<li>Encoder input,   \(X = x_{1}, x_{2},,,x_{m}\)  ,</li>
+<li>Encoder  shared parameter,   A: RNN or LSMT shared parameter</li>
+<li>Encoder output ,   \(H: = h_{1}, h_{2},,,h_{m}\)   output at each step of RNN or LSMT</li>
+<li>Decoder initial input   \(h_{m}\) ,  denote also as \(s^{0}\)</li>
+<li>key, \(q_{i}^{j} = W_{q}^{j} s^{i}\)</li>
+<li>query \(k_{i}^{j} = W_{k}^{j} h_{i}\)</li>
+<li>Query Martix,  \(K^{j} = [k_{i}^{j}, k_{2}^{j},,,k_{m}^{j}]\)</li>
+<li>Encoder Weight  \(a^{j}_{i}\),   \(a^{j}_{i} = Softmax(K^{jT} q_{i})\)</li>
+<li>Eecoder Context Vector, \(c^{j} = a_{1}^{j}h_{1} + a_{2}^{j}h_{2}+,,,,+a_{m}^{j}h_{m}\)</li>
+<li>Decoder initial input   \(h_{m}\) ,  denote also as \(s^{0}\)</li>
+<li>Decoder output, \(s^{j} = \tanh(A^{'}\cdot [x^{'j}, s_{j-1}, c_{j-1}]^{T})\)</li>
+</ul></li>
+<li>update Network
+with softmax(c)  get the prediciton, and corss enteopy update network back(\(W^{j} -> W^{j+1}\))</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgad0e969" class="outline-3">
+<h3 id="orgad0e969"><span class="section-number-3">5.2.</span> simple RNN + self attention</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+only Encoder, e\(X = x_{1}, x_{2},,,,x_{m}\)
+Without Decoder and Decoder input, 
+after RNN or LSTM we get \(H = h_{0}, h_{1},,,,,h_{m}\)
+Now unlike before only pass the last element \(h_{m}\)  to Decoder,
+we use attention skill to mix all input information
+</p>
+<ol class="org-ol">
+<li><p>
+Notion:
+</p>
+<ul class="org-ul">
+<li>Encoder, lower index \(i\) stands for the index of input order in Encoder</li>
+<li>Generation, high index \(j\) stands for the index of generated items</li>
+</ul>
+<p>
+\(a^{j}_{i}\) stands for the parameter for generate the j-th item (\(s_j\))in Encoder with respect of the i-th input(\(x_{i}\)) in X.
+</p></li>
+<li>Variables
+<ul class="org-ul">
+<li>Encoder input,   \(X = x_{1}, x_{2},,,x_{m}\)  ,</li>
+<li>Encoder  shared parameter,   A: RNN or LSMT shared parameter</li>
+<li>Encoder output ,   \(H: = h_{1}, h_{2},,,h_{m}\)   output at each step of RNN or LSMT</li>
+<li>key, \(q_{i}^{j} = W_{q}^{j} h_{i}\)</li>
+<li>query \(k_{i}^{j} = W_{k}^{j} h_{i}\)</li>
+<li>Query Martix,  \(K^{j} = [k_{i}^{j}, k_{2}^{j},,,k_{m}^{j}]\)</li>
+<li>Encoder Weight  \(a^{j}_{i}\),   \(a^{j}_{i} = Softmax(K^{jT} q_{i})\)</li>
+<li>Eecoder Context Vector, \(c^{j} = a_{1}^{j}h_{1} + a_{2}^{j}h_{2}+,,,,+a_{m}^{j}h_{m}\)</li>
+</ul></li>
+
+<li>update Network
+<ul class="org-ul">
+<li>with softmax(c)  get the prediciton, and corss enteopy update network back(\(W^{j} -> W^{j+1}\))</li>
+</ul></li>
+<li>Note       
+<ul class="org-ul">
+<li>attention:  key, \(q_{i}^{j} = W_{q}^{j} s^{i}\) with  \(s^{j} = \tanh(A^{'}\cdot [x^{'j}, s_{j-1}, c_{j-1}]^{T})\)</li>
+<li>self attention: key, \(q_{i}^{j} = W_{q}^{j} h_{i}\)</li>
+</ul></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org99b2d14" class="outline-3">
+<h3 id="org99b2d14"><span class="section-number-3">5.3.</span> attention layer</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+An attention function can be described as mapping a query and a set of key-value pairs to an output
+Encoder Input  E\(X = x_{1}, x_{2},,,,x_{m}\)
+Decoder Input  \(X^{'} = x_{1}^{'}, x_{2}^{'},,,,x_m^{'}\)
+Removing RNN or LSMT, only constructing attention layer
+</p>
+<ol class="org-ol">
+<li><p>
+Notion:
+</p>
+<ul class="org-ul">
+<li>Encoder, lower index \(i\) stands for the index of input order in Encoder</li>
+<li>Decoder, high index \(j\) stands for the index of generated items in Decoder</li>
+</ul>
+<p>
+\(a^{j}_{i}\) stands for the parameter for generate the j-th item (\(s_j\))in Decoder with respect of the i-th input(\(x_{i}\)) in X.
+</p></li>
+<li>Variables
+<ul class="org-ul">
+<li>value, \(v_{i}^{j} = W_{v}^{j} x_{i}\)</li>
+<li>query \(k_{i}^{j} = W_{k}^{j} x_{i}\)</li>
+<li>key, \(q_{i}^{j} = W_{q}^{j} x_{'i}\)</li>
+<li>Query Martix,  \(K^{j} = [k_{i}^{j}, k_{2}^{j},,,k_{m}^{j}]\)</li>
+<li>Encoder Weight  \(a^{j}_{i}\),   \(a^{j}_{i} = Softmax(K^{jT} q_{i})\)</li>
+<li>Eecoder Context Vector, \(c^{j} = a_{1}^{j}v_{1}^{j} + a_{2}^{j}v_{2}^{j}+,,,,+a_{m}^{j}v_{m}^{j}\)</li>
+</ul></li>
+<li>update Network
+<ul class="org-ul">
+<li>with softmax(c)  get the prediciton, and corss enteopy update network back(\(W^{j} -> W^{j+1}\))</li>
+</ul></li>
+<li>Note
+<ul class="org-ul">
+<li>X replace H, but still seq2seq model(with X')</li>
+</ul></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org56b471e" class="outline-3">
+<h3 id="org56b471e"><span class="section-number-3">5.4.</span> self attention layer</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+only Encoder, e\(X = x_{1}, x_{2},,,,x_{m}\)
+Without Decoder and Decoder input, 
+</p>
+<ol class="org-ol">
+<li><p>
+Notion:
+</p>
+<ul class="org-ul">
+<li>Encoder, lower index \(i\) stands for the index of input order in Encoder</li>
+<li>Generation, high index \(j\) stands for the index of generated items</li>
+</ul>
+<p>
+\(a^{j}_{i}\) stands for the parameter for generate the j-th item (\(s_j\))in Encoder with respect of the i-th input(\(x_{i}\)) in X.
+</p></li>
+<li>Variables
+<ul class="org-ul">
+<li>Encoder input,   \(X = x_{1}, x_{2},,,x_{m}\)  ,</li>
+<li>value, \(v_{i}^{j} = W_{v}^{j} x_{i}\)</li>
+<li>key, \(q_{i}^{j} = W_{q}^{j} x_{i}\)</li>
+<li>query \(k_{i}^{j} = W_{k}^{j} x_{i}\)</li>
+<li>Query Martix,  \(K^{j} = [k_{i}^{j}, k_{2}^{j},,,k_{m}^{j}]\)</li>
+<li>Encoder Weight  \(a^{j}_{i}\),   \(a^{j}_{i} = Softmax(K^{jT} q_{i})\)</li>
+<li>Eecoder Context Vector, \(c^{j} = a_{1}^{j}v_{1}^{j} + a_{2}^{j}v_{2}^{j}+,,,,+a_{m}^{j}v_{m}^{j}\)</li>
+</ul></li>
+
+<li>update Network
+with softmax(c)  get the prediciton, and corss enteopy update network back(\(W^{j} -> W^{j+1}\))</li>
+<li>Note
+<ul class="org-ul">
+<li>in query \(k_{i}^{j} = W_{k}^{j} x_{i}\), it's X , not X'</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org4372f68" class="outline-3">
+<h3 id="org4372f68"><span class="section-number-3">5.5.</span> transformer model</h3>
+<div class="outline-text-3" id="text-5-5">
+<p>
+<img src="./foto/RNN_attention.png" alt="RNN_attention.png" />
+after 6 stacked multi head self attention layers,
+another 6 stacked multi head attention layers, each time take the input of 6 self attention layer
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org905f838" class="outline-2">
+<h2 id="org905f838"><span class="section-number-2">6.</span> Bert</h2>
+</div>
+<div id="outline-container-org79bbd5f" class="outline-2">
+<h2 id="org79bbd5f"><span class="section-number-2">7.</span> ViT</h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: si</p>
+<p class="date">Created: 2025-01-24 Fr 19:30</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

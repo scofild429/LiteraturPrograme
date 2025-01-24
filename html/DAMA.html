@@ -1,0 +1,1074 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-01-24 Fr 15:36 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DAMA</title>
+<meta name="author" content="si" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">DAMA</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2b19ea6">1. DAMA</a>
+<ul>
+<li><a href="#org620a129">1.1. Motivation for Data Management</a></li>
+<li><a href="#org4e446d4">1.2. challenges</a></li>
+<li><a href="#orgd1b0020">1.3. Motivation for Research Data Management</a></li>
+<li><a href="#orgf26eb74">1.4. Key difference between Data management Vs Data Science</a></li>
+<li><a href="#org1123553">1.5. Data Science Life Cycle</a></li>
+<li><a href="#org2637b74">1.6. Research Data Life Cycle</a></li>
+<li><a href="#org3522955">1.7. Research Data Life Cycle 2</a></li>
+<li><a href="#org3b222b9">1.8. Storage &amp; Preseveration</a></li>
+</ul>
+</li>
+<li><a href="#org217d02a">2. Data Model</a>
+<ul>
+<li><a href="#org6ae326d">2.1. model</a></li>
+<li><a href="#orgc158396">2.2. data moduling technologies</a></li>
+<li><a href="#org1d357cb">2.3. Data modul Types</a></li>
+<li><a href="#orgb8af05b">2.4. Data Type</a>
+<ul>
+<li><a href="#org3f75de4">2.4.1. Structured</a></li>
+<li><a href="#orge19d82c">2.4.2. Semi-Structured</a></li>
+<li><a href="#org4fd90ec">2.4.3. Unstuctured</a></li>
+</ul>
+</li>
+<li><a href="#org198d93b">2.5. Data Acquire</a></li>
+</ul>
+</li>
+<li><a href="#org6e1f725">3. Database</a>
+<ul>
+<li><a href="#org846dc54">3.1. Hierarchical database</a></li>
+<li><a href="#org9f93508">3.2. Network database</a></li>
+<li><a href="#orga5c3835">3.3. Relational Database</a></li>
+<li><a href="#org7c5fdf8">3.4. Object-Oriented Database</a></li>
+<li><a href="#org5d7774d">3.5. No-SQL database</a></li>
+<li><a href="#orge08e00f">3.6. ACID compliance</a></li>
+<li><a href="#org8ee7f6f">3.7. CAP Theorem</a></li>
+<li><a href="#org06f2bdf">3.8. ETL Process</a></li>
+<li><a href="#org2f2f8e1">3.9. Data Warehouse</a></li>
+<li><a href="#org18d46bb">3.10. Dagtabase</a></li>
+<li><a href="#orgf2d0272">3.11. Data access in system</a></li>
+<li><a href="#orgbb30071">3.12. Data Marts</a></li>
+<li><a href="#org5cac37e">3.13. Data Lake</a></li>
+<li><a href="#org762c636">3.14. Data Mesh</a></li>
+<li><a href="#org1c02bdb">3.15. Data Fabric</a></li>
+</ul>
+</li>
+<li><a href="#org187a75e">4. Meta Data</a>
+<ul>
+<li><a href="#orgae539f3">4.1. FAIR Principes</a></li>
+<li><a href="#org04bdd20">4.2. Type</a></li>
+<li><a href="#org152c607">4.3. direction</a></li>
+<li><a href="#org9694e24">4.4. Meaning</a></li>
+<li><a href="#orga41ecca">4.5. Linked Data</a></li>
+<li><a href="#orgf8e76e3">4.6. Signposting</a></li>
+<li><a href="#org220455c">4.7. PIDs</a>
+<ul>
+<li><a href="#org3d7f097">4.7.1. Actionable IDs</a></li>
+<li><a href="#orge9f11bc">4.7.2. Machine Actionable</a></li>
+<li><a href="#org882d157">4.7.3. URLS</a></li>
+<li><a href="#org2255b18">4.7.4. Sustainability by technology</a></li>
+<li><a href="#org9995595">4.7.5. PID data type</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgca8a843">5. Data Governance</a>
+<ul>
+<li><a href="#org394ab00">5.1. define</a></li>
+<li><a href="#orgedba98a">5.2. dimensions</a></li>
+<li><a href="#orgf5f8d78">5.3. Role</a></li>
+</ul>
+</li>
+<li><a href="#orgb3de0b0">6. Data Quality</a>
+<ul>
+<li><a href="#orgabbf672">6.1. Dimension</a></li>
+</ul>
+</li>
+<li><a href="#orgb2a4580">7. Data Management(DAMA)</a></li>
+<li><a href="#org3e6962a">8. Data Security</a>
+<ul>
+<li><a href="#orgfd1bac2">8.1. Access</a></li>
+</ul>
+</li>
+<li><a href="#orgac64b91">9. GraphQL</a></li>
+<li><a href="#orgc204c9a">10. Microservice Architecture</a>
+<ul>
+<li><a href="#org52151d4">10.1. Function as a service</a></li>
+</ul>
+</li>
+<li><a href="#org8bfa88c">11. Data Operation</a></li>
+<li><a href="#orge769791">12. Data Flow Diagram</a>
+<ul>
+<li><a href="#orgd683cf6">12.1. Rules</a></li>
+<li><a href="#org1bb6b32">12.2. event dirven Data handing</a></li>
+<li><a href="#org589501d">12.3. Message Queue</a></li>
+</ul>
+</li>
+<li><a href="#orgfafa84b">13. Read-only Data store</a>
+<ul>
+<li><a href="#org5b0da51">13.1. Principles</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2b19ea6" class="outline-2">
+<h2 id="org2b19ea6"><span class="section-number-2">1.</span> DAMA</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org620a129" class="outline-3">
+<h3 id="org620a129"><span class="section-number-3">1.1.</span> Motivation for Data Management</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Visibility</li>
+<li>Reliability</li>
+<li>Security</li>
+<li>Scalability</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4e446d4" class="outline-3">
+<h3 id="org4e446d4"><span class="section-number-3">1.2.</span> challenges</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>reduce cost</li>
+<li>increase storage</li>
+<li>deliver stream data for more IoT</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd1b0020" class="outline-3">
+<h3 id="orgd1b0020"><span class="section-number-3">1.3.</span> Motivation for Research Data Management</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>the amonut of data growth fast</li>
+<li>new technologies</li>
+<li>more accessible data due to standardisation</li>
+<li>Required by funding agency</li>
+<li>Scientific</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf26eb74" class="outline-3">
+<h3 id="orgf26eb74"><span class="section-number-3">1.4.</span> Key difference between Data management Vs Data Science</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>Acquisition</li>
+<li>Storage</li>
+<li>Quality</li>
+<li>Governance</li>
+<li>Integrity</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1123553" class="outline-3">
+<h3 id="org1123553"><span class="section-number-3">1.5.</span> Data Science Life Cycle</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+Acquirement, clean, <b>explore, preprocessing, model</b>, validation, present
+</p>
+</div>
+</div>
+<div id="outline-container-org2637b74" class="outline-3">
+<h3 id="org2637b74"><span class="section-number-3">1.6.</span> Research Data Life Cycle</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+<b>Plan</b>, Collect, Assure, Describe, Submit, Preserve, Discover, Integrate, Analysis, Publish
+</p>
+</div>
+</div>
+<div id="outline-container-org3522955" class="outline-3">
+<h3 id="org3522955"><span class="section-number-3">1.7.</span> Research Data Life Cycle 2</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+Analysis   &lt;- discovery
+\(\downarrow\)                 \(\uparrow\)           Archiving
+processing -&gt; Distribution
+</p>
+
+<ul class="org-ul">
+<li>version controll</li>
+<li>provenance</li>
+<li>normalization</li>
+<li>integrity preservation</li>
+<li>curation</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3b222b9" class="outline-3">
+<h3 id="org3b222b9"><span class="section-number-3">1.8.</span> Storage &amp; Preseveration</h3>
+<div class="outline-text-3" id="text-1-8">
+<ul class="org-ul">
+<li>storage, mid-term, on my own disk</li>
+<li>preseveration, long term, accessible for other</li>
+<li>321</li>
+<li>Accessibility, Authenticity, Longevity</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org217d02a" class="outline-2">
+<h2 id="org217d02a"><span class="section-number-2">2.</span> Data Model</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org6ae326d" class="outline-3">
+<h3 id="org6ae326d"><span class="section-number-3">2.1.</span> model</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>why? to save the data in the database or information system, conceptual representation of data objects, associcated with other data object</li>
+<li>benefits, helpful for visual representation, busisses rules, regulatory compliances, consistancy conventions</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc158396" class="outline-3">
+<h3 id="orgc158396"><span class="section-number-3">2.2.</span> data moduling technologies</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>ERM, Entity Relation Model</li>
+<li>UML, Unified Modeling Language</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1d357cb" class="outline-3">
+<h3 id="org1d357cb"><span class="section-number-3">2.3.</span> Data modul Types</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>Conceptual</li>
+<li>Logical</li>
+<li>Physical</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb8af05b" class="outline-3">
+<h3 id="orgb8af05b"><span class="section-number-3">2.4.</span> Data Type</h3>
+<div class="outline-text-3" id="text-2-4">
+</div>
+<div id="outline-container-org3f75de4" class="outline-4">
+<h4 id="org3f75de4"><span class="section-number-4">2.4.1.</span> Structured</h4>
+</div>
+<div id="outline-container-orge19d82c" class="outline-4">
+<h4 id="orge19d82c"><span class="section-number-4">2.4.2.</span> Semi-Structured</h4>
+<div class="outline-text-4" id="text-2-4-2">
+<p>
+self-describing structur
+json, XML, Email, Key-value-Store
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4fd90ec" class="outline-4">
+<h4 id="org4fd90ec"><span class="section-number-4">2.4.3.</span> Unstuctured</h4>
+</div>
+</div>
+<div id="outline-container-org198d93b" class="outline-3">
+<h3 id="org198d93b"><span class="section-number-3">2.5.</span> Data Acquire</h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li>Harvesting
+from external into system storage</li>
+
+<li>Ingesting
+from different storages to different step for processing</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6e1f725" class="outline-2">
+<h2 id="org6e1f725"><span class="section-number-2">3.</span> Database</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org846dc54" class="outline-3">
+<h3 id="org846dc54"><span class="section-number-3">3.1.</span> Hierarchical database</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>hierarchical structured</li>
+<li>1 to 1, 1 to n,</li>
+<li>XML</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9f93508" class="outline-3">
+<h3 id="org9f93508"><span class="section-number-3">3.2.</span> Network database</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>Predecessor of relational database</li>
+<li>more than one parent</li>
+<li>allow n to n</li>
+<li>uses a direct graph with direct link</li>
+<li>can becomes a complex structure</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga5c3835" class="outline-3">
+<h3 id="orga5c3835"><span class="section-number-3">3.3.</span> Relational Database</h3>
+<div class="outline-text-3" id="text-3-3">
+<ul class="org-ul">
+<li>not sufficient for fast growth of big data and its complexity</li>
+<li>hard to scale horizontally</li>
+<li>Normalization, reduce the disk space</li>
+<li>DeNormalization, fast and optimised for query</li>
+<li>Snowflake schema,
+<ul class="org-ul">
+<li>less disk space</li>
+<li>normalized</li>
+<li>minimal redundency</li>
+<li>powerful for data analysis</li>
+<li>allow many to many relationship</li>
+</ul></li>
+<li>Star Schema(denormalization)
+<ul class="org-ul">
+<li>simple to understand and build</li>
+<li>fast querying, no join</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7c5fdf8" class="outline-3">
+<h3 id="org7c5fdf8"><span class="section-number-3">3.4.</span> Object-Oriented Database</h3>
+</div>
+<div id="outline-container-org5d7774d" class="outline-3">
+<h3 id="org5d7774d"><span class="section-number-3">3.5.</span> No-SQL database</h3>
+<div class="outline-text-3" id="text-3-5">
+<ul class="org-ul">
+<li>for big data</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge08e00f" class="outline-3">
+<h3 id="orge08e00f"><span class="section-number-3">3.6.</span> ACID compliance</h3>
+<div class="outline-text-3" id="text-3-6">
+<ul class="org-ul">
+<li>potential failures, server, power, OS</li>
+<li>Atomicity</li>
+<li>Consistency</li>
+<li>Isolation</li>
+<li>durablity
+<a href="https://www.ibm.com/docs/en/cics-ts/5.4?topic=processing-acid-properties-transactions">IMB Statement</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8ee7f6f" class="outline-3">
+<h3 id="org8ee7f6f"><span class="section-number-3">3.7.</span> CAP Theorem</h3>
+<div class="outline-text-3" id="text-3-7">
+<ul class="org-ul">
+<li>Consistency</li>
+<li>Availability</li>
+<li>Partition tolerance</li>
+<li>sql(CAx), no-sql(xAP)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org06f2bdf" class="outline-3">
+<h3 id="org06f2bdf"><span class="section-number-3">3.8.</span> ETL Process</h3>
+<div class="outline-text-3" id="text-3-8">
+<ul class="org-ul">
+<li>E, Extract: Read data from source</li>
+<li>L, Load, store data in the final data store</li>
+<li>T, Transform: modify data based on the requirement</li>
+<li>mostly is <b>ELT</b></li>
+<li>but if the data source allow modification, <b>TEL</b> is  also possible</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2f2f8e1" class="outline-3">
+<h3 id="org2f2f8e1"><span class="section-number-3">3.9.</span> Data Warehouse</h3>
+<div class="outline-text-3" id="text-3-9">
+<ul class="org-ul">
+<li>integrated data from different source</li>
+<li>resructure data (denormalization)</li>
+<li>optimized for analysis</li>
+<li>Building
+<ul class="org-ul">
+<li>Data source Layer: integrate internal and external data</li>
+<li>Staging layer: conduct transformation</li>
+<li>Storage Layer: host a database</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org18d46bb" class="outline-3">
+<h3 id="org18d46bb"><span class="section-number-3">3.10.</span> Dagtabase</h3>
+<div class="outline-text-3" id="text-3-10">
+<ul class="org-ul">
+<li>real time data</li>
+<li>optimized for modification and querying(very efficient)</li>
+<li>normalized data</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf2d0272" class="outline-3">
+<h3 id="orgf2d0272"><span class="section-number-3">3.11.</span> Data access in system</h3>
+<div class="outline-text-3" id="text-3-11">
+<ul class="org-ul">
+<li>OLTP: Normalized</li>
+<li>OLAP: Denormalized</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgbb30071" class="outline-3">
+<h3 id="orgbb30071"><span class="section-number-3">3.12.</span> Data Marts</h3>
+<div class="outline-text-3" id="text-3-12">
+<ul class="org-ul">
+<li>subject-oriented database</li>
+<li>to meet the specific group of users</li>
+<li>data access with higher performance</li>
+<li>Data maintenance, different department can have their own controll</li>
+<li>Easy setup, simple design, required less technical</li>
+<li>Analysis, KPIs,</li>
+<li>Easy input</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5cac37e" class="outline-3">
+<h3 id="org5cac37e"><span class="section-number-3">3.13.</span> Data Lake</h3>
+<div class="outline-text-3" id="text-3-13">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">data Warehouse</td>
+<td class="org-left">Data Lake</td>
+</tr>
+
+<tr>
+<td class="org-left">processed</td>
+<td class="org-left">raw</td>
+</tr>
+
+<tr>
+<td class="org-left">structured</td>
+<td class="org-left">all possible and raw</td>
+</tr>
+
+<tr>
+<td class="org-left">ready for analysis</td>
+<td class="org-left">open</td>
+</tr>
+
+<tr>
+<td class="org-left">business user</td>
+<td class="org-left">data scientists</td>
+</tr>
+
+<tr>
+<td class="org-left">costly</td>
+<td class="org-left">easy</td>
+</tr>
+
+<tr>
+<td class="org-left">more secure</td>
+<td class="org-left">less</td>
+</tr>
+
+<tr>
+<td class="org-left">sql</td>
+<td class="org-left">no sql</td>
+</tr>
+
+<tr>
+<td class="org-left">fast result</td>
+<td class="org-left">slow resulte</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org762c636" class="outline-3">
+<h3 id="org762c636"><span class="section-number-3">3.14.</span> Data Mesh</h3>
+<div class="outline-text-3" id="text-3-14">
+<ul class="org-ul">
+<li>domain-oriented decentralized data owership and architecture</li>
+<li>data as a product</li>
+<li>self-serve data infrastructure as platform</li>
+<li>federated computational governance</li>
+<li>architecture for data governance</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1c02bdb" class="outline-3">
+<h3 id="org1c02bdb"><span class="section-number-3">3.15.</span> Data Fabric</h3>
+<div class="outline-text-3" id="text-3-15">
+<ul class="org-ul">
+<li>conceptual</li>
+<li>focus on highly automating and integrating</li>
+<li>need more matedata</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org187a75e" class="outline-2">
+<h2 id="org187a75e"><span class="section-number-2">4.</span> Meta Data</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Meta data is must, a connect(descripation) data of data, necessary for control and efficiency while processing data, also important and required for access and discovery.
+problem, stored in different place also different form.
+</p>
+</div>
+<div id="outline-container-orgae539f3" class="outline-3">
+<h3 id="orgae539f3"><span class="section-number-3">4.1.</span> FAIR Principes</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>Findable</li>
+<li>Accessable</li>
+<li>interoperable</li>
+<li>Reuseable</li>
+<li>The principles emphasise <b>machine-actionability</b>, because humans increasingly rely on computational support to deal with data as a result of the increase in volume, complexity, and creation speed of data.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org04bdd20" class="outline-3">
+<h3 id="org04bdd20"><span class="section-number-3">4.2.</span> Type</h3>
+</div>
+<div id="outline-container-org152c607" class="outline-3">
+<h3 id="org152c607"><span class="section-number-3">4.3.</span> direction</h3>
+<div class="outline-text-3" id="text-4-3">
+<ul class="org-ul">
+<li>who created it, what it is,  when, where, how, licence.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9694e24" class="outline-3">
+<h3 id="org9694e24"><span class="section-number-3">4.4.</span> Meaning</h3>
+<div class="outline-text-3" id="text-4-4">
+<ul class="org-ul">
+<li>Controlled Vocabular
+<ul class="org-ul">
+<li>list of words, to tag the information</li>
+<li>predefined and authorized</li>
+<li>reduce ambiguities of natural language</li>
+<li>improve retrievablilty</li>
+<li>support interoperable</li>
+</ul></li>
+<li>Texonomies
+<ul class="org-ul">
+<li>with hierarchical structur</li>
+</ul></li>
+<li>Thesaui
+<ul class="org-ul">
+<li>control of terms</li>
+<li>Hierarchical, Equivalence, Association relationship within terms</li>
+<li>support consistent indexing</li>
+<li>serve interoperability</li>
+</ul></li>
+<li>Ontologies, large Thesaui</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga41ecca" class="outline-3">
+<h3 id="orga41ecca"><span class="section-number-3">4.5.</span> Linked Data</h3>
+<div class="outline-text-3" id="text-4-5">
+<ul class="org-ul">
+<li>URIs (Uniform Resource Identifiers) to name individual things</li>
+<li>HTTP URIs to find things in web</li>
+<li>linked  data 2, all conceptual things should start with http</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf8e76e3" class="outline-3">
+<h3 id="orgf8e76e3"><span class="section-number-3">4.6.</span> Signposting</h3>
+<div class="outline-text-3" id="text-4-6">
+<p>
+An approach to make the scholarly web more friendly to machines.
+</p>
+</div>
+</div>
+<div id="outline-container-org220455c" class="outline-3">
+<h3 id="org220455c"><span class="section-number-3">4.7.</span> PIDs</h3>
+<div class="outline-text-3" id="text-4-7">
+<p>
+standard, invariant and long-term reference of a digital resource, regardless of status location or current owner
+</p>
+</div>
+<div id="outline-container-org3d7f097" class="outline-4">
+<h4 id="org3d7f097"><span class="section-number-4">4.7.1.</span> Actionable IDs</h4>
+<div class="outline-text-4" id="text-4-7-1">
+<p>
+A Persistent Identifier (PID) policy for the European Open Science Cloud
+</p>
+</div>
+</div>
+<div id="outline-container-orge9f11bc" class="outline-4">
+<h4 id="orge9f11bc"><span class="section-number-4">4.7.2.</span> Machine Actionable</h4>
+<div class="outline-text-4" id="text-4-7-2">
+<p>
+means that a formal statement is syntactically and semantically specified enabling computing systems to carry out automatic processing.
+</p>
+</div>
+</div>
+<div id="outline-container-org882d157" class="outline-4">
+<h4 id="org882d157"><span class="section-number-4">4.7.3.</span> URLS</h4>
+<div class="outline-text-4" id="text-4-7-3">
+<ul class="org-ul">
+<li>subset of URIs</li>
+<li>related to IP address</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2255b18" class="outline-4">
+<h4 id="org2255b18"><span class="section-number-4">4.7.4.</span> Sustainability by technology</h4>
+<div class="outline-text-4" id="text-4-7-4">
+<ul class="org-ul">
+<li>reliable</li>
+<li>robust</li>
+<li>long term perspective</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9995595" class="outline-4">
+<h4 id="org9995595"><span class="section-number-4">4.7.5.</span> PID data type</h4>
+<div class="outline-text-4" id="text-4-7-5">
+<p>
+Types are Metadata Elements
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgca8a843" class="outline-2">
+<h2 id="orgca8a843"><span class="section-number-2">5.</span> Data Governance</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org394ab00" class="outline-3">
+<h3 id="org394ab00"><span class="section-number-3">5.1.</span> define</h3>
+<div class="outline-text-3" id="text-5-1">
+<ul class="org-ul">
+<li>Data governance determines what the data represents and what it can be used for</li>
+<li>Authentication and Authorization required</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgedba98a" class="outline-3">
+<h3 id="orgedba98a"><span class="section-number-3">5.2.</span> dimensions</h3>
+<div class="outline-text-3" id="text-5-2">
+<ul class="org-ul">
+<li>Organization, roles, responsibilites(RACI model)</li>
+<li>Process,</li>
+<li>Technology</li>
+<li>People, Trust, Ethics</li>
+<li>Data</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf5f8d78" class="outline-3">
+<h3 id="orgf5f8d78"><span class="section-number-3">5.3.</span> Role</h3>
+<div class="outline-text-3" id="text-5-3">
+<ul class="org-ul">
+<li>Formed</li>
+<li>Accountable</li>
+<li>Consulted</li>
+<li>Responsiable</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb3de0b0" class="outline-2">
+<h2 id="orgb3de0b0"><span class="section-number-2">6.</span> Data Quality</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>Data quality describes how good it fits for its intended use: Operations, Decision making, Planning, Researching</li>
+</ul>
+</div>
+<div id="outline-container-orgabbf672" class="outline-3">
+<h3 id="orgabbf672"><span class="section-number-3">6.1.</span> Dimension</h3>
+<div class="outline-text-3" id="text-6-1">
+<ul class="org-ul">
+<li>accessibility or availability</li>
+<li>accuracy or correctness</li>
+<li>comparability</li>
+<li>completeness or comprehensiveness</li>
+<li>consistency, coherence, or clarity
+<ul class="org-ul">
+<li>refers to whether the same data kept at different places do or do not match.</li>
+<li>ACID ensure from one valid to another</li>
+<li>peer-2-peer may be violated</li>
+</ul></li>
+<li>credibility, reliability, or reputation</li>
+<li>flexibility</li>
+<li>plausibility</li>
+<li>relevance, pertinence, or usefulness</li>
+<li>timeliness or latency</li>
+<li>uniqueness</li>
+<li>validity or reasonableness</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb2a4580" class="outline-2">
+<h2 id="orgb2a4580"><span class="section-number-2">7.</span> Data Management(DAMA)</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Dimension is defined as a measurable features of an object
+</p>
+<ul class="org-ul">
+<li>Accuracy</li>
+<li>Availability</li>
+<li>Clarity</li>
+<li>Completeness</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3e6962a" class="outline-2">
+<h2 id="org3e6962a"><span class="section-number-2">8.</span> Data Security</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Definition, planning, development, and execution of security policies and procedures to provide proper authentication, authorization, access, and auditing of data and information assets.
+</p>
+</div>
+<div id="outline-container-orgfd1bac2" class="outline-3">
+<h3 id="orgfd1bac2"><span class="section-number-3">8.1.</span> Access</h3>
+<div class="outline-text-3" id="text-8-1">
+<ul class="org-ul">
+<li>role based access control</li>
+<li>attribute-based access control</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-orgac64b91" class="outline-2">
+<h2 id="orgac64b91"><span class="section-number-2">9.</span> GraphQL</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+It's smart API, query intersting data in a smart way
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc204c9a" class="outline-2">
+<h2 id="orgc204c9a"><span class="section-number-2">10.</span> Microservice Architecture</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+Api for difference Applications, also standardized
+</p>
+</div>
+<div id="outline-container-org52151d4" class="outline-3">
+<h3 id="org52151d4"><span class="section-number-3">10.1.</span> Function as a service</h3>
+<div class="outline-text-3" id="text-10-1">
+<p>
+S3 Amazon
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org8bfa88c" class="outline-2">
+<h2 id="org8bfa88c"><span class="section-number-2">11.</span> Data Operation</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+to improve the terms of time for data analysis
+</p>
+</div>
+</div>
+<div id="outline-container-orge769791" class="outline-2">
+<h2 id="orge769791"><span class="section-number-2">12.</span> Data Flow Diagram</h2>
+<div class="outline-text-2" id="text-12">
+<p>
+representing the flow of data through a process or system
+</p>
+</div>
+<div id="outline-container-orgd683cf6" class="outline-3">
+<h3 id="orgd683cf6"><span class="section-number-3">12.1.</span> Rules</h3>
+<div class="outline-text-3" id="text-12-1">
+<ul class="org-ul">
+<li>a process must have at least one input data and one output data</li>
+<li>data stroe must have at least one data flow in and data flow out</li>
+<li>data stroage must through a process</li>
+<li>all prcesses will go to another process or end up with data store</li>
+<li>data can not flow between entities</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1bb6b32" class="outline-3">
+<h3 id="org1bb6b32"><span class="section-number-3">12.2.</span> event dirven Data handing</h3>
+<div class="outline-text-3" id="text-12-2">
+<ul class="org-ul">
+<li>Synchronous</li>
+<li>Asynchronous</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org589501d" class="outline-3">
+<h3 id="org589501d"><span class="section-number-3">12.3.</span> Message Queue</h3>
+<div class="outline-text-3" id="text-12-3">
+<ul class="org-ul">
+<li>producer/consumer</li>
+<li>Eventual consistency / strong consistency(consistency)</li>
+<li>At-least-once/Exactly-once/At-most-once(Processing models)</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfafa84b" class="outline-2">
+<h2 id="orgfafa84b"><span class="section-number-2">13.</span> Read-only Data store</h2>
+<div class="outline-text-2" id="text-13">
+</div>
+<div id="outline-container-org5b0da51" class="outline-3">
+<h3 id="org5b0da51"><span class="section-number-3">13.1.</span> Principles</h3>
+<div class="outline-text-3" id="text-13-1">
+<ul class="org-ul">
+<li>they are immutable</li>
+<li>only original data source can deliver to RDS</li>
+<li>one RDS for each application</li>
+<li>each are specific applications</li>
+<li>hosting near the original data</li>
+<li>data provider is responsible for data integrity</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: si</p>
+<p class="date">Created: 2025-01-24 Fr 15:36</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-01-24 Fr 19:50 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Vue</title>
+<meta name="author" content="si" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Vue</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgc6d5078">1. 数据绑定</a></li>
+<li><a href="#org4b3dd00">2. npm</a></li>
+<li><a href="#org7da8dd4">3. 操作</a></li>
+<li><a href="#orgbf037a7">4. 生命周期</a></li>
+<li><a href="#orgab24e11">5. component</a></li>
+<li><a href="#orga5721e2">6. Mustache</a></li>
+<li><a href="#orgf2203f1">7. v-bind</a>
+<ul>
+<li><a href="#org41d874d">7.1. multi class 动态绑定v-band</a></li>
+<li><a href="#orgd855f9c">7.2. multi style 动态绑定v-band</a></li>
+</ul>
+</li>
+<li><a href="#org78544f1">8. v-show</a></li>
+<li><a href="#org92c1b87">9. v-if</a></li>
+<li><a href="#org3dfee06">10. watch multiple value</a></li>
+<li><a href="#orgb3e9a1a">11. reactive multiple value</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc6d5078" class="outline-2">
+<h2 id="orgc6d5078"><span class="section-number-2">1.</span> 数据绑定</h2>
+<div class="outline-text-2" id="text-1">
+<ol class="org-ol">
+<li>计算属性
+在computed属性对象中定义计算属性的方法
+在页面中使用{{方法名}}来显示计算的结果</li>
+<li>监视属性:
+通过通过vm对象的$watch()或watch配置来监视指定的属性
+当属性变化时, 回调函数自动调用, 在函数内部进行计算</li>
+<li><p>
+计算属性高级:
+通过getter/setter实现对属性数据的显示和监视
+计算属性存在缓存, 多次读取只执行一次getter计算
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">
+<span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">app</span> = Vue.createApp({
+    data() {
+        <span style="color: #4f97d7; font-weight: bold;">return</span> { count: 4 }
+    }
+})
+
+<span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">vm</span> = app.mount(<span style="color: #2d9574;">'#app'</span>)
+
+console.log(vm.$data.count) <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; 4</span>
+console.log(vm.count)       <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; 4</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#20462;&#25913; vm.count &#30340;&#20540;&#20063;&#20250;&#26356;&#26032; $data.count</span>
+vm.count = 5
+console.log(vm.$data.count) <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; 5</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#21453;&#20043;&#20134;&#28982;</span>
+vm.$data.count = 6
+console.log(vm.count) <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; 6</span>
+
+</pre>
+</div></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org4b3dd00" class="outline-2">
+<h2 id="org4b3dd00"><span class="section-number-2">2.</span> npm</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+npm install 将会执行package.json 的设定，
+在IDAE里可以选中package.json 里的 build:prod字段，run
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7da8dd4" class="outline-2">
+<h2 id="org7da8dd4"><span class="section-number-2">3.</span> 操作</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+vd 是vue里的data属性
+</p>
+
+<p>
+vm 是vue里的mothods方法
+</p>
+
+<p>
+ht 是html里的标签
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">{{vd}}</td>
+<td class="org-left">占位</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">v-text="vd"</td>
+<td class="org-left">替换</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">v-html="vd"</td>
+<td class="org-left">替换并渲染</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">v-bind:ht="vd"</td>
+<td class="org-left">:ht="vd" 设置属性</td>
+<td class="org-left">可用3元表达式或者数据的元素对象指定</td>
+</tr>
+
+<tr>
+<td class="org-left">v-on:ht="vm"</td>
+<td class="org-left">@ht="vm"</td>
+<td class="org-left">on methode(可自定义)</td>
+</tr>
+
+<tr>
+<td class="org-left">v-mode="vd"</td>
+<td class="org-left">只在表单中暴露vd,并操作</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">v-for="(item,index) in "vd""</td>
+<td class="org-left">vd时vue中可迭代元素或在对象</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">v-for="i in 10"</td>
+<td class="org-left">1,,,,,9</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">push</td>
+<td class="org-left">后加</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">unshift</td>
+<td class="org-left">前加</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">v-if</td>
+<td class="org-left">删除不显示的元素</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">v-show</td>
+<td class="org-left">display 不显示的元素</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgbf037a7" class="outline-2">
+<h2 id="orgbf037a7"><span class="section-number-2">4.</span> 生命周期</h2>
+<div class="outline-text-2" id="text-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">beforeCreate</td>
+<td class="org-left">加载vue系统构造，但是可以接触到Dom元素</td>
+</tr>
+
+<tr>
+<td class="org-left">created</td>
+<td class="org-left">加载自定义的data,mothods, filter&#x2026;..</td>
+</tr>
+
+<tr>
+<td class="org-left">beforeMounte</td>
+<td class="org-left">创建特性在内存</td>
+</tr>
+
+<tr>
+<td class="org-left">mounted</td>
+<td class="org-left">加载特性，渲染页面</td>
+</tr>
+
+<tr>
+<td class="org-left">beforeupdate</td>
+<td class="org-left">更改特性</td>
+</tr>
+
+<tr>
+<td class="org-left">updated</td>
+<td class="org-left">渲染更改的特性</td>
+</tr>
+
+<tr>
+<td class="org-left">beforedestroy</td>
+<td class="org-left">准备清除特性</td>
+</tr>
+
+<tr>
+<td class="org-left">destroy</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgab24e11" class="outline-2">
+<h2 id="orgab24e11"><span class="section-number-2">5.</span> component</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+1, 用extends编写template
+2, 在component中编写template
+3, 在vue 外部，script模块中编写template
+4, 在vue的组件中使用变量和方法，必须在组件中用函数定义，
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga5721e2" class="outline-2">
+<h2 id="orga5721e2"><span class="section-number-2">6.</span> Mustache</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+{{item }} item von el can be here
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf2203f1" class="outline-2">
+<h2 id="orgf2203f1"><span class="section-number-2">7.</span> v-bind</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+v-bind: kann verbunden werden mit
+id, href, key, für characters von DOM elements
+</p>
+</div>
+
+<div id="outline-container-org41d874d" class="outline-3">
+<h3 id="org41d874d"><span class="section-number-3">7.1.</span> multi class 动态绑定v-band</h3>
+<div class="outline-text-3" id="text-7-1">
+<ol class="org-ol">
+<li>三目运算指定class</li>
+<li>集合，可删除class，不可增加,不会被拦截</li>
+<li>数组，可加可减</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgd855f9c" class="outline-3">
+<h3 id="orgd855f9c"><span class="section-number-3">7.2.</span> multi style 动态绑定v-band</h3>
+<div class="outline-text-3" id="text-7-2">
+<ol class="org-ol">
+<li>三目运算指定style</li>
+<li>集合，可删除style，不可增加， 不会被拦截</li>
+<li>数组，可加可减</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org78544f1" class="outline-2">
+<h2 id="org78544f1"><span class="section-number-2">8.</span> v-show</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+if v-show is false, the DOM element is already included, but will not be presented.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org92c1b87" class="outline-2">
+<h2 id="org92c1b87"><span class="section-number-2">9.</span> v-if</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+if v-if is false, the DOM element will be deleted
+</p>
+</div>
+</div>
+<div id="outline-container-org3dfee06" class="outline-2">
+<h2 id="org3dfee06"><span class="section-number-2">10.</span> watch multiple value</h2>
+<div class="outline-text-2" id="text-10">
+<div class="org-src-container">
+<pre class="src src-js">watch(
+  () =&gt; [PlasData.Amount_Package_Plasmid_1, PlasData.Concentration_Package_Plasmid_1],
+  ([Amount_Package_Plasmid_1, Concentration_Package_Plasmid_1]) =&gt; {
+    PlasData.Volume_Package_Plasmid_1 =  +((1/Concentration_Package_Plasmid_1)*Amount_Package_Plasmid_1).toFixed(2)
+  })
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb3e9a1a" class="outline-2">
+<h2 id="orgb3e9a1a"><span class="section-number-2">11.</span> reactive multiple value</h2>
+<div class="outline-text-2" id="text-11">
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">platedata</span> :PlatedataType[]  = reactive([])
+platedata.push({id:1, name:<span style="color: #2d9574;">"6 Well"</span>, highlight: <span style="color: #a45bad;">false</span>, editable: <span style="color: #a45bad;">true</span>, show: <span style="color: #a45bad;">false</span>})
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: si</p>
+<p class="date">Created: 2025-01-24 Fr 19:50</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

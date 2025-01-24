@@ -1,0 +1,3783 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-01-24 Fr 19:50 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Webdesige</title>
+<meta name="author" content="si" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Webdesige</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org5b17ff9">1. Factory mode</a>
+<ul>
+<li><a href="#org435706a">1.1. one product one factory many many design</a></li>
+<li><a href="#org2b473ca">1.2. one product many factory many design</a></li>
+<li><a href="#orga211b3b">1.3. many  product many factory many design</a></li>
+</ul>
+</li>
+<li><a href="#org60ccbf6">2. project build digraph</a></li>
+<li><a href="#orga20c8fc">3. WordPress Web development in AWS</a>
+<ul>
+<li><a href="#orga0a4b04">3.1. 构建后台</a></li>
+<li><a href="#org910bba6">3.2. 解析域名</a></li>
+<li><a href="#org540aa22">3.3. ssl</a></li>
+<li><a href="#orgd08ff07">3.4. scp</a></li>
+<li><a href="#org2efc607">3.5. external html</a></li>
+</ul>
+</li>
+<li><a href="#org0bbba3c">4. Web Design Envirement in Emacs</a>
+<ul>
+<li><a href="#org2931828">4.1. lsp-mode</a></li>
+<li><a href="#org4778ef5">4.2. lsp-java</a></li>
+<li><a href="#org8311de1">4.3. dap-mode</a></li>
+<li><a href="#org05028b5">4.4. Spring Boot</a></li>
+<li><a href="#orgb46433e">4.5. project build digraph</a></li>
+<li><a href="#org2adb49d">4.6. appeared Problem</a>
+<ul>
+<li><a href="#orgcbf08a9">4.6.1. server is not startup</a></li>
+<li><a href="#org9c1f8e1">4.6.2. can't find the main class to start project</a></li>
+<li><a href="#orge0a96ec">4.6.3. 没有对应的补全</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org27432b3">5. MySQL</a>
+<ul>
+<li><a href="#org55d5bed">5.1. 事务隔离</a></li>
+<li><a href="#orgf561b30">5.2. single java file connect to mysql</a></li>
+<li><a href="#org5f2347b">5.3. execute as a jar file</a></li>
+<li><a href="#orgb2fbc04">5.4. springboot</a></li>
+<li><a href="#orgcc631a5">5.5. 事务 Transaction</a></li>
+<li><a href="#orga7cd39f">5.6. 范式</a></li>
+<li><a href="#org1ba469c">5.7. 连接池</a></li>
+<li><a href="#org088d2a8">5.8. 外键</a></li>
+<li><a href="#orgc3f61b1">5.9. 多表</a></li>
+<li><a href="#orgc4143af">5.10. execute in emacs</a></li>
+</ul>
+</li>
+<li><a href="#org32f96c5">6. MongoDB</a>
+<ul>
+<li><a href="#org7d13599">6.1. install</a></li>
+<li><a href="#orge498293">6.2. create database, collections, and drops</a></li>
+<li><a href="#orgb86a87c">6.3. create database, collections, and documents</a></li>
+<li><a href="#org5a2ee39">6.4. backup and restore</a>
+<ul>
+<li><a href="#org7a74cd3">6.4.1. 01, create documents</a></li>
+<li><a href="#org79263a4">6.4.2. 02, dump</a></li>
+<li><a href="#orge044bb6">6.4.3. 03, delete documents</a></li>
+<li><a href="#org03d7cde">6.4.4. 04, restore</a></li>
+<li><a href="#orge18c843">6.4.5. 05, check</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org94039bd">7. fastdfs</a>
+<ul>
+<li><a href="#org050aa3a">7.1. libfastcommon &amp; fastdfs</a>
+<ul>
+<li><a href="#org3c891ea">7.1.1. install</a></li>
+<li><a href="#orgf5b1e0c">7.1.2. create location of tracker and stoarge</a></li>
+<li><a href="#org76384b2">7.1.3. copy config</a></li>
+<li><a href="#orgf2d6c49">7.1.4. config tracker stoarge client</a></li>
+<li><a href="#orgb3c64d1">7.1.5. open port</a></li>
+<li><a href="#org312c1b1">7.1.6. start and test</a></li>
+</ul>
+</li>
+<li><a href="#org67ef12e">7.2. fastdfs-nginx-mode</a></li>
+<li><a href="#org98534f3">7.3. nginx with fdfs</a></li>
+<li><a href="#org8619aea">7.4. IDEA config</a></li>
+</ul>
+</li>
+<li><a href="#org40e85c4">8. Nodejs newest install</a></li>
+<li><a href="#org9429735">9. Yarn  newest install</a></li>
+<li><a href="#orgab2e87d">10. JS</a></li>
+<li><a href="#org64bbde1">11. ts</a></li>
+<li><a href="#org7508f91">12. npm</a></li>
+<li><a href="#org74dadb8">13. nvm</a></li>
+<li><a href="#org9eb3d06">14. Webpack</a></li>
+<li><a href="#orgc307695">15. JQuary</a>
+<ul>
+<li><a href="#orgbc66a9f">15.1. select element</a>
+<ul>
+<li><a href="#orgf910df7">15.1.1. JQuery选择器</a></li>
+<li><a href="#orgab4c5e6">15.1.2. CSS 选择器</a></li>
+</ul>
+</li>
+<li><a href="#org42f4186">15.2. JQuery思想 方法函数化 方法链式化， 取值赋值一体化</a></li>
+<li><a href="#orgc3bc4d8">15.3. function</a>
+<ul>
+<li><a href="#orgdea59b8">15.3.1. filter</a></li>
+<li><a href="#org34fdb23">15.3.2. not</a></li>
+<li><a href="#org3abebd6">15.3.3. has</a></li>
+<li><a href="#org1fbaba3">15.3.4. prev</a></li>
+<li><a href="#org6592a83">15.3.5. next</a></li>
+<li><a href="#org9771462">15.3.6. find</a></li>
+<li><a href="#org2ac9d95">15.3.7. eq</a></li>
+<li><a href="#org366a131">15.3.8. index</a></li>
+<li><a href="#org594d0a1">15.3.9. attr</a></li>
+<li><a href="#org00377f5">15.3.10. addClass</a></li>
+<li><a href="#org10771db">15.3.11. removeClass</a></li>
+<li><a href="#orgf6fcee6">15.3.12. on</a></li>
+<li><a href="#org744916d">15.3.13. off</a></li>
+<li><a href="#orgdda2aa2">15.3.14. width</a></li>
+<li><a href="#org963c920">15.3.15. scrollTop</a></li>
+<li><a href="#org39ecf45">15.3.16. </a></li>
+</ul>
+</li>
+<li><a href="#org5677f76">15.4. operation function</a></li>
+</ul>
+</li>
+<li><a href="#orge9c0e8b">16. AJAX</a></li>
+<li><a href="#org84b42a9">17. Servlet</a></li>
+<li><a href="#org0fb52c7">18. Bootstrap</a></li>
+<li><a href="#orgbe12853">19. Spring</a>
+<ul>
+<li><a href="#orgf4d0148">19.1. sammelung:</a></li>
+<li><a href="#org4c62410">19.2. Annotation mehthod</a>
+<ul>
+<li><a href="#orgef94b81">19.2.1. @Component</a></li>
+<li><a href="#org81bbd5b">19.2.2. web hierarchy with @component</a></li>
+<li><a href="#org2b125eb">19.2.3. autowired</a></li>
+<li><a href="#orgcecce5e">19.2.4. interface with @Autowired</a></li>
+</ul>
+</li>
+<li><a href="#orgf2819da">19.3. xml mehthod</a></li>
+<li><a href="#orgb51b41c">19.4. bean method</a>
+<ul>
+<li><a href="#org8bf5cf9">19.4.1. seter</a></li>
+<li><a href="#org5ad53c8">19.4.2. consturctor</a></li>
+</ul>
+</li>
+<li><a href="#orgfba1fbd">19.5. advancd mehthod</a>
+<ul>
+<li><a href="#orge629817">19.5.1. function field</a></li>
+<li><a href="#org2708163">19.5.2. lazy load bean</a></li>
+<li><a href="#org1d11e7e">19.5.3. init and destroy</a></li>
+</ul>
+</li>
+<li><a href="#org4d39851">19.6. log4j</a></li>
+<li><a href="#org04523c4">19.7. Test</a></li>
+<li><a href="#orgd1b0bd3">19.8. AOP</a>
+<ul>
+<li><a href="#org4ca1262">19.8.1. Concept</a></li>
+<li><a href="#orgcedef42">19.8.2. AspectJ</a></li>
+</ul>
+</li>
+<li><a href="#org696d48f">19.9. JDBC</a></li>
+</ul>
+</li>
+<li><a href="#org51c31e2">20. SpingMVC</a></li>
+<li><a href="#orgcd42378">21. Spring Boot</a></li>
+<li><a href="#orgaf0c7fc">22. JDBC</a></li>
+<li><a href="#org91353b2">23. mybatis</a>
+<ul>
+<li><a href="#org5398765">23.1. framework</a>
+<ul>
+<li><a href="#org682b6e1">23.1.1. springboot</a></li>
+<li><a href="#org8b53132">23.1.2. spring</a></li>
+</ul>
+</li>
+<li><a href="#orgb600a74">23.2. # and $</a></li>
+<li><a href="#org697e214">23.3. include</a></li>
+<li><a href="#org8964d80">23.4. 流程</a></li>
+<li><a href="#org1d68930">23.5. 延迟加载</a></li>
+<li><a href="#org1298a0c">23.6. 缓存</a></li>
+<li><a href="#orgb653f64">23.7. 一级缓存</a></li>
+<li><a href="#orgdd99ca8">23.8. 二级缓存</a></li>
+<li><a href="#orgc8aaf69">23.9. 注解开发</a></li>
+</ul>
+</li>
+<li><a href="#org9e817d7">24. Shiro</a></li>
+<li><a href="#orgd054970">25. c3p0</a></li>
+<li><a href="#org77d72b8">26. Rruid</a></li>
+<li><a href="#org61e541f">27. nginx</a>
+<ul>
+<li><a href="#org371fb12">27.1. https ssl deployment</a></li>
+<li><a href="#org2706ff6">27.2. local Nginx deployment</a>
+<ul>
+<li><a href="#orgfe822c3">27.2.1. install</a></li>
+<li><a href="#orgeee0118">27.2.2. fire wall 80 port if necessary</a></li>
+<li><a href="#org0d79174">27.2.3. nginx control</a></li>
+<li><a href="#org8223f6b">27.2.4. uninstall</a></li>
+</ul>
+</li>
+<li><a href="#org3b9dcf7">27.3. Nginx with php</a></li>
+</ul>
+</li>
+<li><a href="#org86afef5">28. apache2</a></li>
+<li><a href="#org14ebbc6">29. Maven</a>
+<ul>
+<li><a href="#org98d9e58">29.1. package all the dependencies together as a jar</a></li>
+<li><a href="#org01a7073">29.2. customize locally archetype</a></li>
+</ul>
+</li>
+<li><a href="#orgd6d21c5">30. Session und Cookie</a>
+<ul>
+<li><a href="#orge8a96ad">30.1. cookie do not carry session id</a></li>
+</ul>
+</li>
+<li><a href="#org89f2b40">31. HTTP Proposal</a>
+<ul>
+<li><a href="#org7baf91c">31.1. http Request</a></li>
+<li><a href="#org3b1d78e">31.2. Http Response</a></li>
+</ul>
+</li>
+<li><a href="#org4af8bf6">32. appeared Problem</a>
+<ul>
+<li><a href="#org0adba98">32.1. server is not startup</a></li>
+<li><a href="#org800e4c4">32.2. can't find the main class to start project</a></li>
+<li><a href="#orge163d3d">32.3. 没有对应的补全</a></li>
+</ul>
+</li>
+<li><a href="#org786620d">33. local jdk configuration</a></li>
+<li><a href="#org87885a5">34. Django</a>
+<ul>
+<li><a href="#orgc3467ff">34.1. TVM archetype</a></li>
+<li><a href="#orgb3dd934">34.2. uwsgi domain example</a></li>
+<li><a href="#orge442b00">34.3. Projekt StudyNet commands</a></li>
+<li><a href="#orgfbe391b">34.4. debug models small example</a></li>
+<li><a href="#org9cde302">34.5. modelTOmodel</a></li>
+<li><a href="#org6240618">34.6. Documents Collections</a></li>
+</ul>
+</li>
+<li><a href="#orgc30c049">35. RuoYi-Vue project</a>
+<ul>
+<li><a href="#org9bb3539">35.1. backup deployment</a>
+<ul>
+<li><a href="#orgb009e19">35.1.1. redis</a></li>
+<li><a href="#org302bf61">35.1.2. mysql</a></li>
+<li><a href="#orga9195fc">35.1.3. tomcat</a></li>
+<li><a href="#orgd1e1c69">35.1.4. schnitt</a></li>
+<li><a href="#orgabaf0ea">35.1.5. ssh</a></li>
+<li><a href="#org624caf7">35.1.6. dependence from jdk8</a></li>
+</ul>
+</li>
+<li><a href="#orgac83b4b">35.2. frontend deployment</a>
+<ul>
+<li><a href="#org2ddf8db">35.2.1. build</a></li>
+<li><a href="#orgb34f5c2">35.2.2. 验证码 for nginx</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org1431e88">36. webpack</a></li>
+<li><a href="#org2abe763">37. serve</a></li>
+<li><a href="#orgb6607d3">38. Traefik</a>
+<ul>
+<li><a href="#org1449c71">38.1. just load traefik</a></li>
+<li><a href="#orga3f50ec">38.2. load traefik with configaution</a></li>
+</ul>
+</li>
+<li><a href="#org151604e">39. Oauth</a></li>
+<li><a href="#orge142bb3">40. VScode</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orge5c662a">40.0.1. set the fontsize</a></li>
+<li><a href="#org822986a">40.0.2. Zen mode</a></li>
+<li><a href="#org317d6d0">40.0.3. Minmap</a></li>
+<li><a href="#orgfc7accd">40.0.4. switch in opened file</a></li>
+<li><a href="#org8dde60c">40.0.5. Emmet</a></li>
+<li><a href="#org5134fd2">40.0.6. Quokka</a></li>
+<li><a href="#orgec1af48">40.0.7. Better comments</a></li>
+<li><a href="#org4e76987">40.0.8. live server</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgce5fd42">41. Problem</a>
+<ul>
+<li><a href="#org0c4cb39">41.1. maximun file number</a></li>
+<li><a href="#org8ee8c23">41.2. Mix of Tab and space</a></li>
+<li><a href="#orge8be7ea">41.3. Unexpected tab character (no-tabs)</a></li>
+<li><a href="#org68fba2a">41.4. Parsing error: Unexpected token &lt;</a></li>
+<li><a href="#org0622129">41.5. Expected indentation of 8 spaces but found 1 tab (indent)</a></li>
+<li><a href="#org5ce3459">41.6. error:0308010C:digital envelope routines::unsupported</a></li>
+<li><a href="#org645ef66">41.7. scp to <i>var/www/html</i> permission dense</a></li>
+</ul>
+</li>
+<li><a href="#orgfa7cfac">42. full stack deployment</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5b17ff9" class="outline-2">
+<h2 id="org5b17ff9"><span class="section-number-2">1.</span> Factory mode</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org435706a" class="outline-3">
+<h3 id="org435706a"><span class="section-number-3">1.1.</span> one product one factory many many design</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+一个产品，在一个工厂里有多个设计实现
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2b473ca" class="outline-3">
+<h3 id="org2b473ca"><span class="section-number-3">1.2.</span> one product many factory many design</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+一个产品，在多个各自的工厂里，有自己特有的设计实现
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga211b3b" class="outline-3">
+<h3 id="orga211b3b"><span class="section-number-3">1.3.</span> many  product many factory many design</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+对于多个产品，在多个各自的工厂里，有自己特有的对每个产品的设计实现
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org60ccbf6" class="outline-2">
+<h2 id="org60ccbf6"><span class="section-number-2">2.</span> project build digraph</h2>
+<div class="outline-text-2" id="text-2">
+
+<div id="org6969c69" class="figure">
+<p><img src="foto/webbuildmitemacs.png" alt="webbuildmitemacs.png" />
+</p>
+</div>
+
+
+<pre class="example">
+1 add the to the above SRC begin:  dot :file ../sysconf/foto/webbuild.png
+2 delete the output :  [[file:../sysconf/foto/webbuild.png]]
+3 push the sysc repository, because the foto is located in it
+4 add the link from sysc repository  https://github.com/scofild429/sysc/blob/master/foto/webbuild.png
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orga20c8fc" class="outline-2">
+<h2 id="orga20c8fc"><span class="section-number-2">3.</span> WordPress Web development in AWS</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orga0a4b04" class="outline-3">
+<h3 id="orga0a4b04"><span class="section-number-3">3.1.</span> 构建后台</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+没事不要执行该代码
+</p>
+<pre class="example">
+cd ~/Documents/web/key_aws
+ssh ubuntu@3.124.205.43 -i pass1aws.pem
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install apache2
+sudo systemctl status apache2
+sudo systemctl enable apache2
+sudo apt install mariadb-server mariadb-client
+sudo systemctl start mariadb
+sudo systemctl status mariadb
+sudo mysql_secure_installation ...
+sudo systemctl restart mariadb
+sudo apt install php php-mysql php-gd php-cli php-common
+sudo apt install wget unzip
+sudo wget https://wordpress.org/latest.zip
+sudo unzip latest.zip
+sudo cp -r wordpress/* /var/www/html/
+cd /var/www/html/
+sudo chown www-data:www-data -R /var/www/html/
+sudo rm index.html 
+## Now go to the IP webseit, when need database, do so
+sudo mysql -u root -p
+Enter
+##  create database wordpress;
+create database wordpress;
+create user "wpadmin"@"%" identified by "wpadminpw";
+grant all privileges on wordpress.* to "wpadmin"@"%";
+exit;
+</pre>
+<p>
+back to the IP webseit,
+pass the database , username and password,
+set username and password for wordpress,
+到此，可以用IP 地址访问前端和后台了
+</p>
+</div>
+</div>
+
+<div id="outline-container-org910bba6" class="outline-3">
+<h3 id="org910bba6"><span class="section-number-3">3.2.</span> 解析域名</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+route53, 用域名创建NS
+A-IPV4,名称为空， 值为IP
+CNAME，名称www, 值为域名
+再将A 和CNAME 放到namecheap的域名的DNS管理中
+</p>
+</div>
+</div>
+<div id="outline-container-org540aa22" class="outline-3">
+<h3 id="org540aa22"><span class="section-number-3">3.3.</span> ssl</h3>
+<div class="outline-text-3" id="text-3-3">
+<pre class="example">
+sudo a2enmod ssl
+sudo systemctl restart apache2
+cd ~
+wget https://dl.eff.org/certbot-auto
+chmod a+x certbot-auto
+sudo ./certbot-auto --apache....
+</pre>
+<p>
+go to <a href="https://www.sslshopper.com/ssl-checker.html">https://www.sslshopper.com/ssl-checker.html</a> and check you domina
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd08ff07" class="outline-3">
+<h3 id="orgd08ff07"><span class="section-number-3">3.4.</span> scp</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+transfer file to linux instance of CE2
+</p>
+<pre class="example">
+scp -i pass1aws.pem init.el ubuntu@3.124.205.43:.emacs.d
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org2efc607" class="outline-3">
+<h3 id="org2efc607"><span class="section-number-3">3.5.</span> external html</h3>
+<div class="outline-text-3" id="text-3-5">
+<ul class="org-ul">
+<li>将文件传到部署根目录</li>
+<li>复制文件xxx.html 为page-xxx.php到应用主题根目录</li>
+<li>创建页面，先只写标题，保存后改别名，slug 为xxx</li>
+<li>发布后，将页面设为菜单就能访问</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org0bbba3c" class="outline-2">
+<h2 id="org0bbba3c"><span class="section-number-2">4.</span> Web Design Envirement in Emacs</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org2931828" class="outline-3">
+<h3 id="org2931828"><span class="section-number-3">4.1.</span> lsp-mode</h3>
+</div>
+<div id="outline-container-org4778ef5" class="outline-3">
+<h3 id="org4778ef5"><span class="section-number-3">4.2.</span> lsp-java</h3>
+</div>
+<div id="outline-container-org8311de1" class="outline-3">
+<h3 id="org8311de1"><span class="section-number-3">4.3.</span> dap-mode</h3>
+</div>
+<div id="outline-container-org05028b5" class="outline-3">
+<h3 id="org05028b5"><span class="section-number-3">4.4.</span> Spring Boot</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+Emacs : M-x lsp-java-springboot-generate
+after build the project, it can be compiled by Maven,and run
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb46433e" class="outline-3">
+<h3 id="orgb46433e"><span class="section-number-3">4.5.</span> project build digraph</h3>
+<div class="outline-text-3" id="text-4-5">
+<pre class="example">
+digraph diagramm {
+        Emacs  [shape=box,color=red]
+        LspJavaSpringInitizer [shape=box,color=red]
+        Config [shape=box,color=red]
+        dapDebug [shape=box,color=red]
+        Programmierung [shape=box,color=red]
+        Terminal -&gt;  Maven建包;
+        Maven建包 -&gt; Maven加依赖pom;
+        Maven加依赖pom -&gt; OpenEmacsFile;
+        OpenEmacsFile -&gt;   Programmierung;
+        Programmierung -&gt; MavenCompile;
+        MavenCompile -&gt; MavenPackage;
+        MavenCompile -&gt; dapDebug[label = "也可./mvnx"];
+        MavenPackage -&gt; 执行jar包;
+        MavenPackage -&gt; dapDebug;
+        执行jar包 -&gt; dapDebug;
+        Emacs -&gt; LspJavaSpringInitizer;
+        LspJavaSpringInitizer -&gt; Config;
+        Config -&gt; Programmierung;
+        Programmierung -&gt; dapDebug;
+        dapDebug -&gt; Webbroser;
+}
+</pre>
+
+<pre class="example">
+1 add the to the above SRC begin:  dot :file ../sysconf/foto/webbuild.png
+2 delete the output :  [[file:../sysconf/foto/webbuild.png]]
+3 push the sysc repository, because the foto is located in it
+4 add the link from sysc repository  https://github.com/scofild429/sysc/blob/master/foto/webbuild.png
+</pre>
+
+<p>
+<a href="https://github.com/scofild429/sysc/blob/master/foto/webbuild.png">webbuild.png</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2adb49d" class="outline-3">
+<h3 id="org2adb49d"><span class="section-number-3">4.6.</span> appeared Problem</h3>
+<div class="outline-text-3" id="text-4-6">
+</div>
+<div id="outline-container-orgcbf08a9" class="outline-4">
+<h4 id="orgcbf08a9"><span class="section-number-4">4.6.1.</span> server is not startup</h4>
+<div class="outline-text-4" id="text-4-6-1">
+<p>
+1, workspace 有重叠和包含，
+2, 需要重启 lsp mode
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9c1f8e1" class="outline-4">
+<h4 id="org9c1f8e1"><span class="section-number-4">4.6.2.</span> can't find the main class to start project</h4>
+<div class="outline-text-4" id="text-4-6-2">
+<p>
+mvn compile 出现问题，大多数时候是依赖的问题
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge0a96ec" class="outline-4">
+<h4 id="orge0a96ec"><span class="section-number-4">4.6.3.</span> 没有对应的补全</h4>
+<div class="outline-text-4" id="text-4-6-3">
+<p>
+mvn 依赖的version 不同会有不同的包，补全也不同
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org27432b3" class="outline-2">
+<h2 id="org27432b3"><span class="section-number-2">5.</span> MySQL</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org55d5bed" class="outline-3">
+<h3 id="org55d5bed"><span class="section-number-3">5.1.</span> 事务隔离</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+1 可同时访问修改   脏读
+2 隔离访问        不可重返读
+3 单人访问        幻读
+</p>
+</div>
+</div>
+<div id="outline-container-orgf561b30" class="outline-3">
+<h3 id="orgf561b30"><span class="section-number-3">5.2.</span> single java file connect to mysql</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+1.download the driver to a current to java file
+</p>
+
+<p>
+<a href="https://jar-download.com/artifacts/mysql/mysql-connector-java">official web</a>, and in my case 
+</p>
+
+<p>
+mysql-connector-java-8.0.20.jar
+</p>
+
+<p>
+2.add the current path to the CLASSPATH
+</p>
+
+<p>
+export CLASSPATH=mysql-connector-java-8.0.20.jar:.
+</p>
+
+<p>
+3.compile and connect
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5f2347b" class="outline-3">
+<h3 id="org5f2347b"><span class="section-number-3">5.3.</span> execute as a jar file</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+if I want to package them to a package to a jar
+<a href="https://stackoverflow.com/questions/574594/how-can-i-create-an-executable-jar-with-dependencies-using-maven">starkoverflow hitting</a>
+and this plugin to pom.xml
+</p>
+<pre class="example">
+&lt;build&gt;
+  &lt;plugins&gt;
+    &lt;plugin&gt;
+      &lt;artifactId&gt;maven-assembly-plugin&lt;/artifactId&gt;
+      &lt;configuration&gt;
+        &lt;archive&gt;
+          &lt;manifest&gt;
+            &lt;mainClass&gt;fully.qualified.MainClass&lt;/mainClass&gt;
+          &lt;/manifest&gt;
+        &lt;/archive&gt;
+        &lt;descriptorRefs&gt;
+          &lt;descriptorRef&gt;jar-with-dependencies&lt;/descriptorRef&gt;
+        &lt;/descriptorRefs&gt;
+      &lt;/configuration&gt;
+    &lt;/plugin&gt;
+  &lt;/plugins&gt;
+&lt;/build&gt;
+</pre>
+<p>
+and run with : mvn clean compile assembly:single
+</p>
+
+<p>
+and then mvn package
+</p>
+
+<p>
+can be called by jar file
+</p>
+
+<p>
+java -cp target/xxxx&#x2026;.xx.jar com.mycompany.app.App 
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb2fbc04" class="outline-3">
+<h3 id="orgb2fbc04"><span class="section-number-3">5.4.</span> springboot</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+just call the plugins at the start
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcc631a5" class="outline-3">
+<h3 id="orgcc631a5"><span class="section-number-3">5.5.</span> 事务 Transaction</h3>
+<div class="outline-text-3" id="text-5-5">
+<pre class="example">
+
+声明式：Annoation
+1, 配置事务管理器
+2, 开启事务注解
+3, 添加事务注解
+@Transaction(propagation, isolation, timeout, readout, (no)rollback)
+propagation;事务是否传播
+isolation:
+脏读：未提交的事务读取到另一个未提交的事务的原始数据
+不可重复读；未提交的事务读取到另一个提交的事务的原始数据
+幻读；未提交的事务读取到另一个提交的事务的修改数据
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orga7cd39f" class="outline-3">
+<h3 id="orga7cd39f"><span class="section-number-3">5.6.</span> 范式</h3>
+<div class="outline-text-3" id="text-5-6">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">原子性</td>
+<td class="org-left">一致性</td>
+<td class="org-left">隔离性</td>
+<td class="org-left">持久性</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org1ba469c" class="outline-3">
+<h3 id="org1ba469c"><span class="section-number-3">5.7.</span> 连接池</h3>
+</div>
+<div id="outline-container-org088d2a8" class="outline-3">
+<h3 id="org088d2a8"><span class="section-number-3">5.8.</span> 外键</h3>
+</div>
+<div id="outline-container-orgc3f61b1" class="outline-3">
+<h3 id="orgc3f61b1"><span class="section-number-3">5.9.</span> 多表</h3>
+</div>
+<div id="outline-container-orgc4143af" class="outline-3">
+<h3 id="orgc4143af"><span class="section-number-3">5.10.</span> execute in emacs</h3>
+<div class="outline-text-3" id="text-5-10">
+<ol class="org-ol">
+<li>create mvn project</li>
+<li>find the plugin of mysql and add it to pom.xml</li>
+<li>programmierung</li>
+<li>the connection can be call in the dabug of emacs</li>
+</ol>
+<p>
+M-x :dap-debug
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org32f96c5" class="outline-2">
+<h2 id="org32f96c5"><span class="section-number-2">6.</span> MongoDB</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org7d13599" class="outline-3">
+<h3 id="org7d13599"><span class="section-number-3">6.1.</span> install</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+go to official seit and stetp by step
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">commonds</th>
+<th scope="col" class="org-left">functions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">or</td>
+<td class="org-left">$inc</td>
+</tr>
+
+<tr>
+<td class="org-left">in</td>
+<td class="org-left">$mul</td>
+</tr>
+
+<tr>
+<td class="org-left">exist</td>
+<td class="org-left">$rename</td>
+</tr>
+
+<tr>
+<td class="org-left">gl</td>
+<td class="org-left">$set</td>
+</tr>
+
+<tr>
+<td class="org-left">sort</td>
+<td class="org-left">$unset</td>
+</tr>
+
+<tr>
+<td class="org-left">limit</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">skip</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">upsert</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">rename</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">getIndexs</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">createIndex</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">dropIndex</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo systemctl start mongod
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge498293" class="outline-3">
+<h3 id="orge498293"><span class="section-number-3">6.2.</span> create database, collections, and drops</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+:admin  at the first step, we must login into one  database
+</p>
+<div class="org-src-container">
+<pre class="src src-mongo">show dbs;
+use xiaoma;
+db.createCollection("posts");
+show collections;
+db.posts.drop();
+db.dropDatabase();
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb86a87c" class="outline-3">
+<h3 id="orgb86a87c"><span class="section-number-3">6.3.</span> create database, collections, and documents</h3>
+<div class="outline-text-3" id="text-6-3">
+<div class="org-src-container">
+<pre class="src src-mongo">
+use xiaoma;
+db.createCollection("posts");
+show collections;
+
+db.posts.insert({ 
+    title: "my first blog",
+    content: "can be start"
+});
+db.posts.insert({ 
+    title: "my second blog",
+    content: "can be start now",
+    tag: ["unknow type"]
+});
+
+for(var i = 3;i&lt;=10;i++){
+    db.posts.insert( {title :"this is my "+i+"th blog"});
+};
+db.posts.find();
+db.posts.count();
+db.posts.remove({});
+db.posts.drop();
+db.dropDatabase();
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5a2ee39" class="outline-3">
+<h3 id="org5a2ee39"><span class="section-number-3">6.4.</span> backup and restore</h3>
+<div class="outline-text-3" id="text-6-4">
+<p>
+mongo xiaoma  : can just get in xiaoma database
+</p>
+</div>
+<div id="outline-container-org7a74cd3" class="outline-4">
+<h4 id="org7a74cd3"><span class="section-number-4">6.4.1.</span> 01, create documents</h4>
+<div class="outline-text-4" id="text-6-4-1">
+<div class="org-src-container">
+<pre class="src src-mongo">use xiaoma;
+db.createCollection("posts");
+show collections;
+
+db.posts.insert({ 
+    title: "my first blog",
+    content: "can be start"
+});
+db.posts.insert({ 
+    title: "my second blog",
+    content: "can be start now",
+    tag: ["unknow type"]
+});
+
+for(var i = 3;i&lt;=10;i++){
+    db.posts.insert( {title :"this is my "+i+"th blog"});
+};
+
+db.posts.find();
+db.posts.count();
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org79263a4" class="outline-4">
+<h4 id="org79263a4"><span class="section-number-4">6.4.2.</span> 02, dump</h4>
+<div class="outline-text-4" id="text-6-4-2">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #4f97d7;">cd</span> ~/Desktop/
+mkdir mongobk
+<span style="color: #4f97d7;">cd</span> mongobk
+mongodump -d xiaoma
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge044bb6" class="outline-4">
+<h4 id="orge044bb6"><span class="section-number-4">6.4.3.</span> 03, delete documents</h4>
+<div class="outline-text-4" id="text-6-4-3">
+<div class="org-src-container">
+<pre class="src src-mongo">use xiaoma;
+db.posts.remove({});
+db.posts.find();
+exit;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org03d7cde" class="outline-4">
+<h4 id="org03d7cde"><span class="section-number-4">6.4.4.</span> 04, restore</h4>
+<div class="outline-text-4" id="text-6-4-4">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #4f97d7;">cd</span> ~/Desktop/mongobk
+mongorestore --drop
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge18c843" class="outline-4">
+<h4 id="orge18c843"><span class="section-number-4">6.4.5.</span> 05, check</h4>
+<div class="outline-text-4" id="text-6-4-5">
+<div class="org-src-container">
+<pre class="src src-mongo">use xiaoma;
+db.posts.find();
+db.posts.drop();
+db.dropDatabase();
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org94039bd" class="outline-2">
+<h2 id="org94039bd"><span class="section-number-2">7.</span> fastdfs</h2>
+<div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-org050aa3a" class="outline-3">
+<h3 id="org050aa3a"><span class="section-number-3">7.1.</span> libfastcommon &amp; fastdfs</h3>
+<div class="outline-text-3" id="text-7-1">
+</div>
+<div id="outline-container-org3c891ea" class="outline-4">
+<h4 id="org3c891ea"><span class="section-number-4">7.1.1.</span> install</h4>
+<div class="outline-text-4" id="text-7-1-1">
+<p>
+sudo ./make.sh install
+查看tracker和storage的执行脚本，安装后必须存在
+ ll <i>etc/init.d</i> | grep fdfs
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf5b1e0c" class="outline-4">
+<h4 id="orgf5b1e0c"><span class="section-number-4">7.1.2.</span> create location of tracker and stoarge</h4>
+<div class="outline-text-4" id="text-7-1-2">
+<p>
+mkdir ~/Dokumente/WebDev/fastdfs/client
+mkdir ~/Dokumente/WebDev/fastdfs/tracker
+mkdir ~/Dokumente/WebDev/fastdfs/storage
+</p>
+</div>
+</div>
+
+<div id="outline-container-org76384b2" class="outline-4">
+<h4 id="org76384b2"><span class="section-number-4">7.1.3.</span> copy config</h4>
+<div class="outline-text-4" id="text-7-1-3">
+<p>
+sudo cp <i>etc/fdfs/client.conf.sample /etc/fdfs/client.conf
+sudo cp /etc/fdfs/tracker.conf.sample /etc/fdfs/tracker.conf
+sudo cp /etc/fdfs/storage.conf.sample /etc/fdfs/storage.conf
+sudo cp //etc/fdfs/storage<sub>ids.conf.sample</sub></i> //etc/fdfs/storage<sub>ids.conf</sub>
+</p>
+</div>
+</div>
+<div id="outline-container-orgf2d6c49" class="outline-4">
+<h4 id="orgf2d6c49"><span class="section-number-4">7.1.4.</span> config tracker stoarge client</h4>
+<div class="outline-text-4" id="text-7-1-4">
+<p>
+cd /etc/fdfs
+copy all config file as modification file
+</p>
+
+<p>
+tracker:
+修改base<sub>path</sub> 为新建的tracker目录full name
+</p>
+
+<p>
+storage:
+base<sub>path</sub> 为新建的storage目录full name
+store<sub>path</sub> 为新建的storage目录fullname
+tracker-server:内网加tracker的端口
+</p>
+
+<p>
+client:
+base<sub>path</sub>: 为新建的client目录full
+tracker-server:内网加tracker的端口
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb3c64d1" class="outline-4">
+<h4 id="orgb3c64d1"><span class="section-number-4">7.1.5.</span> open port</h4>
+<div class="outline-text-4" id="text-7-1-5">
+<p>
+open port 
+sudo firewall-cmd &#x2013;add-port=80/tcp &#x2013;permanent
+sudo firewall-cmd &#x2013;add-port=23000/tcp &#x2013;permanent
+sudo firewall-cmd &#x2013;add-port=22122/tcp &#x2013;permanent
+restart firewall:
+sudo  firewall-cmd &#x2013;reload
+</p>
+</div>
+</div>
+<div id="outline-container-org312c1b1" class="outline-4">
+<h4 id="org312c1b1"><span class="section-number-4">7.1.6.</span> start and test</h4>
+<div class="outline-text-4" id="text-7-1-6">
+<p>
+sudo /usr/bin/fdfs<sub>trackerd</sub> /etc/fdfs/tracker.conf start
+sudo /usr/bin/fdfs<sub>storaged</sub> /etc/fdfs/storage.conf start
+sudo /usr/bin/fdfs<sub>test</sub> /etc/fdfs/client.conf upload /etc/fdfs/110.png
+</p>
+
+<p>
+Or
+</p>
+
+<p>
+this can be don't  work for Unit fdfs<sub>storaged.service</sub> not found
+sudo service fdfs<sub>trackerd</sub> start
+sudo service fdfs<sub>trackerd</sub> start
+</p>
+
+<p>
+/usr/bin/fdfs<sub>upload</sub><sub>file</sub> /etc/fdfs/client.conf ~/Bilder/110.png
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org67ef12e" class="outline-3">
+<h3 id="org67ef12e"><span class="section-number-3">7.2.</span> fastdfs-nginx-mode</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+将config中的
+ngx<sub>module</sub><sub>incs</sub>="/usr/local/include" and 
+CORE<sub>INCS</sub>= <code>"$CORE_INCS /usr/local/include"
+改为：
+ngx_module_incs</code>"/usr/include/fastdfs /usr/include/fastcommon"
+CORE<sub>INCS</sub>= ="$CORE<sub>INCS</sub> /ur/include/fastdfs /usr/include/fastcommon"
+</p>
+
+
+
+<p>
+再将config同目录下的mod<sub>fastdfs.conf</sub> 复制到/etc/fdfs/中 and modify:
+</p>
+<ul class="org-ul">
+<li>tracker<sub>server</sub>   just like in storage.conf</li>
+<li>url<sub>have</sub><sub>group</sub><sub>name</sub> = true</li>
+<li>store<sub>path0</sub>   just like in storge.conf</li>
+</ul>
+
+
+<p>
+最后将fastdfs中conf中的http.conf和mime.types复制的/etc/fdfs/
+</p>
+</div>
+</div>
+
+<div id="outline-container-org98534f3" class="outline-3">
+<h3 id="org98534f3"><span class="section-number-3">7.3.</span> nginx with fdfs</h3>
+<div class="outline-text-3" id="text-7-3">
+<p>
+apt-get install libpcre3 libpcre3-dev
+apt-get install libpcre3 zlib1g
+apt-get install libpcre3 zlib1g-dev
+./configure &#x2013;prefix=/opt/nginx &#x2013;sbin-path=/usr/bin/nginx &#x2013;add-module=../fastdfs-nginx-module-1.20/src
+make
+sudo make install
+</p>
+
+<p>
+location ~/group([0-9]){
+    ngx<sub>fastdfs</sub><sub>module</sub>;
+}
+</p>
+
+<p>
+cd <i>usr/bin</i>
+./nginx
+</p>
+
+<p>
+OR:
+sudo /usr/bin/nginx -s reload
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8619aea" class="outline-3">
+<h3 id="org8619aea"><span class="section-number-3">7.4.</span> IDEA config</h3>
+<div class="outline-text-3" id="text-7-4">
+<pre class="example">
+
+#fastdfs设置
+fdfs:
+  so-timeout: 2500       # 读取时间
+  connect-timeout: 5000   # 连接超时时间
+  thumb-image:           # 缩略图
+    width: 100
+    height: 100
+  tracker-list:          # tracker服务配置地址列表
+    - localhost:22122
+upload:
+  base-url: localhost/
+  allow-types:
+    - image/jpeg
+    - image/png
+    - image/bmp
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org40e85c4" class="outline-2">
+<h2 id="org40e85c4"><span class="section-number-2">8.</span> Nodejs newest install</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+current releast
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">sudo apt-get install curl 
+curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+</pre>
+</div>
+
+<p>
+LTS release
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">sudo apt-get install curl 
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - 
+</pre>
+</div>
+
+<p>
+install and upgrade
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">sudo apt-get install nodejs
+sudo npm install -g install
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9429735" class="outline-2">
+<h2 id="org9429735"><span class="section-number-2">9.</span> Yarn  newest install</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+yarn can be installed by npm, and yarn &#x2013;version works, but only for old old version
+</p>
+
+<p>
+for yarn init comes the error: “00h00m00s 0/0: : ERROR: [Errno 2] No such file or directory: 'init'” 
+</p>
+
+<p>
+delete yarn and reinstall it
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">sudo apt remove cmdtest
+sudo apt remove yarn
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+<span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">"deb https://dl.yarnpkg.com/debian/ stable main"</span> | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt update
+sudo apt upgrade
+</pre>
+</div>
+<p>
+for upgrade comes the error:
+</p>
+<pre class="example">
+ModuleNotFoundError: No module named 'uaclient'
+dpkg: Fehler beim Bearbeiten des Paketes ubuntu-advantage-tools (--configure):
+ »installiertes ubuntu-advantage-tools-Skript des Paketes post-installation«-Unterprozess gab den Fehlerwert 1 zurück
+Fehler traten auf beim Bearbeiten von:
+ ubuntu-advantage-tools
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+</pre>
+<p>
+Normally in one package is not complete in dpkg or apt,
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">sudo dpkg --configure -a
+</pre>
+</div>
+<p>
+or
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">sudo apt install -f
+sudo apt install--fix-broken
+</pre>
+</div>
+<p>
+works, but if not, remove it if possible
+so ubuntu-advantage-tools should be removed,
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">sudo apt-get remove ubuntu-advantage-tools
+sudo mv /var/lib/dpkg/info/ubuntu-advantage-tools.* /tmp/
+sudo dpkg --force-remove-reinstreq --purge ubuntu-advantage-tools
+sudo dpkg --remove --force-remove-reinstreq ubuntu-advantage-tools
+</pre>
+</div>
+<p>
+then 
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">sudo apt update
+sudo apt upgrade
+sudo apt install yarn
+yarn --version
+</pre>
+</div>
+
+<p>
+new version can be shown, and yarn init works
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgab2e87d" class="outline-2">
+<h2 id="orgab2e87d"><span class="section-number-2">10.</span> JS</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+some ES6 has to be connected <a href="JS.html">JS</a> to here, 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org64bbde1" class="outline-2">
+<h2 id="org64bbde1"><span class="section-number-2">11.</span> ts</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+after change the tsconfig.json, use the command to compile ts to js continual.
+</p>
+<pre class="example">
+tsc -watch
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org7508f91" class="outline-2">
+<h2 id="org7508f91"><span class="section-number-2">12.</span> npm</h2>
+<div class="outline-text-2" id="text-12">
+<pre class="example">
+npm build
+sudo npm i -g serve
+serve -s dist
+sudo npm i json-server
+
+</pre>
+
+<p>
+list all installed packages
+npm list -g &#x2013;depth=0
+npm uninstall reveal.js
+</p>
+</div>
+</div>
+
+<div id="outline-container-org74dadb8" class="outline-2">
+<h2 id="org74dadb8"><span class="section-number-2">13.</span> nvm</h2>
+<div class="outline-text-2" id="text-13">
+<pre class="example">
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+nvm ls-remote
+nvm install node (the least version)
+nvm ls
+nvm install v16.13.1
+nvm ls
+nvm install v17.2.0
+nvm ls
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org9eb3d06" class="outline-2">
+<h2 id="org9eb3d06"><span class="section-number-2">14.</span> Webpack</h2>
+<div class="outline-text-2" id="text-14">
+<pre class="example">
+npm init -y
+npm i -D webpack webpack-cli typescript ts-loader
+
+设定生成的html的特性，包括使用模板
+npm i -D html-webpack-plugin
+
+设定项目的运行服务器
+npm i -D webpack-dev-server
+in package.json/"scripts":      "start": "webpack serve --open chromium-browser"
+and then in terminal: npm start
+
+
+删除上次的生成文件，整个dist目录
+npm i -D clean-webpack-plugin
+
+
+
+
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">path</span> = require(<span style="color: #2d9574;">"path"</span>);
+
+<span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">HTMLWebpackPlugin</span> = require(<span style="color: #2d9574;">"html-webpack-plugin"</span>);
+
+<span style="color: #4f97d7; font-weight: bold;">const</span> { CleanWebpackPlugin } = require(<span style="color: #2d9574;">"clean-webpack-plugin"</span>);
+
+module.exports = {
+    entry: <span style="color: #2d9574;">"./src/index.ts"</span>,
+    output: {
+        path: path.resolve(__dirname, <span style="color: #2d9574;">"dist"</span>),
+        filename: <span style="color: #2d9574;">"bundle.js"</span>,
+        <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">environment: {</span>
+        <span style="color: #2aa1ae; background-color: #292e34;">//     </span><span style="color: #2aa1ae; background-color: #292e34;">arrowFunction: false,</span>
+        <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">},</span>
+    },
+    module: {
+        rules: [
+            {
+                test: <span style="color: #2d9574;">/\.ts$/</span>,
+                use: [
+                    {
+                        loader: <span style="color: #2d9574;">"babel-loader"</span>,
+                        options: {
+                            presets: [
+                                [
+                                    <span style="color: #2d9574;">"@babel/preset-env"</span>,
+                                    {
+                                        targets: {
+                                            chrome: <span style="color: #2d9574;">"87"</span>,
+                                            <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">ie: "11",</span>
+                                        },
+                                        corejs: <span style="color: #2d9574;">"3"</span>,
+                                        useBuiltIns: <span style="color: #2d9574;">"usage"</span>,
+                                    },
+                                ],
+                            ],
+                        },
+                    },
+                    <span style="color: #2d9574;">"ts-loader"</span>,
+                ],
+                exclude: <span style="color: #2d9574;">/node-modules/</span>,
+            },
+        ],
+    },
+    plugins: [
+        <span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">HTMLWebpackPlugin</span>({
+            title: <span style="color: #2d9574;">"APP For Webpack"</span>,
+        }),
+        <span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">CleanWebpackPlugin</span>(),
+    ],
+
+    <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">&#27169;&#22359;&#35774;&#23450;</span>
+    resolve: {
+        extensions: [<span style="color: #2d9574;">".ts"</span>, <span style="color: #2d9574;">".js"</span>],
+    },
+};
+
+</pre>
+</div>
+
+<pre class="example">
+webpack: Permission denied
+
+sudo chmod 777 ./node_modules/.bin/webpack
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgc307695" class="outline-2">
+<h2 id="orgc307695"><span class="section-number-2">15.</span> JQuary</h2>
+<div class="outline-text-2" id="text-15">
+</div>
+<div id="outline-container-orgbc66a9f" class="outline-3">
+<h3 id="orgbc66a9f"><span class="section-number-3">15.1.</span> select element</h3>
+<div class="outline-text-3" id="text-15-1">
+</div>
+<div id="outline-container-orgf910df7" class="outline-4">
+<h4 id="orgf910df7"><span class="section-number-4">15.1.1.</span> JQuery选择器</h4>
+<div class="outline-text-4" id="text-15-1-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">elements chooser</td>
+<td class="org-left">class chooser</td>
+<td class="org-left">id  chooser</td>
+<td class="org-left">name</td>
+</tr>
+
+<tr>
+<td class="org-left">$("p"), $("div"), $("h2")</td>
+<td class="org-left">$(".test")</td>
+<td class="org-left">$("#test")</td>
+<td class="org-left">$("[name=name]")</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgab4c5e6" class="outline-4">
+<h4 id="orgab4c5e6"><span class="section-number-4">15.1.2.</span> CSS 选择器</h4>
+<div class="outline-text-4" id="text-15-1-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">elements chooser</td>
+<td class="org-left">class chooser</td>
+<td class="org-left">id  chooser</td>
+</tr>
+
+<tr>
+<td class="org-left">p, div, h2</td>
+<td class="org-left">.test</td>
+<td class="org-left">#test</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-org42f4186" class="outline-3">
+<h3 id="org42f4186"><span class="section-number-3">15.2.</span> JQuery思想 方法函数化 方法链式化， 取值赋值一体化</h3>
+<div class="outline-text-3" id="text-15-2">
+<div class="org-src-container">
+<pre class="src src-js">$(<span style="color: #4f97d7; font-weight: bold;">function</span>(){
+    $(<span style="color: #2d9574;">"h1"</span>).click(<span style="color: #4f97d7; font-weight: bold;">function</span>(){
+        alert(<span style="color: #2d9574;">"nihao"</span>);
+    });
+    $(<span style="color: #2d9574;">"h1"</span>).mouseout(<span style="color: #4f97d7; font-weight: bold;">function</span>(){
+        <span style="color: #a45bad;">this</span>.style.backgroundColor = <span style="color: #2d9574;">"red"</span>;
+    });
+    $(<span style="color: #2d9574;">"h1"</span>).mouseover(<span style="color: #4f97d7; font-weight: bold;">function</span>(){
+        <span style="color: #a45bad;">this</span>.style.backgroundColor = <span style="color: #2d9574;">"blue"</span>;
+    });
+});
+
+$(<span style="color: #4f97d7; font-weight: bold;">function</span>(){
+    $(<span style="color: #2d9574;">"h1"</span>).click(<span style="color: #4f97d7; font-weight: bold;">function</span>(){
+        alert(<span style="color: #2d9574;">"nihao"</span>);
+    }).mouseout(<span style="color: #4f97d7; font-weight: bold;">function</span>(){
+        <span style="color: #a45bad;">this</span>.style.backgroundColor = <span style="color: #2d9574;">"red"</span>;
+    }).mouseover(<span style="color: #4f97d7; font-weight: bold;">function</span>(){
+        <span style="color: #a45bad;">this</span>.style.backgroundColor = <span style="color: #2d9574;">"blue"</span>;
+    });
+});
+
+$(<span style="color: #2d9574;">"div"</span>).html()
+$(<span style="color: #2d9574;">"input"</span>).val()
+
+</pre>
+</div>
+</div>
+</div>
+
+
+
+
+
+<div id="outline-container-orgc3bc4d8" class="outline-3">
+<h3 id="orgc3bc4d8"><span class="section-number-3">15.3.</span> function</h3>
+<div class="outline-text-3" id="text-15-3">
+</div>
+<div id="outline-container-orgdea59b8" class="outline-4">
+<h4 id="orgdea59b8"><span class="section-number-4">15.3.1.</span> filter</h4>
+</div>
+<div id="outline-container-org34fdb23" class="outline-4">
+<h4 id="org34fdb23"><span class="section-number-4">15.3.2.</span> not</h4>
+</div>
+<div id="outline-container-org3abebd6" class="outline-4">
+<h4 id="org3abebd6"><span class="section-number-4">15.3.3.</span> has</h4>
+</div>
+<div id="outline-container-org1fbaba3" class="outline-4">
+<h4 id="org1fbaba3"><span class="section-number-4">15.3.4.</span> prev</h4>
+</div>
+<div id="outline-container-org6592a83" class="outline-4">
+<h4 id="org6592a83"><span class="section-number-4">15.3.5.</span> next</h4>
+</div>
+<div id="outline-container-org9771462" class="outline-4">
+<h4 id="org9771462"><span class="section-number-4">15.3.6.</span> find</h4>
+</div>
+<div id="outline-container-org2ac9d95" class="outline-4">
+<h4 id="org2ac9d95"><span class="section-number-4">15.3.7.</span> eq</h4>
+</div>
+<div id="outline-container-org366a131" class="outline-4">
+<h4 id="org366a131"><span class="section-number-4">15.3.8.</span> index</h4>
+</div>
+<div id="outline-container-org594d0a1" class="outline-4">
+<h4 id="org594d0a1"><span class="section-number-4">15.3.9.</span> attr</h4>
+</div>
+<div id="outline-container-org00377f5" class="outline-4">
+<h4 id="org00377f5"><span class="section-number-4">15.3.10.</span> addClass</h4>
+</div>
+<div id="outline-container-org10771db" class="outline-4">
+<h4 id="org10771db"><span class="section-number-4">15.3.11.</span> removeClass</h4>
+</div>
+<div id="outline-container-orgf6fcee6" class="outline-4">
+<h4 id="orgf6fcee6"><span class="section-number-4">15.3.12.</span> on</h4>
+</div>
+<div id="outline-container-org744916d" class="outline-4">
+<h4 id="org744916d"><span class="section-number-4">15.3.13.</span> off</h4>
+</div>
+<div id="outline-container-orgdda2aa2" class="outline-4">
+<h4 id="orgdda2aa2"><span class="section-number-4">15.3.14.</span> width</h4>
+<div class="outline-text-4" id="text-15-3-14">
+<p>
+width
+innerWidth
+outerWidth
+</p>
+</div>
+</div>
+<div id="outline-container-org963c920" class="outline-4">
+<h4 id="org963c920"><span class="section-number-4">15.3.15.</span> scrollTop</h4>
+</div>
+<div id="outline-container-org39ecf45" class="outline-4">
+<h4 id="org39ecf45"><span class="section-number-4">15.3.16.</span> </h4>
+</div>
+</div>
+
+<div id="outline-container-org5677f76" class="outline-3">
+<h3 id="org5677f76"><span class="section-number-3">15.4.</span> operation function</h3>
+<div class="outline-text-3" id="text-15-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">toggle</td>
+<td class="org-left">fade</td>
+<td class="org-left">slide</td>
+<td class="org-left">animate</td>
+<td class="org-left">stop</td>
+<td class="org-left">clain</td>
+</tr>
+
+<tr>
+<td class="org-left">text</td>
+<td class="org-left">html</td>
+<td class="org-left">val</td>
+<td class="org-left">attr</td>
+<td class="org-left">append</td>
+<td class="org-left">prepend</td>
+</tr>
+
+<tr>
+<td class="org-left">after</td>
+<td class="org-left">before</td>
+<td class="org-left">remove</td>
+<td class="org-left">empty</td>
+<td class="org-left">addclass</td>
+<td class="org-left">removeclass</td>
+</tr>
+
+<tr>
+<td class="org-left">css</td>
+<td class="org-left">width</td>
+<td class="org-left">height</td>
+<td class="org-left">perent</td>
+<td class="org-left">childen</td>
+<td class="org-left">siblings</td>
+</tr>
+
+<tr>
+<td class="org-left">load</td>
+<td class="org-left">get</td>
+<td class="org-left">post</td>
+<td class="org-left">noConflict</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge9c0e8b" class="outline-2">
+<h2 id="orge9c0e8b"><span class="section-number-2">16.</span> AJAX</h2>
+</div>
+<div id="outline-container-org84b42a9" class="outline-2">
+<h2 id="org84b42a9"><span class="section-number-2">17.</span> Servlet</h2>
+</div>
+<div id="outline-container-org0fb52c7" class="outline-2">
+<h2 id="org0fb52c7"><span class="section-number-2">18.</span> Bootstrap</h2>
+</div>
+<div id="outline-container-orgbe12853" class="outline-2">
+<h2 id="orgbe12853"><span class="section-number-2">19.</span> Spring</h2>
+<div class="outline-text-2" id="text-19">
+</div>
+<div id="outline-container-orgf4d0148" class="outline-3">
+<h3 id="orgf4d0148"><span class="section-number-3">19.1.</span> sammelung:</h3>
+<div class="outline-text-3" id="text-19-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Component</td>
+<td class="org-left">inject the class into Spring from current file as bean</td>
+</tr>
+
+<tr>
+<td class="org-left">ComponentScan</td>
+<td class="org-left">load the bean into current file from Spring  as class</td>
+</tr>
+
+<tr>
+<td class="org-left">Autowired</td>
+<td class="org-left">complete all beans dependence with the beans in spring</td>
+</tr>
+
+<tr>
+<td class="org-left">Configuration</td>
+<td class="org-left">configuration class</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>
+模式： 单例和多例：生命周期：创建和销毁时间
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4c62410" class="outline-3">
+<h3 id="org4c62410"><span class="section-number-3">19.2.</span> Annotation mehthod</h3>
+<div class="outline-text-3" id="text-19-2">
+</div>
+<div id="outline-container-orgef94b81" class="outline-4">
+<h4 id="orgef94b81"><span class="section-number-4">19.2.1.</span> @Component</h4>
+<div class="outline-text-4" id="text-19-2-1">
+<p>
+将所修饰的类做成bean，由 Spring 来管理
+为了减少耦合，建立一个配置类来管理全部的bean
+由 @Configuation and @ComponentScan 创建的配置类来管理。
+注意Spring只是默认管理@ComponentScan所在的其以下的区域，
+除非指定包名，可以到其上一级的包路径
+</p>
+</div>
+</div>
+
+<div id="outline-container-org81bbd5b" class="outline-4">
+<h4 id="org81bbd5b"><span class="section-number-4">19.2.2.</span> web hierarchy with @component</h4>
+<div class="outline-text-4" id="text-19-2-2">
+<p>
+Controller layer use @Controller than @Component
+Service layer use @Service than @Component
+Dao layer use @Repository than @Component
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2b125eb" class="outline-4">
+<h4 id="org2b125eb"><span class="section-number-4">19.2.3.</span> autowired</h4>
+<div class="outline-text-4" id="text-19-2-3">
+<ul class="org-ul">
+<li>Set注入 利用set方法</li>
+<li>cost注入 利用构造方法，可和set 注入混用</li>
+<li>普通成员变量</li>
+<li>普通成员函数</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgcecce5e" class="outline-4">
+<h4 id="orgcecce5e"><span class="section-number-4">19.2.4.</span> interface with @Autowired</h4>
+<div class="outline-text-4" id="text-19-2-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">注入</td>
+<td class="org-left">@Compenten</td>
+<td class="org-left">加在实现类</td>
+</tr>
+
+<tr>
+<td class="org-left">装配</td>
+<td class="org-left">@Autowired</td>
+<td class="org-left">放在该接口的类型前</td>
+</tr>
+
+<tr>
+<td class="org-left">产生歧义</td>
+<td class="org-left">多个Autowired</td>
+<td class="org-left">如果该接口有多个实现类，不知道用那个实现类的bean</td>
+</tr>
+
+<tr>
+<td class="org-left">首选bean</td>
+<td class="org-left">@Primary</td>
+<td class="org-left">多个实现类的Compenten注入时，可制定唯一一个实现类为首</td>
+</tr>
+
+<tr>
+<td class="org-left">限定附</td>
+<td class="org-left">@Qualifier("xxx")</td>
+<td class="org-left">在Autowired时，使用一样的 @Qualifier("xxx")</td>
+</tr>
+
+<tr>
+<td class="org-left">bean id</td>
+<td class="org-left">@Compenten("xxx")</td>
+<td class="org-left">同样在Autowired时，使用一样的 @Qualifier("xxx")</td>
+</tr>
+
+<tr>
+<td class="org-left">默认bean id</td>
+<td class="org-left">xxx即为类名</td>
+<td class="org-left">在Autowired时 @Qualifier("xxx")时，类名首字母小写即可</td>
+</tr>
+
+<tr>
+<td class="org-left">二合一</td>
+<td class="org-left">@Resource(name="小写类名")</td>
+<td class="org-left">代替Autowired 和Qulifier()</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf2819da" class="outline-3">
+<h3 id="orgf2819da"><span class="section-number-3">19.3.</span> xml mehthod</h3>
+<div class="outline-text-3" id="text-19-3">
+<p>
+New-&gt; XML Configuration File -&gt; Spring Config 
+ default name: ApplicationContext.xml
+</p>
+
+<p>
+&lt;bean
+ class="xxx.xxx.xxx.class"
+ id="" (gleich wie name="") 别名可以多个，隔开即可
+ &lt;consturctor-arg ref="beanid"&gt; für contributor bean 
+ &lt;consturctor-arg name="xxx" value="yyy"&gt; für contributor string
+ c:contributor C名称空间
+ &lt;list&gt;
+ &lt;map&gt;
+ &lt;set&gt;
+ &lt;p&gt;
+ &lt;util&gt;
+ &lt;properties&gt;
+ &#x2026;            
+    &gt;&lt;bean&gt;
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb51b41c" class="outline-3">
+<h3 id="orgb51b41c"><span class="section-number-3">19.4.</span> bean method</h3>
+<div class="outline-text-3" id="text-19-4">
+<p>
+Don't use @Component or Service Controller Repository to inject bean(IOC)
+with a config class @Configuation
+Use @bean on it's consturctor function to inject bean.
+对其多实现类的歧义性处理，和自动装配一样，@Primary @Qualifer and BEANID    
+</p>
+</div>
+<div id="outline-container-org8bf5cf9" class="outline-4">
+<h4 id="org8bf5cf9"><span class="section-number-4">19.4.1.</span> seter</h4>
+<div class="outline-text-4" id="text-19-4-1">
+<p>
+passing the contributor bean can use setter function
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5ad53c8" class="outline-4">
+<h4 id="org5ad53c8"><span class="section-number-4">19.4.2.</span> consturctor</h4>
+<div class="outline-text-4" id="text-19-4-2">
+<p>
+if a bean need another bean as contributor, 
+the contributor can be passed as argument into consturctor function,
+or generated
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfba1fbd" class="outline-3">
+<h3 id="orgfba1fbd"><span class="section-number-3">19.5.</span> advancd mehthod</h3>
+<div class="outline-text-3" id="text-19-5">
+</div>
+<div id="outline-container-orge629817" class="outline-4">
+<h4 id="orge629817"><span class="section-number-4">19.5.1.</span> function field</h4>
+<div class="outline-text-4" id="text-19-5-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">singleton</td>
+<td class="org-left">default only one bean</td>
+</tr>
+
+<tr>
+<td class="org-left">prototype</td>
+<td class="org-left">scope="prototype"</td>
+</tr>
+
+<tr>
+<td class="org-left">Session</td>
+<td class="org-left">each inject</td>
+</tr>
+
+<tr>
+<td class="org-left">request</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org2708163" class="outline-4">
+<h4 id="org2708163"><span class="section-number-4">19.5.2.</span> lazy load bean</h4>
+<div class="outline-text-4" id="text-19-5-2">
+<p>
+in xml: lazy-init="true"
+in Annotation: @Lazy with prototype, singleton is default as lazy
+</p>
+</div>
+</div>
+<div id="outline-container-org1d11e7e" class="outline-4">
+<h4 id="org1d11e7e"><span class="section-number-4">19.5.3.</span> init and destroy</h4>
+</div>
+</div>
+
+<div id="outline-container-org4d39851" class="outline-3">
+<h3 id="org4d39851"><span class="section-number-3">19.6.</span> log4j</h3>
+<div class="outline-text-3" id="text-19-6">
+<p>
+after injuct in pox.xml, create log4j.properties in project resources fold
+</p>
+
+<pre class="example">
+log4j.rootCategory=INFO, stdout
+
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%d{ABSOLUTE} %5p %t %c{2}:%L - %m%n
+
+log4j.category.org.springframework.beans.factory=DEBUG
+
+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org04523c4" class="outline-3">
+<h3 id="org04523c4"><span class="section-number-3">19.7.</span> Test</h3>
+<div class="outline-text-3" id="text-19-7">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">@RunWith</td>
+</tr>
+
+<tr>
+<td class="org-left">@ContextConfiguration</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgd1b0bd3" class="outline-3">
+<h3 id="orgd1b0bd3"><span class="section-number-3">19.8.</span> AOP</h3>
+<div class="outline-text-3" id="text-19-8">
+<p>
+动态代理，(JDK，接口) (CGLib, 接口)
+</p>
+
+<p>
+前置，后置，环绕
+class 1 -&gt; Bean 1
+Bean 1 + pointcut(expression,within,args) + class 2 -&gt; Bean 2
+</p>
+</div>
+
+<div id="outline-container-org4ca1262" class="outline-4">
+<h4 id="org4ca1262"><span class="section-number-4">19.8.1.</span> Concept</h4>
+<div class="outline-text-4" id="text-19-8-1">
+<p>
+连接点：可增强的方法
+切入点: 实际上被增强的方法
+通知（增强）：增强的内容
+</p>
+<ul class="org-ul">
+<li>前置 Before</li>
+<li>后置 After  增强之后，return 之前，有异常也执行</li>
+<li>环绕 Around</li>
+<li>异常 AfterThrowing 有异常才执行</li>
+<li>最终 AterRreturning return 之后才执行，有异常不执行</li>
+</ul>
+
+<p>
+切面：将增强内容应用到切入点
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcedef42" class="outline-4">
+<h4 id="orgcedef42"><span class="section-number-4">19.8.2.</span> AspectJ</h4>
+<div class="outline-text-4" id="text-19-8-2">
+<ul class="org-ul">
+<li>xml</li>
+<li>Annotation</li>
+</ul>
+<p>
+切入点表达式
+@Pointcut
+@Oder()
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org696d48f" class="outline-3">
+<h3 id="org696d48f"><span class="section-number-3">19.9.</span> JDBC</h3>
+<div class="outline-text-3" id="text-19-9">
+<p>
+JDBC Template
+update(sql, args) 增删改
+queryForObject()查
+query()
+bachtupdate()
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org51c31e2" class="outline-2">
+<h2 id="org51c31e2"><span class="section-number-2">20.</span> SpingMVC</h2>
+<div class="outline-text-2" id="text-20">
+<p>
+Web action &#x2013;&gt;  前端控制 &#x2013;&gt; Path &#x2013;&gt; 后端 &#x2013;&gt; handler &#x2013;&gt; 前端 
+backend reserver arguments.
+</p>
+<ol class="org-ol">
+<li>single argument</li>
+<li>multi arguments</li>
+<li>class instance</li>
+</ol>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">C -&gt; C</td>
+<td class="org-left">redirect</td>
+<td class="org-left">重定向</td>
+<td class="org-left">刷新后会重复提交增删改</td>
+</tr>
+
+<tr>
+<td class="org-left">C -&gt; V</td>
+<td class="org-left">forward</td>
+<td class="org-left">转发</td>
+<td class="org-left">查询需要转发</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>
+-Dfile.encoding=utf-8 for Tomcat server VM Options: backend output for chineseisch
+</p>
+
+<p>
+ C-&gt; V assugment
+request session model
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcd42378" class="outline-2">
+<h2 id="orgcd42378"><span class="section-number-2">21.</span> Spring Boot</h2>
+</div>
+<div id="outline-container-orgaf0c7fc" class="outline-2">
+<h2 id="orgaf0c7fc"><span class="section-number-2">22.</span> JDBC</h2>
+<div class="outline-text-2" id="text-22">
+<ul class="org-ul">
+<li>Driver</li>
+<li>connection</li>
+<li>mysql</li>
+<li>execute</li>
+<li>statement</li>
+<li>preperedstatement</li>
+<li>close</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org91353b2" class="outline-2">
+<h2 id="org91353b2"><span class="section-number-2">23.</span> mybatis</h2>
+<div class="outline-text-2" id="text-23">
+</div>
+<div id="outline-container-org5398765" class="outline-3">
+<h3 id="org5398765"><span class="section-number-3">23.1.</span> framework</h3>
+<div class="outline-text-3" id="text-23-1">
+</div>
+<div id="outline-container-org682b6e1" class="outline-4">
+<h4 id="org682b6e1"><span class="section-number-4">23.1.1.</span> springboot</h4>
+<div class="outline-text-4" id="text-23-1-1">
+</div>
+<ol class="org-ol">
+<li><a id="orgd3c7a30"></a>pom.xml<br />
+<div class="outline-text-5" id="text-23-1-1-1">
+<p>
+&lt;dependency&gt;
+ &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
+ &lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt;
+ &lt;version&gt;3.3.0&lt;/version&gt;
+&lt;/dependency&gt;
+</p>
+</div>
+</li>
+
+<li><a id="org499289e"></a>application.yml<br />
+<div class="outline-text-5" id="text-23-1-1-2">
+<p>
+配置mybatis, 指示Mapper.xml的位置
+mapper-locations: classpath:mapper/*/*Mapper.xml
+</p>
+</div>
+
+<ol class="org-ol">
+<li><a id="orgb280560"></a>Mybatias configuration(appeared.yml)<br />
+<div class="outline-text-6" id="text-23-1-1-2-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">prppreties</td>
+</tr>
+
+<tr>
+<td class="org-left">settings</td>
+</tr>
+
+<tr>
+<td class="org-left">typeAliases</td>
+</tr>
+
+<tr>
+<td class="org-left">typeHanders</td>
+</tr>
+
+<tr>
+<td class="org-left">plugins</td>
+</tr>
+
+<tr>
+<td class="org-left">envirements</td>
+</tr>
+
+<tr>
+<td class="org-left">mapper(url, resource, class, Annotation)</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+
+<li><a id="orgc1cb027"></a>*Mapper.xml<br />
+<div class="outline-text-6" id="text-23-1-1-2-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">query:</td>
+<td class="org-left">resultMap/resultType</td>
+</tr>
+
+<tr>
+<td class="org-left">insert, update, delete:</td>
+<td class="org-left">parameterType</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ol>
+</li>
+
+<li><a id="org5af0677"></a>Applicaton.java<br />
+<div class="outline-text-5" id="text-23-1-1-3">
+<p>
+启动类, 指示bean扫描的位置
+@MapperScan(basePackages = {"com.sxt.system.mapper"})
+</p>
+</div>
+</li>
+
+<li><a id="org70f03da"></a>Route<br />
+<div class="outline-text-5" id="text-23-1-1-4">
+<p>
+web requirement -&gt; controller -&gt; server -&gt; serverIpm  -&gt;
+*Mapper.xml(self def)
+自定义的在*Mapper.xml内找到数据库的入口，
+默认的可以直接调用。
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org8b53132" class="outline-4">
+<h4 id="org8b53132"><span class="section-number-4">23.1.2.</span> spring</h4>
+</div>
+</div>
+<div id="outline-container-orgb600a74" class="outline-3">
+<h3 id="orgb600a74"><span class="section-number-3">23.2.</span> # and $</h3>
+<div class="outline-text-3" id="text-23-2">
+<ol class="org-ol">
+<li># will add ’ ’  around the given paramenters, so it's saft, with concat</li>
+<li>$ will not add ’ ’, it's not safe</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org697e214" class="outline-3">
+<h3 id="org697e214"><span class="section-number-3">23.3.</span> include</h3>
+<div class="outline-text-3" id="text-23-3">
+<p>
+&lt;sql id="commonField"
+id, goodname, price
+&lt;/sql&gt;
+</p>
+
+<p>
+Select &lt;include refid="commonField" /&gt;
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8964d80" class="outline-3">
+<h3 id="org8964d80"><span class="section-number-3">23.4.</span> 流程</h3>
+<div class="outline-text-3" id="text-23-4">
+<ul class="org-ul">
+<li>获取字节输入流</li>
+<li>构建SqlSessioFactory</li>
+<li>生产SqlSession</li>
+<li>执行Dao</li>
+<li>释放资源</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1d68930" class="outline-3">
+<h3 id="org1d68930"><span class="section-number-3">23.5.</span> 延迟加载</h3>
+</div>
+<div id="outline-container-org1298a0c" class="outline-3">
+<h3 id="org1298a0c"><span class="section-number-3">23.6.</span> 缓存</h3>
+</div>
+<div id="outline-container-orgb653f64" class="outline-3">
+<h3 id="orgb653f64"><span class="section-number-3">23.7.</span> 一级缓存</h3>
+<div class="outline-text-3" id="text-23-7">
+<p>
+SqlSession
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdd99ca8" class="outline-3">
+<h3 id="orgdd99ca8"><span class="section-number-3">23.8.</span> 二级缓存</h3>
+<div class="outline-text-3" id="text-23-8">
+<p>
+SqlSessionFactory
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc8aaf69" class="outline-3">
+<h3 id="orgc8aaf69"><span class="section-number-3">23.9.</span> 注解开发</h3>
+</div>
+</div>
+<div id="outline-container-org9e817d7" class="outline-2">
+<h2 id="org9e817d7"><span class="section-number-2">24.</span> Shiro</h2>
+</div>
+<div id="outline-container-orgd054970" class="outline-2">
+<h2 id="orgd054970"><span class="section-number-2">25.</span> c3p0</h2>
+</div>
+<div id="outline-container-org77d72b8" class="outline-2">
+<h2 id="org77d72b8"><span class="section-number-2">26.</span> Rruid</h2>
+</div>
+<div id="outline-container-org61e541f" class="outline-2">
+<h2 id="org61e541f"><span class="section-number-2">27.</span> nginx</h2>
+<div class="outline-text-2" id="text-27">
+</div>
+<div id="outline-container-org371fb12" class="outline-3">
+<h3 id="org371fb12"><span class="section-number-3">27.1.</span> https ssl deployment</h3>
+<div class="outline-text-3" id="text-27-1">
+<p>
+1, just deploy my web seit normally, and can be access by http
+2, sudo apt install certbot python-certbot-nginx
+3, sudo certbot certonly &#x2013;nginx (will be asked)
+4, sudo certbot install &#x2013;nginx
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2706ff6" class="outline-3">
+<h3 id="org2706ff6"><span class="section-number-3">27.2.</span> local Nginx deployment</h3>
+<div class="outline-text-3" id="text-27-2">
+</div>
+<div id="outline-container-orgfe822c3" class="outline-4">
+<h4 id="orgfe822c3"><span class="section-number-4">27.2.1.</span> install</h4>
+<div class="outline-text-4" id="text-27-2-1">
+<pre class="example">
+yum install -y pcre pcre-devel
+yum install -y zlib zlib-devel
+yum install -y openssl openssl-devel
+
+
+tar
+mv xxx nginx
+mv nginx /usr/local/src/
+cd /usr/local/src/nginx
+mkdir /usr/nginx
+./configure --prefix=/usr/nginx
+make
+make install
+
+</pre>
+
+<p>
+sudo apt install nginx
+</p>
+
+<p>
+<i>etc/nginx</i> 是其配置文件夹，里面有很多include文件，
+nginx 的默认设置在其中一个 default 文件里。
+本机html仓库 /var/www/html
+将项目放在此文件夹下，运行对于的端口即可
+本机开机后,该文件的会被自动部署,端口可见
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgeee0118" class="outline-4">
+<h4 id="orgeee0118"><span class="section-number-4">27.2.2.</span> fire wall 80 port if necessary</h4>
+<div class="outline-text-4" id="text-27-2-2">
+<pre class="example">
+add port :
+sudo apt install firewalld
+sudo firewall-cmd --add-port=80/tcp --permanent
+sudo firewall-cmd --remove-port=80/tcp --permanent
+restart firewall:
+sudo  firewall-cmd --reload
+check port:
+sudo  firewall-cmd --list-all
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org0d79174" class="outline-4">
+<h4 id="org0d79174"><span class="section-number-4">27.2.3.</span> nginx control</h4>
+<div class="outline-text-4" id="text-27-2-3">
+<pre class="example">
+sudo apt systemctl stop nginx
+nginx -s stop
+sudo apt systemctl start nginx
+nginx -s reload
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org8223f6b" class="outline-4">
+<h4 id="org8223f6b"><span class="section-number-4">27.2.4.</span> uninstall</h4>
+<div class="outline-text-4" id="text-27-2-4">
+<p>
+sudo apt-get purge nginx nginx-common
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3b9dcf7" class="outline-3">
+<h3 id="org3b9dcf7"><span class="section-number-3">27.3.</span> Nginx with php</h3>
+<div class="outline-text-3" id="text-27-3">
+<p>
+sudo apt install nginx
+sudo systemctl restart nginx
+sudo apt install php
+sudo apt install php-fpm
+check if exit: /var/run/php/php7.2-fpm.sock
+</p>
+
+<p>
+emacs /etc/php/7.2/fpm/pool.d/www.conf  -&gt; listen = /run/php/php7.2-fpm.sock
+</p>
+
+<p>
+cd /etc/nginx/sites-available
+  emacs default 
+</p>
+
+<pre class="example">
+list  post
+root  folder
+location ~ \.php${
+         include snippets/fastcgi-php.conf;
+         fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
+         include fastcgi_params;
+}
+
+
+</pre>
+
+<p>
+vollstandig
+</p>
+<pre class="example">
+################### 9020 FOR php ##################################################################################
+server {
+        listen 9020;
+        listen [::]:9020;
+
+        # SSL configuration
+        #
+        # listen 443 ssl default_server;
+        # listen [::]:443 ssl default_server;
+        #
+        # Note: You should disable gzip for SSL traffic.
+        # See: https://bugs.debian.org/773332
+        #
+        # Read up on ssl_ciphers to ensure a secure configuration.
+        # See: https://bugs.debian.org/765782
+        #
+        # Self signed certs generated by the ssl-cert package
+        # Don't use them in a production server!
+        #
+        # include snippets/snakeoil.conf;
+
+        root /home/sx/Documents/nginx9020;
+
+        # Add index.php to the list if you are using PHP
+        index index.html index.htm index.nginx-debian.html index.php;
+
+        server_name _;
+
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                try_files $uri $uri/ =404;
+        }
+
+        # pass PHP scripts to FastCGI server
+        #
+        location ~ \.php$ {
+                include snippets/fastcgi-php.conf;
+
+                # With php-fpm (or other unix sockets):
+                fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
+                # With php-cgi (or other tcp sockets):
+                include fastcgi_params;
+                #fastcgi_pass 127.0.0.1:9000;
+        }
+
+        # deny access to .htaccess files, if Apache's document root
+        # concurs with nginx's one
+        #
+        #location ~ /\.ht {
+        #	deny all;
+        #}
+}
+
+
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org86afef5" class="outline-2">
+<h2 id="org86afef5"><span class="section-number-2">28.</span> apache2</h2>
+<div class="outline-text-2" id="text-28">
+<p>
+sudo apt install apache2
+sudo systemctl restart apache2
+cd <i>etc/apache2</i> 
+</p>
+<ol class="org-ol">
+<li>ports.conf -&gt; add new post</li>
+<li>appache.conf -&gt;  add new folder</li>
+<li>cd sites-available emacs 000-default.conf -&gt; add server of post and folder</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org14ebbc6" class="outline-2">
+<h2 id="org14ebbc6"><span class="section-number-2">29.</span> Maven</h2>
+<div class="outline-text-2" id="text-29">
+</div>
+<div id="outline-container-org98d9e58" class="outline-3">
+<h3 id="org98d9e58"><span class="section-number-3">29.1.</span> package all the dependencies together as a jar</h3>
+<div class="outline-text-3" id="text-29-1">
+<p>
+if I want to package them to a package to a jar
+<a href="https://stackoverflow.com/questions/574594/how-can-i-create-an-executable-jar-with-dependencies-using-maven">starkoverflow hitting</a>
+and this plugin to pom.xml
+</p>
+<pre class="example">
+&lt;build&gt;
+  &lt;plugins&gt;
+    &lt;plugin&gt;
+      &lt;artifactId&gt;maven-assembly-plugin&lt;/artifactId&gt;
+      &lt;configuration&gt;
+        &lt;archive&gt;
+          &lt;manifest&gt;
+            &lt;mainClass&gt;fully.qualified.MainClass&lt;/mainClass&gt;
+          &lt;/manifest&gt;
+        &lt;/archive&gt;
+        &lt;descriptorRefs&gt;
+          &lt;descriptorRef&gt;jar-with-dependencies&lt;/descriptorRef&gt;
+        &lt;/descriptorRefs&gt;
+      &lt;/configuration&gt;
+    &lt;/plugin&gt;
+  &lt;/plugins&gt;
+&lt;/build&gt;
+</pre>
+
+<p>
+package and Execute 
+</p>
+<ul class="org-ul">
+<li>run with : mvn clean compile assembly:single</li>
+<li>mvn package</li>
+</ul>
+<p>
+and now this jar file can be called
+</p>
+<ul class="org-ul">
+<li>java -cp target/xxxx&#x2026;.xx.jar com.mycompany.app.App</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org01a7073" class="outline-3">
+<h3 id="org01a7073"><span class="section-number-3">29.2.</span> customize locally archetype</h3>
+<div class="outline-text-3" id="text-29-2">
+<p>
+to the local repository
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #4f97d7;">cd</span> ~/.m2/repository/org/apache/maven/archetypes/maven-archetype-quickstart/1.4/
+</pre>
+</div>
+<p>
+open the jar file, and change the pom.xml
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd6d21c5" class="outline-2">
+<h2 id="orgd6d21c5"><span class="section-number-2">30.</span> Session und Cookie</h2>
+<div class="outline-text-2" id="text-30">
+<ol class="org-ol">
+<li>Browser send request to server with name, password&#x2026;</li>
+<li>if the authentication is passed, server generate a SessionID,</li>
+</ol>
+<p>
+and search the results, giving back browser response(name, password,
+results Sessionid..) Sessionid will be saved in SERVER.
+</p>
+<ol class="org-ol">
+<li>get the response, browser save the name, password and Sessionid as</li>
+</ol>
+<p>
+Cookie.
+</p>
+<ol class="org-ol">
+<li>send request again, browser get the name, password, and Sessionid
+from Cookie, and send the requests</li>
+<li>server check the Sessionid only if possible, and send the results
+and name, password again as response back to browser.</li>
+</ol>
+
+<p>
+Only the first time response, Sessionid will be send back to browser.
+</p>
+</div>
+
+<div id="outline-container-orge8a96ad" class="outline-3">
+<h3 id="orge8a96ad"><span class="section-number-3">30.1.</span> cookie do not carry session id</h3>
+<div class="outline-text-3" id="text-30-1">
+<p>
+URL重写（常用），就是把session id直接附加在URL路径的后面
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org89f2b40" class="outline-2">
+<h2 id="org89f2b40"><span class="section-number-2">31.</span> HTTP Proposal</h2>
+<div class="outline-text-2" id="text-31">
+</div>
+<div id="outline-container-org7baf91c" class="outline-3">
+<h3 id="org7baf91c"><span class="section-number-3">31.1.</span> http Request</h3>
+<div class="outline-text-3" id="text-31-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Request Line</td>
+<td class="org-left">request type + url path(many kinds of paramenters)+ http version</td>
+</tr>
+
+<tr>
+<td class="org-left">Header:</td>
+<td class="org-left">Host; Cookie; Content-type; User-Agent&#x2026;</td>
+</tr>
+
+<tr>
+<td class="org-left">Request Body:</td>
+<td class="org-left">username="admin"&amp;password="admin"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org3b1d78e" class="outline-3">
+<h3 id="org3b1d78e"><span class="section-number-3">31.2.</span> Http Response</h3>
+<div class="outline-text-3" id="text-31-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">esponse Line:</td>
+<td class="org-left">http version + state code + state string</td>
+</tr>
+
+<tr>
+<td class="org-left">Header:</td>
+<td class="org-left">Content-type (describe information)</td>
+</tr>
+
+<tr>
+<td class="org-left">Response Body:</td>
+<td class="org-left">&lt;html&gt; &#x2026;.&lt;/tml&gt;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4af8bf6" class="outline-2">
+<h2 id="org4af8bf6"><span class="section-number-2">32.</span> appeared Problem</h2>
+<div class="outline-text-2" id="text-32">
+</div>
+<div id="outline-container-org0adba98" class="outline-3">
+<h3 id="org0adba98"><span class="section-number-3">32.1.</span> server is not startup</h3>
+<div class="outline-text-3" id="text-32-1">
+<p>
+1, workspace 有重叠和包含，
+2, 需要重启 lsp mode
+</p>
+</div>
+</div>
+
+<div id="outline-container-org800e4c4" class="outline-3">
+<h3 id="org800e4c4"><span class="section-number-3">32.2.</span> can't find the main class to start project</h3>
+<div class="outline-text-3" id="text-32-2">
+<p>
+mvn compile 出现问题，大多数时候是依赖的问题
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge163d3d" class="outline-3">
+<h3 id="orge163d3d"><span class="section-number-3">32.3.</span> 没有对应的补全</h3>
+<div class="outline-text-3" id="text-32-3">
+<p>
+mvn 依赖的version 不同会有不同的包，补全也不同
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org786620d" class="outline-2">
+<h2 id="org786620d"><span class="section-number-2">33.</span> local jdk configuration</h2>
+<div class="outline-text-2" id="text-33">
+<pre class="example">
+mkdir /usr/local/java
+tar -zxvf jdkxxxxx.tar.gz -C /usr/localjava
+sudo emacs -nw -q /etc/profile
+-&gt;
+JAVA_HOME=/usr/local/java/jdkxxxxx
+PATH=$JAVA_HOME/bin:$PATH
+CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export JAVA_HOME
+export PATH
+export CLASSPATH
+
+source /etc/profile
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org87885a5" class="outline-2">
+<h2 id="org87885a5"><span class="section-number-2">34.</span> Django</h2>
+<div class="outline-text-2" id="text-34">
+</div>
+<div id="outline-container-orgc3467ff" class="outline-3">
+<h3 id="orgc3467ff"><span class="section-number-3">34.1.</span> TVM archetype</h3>
+<div class="outline-text-3" id="text-34-1">
+<p>
+<a href="./foto/DangoTVM.drawio.png">TVM design</a>
+</p>
+</div>
+</div>
+<div id="outline-container-orgb3dd934" class="outline-3">
+<h3 id="orgb3dd934"><span class="section-number-3">34.2.</span> uwsgi domain example</h3>
+<div class="outline-text-3" id="text-34-2">
+<p>
+this has perhaps to be connected with ssl nginx
+$ uwsgi &#x2013;chdir /home/cloud/django/QL &#x2013;http :8000 &#x2013;module QL.wsgi:application
+$ uwsgi &#x2013;ini ql<sub>uwsgi.ini</sub>
+</p>
+</div>
+</div>
+<div id="outline-container-orge442b00" class="outline-3">
+<h3 id="orge442b00"><span class="section-number-3">34.3.</span> Projekt StudyNet commands</h3>
+<div class="outline-text-3" id="text-34-3">
+<p>
+pip install virtualenv
+virtualenv &#x2013;python=python3.9 django
+source django/bin/active
+pip install django
+pip install django-restframework
+pip install django-cors-headers
+pip install djoser
+django-admin startproject studynet<sub>django</sub>
+</p>
+</div>
+</div>
+<div id="outline-container-orgfbe391b" class="outline-3">
+<h3 id="orgfbe391b"><span class="section-number-3">34.4.</span> debug models small example</h3>
+<div class="outline-text-3" id="text-34-4">
+<p>
+access to django shell
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">python manage.py shell
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-shell">from Myapp.models import Publication, Article
+p1 = Publication(<span style="color: #7590db;">title</span>=<span style="color: #2d9574;">'The Python Journal'</span>) 
+<span style="color: #bc6ec5; font-weight: bold;">p1.save</span>()
+p1
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-shell">p2 = Publication(<span style="color: #7590db;">title</span>=<span style="color: #2d9574;">'Science News'</span>) 
+<span style="color: #bc6ec5; font-weight: bold;">p2.save</span>()
+p2
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-shell">p3 = Publication(<span style="color: #7590db;">title</span>=<span style="color: #2d9574;">'Science Weekly'</span>) 
+<span style="color: #bc6ec5; font-weight: bold;">p3.save</span>()
+p3
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-shell">p4 = Publication(<span style="color: #7590db;">title</span>=<span style="color: #2d9574;">'Science for everyone'</span>) 
+<span style="color: #bc6ec5; font-weight: bold;">p4.save</span>()
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-shell">a1 = Article(<span style="color: #7590db;">headline</span>=<span style="color: #2d9574;">'Django lets you build Web apps easily'</span>)
+<span style="color: #bc6ec5; font-weight: bold;">a1.save</span>()
+</pre>
+</div>
+
+
+
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #bc6ec5; font-weight: bold;">a1.publications.add</span>(p1)
+<span style="color: #bc6ec5; font-weight: bold;">a1.publications.add</span>(p4)
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #bc6ec5; font-weight: bold;">a1.publications.all</span>()
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-shell">a2 = Article(<span style="color: #7590db;">headline</span>=<span style="color: #2d9574;">'NASA uses Python'</span>)
+<span style="color: #bc6ec5; font-weight: bold;">a2.save</span>()
+<span style="color: #bc6ec5; font-weight: bold;">a2.publications.add</span>(p1, p2)
+<span style="color: #bc6ec5; font-weight: bold;">a2.publications.add</span>(p3)
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-shell">new_publication = a2.publications.create(<span style="color: #7590db;">title</span>=<span style="color: #2d9574;">'Highlights for Children'</span>)
+new_publication
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #bc6ec5; font-weight: bold;">p1.article_set.all</span>()
+</pre>
+</div>
+
+
+
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #bc6ec5; font-weight: bold;">a2.publications.all</span>()
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #bc6ec5; font-weight: bold;">Publication.objects.get</span>(<span style="color: #7590db;">id</span>=4).article_set.all()
+</pre>
+</div>
+
+
+
+
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #bc6ec5; font-weight: bold;">Article.objects.filter</span>(<span style="color: #7590db;">publications__title__startswith</span>=<span style="color: #2d9574;">"Science"</span>)
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #bc6ec5; font-weight: bold;">Article.objects.filter</span>(<span style="color: #7590db;">publications__title__startswith</span>=<span style="color: #2d9574;">"Science"</span>).distinct()
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9cde302" class="outline-3">
+<h3 id="org9cde302"><span class="section-number-3">34.5.</span> modelTOmodel</h3>
+<div class="outline-text-3" id="text-34-5">
+<ul class="org-ul">
+<li>oneToone:
+<ul class="org-ul">
+<li>connected instance must saved at frist</li>
+<li>in connecting instance  creatation, the connected instance will be specified</li>
+<li>connected.connecting</li>
+<li>connecting.connected</li>
+</ul></li>
+<li>ManyToone(ForeignKey)
+<ul class="org-ul">
+<li>connected instance must saved at frist</li>
+<li>in connecting instance  creatation, the connected instance will be specified</li>
+<li>connecting.conneted</li>
+<li>connected.connecting<sub>set.all</sub>()</li>
+</ul></li>
+<li>ManToMany
+<ul class="org-ul">
+<li>connected instance must saved at frist</li>
+<li>connecting instance must saved at frist</li>
+<li>connecting.connected.add(connected)</li>
+<li>connecting.conneted.all()</li>
+<li>connected.connecting<sub>set.all</sub>()</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6240618" class="outline-3">
+<h3 id="org6240618"><span class="section-number-3">34.6.</span> Documents Collections</h3>
+<div class="outline-text-3" id="text-34-6">
+<ul class="org-ul">
+<li>for choose filed, get the presented value with : instance.get<sub>field</sub><sub>name</sub><sub>display</sub>()</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc30c049" class="outline-2">
+<h2 id="orgc30c049"><span class="section-number-2">35.</span> RuoYi-Vue project</h2>
+<div class="outline-text-2" id="text-35">
+</div>
+<div id="outline-container-org9bb3539" class="outline-3">
+<h3 id="org9bb3539"><span class="section-number-3">35.1.</span> backup deployment</h3>
+<div class="outline-text-3" id="text-35-1">
+</div>
+<div id="outline-container-orgb009e19" class="outline-4">
+<h4 id="orgb009e19"><span class="section-number-4">35.1.1.</span> redis</h4>
+<div class="outline-text-4" id="text-35-1-1">
+<pre class="example">
+
+sudo apt install redis-server
+sudo snap install redis-desktop-manager(not necessary)
+
+sem /etc/redis/redis.conf
+56 bind 127.0.0.1
+507 requirepass 123456
+
+sudo systemctl restart redis-server
+or
+sudo service redis-server restart
+
+1. without password : redis-cli 
+2. with password    : redis-cli -h localhost -p 6379 -a 123456
+PING -&gt; PONG
+
+It may happen, even with requirepass, but still can login without pass.
+The application based on this will be fail,
+Need redis-cli login, and &gt; auth "pass"
+if returns OK, it works for Applications
+
+
+
+</pre>
+</div>
+</div>
+<div id="outline-container-org302bf61" class="outline-4">
+<h4 id="org302bf61"><span class="section-number-4">35.1.2.</span> mysql</h4>
+</div>
+<div id="outline-container-orga9195fc" class="outline-4">
+<h4 id="orga9195fc"><span class="section-number-4">35.1.3.</span> tomcat</h4>
+<div class="outline-text-4" id="text-35-1-3">
+<p>
+configuration for IDEA as local Tomcat
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd1e1c69" class="outline-4">
+<h4 id="orgd1e1c69"><span class="section-number-4">35.1.4.</span> schnitt</h4>
+<div class="outline-text-4" id="text-35-1-4">
+<p>
+redis
+mysql 
+uploadPath
+system log.path
+check localhost:8080
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgabaf0ea" class="outline-4">
+<h4 id="orgabaf0ea"><span class="section-number-4">35.1.5.</span> ssh</h4>
+<div class="outline-text-4" id="text-35-1-5">
+<p>
+set to be false
+</p>
+</div>
+</div>
+
+<div id="outline-container-org624caf7" class="outline-4">
+<h4 id="org624caf7"><span class="section-number-4">35.1.6.</span> dependence from jdk8</h4>
+<div class="outline-text-4" id="text-35-1-6">
+<pre class="example">
+    &lt;dependency&gt;
+    &lt;groupId&gt;javax.xml.bind&lt;/groupId&gt;
+    &lt;artifactId&gt;jaxb-api&lt;/artifactId&gt;
+    &lt;version&gt;2.3.0&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;com.sun.xml.bind&lt;/groupId&gt;
+    &lt;artifactId&gt;jaxb-impl&lt;/artifactId&gt;
+    &lt;version&gt;2.3.0&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;com.sun.xml.bind&lt;/groupId&gt;
+    &lt;artifactId&gt;jaxb-core&lt;/artifactId&gt;
+    &lt;version&gt;2.3.0&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;javax.activation&lt;/groupId&gt;
+    &lt;artifactId&gt;activation&lt;/artifactId&gt;
+    &lt;version&gt;1.1.1&lt;/version&gt;
+&lt;/dependency&gt;
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgac83b4b" class="outline-3">
+<h3 id="orgac83b4b"><span class="section-number-3">35.2.</span> frontend deployment</h3>
+<div class="outline-text-3" id="text-35-2">
+</div>
+<div id="outline-container-org2ddf8db" class="outline-4">
+<h4 id="org2ddf8db"><span class="section-number-4">35.2.1.</span> build</h4>
+<div class="outline-text-4" id="text-35-2-1">
+<pre class="example">
+cd ruoyi-ui
+npm run build:prod
+npm run build:stage
+cp -r dist/* ~/Documens/nginx9010/
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgb34f5c2" class="outline-4">
+<h4 id="orgb34f5c2"><span class="section-number-4">35.2.2.</span> 验证码 for nginx</h4>
+<div class="outline-text-4" id="text-35-2-2">
+<pre class="example">
+#####################9010 NOT for php ############################################################################
+
+
+server {
+        listen 9010;
+        listen [::]:9010;
+
+        # SSL configuration
+        #
+        # listen 443 ssl default_server;
+        # listen [::]:443 ssl default_server;
+        #
+        # Note: You should disable gzip for SSL traffic.
+        # See: https://bugs.debian.org/773332
+        #
+        # Read up on ssl_ciphers to ensure a secure configuration.
+        # See: https://bugs.debian.org/765782
+        #
+        # Self signed certs generated by the ssl-cert package
+        # Don't use them in a production server!
+        #
+        # include snippets/snakeoil.conf;
+
+
+
+        # Add index.php to the list if you are using PHP
+
+
+        server_name _;
+
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                root /home/sx/Documents/nginx9010;
+                index index.html index.htm index.nginx-debian.html index.php;
+                try_files $uri $uri/ =404;
+        }
+
+        # deny access to .htaccess files, if Apache's document root
+        # concurs with nginx's one
+        #
+        #location ~ /\.ht {
+        #	deny all;
+        #}
+
+        location /prod-api/{
+                        proxy_set_header Host $http_host;
+                        proxy_set_header X-Real-IP $remote_addr;
+                        proxy_set_header REMOTE-HOST $remote_addr;
+                        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                        proxy_pass http://localhost:8080/;
+                }
+
+        error_page   500 502 503 504  /50x.html;
+
+        location = /50x.html {
+            root   html;
+        }
+
+}
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1431e88" class="outline-2">
+<h2 id="org1431e88"><span class="section-number-2">36.</span> webpack</h2>
+<div class="outline-text-2" id="text-36">
+<pre class="example">
+npm init -y
+npm i -D webpack webpack-cli typescript ts-loader
+
+设定生成的html的特性，包括使用模板
+npm i -D html-webpack-plugin
+
+设定项目的运行服务器
+npm i -D webpack-dev-server
+in package.json/"scripts":      "start": "webpack serve --open chromium-browser"
+and then in terminal: npm start
+
+
+删除上次的生成文件，整个dist目录
+npm i -D clean-webpack-plugin
+
+
+
+
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">path</span> = require(<span style="color: #2d9574;">"path"</span>);
+
+<span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">HTMLWebpackPlugin</span> = require(<span style="color: #2d9574;">"html-webpack-plugin"</span>);
+
+<span style="color: #4f97d7; font-weight: bold;">const</span> { CleanWebpackPlugin } = require(<span style="color: #2d9574;">"clean-webpack-plugin"</span>);
+
+module.exports = {
+    entry: <span style="color: #2d9574;">"./src/index.ts"</span>,
+    output: {
+        path: path.resolve(__dirname, <span style="color: #2d9574;">"dist"</span>),
+        filename: <span style="color: #2d9574;">"bundle.js"</span>,
+        <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">environment: {</span>
+        <span style="color: #2aa1ae; background-color: #292e34;">//     </span><span style="color: #2aa1ae; background-color: #292e34;">arrowFunction: false,</span>
+        <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">},</span>
+    },
+    module: {
+        rules: [
+            {
+                test: <span style="color: #2d9574;">/\.ts$/</span>,
+                use: [
+                    {
+                        loader: <span style="color: #2d9574;">"babel-loader"</span>,
+                        options: {
+                            presets: [
+                                [
+                                    <span style="color: #2d9574;">"@babel/preset-env"</span>,
+                                    {
+                                        targets: {
+                                            chrome: <span style="color: #2d9574;">"87"</span>,
+                                            <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">ie: "11",</span>
+                                        },
+                                        corejs: <span style="color: #2d9574;">"3"</span>,
+                                        useBuiltIns: <span style="color: #2d9574;">"usage"</span>,
+                                    },
+                                ],
+                            ],
+                        },
+                    },
+                    <span style="color: #2d9574;">"ts-loader"</span>,
+                ],
+                exclude: <span style="color: #2d9574;">/node-modules/</span>,
+            },
+        ],
+    },
+    plugins: [
+        <span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">HTMLWebpackPlugin</span>({
+            title: <span style="color: #2d9574;">"APP For Webpack"</span>,
+        }),
+        <span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">CleanWebpackPlugin</span>(),
+    ],
+
+    <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">&#27169;&#22359;&#35774;&#23450;</span>
+    resolve: {
+        extensions: [<span style="color: #2d9574;">".ts"</span>, <span style="color: #2d9574;">".js"</span>],
+    },
+};
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2abe763" class="outline-2">
+<h2 id="org2abe763"><span class="section-number-2">37.</span> serve</h2>
+<div class="outline-text-2" id="text-37">
+<pre class="example">
+sudo apt install serve
+serve folder
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgb6607d3" class="outline-2">
+<h2 id="orgb6607d3"><span class="section-number-2">38.</span> Traefik</h2>
+<div class="outline-text-2" id="text-38">
+</div>
+<div id="outline-container-org1449c71" class="outline-3">
+<h3 id="org1449c71"><span class="section-number-3">38.1.</span> just load traefik</h3>
+<div class="outline-text-3" id="text-38-1">
+<p>
+IN: docker-compose.yml
+</p>
+<pre class="example">
+version: "3.8"
+  services:
+    traefik:
+    image: traefik:alpine
+    command: --api --docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 80:80
+      - 8080:8080
+</pre>
+<p>
+open localhost:8080
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga3f50ec" class="outline-3">
+<h3 id="orga3f50ec"><span class="section-number-3">38.2.</span> load traefik with configaution</h3>
+<div class="outline-text-3" id="text-38-2">
+<p>
+IN: traefik.toml
+</p>
+<pre class="example">
+defaultEntryPoints = ["http"]
+
+logLevel = "INFO"
+sendAnonymousUsage = true
+
+[docker]
+  endpoint = "unix:///var/run/docker.sock"
+  exposedByDefault = true
+
+[api]
+dashboard = true
+entrypoint = "dashboard"
+
+[entryPoints]
+  [entryPints.http]
+  address = ":80"
+
+  [entryPints.dashboard]
+  address = ":8080"
+
+</pre>
+<p>
+open localhost:8080
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org151604e" class="outline-2">
+<h2 id="org151604e"><span class="section-number-2">39.</span> Oauth</h2>
+<div class="outline-text-2" id="text-39">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Resource owner</td>
+<td class="org-left">me</td>
+</tr>
+
+<tr>
+<td class="org-left">Client</td>
+<td class="org-left">myapp</td>
+</tr>
+
+<tr>
+<td class="org-left">Authorization server</td>
+<td class="org-left">google cloud project</td>
+</tr>
+
+<tr>
+<td class="org-left">Resource server</td>
+<td class="org-left">google account</td>
+</tr>
+
+<tr>
+<td class="org-left">Authorization grant</td>
+<td class="org-left">the whole process</td>
+</tr>
+
+<tr>
+<td class="org-left">call back /redirect</td>
+<td class="org-left">app api call</td>
+</tr>
+
+<tr>
+<td class="org-left">Access token</td>
+<td class="org-left">jwt token</td>
+</tr>
+
+<tr>
+<td class="org-left">Scope</td>
+<td class="org-left">['client<sub>id</sub>']</td>
+</tr>
+
+<tr>
+<td class="org-left">Consent</td>
+<td class="org-left">allow?</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orge142bb3" class="outline-2">
+<h2 id="orge142bb3"><span class="section-number-2">40.</span> VScode</h2>
+<div class="outline-text-2" id="text-40">
+</div>
+<div id="outline-container-orge5c662a" class="outline-4">
+<h4 id="orge5c662a"><span class="section-number-4">40.0.1.</span> set the fontsize</h4>
+<div class="outline-text-4" id="text-40-0-1">
+<p>
+settings: 
+editor . fontsize:15
+windows .zoomLevel: 1.5
+</p>
+</div>
+</div>
+<div id="outline-container-org822986a" class="outline-4">
+<h4 id="org822986a"><span class="section-number-4">40.0.2.</span> Zen mode</h4>
+<div class="outline-text-4" id="text-40-0-2">
+<p>
+hiden all stuff, only show code
+</p>
+</div>
+</div>
+
+<div id="outline-container-org317d6d0" class="outline-4">
+<h4 id="org317d6d0"><span class="section-number-4">40.0.3.</span> Minmap</h4>
+<div class="outline-text-4" id="text-40-0-3">
+<p>
+minmap of all code
+</p>
+</div>
+</div>
+<div id="outline-container-orgfc7accd" class="outline-4">
+<h4 id="orgfc7accd"><span class="section-number-4">40.0.4.</span> switch in opened file</h4>
+<div class="outline-text-4" id="text-40-0-4">
+<p>
+ctrl + tab
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8dde60c" class="outline-4">
+<h4 id="org8dde60c"><span class="section-number-4">40.0.5.</span> Emmet</h4>
+<div class="outline-text-4" id="text-40-0-5">
+<p>
+"emmet.triggerExpansionOnTab": true
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5134fd2" class="outline-4">
+<h4 id="org5134fd2"><span class="section-number-4">40.0.6.</span> Quokka</h4>
+<div class="outline-text-4" id="text-40-0-6">
+<p>
+M-x: new quokka js file will execute all in the new file
+</p>
+</div>
+</div>
+<div id="outline-container-orgec1af48" class="outline-4">
+<h4 id="orgec1af48"><span class="section-number-4">40.0.7.</span> Better comments</h4>
+<div class="outline-text-4" id="text-40-0-7">
+<p>
+open it in format on save
+</p>
+</div>
+</div>
+<div id="outline-container-org4e76987" class="outline-4">
+<h4 id="org4e76987"><span class="section-number-4">40.0.8.</span> live server</h4>
+<div class="outline-text-4" id="text-40-0-8">
+<p>
+M-x live server open file
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgce5fd42" class="outline-2">
+<h2 id="orgce5fd42"><span class="section-number-2">41.</span> Problem</h2>
+<div class="outline-text-2" id="text-41">
+</div>
+<div id="outline-container-org0c4cb39" class="outline-3">
+<h3 id="org0c4cb39"><span class="section-number-3">41.1.</span> maximun file number</h3>
+<div class="outline-text-3" id="text-41-1">
+<pre class="example">
+System limit for number of file watchers reached, watch '/home/silin/Dokumente/WebDev/Vue/vueboot5/node_modules/webpack-dev-server/client/live.html'
+</pre>
+<p>
+<a href="https://stackoverflow.com/questions/55763428/react-native-error-enospc-system-limit-for-number-of-file-watchers-reached">Overstack description</a>
+the Project need more file than the system can watch, 
+</p>
+<pre class="example">
+Ubuntu
+
+sudo gedit /etc/sysctl.conf
+
+Add a line at the bottom
+
+fs.inotify.max_user_watches=524288
+
+Then save and exit!
+
+sudo sysctl -p
+
+to check it
+
+Then it is solved!
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org8ee8c23" class="outline-3">
+<h3 id="org8ee8c23"><span class="section-number-3">41.2.</span> Mix of Tab and space</h3>
+<div class="outline-text-3" id="text-41-2">
+<p>
+<i>/ .eslintrc.js
+module.exports = {
+  "rules": {
+    "no-mixed-spaces-and-tabs": 0, /</i> disable rule
+  }
+};
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge8be7ea" class="outline-3">
+<h3 id="orge8be7ea"><span class="section-number-3">41.3.</span> Unexpected tab character (no-tabs)</h3>
+<div class="outline-text-3" id="text-41-3">
+<p>
+// .eslintrc.js
+module.exports = {
+  "rules": {
+"no-tabs": 0
+  }
+};
+</p>
+</div>
+</div>
+
+<div id="outline-container-org68fba2a" class="outline-3">
+<h3 id="org68fba2a"><span class="section-number-3">41.4.</span> Parsing error: Unexpected token &lt;</h3>
+<div class="outline-text-3" id="text-41-4">
+<p>
+<i>/ .eslintrc.js
+module.exports = {
+  "root": true,
+  "env": {
+    "node": true
+  },
+  "extends": [
+    "plugin:vue/essential",
+    "eslint:recommended"
+  ],
+  "rules": {
+    "no-mixed-spaces-and-tabs": 0, /</i> disable rule
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+    "experimentalObjectRestSpread": true
+    },
+    "parser": "babel-eslint"
+  }
+};
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0622129" class="outline-3">
+<h3 id="org0622129"><span class="section-number-3">41.5.</span> Expected indentation of 8 spaces but found 1 tab (indent)</h3>
+<div class="outline-text-3" id="text-41-5">
+<p>
+rules: {
+   'indent': 'off'
+}
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5ce3459" class="outline-3">
+<h3 id="org5ce3459"><span class="section-number-3">41.6.</span> error:0308010C:digital envelope routines::unsupported</h3>
+<div class="outline-text-3" id="text-41-6">
+<p>
+$: export NODE<sub>OPTIONS</sub>=&#x2013;openssl-legacy-provider
+</p>
+</div>
+</div>
+<div id="outline-container-org645ef66" class="outline-3">
+<h3 id="org645ef66"><span class="section-number-3">41.7.</span> scp to <i>var/www/html</i> permission dense</h3>
+<div class="outline-text-3" id="text-41-7">
+<p>
+change the owner and group of html to be non root,
+</p>
+</div>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-orgfa7cfac" class="outline-2">
+<h2 id="orgfa7cfac"><span class="section-number-2">42.</span> full stack deployment</h2>
+<div class="outline-text-2" id="text-42">
+<ul class="org-ul">
+<li>frontend at 80</li>
+<li>backend at 8000</li>
+<li>nginx for reverse proxy
+under the server<sub>name</sub>
+location <i>api</i> {                                                                                
+  proxy<sub>pass</sub> <a href="http://localhost:8000">http://localhost:8000</a>;                                                       
+}</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: si</p>
+<p class="date">Created: 2025-01-24 Fr 19:50</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
