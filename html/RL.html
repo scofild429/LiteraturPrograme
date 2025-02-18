@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-02-18 Di 21:25 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RL</title>
+<meta name="author" content="si" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">RL</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orga4c4f8d">1. RL</a>
+<ul>
+<li><a href="#org862cb72">1.1. From Policy Gradient TO PPO</a></li>
+<li><a href="#org18b9b2e">1.2. Gridworld Example</a></li>
+</ul>
+</li>
+<li><a href="#orgaafe294">2. DeepSeek</a>
+<ul>
+<li><a href="#org3846afc">2.1. Multi-head Latent Attention mechanismus</a></li>
+<li><a href="#orgfe7d8f4">2.2. MoE</a>
+<ul>
+<li><a href="#org633d5fb">2.2.1. with shared Experts for common sense training</a></li>
+<li><a href="#orgd3f74da">2.2.2. load balance</a></li>
+</ul>
+</li>
+<li><a href="#org8f5bdf7">2.3. Multi token prodiction</a>
+<ul>
+<li><a href="#org595739e">2.3.1. Orignal idea:</a></li>
+<li><a href="#org032251d">2.3.2. OpenAI thinking:</a></li>
+<li><a href="#org2644e6b">2.3.3. Deepseek thinking</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga4c4f8d" class="outline-2">
+<h2 id="orga4c4f8d"><span class="section-number-2">1.</span> RL</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org862cb72" class="outline-3">
+<h3 id="org862cb72"><span class="section-number-3">1.1.</span> From Policy Gradient TO PPO</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+For a Trajectory: \(\tau = {s_{1}, a_{1}, s_{2}, a_{2}, s_{3}, a_{3},....., s_{T}, a_{T} }\),
+The Actor wants to learn the policy,
+each step:  \(p_{\theta}(a_{t}|s_{t})\),
+total trajectory: \(p_{\theta}(\tau) = p(s_{1})p_{\theta}(a_{1}|s_{1}) \cdot  p(s_{2}|s_{1}, a_{1})p_{\theta}(a_{2}|s_{2}) \cdot
+p(s_{3}|s_{2}, a_{2})p_{\theta}(a_{3}|s_{3})  .....
+p(s_{T}|s_{T-1}, a_{T-1})p_{\theta}(a_{T}|s_{T})\),
+So we have \(p_{\theta}(\tau) = p(s_{1}) \cdot \prod_{t=1}^{T}
+p_{\theta}(a_{t}|s_{t}) p(s_{t+1}|s_{t}, a_{t})\).
+</p>
+
+
+<p>
+About the Policy \(R_{\theta}\) we get its expecation \(\bar{R_{\theta}} = \sum_{\tau}R(\tau)p_{\theta}(\tau)\).
+so its gradient: \(\Delta \bar{R_{\theta}} = \sum_{\tau}R(\tau) \Delta p_{\theta}(\tau)\).
+\(\Delta \bar{R_{\theta}} = \sum_{\tau}R(\tau) p_{\theta}(\tau)  \frac{\Delta p_{\theta}(\tau) }{p_{\theta}(\tau)}\).  by using \((\log(f(x)))' = \frac{f'(x)}{f(x)}\)
+</p>
+
+<p>
+So we have  \(\Delta \bar{R_{\theta}} = \sum_{\tau}R(\tau) p_{\theta}(\tau)  \Delta \log p_{\theta}(\tau)\).
+</p>
+
+<p>
+Assuming we have N Trajectories with porbablity of \(p_{\theta}(\tau)\):
+  \(\Delta \bar{R_{\theta}} = \frac{1}{N} \sum_{n=1}^{N} R(\tau^{n})  \Delta \log p_{\theta}(\tau^{n})\).
+</p>
+
+<p>
+Expanding all the probablity of each possiable actions:
+  \(\Delta \bar{R_{\theta}} = \frac{1}{N} \sum_{n=1}^{N} \sum_{t=1}^{T_{n}} R(t)  \Delta \log p_{\theta}( a_{t}^{n} | s_{t}^{n} )\).
+</p>
+
+<p>
+Using Advantage function \(A\) replace Reward function \(R\), and add baseline:
+\(A_{t} = Q(s_{t}, a_{t}) - V(s_{t})\)
+</p>
+
+<p>
+so th Policy Gradient Objective function is:
+\(J(\theta) = E_{t}[\log p_{\theta}(a_{t}|s_{t})A_{t}]\) and \(\Delta J(\theta) = E_{t}[\Delta_{\theta} \log p_{\theta}(a_{t}|s_{t})A_{t}]\)
+</p>
+
+<p>
+On Policy has Data Inefficiency, which slow dwon the training very much and unstable. We have following adjustments available.
+</p>
+
+<ul class="org-ul">
+<li><p>
+Mini-Batch training from On Policy to Off Policy with importance exampling:
+From \(\Delta J(\theta) = E_{(s_{t}, a_{t}) \backsim p_{\theta}}[ A_{\theta}(s_{t}, a_{t})  \Delta_{\theta} \log p_{\theta}(a_{t}|s_{t})]\)
+with importance exampling:  \(E_{x \backsim p[f(x)]} \approx \frac{1}{N} \sum_{i=1}^{N} f(x_{i}) = \int f(x)p(x)dx  = \int f(x)\frac{p(x)}{q(x)}q(x)dx = E_{x \backsim q[f(x)]}[f(x) \frac{p(x)}{q(x)}]\)
+we have  \(\Delta J(\theta) = E_{(s_{t}, a_{t}) \backsim p_{\theta^{'}}}[ \frac{p_{\theta}(s_{t}, a_{t})}{p_{\theta^{'}}(s_{t}, a_{t})} A_{\theta^{'}}(s_{t}, a_{t})  \Delta_{\theta} \log p_{\theta}(a_{t}|s_{t})]\).
+</p>
+
+<p>
+Expanding the join condition:    \(\Delta J(\theta) = E_{(s_{t}, a_{t}) \backsim p_{\theta^{'}}}[\frac{p_{\theta}(s_{t}| a_{t}) p_{\theta}(s_{t})}{p_{\theta^{'}}(s_{t}| a_{t}) p_{\theta^{'}}(s_{t})} A_{\theta^{'}}(s_{t}, a_{t})  \Delta_{\theta} \log p_{\theta}(a_{t}|s_{t})]\)
+</p>
+
+<p>
+because \(\frac{p_{\theta}(s_{t})}{p_{\theta^{'}}(s_{t})} \approx 1\),   we have \(\Delta J(\theta) = E_{(s_{t}, a_{t}) \backsim p_{\theta^{'}}}[\frac{p_{\theta}(s_{t}| a_{t})}{p_{\theta^{'}}(s_{t}| a_{t})} A_{\theta^{'}}(s_{t}, a_{t})  \Delta_{\theta} \log p_{\theta}(a_{t}|s_{t})]\).
+</p>
+
+<p>
+Because \(\Delta f(x) = \frac{f(x)}{\Delta \log_{f(x)}}\),   we have the Policy function  \(J_{\theta^{'}}(\theta) = E_{(s_{t}, a_{t}) \backsim p_{\theta^{'}}}[\frac{p_{\theta}(s_{t}| a_{t})}{p_{\theta^{'}}(s_{t}| a_{t})} A_{\theta^{'}}(s_{t}, a_{t})]\), its differential with respect of \(\theta\) is \(\Delta J(\theta)\).
+</p>
+
+<p>
+If we choice the example of \(\theta^{'}\) from pervious iteration, we can transition on policy to off policy by importance exampling.
+</p></li>
+
+<li><p>
+Regularization:
+using KL Divergence to constrain the difference between \(\theta\) and  \(\theta^{'}\).   \(D_{KL}(p||q) = E[\log p(x) - \log q(x)] = \sum_{x} p(x)\log \frac{p(x)}{qx}\)
+</p>
+
+<p>
+So The Objective Funciton of  PPO with KL penalty: \(J_{\theta^{'}}^{PPO}(\theta) = J_{\theta^{'}}(\theta) - \beta D_{KL}(p_{\theta} || p_{\theta^{'}})\) where \(J_{\theta^{'}}(\theta) = E_{(s_{t}, a_{t}) \backsim p_{\theta^{'}}}[\frac{p_{\theta}(s_{t}| a_{t})}{p_{\theta^{'}}(s_{t}| a_{t})} A_{\theta^{'}}(s_{t}, a_{t})]\) as in mini batch.
+</p>
+
+<p>
+to train the KL Penalty,
+</p>
+<ul class="org-ul">
+<li>if \(D_{KL}(p_{\theta} || p_{\theta^{'}})\) &gt; \(D_{max}\), increase \(\beta\)</li>
+<li>if \(D_{KL}(p_{\theta} || p_{\theta^{'}})\) &lt; \(D_{min}\), decrease \(\beta\)</li>
+</ul></li>
+
+<li><p>
+Clipped Objective
+limit the maximal and minimal of \(h_{t}(\theta) = \frac{p_{\theta}(a_{t}|s_{t})}p_{\theta^{'}}(a_{t}|s_{t})\) with limitation \(\epsilon\).
+</p>
+
+<p>
+\(L_{\theta_{k}}^{CLIP} = E(\sum_{t=0}^{T}  [\min {h_{t}A_{t}, clip(h_{t}, 1-\epsilon, 1+\epsilon)A_{t}}])\).
+</p></li>
+</ul>
+</div>
+</div>
+
+
+
+<div id="outline-container-org18b9b2e" class="outline-3">
+<h3 id="org18b9b2e"><span class="section-number-3">1.2.</span> Gridworld Example</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+The environment we are talking about
+</p>
+<ul class="org-ul">
+<li>Agent: The representation of us to achieve some goals.</li>
+<li>States: Where the agent can be in Gridworld, all possiable locations.</li>
+<li>Actions: In a State, all the possiable movements of the agent. What can the agent do.</li>
+<li>Valuse: In a certain State, in all its potential Actions, how well the Agent can be maximal evaluated according to a certain rule.</li>
+<li>Policy:  In a certain State, all allowed Actions to achieve the propose.</li>
+<li>Good policy: In a certain State, the best Actions to achieve the propose.</li>
+<li>Vaule Neural network: From State to Value</li>
+<li>Policy Neural network: From State to Policy</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgaafe294" class="outline-2">
+<h2 id="orgaafe294"><span class="section-number-2">2.</span> DeepSeek</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org3846afc" class="outline-3">
+<h3 id="org3846afc"><span class="section-number-3">2.1.</span> Multi-head Latent Attention mechanismus</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+using auto-encoder to compress the K and V with unified repersentatoin
+</p>
+</div>
+</div>
+<div id="outline-container-orgfe7d8f4" class="outline-3">
+<h3 id="orgfe7d8f4"><span class="section-number-3">2.2.</span> MoE</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+<div id="outline-container-org633d5fb" class="outline-4">
+<h4 id="org633d5fb"><span class="section-number-4">2.2.1.</span> with shared Experts for common sense training</h4>
+</div>
+<div id="outline-container-orgd3f74da" class="outline-4">
+<h4 id="orgd3f74da"><span class="section-number-4">2.2.2.</span> load balance</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+in order to training all Experts P, 
+</p>
+<ul class="org-ul">
+<li>Switch transformer, minimal the loss to force the f and P to be uniformly distributed : \(loss = \alpha \cdot N \cdot \sum_{i=1}^{N} f_{i} \cdot P_{i}\)</li>
+<li>Loss free: using self-adjusted bias before softmax to control the P.
+<ul class="org-ul">
+<li>if some experts has too much token, decrease the bias,</li>
+<li>if some experts has too less token, incurease the bias.</li>
+</ul></li>
+
+<li>DeepSeek use bias parameter before active function for dynamical adjustment of token loading for each expert</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org8f5bdf7" class="outline-3">
+<h3 id="org8f5bdf7"><span class="section-number-3">2.3.</span> Multi token prodiction</h3>
+<div class="outline-text-3" id="text-2-3">
+</div>
+<div id="outline-container-org595739e" class="outline-4">
+<h4 id="org595739e"><span class="section-number-4">2.3.1.</span> Orignal idea:</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+predict multiple token, some are from small model. If LLM accepte them, it does not need to generate them again.
+</p>
+</div>
+</div>
+<div id="outline-container-org032251d" class="outline-4">
+<h4 id="org032251d"><span class="section-number-4">2.3.2.</span> OpenAI thinking:</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+DeepSeek’s Multiple Token Prediction (MTP) is an innovative training objective that goes beyond the standard next‐token prediction. Instead of using each token only to predict the immediate next word, the model is trained to predict several future tokens simultaneously at each position. This densifies the training signal and encourages the model to “plan ahead” in its representations.
+</p>
+
+<p>
+Here’s how it works in detail:
+</p>
+
+<p>
+Sequential Multi-Token Prediction Modules:
+DeepSeek appends additional “MTP modules” onto the main Transformer. Each MTP module—comprising a shared embedding layer, a dedicated Transformer block, and an output head (which shares parameters with the main model’s output layer)—is responsible for predicting the token that comes a fixed number of steps ahead. For example, with an MTP depth of 1, the first module predicts the token at position n+1 (as usual) while a second module predicts token n+2.
+Unlike some previous approaches that use independent parallel heads (as seen in Meta’s MTP), DeepSeek’s design preserves the complete causal chain by performing these extra predictions sequentially. In other words, the prediction for token n+2 is conditioned not only on the original context but also on the predicted token at n+1.
+</p>
+
+<p>
+Integration of Speculative Decoding Ideas:
+DeepSeek’s MTP method draws inspiration from speculative decoding techniques such as Medusa and EAGLE developed by Google and DeepMind. In speculative decoding, the idea is to generate multiple candidate tokens in parallel (using extra decoding “heads”) and then validate them with the full model—thus accelerating inference. DeepSeek adapts this concept to training by teaching the model to produce coherent multi-token continuations. This “speculative training” trains the model to both generate and internally verify longer continuations, so that during inference it can safely “skip” several decoding steps when the predictions are confident.
+</p>
+
+<p>
+Loss Computation and Data Efficiency:
+During training, each MTP module outputs a probability distribution over the vocabulary for its respective future token. The training loss then includes a cross-entropy term for each predicted token (e.g. for token positions n+1, n+2, …). These losses are averaged (and typically weighted) to form the overall MTP loss. By predicting multiple tokens per training example, the model receives much denser supervision compared to standard one-token-at-a-time objectives. This not only improves data efficiency but also encourages the network to capture longer-term dependencies and improve planning in its internal representations.
+</p>
+
+<p>
+Parameter Sharing and Efficiency:
+To keep the overall model size and training cost in check, DeepSeek shares the embedding and output projection layers between the main model and the MTP modules. This careful design ensures that even though extra “heads” are added, the number of additional parameters is relatively small compared to the full model. The sequential design further means that the extra computational cost is modest, yet the benefit in improved context planning and potential inference acceleration is significant.
+</p>
+
+<p>
+Bridging Training and Inference:
+The training method effectively mimics the behavior of speculative decoding during inference. Once trained, the MTP modules can be discarded if desired—the main model will have internalized the ability to “look ahead.” Alternatively, they can be repurposed to perform speculative decoding at inference time, where multiple tokens are generated in parallel to speed up generation. This integration of ideas from Meta (MTP), Google/DeepMind (Medusa/EAGLE), and DeepSeek’s own innovations results in what the team calls a “speculative training” method.
+</p>
+
+<p>
+In summary, DeepSeek’s approach trains the model to predict multiple future tokens in a way that preserves the causal chain, uses shared parameters for efficiency, and leverages concepts from speculative decoding to enhance both training signal density and inference speed. This combination of techniques enables the model to learn richer representations and longer-term dependencies while significantly reducing the number of sequential decoding steps needed during generation.
+</p>
+</div>
+</div>
+<div id="outline-container-org2644e6b" class="outline-4">
+<h4 id="org2644e6b"><span class="section-number-4">2.3.3.</span> Deepseek thinking</h4>
+<div class="outline-text-4" id="text-2-3-3">
+<p>
+DeepSeek-V3's Multi-Token Prediction (MTP) is a novel training objective that diverges from traditional next-token prediction, combining ideas from Meta's MTP, speculative decoding (e.g., Google's work and Medusa/EAGLE), and architectural innovations to improve both training efficiency and inference speed. Below is a detailed breakdown of its mechanics and integration with related methodologies:
+</p>
+
+<ol class="org-ol">
+<li>Core Idea of Multi-Token Prediction (MTP) 135</li>
+</ol>
+<p>
+Traditional language models like GPT predict only the next token in a sequence. DeepSeek-V3 extends this by training the model to predict multiple future tokens at each position. This approach:
+</p>
+
+<p>
+Densifies Training Signals: Each input sequence generates predictions for multiple tokens, improving data efficiency and reducing the sparsity of training signals 56.
+</p>
+
+<p>
+Encourages Long-Term Planning: By requiring the model to anticipate future tokens, it builds richer internal representations that account for broader context, akin to human language processing 5.
+</p>
+
+<ol class="org-ol">
+<li>Architecture: Sequential MTP Modules 1310</li>
+</ol>
+<p>
+DeepSeek-V3 employs sequential MTP modules instead of parallel heads (as in Meta’s MTP). Each module consists of:
+</p>
+
+<p>
+Shared Embedding Layer: Processes input tokens into hidden representations.
+</p>
+
+<p>
+Projection Matrix: Converts hidden states into predictions for future tokens (specific to each prediction depth).
+</p>
+
+<p>
+Transformer Block: Processes combined representations of the current token and future embeddings 16.
+</p>
+
+<p>
+During training:
+</p>
+
+<p>
+The model predicts D additional tokens (e.g., 2–4) per input token.
+</p>
+
+<p>
+Future tokens within the same training sequence are used as supervision, avoiding leakage since they are part of the input context 15.
+</p>
+
+<ol class="org-ol">
+<li>Integration with Speculative Decoding 149</li>
+</ol>
+<p>
+DeepSeek-V3 leverages MTP for speculative decoding during inference, similar to Google’s speculative execution and Medusa’s multi-head decoding:
+</p>
+
+<p>
+Parallel Candidate Generation: The MTP modules generate multiple token candidates in parallel, bypassing the need for a separate draft model (as in Google’s original approach) 19.
+</p>
+
+<p>
+Tree-Based Verification: Candidates are verified against the main model’s predictions in a single decoding step, reducing latency. This aligns with Medusa’s tree-based attention but uses the MTP modules natively trained with the model 96.
+</p>
+
+<p>
+Cost Efficiency: Unlike Medusa, which adds decoding heads post-training, DeepSeek’s MTP modules are integrated during pre-training, ensuring better alignment between training and inference 37.
+</p>
+
+<ol class="org-ol">
+<li>Key Innovations Over Existing Methods</li>
+</ol>
+<p>
+a. Meta’s MTP vs. DeepSeek’s Sequential Approach
+Meta’s MTP uses parallel output heads for multi-token prediction, which can lead to redundancy and increased parameter count 5.
+</p>
+
+<p>
+DeepSeek’s sequential modules reuse the main model’s transformer blocks and embeddings, reducing computational overhead while maintaining prediction accuracy 16.
+</p>
+
+<p>
+b. Medusa/EAGLE Comparison
+Medusa adds multiple decoding heads to a frozen base model, requiring fine-tuning for compatibility 29.
+</p>
+
+<p>
+DeepSeek’s MTP modules are co-trained with the main model, enabling seamless speculative decoding without post-hoc adjustments 710.
+</p>
+
+<p>
+EAGLE’s draft model is external, while DeepSeek’s MTP modules are part of the core architecture, eliminating the need for separate maintenance 14.
+</p>
+
+<ol class="org-ol">
+<li>Training Workflow 367</li>
+</ol>
+<p>
+Pre-Training:
+</p>
+
+<p>
+The model is trained on a 14.8 trillion-token corpus using FP8 mixed precision and a novel load-balancing strategy for MoE layers.
+</p>
+
+<p>
+MTP modules are trained alongside the main model, with shared parameters (e.g., embeddings) and task-specific projections.
+</p>
+
+<p>
+Fine-Tuning:
+</p>
+
+<p>
+Supervised Fine-Tuning (SFT) and Reinforcement Learning (GRPO) stages refine the model’s outputs.
+</p>
+
+<p>
+Inference:
+</p>
+
+<p>
+MTP modules can be discarded, leaving the main model for standard autoregressive decoding.
+</p>
+
+<p>
+Alternatively, they enable speculative decoding by generating multiple candidates for parallel verification.
+</p>
+
+<ol class="org-ol">
+<li>Performance and Advantages 3710</li>
+</ol>
+<p>
+Training Efficiency: MTP reduces training costs (~
+6
+M
+f
+o
+r
+D
+e
+e
+p
+S
+e
+e
+k
+−
+V
+3
+v
+s
+.
+</p>
+
+<p>
+6MforDeepSeek−V3vs. 50M for comparable models) by improving data utilization 17.
+</p>
+
+<p>
+Benchmark Results: Achieves SOTA on coding (HumanEval: 65.2 Pass@1) and math (GSM8K: 89.3 EM) tasks, outperforming GPT-4 and Claude-3.5 7.
+</p>
+
+<p>
+Inference Speed: With speculative decoding, latency is reduced by 2.2–3.6x, comparable to Medusa-2’s gains 9.
+</p>
+
+<p>
+Summary
+DeepSeek-V3’s MTP merges the predictive power of multi-token objectives with the efficiency of speculative decoding, avoiding the pitfalls of external draft models or redundant parallel heads. By co-training MTP modules with the main model, it achieves superior performance while maintaining cost-effectiveness—a significant leap in LLM architecture
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: si</p>
+<p class="date">Created: 2025-02-18 Di 21:25</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
