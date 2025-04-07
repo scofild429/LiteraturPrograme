@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-01-24 Fr 20:57 -->
+<!-- 2025-04-07 Mo 12:35 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>RUST</title>
 <meta name="author" content="si" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -202,34 +202,32 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org6b426e1">1. array and slienc</a></li>
-<li><a href="#orgbb2b01a">2. str String &amp;[] Vec convert</a></li>
-<li><a href="#orgb06170e">3. 所有权</a></li>
-<li><a href="#org0dadb46">4. test</a></li>
-<li><a href="#org075fc0d">5. item collections</a></li>
-<li><a href="#orgb053811">6. 特征对象</a></li>
-<li><a href="#orgc7916f4">7. mut</a>
+<li><a href="#org3ec6cf7">1. array and slienc</a></li>
+<li><a href="#org68a3c5e">2. str String &amp;[] Vec convert</a></li>
+<li><a href="#orgeee92bc">3. 所有权</a></li>
+<li><a href="#orgc3df001">4. test</a></li>
+<li><a href="#orgb311608">5. item collections</a></li>
+<li><a href="#orgab7cf32">6. 特征对象</a></li>
+<li><a href="#orgfda46e0">7. mut</a>
 <ul>
-<li><a href="#org5c4e444">7.1. mut example</a></li>
-<li><a href="#org7e5aa35">7.2. different lifetime</a></li>
+<li><a href="#org7563934">7.1. mut example</a></li>
+<li><a href="#orgf665101">7.2. different lifetime</a></li>
 </ul>
 </li>
+<li><a href="#org8a307c1">8. Traits with where</a></li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-org6b426e1" class="outline-2">
-<h2 id="org6b426e1"><span class="section-number-2">1.</span> array and slienc</h2>
+<div id="outline-container-org3ec6cf7" class="outline-2">
+<h2 id="org3ec6cf7"><span class="section-number-2">1.</span> array and slienc</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 数组类型表示为[T; N]，数组的引用类型表示为&amp;[T;N]，Slice类型表示为[T]，Slice的引用类型表示为&amp;[T]。
 </p>
 </div>
 </div>
-
-
-<div id="outline-container-orgbb2b01a" class="outline-2">
-<h2 id="orgbb2b01a"><span class="section-number-2">2.</span> str String &amp;[] Vec convert</h2>
+<div id="outline-container-org68a3c5e" class="outline-2">
+<h2 id="org68a3c5e"><span class="section-number-2">2.</span> str String &amp;[] Vec convert</h2>
 <div class="outline-text-2" id="text-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -323,11 +321,8 @@
 </table>
 </div>
 </div>
-
-
-
-<div id="outline-container-orgb06170e" class="outline-2">
-<h2 id="orgb06170e"><span class="section-number-2">3.</span> 所有权</h2>
+<div id="outline-container-orgeee92bc" class="outline-2">
+<h2 id="orgeee92bc"><span class="section-number-2">3.</span> 所有权</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-rust"><span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">main</span>() {
@@ -406,9 +401,8 @@ no matter  with   ..user1 or  xxx: user1.xxx to create new user with old user, i
 </ul>
 </div>
 </div>
-
-<div id="outline-container-org0dadb46" class="outline-2">
-<h2 id="org0dadb46"><span class="section-number-2">4.</span> test</h2>
+<div id="outline-container-orgc3df001" class="outline-2">
+<h2 id="orgc3df001"><span class="section-number-2">4.</span> test</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <pre class="src src-rust"><span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">main</span>() {
@@ -439,9 +433,8 @@ no matter  with   ..user1 or  xxx: user1.xxx to create new user with old user, i
 </div>
 </div>
 </div>
-
-<div id="outline-container-org075fc0d" class="outline-2">
-<h2 id="org075fc0d"><span class="section-number-2">5.</span> item collections</h2>
+<div id="outline-container-orgb311608" class="outline-2">
+<h2 id="orgb311608"><span class="section-number-2">5.</span> item collections</h2>
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 <pre class="src src-rust"><span style="color: #4f97d7; font-weight: bold;">impl</span> <span style="color: #ce537a; font-weight: bold;">Summary</span> <span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #ce537a; font-weight: bold;">Post</span>    
@@ -486,9 +479,8 @@ no matter  with   ..user1 or  xxx: user1.xxx to create new user with old user, i
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgb053811" class="outline-2">
-<h2 id="orgb053811"><span class="section-number-2">6.</span> 特征对象</h2>
+<div id="outline-container-orgab7cf32" class="outline-2">
+<h2 id="orgab7cf32"><span class="section-number-2">6.</span> 特征对象</h2>
 <div class="outline-text-2" id="text-6">
 <div class="org-src-container">
 <pre class="src src-rust"><span style="color: #4f97d7; font-weight: bold;">pub</span> <span style="color: #4f97d7; font-weight: bold;">trait</span> <span style="color: #ce537a; font-weight: bold;">Draw</span> {
@@ -576,13 +568,12 @@ no matter  with   ..user1 or  xxx: user1.xxx to create new user with old user, i
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgc7916f4" class="outline-2">
-<h2 id="orgc7916f4"><span class="section-number-2">7.</span> mut</h2>
+<div id="outline-container-orgfda46e0" class="outline-2">
+<h2 id="orgfda46e0"><span class="section-number-2">7.</span> mut</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org5c4e444" class="outline-3">
-<h3 id="org5c4e444"><span class="section-number-3">7.1.</span> mut example</h3>
+<div id="outline-container-org7563934" class="outline-3">
+<h3 id="org7563934"><span class="section-number-3">7.1.</span> mut example</h3>
 <div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
 <pre class="src src-rust">fnmain() {
@@ -596,8 +587,8 @@ no matter  with   ..user1 or  xxx: user1.xxx to create new user with old user, i
 </div>
 </div>
 </div>
-<div id="outline-container-org7e5aa35" class="outline-3">
-<h3 id="org7e5aa35"><span class="section-number-3">7.2.</span> different lifetime</h3>
+<div id="outline-container-orgf665101" class="outline-3">
+<h3 id="orgf665101"><span class="section-number-3">7.2.</span> different lifetime</h3>
 <div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
 <pre class="src src-rust"><span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">main</span>() {
@@ -615,10 +606,85 @@ no matter  with   ..user1 or  xxx: user1.xxx to create new user with old user, i
 </div>
 </div>
 </div>
+<div id="outline-container-org8a307c1" class="outline-2">
+<h2 id="org8a307c1"><span class="section-number-2">8.</span> Traits with where</h2>
+<div class="outline-text-2" id="text-8">
+<div class="org-src-container">
+<pre class="src src-rust"><span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #ce537a; font-weight: bold;">Cacher</span>&lt;<span style="color: #ce537a; font-weight: bold;">T</span>, <span style="color: #ce537a; font-weight: bold;">E</span>&gt;
+<span style="color: #4f97d7; font-weight: bold;">where</span>
+    <span style="color: #7590db;">T</span>: <span style="color: #ce537a; font-weight: bold;">Fn</span>(<span style="color: #ce537a; font-weight: bold;">E</span>) -&gt; <span style="color: #ce537a; font-weight: bold;">E</span>,
+    <span style="color: #7590db;">E</span>: <span style="color: #ce537a; font-weight: bold;">Copy</span>,
+{
+    <span style="color: #7590db;">query</span>: <span style="color: #ce537a; font-weight: bold;">T</span>,
+    <span style="color: #7590db;">value</span>: <span style="color: #ce537a; font-weight: bold;">Option</span>&lt;<span style="color: #ce537a; font-weight: bold;">E</span>&gt;,
+}
+
+<span style="color: #4f97d7; font-weight: bold;">impl</span>&lt;<span style="color: #ce537a; font-weight: bold;">T</span>, <span style="color: #ce537a; font-weight: bold;">E</span>&gt; <span style="color: #ce537a; font-weight: bold;">Cacher</span>&lt;<span style="color: #ce537a; font-weight: bold;">T</span>, <span style="color: #ce537a; font-weight: bold;">E</span>&gt;
+<span style="color: #4f97d7; font-weight: bold;">where</span>
+    <span style="color: #7590db;">T</span>: <span style="color: #ce537a; font-weight: bold;">Fn</span>(<span style="color: #ce537a; font-weight: bold;">E</span>) -&gt; <span style="color: #ce537a; font-weight: bold;">E</span>,
+    <span style="color: #7590db;">E</span>: <span style="color: #ce537a; font-weight: bold;">Copy</span>,
+{
+    <span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">new</span>(<span style="color: #7590db;">query</span>: <span style="color: #ce537a; font-weight: bold;">T</span>) -&gt; <span style="color: #ce537a; font-weight: bold;">Cacher</span>&lt;<span style="color: #ce537a; font-weight: bold;">T</span>, <span style="color: #ce537a; font-weight: bold;">E</span>&gt; {
+        <span style="color: #ce537a; font-weight: bold;">Cacher</span> { query, <span style="color: #7590db;">value</span>: <span style="color: #ce537a; font-weight: bold;">None</span> }
+    }
+
+    <span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">value</span>(<span style="color: #b2b2b2; background-color: #292b2e;">&amp;</span><span style="color: #4f97d7; font-weight: bold;">mut</span> <span style="color: #4f97d7; font-weight: bold;">self</span>, <span style="color: #7590db;">arg</span>: <span style="color: #ce537a; font-weight: bold;">E</span>) -&gt; <span style="color: #ce537a; font-weight: bold;">E</span> {
+        <span style="color: #4f97d7; font-weight: bold;">match</span> <span style="color: #4f97d7; font-weight: bold;">self</span>.value {
+            <span style="color: #ce537a; font-weight: bold;">Some</span>(v) =&gt; v,
+            <span style="color: #ce537a; font-weight: bold;">None</span> =&gt; {
+                <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">v</span> = (<span style="color: #4f97d7; font-weight: bold;">self</span>.query)(arg);
+                <span style="color: #4f97d7; font-weight: bold;">self</span>.value = <span style="color: #ce537a; font-weight: bold;">Some</span>(v);
+                v
+            }
+        }
+    }
+}
+
+<span style="color: #bc6ec5;">#[cfg(test)]</span>
+<span style="color: #4f97d7; font-weight: bold;">mod</span> <span style="color: #a45bad;">tests</span> {
+    <span style="color: #4f97d7; font-weight: bold;">use</span> <span style="color: #4f97d7; font-weight: bold;">super</span>::*;
+
+    <span style="color: #bc6ec5;">#[test]</span>
+    <span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">call_with_different_values</span>() {
+        <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #4f97d7; font-weight: bold;">mut</span> <span style="color: #7590db;">c</span> = <span style="color: #ce537a; font-weight: bold;">Cacher</span>::new(|a| a);
+        c.value(1);
+
+        <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">v1</span> = c.value(1);
+        <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">v2</span> = c.value(2);
+
+        <span style="color: #bc6ec5;">assert_eq!</span>(v2, 1);
+        <span style="color: #bc6ec5;">assert_eq!</span>(v2, v1);
+    }
+
+    <span style="color: #bc6ec5;">#[test]</span>
+    <span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">call_with_str</span>() {
+        <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #4f97d7; font-weight: bold;">mut</span> <span style="color: #7590db;">b</span> = <span style="color: #ce537a; font-weight: bold;">Cacher</span>::new(|a| a);
+        <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">b1</span> = b.value(<span style="color: #2d9574;">"test"</span>);
+
+        <span style="color: #bc6ec5;">assert_eq!</span>(<span style="color: #2d9574;">"test"</span>, b1);
+    }
+    <span style="color: #4f97d7; font-weight: bold;">pub</span> <span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">run_tests_manually</span>() {
+        call_with_different_values();
+        call_with_str();
+    }
+}
+<span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">main</span>() {
+    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #4f97d7; font-weight: bold;">mut</span> <span style="color: #7590db;">c</span> = <span style="color: #ce537a; font-weight: bold;">Cacher</span>::new(|a| a+2);
+    c.value(1);
+    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">v1</span> = c.value(1);
+    <span style="color: #bc6ec5;">assert_eq!</span>(v1, 3);
+
+    <span style="color: #bc6ec5;">#[cfg(test)]</span>
+    <span style="color: #a45bad;">tests</span>::run_tests_manually();
+}
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: si</p>
-<p class="date">Created: 2025-01-24 Fr 20:57</p>
+<p class="date">Created: 2025-04-07 Mo 12:35</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
