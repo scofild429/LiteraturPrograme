@@ -1,0 +1,1151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-10-26 So 16:37 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>k8s</title>
+<meta name="author" content="Silin Zhao" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/code-copy.css"/>
+<link rel="stylesheet" type="text/css" href="src/readtheorg_theme/css/search.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/search.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/code-copy.js"></script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">k8s</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org36f4670">1. Docker</a>
+<ul>
+<li><a href="#org8a388e6">1.1. pull</a></li>
+<li><a href="#org510c7fb">1.2. build</a></li>
+<li><a href="#org77f9a09">1.3. tag</a></li>
+<li><a href="#orgad21eb0">1.4. Microservices</a></li>
+</ul>
+</li>
+<li><a href="#org9a54290">2. Dokcerfile</a>
+<ul>
+<li><a href="#org8d779e2">2.1. EXPOSE</a></li>
+<li><a href="#org3a61a9c">2.2. CMD echo "Hello World" &amp;&amp; CMD ["echo", "Hello World"]</a></li>
+<li><a href="#org1d5fefa">2.3. ENTRYPORT</a></li>
+<li><a href="#org5216002">2.4. Docker's multi-stage</a></li>
+</ul>
+</li>
+<li><a href="#orgfd5bd11">3. Kubernetes</a>
+<ul>
+<li><a href="#orgec8780c">3.1. Pod</a></li>
+<li><a href="#org919f68d">3.2. Labels</a></li>
+<li><a href="#org2c6194a">3.3. Selectors</a>
+<ul>
+<li><a href="#org2c8ea89">3.3.1. Equality-Based</a></li>
+<li><a href="#org246830c">3.3.2. Set-Based</a></li>
+</ul>
+</li>
+<li><a href="#orgd44f57e">3.4. ReplicationController</a></li>
+<li><a href="#org46467fc">3.5. ReplicaSet</a></li>
+<li><a href="#org5316407">3.6. Deployment</a>
+<ul>
+<li><a href="#org46b175f">3.6.1. Annotation</a></li>
+</ul>
+</li>
+<li><a href="#orgcd1c11d">3.7. Service</a>
+<ul>
+<li><a href="#org29b898a">3.7.1. ClusterIP</a></li>
+<li><a href="#org812392a">3.7.2. NordPort</a></li>
+<li><a href="#org63017ab">3.7.3. Loadbalance</a></li>
+<li><a href="#orga83f5b1">3.7.4. ExternalName</a></li>
+</ul>
+</li>
+<li><a href="#orgd87faaf">3.8. Manual scheduling</a></li>
+<li><a href="#orge4086f7">3.9. Static pods</a></li>
+<li><a href="#orgd99f50d">3.10. Node Selector</a>
+<ul>
+<li><a href="#org9a05b48">3.10.1. label: Apply label to node</a></li>
+<li><a href="#org8809a64">3.10.2. selector apply to pod/Deployment</a></li>
+<li><a href="#org7453070">3.10.3. Takeaway: Pure lebel matching mechanismus,l ack of flexibility, only with key-value matching selection</a></li>
+</ul>
+</li>
+<li><a href="#org248e9e1">3.11. Taints and Tolerations</a>
+<ul>
+<li><a href="#orgdff8a82">3.11.1. Taints Apply to node</a></li>
+<li><a href="#orgd728ae4">3.11.2. Toleration Apply to pod</a></li>
+<li><a href="#org200b7c1">3.11.3. Takeaway: Lebel matching with hardness configuation, NoExecute supports re-evaluation. If a node’s taints change and a pod doesn’t tolerate them, it will be evicted</a></li>
+</ul>
+</li>
+<li><a href="#orgb877688">3.12. Node Affinity</a>
+<ul>
+<li><a href="#orge37faf5">3.12.1. Takeaway: The most flexible way to optimize the resource utilization</a></li>
+</ul>
+</li>
+<li><a href="#orgab4d23e">3.13. Request and limits</a>
+<ul>
+<li><a href="#org5f78293">3.13.1. Monitoring</a></li>
+</ul>
+</li>
+<li><a href="#org8c3d899">3.14. Scaling</a>
+<ul>
+<li><a href="#orga9c05b1">3.14.1. Horizontal Scaling</a></li>
+<li><a href="#org5d0cb53">3.14.2. Vertical Scaling</a></li>
+<li><a href="#orgaa91e40">3.14.3. Node side</a></li>
+</ul>
+</li>
+<li><a href="#orgf4adf37">3.15. Horizontal Pod Autoscaler (HPA)</a></li>
+<li><a href="#orgab34d58">3.16. Vertical Pod Autoscaler (VPA)</a></li>
+<li><a href="#org28f855f">3.17. Multi-container pods</a>
+<ul>
+<li><a href="#org60400d7">3.17.1. Init Containers</a></li>
+<li><a href="#orgc06a7c9">3.17.2. Sidecar Pattern</a></li>
+<li><a href="#org3c788ec">3.17.3. Ambassador Pattern</a></li>
+<li><a href="#orgc49988b">3.17.4. Adapter Pattern</a></li>
+</ul>
+</li>
+<li><a href="#orgda20b4b">3.18. Pod Policies</a>
+<ul>
+<li><a href="#org51d46b2">3.18.1. Delete policies</a></li>
+<li><a href="#org1403072">3.18.2. Restart Policies</a></li>
+<li><a href="#org6dd85e1">3.18.3. Image Pull Policies</a></li>
+<li><a href="#org6225c1c">3.18.4. Pod Lifecycle and debugging see Day 22</a></li>
+</ul>
+</li>
+<li><a href="#org7d0b6c7">3.19. health probes</a>
+<ul>
+<li><a href="#orge86a8be">3.19.1. Readiness Probes</a></li>
+<li><a href="#orgb471047">3.19.2. Liveness Probes</a></li>
+<li><a href="#orgd8470cb">3.19.3. Startup Probes</a></li>
+</ul>
+</li>
+<li><a href="#orga7fe89a">3.20. Ephemeral Storage</a>
+<ul>
+<li><a href="#org2cb6cff">3.20.1. emptyDir</a></li>
+<li><a href="#org1ca5d26">3.20.2. Downward API</a></li>
+</ul>
+</li>
+<li><a href="#org0fe6ddf">3.21. Volume</a></li>
+</ul>
+</li>
+<li><a href="#org2cd9dbe">4. Kubectl</a>
+<ul>
+<li><a href="#org163e6a3">4.1. Imperative Commands for Backend Deployment and Service</a></li>
+<li><a href="#orga5db587">4.2. namespace</a></li>
+<li><a href="#orgbcd7cc8">4.3. config</a></li>
+</ul>
+</li>
+<li><a href="#org994fdd9">5. Matrics server</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org36f4670" class="outline-2">
+<h2 id="org36f4670"><span class="section-number-2">1.</span> Docker</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org8a388e6" class="outline-3">
+<h3 id="org8a388e6"><span class="section-number-3">1.1.</span> pull</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Docker daemon prefixes docker.io/library/ for default images on Docker Hub when no registry is specified
+</p>
+</div>
+</div>
+<div id="outline-container-org510c7fb" class="outline-3">
+<h3 id="org510c7fb"><span class="section-number-3">1.2.</span> build</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+<pre class="src src-nil">docker build -t name:tag .
+docker build -t entry-image -f /path/to/custom-dockerfile /path/to/build-context
+</pre>
+</div>
+<p>
+-t:  Name and optionally a tag (format: "name:tag")
+</p>
+<ul class="org-ul">
+<li>ADD and COPY can only access files within the build context specified in the docker build command (e.g., /path/to/build-context). Files outside the build context cannot be directly referenced in the Dockerfile.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org77f9a09" class="outline-3">
+<h3 id="org77f9a09"><span class="section-number-3">1.3.</span> tag</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+<pre class="src src-nil">docker tag my-current-image:tag my-username-in-dockerhub/my-wanted-image-name:mytag
+docker push my-current-image:tag my-username-in-dockerhub/my-wanted-image-name:mytag
+</pre>
+</div>
+<p>
+tag change the name(with dockerhub name) and the tag for pushing
+</p>
+</div>
+</div>
+<div id="outline-container-orgad21eb0" class="outline-3">
+<h3 id="orgad21eb0"><span class="section-number-3">1.4.</span> Microservices</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>Scalability	Each microservice can scale independently based on demand.</li>
+<li>Fault Isolation	Failure in one service does not crash the entire application.</li>
+<li>Faster Deployment	Teams can deploy and update services independently.</li>
+<li>Technology Flexibility	Different services can use different programming languages.</li>
+<li>Easier Maintenance	Smaller codebases are easier to manage and debug.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org9a54290" class="outline-2">
+<h2 id="org9a54290"><span class="section-number-2">2.</span> Dokcerfile</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org8d779e2" class="outline-3">
+<h3 id="org8d779e2"><span class="section-number-3">2.1.</span> EXPOSE</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Missing EXPOSE 5000 won’t break your setup if you explicitly map ports with -p 80:5000. It’s primarily a documentation and automation feature. For clarity and best practices, include EXPOSE 5000 in your Dockerfile to indicate the port your application uses.
+</p>
+</div>
+</div>
+<div id="outline-container-org3a61a9c" class="outline-3">
+<h3 id="org3a61a9c"><span class="section-number-3">2.2.</span> CMD echo "Hello World" &amp;&amp; CMD ["echo", "Hello World"]</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>CMD echo "Hello World":  start a shell and run the command, with shell features</li>
+<li>CMD ["echo", "Hello World"]:  run the command directly, withour to start a shell</li>
+<li>CMD: can be easyly overridden by docker run &#x2026;</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1d5fefa" class="outline-3">
+<h3 id="org1d5fefa"><span class="section-number-3">2.3.</span> ENTRYPORT</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>Can only be explicitly overridden by docker run &#x2026; &#x2013;entryport &#x2026;</li>
+<li>Implicity run without &#x2013;entryport  after docker run&#x2026; will append arguments at end</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5216002" class="outline-3">
+<h3 id="org5216002"><span class="section-number-3">2.4.</span> Docker's multi-stage</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+builds offer a powerful way to manage production environments by separating build and runtime stages, ensuring smaller images, faster deployments, and enhanced security.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfd5bd11" class="outline-2">
+<h2 id="orgfd5bd11"><span class="section-number-2">3.</span> Kubernetes</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgec8780c" class="outline-3">
+<h3 id="orgec8780c"><span class="section-number-3">3.1.</span> Pod</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Basic Pod-Related Commands
+</p>
+<ul class="org-ul">
+<li>Create a Pod: kubectl apply -f pod.yaml</li>
+<li>List all Pods: kubectl get pods</li>
+<li>List Pods with details: kubectl get pods -o wide</li>
+<li>Describe a Pod: kubectl describe pod &lt;pod-name&gt;</li>
+<li>View Pod logs: kubectl logs &lt;pod-name&gt;</li>
+<li>View logs for a specific container: kubectl logs &lt;pod-name&gt; -c &lt;container-name&gt;</li>
+<li>Stream live Pod logs: kubectl logs -f &lt;pod-name&gt;</li>
+<li>Execute a command in a Pod: kubectl exec -it &lt;pod-name&gt; &#x2013; /bin/bash</li>
+<li>Execute a command in a specific container: kubectl exec -it &lt;pod-name&gt; -c &lt;container-name&gt; &#x2013; /bin/bash</li>
+<li>Delete a Pod: kubectl delete pod &lt;pod-name&gt;</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org919f68d" class="outline-3">
+<h3 id="org919f68d"><span class="section-number-3">3.2.</span> Labels</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>Labels: Key-value pairs attached to Kubernetes objects like pods, enabling logical grouping and selection.</li>
+
+<li>Kubernetes Features That Use Labels and Selectors:
+<ul class="org-ul">
+<li>ReplicationController,</li>
+<li>ReplicaSet,</li>
+<li>Deployments,</li>
+<li>StatefulSets,</li>
+<li>DaemonSets,</li>
+<li>Services,</li>
+<li>Jobs,</li>
+<li>CronJobs,</li>
+<li>and NetworkPolicies.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2c6194a" class="outline-3">
+<h3 id="org2c6194a"><span class="section-number-3">3.3.</span> Selectors</h3>
+<div class="outline-text-3" id="text-3-3">
+<ul class="org-ul">
+<li>Selectors: Expressions or equality-based filters used to match objects based on their labels, enabling precise control over resource management.</li>
+<li>It only apply to the Pod level(Node or Service), not to the container level</li>
+</ul>
+</div>
+<div id="outline-container-org2c8ea89" class="outline-4">
+<h4 id="org2c8ea89"><span class="section-number-4">3.3.1.</span> Equality-Based</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<p>
+for
+</p>
+<ul class="org-ul">
+<li>rc,</li>
+<li>rs,</li>
+<li><p>
+deployment
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">selector:
+  matchLabels:
+    app: nginx
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org246830c" class="outline-4">
+<h4 id="org246830c"><span class="section-number-4">3.3.2.</span> Set-Based</h4>
+<div class="outline-text-4" id="text-3-3-2">
+<ul class="org-ul">
+<li>for rs, and deloyment</li>
+<li><p>
+usign: In, NotIn, Exists, DoesNotExist
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">selector:
+  matchExpressions:
+    - key: app
+      operator: In
+      values:
+        - nginx
+        - apache
+    - key: environment
+      operator: NotIn
+      values:
+        - development
+    - key: tier
+      operator: Exists
+    - key: debug
+      operator: DoesNotExist
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd44f57e" class="outline-3">
+<h3 id="orgd44f57e"><span class="section-number-3">3.4.</span> ReplicationController</h3>
+<div class="outline-text-3" id="text-3-4">
+<ul class="org-ul">
+<li>Ensures a specified number of pod replicas are running at any given time</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org46467fc" class="outline-3">
+<h3 id="org46467fc"><span class="section-number-3">3.5.</span> ReplicaSet</h3>
+<div class="outline-text-3" id="text-3-5">
+<ul class="org-ul">
+<li>ReplicaSet is an improved version of ReplicationController.</li>
+<li>It supports set-based selectors, providing more flexibility in managing pods.</li>
+<li>ReplicaSets are often managed by Deployments, which add advanced capabilities.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5316407" class="outline-3">
+<h3 id="org5316407"><span class="section-number-3">3.6.</span> Deployment</h3>
+<div class="outline-text-3" id="text-3-6">
+<ul class="org-ul">
+<li>build on top of ReplicaSets, with rolling update and rollbacks, automated update, scaling and simplified management</li>
+</ul>
+</div>
+<div id="outline-container-org46b175f" class="outline-4">
+<h4 id="org46b175f"><span class="section-number-4">3.6.1.</span> Annotation</h4>
+<div class="outline-text-4" id="text-3-6-1">
+<p>
+<b>A</b>: 
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kubernetes.io/change-cause: "Initial release with nginx 1.19"
+  name: nginx-deployment
+spec:
+  ....
+</pre>
+</div>
+
+<p>
+<b>B</b>: 
+after applying the file and check the annoation
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">kubectl rollout history deployment nginx-deployment
+</pre>
+</div>
+<p>
+I would able to see the default annotation.
+</p>
+
+<p>
+<b>C</b>:
+Then I can update my container for next version(only for deployment, not rc and rs)
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">kubectl set image deployment nginx-deployment nginx-container=nginx:1.20
+</pre>
+</div>
+<p>
+and set new annotation with
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">kubectl annotate deployments nginx-deployment kubernetes.io/change-cause="Upgraded my container"
+</pre>
+</div>
+<p>
+OR modify my Deployment manifest and apply.
+Now verify the history with
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">kubectl rollout history deployment nginx-deployment
+</pre>
+</div>
+
+
+<p>
+<b>D</b>:
+rollback to special version with
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">kubectl rollout undo deployment nginx-deployment --to-revision=1
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcd1c11d" class="outline-3">
+<h3 id="orgcd1c11d"><span class="section-number-3">3.7.</span> Service</h3>
+<div class="outline-text-3" id="text-3-7">
+<ul class="org-ul">
+<li>A fixed IP and DNS name so that pods can always be found, even if their individual IPs change.</li>
+<li>Load balancing across multiple pod replicas to distribute traffic evenly.</li>
+<li>Internal and external communication</li>
+</ul>
+</div>
+<div id="outline-container-org29b898a" class="outline-4">
+<h4 id="org29b898a"><span class="section-number-4">3.7.1.</span> ClusterIP</h4>
+</div>
+
+<div id="outline-container-org812392a" class="outline-4">
+<h4 id="org812392a"><span class="section-number-4">3.7.2.</span> NordPort</h4>
+</div>
+<div id="outline-container-org63017ab" class="outline-4">
+<h4 id="org63017ab"><span class="section-number-4">3.7.3.</span> Loadbalance</h4>
+</div>
+<div id="outline-container-orga83f5b1" class="outline-4">
+<h4 id="orga83f5b1"><span class="section-number-4">3.7.4.</span> ExternalName</h4>
+</div>
+</div>
+<div id="outline-container-orgd87faaf" class="outline-3">
+<h3 id="orgd87faaf"><span class="section-number-3">3.8.</span> Manual scheduling</h3>
+<div class="outline-text-3" id="text-3-8">
+<ul class="org-ul">
+<li>Explicitly assigning a pod to a node using the nodeName field in the pod’s YAML manifest</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-nil">apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-manual
+spec:
+  nodeName: my-second-cluster-worker2  # Assign pod to a specific worker node
+  containers:
+    - name: nginx
+      image: nginx
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge4086f7" class="outline-3">
+<h3 id="orge4086f7"><span class="section-number-3">3.9.</span> Static pods</h3>
+<div class="outline-text-3" id="text-3-9">
+<ul class="org-ul">
+<li>Static pods are defined in <i>etc/kubernetes/manifests</i> and  not managed by the Kubernetes API server</li>
+<li>To ensure visibility in kubectl get pods, Kubelet creates a read-only "mirror pod" on the API server</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd99f50d" class="outline-3">
+<h3 id="orgd99f50d"><span class="section-number-3">3.10.</span> Node Selector</h3>
+<div class="outline-text-3" id="text-3-10">
+</div>
+<div id="outline-container-org9a05b48" class="outline-4">
+<h4 id="org9a05b48"><span class="section-number-4">3.10.1.</span> label: Apply label to node</h4>
+<div class="outline-text-4" id="text-3-10-1">
+<div class="org-src-container">
+<pre class="src src-nil">kubectl label nodes my-second-cluster-worker storage=ssd
+kubectl label nodes my-second-cluster-worker storage-
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org8809a64" class="outline-4">
+<h4 id="org8809a64"><span class="section-number-4">3.10.2.</span> selector apply to pod/Deployment</h4>
+<div class="outline-text-4" id="text-3-10-2">
+<div class="org-src-container">
+<pre class="src src-nil">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ns-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app1
+  template:
+    metadata:
+      labels:
+        app: app1
+    spec:
+      nodeSelector:
+        storage: ssd
+      containers:
+        - name: nginx
+          image: nginx
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>A node can have multiple labels. A pod will only be scheduled if all labels in nodeSelector match.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7453070" class="outline-4">
+<h4 id="org7453070"><span class="section-number-4">3.10.3.</span> Takeaway: Pure lebel matching mechanismus,l ack of flexibility, only with key-value matching selection</h4>
+</div>
+</div>
+<div id="outline-container-org248e9e1" class="outline-3">
+<h3 id="org248e9e1"><span class="section-number-3">3.11.</span> Taints and Tolerations</h3>
+<div class="outline-text-3" id="text-3-11">
+<ul class="org-ul">
+<li>Taints and Tolerations help control which pods can be scheduled on which nodes</li>
+<li>Taints and tolerations are applied during scheduling</li>
+</ul>
+</div>
+<div id="outline-container-orgdff8a82" class="outline-4">
+<h4 id="orgdff8a82"><span class="section-number-4">3.11.1.</span> Taints Apply to node</h4>
+<div class="outline-text-4" id="text-3-11-1">
+<div class="org-src-container">
+<pre class="src src-nil">kubectl taint nodes my-second-cluster-worker storage=ssd:NoSchedule
+kubectl taint nodes my-second-cluster-worker2 storage=hdd:NoSchedule
+kubectl taint nodes my-second-cluster-worker storage=ssd:NoSchedule-  
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Effect</th>
+<th scope="col" class="org-left">Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">NoSchedule</td>
+<td class="org-left">New pods will not be scheduled unless they have a matching toleration.</td>
+</tr>
+
+<tr>
+<td class="org-left">PreferNoSchedule</td>
+<td class="org-left">Kubernetes tries to avoid scheduling pods but doesn’t enforce it strictly.</td>
+</tr>
+
+<tr>
+<td class="org-left">NoExecute</td>
+<td class="org-left">Existing pods without a matching toleration will be evicted from the node.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgd728ae4" class="outline-4">
+<h4 id="orgd728ae4"><span class="section-number-4">3.11.2.</span> Toleration Apply to pod</h4>
+<div class="outline-text-4" id="text-3-11-2">
+<div class="org-src-container">
+<pre class="src src-nil">tolerations:
+- key: "storage"
+  operator: "Equal"
+  value: "ssd"
+  effect: "NoSchedule"
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>This tolerates nodes that have the taint storage=ssd:NoSchedule, allowing the pod to be scheduled on them.</li>
+<li>The Effect in the toleration must match the Effect in the taint for it to take effect.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org200b7c1" class="outline-4">
+<h4 id="org200b7c1"><span class="section-number-4">3.11.3.</span> Takeaway: Lebel matching with hardness configuation, NoExecute supports re-evaluation. If a node’s taints change and a pod doesn’t tolerate them, it will be evicted</h4>
+</div>
+</div>
+<div id="outline-container-orgb877688" class="outline-3">
+<h3 id="orgb877688"><span class="section-number-3">3.12.</span> Node Affinity</h3>
+<div class="outline-text-3" id="text-3-12">
+<ul class="org-ul">
+<li>requiredDuringSchedulingIgnoredDuringExecution: Hard rule, must match</li>
+<li>preferredDuringSchedulingIgnoredDuringExecution: Soft rule, NOT must</li>
+<li>node labels are the same with node selector</li>
+<li>all requests from matchExpressions need to be filled</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-nil">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: preferred-na-deploy
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: app1
+  template:
+    metadata:
+      labels:
+        app: app1
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: storage
+                operator: In
+                values:
+                  - ssd
+                  - hdd
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 10
+              preference:
+                matchExpressions:
+                  - key: storage
+                    operator: In
+                    values:
+                      - ssd
+            - weight: 5
+              preference:
+                matchExpressions:
+                  - key: storage
+                    operator: In
+                    values:
+                      - hdd
+      containers:
+        - name: nginx
+          image: nginx
+</pre>
+</div>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Operator</th>
+<th scope="col" class="org-left">Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">In</td>
+<td class="org-left">Matches if the node’s label exists in the provided values.</td>
+</tr>
+
+<tr>
+<td class="org-left">NotIn</td>
+<td class="org-left">Matches if the node’s label does not exist in the provided values.</td>
+</tr>
+
+<tr>
+<td class="org-left">Exists</td>
+<td class="org-left">Matches if the node has the specified key, regardless of its value.</td>
+</tr>
+
+<tr>
+<td class="org-left">DoesNotExist</td>
+<td class="org-left">Matches if the node does not have the specified key.</td>
+</tr>
+
+<tr>
+<td class="org-left">Gt</td>
+<td class="org-left">Matches if the label’s value is greater than the specified number.</td>
+</tr>
+
+<tr>
+<td class="org-left">Lt</td>
+<td class="org-left">Matches if the label’s value is less than the specified number.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-orge37faf5" class="outline-4">
+<h4 id="orge37faf5"><span class="section-number-4">3.12.1.</span> Takeaway: The most flexible way to optimize the resource utilization</h4>
+</div>
+</div>
+<div id="outline-container-orgab4d23e" class="outline-3">
+<h3 id="orgab4d23e"><span class="section-number-3">3.13.</span> Request and limits</h3>
+<div class="outline-text-3" id="text-3-13">
+<ul class="org-ul">
+<li>Requests and limits must be defined per container inside a Pod.</li>
+<li>If a container exceeds its requested resources, it can still use more resources if available on the node.</li>
+<li>If a container exceeds its requested CPU resource: CPU is a compressible resource, so workloads slow down instead of failing</li>
+<li>If a container exceeds its requested Memary resource: the kernel may kill it,  But If there is no memory pressure, the container may not be killed immediately</li>
+</ul>
+</div>
+<div id="outline-container-org5f78293" class="outline-4">
+<h4 id="org5f78293"><span class="section-number-4">3.13.1.</span> Monitoring</h4>
+<div class="outline-text-4" id="text-3-13-1">
+<p>
+Install metrics server on Kubernetes
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">kubectl top nodes
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org8c3d899" class="outline-3">
+<h3 id="org8c3d899"><span class="section-number-3">3.14.</span> Scaling</h3>
+<div class="outline-text-3" id="text-3-14">
+<ul class="org-ul">
+<li>Scaling refers to adjusting the resources available to an application based on its demand/load.</li>
+</ul>
+</div>
+<div id="outline-container-orga9c05b1" class="outline-4">
+<h4 id="orga9c05b1"><span class="section-number-4">3.14.1.</span> Horizontal Scaling</h4>
+<div class="outline-text-4" id="text-3-14-1">
+<ul class="org-ul">
+<li>Scale-Out: Increasing the number of pod replicas</li>
+<li>Scaling In: Removing instances/pods when load decreases</li>
+<li>Manually: Editing the Deployment YAML (replicas field) and apply</li>
+<li>Automatic: HPA (Horizontal Pod Autoscaler)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5d0cb53" class="outline-4">
+<h4 id="org5d0cb53"><span class="section-number-4">3.14.2.</span> Vertical Scaling</h4>
+<div class="outline-text-4" id="text-3-14-2">
+<ul class="org-ul">
+<li>Scaling Up: Increasing CPU/Memory resources of the existing pod or VM.</li>
+<li>Scaling Down: Reducing CPU/Memory.</li>
+<li>Manually: Editing the Deployment YAML (replicas field) and apply</li>
+<li>Automatic: VPA (Vertical Pod Autoscaler)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgaa91e40" class="outline-4">
+<h4 id="orgaa91e40"><span class="section-number-4">3.14.3.</span> Node side</h4>
+<div class="outline-text-4" id="text-3-14-3">
+<p>
+clusters rely on horizontal scaling of nodes to maintain availability. vertical scaling requeir restarting, which is not working for production environment
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf4adf37" class="outline-3">
+<h3 id="orgf4adf37"><span class="section-number-3">3.15.</span> Horizontal Pod Autoscaler (HPA)</h3>
+<div class="outline-text-3" id="text-3-15">
+<p>
+based on the default/custom/External Resource Metrics to automatically scale out/in
+</p>
+</div>
+</div>
+<div id="outline-container-orgab34d58" class="outline-3">
+<h3 id="orgab34d58"><span class="section-number-3">3.16.</span> Vertical Pod Autoscaler (VPA)</h3>
+</div>
+<div id="outline-container-org28f855f" class="outline-3">
+<h3 id="org28f855f"><span class="section-number-3">3.17.</span> Multi-container pods</h3>
+<div class="outline-text-3" id="text-3-17">
+<p>
+a primary container complemented by one or more helper containers
+</p>
+</div>
+<div id="outline-container-org60400d7" class="outline-4">
+<h4 id="org60400d7"><span class="section-number-4">3.17.1.</span> Init Containers</h4>
+<div class="outline-text-4" id="text-3-17-1">
+<p>
+successfully complete before the primary container runs as pre-requests
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">apiVersion: v1
+kind: Pod
+metadata:
+  name: init-demo
+spec:
+  initContainers:
+  - name: check-api
+    image: curlimages/curl:latest
+    command:
+      - sh
+      - -c
+      - |
+        echo 'Checking API availability...'
+        sleep 25
+        until curl -s https://kubernetes.io &gt; /dev/null; do
+          echo 'Waiting for API...'
+          sleep 5
+        done
+        echo 'API is accessible, proceeding to main-app container!'
+  containers:
+  - name: main-app
+    image: nginx:latest
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc06a7c9" class="outline-4">
+<h4 id="orgc06a7c9"><span class="section-number-4">3.17.2.</span> Sidecar Pattern</h4>
+<div class="outline-text-4" id="text-3-17-2">
+<p>
+run alongside the primary container and operate independently to extend or complement the main container's functionality.
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">apiVersion: v1
+kind: Pod
+metadata:
+  name: sidecar-logging-demo
+spec:
+  containers:
+  # Main application container
+  - name: main-app
+    image: nginx:latest
+    ports:
+    - containerPort: 80
+  # Sidecar container
+  - name: health-logger
+    image: curlimages/curl:latest
+    command:
+    - sh
+    - -c
+    - |
+      while true; do
+        curl -s http://localhost:80 &gt; /dev/null &amp;&amp; echo 'Main app is healthy' || echo 'Main app is unhealthy'
+        sleep 5
+      done
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org3c788ec" class="outline-4">
+<h4 id="org3c788ec"><span class="section-number-4">3.17.3.</span> Ambassador Pattern</h4>
+<div class="outline-text-4" id="text-3-17-3">
+<p>
+like sidecar but only focus on handling external communication
+</p>
+</div>
+</div>
+<div id="outline-container-orgc49988b" class="outline-4">
+<h4 id="orgc49988b"><span class="section-number-4">3.17.4.</span> Adapter Pattern</h4>
+<div class="outline-text-4" id="text-3-17-4">
+<p>
+like sidecar but only focus on data transforming or normalizing
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgda20b4b" class="outline-3">
+<h3 id="orgda20b4b"><span class="section-number-3">3.18.</span> Pod Policies</h3>
+<div class="outline-text-3" id="text-3-18">
+</div>
+<div id="outline-container-org51d46b2" class="outline-4">
+<h4 id="org51d46b2"><span class="section-number-4">3.18.1.</span> Delete policies</h4>
+<div class="outline-text-4" id="text-3-18-1">
+<ul class="org-ul">
+<li><p>
+graceful termination for 30 seconds, after that SIGKILL will terminate it immediately if it still lives
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx- graceful
+spec:
+  terminationGracePeriodSeconds: 30
+  containers:
+  - name: nginx
+    image: nginx:latest
+</pre>
+</div></li>
+</ul>
+<p>
+apply and delete
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">kubectl delete pod xxx
+</pre>
+</div>
+
+<p>
+for forceful deletion:
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">kubectl delete pod mypod --force=true --grace-period=0
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org1403072" class="outline-4">
+<h4 id="org1403072"><span class="section-number-4">3.18.2.</span> Restart Policies</h4>
+<div class="outline-text-4" id="text-3-18-2">
+<p>
+how Kubernetes responds when containers within a pod terminate, it's at the pod level and apply to all containers within the pod
+</p>
+<ul class="org-ul">
+<li>Always(whether it succeeds with exit code 0 or fails with a non-zero exit code): Pods, Deployments, ReplicaSets, StatefulSets, DaemonSets</li>
+<li>OnFailure (exit code 0): Jobs, Cronjobs</li>
+<li><p>
+Never: not restarted, regardless of the exit code (whether it succeeds or fails)
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil">apiVersion: batch/v1
+kind: Job
+metadata:
+  name: batch-job-example
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: processor
+        image: my-batch-job:latest
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6dd85e1" class="outline-4">
+<h4 id="org6dd85e1"><span class="section-number-4">3.18.3.</span> Image Pull Policies</h4>
+<div class="outline-text-4" id="text-3-18-3">
+<p>
+how the container runtime pulls container images for initialization. At Container level for each containter customizable
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">apiVersion: v1
+kind: Pod
+metadata:
+  name: always-example
+spec:
+  containers:
+  - name: my-app
+    image: myrepo/my-app:latest
+    imagePullPolicy: Always
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Always, default, prefer for development</li>
+<li>IfNotPresent, only NOT available on the node cache</li>
+<li>Never, assuming the image is already present on the node.</li>
+<li>if Image tag is latest, default police is Always,</li>
+<li>if image tag is with specific version tag, default police is IfNotPresent</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6225c1c" class="outline-4">
+<h4 id="org6225c1c"><span class="section-number-4">3.18.4.</span> Pod Lifecycle and debugging see <a href="https://github.com/CloudWithVarJosh/CKA-Certification-Course-2025/tree/main/Day%2022">Day 22</a></h4>
+</div>
+</div>
+<div id="outline-container-org7d0b6c7" class="outline-3">
+<h3 id="org7d0b6c7"><span class="section-number-3">3.19.</span> health probes</h3>
+<div class="outline-text-3" id="text-3-19">
+<p>
+The kubelet is responsible for performing these probes. 
+</p>
+</div>
+<div id="outline-container-orge86a8be" class="outline-4">
+<h4 id="orge86a8be"><span class="section-number-4">3.19.1.</span> Readiness Probes</h4>
+<div class="outline-text-4" id="text-3-19-1">
+<p>
+only health pods receiving traffic, otherwise removed, no restart
+</p>
+</div>
+</div>
+<div id="outline-container-orgb471047" class="outline-4">
+<h4 id="orgb471047"><span class="section-number-4">3.19.2.</span> Liveness Probes</h4>
+<div class="outline-text-4" id="text-3-19-2">
+<p>
+with restarting if failed
+</p>
+</div>
+</div>
+<div id="outline-container-orgd8470cb" class="outline-4">
+<h4 id="orgd8470cb"><span class="section-number-4">3.19.3.</span> Startup Probes</h4>
+<div class="outline-text-4" id="text-3-19-3">
+<p>
+set threshold times of attempts before marked as failed for slow-starting
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orga7fe89a" class="outline-3">
+<h3 id="orga7fe89a"><span class="section-number-3">3.20.</span> Ephemeral Storage</h3>
+<div class="outline-text-3" id="text-3-20">
+</div>
+<div id="outline-container-org2cb6cff" class="outline-4">
+<h4 id="org2cb6cff"><span class="section-number-4">3.20.1.</span> emptyDir</h4>
+<div class="outline-text-4" id="text-3-20-1">
+<p>
+It is ideal for scratch space (Temporary workspace for processing.), caching, or temporary computations where data persistence isn’t required.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil">apiVersion: v1  # Specifies the API version used to create the Pod.
+kind: Pod       # Declares the resource type as a Pod.
+metadata:
+  name: emptydir-example  # Name of the Pod.
+spec:
+  containers:
+  - name: busybox-container  # Name of the container inside the Pod.
+    image: busybox           # Using the lightweight BusyBox image.
+    command: ["/bin/sh", "-c", "sleep 3600"]  # Overrides the default command. Keeps the container running for 1 hour (3600 seconds).
+    volumeMounts:
+    - mountPath: /data       # Mount point inside the container where the volume will be accessible.
+      name: temp-storage     # Refers to the volume defined in the `volumes` section below.
+  - name: busybox-container-2  # Name of the container inside the Pod.
+    image: busybox           # Using the lightweight BusyBox image.
+    command: ["/bin/sh", "-c", "sleep 3600"]
+    volumeMounts:
+    - mountPath: /data
+      name: temp-storage
+  volumes:
+  - name: temp-storage       # Name of the volume, must match the name in `volumeMounts`.
+    emptyDir: {}             # Creates a temporary directory that lives as long as the Pod exists.
+                            # Useful for storing transient data that doesn't need to persist.
+
+</pre>
+</div>
+<p>
+all containter by applying this yaml will access the same data as in volume.
+</p>
+</div>
+</div>
+<div id="outline-container-org1ca5d26" class="outline-4">
+<h4 id="org1ca5d26"><span class="section-number-4">3.20.2.</span> Downward API</h4>
+<div class="outline-text-4" id="text-3-20-2">
+<ul class="org-ul">
+<li>It injectes into containers in a Pod either as environment variables or through mounted files via volumes</li>
+<li>Just like Sidecar pattern, This helps sidecar containter to get matrics from the main contrainter.</li>
+<li>please refer <a href="https://github.com/CloudWithVarJosh/CKA-Certification-Course-2025/tree/main/Day%2026">env and file mount at github</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org0fe6ddf" class="outline-3">
+<h3 id="org0fe6ddf"><span class="section-number-3">3.21.</span> Volume</h3>
+<div class="outline-text-3" id="text-3-21">
+<p>
+<a href="https://github.com/CloudWithVarJosh/CKA-Certification-Course-2025/blob/main/Day%2027/README.md">link</a>
+</p>
+<ul class="org-ul">
+<li>hostPath: Persistent change map to host machine, the data can be shared between different pods only if they are scheduled on the same node.</li>
+<li>Storage class, a replace of pv</li>
+<li>pv (persistentvolume) clain a  physical  storage(retain, delete) global at cluster level</li>
+<li>pvc(persistentvolumeClaim) use the pv under a namespace, all the charactore muss be passend</li>
+<li>pod, chaim the volume and mount it to somewhere in container</li>
+<li>to delete, pod at first, otherwise pv/pvc hold still until pod died</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org2cd9dbe" class="outline-2">
+<h2 id="org2cd9dbe"><span class="section-number-2">4.</span> Kubectl</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org163e6a3" class="outline-3">
+<h3 id="org163e6a3"><span class="section-number-3">4.1.</span> Imperative Commands for Backend Deployment and Service</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Use &#x2013;dry-run=client for local validation and &#x2013;dry-run=server for API server validation
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">kubectl create deployment backend-deploy \
+--image=hashicorp/http-echo \
+--replicas=3 \
+--port=5678 \
+--dry-run=client -o yaml &gt; backend-deploy.yaml
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-nil">kubectl expose deployment backend-deploy \
+--type=ClusterIP \
+--port=9090 \
+--target-port=5678 \
+--name=backend-svc \
+--dry-run=client -o yaml &gt;&gt; backend-deploy.yaml
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga5db587" class="outline-3">
+<h3 id="orga5db587"><span class="section-number-3">4.2.</span> namespace</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>Context contains cluster, users, and namespace, they are not coupled.</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-nil">kubectl config set-context --current --namespace=app1-ns
+</pre>
+</div>
+<ul class="org-ul">
+<li>This command is to change the namespace of a contex.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbcd7cc8" class="outline-3">
+<h3 id="orgbcd7cc8"><span class="section-number-3">4.3.</span> config</h3>
+</div>
+</div>
+<div id="outline-container-org994fdd9" class="outline-2">
+<h2 id="org994fdd9"><span class="section-number-2">5.</span> Matrics server</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+kubectl apply -f <a href="https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml">https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml</a>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Silin Zhao</p>
+<p class="date">Created: 2025-10-26 So 16:37</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

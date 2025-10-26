@@ -4,6 +4,25 @@
 #+EXPORT_FILE_NAME: /home/si/Dropbox/LiteraturPrograme/html/Rust.html
 #+PROPERTY: header-args :eval no-export
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+* Learning
+线程，进程，异步都可以实现并发
+
+** Send und Sync
+- Send make sure the value can be transfered in difference threads saftly
+- and Sync make sure the transfered value can be saftly modified in different threads
+- Such as Mutex has both
+- But RefCell has only Send, which makes this value can only be infered, not be modified.
+** Pin and Unpin
+- Pin is used to fix the address of a address, which means, it is for pointer, which is a address.
+- Since in some cases, such fix is required, such as Future, (so that it can be recoverd later)
+- Which wenn want to operate, move such cases, we need Unpin to make sure, move it together, not to break the Future down while reference
+- A type is always either Unpin or !Unpin, regardless of pinning
+- !Unpin can not be moved, 
+
+
+
+  
+
 * array and slienc
 数组类型表示为[T; N]，数组的引用类型表示为&[T;N]，Slice类型表示为[T]，Slice的引用类型表示为&[T]。
 * str String &[] Vec convert
@@ -23,6 +42,76 @@
 | Vec<u8> | &[u8]   | &s or s.as_slice()                              |
 |---------+---------+--------------------------------------------------|
 
+* Bench
+#+begin_src rust :results output
+#![feature(test)]
+
+extern crate rand;
+extern crate test;
+
+fn sum_for(x: &[f64]) -> f64 {
+    let mut result: f64 = 0.0;
+    for i in 0..x.len() {
+        result += x[i];
+    }
+    result
+}
+
+fn sum_iter(x: &[f64]) -> f64 {
+    x.iter().sum::<f64>()
+}
+
+#[cfg(test)]
+mod bench {
+    use test::Bencher;
+    use rand::{Rng,thread_rng};
+    use super::*;
+
+    const LEN: usize = 1024*1024;
+
+    fn rand_array(cnt: u32) -> Vec<f64> {
+        let mut rng = thread_rng();
+        (0..cnt).map(|_| rng.gen::<f64>()).collect()
+    }
+
+    #[bench]
+    fn bench_for(b: &mut Bencher) {
+        let samples = rand_array(LEN as u32);
+        b.iter(|| {
+            sum_for(&samples)
+        })
+    }
+
+    #[bench]
+    fn bench_iter(b: &mut Bencher) {
+        let samples = rand_array(LEN as u32);
+        b.iter(|| {
+            sum_iter(&samples)
+        })
+    }
+}
+#+end_src
+
+#+RESULTS:
+
+* chain of opertation
+#+begin_src rust  :exports both :results output
+  fn main() {
+      let v = vec![1u64, 2, 3, 4, 5, 6];
+      let val = v.iter()
+          .enumerate()
+          .filter(|&(idx, _)| idx % 2 == 0)
+          .map(|(_, val)| val)
+          .fold(0u64, |sum, acm| sum + acm);
+
+      println!("{}", val);
+
+  }
+#+end_src
+
+#+RESULTS:
+: 9
+
 * 所有权
 #+begin_src rust :results output
   fn main() {
@@ -36,8 +125,7 @@
 
 #+end_src
 
-#+RESULTS:
-: hello, world!
+
 
 #+begin_src rust :results  output
   fn main() {
