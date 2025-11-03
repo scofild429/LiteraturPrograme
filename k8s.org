@@ -1,7 +1,7 @@
 #+TITLE: k8s
 #+OPTIONS: num:t
 #+STARTUP: overview
-#+EXPORT_FILE_NAME: /home/si/Dropbox/LiteraturPrograme/html/k8s.html
+#+EXPORT_FILE_NAME: /home/si/Dropbox/Base/html/k8s.html
 #+PROPERTY: header-args :eval no-export
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
 * Docker
@@ -341,6 +341,11 @@ clusters rely on horizontal scaling of nodes to maintain availability. vertical 
 ** Horizontal Pod Autoscaler (HPA)
 based on the default/custom/External Resource Metrics to automatically scale out/in
 
+** namespace
+- Context contains cluster, users, and namespace, they are not coupled, we can change the namespace of a contex.
+#+begin_src
+  kubectl config set-context --current --namespace=app1-ns
+#+end_src
 
 ** Vertical Pod Autoscaler (VPA)
 ** Multi-container pods
@@ -471,8 +476,6 @@ spec:
 
 
 
-
-
 ** health probes
 The kubelet is responsible for performing these probes. 
 *** Readiness Probes
@@ -519,7 +522,6 @@ all containter by applying this yaml will access the same data as in volume.
 - please refer [[https://github.com/CloudWithVarJosh/CKA-Certification-Course-2025/tree/main/Day%2026][env and file mount at github]]
   
 
-
 ** Volume
 [[https://github.com/CloudWithVarJosh/CKA-Certification-Course-2025/blob/main/Day%2027/README.md][link]]
 - hostPath: Persistent change map to host machine, the data can be shared between different pods only if they are scheduled on the same node.
@@ -529,34 +531,356 @@ all containter by applying this yaml will access the same data as in volume.
 - pod, chaim the volume and mount it to somewhere in container
 - to delete, pod at first, otherwise pv/pvc hold still until pod died
 
-* Kubectl
-** Imperative Commands for Backend Deployment and Service
+*** PV vs PVC
+- common: storageClassName, accessModes,
+- PV: capacity, PersistentVolumeReclaimPolicy, hostPath
+- PVC: resource, volumeName
+
+*** hostPath
+**** in volumes
+#+begin_src yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+    spec:
+      containers:
+        volumeMounts:
+        - name: mypd
+          mountPath: "/var/www/html/1"
+          
+      volumes:
+      - name: myvol1
+        hostPath:
+          path: /any/path/it/will/be/replaced
+#+end_src
+**** in PV
+#+begin_src yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+spec:
+  hostPath:
+    path: /opt/volume/nginx
+#+end_src
+
+*** storageClassName
+#+begin_src yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+spec:
+  storageClassName: maunal
+#+end_src
+
+#+begin_src yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+spec:
+  storageClassName: maunal
+#+end_src
+*** volumeName
+#+begin_src yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+spec:
+  volumeName: log-volume
+
+#+end_src
+
+*** usage
+#+begin_src yaml
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    name: mypod
+  spec:
+    containers:
+      - name: mynginx
+        image: nginx
+        volumeMounts:
+            - name: my-vol1
+              path: /www/html/v1
+            - name: my-vol2
+              path: /www/html/v2
+
+    volumes:
+      - name: my-vol1
+        hostPath:
+          path: /my/loacl/path
+      - name: my-vol2
+        persistentVolumeClaim:
+          chainName: my-pvc
+    
+#+end_src
+
+** Matrics server
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+#+RESULTS:
+
+** selector
+#+begin_src yaml
+  selector:
+  matchLabels:
+    component: redis
+  matchExpressions:
+    - { key: tier, operator: In, values: [cache] }
+    - { key: environment, operator: NotIn, values: [dev] }
+#+end_src
+
+** nodeAffinity
+#+begin_src yaml
+  apiVersion: v1
+kind: Pod
+metadata:
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: topology.kubernetes.io/zone
+            operator: In
+            values:
+            - antarctica-east1
+            - antarctica-west1
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        preference:
+          matchExpressions:
+          - key: another-node-label-key
+            operator: In
+            values:
+            - another-node-label-value
+#+end_src
+** networkPolicy
+select pod to action
+** update and rollback
+*** 1. create the deployment and  add description in metadata
+#+begin_src bash :exports both :results output
+  kubectl create deployment mynginx --image=nginx --replicas=2 
+#+end_src
+
+#+RESULTS:
+: deployment.apps/mynginx created
+
+add description
+#+begin_src bash :exports both :results output
+  kubectl annotate deployment mynginx description="my orginal nginx"
+#+end_src
+
+#+RESULTS:
+: deployment.apps/mynginx annotated
+
+#+begin_src bash :exports both :results output
+kubectl get deployment mynginx -o yaml | grep description
+#+end_src
+
+#+RESULTS:
+:     description: my orginal nginx
+
+this will not create a new revision fo rollback
+#+begin_src bash :exports both :results output
+  kubectl rollout history deployment mynginx 
+#+end_src
+
+#+RESULTS:
+: deployment.apps/mynginx 
+: REVISION  CHANGE-CAUSE
+: 1         <none>
+: 
+
+
+#+begin_src bash :exports both :results output
+  kubectl get pods
+#+end_src
+
+#+RESULTS:
+: NAME                       READY   STATUS    RESTARTS   AGE
+: mynginx-5cb564657c-h5pgb   1/1     Running   0          36s
+: mynginx-5cb564657c-jnmsk   1/1     Running   0          36s
+
+
+check the version
+#+begin_src bash :exports both :results output
+  kubectl exec  mynginx-5cb564657c-g6xjr  -- nginx -v 2>&1
+#+end_src
+
+#+RESULTS:
+: nginx version: nginx/1.29.3
+
+*** 2. make change
+#+begin_src bash :exports both :results output
+kubectl set image deployment mynginx  nginx=nginx:1.23 --record
+#+end_src
+
+#+RESULTS:
+: deployment.apps/mynginx image updated
+
+check if the change is finished
+#+begin_src bash :exports both :results output
+  kubectl rollout status deployment mynginx 
+#+end_src
+
+#+RESULTS:
+: deployment "mynginx" successfully rolled out
+
+
+if  it's done, check the revision records
+#+begin_src bash :exports both :results output
+  kubectl rollout history deployment mynginx 
+#+end_src
+
+#+RESULTS:
+: deployment.apps/mynginx 
+: REVISION  CHANGE-CAUSE
+: 1         <none>
+: 2         kubectl set image deployment mynginx nginx=nginx:1.23 --record=true
+: 
+
+
+#+begin_src bash :exports both :results output
+  kubectl get pods
+#+end_src
+
+#+RESULTS:
+: NAME                     READY   STATUS    RESTARTS   AGE
+: mynginx-7c9bbc59-7pkqd   1/1     Running   0          37s
+: mynginx-7c9bbc59-tjxv6   1/1     Running   0          39s
+
+check the change
+#+begin_src bash :exports both :results output
+  kubectl exec  mynginx-7c9bbc59-7pkqd  -- nginx -v 2>&1
+#+end_src
+
+#+RESULTS:
+: nginx version: nginx/1.23.4
+
+*** 3. rollback to wanted version and check again
+#+begin_src bash :exports both :results output
+  kubectl rollout undo deployment/mynginx  --to-revision=1
+#+end_src
+
+#+begin_src bash :exports both :results output
+  kubectl get pods
+#+end_src
+
+#+RESULTS:
+: NAME                       READY   STATUS    RESTARTS   AGE
+: mynginx-5cb564657c-2n8sx   1/1     Running   0          6s
+: mynginx-5cb564657c-46tzf   1/1     Running   0          9s
+
+
+and check again
+#+begin_src bash :exports both :results output
+  kubectl exec  mynginx-5cb564657c-2n8sx  -- nginx -v 2>&1
+#+end_src
+
+#+RESULTS:
+: nginx version: nginx/1.29.3
+
+*** 4. clean
+#+begin_src bash :exports both :results output
+  kubectl delete deployment mynginx
+#+end_src
+
+#+RESULTS:
+: deployment.apps "mynginx" deleted from default namespace
+
+* Kubectl imperative
+** Deployment
 Use --dry-run=client for local validation and --dry-run=server for API server validation
-#+begin_src
+#+begin_src bash :exports both :results output
   kubectl create deployment backend-deploy \
   --image=hashicorp/http-echo \
   --replicas=3 \
   --port=5678 \
-  --dry-run=client -o yaml > backend-deploy.yaml
+  --dry-run=client -o yaml 
 #+end_src
 
-#+begin_src
+#+RESULTS:
+#+begin_src yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: backend-deploy
+  name: backend-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: backend-deploy
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: backend-deploy
+    spec:
+      containers:
+      - image: hashicorp/http-echo
+        name: http-echo
+        ports:
+        - containerPort: 5678
+        resources: {}
+status: {}
+#+end_src
+
+#+begin_src 
   kubectl expose deployment backend-deploy \
   --type=ClusterIP \
   --port=9090 \
   --target-port=5678 \
   --name=backend-svc \
-  --dry-run=client -o yaml >> backend-deploy.yaml
+  --dry-run=client -o yaml 
 #+end_src
 
-
-** namespace
-- Context contains cluster, users, and namespace, they are not coupled.
-#+begin_src
-  kubectl config set-context --current --namespace=app1-ns
+No NodePort can be set here
+#+begin_src 
+  kubectl expose deployment backend-deploy \
+  --type=ClusterIP \
+  --port=9090 \
+  --target-port=5678 \
+  --name=backend-svc \
+  --dry-run=client -o yaml 
 #+end_src
-- This command is to change the namespace of a contex.
 
-** config
-* Matrics server
-kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+#+begin_src 
+kubectl run mypod.... --port=80, this port number is actually set the containerPort attribe
+kubectl expose pod  mypod.... --port=80, this port number is actually set the Port attribe, and the TargetPort is set to be same same of the containerPort of mypod, they have to be the same
+#+end_src
+
+#+begin_src bash :results output :exports both
+  kubectl create deployment nginx-deployment --image=nginx:1.14.2 --replicas=2 --port=80 --dry-run=client -o yaml 
+#+end_src
+
+#+RESULTS:
+#+begin_src yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx-deployment
+  name: nginx-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-deployment
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: nginx-deployment
+    spec:
+      containers:
+      - image: nginx:1.14.2
+        name: nginx
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}
+#+end_src
+
