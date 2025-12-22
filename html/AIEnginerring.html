@@ -1,0 +1,918 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-12-22 Mo 15:50 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AIEngineering</title>
+<meta name="author" content="si" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">AIEngineering</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org0380c92">1. Background</a>
+<ul>
+<li><a href="#org7a523c3">1.1. AI development</a></li>
+<li><a href="#org8fab686">1.2. LLM</a></li>
+<li><a href="#orgf944036">1.3. Prompt engineering</a></li>
+</ul>
+</li>
+<li><a href="#orgf3619e8">2. Vector Database</a>
+<ul>
+<li><a href="#org5e31211">2.1. Comparing</a></li>
+<li><a href="#org7c6b537">2.2. FAISS</a></li>
+<li><a href="#orgec6147b">2.3. ChromaDB</a></li>
+<li><a href="#org17970d4">2.4. Milvus</a>
+<ul>
+<li><a href="#org32278fb">2.4.1. Pymilvus</a></li>
+<li><a href="#orgefa70db">2.4.2. Standalone</a></li>
+<li><a href="#orgd301727">2.4.3. Cluster</a></li>
+<li><a href="#orge1fd9c0">2.4.4. Debug</a></li>
+<li><a href="#orgea1da8c">2.4.5. test</a></li>
+</ul>
+</li>
+<li><a href="#org4ee9872">2.5. Qdrant(distributed)</a>
+<ul>
+<li><a href="#org1f7f9a0">2.5.1. Cluster</a></li>
+<li><a href="#org8062314">2.5.2. Docker-compose</a></li>
+<li><a href="#org27f84bc">2.5.3. Kubernetes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0380c92" class="outline-2">
+<h2 id="org0380c92"><span class="section-number-2">1.</span> Background</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org7a523c3" class="outline-3">
+<h3 id="org7a523c3"><span class="section-number-3">1.1.</span> AI development</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>First time: proposed by Alen Turing</li>
+<li>Second time: IBM deep Blue for chase</li>
+<li>Third time: GPT, Generative pre-trained transformer</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8fab686" class="outline-3">
+<h3 id="org8fab686"><span class="section-number-3">1.2.</span> LLM</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>pretraing: big unlabeled data</li>
+<li>fine-turing: small labeled data</li>
+<li>tool: an extremely advanced autocomplete</li>
+<li>limit: Inability to Distinguish Fact from Fiction</li>
+
+<li>Temperature</li>
+<li>Top-P</li>
+<li>Max Token</li>
+<li>Frequency Penalty: Avoiding Repetition</li>
+<li>Presence Penalty: Encouraging Novelty</li>
+<li>Stop Sequences: Structuring Responses</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf944036" class="outline-3">
+<h3 id="orgf944036"><span class="section-number-3">1.3.</span> Prompt engineering</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Principles:
+</p>
+<ul class="org-ul">
+<li>write clear and specific instructions
+<ol class="org-ol">
+<li>use delimiters</li>
+<li>ask for structured ouput</li>
+<li>check the satified conditions</li>
+<li>with few-shot prompting</li>
+</ol></li>
+
+<li>give the model time to think</li>
+
+<li>capabilities:
+<ul class="org-ul">
+<li>iteration</li>
+<li>summary with specified aspects</li>
+<li>infering for sentiment</li>
+<li>transformering
+Proofread and correct the following text  and rewrite the corrected version. If you don't find   and errors, just say "No errors found"</li>
+</ul></li>
+</ul>
+
+
+<ul class="org-ul">
+<li>Include details in your query to get more relevant answers</li>
+<li>Ask the model to adopt a persona</li>
+<li>Use delimiters to clearly indicate distinct parts of the input</li>
+<li>Specify the steps required to complete a task</li>
+<li>Ask for a specific output format or length</li>
+<li>Instruct to check whether conditions are satisfied</li>
+<li>Provide examples (Few-shot prompting)</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf3619e8" class="outline-2">
+<h2 id="orgf3619e8"><span class="section-number-2">2.</span> Vector Database</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org5e31211" class="outline-3">
+<h3 id="org5e31211"><span class="section-number-3">2.1.</span> Comparing</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>Milvus Lite, FAISS, ChromaDB   →  vector engine, embedded vector databases</li>
+
+<li>Milvus Standalone, ChromaDB  → single-node production database</li>
+
+<li>Milvus Cluster                            → scalable production infrastructure</li>
+</ul>
+
+<div class="TABLE" id="org2ebe939">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">System</th>
+<th scope="col" class="org-left">Embedded</th>
+<th scope="col" class="org-left">Server Required</th>
+<th scope="col" class="org-left">Persistence</th>
+<th scope="col" class="org-left">Metadata</th>
+<th scope="col" class="org-left">Distributed</th>
+<th scope="col" class="org-left">GPU</th>
+<th scope="col" class="org-left">Production Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">FAISS</td>
+<td class="org-left">Yes</td>
+<td class="org-left">No</td>
+<td class="org-left">Manual</td>
+<td class="org-left">No</td>
+<td class="org-left">No</td>
+<td class="org-left">Yes</td>
+<td class="org-left">No</td>
+</tr>
+
+<tr>
+<td class="org-left">ChromaDB (embedded)</td>
+<td class="org-left">Yes</td>
+<td class="org-left">No</td>
+<td class="org-left">Yes</td>
+<td class="org-left">Yes</td>
+<td class="org-left">No</td>
+<td class="org-left">No</td>
+<td class="org-left">No</td>
+</tr>
+
+<tr>
+<td class="org-left">ChromaDB (server)</td>
+<td class="org-left">No</td>
+<td class="org-left">Yes (optional)</td>
+<td class="org-left">Yes</td>
+<td class="org-left">Yes</td>
+<td class="org-left">No</td>
+<td class="org-left">No</td>
+<td class="org-left">Limited</td>
+</tr>
+
+<tr>
+<td class="org-left">Milvus Lite</td>
+<td class="org-left">Yes</td>
+<td class="org-left">No</td>
+<td class="org-left">Yes</td>
+<td class="org-left">Limited</td>
+<td class="org-left">No</td>
+<td class="org-left">No</td>
+<td class="org-left">No</td>
+</tr>
+
+<tr>
+<td class="org-left">Milvus Standalone</td>
+<td class="org-left">No</td>
+<td class="org-left">Yes</td>
+<td class="org-left">Yes</td>
+<td class="org-left">Yes</td>
+<td class="org-left">No</td>
+<td class="org-left">No</td>
+<td class="org-left">Limited</td>
+</tr>
+
+<tr>
+<td class="org-left">Milvus Cluster</td>
+<td class="org-left">No</td>
+<td class="org-left">Yes</td>
+<td class="org-left">Yes</td>
+<td class="org-left">Yes</td>
+<td class="org-left">Yes</td>
+<td class="org-left">Yes</td>
+<td class="org-left">Yes</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="outline-container-org7c6b537" class="outline-3">
+<h3 id="org7c6b537"><span class="section-number-3">2.2.</span> FAISS</h3>
+</div>
+
+<div id="outline-container-orgec6147b" class="outline-3">
+<h3 id="orgec6147b"><span class="section-number-3">2.3.</span> ChromaDB</h3>
+</div>
+
+<div id="outline-container-org17970d4" class="outline-3">
+<h3 id="org17970d4"><span class="section-number-3">2.4.</span> Milvus</h3>
+<div class="outline-text-3" id="text-2-4">
+</div>
+<div id="outline-container-org32278fb" class="outline-4">
+<h4 id="org32278fb"><span class="section-number-4">2.4.1.</span> Pymilvus</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<p>
+Embended
+</p>
+</div>
+</div>
+<div id="outline-container-orgefa70db" class="outline-4">
+<h4 id="orgefa70db"><span class="section-number-4">2.4.2.</span> Standalone</h4>
+<div class="outline-text-4" id="text-2-4-2">
+<div class="org-src-container">
+<pre class="src src-yaml">  <span style="color: #dcaeea;">version</span>: <span style="color: #98be65;">'3.5'</span>
+
+<span style="color: #dcaeea;">services</span>:
+  <span style="color: #dcaeea;">etcd</span>:
+    <span style="color: #dcaeea;">container_name</span>: milvus-etcd
+    <span style="color: #dcaeea;">image</span>: quay.io/coreos/etcd:v3.5.14
+    <span style="color: #dcaeea;">environment</span>:
+      - ETCD_AUTO_COMPACTION_MODE=revision
+      - ETCD_AUTO_COMPACTION_RETENTION=1000
+      - ETCD_QUOTA_BACKEND_BYTES=4294967296
+      - ETCD_SNAPSHOT_COUNT=50000
+    <span style="color: #dcaeea;">volumes</span>:
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/etcd:/etcd
+    <span style="color: #dcaeea;">command</span>: etcd -advertise-client-urls=http://127.0.0.1:2379 -listen-client-urls http://0.0.0.0:2379 --data-dir /etcd
+    <span style="color: #dcaeea;">healthcheck</span>:
+      <span style="color: #dcaeea;">test</span>: [<span style="color: #98be65;">"CMD"</span>, <span style="color: #98be65;">"etcdctl"</span>, <span style="color: #98be65;">"endpoint"</span>, <span style="color: #98be65;">"health"</span>]
+      <span style="color: #dcaeea;">interval</span>: 30s
+      <span style="color: #dcaeea;">timeout</span>: 20s
+      <span style="color: #dcaeea;">retries</span>: 3
+
+  <span style="color: #dcaeea;">minio</span>:
+    <span style="color: #dcaeea;">container_name</span>: milvus-minio
+    <span style="color: #dcaeea;">image</span>: minio/minio:RELEASE.2023-03-20T20-16-18Z
+    <span style="color: #dcaeea;">environment</span>:
+      <span style="color: #dcaeea;">MINIO_ACCESS_KEY</span>: minioadmin
+      <span style="color: #dcaeea;">MINIO_SECRET_KEY</span>: minioadmin
+    <span style="color: #dcaeea;">ports</span>:
+      - <span style="color: #98be65;">"9001:9001"</span>
+      - <span style="color: #98be65;">"9000:9000"</span>
+    <span style="color: #dcaeea;">volumes</span>:
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/minio:/minio_data
+    <span style="color: #dcaeea;">command</span>: minio server /minio_data --console-address <span style="color: #98be65;">":9001"</span>
+    <span style="color: #dcaeea;">healthcheck</span>:
+      <span style="color: #dcaeea;">test</span>: [<span style="color: #98be65;">"CMD"</span>, <span style="color: #98be65;">"curl"</span>, <span style="color: #98be65;">"-f"</span>, <span style="color: #98be65;">"http://localhost:9000/minio/health/live"</span>]
+      <span style="color: #dcaeea;">interval</span>: 30s
+      <span style="color: #dcaeea;">timeout</span>: 20s
+      <span style="color: #dcaeea;">retries</span>: 3
+
+  <span style="color: #dcaeea;">standalone</span>:
+    <span style="color: #dcaeea;">container_name</span>: milvus-standalone
+    <span style="color: #dcaeea;">image</span>: milvusdb/milvus:v2.5.0
+    <span style="color: #dcaeea;">command</span>: [<span style="color: #98be65;">"milvus"</span>, <span style="color: #98be65;">"run"</span>, <span style="color: #98be65;">"standalone"</span>]
+    <span style="color: #dcaeea;">security_opt</span>:
+    - seccomp:unconfined
+    <span style="color: #dcaeea;">environment</span>:
+      <span style="color: #dcaeea;">ETCD_ENDPOINTS</span>: etcd:2379
+      <span style="color: #dcaeea;">MINIO_ADDRESS</span>: minio:9000
+    <span style="color: #dcaeea;">volumes</span>:
+      - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/milvus:/var/lib/milvus
+    <span style="color: #dcaeea;">healthcheck</span>:
+      <span style="color: #dcaeea;">test</span>: [<span style="color: #98be65;">"CMD"</span>, <span style="color: #98be65;">"curl"</span>, <span style="color: #98be65;">"-f"</span>, <span style="color: #98be65;">"http://localhost:9091/healthz"</span>]
+      <span style="color: #dcaeea;">interval</span>: 30s
+      <span style="color: #dcaeea;">start_period</span>: 90s
+      <span style="color: #dcaeea;">timeout</span>: 20s
+      <span style="color: #dcaeea;">retries</span>: 3
+    <span style="color: #dcaeea;">ports</span>:
+      - <span style="color: #98be65;">"19530:19530"</span>
+      - <span style="color: #98be65;">"9091:9091"</span>
+    <span style="color: #dcaeea;">depends_on</span>:
+      - <span style="color: #98be65;">"etcd"</span>
+      - <span style="color: #98be65;">"minio"</span>
+
+<span style="color: #dcaeea;">networks</span>:
+  <span style="color: #dcaeea;">default</span>:
+    <span style="color: #dcaeea;">name</span>: milvus
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-sh">docker-compose up -d
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd301727" class="outline-4">
+<h4 id="orgd301727"><span class="section-number-4">2.4.3.</span> Cluster</h4>
+<div class="outline-text-4" id="text-2-4-3">
+<div class="org-src-container">
+<pre class="src src-yaml"><span style="color: #dcaeea;">kind</span>: Cluster
+<span style="color: #dcaeea;">apiVersion</span>: kind.x-k8s.io/v1alpha4
+<span style="color: #dcaeea;">nodes</span>:
+  - <span style="color: #dcaeea;">role</span>: control-plane
+  - <span style="color: #dcaeea;">role</span>: worker
+  - <span style="color: #dcaeea;">role</span>: worker
+  - <span style="color: #dcaeea;">role</span>: worker
+  - <span style="color: #dcaeea;">role</span>: worker
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-sh">kind create clueter --config cluster.yaml
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-nil">helm repo add milvus https://zilliztech.github.io/milvus-helm/
+helm repo update
+
+helm install my-milvus milvus/milvus \
+  --set cluster.enabled=true \
+  --set etcd.replicaCount=3 \
+  --set pulsar.enabled=false \
+  --set pulsarv3.enabled=false \
+  --set kafka.enabled=true \
+  --set kafka.replicaCount=3 \
+  --set minio.mode=distributed
+
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-nil">  # Scale down all Deployments (Stateless stuff like Proxies)
+kubectl scale deployment -l app.kubernetes.io/instance=my-milvus --replicas=0
+
+# Scale down all StatefulSets (Stateful stuff like Kafka, Etcd, DataNodes)
+kubectl scale statefulset -l app.kubernetes.io/instance=my-milvus --replicas=0
+
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-nil">helm uninstall my-milvus  
+kubectl delete pvc -l release=my-milvus
+kubectl delete pvc -l app.kubernetes.io/instance=my-milvus
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge1fd9c0" class="outline-4">
+<h4 id="orge1fd9c0"><span class="section-number-4">2.4.4.</span> Debug</h4>
+<div class="outline-text-4" id="text-2-4-4">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #51afef;">import</span> time
+<span style="color: #51afef;">import</span> logging
+<span style="color: #51afef;">from</span> pymilvus <span style="color: #51afef;">import</span> connections, utility, MilvusException
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">1. Configure detailed logging to see where it hangs</span>
+logging.basicConfig(level=logging.INFO)
+<span style="color: #dcaeea;">logger</span> = logging.getLogger(<span style="color: #98be65;">"milvus_debug"</span>)
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">diagnose_milvus</span>():
+    <span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">[1/4] Attempting TCP Connection to localhost:19530..."</span>)
+    <span style="color: #51afef;">try</span>:
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Set a short timeout (5 seconds) so we don't wait forever</span>
+        connections.connect(<span style="color: #98be65;">"default"</span>, host=<span style="color: #98be65;">"localhost"</span>, port=<span style="color: #98be65;">"19530"</span>, timeout=5)
+        <span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"&#9989; TCP Connection Successful."</span>)
+    <span style="color: #51afef;">except</span> <span style="color: #ECBE7B;">Exception</span> <span style="color: #51afef;">as</span> e:
+        <span style="color: #c678dd;">print</span>(f<span style="color: #98be65;">"&#10060; Connection Failed. Is 'kubectl port-forward' running?</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">Error: </span>{e}<span style="color: #98be65;">"</span>)
+        <span style="color: #51afef;">return</span>
+
+    <span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">[2/4] Checking Server Version (Health Check)..."</span>)
+    <span style="color: #51afef;">try</span>:
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">This tests if the Proxy can talk to the Root Coordinator</span>
+        <span style="color: #dcaeea;">ver</span> = utility.get_server_version()
+        <span style="color: #c678dd;">print</span>(f<span style="color: #98be65;">"&#9989; Server is responsive. Version: </span>{ver}<span style="color: #98be65;">"</span>)
+    <span style="color: #51afef;">except</span> <span style="color: #ECBE7B;">Exception</span> <span style="color: #51afef;">as</span> e:
+        <span style="color: #c678dd;">print</span>(f<span style="color: #98be65;">"&#10060; Server Unresponsive. The Proxy is up, but the RootCoord is down.</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">Error: </span>{e}<span style="color: #98be65;">"</span>)
+        <span style="color: #51afef;">return</span>
+
+    <span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">[3/4] Checking dependencies (Etcd)..."</span>)
+    <span style="color: #51afef;">try</span>:
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Listing collections requires reading from Etcd</span>
+        <span style="color: #dcaeea;">cols</span> = utility.list_collections()
+        <span style="color: #c678dd;">print</span>(f<span style="color: #98be65;">"&#9989; Etcd is readable. Existing collections: </span>{cols}<span style="color: #98be65;">"</span>)
+    <span style="color: #51afef;">except</span> <span style="color: #ECBE7B;">Exception</span> <span style="color: #51afef;">as</span> e:
+        <span style="color: #c678dd;">print</span>(f<span style="color: #98be65;">"&#10060; Read Error. Etcd might be unreadable.</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">Error: </span>{e}<span style="color: #98be65;">"</span>)
+        <span style="color: #51afef;">return</span>
+
+    <span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">[4/4] Attempting to Create a Tiny Collection (Write Check)..."</span>)
+    <span style="color: #dcaeea;">test_col</span> = <span style="color: #98be65;">"debug_probe_collection"</span>
+    <span style="color: #51afef;">try</span>:
+        <span style="color: #51afef;">if</span> utility.has_collection(test_col):
+            utility.drop_collection(test_col)
+
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">We create a collection with NO index first to test raw creation (Kafka/Etcd)</span>
+        <span style="color: #51afef;">from</span> pymilvus <span style="color: #51afef;">import</span> FieldSchema, CollectionSchema, DataType, Collection
+
+        <span style="color: #dcaeea;">dim</span> = 4
+        <span style="color: #dcaeea;">fields</span> = [
+            FieldSchema(name=<span style="color: #98be65;">"pk"</span>, dtype=DataType.INT64, is_primary=<span style="color: #a9a1e1;">True</span>, auto_id=<span style="color: #a9a1e1;">False</span>),
+            FieldSchema(name=<span style="color: #98be65;">"v"</span>, dtype=DataType.FLOAT_VECTOR, dim=dim)
+        ]
+        <span style="color: #dcaeea;">schema</span> = CollectionSchema(fields, <span style="color: #98be65;">"Probe collection"</span>)
+
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">If this hangs, KAFKA is usually the culprit</span>
+        <span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"   &gt;&gt;&gt; Sending create request (this usually hangs if Kafka is broken)..."</span>)
+        <span style="color: #dcaeea;">collection</span> = Collection(test_col, schema)
+        <span style="color: #c678dd;">print</span>(f<span style="color: #98be65;">"&#9989; Write Success. Collection '</span>{test_col}<span style="color: #98be65;">' created."</span>)
+
+        utility.drop_collection(test_col)
+        <span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"&#9989; Cleanup Success."</span>)
+
+    <span style="color: #51afef;">except</span> <span style="color: #ECBE7B;">Exception</span> <span style="color: #51afef;">as</span> e:
+        <span style="color: #c678dd;">print</span>(f<span style="color: #98be65;">"&#10060; Write Error. This usually means Kafka (Message Queue) is down.</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">Error: </span>{e}<span style="color: #98be65;">"</span>)
+
+<span style="color: #51afef;">if</span> <span style="color: #c678dd;">__name__</span> == <span style="color: #98be65;">"__main__"</span>:
+    diagnose_milvus()
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgea1da8c" class="outline-4">
+<h4 id="orgea1da8c"><span class="section-number-4">2.4.5.</span> test</h4>
+<div class="outline-text-4" id="text-2-4-5">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #51afef;">from</span> pymilvus <span style="color: #51afef;">import</span> MilvusClient, DataType
+<span style="color: #51afef;">import</span> random
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">1. Connect to Milvus (Localhost via Port-Forward)</span>
+<span style="color: #dcaeea;">client</span> = MilvusClient(
+    uri=<span style="color: #98be65;">"http://localhost:19530"</span>
+)
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">2. Create a Collection</span>
+<span style="color: #dcaeea;">collection_name</span> = <span style="color: #98be65;">"kind_test_collection"</span>
+<span style="color: #51afef;">if</span> client.has_collection(collection_name):
+    client.drop_collection(collection_name)
+
+client.create_collection(
+    collection_name=collection_name,
+    dimension=5,  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Small vector dimension for testing</span>
+    metric_type=<span style="color: #98be65;">"COSINE"</span>
+)
+
+<span style="color: #c678dd;">print</span>(f<span style="color: #98be65;">"Collection '</span>{collection_name}<span style="color: #98be65;">' created successfully."</span>)
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">3. Insert Mock Data (Vectors)</span>
+<span style="color: #dcaeea;">data</span> = [
+    {<span style="color: #98be65;">"id"</span>: i, <span style="color: #98be65;">"vector"</span>: [random.random() <span style="color: #51afef;">for</span> _ <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(5)], <span style="color: #98be65;">"color"</span>: <span style="color: #98be65;">"red"</span> <span style="color: #51afef;">if</span> i % 2 == 0 <span style="color: #51afef;">else</span> <span style="color: #98be65;">"blue"</span>}
+    <span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(100)
+]
+
+<span style="color: #dcaeea;">res</span> = client.insert(
+    collection_name=collection_name,
+    data=data
+)
+
+<span style="color: #c678dd;">print</span>(f<span style="color: #98be65;">"Inserted </span>{res['insert_count']}<span style="color: #98be65;"> entities."</span>)
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">4. Perform a Vector Search</span>
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Generate a random query vector</span>
+<span style="color: #dcaeea;">query_vector</span> = [random.random() <span style="color: #51afef;">for</span> _ <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(5)]
+
+<span style="color: #dcaeea;">search_res</span> = client.search(
+    collection_name=collection_name,
+    data=[query_vector],
+    limit=3,
+    search_params={<span style="color: #98be65;">"metric_type"</span>: <span style="color: #98be65;">"COSINE"</span>, <span style="color: #98be65;">"params"</span>: {}}, 
+    output_fields=[<span style="color: #98be65;">"color"</span>]
+)
+
+<span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">Search Results (Top 3 Nearest Neighbors):"</span>)
+<span style="color: #51afef;">for</span> hits <span style="color: #51afef;">in</span> search_res:
+    <span style="color: #51afef;">for</span> hit <span style="color: #51afef;">in</span> hits:
+        <span style="color: #c678dd;">print</span>(f<span style="color: #98be65;">"ID: </span>{hit['<span style="color: #c678dd;">id</span>']}<span style="color: #98be65;">, Score: </span>{hit['distance']:.4f}<span style="color: #98be65;">, Color: </span>{hit['entity'].get('color')}<span style="color: #98be65;">"</span>)
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org4ee9872" class="outline-3">
+<h3 id="org4ee9872"><span class="section-number-3">2.5.</span> Qdrant(distributed)</h3>
+<div class="outline-text-3" id="text-2-5">
+</div>
+<div id="outline-container-org1f7f9a0" class="outline-4">
+<h4 id="org1f7f9a0"><span class="section-number-4">2.5.1.</span> Cluster</h4>
+<div class="outline-text-4" id="text-2-5-1">
+<div class="org-src-container">
+<pre class="src src-yaml"><span style="color: #dcaeea;">kind</span>: Cluster
+<span style="color: #dcaeea;">apiVersion</span>: kind.x-k8s.io/v1alpha4
+<span style="color: #dcaeea;">nodes</span>:
+  - <span style="color: #dcaeea;">role</span>: control-plane
+  - <span style="color: #dcaeea;">role</span>: worker
+  - <span style="color: #dcaeea;">role</span>: worker
+  - <span style="color: #dcaeea;">role</span>: worker
+  - <span style="color: #dcaeea;">role</span>: worker
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-sh">kind create clueter --config cluster.yaml
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org8062314" class="outline-4">
+<h4 id="org8062314"><span class="section-number-4">2.5.2.</span> Docker-compose</h4>
+<div class="outline-text-4" id="text-2-5-2">
+<p>
+initial
+</p>
+<div class="org-src-container">
+<pre class="src src-yaml"><span style="color: #dcaeea;">version</span>: <span style="color: #98be65;">'3.8'</span>
+
+<span style="color: #dcaeea;">services</span>:
+  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Node 1: The Leader (Starts first)</span>
+  <span style="color: #dcaeea;">qdrant-1</span>:
+    <span style="color: #dcaeea;">image</span>: qdrant/qdrant:v1.16.3
+    <span style="color: #dcaeea;">container_name</span>: qdrant-1
+    <span style="color: #dcaeea;">ports</span>:
+      - <span style="color: #98be65;">"6333:6333"</span>
+    <span style="color: #dcaeea;">environment</span>:
+      - QDRANT__CLUSTER__ENABLED=true
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Explicitly tell Node 1 its own address</span>
+    <span style="color: #dcaeea;">command</span>: [<span style="color: #98be65;">"./qdrant"</span>, <span style="color: #98be65;">"--uri"</span>, <span style="color: #98be65;">"http://qdrant-1:6335"</span>]
+    <span style="color: #dcaeea;">volumes</span>:
+      - ./storage-1:/qdrant/storage
+
+  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Node 2: The Joiner</span>
+  <span style="color: #dcaeea;">qdrant-2</span>:
+    <span style="color: #dcaeea;">image</span>: qdrant/qdrant:v1.16.3
+    <span style="color: #dcaeea;">container_name</span>: qdrant-2
+    <span style="color: #dcaeea;">ports</span>:
+      - <span style="color: #98be65;">"6334:6333"</span>  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Different host port for testing</span>
+    <span style="color: #dcaeea;">environment</span>:
+      - QDRANT__CLUSTER__ENABLED=true
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">FIXED: We use flags instead of Env Vars for reliability</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">1. --bootstrap: "Go ask Node 1 for data"</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">2. --uri: "My name is qdrant-2"</span>
+    <span style="color: #dcaeea;">command</span>: [<span style="color: #98be65;">"./qdrant"</span>, <span style="color: #98be65;">"--bootstrap"</span>, <span style="color: #98be65;">"http://qdrant-1:6335"</span>, <span style="color: #98be65;">"--uri"</span>, <span style="color: #98be65;">"http://qdrant-2:6335"</span>]
+    <span style="color: #dcaeea;">volumes</span>:
+      - ./storage-2:/qdrant/storage
+    <span style="color: #dcaeea;">depends_on</span>:
+      - qdrant-1
+
+  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Node 3: The Joiner</span>
+  <span style="color: #dcaeea;">qdrant-3</span>:
+    <span style="color: #dcaeea;">image</span>: qdrant/qdrant:v1.16.3
+    <span style="color: #dcaeea;">container_name</span>: qdrant-3
+    <span style="color: #dcaeea;">ports</span>:
+      - <span style="color: #98be65;">"6335:6333"</span>
+    <span style="color: #dcaeea;">environment</span>:
+      - QDRANT__CLUSTER__ENABLED=true
+    <span style="color: #dcaeea;">command</span>: [<span style="color: #98be65;">"./qdrant"</span>, <span style="color: #98be65;">"--bootstrap"</span>, <span style="color: #98be65;">"http://qdrant-1:6335"</span>, <span style="color: #98be65;">"--uri"</span>, <span style="color: #98be65;">"http://qdrant-3:6335"</span>]
+    <span style="color: #dcaeea;">volumes</span>:
+      - ./storage-3:/qdrant/storage
+    <span style="color: #dcaeea;">depends_on</span>:
+      - qdrant-1
+
+</pre>
+</div>
+
+<p>
+add new node
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">docker run -d
+--name qdrant-4
+--network qdrant_default
+-p 6338:6333
+-v ./storage-4:/qdrant/storage
+-e <span style="color: #dcaeea;">QDRANT__CLUSTER__ENABLED</span>=true
+qdrant/qdrant:v1.16.3   ./qdrant --bootstrap http://qdrant-1:6335 --uri http://qdrant-4:6335
+</pre>
+</div>
+
+<p>
+to remove node, do not forget to remove the mapped volume 
+</p>
+</div>
+</div>
+<div id="outline-container-org27f84bc" class="outline-4">
+<h4 id="org27f84bc"><span class="section-number-4">2.5.3.</span> Kubernetes</h4>
+<div class="outline-text-4" id="text-2-5-3">
+<div class="org-src-container">
+<pre class="src src-yaml"><span style="color: #dcaeea;">apiVersion</span>: v1
+<span style="color: #dcaeea;">kind</span>: Service
+<span style="color: #dcaeea;">metadata</span>:
+  <span style="color: #dcaeea;">name</span>: qdrant-headless
+  <span style="color: #dcaeea;">labels</span>:
+    <span style="color: #dcaeea;">app</span>: qdrant
+<span style="color: #dcaeea;">spec</span>:
+  <span style="color: #dcaeea;">clusterIP</span>: None  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&lt;--- This makes it "Headless"</span>
+  <span style="color: #dcaeea;">ports</span>:
+  - <span style="color: #dcaeea;">port</span>: 6333
+    <span style="color: #dcaeea;">name</span>: http
+  - <span style="color: #dcaeea;">port</span>: 6334
+    <span style="color: #dcaeea;">name</span>: grpc
+  - <span style="color: #dcaeea;">port</span>: 6335
+    <span style="color: #dcaeea;">name</span>: p2p      <span style="color: #5B6268;"># </span><span style="color: #5B6268;">The internal communication port</span>
+  <span style="color: #dcaeea;">selector</span>:
+    <span style="color: #dcaeea;">app</span>: qdrant
+<span style="color: #5B6268;">---</span>
+<span style="color: #dcaeea;">apiVersion</span>: apps/v1
+<span style="color: #dcaeea;">kind</span>: StatefulSet
+<span style="color: #dcaeea;">metadata</span>:
+  <span style="color: #dcaeea;">name</span>: qdrant
+<span style="color: #dcaeea;">spec</span>:
+  <span style="color: #dcaeea;">serviceName</span>: <span style="color: #98be65;">"qdrant-headless"</span>
+  <span style="color: #dcaeea;">replicas</span>: 5
+  <span style="color: #dcaeea;">selector</span>:
+    <span style="color: #dcaeea;">matchLabels</span>:
+      <span style="color: #dcaeea;">app</span>: qdrant
+  <span style="color: #dcaeea;">template</span>:
+    <span style="color: #dcaeea;">metadata</span>:
+      <span style="color: #dcaeea;">labels</span>:
+        <span style="color: #dcaeea;">app</span>: qdrant
+    <span style="color: #dcaeea;">spec</span>:
+      <span style="color: #dcaeea;">containers</span>:
+      - <span style="color: #dcaeea;">name</span>: qdrant
+        <span style="color: #dcaeea;">image</span>: qdrant/qdrant:v1.16.3
+        <span style="color: #dcaeea;">ports</span>:
+        - <span style="color: #dcaeea;">containerPort</span>: 6333
+        - <span style="color: #dcaeea;">containerPort</span>: 6335
+        <span style="color: #dcaeea;">env</span>:
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">1. Enable Distributed Mode</span>
+        - <span style="color: #dcaeea;">name</span>: QDRANT__CLUSTER__ENABLED
+          <span style="color: #dcaeea;">value</span>: <span style="color: #98be65;">"true"</span>
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">2. Get the Pod Name (e.g., qdrant-0) dynamically</span>
+        - <span style="color: #dcaeea;">name</span>: POD_NAME
+          <span style="color: #dcaeea;">valueFrom</span>:
+            <span style="color: #dcaeea;">fieldRef</span>:
+              <span style="color: #dcaeea;">fieldPath</span>: metadata.name
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">3. Construct the Bootstrap URL (Everyone points to node 0)</span>
+        - <span style="color: #dcaeea;">name</span>: BOOTSTRAP_PEER
+          <span style="color: #dcaeea;">value</span>: <span style="color: #98be65;">"http://qdrant-0.qdrant-headless:6335"</span>
+
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">The Startup Command</span>
+        <span style="color: #dcaeea;">command</span>:
+        - /bin/bash
+        - -c
+        - |
+          <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Construct my own full DNS name (e.g., http://qdrant-1.qdrant-headless:6335)</span>
+          MY_URI=<span style="color: #98be65;">"http://${POD_NAME}.qdrant-headless:6335"</span>
+
+          echo <span style="color: #98be65;">"My URI: $MY_URI"</span>
+
+          if [[ <span style="color: #98be65;">"$POD_NAME"</span> == <span style="color: #98be65;">"qdrant-0"</span> ]]; then
+            echo <span style="color: #98be65;">"I am the Leader (Node 0). Starting without bootstrap..."</span>
+            ./qdrant --uri <span style="color: #98be65;">"$MY_URI"</span>
+          else
+            echo <span style="color: #98be65;">"I am a Follower. Bootstrapping from $BOOTSTRAP_PEER..."</span>
+            ./qdrant --bootstrap <span style="color: #98be65;">"$BOOTSTRAP_PEER"</span> --uri <span style="color: #98be65;">"$MY_URI"</span>
+          fi
+
+        <span style="color: #dcaeea;">volumeMounts</span>:
+        - <span style="color: #dcaeea;">name</span>: qdrant-storage
+          <span style="color: #dcaeea;">mountPath</span>: /qdrant/storage
+
+  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Request 10GB of disk for each pod</span>
+  <span style="color: #dcaeea;">volumeClaimTemplates</span>:
+  - <span style="color: #dcaeea;">metadata</span>:
+      <span style="color: #dcaeea;">name</span>: qdrant-storage
+    <span style="color: #dcaeea;">spec</span>:
+      <span style="color: #dcaeea;">accessModes</span>: [ <span style="color: #98be65;">"ReadWriteOnce"</span> ]
+      <span style="color: #dcaeea;">resources</span>:
+        <span style="color: #dcaeea;">requests</span>:
+          <span style="color: #dcaeea;">storage</span>: 10Gi
+
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: si</p>
+<p class="date">Created: 2025-12-22 Mo 15:50</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,152 @@
+#+TITLE:  Transformer
+
+* Softmax
+** Normal Softmax
+#+begin_src python :exports both :results output
+  import torch
+  X = torch.tensor([-0.3, 0.2, 0.5, 0.7, 0.1, 0.8])
+  X_exp_sum = X.exp().sum()
+  X_softmax_hand = torch.exp(X) / X_exp_sum
+  print(X_softmax_hand)
+#+end_src
+
+#+RESULTS:
+: tensor([0.0827, 0.1364, 0.1841, 0.2249, 0.1234, 0.2485])
+
+** Safe Softmax
+#+begin_src python :exports both :results output
+  import torch
+  X = torch.tensor([-0.3, 0.2, 0.5, 0.7, 0.1, 0.8])
+  X_max = X.max()
+  X_exp_sum_sub_max = torch.exp(X-X_max).sum()
+  X_safe_softmax_hand = torch.exp(X - X_max) / X_exp_sum_sub_max
+  print(X_safe_softmax_hand)
+#+end_src
+
+#+RESULTS:
+: tensor([0.0827, 0.1364, 0.1841, 0.2249, 0.1234, 0.2485])
+
+** Online Softmax
+#+begin_src python :exports both :results output
+  import torch
+  X = torch.tensor([-0.3, 0.2, 0.5, 0.7, 0.1, 0.8])
+  X_pre = X[:-1]
+  print('input x')
+  print(X)
+  print(X_pre)
+  print(X[-1])
+
+  # we calculative t-1 time Online Softmax
+  X_max_pre = X_pre.max()
+  X_sum_pre = torch.exp(X_pre - X_max_pre).sum()
+
+  # we calculative t time Online Softmax
+  X_max_cur = torch.max(X_max_pre, X[-1]) # X[-1] is new data
+  X_sum_cur = X_sum_pre * torch.exp(X_max_pre - X_max_cur) + torch.exp(X[-1] - X_max_cur)
+
+  # final we calculative online softmax
+  X_online_softmax = torch.exp(X - X_max_cur) / X_sum_cur
+  print('online softmax result: ', X_online_softmax)
+#+end_src
+
+#+RESULTS:
+: input x
+: tensor([-0.3000,  0.2000,  0.5000,  0.7000,  0.1000,  0.8000])
+: tensor([-0.3000,  0.2000,  0.5000,  0.7000,  0.1000])
+: tensor(0.8000)
+: online softmax result:  tensor([0.0827, 0.1364, 0.1841, 0.2249, 0.1234, 0.2485])
+
+** block online softmax
+#+begin_src python  :exports both :results output
+  import torch
+  X = torch.tensor([-0.3, 0.2, 0.5, 0.7, 0.1, 0.8])
+  X_block = torch.split(X, split_size_or_sections = 3 , dim = 0) 
+  print(X)
+  print(X_block)
+
+  # we parallel calculate  different block max & sum
+  X_block_0_max = X_block[0].max()
+  X_block_0_sum = torch.exp(X_block[0] - X_block_0_max).sum()
+
+  X_block_1_max = X_block[1].max()
+  X_block_1_sum = torch.exp(X_block[1] - X_block_1_max).sum()
+
+  # online block update max & sum
+  X_block_1_max_update = torch.max(X_block_0_max, X_block_1_max) # X[-1] is new data
+  X_block_1_sum_update = X_block_0_sum * torch.exp(X_block_0_max - X_block_1_max_update) \
+      + torch.exp(X_block[1] - X_block_1_max_update).sum() # block sum
+
+  X_block_online_softmax = torch.exp(X - X_block_1_max_update) / X_block_1_sum_update
+  print(X_block_online_softmax)
+
+#+end_src
+
+#+RESULTS:
+: tensor([-0.3000,  0.2000,  0.5000,  0.7000,  0.1000,  0.8000])
+: (tensor([-0.3000,  0.2000,  0.5000]), tensor([0.7000, 0.1000, 0.8000]))
+: tensor([0.0827, 0.1364, 0.1841, 0.2249, 0.1234, 0.2485])
+
+** batch online softmax
+
+#+begin_src python  :exports both :results output
+  import torch
+  torch.manual_seed(42)
+  X_batch = torch.randn(4, 6)
+  _, d = X_batch.shape
+
+  X_batch_block_0 = X_batch[:, :d//2]
+  X_batch_block_1 = X_batch[:, d//2:]
+
+  # we parallel calculate  different block max & sum
+  X_batch_0_max, _ = X_batch_block_0.max(dim = 1, keepdim = True)
+  X_batch_0_sum = torch.exp(X_batch_block_0 - X_batch_0_max).sum(dim = 1, keepdim = True)
+
+  X_batch_1_max, _ = X_batch_block_1.max(dim = 1, keepdim = True)
+  X_batch_1_sum = torch.exp(X_batch_block_1 - X_batch_1_max).sum(dim = 1, keepdim = True)
+
+  # online batch block update max & sum
+  X_batch_1_max_update = torch.maximum(X_batch_0_max, X_batch_1_max) # 逐个元素找最大值
+  X_batch_1_sum_update = X_batch_0_sum * torch.exp(X_batch_0_max - X_batch_1_max_update) \
+      + torch.exp(X_batch_block_1 - X_batch_1_max_update).sum(dim = 1, keepdim = True) # block sum
+
+  X_batch_online_softmax = torch.exp(X_batch - X_batch_1_max_update) / X_batch_1_sum_update
+  print(X_batch_online_softmax)
+  #+end_src
+
+  #+RESULTS:
+  : tensor([[0.4256, 0.2742, 0.1525, 0.0075, 0.1221, 0.0180],
+  :         [0.1926, 0.0404, 0.2870, 0.1012, 0.1228, 0.2560],
+  :         [0.0881, 0.2934, 0.0264, 0.2155, 0.1964, 0.1802],
+  :         [0.3666, 0.0882, 0.0908, 0.1541, 0.0717, 0.2286]])
+
+
+  #+begin_src python  :exports both :results output
+    import torch
+    torch.manual_seed(42)
+    X_batch = torch.randn(4, 6)
+    _, d = X_batch.shape
+
+    X_batch_block_0 = X_batch[:, :d//2]
+    X_batch_block_1 = X_batch[:, d//2:]
+
+    # we parallel calculate  different block max & sum
+    X_batch_0_max, _ = X_batch_block_0.max(dim = 1, keepdim = True)
+    X_batch_0_sum = torch.exp(X_batch_block_0 - X_batch_0_max).sum(dim = 1, keepdim = True)
+
+    X_batch_1_max, _ = X_batch_block_1.max(dim = 1, keepdim = True)
+    X_batch_1_sum = torch.exp(X_batch_block_1 - X_batch_1_max).sum(dim = 1, keepdim = True)
+
+    # online batch block update max & sum
+    X_batch_1_max_update = torch.maximum(X_batch_0_max, X_batch_1_max) # 逐个元素找最大值
+    X_batch_1_sum_update = X_batch_0_sum * torch.exp(X_batch_0_max - X_batch_1_max_update) \
+                                           + X_batch_1_sum * torch.exp(X_batch_1_max - X_batch_1_max_update) 
+
+    X_batch_online_softmax = torch.exp(X_batch - X_batch_1_max_update) / X_batch_1_sum_update
+    print(X_batch_online_softmax)
+  #+end_src
+
+  #+RESULTS:
+  : tensor([[0.4256, 0.2742, 0.1525, 0.0075, 0.1221, 0.0180],
+  :         [0.1926, 0.0404, 0.2870, 0.1012, 0.1228, 0.2560],
+  :         [0.0881, 0.2934, 0.0264, 0.2155, 0.1964, 0.1802],
+  :         [0.3666, 0.0882, 0.0908, 0.1541, 0.0717, 0.2286]])

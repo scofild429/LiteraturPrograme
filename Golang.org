@@ -1369,3 +1369,89 @@ go mod edit -replace modulename=folder
     defer profile.Start(profile.MemProfile, profile.ProfilePath(".")).Stop()
 
 #+end_src
+** Golang pprof mutex generate ::Am [2024-02-24 Sa]
+:PROPERTIES:
+:ID:       082e2cba-53ce-4cbd-b0c8-2bd996bd66ab
+:END:
+- set runtime.SetMutexProfileFraction(1)
+- pprof.Lookup('mutex').WirteTo(f, 0)
+** Golang pprof block generate ::Am [2024-02-24 Sa]
+:PROPERTIES:
+:ID:       d0741b66-c2fc-40e9-9c18-f6611152b5cb
+:END:
+- the file generation is the same as CPU or MEM, but do not forget to set:
+  - runtime.SetBlockProfileRate(1)
+  - pprof.Lookup('block').WirteTo(f, 0)
+** Golang pprof CPU MEM together ::Am [2024-02-22 Do]
+:PROPERTIES:
+:ID:       7952b77d-455f-49e1-ae3b-2d7f2fb45fe4
+:END:
+it's very hard to create the track file simultaneously. take the snippet:
+#+begin_src go
+  import (
+          "os"
+          "time"
+          "github.com/pkg/profile"
+          "runtime/pprof"
+  )
+
+  cpuFile, _ := os.Create("cpu.pprof")
+  pprof.StartCPUProfile(cpuFile)
+  defer pprof.StopCPUProfile()
+
+
+  defer profile.Start(profile.MemProfile, profile.ProfilePath(".")).Stop()
+#+end_src
+** Golang pprof CPU commands ::Am [2024-02-23 Fr]
+:PROPERTIES:
+:ID:       372779a4-5266-48ec-ac00-532ea420cc26
+:END:
+|-------+---------------------------------|
+| flat  | direct consumption              |
+| flat% | direct consumption precentage   |
+| sum%  | direct consumption accumulation |
+| cum   | totally consumption             |
+| cum%  | totally consumption precentage  |
+|-------+---------------------------------|
+
+- go tool pprof cpu.pprof :: read cpu file for interactive display
+- top10 :: list the first 10 item
+- top10 -cum :: list the first 10 item sort by cum
+- top10 -flat :: list the first 10 item sort by flat
+- granularity=lines ::  show the called function position
+- hide=runtime ::  hide all runtime item
+- hide=  :: reset hide filter
+- show=string ::  regular expression filter of string
+- show= :: rest the regular expression filter of string
+- focus=Name  :: focus only on this function
+- focus= :: delete focus
+- list Name  :: list the consumption at the side of the function
+- web :: show the graph in localhost:6060 :: go tool pprof -http=:6060 cpu.prof, please explore here
+- lables ::  tags for special function tracking
+** Golang pprof memory commands::Am [2024-02-23 Fr]
+:PROPERTIES:
+:ID:       9141ea2e-9c6a-43c5-a8a2-794cf96d5627
+:END:
+|-------+---------------------------------|
+| flat  | direct consumption              |
+| flat% | direct consumption precentage   |
+| sum%  | direct consumption accumulation |
+| cum   | totally consumption             |
+| cum%  | totally consumption precentage  |
+|-------+---------------------------------|
+
+- go tool pprof mem.pprof :: read mem file for interactive display
+- top10 :: list the first 10 item
+- top10 -cum :: list the first 10 item sort by cum
+- top10 -flat :: list the first 10 item sort by flat
+- granularity=lines ::  show the called function position
+- hide=runtime ::  hide all runtime item
+- hide=  :: reset hide filter
+- show=string ::  regular expression filter of string
+- show= :: rest the regular expression filter of string
+- focus=Name  :: focus only on this function
+- focus= :: delete focus
+- list Name  :: list the consumption at the side of the function
+- web :: show the graph in localhost:6060 :: go tool pprof -http=:6060 cpu.prof, please explore here
+- tree :: shows all callers and callees of the execution flow
+- Peek FuncName ::  only peek this function

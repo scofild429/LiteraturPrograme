@@ -304,12 +304,18 @@ chmod -R u+rwx /usr/users/szhao/go-workspace/pkg/mod
   - AllowedUsers cloud silin, allow such user login remotely
 
 ** terminal
+*** shortcut
 S-C-c : can copy out from terminal
 S-C-v : can paste into terminal
 C-h : backwards to delete
 C-j : enter
 C-k : cut after
 C-u : cut before
+
+*** Link account, It's after the ownership, only for hard link.
+the number of current folder is 2 + the number of subdirectories
+it can also show how many folder are contained in the prerent directory: 1 + the number of subdirectories of present directory, so at least 2.
+
 ** sammary
 #+begin_src
 fdisk -l
@@ -2378,7 +2384,10 @@ git checkout -t origin/ui-mockup
    if with my ssh, the connect can be without password, but still need to aktiv
 3. where the instance is created, use the VNS to aktiv the konto, remember to save the password
    ssh cloud@ip
-* Google cloud
+* Cloud Server
+- create VM
+- VPC network -> Extranal IP -> Static IP
+- Network service -> Cloud DNS -> Create Zone -> new -> AAA and Cname -> copy the server name to Godady
 
 
 * Certificate
@@ -2447,3 +2456,42 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/si/Dokumente/opencv/libopencv/lib
 | Ctrl P | provious block                                |
 
 
+* linux dynamic compile ::Am [2024-03-08 Fr]
+:PROPERTIES:
+:ID:       21a99730-552a-4aa5-a702-5c937f603a10
+:END:
+#+begin_src sh
+  gcc -c add.c sub.c mult.c divi.c
+  gcc -Wall -fPIC -c add.c sub.c mult.c divi.c
+  gcc -shared -o libmymath.so add.o sub.o mult.o divi.o
+#+end_src
+- only compile to individule object file, but do not link, better with -fpic, position independent
+- conbine object files to shared library
+
+#+begin_src sh
+  gcc -I . -c mathDemo.c
+  gcc -L/home/si/Dropbox/c/dynamiccompile -Wl,-rpath=/home/si/Dropbox/c/dynamiccompile -Wall -o mathDynamic mathDemo.o  -lmymath
+ #+end_src
+-I . lets our application to find the shared library  header file. copy it from source code
+ or with one shoting
+ #+begin_src sh
+  gcc -L/home/si/Dropbox/c/dynamiccompile -Wl,-rpath=/home/si/Dropbox/c/dynamiccompile -Wall -o mathDynamic mathDemo.c  -lmymath
+#+end_src
++ be careful, in the application we should use #include "mymath.h", not #include <mymath.h> if using one shotting
++ for compile
+  - -L/home/si/Dropbox/c/dynamiccompile: specified the folder for shared library
+  - -lmymath: specified the library name in specified shared library folder
+  - togethor: link object files to executable file. -L/home/si/Dropbox/c/dynamiccompile -lmymath  tells linker to find libmymath.so in -L position
++ for runtime using shared library
+  - 1. put shared library it into LD_LIBRARY_PATH. 
+  - 2, use -Wl, -rpath= for specified folder
+  - For Golang, can only set LD_LIBRARY_PATH, such as LD_LIBRARY_PATH=`pwd`/lib ./mycuda. Because we can not compile C with -Wl, -rpath 
+
+
+#+begin_src sh
+    gcc -c -fPIC add.c && \
+    gcc -shared -o libmymath.so add.o sub.o mult.o divi.o && \
+    gcc -L/home/si/Dropbox/c/dynamiccompile -Wl,-rpath=/home/si/Dropbox/c/dynamiccompile  -Wall -o mathDynamic mathDemo.o -lmymath  && \
+    ./mathDynamic
+#+end_src
+if such as we made some modification in add.c, recompile add.c, reconstruct shared library, relink it
