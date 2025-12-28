@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-02-18 Di 21:25 -->
+<!-- 2025-12-28 So 20:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>RL</title>
 <meta name="author" content="si" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -234,26 +234,32 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga4c4f8d">1. RL</a>
+<li><a href="#org8e9a62a">1. Concepts</a>
 <ul>
-<li><a href="#org862cb72">1.1. From Policy Gradient TO PPO</a></li>
-<li><a href="#org18b9b2e">1.2. Gridworld Example</a></li>
+<li><a href="#orgff85afe">1.1. State &amp; Action</a></li>
+<li><a href="#org96a2239">1.2. Policy</a></li>
 </ul>
 </li>
-<li><a href="#orgaafe294">2. DeepSeek</a>
+<li><a href="#org3ccae9f">2. RL</a>
 <ul>
-<li><a href="#org3846afc">2.1. Multi-head Latent Attention mechanismus</a></li>
-<li><a href="#orgfe7d8f4">2.2. MoE</a>
-<ul>
-<li><a href="#org633d5fb">2.2.1. with shared Experts for common sense training</a></li>
-<li><a href="#orgd3f74da">2.2.2. load balance</a></li>
+<li><a href="#org48df148">2.1. From Policy Gradient TO PPO</a></li>
+<li><a href="#orgefcf33e">2.2. Gridworld Example</a></li>
 </ul>
 </li>
-<li><a href="#org8f5bdf7">2.3. Multi token prodiction</a>
+<li><a href="#orgd58a77b">3. DeepSeek</a>
 <ul>
-<li><a href="#org595739e">2.3.1. Orignal idea:</a></li>
-<li><a href="#org032251d">2.3.2. OpenAI thinking:</a></li>
-<li><a href="#org2644e6b">2.3.3. Deepseek thinking</a></li>
+<li><a href="#org3651253">3.1. Multi-head Latent Attention mechanismus</a></li>
+<li><a href="#org7151209">3.2. MoE</a>
+<ul>
+<li><a href="#org8ff4e5a">3.2.1. with shared Experts for common sense training</a></li>
+<li><a href="#org367a095">3.2.2. load balance</a></li>
+</ul>
+</li>
+<li><a href="#org0a9fcb8">3.3. Multi token prodiction</a>
+<ul>
+<li><a href="#orgca6a4ab">3.3.1. Orignal idea:</a></li>
+<li><a href="#orgff4151d">3.3.2. OpenAI thinking:</a></li>
+<li><a href="#org6a64baf">3.3.3. Deepseek thinking</a></li>
 </ul>
 </li>
 </ul>
@@ -261,13 +267,39 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orga4c4f8d" class="outline-2">
-<h2 id="orga4c4f8d"><span class="section-number-2">1.</span> RL</h2>
+<div id="outline-container-org8e9a62a" class="outline-2">
+<h2 id="org8e9a62a"><span class="section-number-2">1.</span> Concepts</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org862cb72" class="outline-3">
-<h3 id="org862cb72"><span class="section-number-3">1.1.</span> From Policy Gradient TO PPO</h3>
+<div id="outline-container-orgff85afe" class="outline-3">
+<h3 id="orgff85afe"><span class="section-number-3">1.1.</span> State &amp; Action</h3>
 <div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>State: at a time point, for all parts, how the world looks like</li>
+<li>State space: at a time point, for all parts, how the world could look like</li>
+<li>action: at a time point, for each parts, what I do</li>
+<li>action space : at a time point, for each parts, what I could do</li>
+<li>state transition: at a time point, if I did one operation, what the world is changed to.</li>
+<li>state transition probability: at a time point, if I did one operation, How the world can be changed.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org96a2239" class="outline-3">
+<h3 id="org96a2239"><span class="section-number-3">1.2.</span> Policy</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+deterministic &amp; stochastic
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org3ccae9f" class="outline-2">
+<h2 id="org3ccae9f"><span class="section-number-2">2.</span> RL</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org48df148" class="outline-3">
+<h3 id="org48df148"><span class="section-number-3">2.1.</span> From Policy Gradient TO PPO</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
 For a Trajectory: \(\tau = {s_{1}, a_{1}, s_{2}, a_{2}, s_{3}, a_{3},....., s_{T}, a_{T} }\),
 The Actor wants to learn the policy,
@@ -366,12 +398,9 @@ limit the maximal and minimal of \(h_{t}(\theta) = \frac{p_{\theta}(a_{t}|s_{t})
 </ul>
 </div>
 </div>
-
-
-
-<div id="outline-container-org18b9b2e" class="outline-3">
-<h3 id="org18b9b2e"><span class="section-number-3">1.2.</span> Gridworld Example</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-orgefcf33e" class="outline-3">
+<h3 id="orgefcf33e"><span class="section-number-3">2.2.</span> Gridworld Example</h3>
+<div class="outline-text-3" id="text-2-2">
 <p>
 The environment we are talking about
 </p>
@@ -388,29 +417,28 @@ The environment we are talking about
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgaafe294" class="outline-2">
-<h2 id="orgaafe294"><span class="section-number-2">2.</span> DeepSeek</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgd58a77b" class="outline-2">
+<h2 id="orgd58a77b"><span class="section-number-2">3.</span> DeepSeek</h2>
+<div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org3846afc" class="outline-3">
-<h3 id="org3846afc"><span class="section-number-3">2.1.</span> Multi-head Latent Attention mechanismus</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-org3651253" class="outline-3">
+<h3 id="org3651253"><span class="section-number-3">3.1.</span> Multi-head Latent Attention mechanismus</h3>
+<div class="outline-text-3" id="text-3-1">
 <p>
 using auto-encoder to compress the K and V with unified repersentatoin
 </p>
 </div>
 </div>
-<div id="outline-container-orgfe7d8f4" class="outline-3">
-<h3 id="orgfe7d8f4"><span class="section-number-3">2.2.</span> MoE</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-org7151209" class="outline-3">
+<h3 id="org7151209"><span class="section-number-3">3.2.</span> MoE</h3>
+<div class="outline-text-3" id="text-3-2">
 </div>
-<div id="outline-container-org633d5fb" class="outline-4">
-<h4 id="org633d5fb"><span class="section-number-4">2.2.1.</span> with shared Experts for common sense training</h4>
+<div id="outline-container-org8ff4e5a" class="outline-4">
+<h4 id="org8ff4e5a"><span class="section-number-4">3.2.1.</span> with shared Experts for common sense training</h4>
 </div>
-<div id="outline-container-orgd3f74da" class="outline-4">
-<h4 id="orgd3f74da"><span class="section-number-4">2.2.2.</span> load balance</h4>
-<div class="outline-text-4" id="text-2-2-2">
+<div id="outline-container-org367a095" class="outline-4">
+<h4 id="org367a095"><span class="section-number-4">3.2.2.</span> load balance</h4>
+<div class="outline-text-4" id="text-3-2-2">
 <p>
 in order to training all Experts P, 
 </p>
@@ -427,21 +455,21 @@ in order to training all Experts P,
 </div>
 </div>
 </div>
-<div id="outline-container-org8f5bdf7" class="outline-3">
-<h3 id="org8f5bdf7"><span class="section-number-3">2.3.</span> Multi token prodiction</h3>
-<div class="outline-text-3" id="text-2-3">
+<div id="outline-container-org0a9fcb8" class="outline-3">
+<h3 id="org0a9fcb8"><span class="section-number-3">3.3.</span> Multi token prodiction</h3>
+<div class="outline-text-3" id="text-3-3">
 </div>
-<div id="outline-container-org595739e" class="outline-4">
-<h4 id="org595739e"><span class="section-number-4">2.3.1.</span> Orignal idea:</h4>
-<div class="outline-text-4" id="text-2-3-1">
+<div id="outline-container-orgca6a4ab" class="outline-4">
+<h4 id="orgca6a4ab"><span class="section-number-4">3.3.1.</span> Orignal idea:</h4>
+<div class="outline-text-4" id="text-3-3-1">
 <p>
 predict multiple token, some are from small model. If LLM accepte them, it does not need to generate them again.
 </p>
 </div>
 </div>
-<div id="outline-container-org032251d" class="outline-4">
-<h4 id="org032251d"><span class="section-number-4">2.3.2.</span> OpenAI thinking:</h4>
-<div class="outline-text-4" id="text-2-3-2">
+<div id="outline-container-orgff4151d" class="outline-4">
+<h4 id="orgff4151d"><span class="section-number-4">3.3.2.</span> OpenAI thinking:</h4>
+<div class="outline-text-4" id="text-3-3-2">
 <p>
 DeepSeek’s Multiple Token Prediction (MTP) is an innovative training objective that goes beyond the standard next‐token prediction. Instead of using each token only to predict the immediate next word, the model is trained to predict several future tokens simultaneously at each position. This densifies the training signal and encourages the model to “plan ahead” in its representations.
 </p>
@@ -481,9 +509,9 @@ In summary, DeepSeek’s approach trains the model to predict multiple future to
 </p>
 </div>
 </div>
-<div id="outline-container-org2644e6b" class="outline-4">
-<h4 id="org2644e6b"><span class="section-number-4">2.3.3.</span> Deepseek thinking</h4>
-<div class="outline-text-4" id="text-2-3-3">
+<div id="outline-container-org6a64baf" class="outline-4">
+<h4 id="org6a64baf"><span class="section-number-4">3.3.3.</span> Deepseek thinking</h4>
+<div class="outline-text-4" id="text-3-3-3">
 <p>
 DeepSeek-V3's Multi-Token Prediction (MTP) is a novel training objective that diverges from traditional next-token prediction, combining ideas from Meta's MTP, speculative decoding (e.g., Google's work and Medusa/EAGLE), and architectural innovations to improve both training efficiency and inference speed. Below is a detailed breakdown of its mechanics and integration with related methodologies:
 </p>
@@ -662,7 +690,7 @@ DeepSeek-V3’s MTP merges the predictive power of multi-token objectives with t
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: si</p>
-<p class="date">Created: 2025-02-18 Di 21:25</p>
+<p class="date">Created: 2025-12-28 So 20:37</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
