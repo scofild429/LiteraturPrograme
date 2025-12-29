@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-12-28 So 20:37 -->
+<!-- 2025-12-29 Mo 22:06 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>RL</title>
@@ -234,32 +234,51 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org8e9a62a">1. Concepts</a>
+<li><a href="#orgb776804">1. Markov Decision Process (MDP)</a></li>
+<li><a href="#orgb4a248c">2. Bellman Equation</a></li>
+<li><a href="#orgeb6730f">3. Dynamic Programming Iterations in RL</a>
 <ul>
-<li><a href="#orgff85afe">1.1. State &amp; Action</a></li>
-<li><a href="#org96a2239">1.2. Policy</a></li>
+<li><a href="#org4f544ab">3.1. Value Iteration</a></li>
+<li><a href="#org174d8e5">3.2. Policy Iteration</a>
+<ul>
+<li><a href="#orgff8975a">3.2.1. Phase 1: Policy Evaluation (The Inner Loop)</a></li>
+<li><a href="#orga799e28">3.2.2. Phase 2: Policy Improvement (The Outer Loop)</a></li>
 </ul>
 </li>
-<li><a href="#org3ccae9f">2. RL</a>
-<ul>
-<li><a href="#org48df148">2.1. From Policy Gradient TO PPO</a></li>
-<li><a href="#orgefcf33e">2.2. Gridworld Example</a></li>
+<li><a href="#org349955a">3.3. Truncated Policy Iteration</a></li>
 </ul>
 </li>
-<li><a href="#orgd58a77b">3. DeepSeek</a>
+<li><a href="#org7f17b15">4. Monte Carlo Methods in Reinforcement Learning</a>
 <ul>
-<li><a href="#org3651253">3.1. Multi-head Latent Attention mechanismus</a></li>
-<li><a href="#org7151209">3.2. MoE</a>
+<li><a href="#org2304316">4.1. 1. MC Basic (The Theoretical Baseline)</a></li>
+<li><a href="#org37513a5">4.2. 2. MC Exploring Starts (The Efficient Simulator)</a></li>
+<li><a href="#orgec12b7b">4.3. 3. MC Epsilon-Greedy (The Practical Solution)</a>
 <ul>
-<li><a href="#org8ff4e5a">3.2.1. with shared Experts for common sense training</a></li>
-<li><a href="#org367a095">3.2.2. load balance</a></li>
+<li><a href="#orgdea1935">4.3.1. Core Concept: Soft Policies</a></li>
+<li><a href="#org03068b3">4.3.2. Exploration vs. Exploitation</a></li>
 </ul>
 </li>
-<li><a href="#org0a9fcb8">3.3. Multi token prodiction</a>
+</ul>
+</li>
+<li><a href="#org4118dc8">5. PPO</a>
 <ul>
-<li><a href="#orgca6a4ab">3.3.1. Orignal idea:</a></li>
-<li><a href="#orgff4151d">3.3.2. OpenAI thinking:</a></li>
-<li><a href="#org6a64baf">3.3.3. Deepseek thinking</a></li>
+<li><a href="#orga2fb1c4">5.1. From Policy Gradient TO PPO</a></li>
+</ul>
+</li>
+<li><a href="#orga335e4c">6. DeepSeek</a>
+<ul>
+<li><a href="#orgf727247">6.1. Multi-head Latent Attention mechanismus</a></li>
+<li><a href="#org09392be">6.2. MoE</a>
+<ul>
+<li><a href="#orgb3d8a2f">6.2.1. with shared Experts for common sense training</a></li>
+<li><a href="#org3063247">6.2.2. load balance</a></li>
+</ul>
+</li>
+<li><a href="#orgf422380">6.3. Multi token prodiction</a>
+<ul>
+<li><a href="#org77648af">6.3.1. Orignal idea:</a></li>
+<li><a href="#org0a24b3f">6.3.2. OpenAI thinking:</a></li>
+<li><a href="#org5035f7f">6.3.3. Deepseek thinking</a></li>
 </ul>
 </li>
 </ul>
@@ -267,39 +286,257 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org8e9a62a" class="outline-2">
-<h2 id="org8e9a62a"><span class="section-number-2">1.</span> Concepts</h2>
+<div id="outline-container-orgb776804" class="outline-2">
+<h2 id="orgb776804"><span class="section-number-2">1.</span> Markov Decision Process (MDP)</h2>
 <div class="outline-text-2" id="text-1">
-</div>
-<div id="outline-container-orgff85afe" class="outline-3">
-<h3 id="orgff85afe"><span class="section-number-3">1.1.</span> State &amp; Action</h3>
-<div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
-<li>State: at a time point, for all parts, how the world looks like</li>
+<li><b>State</b>: the set of states \( S \)
+<ul class="org-ul">
+<li>at a time point, for all parts, how the world looks like.</li>
 <li>State space: at a time point, for all parts, how the world could look like</li>
-<li>action: at a time point, for each parts, what I do</li>
-<li>action space : at a time point, for each parts, what I could do</li>
+</ul></li>
+<li><b>Action</b>: the set of actions \( \mathcal{A}(s) \) is associated with state \( s \in S \)
+<ul class="org-ul">
+<li>at a time point, for each parts, what I do.</li>
+<li>Action space : at a time point, for each parts, what I could do</li>
+</ul></li>
+<li><b>Reward</b>: the set of rewards \( \mathcal{R}(s, a) \)</li>
+
+<li><b>Trajectory</b>
+<ul class="org-ul">
+<li>episode, return: sum of discount return \(\gamma\) in a episode(trajectory)</li>
+</ul></li>
+
+<li><b>State transition probability</b>:
+<ul class="org-ul">
 <li>state transition: at a time point, if I did one operation, what the world is changed to.</li>
-<li>state transition probability: at a time point, if I did one operation, How the world can be changed.</li>
+<li>at a time point, if I did one operation, How the world can be changed.</li>
+<li>At state \( s \), taking action \( a \), the probability to transit to state \( s' \) is    \( p(s' \mid s, a) \)</li>
+</ul></li>
+<li><b>Reward probability</b>:  
+At state \( s \), taking action \( a \), the probability to get reward \( r \) is    \( p(r \mid s, a) \)</li>
+<li><b>Policy</b>
+<ul class="org-ul">
+<li>deterministic &amp; stochastic</li>
+<li>At state \( s \), the probability to choose action \( a \) is   \( \pi(a \mid s)  \)</li>
+</ul></li>
+</ul>
+
+
+<ul class="org-ul">
+<li><p>
+<b>Markov property</b>
+Memoryless property:
+\[
+  p(s_{t+1} \mid a_{t+1}, s_t, \ldots, a_1, s_0)
+  =
+  p(s_{t+1} \mid a_{t+1}, s_t)
+  \]
+</p>
+
+<p>
+\[
+  p(r_{t+1} \mid a_{t+1}, s_t, \ldots, a_1, s_0)
+  =
+  p(r_{t+1} \mid a_{t+1}, s_t)
+  \]
+</p></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org96a2239" class="outline-3">
-<h3 id="org96a2239"><span class="section-number-3">1.2.</span> Policy</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-orgb4a248c" class="outline-2">
+<h2 id="orgb4a248c"><span class="section-number-2">2.</span> Bellman Equation</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li><b>Return</b> : summary of all discount return in one complete trajectory</li>
+
+<li><b>State Value</b>: expectation of  Return for all possiable trajectories
+ \[ V_{\pi}(s) = \sum_{a} \pi(a|s) \sum_{s', r} p(s', r | s, a) \left[ r + \gamma V_{\pi}(s') \right] \]
+Relationship to action value:    \[ V_{\pi}(s) = \sum_{a \in \mathcal{A}} \pi(a|s) Q_{\pi}(s, a) \]</li>
+
+<li><b>Action Value</b>: expectation of  Return for all possiable trajectories  after taking a specified action
+ \[ Q_{\pi}(s, a) = \sum_{s', r} p(s', r | s, a) \left[ r + \gamma \sum_{a'} \pi(a'|s') Q_{\pi}(s', a') \right] \]
+Relationship to state value   \[ Q_{\pi}(s, a) = \sum_{s', r} p(s', r | s, a) \left[ r + \gamma V_{\pi}(s') \right] \]</li>
+</ul>
+
+
+<ul class="org-ul">
+<li><b>Bellman Optimality Equation</b> is bellman equation with the best policy</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgeb6730f" class="outline-2">
+<h2 id="orgeb6730f"><span class="section-number-2">3.</span> Dynamic Programming Iterations in RL</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org4f544ab" class="outline-3">
+<h3 id="org4f544ab"><span class="section-number-3">3.1.</span> Value Iteration</h3>
+<div class="outline-text-3" id="text-3-1">
 <p>
-deterministic &amp; stochastic
+Value Iteration combines policy improvement and a single step of policy evaluation into one operation.
+</p>
+<ul class="org-ul">
+<li><b><b>Initialization:</b></b> Start with an arbitrary initial value for all states (e.g., \(v_0 = 0\)).</li>
+<li><b><b>Iteration:</b></b>
+<ol class="org-ol">
+<li><b>Implicit Policy Update:</b> For all states, apply all possible action (Q-table), look ahead to find the best action.
+\[ \pi_{k+1} = \arg\max_{\pi} \left( r_{\pi} + \gamma P_{\pi} v_k \right) \]</li>
+<li><b>Value Update:</b> Use that best action to update the state value immediately.
+\[ v_{k+1} = r_{\pi_{k+1}} + \gamma P_{\pi_{k+1}} v_k \]</li>
+</ol></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org174d8e5" class="outline-3">
+<h3 id="org174d8e5"><span class="section-number-3">3.2.</span> Policy Iteration</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Policy Iteration separates the process into two distinct phases. Crucially, the <b><b>Policy Evaluation</b></b> phase is itself an iterative process that looks very similar to Value Iteration, but with a <b>fixed</b> policy.
 </p>
 </div>
+<div id="outline-container-orgff8975a" class="outline-4">
+<h4 id="orgff8975a"><span class="section-number-4">3.2.1.</span> Phase 1: Policy Evaluation (The Inner Loop)</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+This phase starts with a policy \(\pi\) and calculates its value \(v_{\pi}\).
+</p>
+<ul class="org-ul">
+<li><b><b>Input:</b></b> The current fixed policy \(\pi_k\).</li>
+<li><b><b>Process:</b></b> We iterate to find the value by performing "Value Updates" repeatedly.
+<ol class="org-ol">
+<li>Initialize a value estimate \(v\) (e.g., \(v=0\)).</li>
+<li>Apply the Bellman Expectation Operator repeatedly (infinite steps):
+\[ v_{i+1} = r_{\pi_k} + \gamma P_{\pi_k} v_i \]</li>
+<li><b><b>Stop</b></b> when \(v\) converges (i.e., \(i \to \infty\)).</li>
+</ol></li>
+<li><b><b>Output:</b></b> The converged state-value function \(v_{\pi_k}\).</li>
+</ul>
 </div>
 </div>
-<div id="outline-container-org3ccae9f" class="outline-2">
-<h2 id="org3ccae9f"><span class="section-number-2">2.</span> RL</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orga799e28" class="outline-4">
+<h4 id="orga799e28"><span class="section-number-4">3.2.2.</span> Phase 2: Policy Improvement (The Outer Loop)</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<p>
+Once we know exactly how good the current policy \(\pi_k\) is (from Phase 1), we make it greedy.
+</p>
+<ul class="org-ul">
+<li><b><b>Process:</b></b>
+\[ \pi_{k+1} = \arg\max_{\pi} \left( r_{\pi} + \gamma P_{\pi} v_{\pi_k} \right) \]</li>
+</ul>
 </div>
-<div id="outline-container-org48df148" class="outline-3">
-<h3 id="org48df148"><span class="section-number-3">2.1.</span> From Policy Gradient TO PPO</h3>
-<div class="outline-text-3" id="text-2-1">
+</div>
+</div>
+<div id="outline-container-org349955a" class="outline-3">
+<h3 id="org349955a"><span class="section-number-3">3.3.</span> Truncated Policy Iteration</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+The mathematical connection is defined by the depth of the evaluation step (the number of iterations \(j\) in Phase 1):
+</p>
+<ul class="org-ul">
+<li><b><b>Value Iteration</b></b> is a special case of Truncated Policy Iteration where the evaluation depth is \(j=1\).</li>
+<li><b><b>Policy Iteration</b></b> is the limit of Truncated Policy Iteration where the evaluation depth \(j \to \infty\).</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org7f17b15" class="outline-2">
+<h2 id="org7f17b15"><span class="section-number-2">4.</span> Monte Carlo Methods in Reinforcement Learning</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org2304316" class="outline-3">
+<h3 id="org2304316"><span class="section-number-3">4.1.</span> 1. MC Basic (The Theoretical Baseline)</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+This is the simplest form, adapted directly from Policy Iteration logic but using sample returns instead of models.
+</p>
+<ul class="org-ul">
+<li><b>Theory:</b>
+<ul class="org-ul">
+<li>Operates in strict distinct steps: <b><b>Policy Evaluation</b></b> (wait for many episodes) \(\rightarrow\) <b><b>Policy Improvement</b></b> (update policy).</li>
+<li>Uses the <b><b>Initial-Visit Strategy</b></b>: Only the start of an episode is used to update the value of the starting state-action pair \((s_0, a_0)\). Intermediate steps in the episode are ignored for updates.</li>
+</ul></li>
+<li><b>Limitation:</b>
+<ul class="org-ul">
+<li><b><b>Low Sample Efficiency</b></b>: Wastes data by ignoring subsequent state visits in an episode.</li>
+<li><b><b>Impractical</b></b>: Requires collecting "sufficiently many episodes" for <b>every</b> state-action pair before making a single policy update.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org37513a5" class="outline-3">
+<h3 id="org37513a5"><span class="section-number-3">4.2.</span> 2. MC Exploring Starts (The Efficient Simulator)</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+An extension designed to fix sample efficiency but introduces a strong dependency on environment control.
+</p>
+<ul class="org-ul">
+<li><b>Theory:</b>
+<ul class="org-ul">
+<li><b><b>Data Efficiency</b></b>: Uses the <b><b>Every-Visit Strategy</b></b> (or sub-episode decomposition). One long episode is broken down into multiple "sub-episodes" to update values for every state visited, not just the start.</li>
+<li><b><b>Episode-by-Episode Update</b></b>: Updates the policy immediately after a single episode (Generalized Policy Iteration), rather than waiting for a batch.</li>
+</ul></li>
+<li><b>Limitation:</b>
+<ul class="org-ul">
+<li><b><b>The "Exploring Starts" Assumption</b></b>: It requires the environment to be able to start an episode at <b>any</b> random state-action pair \((s, a)\).</li>
+<li><b><b>Real-world Friction</b></b>: This is often impossible in physical reality (e.g., you cannot initialize a robot in a specific "falling over" state instantly).</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgec12b7b" class="outline-3">
+<h3 id="orgec12b7b"><span class="section-number-3">4.3.</span> 3. MC Epsilon-Greedy (The Practical Solution)</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+This method removes the unrealistic "Exploring Starts" assumption, making MC methods viable for real-world learning where you cannot control the starting state.
+</p>
+</div>
+<div id="outline-container-orgdea1935" class="outline-4">
+<h4 id="orgdea1935"><span class="section-number-4">4.3.1.</span> Core Concept: Soft Policies</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<p>
+Instead of forcing the environment to <b>start</b> randomly, we force the agent to <b>behave</b> randomly occasionally.
+</p>
+<ul class="org-ul">
+<li><b><b>Goal</b></b>: Ensure all state-action pairs are visited "sufficiently many times" without external resets.</li>
+<li><b><b>Mechanism</b></b>: Uses a <b><b>Soft Policy</b></b> ( \(\epsilon\) -greedy), meaning there is always a non-zero probability of taking any action in any state.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org03068b3" class="outline-4">
+<h4 id="org03068b3"><span class="section-number-4">4.3.2.</span> Exploration vs. Exploitation</h4>
+<div class="outline-text-4" id="text-4-3-2">
+<p>
+The algorithm balances these two conflicting goals via the parameter \(\epsilon\) (epsilon).
+</p>
+
+<ul class="org-ul">
+<li>Exploration ( The \(\epsilon\) component)
+<ul class="org-ul">
+<li><b><b>Purpose</b></b>: To discover new strategies and ensure the agent does not get stuck in a suboptimal loop. By taking random actions, the agent eventually wanders into every possible state, fulfilling the coverage requirement that "Exploring Starts" used to handle.</li>
+<li><b><b>Mechanism</b></b>: With probability \(\epsilon\), the agent ignores its knowledge and chooses randomly.</li>
+</ul></li>
+
+<li>Exploitation (The \(1-\epsilon\) component)
+<ul class="org-ul">
+<li><b><b>Purpose</b></b>: To maximize rewards based on current knowledge. The agent selects the "Greedy" action (the one with the highest estimated value \(q(s,a)\)).</li>
+<li><b><b>Mechanism</b></b>: With probability \(1 - \epsilon\), the agent chooses the best known action.</li>
+</ul></li>
+</ul>
+
+<ul class="org-ul">
+<li><b><b>Continuous Learning</b></b>: Even if the agent always starts at the same spot (Start Line), the stochastic nature of the policy (\(\epsilon\)) ensures that over many episodes, it will eventually drift into unvisited states.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org4118dc8" class="outline-2">
+<h2 id="org4118dc8"><span class="section-number-2">5.</span> PPO</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-orga2fb1c4" class="outline-3">
+<h3 id="orga2fb1c4"><span class="section-number-3">5.1.</span> From Policy Gradient TO PPO</h3>
+<div class="outline-text-3" id="text-5-1">
 <p>
 For a Trajectory: \(\tau = {s_{1}, a_{1}, s_{2}, a_{2}, s_{3}, a_{3},....., s_{T}, a_{T} }\),
 The Actor wants to learn the policy,
@@ -398,47 +635,29 @@ limit the maximal and minimal of \(h_{t}(\theta) = \frac{p_{\theta}(a_{t}|s_{t})
 </ul>
 </div>
 </div>
-<div id="outline-container-orgefcf33e" class="outline-3">
-<h3 id="orgefcf33e"><span class="section-number-3">2.2.</span> Gridworld Example</h3>
-<div class="outline-text-3" id="text-2-2">
-<p>
-The environment we are talking about
-</p>
-<ul class="org-ul">
-<li>Agent: The representation of us to achieve some goals.</li>
-<li>States: Where the agent can be in Gridworld, all possiable locations.</li>
-<li>Actions: In a State, all the possiable movements of the agent. What can the agent do.</li>
-<li>Valuse: In a certain State, in all its potential Actions, how well the Agent can be maximal evaluated according to a certain rule.</li>
-<li>Policy:  In a certain State, all allowed Actions to achieve the propose.</li>
-<li>Good policy: In a certain State, the best Actions to achieve the propose.</li>
-<li>Vaule Neural network: From State to Value</li>
-<li>Policy Neural network: From State to Policy</li>
-</ul>
 </div>
+<div id="outline-container-orga335e4c" class="outline-2">
+<h2 id="orga335e4c"><span class="section-number-2">6.</span> DeepSeek</h2>
+<div class="outline-text-2" id="text-6">
 </div>
-</div>
-<div id="outline-container-orgd58a77b" class="outline-2">
-<h2 id="orgd58a77b"><span class="section-number-2">3.</span> DeepSeek</h2>
-<div class="outline-text-2" id="text-3">
-</div>
-<div id="outline-container-org3651253" class="outline-3">
-<h3 id="org3651253"><span class="section-number-3">3.1.</span> Multi-head Latent Attention mechanismus</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-orgf727247" class="outline-3">
+<h3 id="orgf727247"><span class="section-number-3">6.1.</span> Multi-head Latent Attention mechanismus</h3>
+<div class="outline-text-3" id="text-6-1">
 <p>
 using auto-encoder to compress the K and V with unified repersentatoin
 </p>
 </div>
 </div>
-<div id="outline-container-org7151209" class="outline-3">
-<h3 id="org7151209"><span class="section-number-3">3.2.</span> MoE</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-org09392be" class="outline-3">
+<h3 id="org09392be"><span class="section-number-3">6.2.</span> MoE</h3>
+<div class="outline-text-3" id="text-6-2">
 </div>
-<div id="outline-container-org8ff4e5a" class="outline-4">
-<h4 id="org8ff4e5a"><span class="section-number-4">3.2.1.</span> with shared Experts for common sense training</h4>
+<div id="outline-container-orgb3d8a2f" class="outline-4">
+<h4 id="orgb3d8a2f"><span class="section-number-4">6.2.1.</span> with shared Experts for common sense training</h4>
 </div>
-<div id="outline-container-org367a095" class="outline-4">
-<h4 id="org367a095"><span class="section-number-4">3.2.2.</span> load balance</h4>
-<div class="outline-text-4" id="text-3-2-2">
+<div id="outline-container-org3063247" class="outline-4">
+<h4 id="org3063247"><span class="section-number-4">6.2.2.</span> load balance</h4>
+<div class="outline-text-4" id="text-6-2-2">
 <p>
 in order to training all Experts P, 
 </p>
@@ -455,21 +674,21 @@ in order to training all Experts P,
 </div>
 </div>
 </div>
-<div id="outline-container-org0a9fcb8" class="outline-3">
-<h3 id="org0a9fcb8"><span class="section-number-3">3.3.</span> Multi token prodiction</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-orgf422380" class="outline-3">
+<h3 id="orgf422380"><span class="section-number-3">6.3.</span> Multi token prodiction</h3>
+<div class="outline-text-3" id="text-6-3">
 </div>
-<div id="outline-container-orgca6a4ab" class="outline-4">
-<h4 id="orgca6a4ab"><span class="section-number-4">3.3.1.</span> Orignal idea:</h4>
-<div class="outline-text-4" id="text-3-3-1">
+<div id="outline-container-org77648af" class="outline-4">
+<h4 id="org77648af"><span class="section-number-4">6.3.1.</span> Orignal idea:</h4>
+<div class="outline-text-4" id="text-6-3-1">
 <p>
 predict multiple token, some are from small model. If LLM accepte them, it does not need to generate them again.
 </p>
 </div>
 </div>
-<div id="outline-container-orgff4151d" class="outline-4">
-<h4 id="orgff4151d"><span class="section-number-4">3.3.2.</span> OpenAI thinking:</h4>
-<div class="outline-text-4" id="text-3-3-2">
+<div id="outline-container-org0a24b3f" class="outline-4">
+<h4 id="org0a24b3f"><span class="section-number-4">6.3.2.</span> OpenAI thinking:</h4>
+<div class="outline-text-4" id="text-6-3-2">
 <p>
 DeepSeek’s Multiple Token Prediction (MTP) is an innovative training objective that goes beyond the standard next‐token prediction. Instead of using each token only to predict the immediate next word, the model is trained to predict several future tokens simultaneously at each position. This densifies the training signal and encourages the model to “plan ahead” in its representations.
 </p>
@@ -509,9 +728,9 @@ In summary, DeepSeek’s approach trains the model to predict multiple future to
 </p>
 </div>
 </div>
-<div id="outline-container-org6a64baf" class="outline-4">
-<h4 id="org6a64baf"><span class="section-number-4">3.3.3.</span> Deepseek thinking</h4>
-<div class="outline-text-4" id="text-3-3-3">
+<div id="outline-container-org5035f7f" class="outline-4">
+<h4 id="org5035f7f"><span class="section-number-4">6.3.3.</span> Deepseek thinking</h4>
+<div class="outline-text-4" id="text-6-3-3">
 <p>
 DeepSeek-V3's Multi-Token Prediction (MTP) is a novel training objective that diverges from traditional next-token prediction, combining ideas from Meta's MTP, speculative decoding (e.g., Google's work and Medusa/EAGLE), and architectural innovations to improve both training efficiency and inference speed. Below is a detailed breakdown of its mechanics and integration with related methodologies:
 </p>
@@ -690,7 +909,7 @@ DeepSeek-V3’s MTP merges the predictive power of multi-token objectives with t
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: si</p>
-<p class="date">Created: 2025-12-28 So 20:37</p>
+<p class="date">Created: 2025-12-29 Mo 22:06</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

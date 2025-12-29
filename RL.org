@@ -1,23 +1,146 @@
 #+TITLE: RL
 #+OPTIONS: num:t
 #+STARTUP: overview
+#+OPTIONS: tex:t
+#+HTML_MATHJAX: t
 #+EXPORT_FILE_NAME: /home/si/Dropbox/Base/html/RL.html
 #+PROPERTY: header-args :eval no-export
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
-* Concepts
-** State & Action
-- State: at a time point, for all parts, how the world looks like
-- State space: at a time point, for all parts, how the world could look like
-- action: at a time point, for each parts, what I do
-- action space : at a time point, for each parts, what I could do
-- state transition: at a time point, if I did one operation, what the world is changed to.
-- state transition probability: at a time point, if I did one operation, How the world can be changed.
+* Markov Decision Process (MDP)
+- *State*: the set of states \( S \)
+  - at a time point, for all parts, how the world looks like.
+  - State space: at a time point, for all parts, how the world could look like
+- *Action*: the set of actions \( \mathcal{A}(s) \) is associated with state \( s \in S \)
+  - at a time point, for each parts, what I do.
+  - Action space : at a time point, for each parts, what I could do
+- *Reward*: the set of rewards \( \mathcal{R}(s, a) \)
 
-** Policy
-deterministic & stochastic
+- *Trajectory*
+  - episode, return: sum of discount return $\gamma$ in a episode(trajectory)
+
+- *State transition probability*:
+  - state transition: at a time point, if I did one operation, what the world is changed to.
+  - at a time point, if I did one operation, How the world can be changed.
+  - At state \( s \), taking action \( a \), the probability to transit to state \( s' \) is    \( p(s' \mid s, a) \)
+- *Reward probability*:  
+  At state \( s \), taking action \( a \), the probability to get reward \( r \) is    \( p(r \mid s, a) \)
+- *Policy*
+  - deterministic & stochastic
+  - At state \( s \), the probability to choose action \( a \) is   \( \pi(a \mid s)  \)
 
 
-* RL
+- *Markov property*
+  Memoryless property:
+  \[
+  p(s_{t+1} \mid a_{t+1}, s_t, \ldots, a_1, s_0)
+  =
+  p(s_{t+1} \mid a_{t+1}, s_t)
+  \]
+
+  \[
+  p(r_{t+1} \mid a_{t+1}, s_t, \ldots, a_1, s_0)
+  =
+  p(r_{t+1} \mid a_{t+1}, s_t)
+  \]
+
+
+* Bellman Equation
+- *Return* : summary of all discount return in one complete trajectory
+  
+- *State Value*: expectation of  Return for all possiable trajectories
+    \[ V_{\pi}(s) = \sum_{a} \pi(a|s) \sum_{s', r} p(s', r | s, a) \left[ r + \gamma V_{\pi}(s') \right] \]
+   Relationship to action value:    \[ V_{\pi}(s) = \sum_{a \in \mathcal{A}} \pi(a|s) Q_{\pi}(s, a) \]
+
+- *Action Value*: expectation of  Return for all possiable trajectories  after taking a specified action
+   \[ Q_{\pi}(s, a) = \sum_{s', r} p(s', r | s, a) \left[ r + \gamma \sum_{a'} \pi(a'|s') Q_{\pi}(s', a') \right] \]
+  Relationship to state value   \[ Q_{\pi}(s, a) = \sum_{s', r} p(s', r | s, a) \left[ r + \gamma V_{\pi}(s') \right] \]
+
+
+- *Bellman Optimality Equation* is bellman equation with the best policy
+ 
+
+
+
+
+
+
+* Dynamic Programming Iterations in RL
+** Value Iteration
+Value Iteration combines policy improvement and a single step of policy evaluation into one operation.
+- **Initialization:** Start with an arbitrary initial value for all states (e.g., $v_0 = 0$).
+- **Iteration:**
+  1. *Implicit Policy Update:* For all states, apply all possible action (Q-table), look ahead to find the best action.
+     \[ \pi_{k+1} = \arg\max_{\pi} \left( r_{\pi} + \gamma P_{\pi} v_k \right) \]
+  2. *Value Update:* Use that best action to update the state value immediately.
+     \[ v_{k+1} = r_{\pi_{k+1}} + \gamma P_{\pi_{k+1}} v_k \]
+
+** Policy Iteration
+Policy Iteration separates the process into two distinct phases. Crucially, the **Policy Evaluation** phase is itself an iterative process that looks very similar to Value Iteration, but with a *fixed* policy.
+
+*** Phase 1: Policy Evaluation (The Inner Loop)
+This phase starts with a policy $\pi$ and calculates its value $v_{\pi}$.
+- **Input:** The current fixed policy $\pi_k$.
+- **Process:** We iterate to find the value by performing "Value Updates" repeatedly.
+  1. Initialize a value estimate $v$ (e.g., $v=0$).
+  2. Apply the Bellman Expectation Operator repeatedly (infinite steps):
+     \[ v_{i+1} = r_{\pi_k} + \gamma P_{\pi_k} v_i \]
+  3. **Stop** when $v$ converges (i.e., $i \to \infty$).
+- **Output:** The converged state-value function $v_{\pi_k}$.
+
+*** Phase 2: Policy Improvement (The Outer Loop)
+Once we know exactly how good the current policy $\pi_k$ is (from Phase 1), we make it greedy.
+- **Process:**
+  \[ \pi_{k+1} = \arg\max_{\pi} \left( r_{\pi} + \gamma P_{\pi} v_{\pi_k} \right) \]
+
+** Truncated Policy Iteration
+The mathematical connection is defined by the depth of the evaluation step (the number of iterations $j$ in Phase 1):
+- **Value Iteration** is a special case of Truncated Policy Iteration where the evaluation depth is $j=1$.
+- **Policy Iteration** is the limit of Truncated Policy Iteration where the evaluation depth $j \to \infty$.
+
+
+
+* Monte Carlo Methods in Reinforcement Learning
+** 1. MC Basic (The Theoretical Baseline)
+   This is the simplest form, adapted directly from Policy Iteration logic but using sample returns instead of models.
+   - *Theory:*
+     - Operates in strict distinct steps: **Policy Evaluation** (wait for many episodes) $\rightarrow$ **Policy Improvement** (update policy).
+     - Uses the **Initial-Visit Strategy**: Only the start of an episode is used to update the value of the starting state-action pair $(s_0, a_0)$. Intermediate steps in the episode are ignored for updates.
+   - *Limitation:*
+     - **Low Sample Efficiency**: Wastes data by ignoring subsequent state visits in an episode.
+     - **Impractical**: Requires collecting "sufficiently many episodes" for *every* state-action pair before making a single policy update.
+
+** 2. MC Exploring Starts (The Efficient Simulator)
+   An extension designed to fix sample efficiency but introduces a strong dependency on environment control.
+   - *Theory:*
+     - **Data Efficiency**: Uses the **Every-Visit Strategy** (or sub-episode decomposition). One long episode is broken down into multiple "sub-episodes" to update values for every state visited, not just the start.
+     - **Episode-by-Episode Update**: Updates the policy immediately after a single episode (Generalized Policy Iteration), rather than waiting for a batch.
+   - *Limitation:*
+     - **The "Exploring Starts" Assumption**: It requires the environment to be able to start an episode at *any* random state-action pair $(s, a)$.
+     - **Real-world Friction**: This is often impossible in physical reality (e.g., you cannot initialize a robot in a specific "falling over" state instantly).
+
+** 3. MC Epsilon-Greedy (The Practical Solution)
+   This method removes the unrealistic "Exploring Starts" assumption, making MC methods viable for real-world learning where you cannot control the starting state.
+
+*** Core Concept: Soft Policies
+    Instead of forcing the environment to *start* randomly, we force the agent to *behave* randomly occasionally.
+    - **Goal**: Ensure all state-action pairs are visited "sufficiently many times" without external resets.
+    - **Mechanism**: Uses a **Soft Policy** ( $\epsilon$ -greedy), meaning there is always a non-zero probability of taking any action in any state.
+
+*** Exploration vs. Exploitation
+    The algorithm balances these two conflicting goals via the parameter $\epsilon$ (epsilon).
+
+    -  Exploration ( The $\epsilon$ component)
+       - **Purpose**: To discover new strategies and ensure the agent does not get stuck in a suboptimal loop. By taking random actions, the agent eventually wanders into every possible state, fulfilling the coverage requirement that "Exploring Starts" used to handle.
+       - **Mechanism**: With probability $\epsilon$, the agent ignores its knowledge and chooses randomly.
+
+    - Exploitation (The $1-\epsilon$ component)
+       - **Purpose**: To maximize rewards based on current knowledge. The agent selects the "Greedy" action (the one with the highest estimated value $q(s,a)$).
+       - **Mechanism**: With probability $1 - \epsilon$, the agent chooses the best known action.
+
+   - **Continuous Learning**: Even if the agent always starts at the same spot (Start Line), the stochastic nature of the policy ($\epsilon$) ensures that over many episodes, it will eventually drift into unvisited states.
+
+
+* PPO
 ** From Policy Gradient TO PPO
 #+begin_src ditaa :file ./PG.png
   +------+
@@ -91,19 +214,8 @@ On Policy has Data Inefficiency, which slow dwon the training very much and unst
 
   $L_{\theta_{k}}^{CLIP} = E(\sum_{t=0}^{T}  [\min {h_{t}A_{t}, clip(h_{t}, 1-\epsilon, 1+\epsilon)A_{t}}])$.
   
-    
-** Gridworld Example
-The environment we are talking about
-- Agent: The representation of us to achieve some goals.
-- States: Where the agent can be in Gridworld, all possiable locations.
-- Actions: In a State, all the possiable movements of the agent. What can the agent do.
-- Valuse: In a certain State, in all its potential Actions, how well the Agent can be maximal evaluated according to a certain rule.
-- Policy:  In a certain State, all allowed Actions to achieve the propose.
-- Good policy: In a certain State, the best Actions to achieve the propose.
-- Vaule Neural network: From State to Value
-- Policy Neural network: From State to Policy  
-  
 * DeepSeek
+
 ** Multi-head Latent Attention mechanismus
 using auto-encoder to compress the K and V with unified repersentatoin
 ** MoE
