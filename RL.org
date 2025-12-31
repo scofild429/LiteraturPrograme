@@ -6,6 +6,7 @@
 #+EXPORT_FILE_NAME: /home/si/Dropbox/Base/html/RL.html
 #+PROPERTY: header-args :eval no-export
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+
 * Markov Decision Process (MDP)
 - *State*: the set of states \( S \)
   - at a time point, for all parts, how the world looks like.
@@ -99,7 +100,8 @@ The mathematical connection is defined by the depth of the evaluation step (the 
 
 
 
-* Monte Carlo Methods in Reinforcement Learning
+* Monte Carlo Methods in RL
+Model-free, without to know the model, we use the expecation of example from MC to fine-tune Action value:  $q_{\pi_{k}(s,a)} = E(G_{t}| S_{t}=s, A_{t}=a )$. Basic the process works the same as Policy iteration(Policy evaluation and policy improvement), only the evaluation is with the exampling from MC.
 ** 1. MC Basic (The Theoretical Baseline)
    This is the simplest form, adapted directly from Policy Iteration logic but using sample returns instead of models.
    - *Theory:*
@@ -140,87 +142,330 @@ The mathematical connection is defined by the depth of the evaluation step (the 
    - **Continuous Learning**: Even if the agent always starts at the same spot (Start Line), the stochastic nature of the policy ($\epsilon$) ensures that over many episodes, it will eventually drift into unvisited states.
 
 
+* Temporal Difference 
+  *Core Concept*
+  TD Learning is the solution(policy) to the Bellman Expectation Equation, formulated as a root-finding problem and solved using the Robbins-Monro stochastic approximation algorithm.
+
+** The Mathematical Driver
+-  The Goal: Bellman Expectation Equation
+  We seek $V_{\pi}(s)$ such that:
+  $$V_{\pi}(s) = \mathbb{E}_{\pi} [ R_{t+1} + \gamma V_{\pi}(S_{t+1}) \mid S_t = s ]$$
+
+- The Problem: Root Finding
+  Define the objective function (Bellman Error) $J(V)$, where we want the root $J(V)=0$:
+  $$J(V)(s) = \mathbb{E} [ R_{t+1} + \gamma V(S_{t+1}) ] - V(s) = 0$$
+
+- The Solver: Robbins-Monro Algorithm
+  Iteratively find root $\theta^*$ of $f(\theta)=0$ using noisy observations $\tilde{f}(\theta)$:   $$\theta_{t+1} = \theta_t + \alpha_t \cdot \tilde{f}(\theta_t)$$
+  - $\theta$ > $\theta^*$   minus $\tilde{f}(\theta_t)$
+  - $\theta$ < $\theta^*$   plus $\tilde{f}(\theta_t)$
+
+
+** The Derivation
+- The Noisy Observation (TD Error)
+  Since we cannot compute the expectation $\mathbb{E}$, we take a single sample:
+  - *Observation:* $\tilde{J}(V_t) = (r_{t+1} + \gamma V_t(s_{t+1})) - V_t(s_t)$
+  - This is the **TD Error** ($\delta_t$).
+
+- The Sample Target
+  The term $r_{t+1} + \gamma V_t(s_{t+1})$ acts as the "Label":
+  - *Reality:* $r_{t+1}$ (Ground truth, low variance).
+  - *Guess:* $\gamma V_t(s_{t+1})$ (Bootstrap estimate).
+  - *Function:* It acts as the target $y$ for $V(s_t)$, providing a better estimate than $V(s_t)$ alone because it includes real data.
+
+- The Solution (TD Update Rule)
+  Substituting $\tilde{f}(\theta)$ into the Robbins-Monro update:
+  $$V(s_t) \leftarrow V(s_t) + \alpha \delta_t$$
+  $$V(s_t) \leftarrow V(s_t) + \alpha \underbrace{[ (r_{t+1} + \gamma V(s_{t+1})) - V(s_t) ]}_{\text{TD Error}}$$
+  $$V(s_t) \leftarrow V(s_t) - \alpha [ V(s_t) - \underbrace{(r_{t+1} + \gamma V(s_{t+1}))}_{\text{Target}} ]$$   
+
+
+** Unified View of TD-series
+*** 1. The General Update Rule
+When we use Action value instead of policy for TD, all discussed algorithms can be expressed as a stochastic approximation update solving a Bellman equation.
+The unified update rule (Gradient Descent form) is:
+
+$$q_{t+1}(s_t, a_t) = q_t(s_t, a_t) - \alpha_t(s_t, a_t) [ q_t(s_t, a_t) - \bar{q}_t ]$$
+
+- $q_t(s_t, a_t)$: Current Estimate
+- $\alpha_t$: Learning rate (Step size)
+- $\bar{q}_t$: The **Target** (The noisy sample derived from environment interaction)
+- The term $[q_t - \bar{q}_t]$ represents the error to minimize.
+
+*** 2. Algorithm Specifics
+- Sarsa:
+   - **Target Expression ($\bar{q}_t$):**    $$\bar{q}_t = r_{t+1} + \gamma q_t(s_{t+1}, a_{t+1})$$
+   - **Equation Aimed to Solve:**   **Bellman Expectation Equation (BE) for $q_{\pi}$**:
+       $$q_{\pi}(s, a) = \mathbb{E} [R_{t+1} + \gamma q_{\pi}(S_{t+1}, A_{t+1}) \mid S_t = s, A_t = a]$$
+   - **Note:** This is an on-policy method using the action $a_{t+1}$ actually taken by the current policy.
+
+- Q-learning
+   - **Target Expression ($\bar{q}_t$):**   $$\bar{q}_t = r_{t+1} + \gamma \max_{a} q_t(s_{t+1}, a)$$
+   - **Equation Aimed to Solve:**  *Bellman Optimality Equation  (BOE) for $q_*$*:
+       $$q_{*}(s, a) = \mathbb{E} [R_{t+1} + \max_{a} q_{*}(S_{t+1}, a) \mid S_t = s, A_t = a]$$  
+   - **Note:** This is an off-policy method because it updates towards the best possible action ($\max$), regardless of the policy actually followed.
+
+
+- Expected Sarsa
+   - **Target Expression ($\bar{q}_t$):**   $$\bar{q}_t = r_{t+1} + \gamma \sum_{a} \pi_t(a|s_{t+1})q_t(s_{t+1}, a)$$
+   - **Equation Aimed to Solve:**   **Bellman Expectation Equation (BE) for $q_{\pi}$**:
+      $$q_{\pi}(s, a) = \mathbb{E} [R_{t+1} + \gamma \mathbb{E}_{A_{t+1}}[q_{\pi}(S_{t+1}, A_{t+1})] \mid S_t = s, A_t = a]$$  
+   - **Note:** It reduces variance by taking the expectation over all possible next actions rather than just sampling one.
+
+- N-step Sarsa
+   - **Target Expression ($\bar{q}_t$):**   $$\bar{q}_t = r_{t+1} + \gamma r_{t+2} + \dots + \gamma^n q_t(s_{t+n}, a_{t+n})$$
+   - **Equation Aimed to Solve:**   **Bellman Expectation Equation (BE) for $q_{\pi}$**:
+       $$q_{\pi}(s, a) = \mathbb{E} [R_{t+1} + \gamma R_{t+2} + \dots + \gamma^n q_{\pi}(S_{t+n}, A_{t+n}) \mid S_t = s, A_t = a]$$
+   - **Note:** It balances bias and variance by looking $n$ steps ahead before bootstrapping.
+
+- Monte Carlo (MC)
+   - **Target Expression ($\bar{q}_t$):**  $$\bar{q}_t = r_{t+1} + \gamma r_{t+2} + \dots \text{ (Full Return } G_t)$$
+   - **Equation Aimed to Solve:**   **Bellman Expectation Equation (BE) for $q_{\pi}$**:
+      $$q_{\pi}(s, a) = \mathbb{E} [R_{t+1} + \gamma R_{t+2} + \dots \mid S_t = s, A_t = a]$$
+   - **Note:** Can be viewed as the unified expression where $\alpha_t(s_t, a_t) = 1$, making $q_{t+1} = \bar{q}_t$ (direct assignment of the return).
+
+
+
+
+** Deep Q-learning
+- Deep Q-learning replaces the tabular $q(s,a)$ with a parameterized neural network $\hat{q}(s, a, w)$.
+- We want the neural network to satisfy the **Bellman Optimality Equation**:
+      $$q_*(s, a) = \mathbb{E} [R_{t+1} + \gamma \max_{a'} q_*(S_{t+1}, a') \mid S_t=s, A_t=a]$$  
+- It aims to minimize the loss function $J(w)$:
+      $$J(w) = \mathbb{E} \left[ \left( \underbrace{R + \gamma \max_{a' \in \mathcal{A}(S')} \hat{q}(S', a', w)}_{\text{Target (Bellman Optimality)}} - \underbrace{\hat{q}(S, A, w)}_{\text{Prediction}} \right)^2 \right]$$
+
+ 
+   where The term inside the squared brackets is the **TD Error** (specifically for Q-Learning).
+    $$\delta = (R + \gamma \max \hat{q}(S', a', w)) - \hat{q}(S, A, w)$$. In order to minimize the distance (error) between the *Prediction* and the *Target*, the network $\hat{q}$ converges towards the optimal value function $q_*$.
+
+- Algorithm
+   - **Sample:**
+     Uniformly draw a mini-batch of samples from $\mathcal{B}$.
+
+   - **Calculate Targets:**
+     For each sample $(s, a, r, s')$ in the mini-batch, calculate the target value $y_T$:
+     $$y_T = r + \gamma \max_{a \in \mathcal{A}(s')} \hat{q}(s', a, w_T)$$
+     - Where $w_T$ is the parameter of the **target network**.
+
+   - **Update Main Network:**
+     Update the main network parameter $w$ to minimize the loss:
+     $$Loss = (y_T - \hat{q}(s, a, w))^2$$
+     - This update uses the mini-batch data $\{(s, a, y_T)\}$.
+
+   - **Update Target Network:**
+     Set $w_T = w$ every $C$ iterations.
+
+
+
+* Policy Gradient
+** Metrics
+- $\bar{v}_\pi$  (Discounted Average Value)
+  $$\sum_{s \in S} d(s)\, v_\pi(s)$$
+  $$\mathbb{E}_{S \sim d}[v_\pi(S)]$$
+  $$\mathbb{E}\left[\sum_{t=0}^{\infty} \gamma^{t} R_{t+1}\right]$$
+
+- $\bar{r}_\pi$ (Average Reward Objective)
+  $$\sum_{s \in S} d_\pi(s)\, r_\pi(s)$$
+  $$\mathbb{E}_{S \sim d_\pi}[r_\pi(S)]$$
+  $$\lim_{n \to \infty} \frac{1}{n} \mathbb{E}\left[\sum_{t=0}^{n-1} R_{t+1}\right]$$
+** General objective function for metrics
+The gradient of the objective function $J(\theta)$ is given by the Policy Gradient Theorem:
+$$\nabla_\theta J(\theta)
+= \sum_{s \in S} \eta(s)
+  \sum_{a \in A}
+  \nabla_\theta \pi(a \mid s, \theta)\, q_\pi(s, a)$$
+
+where:
+  - $\eta(s)$ is the state distribution (discounted or stationary depending on metric)
+  - $\nabla_\theta \pi(a \mid s, \theta)$ denotes the gradient of the policy $\pi$ with respect to the parameters $\theta$,
+  - $q_\pi(s, a)$ is the action-value function.
+  - Note: The theorem proves equality, but in practice, ignoring the gradient of the state distribution leads to an approximation often called the "proportional" gradient.
+    
+Moreover, as an expectation:$$  \nabla_\theta J(\theta)
+  = \mathbb{E}_{S \sim \eta,\; A \sim \pi(S,\theta)}
+  \left[
+  \nabla_\theta \ln \pi(A \mid S, \theta)\, q_\pi(S, A)
+  \right].$$
+
+** Policy parameters update
+$$  \theta_{t+1} = \theta_t + \alpha \nabla_\theta J(\theta_t)$$
+
+Using the expectation form of the policy gradient, this becomes:
+
+
+$$\theta_{t+1} = \theta_t + \alpha \mathbb{E} [ \nabla_\theta \ln \pi(A \mid S, \theta_{t})\, q_{\pi}(S, A) ]$$
+
+We do not have $q_{\pi}(S, A)$, so use $\hat{q}(S_t, A_t)$ from sampling.
+$$\theta_{t+1} = \theta_t + \alpha \nabla_\theta \ln \pi(A_t \mid S_t, \theta_t)\, \hat{q}(S_t, A_t)$$
+    - Sampling from MC: REINFORCE
+    - Sampling from TD: Actor-Critic
+
+** Theory
+$$\theta_{t+1} = \theta_t + \alpha \nabla_{\theta} \ln \pi(a_t \mid s_t, \theta_t) q_t(s_t, a_t)$$
+Because of the log-derivative trick:
+$$\nabla_{\theta} \ln \pi(a_t \mid s_t, \theta_t) = \frac{\nabla_{\theta} \pi(a_t \mid s_t, \theta_t)}{\pi(a_t \mid s_t, \theta_t)}$$
+We have:
+$$\theta_{t+1} = \theta_t + \alpha \frac{\nabla_{\theta} \pi(a_t \mid s_t, \theta_t)}{\pi(a_t \mid s_t, \theta_t)} q_t(s_t, a_t)$$
+So, defining $\beta_t = \frac{q_t(s_t, a_t)}{\pi(a_t \mid s_t, \theta_t)}$:
+$$\theta_{t+1} = \theta_t + \alpha \beta_t \nabla_{\theta} \pi(a_t \mid s_t, \theta_t)$$
+   - If $\beta_t \ge 0 \implies$  Move in direction of gradient:
+     - -$\implies \pi(a_t | s_t, \theta_{t+1}) \ge \pi(a_t | s_t, \theta_t)$ 
+     - Enhancement
+     - Reinforce good actions
+       
+   - If $\beta_t < 0 \implies$ Move opposite to gradient :
+     - $\implies \pi(a_t | s_t, \theta_{t+1}) < \pi(a_t | s_t, \theta_t)$
+     - Decrease
+     - Suppress bad actions
+** REINFORCE Algorithm
+Monte Carlo Policy Gradient
+- Initialize: $\theta$, $\gamma \in (0,1)$, $\alpha > 0$
+- Loop for each episode:
+   - Generate episode $\{s_0, a_0, r_1, \dots, s_{T-1}, a_{T-1}, r_T\}$ following policy $\pi(\cdot|\cdot, \theta_k)$
+   - For $t = 0$ to $T-1$:
+      - $G_t \leftarrow \sum_{k=t+1}^{T} \gamma^{k-t-1} r_k$  (Calculate return)
+      - $\theta_{t} \leftarrow \theta_{t} + \alpha \gamma^t G_t \nabla_{\theta} \ln \pi(a_t | s_t, \theta_{k})$
+ - $\theta_{k} \leftarrow \theta_{t}$
+
+
+
+
+
+
+* Actor-Critic
+** Q-Actor-Critic (QAC)
+*** Background
+
+Derived from the Policy Gradient theorem, QAC replaces the Monte Carlo (MC) return with a **Temporal Difference (TD)** value function approximation.
+The policy parameters are updated using the gradient of the log-probability scaled by the action-value function:
+$$\theta_{t+1} = \theta_t + \alpha \nabla_{\theta} \ln \pi(a_t \mid s_t, \theta_t) q_t(s_t, a_t)$$
+
+*** Initialization
+- *Policy Function:* $\pi(a|s, \theta_0)$ with initial parameters $\theta_0$.
+- *Value Function:* $q(s, a, w_0)$ with initial parameters $w_0$.
+- *Learning Rates:* $\alpha_w, \alpha_{\theta} > 0$.
+- *Goal:* Maximize the expected return $J(\theta)$.
+
+*** Loop (for each time step $t$ in episode):
+1. **Generate Action:** Sample $a_t \sim \pi(a|s_t, \theta_t)$.
+2. **Observe Reward:** Get $r_{t+1}$ and next state $s_{t+1}$.
+3. **Select Next Action:** Sample $a_{t+1} \sim \pi(a|s_{t+1}, \theta_t)$.
+
+4. **Actor (Policy Update):**
+   Update the policy parameters in the direction of higher rewards:
+   $$\theta_{t+1} = \theta_t + \alpha_{\theta} \nabla_{\theta} \ln \pi(a_t | s_t, \theta_t) q(s_t, a_t, w_t)$$
+
+5. **Critic (Value Update):**
+   Update the action-value parameters using the semi-gradient TD error:
+   $$w_{t+1} = w_t + \alpha_w \left[ r_{t+1} + \gamma q(s_{t+1}, a_{t+1}, w_t) - q(s_t, a_t, w_t) \right] \nabla_w q(s_t, a_t, w_t)$$
+
+
+
+
+** Advantage Actor-Critic
+*** Add baseline
+To improve the stability of the Policy Gradient, we introduce a **baseline** to the update function. Subtracting a state-value function $v(s)$ from the return reduces variance without introducing bias. The standard gradient update is modified by subtracting the baseline $v_t(s_t)$:
+$$ \theta_{t+1} = \theta_t + \alpha \nabla_{\theta} \ln \pi(a_t \mid s_t, \theta_t) [q_t(s_t, a_t) - v_t(s_t)] $$
+
+*** The Advantage Function ($\delta_t$)
+We define the **Advantage Function** as the difference between the action-value and the state-value. However, since we often do not know $q_t$ explicitly, we approximate it using the **TD Error** $\delta_t$:
+
+$$ \delta_t(s_t, a_t) = q_t(s_t, a_t) - v_t(s_t) \approx r_{t+1} + \gamma v_t(s_{t+1}) - v_t(s_t) $$
+
+Substituting this back into our update rule gives us a more robust update:
+$$ \theta_{t+1} = \theta_t + \alpha \nabla_{\theta} \ln \pi(a_t \mid s_t, \theta_t) \delta_t(s_t, a_t) $$
+
+*Why use the Advantage Function?*
+The advantage $\delta_t$ effectively measures how much better an action $a_t$ was compared to the "average" value of the state. This helps balance **exploration and exploitation** more effectively than raw returns, as the agent explicitly learns which actions outperform the expected baseline.
+
+*** Algorithm
+- *Policy Function (Actor):* $\pi(a|s, \theta_0)$ with initial parameters $\theta_0$.
+- *Value Function (Critic):* $v(s, w_0)$ with initial parameters $w_0$.
+- *Learning Rates:* $\alpha_w, \alpha_{\theta} > 0$.
+- *Goal:* Learn an optimal policy to maximize expected return $J(\theta)$.
+
+At time step $t$ in each episode:
+
+1. **Generate Action & Observe:**
+   Generate $a_t$ following $\pi(a|s_t, \theta_t)$, then observe reward $r_{t+1}$ and next state $s_{t+1}$.
+
+2. **Calculate Advantage (TD Error):**
+   Compute the TD error using the Critic's current value estimates:
+   $$ \delta_t = r_{t+1} + \gamma v(s_{t+1}, w_t) - v(s_t, w_t) $$
+
+3. **Actor Update (Policy):**
+   Update the policy parameters to encourage actions with high advantage:
+   $$ \theta_{t+1} = \theta_t + \alpha_{\theta} \delta_t \nabla_{\theta} \ln \pi(a_t | s_t, \theta_t) $$
+
+4. **Critic Update (Value):**
+   Update the value function parameters to minimize the TD error:
+   $$ w_{t+1} = w_t + \alpha_w \delta_t \nabla_w v(s_t, w_t) $$
+
+   
+
+
+** Off-Policy Actor-Critic
+We use a behavior policy $\beta$ to generate experience samples. To estimate the gradient of the target policy $\pi$, we must use **Importance Sampling**.
+
+*** The Objective Gradient
+$$ \nabla_{\theta} J(\theta) = \mathbb{E}_{S \sim \rho, A \sim \beta} \left[ \frac{\pi(A|S, \theta)}{\beta(A|S)} \nabla_{\theta} \ln \pi(A|S, \theta) q_{\pi}(S, A) \right] $$
+
+*** The Update Rule
+The update is similar to A2C but scaled by the importance sampling ratio $\rho_t$:
+
+$$ \theta_{t+1} = \theta_t + \alpha \underbrace{ \frac{\pi(a_t|s_t, \theta_t)}{\beta(a_t|s_t)} }_{\text{Importance Weight } \rho_t} \delta_t(s_t, a_t) \nabla_{\theta} \ln \pi(a_t \mid s_t, \theta_t) $$
+
+Because of the log-derivative trick:
+$$ \theta_{t+1} = \theta_t + \alpha \frac{\delta_t(s_t, a_t)}{\beta(a_{t}|s_{t})} \nabla_{\theta} \pi(a_t \mid s_t, \theta_t) $$
+
+Algorithm is similar only with difference of factor $\beta(a_{t}|s_{t})$
+
+
+
+
 * PPO
-** From Policy Gradient TO PPO
-#+begin_src ditaa :file ./PG.png
-  +------+
-  |      |
-  | ENV  | <------------- A
-  |      |                ^
-  +------+                |
-      |                   |
-      |              +--------+
-      V              |        |
-      S  ----------->|  Actor |
-                     |        |
-                     +--------+
-
-#+end_src
-
-For a Trajectory: $\tau = {s_{1}, a_{1}, s_{2}, a_{2}, s_{3}, a_{3},....., s_{T}, a_{T} }$,
-The Actor wants to learn the policy,
-each step:  $p_{\theta}(a_{t}|s_{t})$,
-total trajectory: $p_{\theta}(\tau) = p(s_{1})p_{\theta}(a_{1}|s_{1}) \cdot  p(s_{2}|s_{1}, a_{1})p_{\theta}(a_{2}|s_{2}) \cdot
-p(s_{3}|s_{2}, a_{2})p_{\theta}(a_{3}|s_{3})  .....
-p(s_{T}|s_{T-1}, a_{T-1})p_{\theta}(a_{T}|s_{T})$,
-So we have $p_{\theta}(\tau) = p(s_{1}) \cdot \prod_{t=1}^{T}
-p_{\theta}(a_{t}|s_{t}) p(s_{t+1}|s_{t}, a_{t})$.
+use  Importance Sampling as $r_t(\theta)$ , old policy as $\beta$ behavior policy 
+$$r_t(\theta) = \frac{\pi_{\theta}(a_t|s_t)}{\pi_{\theta_{\text{old}}}(a_t|s_t)}$$
 
 
-About the Policy $R_{\theta}$ we get its expecation $\bar{R_{\theta}} = \sum_{\tau}R(\tau)p_{\theta}(\tau)$.
-so its gradient: $\Delta \bar{R_{\theta}} = \sum_{\tau}R(\tau) \Delta p_{\theta}(\tau)$.
-$\Delta \bar{R_{\theta}} = \sum_{\tau}R(\tau) p_{\theta}(\tau)  \frac{\Delta p_{\theta}(\tau) }{p_{\theta}(\tau)}$.  by using $(\log(f(x)))' = \frac{f'(x)}{f(x)}$
+if $\beta(a|s)$ is very small (the behavior policy rarely took the action) but $\pi(a|s)$ is large (the new policy really wants to take it), the ratio  $r_t(\theta)$ becomes a huge number.
+  - This causes massive gradient updates.
+  - This destroys the training stability (the "step" is too big).
 
-So we have  $\Delta \bar{R_{\theta}} = \sum_{\tau}R(\tau) p_{\theta}(\tau)  \Delta \log p_{\theta}(\tau)$.
 
-Assuming we have N Trajectories with porbablity of $p_{\theta}(\tau)$:
-  $\Delta \bar{R_{\theta}} = \frac{1}{N} \sum_{n=1}^{N} R(\tau^{n})  \Delta \log p_{\theta}(\tau^{n})$.
+limit the potential explode by selecting the minimum between:
+  $$L^{CLIP} = \mathbb{E} \left[ \min( r_t \delta_t, \text{clip}(r_t, 1-\epsilon, 1+\epsilon) \delta_t ) \right]$$
 
-Expanding all the probablity of each possiable actions:
-  $\Delta \bar{R_{\theta}} = \frac{1}{N} \sum_{n=1}^{N} \sum_{t=1}^{T_{n}} R(t)  \Delta \log p_{\theta}( a_{t}^{n} | s_{t}^{n} )$.
 
-Using Advantage function $A$ replace Reward function $R$, and add baseline:
-$A_{t} = Q(s_{t}, a_{t}) - V(s_{t})$
+* LLM Decouple Actor and Critic
+Unlike traditional RL (e.g., Atari) where state representation is efficiently shared, LLM-based RL often requires decoupling the Actor and Critic due to **Negative Transfer** and **Optimization Divergence**.
+** 1. Negative Transfer (Objective Interference)
+The Actor and Critic optimize fundamentally conflicting objectives, leading to **Catastrophic Forgetting** in shared architectures.
 
-so th Policy Gradient Objective function is:
-$J(\theta) = E_{t}[\log p_{\theta}(a_{t}|s_{t})A_{t}]$ and $\Delta J(\theta) = E_{t}[\Delta_{\theta} \log p_{\theta}(a_{t}|s_{t})A_{t}]$
+- **Gradient Wash-Out:** The Critic's gradients can "wash out" the delicate weights required for language generation.
+- **Manifold Collapse:** When the model maximizes reward aggressively, it loses coherence, causing catastrophic forgetting of the pre-trained language manifold.
 
-On Policy has Data Inefficiency, which slow dwon the training very much and unstable. We have following adjustments available.
+** 2. Optimization Divergence (Timescale Mismatch)
+Shared weights prevent the necessary decoupling of learning dynamics between the two heads.
 
-- Mini-Batch training from On Policy to Off Policy with importance exampling:
-  From $\Delta J(\theta) = E_{(s_{t}, a_{t}) \backsim p_{\theta}}[ A_{\theta}(s_{t}, a_{t})  \Delta_{\theta} \log p_{\theta}(a_{t}|s_{t})]$
-  with importance exampling:  $E_{x \backsim p[f(x)]} \approx \frac{1}{N} \sum_{i=1}^{N} f(x_{i}) = \int f(x)p(x)dx  = \int f(x)\frac{p(x)}{q(x)}q(x)dx = E_{x \backsim q[f(x)]}[f(x) \frac{p(x)}{q(x)}]$
-  we have  $\Delta J(\theta) = E_{(s_{t}, a_{t}) \backsim p_{\theta^{'}}}[ \frac{p_{\theta}(s_{t}, a_{t})}{p_{\theta^{'}}(s_{t}, a_{t})} A_{\theta^{'}}(s_{t}, a_{t})  \Delta_{\theta} \log p_{\theta}(a_{t}|s_{t})]$.
-  
-  Expanding the join condition:    $\Delta J(\theta) = E_{(s_{t}, a_{t}) \backsim p_{\theta^{'}}}[\frac{p_{\theta}(s_{t}| a_{t}) p_{\theta}(s_{t})}{p_{\theta^{'}}(s_{t}| a_{t}) p_{\theta^{'}}(s_{t})} A_{\theta^{'}}(s_{t}, a_{t})  \Delta_{\theta} \log p_{\theta}(a_{t}|s_{t})]$
-  
-  because $\frac{p_{\theta}(s_{t})}{p_{\theta^{'}}(s_{t})} \approx 1$,   we have $\Delta J(\theta) = E_{(s_{t}, a_{t}) \backsim p_{\theta^{'}}}[\frac{p_{\theta}(s_{t}| a_{t})}{p_{\theta^{'}}(s_{t}| a_{t})} A_{\theta^{'}}(s_{t}, a_{t})  \Delta_{\theta} \log p_{\theta}(a_{t}|s_{t})]$.
-  
-  Because $\Delta f(x) = \frac{f(x)}{\Delta \log_{f(x)}}$,   we have the Policy function  $J_{\theta^{'}}(\theta) = E_{(s_{t}, a_{t}) \backsim p_{\theta^{'}}}[\frac{p_{\theta}(s_{t}| a_{t})}{p_{\theta^{'}}(s_{t}| a_{t})} A_{\theta^{'}}(s_{t}, a_{t})]$, its differential with respect of $\theta$ is $\Delta J(\theta)$.
+- **The Critic (Fast Learner):**
+  Requires rapidly tracking non-stationary value targets ($V(s)$ changes constantly as $\pi$ evolves).
+- **The Actor (Slow Learner):**
+  Requires strict constraints (Trust Region/Clipping) to ensure monotonic improvement.
+- **The Conflict:**
+  In a shared body, you cannot tune optimizers independently. A learning rate high enough for the Critic destabilizes the Actor; a rate low enough for the Actor starves the Critic.
+** 3. Phasic Policy Gradient
+Separating policy and value function training into distinct phases  [[https://arxiv.org/abs/2009.04416][PPG]]. 
 
-  If we choice the example of $\theta^{'}$ from pervious iteration, we can transition on policy to off policy by importance exampling.
 
-- Regularization:
-  using KL Divergence to constrain the difference between $\theta$ and  $\theta^{'}$.   $D_{KL}(p||q) = E[\log p(x) - \log q(x)] = \sum_{x} p(x)\log \frac{p(x)}{qx}$
+* GRPO
+Group Relative Policy Optimization (GRPO) resolves these conflicts by *eliminating the Critic network entirely*.
 
-  So The Objective Funciton of  PPO with KL penalty: $J_{\theta^{'}}^{PPO}(\theta) = J_{\theta^{'}}(\theta) - \beta D_{KL}(p_{\theta} || p_{\theta^{'}})$ where $J_{\theta^{'}}(\theta) = E_{(s_{t}, a_{t}) \backsim p_{\theta^{'}}}[\frac{p_{\theta}(s_{t}| a_{t})}{p_{\theta^{'}}(s_{t}| a_{t})} A_{\theta^{'}}(s_{t}, a_{t})]$ as in mini batch.
+By removing the Critic part, GRPO removes the *source* of the interference. There are no value-function gradients to clash with the language modeling objectives. Instead of a learned Value Function $V(s)$ (which requires a separate network/optimizer), GRPO estimates the baseline using the **mean reward of a group of outputs**:
+  $$ A_i = \frac{r_i - \text{mean}(r_{1..G})}{\text{std}(r_{1..G})} $$
 
-  to train the KL Penalty,
-  - if $D_{KL}(p_{\theta} || p_{\theta^{'}})$ > $D_{max}$, increase $\beta$
-  - if $D_{KL}(p_{\theta} || p_{\theta^{'}})$ < $D_{min}$, decrease $\beta$
-
-- Clipped Objective
-  limit the maximal and minimal of $h_{t}(\theta) = \frac{p_{\theta}(a_{t}|s_{t})}p_{\theta^{'}}(a_{t}|s_{t})$ with limitation $\epsilon$.
-
-  $L_{\theta_{k}}^{CLIP} = E(\sum_{t=0}^{T}  [\min {h_{t}A_{t}, clip(h_{t}, 1-\epsilon, 1+\epsilon)A_{t}}])$.
-  
-* DeepSeek
-
-** Multi-head Latent Attention mechanismus
-using auto-encoder to compress the K and V with unified repersentatoin
-** MoE
-*** with shared Experts for common sense training
-*** load balance
+* MoE
+With shared Experts for common sense training.
 in order to training all Experts P, 
 - Switch transformer, minimal the loss to force the f and P to be uniformly distributed : $loss = \alpha \cdot N \cdot \sum_{i=1}^{N} f_{i} \cdot P_{i}$
 - Loss free: using self-adjusted bias before softmax to control the P.
@@ -228,123 +473,95 @@ in order to training all Experts P,
   - if some experts has too less token, incurease the bias.
 
 - DeepSeek use bias parameter before active function for dynamical adjustment of token loading for each expert    
-** Multi token prodiction
-*** Orignal idea: 
+
+
+* Multi-token prodiction
 predict multiple token, some are from small model. If LLM accepte them, it does not need to generate them again.
-*** OpenAI thinking:
 
-DeepSeek’s Multiple Token Prediction (MTP) is an innovative training objective that goes beyond the standard next‐token prediction. Instead of using each token only to predict the immediate next word, the model is trained to predict several future tokens simultaneously at each position. This densifies the training signal and encourages the model to “plan ahead” in its representations.
 
-Here’s how it works in detail:
+* Multi-token training
+** The Core Concept: MTP as an Implicit Critic
+We reject GRPO (which requires generating groups for a baseline). Instead, we use **Time** as our baseline.
 
-Sequential Multi-Token Prediction Modules:
-DeepSeek appends additional “MTP modules” onto the main Transformer. Each MTP module—comprising a shared embedding layer, a dedicated Transformer block, and an output head (which shares parameters with the main model’s output layer)—is responsible for predicting the token that comes a fixed number of steps ahead. For example, with an MTP depth of 1, the first module predicts the token at position n+1 (as usual) while a second module predicts token n+2.
-Unlike some previous approaches that use independent parallel heads (as seen in Meta’s MTP), DeepSeek’s design preserves the complete causal chain by performing these extra predictions sequentially. In other words, the prediction for token n+2 is conditioned not only on the original context but also on the predicted token at n+1.
+We use a single Transformer. The **MTP Modules** (which normally predict future tokens) are slightly modified to also predict the **Value (Expected Future Reward)** of those tokens.
 
-Integration of Speculative Decoding Ideas:
-DeepSeek’s MTP method draws inspiration from speculative decoding techniques such as Medusa and EAGLE developed by Google and DeepMind. In speculative decoding, the idea is to generate multiple candidate tokens in parallel (using extra decoding “heads”) and then validate them with the full model—thus accelerating inference. DeepSeek adapts this concept to training by teaching the model to produce coherent multi-token continuations. This “speculative training” trains the model to both generate and internally verify longer continuations, so that during inference it can safely “skip” several decoding steps when the predictions are confident.
+- **No Separate Critic Network:** The MTP heads *are* the Critic.
+- **No Group Sampling:** We do not compare against a group average. We compare against our own prediction from the *next* step (Bootstrapping).
+- **One Network:** Parameters $\theta$ are shared.
 
-Loss Computation and Data Efficiency:
-During training, each MTP module outputs a probability distribution over the vocabulary for its respective future token. The training loss then includes a cross-entropy term for each predicted token (e.g. for token positions n+1, n+2, …). These losses are averaged (and typically weighted) to form the overall MTP loss. By predicting multiple tokens per training example, the model receives much denser supervision compared to standard one-token-at-a-time objectives. This not only improves data efficiency but also encourages the network to capture longer-term dependencies and improve planning in its internal representations.
+** Architecture: The "Value-Aware" MTP Head
+Standard DeepSeek MTP predicts tokens $t_{n+1}, t_{n+2} \dots$.
+We modify the output projection of the MTP modules to output two things:
+1.  **Token Logits:** $P(t_{n+k})$ (What happens next?)
+2.  **Scalar Value:** $V_{n+k}$ (How good is it?)
 
-Parameter Sharing and Efficiency:
-To keep the overall model size and training cost in check, DeepSeek shares the embedding and output projection layers between the main model and the MTP modules. This careful design ensures that even though extra “heads” are added, the number of additional parameters is relatively small compared to the full model. The sequential design further means that the extra computational cost is modest, yet the benefit in improved context planning and potential inference acceleration is significant.
+*Equation:*
+$$ [ \text{Logits}_{k}, v_{k} ] = \text{MTP Head}_k(h_n) $$
+Where $v_k$ represents the expected return starting from step $n+k$.
 
-Bridging Training and Inference:
-The training method effectively mimics the behavior of speculative decoding during inference. Once trained, the MTP modules can be discarded if desired—the main model will have internalized the ability to “look ahead.” Alternatively, they can be repurposed to perform speculative decoding at inference time, where multiple tokens are generated in parallel to speed up generation. This integration of ideas from Meta (MTP), Google/DeepMind (Medusa/EAGLE), and DeepSeek’s own innovations results in what the team calls a “speculative training” method.
+** The Algorithm: Recursive Value Propagation
 
-In summary, DeepSeek’s approach trains the model to predict multiple future tokens in a way that preserves the causal chain, uses shared parameters for efficiency, and leverages concepts from speculative decoding to enhance both training signal density and inference speed. This combination of techniques enables the model to learn richer representations and longer-term dependencies while significantly reducing the number of sequential decoding steps needed during generation.
-*** Deepseek thinking
-DeepSeek-V3's Multi-Token Prediction (MTP) is a novel training objective that diverges from traditional next-token prediction, combining ideas from Meta's MTP, speculative decoding (e.g., Google's work and Medusa/EAGLE), and architectural innovations to improve both training efficiency and inference speed. Below is a detailed breakdown of its mechanics and integration with related methodologies:
+*** A. Forward Pass (Generation & Storage)
+At time step $t$, the network produces:
+1.  **Action:** Sample $a_t$ from the main policy head.
+2.  **Lookahead Values (Internal Value):** The MTP heads produce value estimates for future steps:
+    - MTP Head 1 gives $v^{(1)}_t$ (Estimate of $V(s_{t+1})$)
+    - MTP Head 2 gives $v^{(2)}_t$ (Estimate of $V(s_{t+2})$)
 
-1. Core Idea of Multi-Token Prediction (MTP) 135
-Traditional language models like GPT predict only the next token in a sequence. DeepSeek-V3 extends this by training the model to predict multiple future tokens at each position. This approach:
+We **save** these internal value estimates $v^{(k)}_t$ into a buffer.
 
-Densifies Training Signals: Each input sequence generates predictions for multiple tokens, improving data efficiency and reducing the sparsity of training signals 56.
+*** B. Interaction
+Execute action $a_t$.
+Observe Reward $r_{t+1}$ and next state $s_{t+1}$.
 
-Encourages Long-Term Planning: By requiring the model to anticipate future tokens, it builds richer internal representations that account for broader context, akin to human language processing 5.
+*** C. The "Next Step" Operation (Bootstrapping)
+This is the key requirement you mentioned. We use the value calculated at $t+1$ to update the network at $t$.
 
-2. Architecture: Sequential MTP Modules 1310
-DeepSeek-V3 employs sequential MTP modules instead of parallel heads (as in Meta’s MTP). Each module consists of:
+We define the **TD Target** (Temporal Difference):
+$$ Y_t = r_{t+1} + \gamma v^{(1)}_{t+1} $$
+*Note:* $v^{(1)}_{t+1}$ is the "Value of the next state" predicted by the MTP head at the *next* step.
 
-Shared Embedding Layer: Processes input tokens into hidden representations.
+*** D. The Update (Loss Function)
+We update the single network $\theta$ with three components:
 
-Projection Matrix: Converts hidden states into predictions for future tokens (specific to each prediction depth).
+1.  **Policy Loss (Actor):**
+    Maximize likelihood of $a_t$ if the Advantage is positive.
+    $$ \delta_t = Y_t - v^{(1)}_t \quad (\text{Advantage} = \text{Target} - \text{Prediction}) $$
+    $$ L_{policy} = - \delta_t \ln \pi(a_t|s_t) $$
 
-Transformer Block: Processes combined representations of the current token and future embeddings 16.
+2.  **MTP Value Consistency Loss (The "Saved Value" Update):**
+    Force the MTP head at step $t$ to accurately predict the value at $t+1$.
+    $$ L_{value} = (v^{(1)}_t - \text{stop\_grad}(Y_t))^2 $$
 
-During training:
+3.  **MTP Token Loss (Auxiliary):**
+    Keep the standard MTP token prediction to ensure the representations remain grounded in language/reasoning.
+    $$ L_{token} = \text{CrossEntropy}(\text{MTP\_Heads}) $$
 
-The model predicts D additional tokens (e.g., 2–4) per input token.
+$$ L_{total} = L_{policy} + \alpha L_{value} + \beta L_{token} $$
 
-Future tokens within the same training sequence are used as supervision, avoiding leakage since they are part of the input context 15.
+---
 
-3. Integration with Speculative Decoding 149
-DeepSeek-V3 leverages MTP for speculative decoding during inference, similar to Google’s speculative execution and Medusa’s multi-head decoding:
+** Why this meets the criteria
+1.  **Single Network:** The Policy and Value are fused. The "Value" is just a tiny scalar output on the existing MTP heads.
+2.  **No GRPO:** We don't need multiple samples to find a baseline. We use the **Bellman Consistency** ($V_t \approx r + V_{t+1}$) as the training signal.
+3.  **MTP Integration:** The MTP heads are essential. They provide the "Lookahead" capability that stabilizes the single-network value estimation (reducing the noise of a single step).
+4.  **Internal Value Saved:** The training relies on carrying the scalar $v$ from step $t+1$ backward to step $t$.
 
-Parallel Candidate Generation: The MTP modules generate multiple token candidates in parallel, bypassing the need for a separate draft model (as in Google’s original approach) 19.
+** Visualization of Data Flow
+#+begin_src text
+Step T:
+   Input -> [Backbone] -> h_t
+              |-> Main Head -> Action a_t (Sampled)
+              |-> MTP Head  -> Predicts V_t (Saved)
 
-Tree-Based Verification: Candidates are verified against the main model’s predictions in a single decoding step, reducing latency. This aligns with Medusa’s tree-based attention but uses the MTP modules natively trained with the model 96.
+       --- Environment Step (r_t) --->
 
-Cost Efficiency: Unlike Medusa, which adds decoding heads post-training, DeepSeek’s MTP modules are integrated during pre-training, ensuring better alignment between training and inference 37.
+Step T+1:
+   Input -> [Backbone] -> h_{t+1}
+              |-> MTP Head  -> Predicts V_{t+1} (Used as Target)
 
-4. Key Innovations Over Existing Methods
-a. Meta’s MTP vs. DeepSeek’s Sequential Approach
-Meta’s MTP uses parallel output heads for multi-token prediction, which can lead to redundancy and increased parameter count 5.
-
-DeepSeek’s sequential modules reuse the main model’s transformer blocks and embeddings, reducing computational overhead while maintaining prediction accuracy 16.
-
-b. Medusa/EAGLE Comparison
-Medusa adds multiple decoding heads to a frozen base model, requiring fine-tuning for compatibility 29.
-
-DeepSeek’s MTP modules are co-trained with the main model, enabling seamless speculative decoding without post-hoc adjustments 710.
-
-EAGLE’s draft model is external, while DeepSeek’s MTP modules are part of the core architecture, eliminating the need for separate maintenance 14.
-
-5. Training Workflow 367
-Pre-Training:
-
-The model is trained on a 14.8 trillion-token corpus using FP8 mixed precision and a novel load-balancing strategy for MoE layers.
-
-MTP modules are trained alongside the main model, with shared parameters (e.g., embeddings) and task-specific projections.
-
-Fine-Tuning:
-
-Supervised Fine-Tuning (SFT) and Reinforcement Learning (GRPO) stages refine the model’s outputs.
-
-Inference:
-
-MTP modules can be discarded, leaving the main model for standard autoregressive decoding.
-
-Alternatively, they enable speculative decoding by generating multiple candidates for parallel verification.
-
-6. Performance and Advantages 3710
-Training Efficiency: MTP reduces training costs (~
-6
-M
-f
-o
-r
-D
-e
-e
-p
-S
-e
-e
-k
-−
-V
-3
-v
-s
-.
- 
-6MforDeepSeek−V3vs. 50M for comparable models) by improving data utilization 17.
-
-Benchmark Results: Achieves SOTA on coding (HumanEval: 65.2 Pass@1) and math (GSM8K: 89.3 EM) tasks, outperforming GPT-4 and Claude-3.5 7.
-
-Inference Speed: With speculative decoding, latency is reduced by 2.2–3.6x, comparable to Medusa-2’s gains 9.
-
-Summary
-DeepSeek-V3’s MTP merges the predictive power of multi-token objectives with the efficiency of speculative decoding, avoiding the pitfalls of external draft models or redundant parallel heads. By co-training MTP modules with the main model, it achieves superior performance while maintaining cost-effectiveness—a significant leap in LLM architecture
+Update T:
+   Target = r_t + gamma * V_{t+1}
+   Error  = Target - V_t
+   Backprop Error through h_t
+#+end_src
