@@ -5,6 +5,18 @@
 #+PROPERTY: header-args :eval no-export
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
 
+* Nvidia modprobe
+Even the CUDA driver and torch is good installed, still print(f"CUDA Available:  {torch.cuda.is_available()}") may return False, also arise problem for other cases.
+Please set the modprobe and reboot:
+It manually creates the Unified Memory (UVM) device files that PyTorch relies on.
+
+#+begin_src 
+  sudo nvidia-modprobe -u -c=0
+  sudo nvidia-modprobe -m
+#+end_src
+
+
+
 * install cuda toolkit for U24 with dependence libinfo5
 U24 install toolkit for U22, libinfo5 is missing. Then follow the instruction, set password
 #+begin_src sh

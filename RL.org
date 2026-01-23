@@ -424,6 +424,19 @@ Algorithm is similar only with difference of factor $\beta(a_{t}|s_{t})$
 
 
 * PPO
+** Start from MDP
+We write the probability of a trajectory with MDP as
+\begin{equation}
+P(\tau | \pi_{\theta}) = P(s_1) \prod_{t=1}^{T} \pi_{\theta}(a_t | s_t) P(s_{t+1} | s_t, a_t)
+\end{equation}
+- $\tau$: Trajectory
+- $\pi_{\theta}$: Policy parameterized by $\theta$
+- $P(s_1)$: Probability of the initial state
+- $\pi_{\theta}(a_t | s_t)$: Probability of taking action $a_t$ in state $s_t$ (The Policy)
+- $P(s_{t+1} | s_t, a_t)$: Probability of transitioning to $s_{t+1}$ given $s_t$ and $a_t$ (The Transition Function/Model)
+
+
+
 use  Importance Sampling as $r_t(\theta)$ , old policy as $\beta$ behavior policy 
 $$r_t(\theta) = \frac{\pi_{\theta}(a_t|s_t)}{\pi_{\theta_{\text{old}}}(a_t|s_t)}$$
 
@@ -463,6 +476,7 @@ Group Relative Policy Optimization (GRPO) resolves these conflicts by *eliminati
 
 By removing the Critic part, GRPO removes the *source* of the interference. There are no value-function gradients to clash with the language modeling objectives. Instead of a learned Value Function $V(s)$ (which requires a separate network/optimizer), GRPO estimates the baseline using the **mean reward of a group of outputs**:
   $$ A_i = \frac{r_i - \text{mean}(r_{1..G})}{\text{std}(r_{1..G})} $$
+
 
 * MoE
 With shared Experts for common sense training.
@@ -565,3 +579,37 @@ Update T:
    Error  = Target - V_t
    Backprop Error through h_t
 #+end_src
+
+
+* New way with stable assumpation
+** 1. The Core Innovation
+A unified architecture where **MTP Heads** serve a dual purpose:
+1.  **Syntax/Logic:** Predicting future tokens (Language Modeling).
+2.  **Planning:** Predicting future *value* (Implicit Critic).
+
+** 2. Strengths (Why do this?)
+- **Extreme Efficiency:** Eliminates the memory cost of a separate Critic (PPO) and the compute cost of Group Sampling (GRPO).
+- **Temporal Credit Assignment:** Unlike GRPO (which gives the same reward to the whole sentence), this method assigns specific values to specific tokens via bootstrapping.
+- **Dopamine Signals:** The MTP value prediction ($v_t$) acts like a localized dopamine signal, telling the model *exactly* when it made a good move, not just at the end.
+
+** 3. The "Stability" Bottleneck (Critical Risk)
+** The Problem: Chasing your own Tail
+Since we use the *same network* to generate the target $V_{t+1}$ and the prediction $V_t$, the training can oscillate or diverge.
+
+** The Solution: Periodic Target Updates (Polyak Averaging)
+We cannot easily afford a second full network. However, we can keep a **lightweight copy** of *just* the MTP heads (a few MBs).
+
+- **Active Heads ($\theta$):** Learn rapidly.
+- **Target Heads ($\theta'$):** Update slowly ($\theta' \leftarrow \tau\theta + (1-\tau)\theta'$).
+- **Stabilized Rule:**
+  $$ Y_t = r_{t+1} + \gamma \text{MTP}_{\text{target}}(s_{t+1}) $$
+
+** 4. Final Recommendation
+This algorithm is feasible but requires careful tuning of the **Auxiliary Loss Balance**.
+
+** The "Golden Ratio" Loss:
+$$ L = L_{\text{token}} + \lambda_1 L_{\text{MTP\_tokens}} + \lambda_2 L_{\text{TD\_Value}} $$
+
+- If $\lambda_2$ is too high, the "Value" objective will overwrite the "Language" objective (Catastrophic Forgetting).
+- If $\lambda_2$ is too low, the agent won't plan.
+- **Recommendation:** Start with $\lambda_2 = 0.1$ and clamp the value gradients.
