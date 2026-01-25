@@ -3,7 +3,7 @@
 #+STARTUP: overview
 #+OPTIONS: tex:t
 #+HTML_MATHJAX: t
-#+EXPORT_FILE_NAME: /home/si/Dropbox/Base/html/RL.html
+#+EXPORT_FILE_NAME: ./html/RL.html
 #+PROPERTY: header-args :eval no-export
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
 
@@ -33,17 +33,17 @@
 - *Markov property*
   Memoryless property:
   \[
-  p(s_{t+1} \mid a_{t+1}, s_t, \ldots, a_1, s_0)
+  p(s_{t+1} \mid a_{t}, s_t, \ldots, a_0, s_0)
   =
-  p(s_{t+1} \mid a_{t+1}, s_t)
+  p(s_{t+1} \mid a_{t}, s_t)
   \]
 
   \[
-  p(r_{t+1} \mid a_{t+1}, s_t, \ldots, a_1, s_0)
+  p(r_{t+1} \mid a_{t}, s_t, \ldots, a_0, s_0)
   =
-  p(r_{t+1} \mid a_{t+1}, s_t)
+  p(r_{t+1} \mid a_{t}, s_t)
   \]
-
+ 
 
 * Bellman Equation
 - *Return* : summary of all discount return in one complete trajectory
@@ -423,9 +423,10 @@ Algorithm is similar only with difference of factor $\beta(a_{t}|s_{t})$
 
 
 
-* PPO
-** Start from MDP
-We write the probability of a trajectory with MDP as
+* RL for LLM
+** Objective function to maximase the Reward
+*** Start from MDP
+We write the probability of a trajectory with MDP for $\tau = (s_0, a_0, \dots, s_T, a_T)$ :
 \begin{equation}
 P(\tau | \pi_{\theta}) = P(s_1) \prod_{t=1}^{T} \pi_{\theta}(a_t | s_t) P(s_{t+1} | s_t, a_t)
 \end{equation}
@@ -436,29 +437,95 @@ P(\tau | \pi_{\theta}) = P(s_1) \prod_{t=1}^{T} \pi_{\theta}(a_t | s_t) P(s_{t+1
 - $P(s_{t+1} | s_t, a_t)$: Probability of transitioning to $s_{t+1}$ given $s_t$ and $a_t$ (The Transition Function/Model)
 
 
+Taking the gradient of the log-probability:
+$$\nabla_\theta \log P(\tau|\pi_{\theta}) = \nabla_\theta \log \rho_0(s_0) + \sum_{t=0}^{T} \left( \nabla_\theta \log P(s_{t+1}|s_t, a_t) + \nabla_\theta \log \pi_\theta(a_t|s_t) \right)$$
 
-use  Importance Sampling as $r_t(\theta)$ , old policy as $\beta$ behavior policy 
-$$r_t(\theta) = \frac{\pi_{\theta}(a_t|s_t)}{\pi_{\theta_{\text{old}}}(a_t|s_t)}$$
+Since the initial state distribution $\rho_0$ and the environment dynamics $P(s_{t+1}|s_t, a_t)$ 
+do not depend on the policy parameters $\theta$, their gradients are zero:
+$$\nabla_\theta \log P(\tau|\theta) = \sum_{t=0}^{T} \nabla_\theta \log \pi_\theta(a_t|s_t)$$
+
+*** The Policy Gradient Theorem
+We aim to maximize the objective $J(\pi_\theta) = \mathbb{E}_{\tau \sim \pi_\theta} [R(\tau)]$.
+
+\begin{align*}
+\nabla_\theta J(\pi_\theta) &= \nabla_\theta \int_\tau P(\tau|\theta) R(\tau) d\tau & \text{Expand expectation} \\
+&= \int_\tau \nabla_\theta P(\tau|\theta) R(\tau) d\tau & \text{Bring gradient under integral} \\
+&= \int_\tau P(\tau|\theta) \frac{\nabla_\theta P(\tau|\theta)}{P(\tau|\theta)} R(\tau) d\tau & \text{Log-derivative trick: } \nabla \log x = \frac{\nabla x}{x} \\
+&= \int_\tau P(\tau|\theta) \nabla_\theta \log P(\tau|\theta) R(\tau) d\tau & \text{Simplify} \\
+&= \mathbb{E}_{\tau \sim \pi_\theta} [\nabla_\theta \log P(\tau|\theta) R(\tau)] & \text{Return to expectation form}
+\end{align*}
+
+*** Final Merged Expression for derivate of objective function
+
+$$\nabla_\theta J(\pi_\theta) = \mathbb{E}_{\tau \sim \pi_\theta} \left[ \left( \sum_{t=0}^{T} \nabla_\theta \log \pi_\theta(a_t|s_t) \right) R(\tau) \right]$$
+
+*** Advantage function $A_{t}$
+From the above function, we introduce a baseline for $R{\tau}$ for reducing the variance. A great option is the current value $V(\tau)$. So we have the advantage function for objective function derivative: A = Q - V.
+
+- Monte Carlo:
+  using G to  estaminate Q: A = G - V
+- Temporal Difference:
+  using $Q=r+ \gamma V(s_{t+1}​)$, so $A = \delta_t^{V} = Q-V = r_t + \gamma V(s_{t+1}) - V(s_t)$
+- GAE:
+  MC cover all the steps, and TD only see one step, so GAE use l steps for generall case
+ $A_t^{GAE} = \sum_{l=0}^{\infty} (\gamma \lambda )^l \delta_{t+l}^V$
+  
+*** Value model Loss function
+use MSE, $(V-Q)^2$, where V is the output of value model and Q is the expected value of current step, we use Q = A + V to share the advantage calculation from above.
+
+The value function (critic) is trained by minimizing the mean squared error between the predicted value and the estimated return:
+
+\[
+\mathcal{L}_{\text{value}} = \mathbb{E}_{t} \left[ \left( V_\psi(s_t) - ( A_t + V_\psi(s_t) ) \right)^2 \right]
+\]
 
 
-if $\beta(a|s)$ is very small (the behavior policy rarely took the action) but $\pi(a|s)$ is large (the new policy really wants to take it), the ratio  $r_t(\theta)$ becomes a huge number.
-  - This causes massive gradient updates.
-  - This destroys the training stability (the "step" is too big).
 
 
-limit the potential explode by selecting the minimum between:
-  $$L^{CLIP} = \mathbb{E} \left[ \min( r_t \delta_t, \text{clip}(r_t, 1-\epsilon, 1+\epsilon) \delta_t ) \right]$$
+** Vanilla Policy Gradient (VPG / REINFORCE)
+$$g = \mathbb{E}_{\tau \sim \pi_\theta} \left[ \sum_{t=0}^{T} \nabla_\theta \log \pi_\theta(a_t|s_t) \hat{A}_t \right]$$
+
+- **Replace**: Instead of using total Reward, we use Advantage function.
+- **Advantage $\hat{A}_t$**: Often replaced by the return $G_t$ or $Q(s,a) - V(s)$ to reduce variance.
+- **Problem**: High variance and extremely sensitive to step size. One "bad" update can collapse the policy's performance.
+
+** Trust Region Policy Optimization (TRPO)
+TRPO solves the stability issue by ensuring the new policy doesn't move too far from the old policy, using KL Divergence as a constraint.
 
 
-* LLM Decouple Actor and Critic
+
+$$\max_\theta \mathbb{E}_{t} \left[ \frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_{old}}(a_t|s_t)} \hat{A}_t \right]$$
+$$\text{subject to } \mathbb{E}_{t} [KL(\pi_{\theta_{old}}(\cdot|s_t) || \pi_\theta(\cdot|s_t))] \leq \delta$$
+
+- **Replace**: we use the ratio from important exampling of current to old policy
+- **Key Idea**: It defines a "Trust Region" by KL divergence to keep the update in line
+
+** Proximal Policy Optimization (PPO)
+PPO is the industry standard for LLM fine-tuning (RLHF). It mimics TRPO's stability but uses a much simpler "clipped" objective function.
+
+$$L^{CLIP}(\theta) = \mathbb{E}_t \left[ \min(r_t(\theta)\hat{A}_t, \text{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon)\hat{A}_t) \right]$$
+
+Where:
+- **Probability Ratio**: $r_t(\theta) = \frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_{old}}(a_t|s_t)}$
+- **Epsilon $\epsilon$**: Usually set to 0.1 or 0.2.
+
+The clipped PPO policy loss with Generalized Advantage Estimation (GAE) is defined as:
+
+\[
+\mathcal{L}_{\text{policy}} = - \mathbb{E}_{t} \Bigg[ \min \Bigg( r_t(\theta) \sum_{l=0}^{T-t} (\gamma \lambda)^l \delta_{t+l}, \; \operatorname{clip} \big( r_t(\theta), 1 - \epsilon, 1 + \epsilon \big) \sum_{l=0}^{T-t} (\gamma \lambda)^l \delta_{t+l} \Bigg) \Bigg]
+\]
+
+
+** Training
+*** Using sepreate network
 Unlike traditional RL (e.g., Atari) where state representation is efficiently shared, LLM-based RL often requires decoupling the Actor and Critic due to **Negative Transfer** and **Optimization Divergence**.
-** 1. Negative Transfer (Objective Interference)
+**** 1. Negative Transfer (Objective Interference)
 The Actor and Critic optimize fundamentally conflicting objectives, leading to **Catastrophic Forgetting** in shared architectures.
 
 - **Gradient Wash-Out:** The Critic's gradients can "wash out" the delicate weights required for language generation.
 - **Manifold Collapse:** When the model maximizes reward aggressively, it loses coherence, causing catastrophic forgetting of the pre-trained language manifold.
 
-** 2. Optimization Divergence (Timescale Mismatch)
+**** 2. Optimization Divergence (Timescale Mismatch)
 Shared weights prevent the necessary decoupling of learning dynamics between the two heads.
 
 - **The Critic (Fast Learner):**
@@ -467,18 +534,201 @@ Shared weights prevent the necessary decoupling of learning dynamics between the
   Requires strict constraints (Trust Region/Clipping) to ensure monotonic improvement.
 - **The Conflict:**
   In a shared body, you cannot tune optimizers independently. A learning rate high enough for the Critic destabilizes the Actor; a rate low enough for the Actor starves the Critic.
-** 3. Phasic Policy Gradient
+**** 3. Phasic Policy Gradient
 Separating policy and value function training into distinct phases  [[https://arxiv.org/abs/2009.04416][PPG]]. 
+
+*** Processing
+#+begin_src mermaid :file ./html/reinforcement_learning_ppo.png
+graph LR
+    %% Styles
+    classDef trained fill:#fff2cc,stroke:#d6b656,stroke-width:2px;
+    classDef frozen fill:#dae8fc,stroke:#6c8ebf,stroke-width:2px;
+    classDef neutral fill:#fff,stroke:#333,stroke-width:1px;
+
+    X[x] -- A --> LLM[Policy model]
+    LLM -- B --> Y[y]
+
+    Y -- C --> RM1[Reference Model]
+    Y -- D --> RM2[Reward Model]
+    Y -- E --> BE[Value model]
+
+    RM1 -- "F KL" --> R((r))
+    RM2 -- "G KL" --> R
+    BE -- H --> RB((r_b))
+
+    R -- I --> GAE[GAE]
+    RB -- J --> GAE
+
+    GAE -- K --> ADV[Advantage]
+    ADV -. L .-> LLM
+
+    %% Classes
+    class LLM,BE trained
+    class RM1,RM2 frozen
+    class X,Y,R,RB,GAE,ADV neutral
+  
+#+end_src
+
+#+RESULTS:
+[[./reinforcement_learning_ppo.png]]
+
+
+#+begin_src python
+import torch
+import torch.nn.functional as F
+
+# constants
+kl_beta = 0.1
+critic_weight = 0.5
+ppo_eps = 0.2
+
+# sample prompt completions and rewards
+with torch.no_grad():
+    completions = LLM.generate(prompts)  # (B*G, L)
+    rewards = RM(completions)  # (B*G, 1)
+
+# create a padding mask from lengths of completions in batch
+completion_mask = <... mask out padding tokens ...>
+
+# compute value function / critic output
+values = CRITIC(completions)  # (B*G, L) - predicted reward per token!
+
+# get policy logprobs for each action
+llm_out = LLM(completions)
+per_token_logps = F.log_softmax(llm_out, dim=-1)  # (B*G, L)
+
+# get reference logprobs for each action
+ref_out = REF(completions)
+ref_per_token_logps = F.log_softmax(ref_out, dim=-1)  # (B*G, L)
+
+# compute KL divergence between policy and reference policy
+kl_div = per_token_logps - ref_per_token_logps
+
+# directly subtract KL divergence from rewards
+# NOTE: KL div is per token, so reward becomes per token and reward
+# for all tokens (besides last token) is just kl divergence.
+# Reward for last token is sum of outcome reward and KL div.
+rewards -= kl_beta * kl_div # (B*G, L)
+
+# compute the advantage - simple approach
+advantage = rewards - values.detach()  # (B*G, L)
+
+# compute the policy ratio
+# NOTE: old_per_token_logps must be persisted during first policy
+# update for this batch of data and re-used in each subsequent update
+policy_ratio = torch.exp(
+    per_token_logps - old_per_token_logps,
+)  # (B*G, L)
+clip_policy_ratio = torch.clamp(
+    policy_ratio,
+    min=1.0 - ppo_eps,
+    max=1.0 + ppo_eps,
+)
+
+# compute the ppo loss
+ppo_loss = torch.min(
+    advantage * policy_ratio,
+    advantage * clip_policy_ratio,
+)  # (B*G, L)
+ppo_loss = -ppo_loss
+
+# combine ppo loss and critic mse loss
+critic_loss = ((rewards - values) ** 2)  # (B*G, L)
+loss = ppo_loss + critic_weight * critic_loss
+
+# aggregate the loss across tokens (many options exist here)
+loss = ((loss * completion_mask).sum(axis=-1) /
+        completion_mask.sum(axis=-1)).mean()
+
+# perform policy gradient update
+optimizer.zero_grad()
+loss.backward()
+optimizer.step()
+  
+#+end_src
+
+Initialize the policy model, value model, optimizer, and freeze a reference policy model
+
+Sample a prompt from the dataset to start a rollout
+
+Prompt + current policy model generate a completion (no gradient)
+
+Completion + reward model produce a scalar reward per token or per sequence
+
+Completion + current policy model produce current action log-probabilities
+
+Completion + frozen reference policy model produce reference log-probabilities
+
+KL divergence between current and reference log-probabilities is computed
+
+The KL penalty is added to the reward to form the final shaped reward
+
+Completion + value model produce value estimates for each timestep
+
+Shaped rewards and value estimates are combined using GAE to compute advantages and returns
+
+Stored rollout data are shuffled and split into minibatches for PPO training
+
+Prompt and completion are passed again through the current policy to compute updated log-probabilities
+
+The ratio between updated policy probabilities and stored old policy probabilities is computed
+
+The clipped PPO objective uses this ratio and the advantages to compute the policy (actor) loss
+
+The value model is trained using mean-squared error between predicted values and computed returns
+
+Policy loss, value loss, and entropy bonus are summed to form the total PPO loss
+
+Backpropagation updates both policy and value model parameters in one optimizer step
+
+Steps 11–16 are repeated for multiple PPO epochs over the same rollout data
+
+A new rollout is collected using the updated policy, and the process repeats
+
+
+
 
 
 * GRPO
+
+#+begin_src mermaid :file ./html/reinforcement_learning_grpo.png
+graph LR
+    %% Styles
+    classDef trained fill:#fff2cc,stroke:#d6b656,stroke-width:2px;
+    classDef frozen fill:#dae8fc,stroke:#6c8ebf,stroke-width:2px;
+    classDef neutral fill:#fff,stroke:#333,stroke-width:1px;
+
+    X[x] -- A --> LLM[Your LLM]
+    LLM -- B --> YG["Group outputs (y1 y2 yG)"]
+
+    YG -- C --> RM[Reference Model]
+    YG -- D --> RewM[Reward Model]
+
+    RM -- "E KL" --> RG((r_group))
+    RewM -- F --> RG
+
+    RG -- G --> GC[Group-relative computation]
+    GC -- H --> ADV["Advantages per sample"]
+    ADV -. I .-> LLM
+
+    %% Classes
+    class LLM trained
+    class RM,RewM frozen
+    class X,YG,RG,GC,ADV neutral
+
+#+end_src
+
+#+RESULTS:
+[[./reinforcement_learning_grpo.png]]
+
+
 Group Relative Policy Optimization (GRPO) resolves these conflicts by *eliminating the Critic network entirely*.
 
 By removing the Critic part, GRPO removes the *source* of the interference. There are no value-function gradients to clash with the language modeling objectives. Instead of a learned Value Function $V(s)$ (which requires a separate network/optimizer), GRPO estimates the baseline using the **mean reward of a group of outputs**:
   $$ A_i = \frac{r_i - \text{mean}(r_{1..G})}{\text{std}(r_{1..G})} $$
 
 
-* MoE
+** MoE
 With shared Experts for common sense training.
 in order to training all Experts P, 
 - Switch transformer, minimal the loss to force the f and P to be uniformly distributed : $loss = \alpha \cdot N \cdot \sum_{i=1}^{N} f_{i} \cdot P_{i}$
@@ -489,12 +739,13 @@ in order to training all Experts P,
 - DeepSeek use bias parameter before active function for dynamical adjustment of token loading for each expert    
 
 
-* Multi-token prodiction
-predict multiple token, some are from small model. If LLM accepte them, it does not need to generate them again.
 
 
 * Multi-token training
-** The Core Concept: MTP as an Implicit Critic
+** Multi-token prodiction
+predict multiple token, some are from small model. If LLM accepte them, it does not need to generate them again.
+
+*** The Core Concept: MTP as an Implicit Critic
 We reject GRPO (which requires generating groups for a baseline). Instead, we use **Time** as our baseline.
 
 We use a single Transformer. The **MTP Modules** (which normally predict future tokens) are slightly modified to also predict the **Value (Expected Future Reward)** of those tokens.
@@ -503,7 +754,7 @@ We use a single Transformer. The **MTP Modules** (which normally predict future 
 - **No Group Sampling:** We do not compare against a group average. We compare against our own prediction from the *next* step (Bootstrapping).
 - **One Network:** Parameters $\theta$ are shared.
 
-** Architecture: The "Value-Aware" MTP Head
+*** Architecture: The "Value-Aware" MTP Head
 Standard DeepSeek MTP predicts tokens $t_{n+1}, t_{n+2} \dots$.
 We modify the output projection of the MTP modules to output two things:
 1.  **Token Logits:** $P(t_{n+k})$ (What happens next?)
@@ -513,9 +764,9 @@ We modify the output projection of the MTP modules to output two things:
 $$ [ \text{Logits}_{k}, v_{k} ] = \text{MTP Head}_k(h_n) $$
 Where $v_k$ represents the expected return starting from step $n+k$.
 
-** The Algorithm: Recursive Value Propagation
+*** The Algorithm: Recursive Value Propagation
 
-*** A. Forward Pass (Generation & Storage)
+**** A. Forward Pass (Generation & Storage)
 At time step $t$, the network produces:
 1.  **Action:** Sample $a_t$ from the main policy head.
 2.  **Lookahead Values (Internal Value):** The MTP heads produce value estimates for future steps:
@@ -524,18 +775,18 @@ At time step $t$, the network produces:
 
 We **save** these internal value estimates $v^{(k)}_t$ into a buffer.
 
-*** B. Interaction
+**** B. Interaction
 Execute action $a_t$.
 Observe Reward $r_{t+1}$ and next state $s_{t+1}$.
 
-*** C. The "Next Step" Operation (Bootstrapping)
+**** C. The "Next Step" Operation (Bootstrapping)
 This is the key requirement you mentioned. We use the value calculated at $t+1$ to update the network at $t$.
 
 We define the **TD Target** (Temporal Difference):
 $$ Y_t = r_{t+1} + \gamma v^{(1)}_{t+1} $$
 *Note:* $v^{(1)}_{t+1}$ is the "Value of the next state" predicted by the MTP head at the *next* step.
 
-*** D. The Update (Loss Function)
+**** D. The Update (Loss Function)
 We update the single network $\theta$ with three components:
 
 1.  **Policy Loss (Actor):**
@@ -555,13 +806,13 @@ $$ L_{total} = L_{policy} + \alpha L_{value} + \beta L_{token} $$
 
 ---
 
-** Why this meets the criteria
+*** Why this meets the criteria
 1.  **Single Network:** The Policy and Value are fused. The "Value" is just a tiny scalar output on the existing MTP heads.
 2.  **No GRPO:** We don't need multiple samples to find a baseline. We use the **Bellman Consistency** ($V_t \approx r + V_{t+1}$) as the training signal.
 3.  **MTP Integration:** The MTP heads are essential. They provide the "Lookahead" capability that stabilizes the single-network value estimation (reducing the noise of a single step).
 4.  **Internal Value Saved:** The training relies on carrying the scalar $v$ from step $t+1$ backward to step $t$.
 
-** Visualization of Data Flow
+*** Visualization of Data Flow
 #+begin_src text
 Step T:
    Input -> [Backbone] -> h_t
@@ -581,22 +832,22 @@ Update T:
 #+end_src
 
 
-* New way with stable assumpation
-** 1. The Core Innovation
+** New way with stable assumpation
+*** 1. The Core Innovation
 A unified architecture where **MTP Heads** serve a dual purpose:
 1.  **Syntax/Logic:** Predicting future tokens (Language Modeling).
 2.  **Planning:** Predicting future *value* (Implicit Critic).
 
-** 2. Strengths (Why do this?)
+*** 2. Strengths (Why do this?)
 - **Extreme Efficiency:** Eliminates the memory cost of a separate Critic (PPO) and the compute cost of Group Sampling (GRPO).
 - **Temporal Credit Assignment:** Unlike GRPO (which gives the same reward to the whole sentence), this method assigns specific values to specific tokens via bootstrapping.
 - **Dopamine Signals:** The MTP value prediction ($v_t$) acts like a localized dopamine signal, telling the model *exactly* when it made a good move, not just at the end.
 
-** 3. The "Stability" Bottleneck (Critical Risk)
-** The Problem: Chasing your own Tail
+*** 3. The "Stability" Bottleneck (Critical Risk)
+*** The Problem: Chasing your own Tail
 Since we use the *same network* to generate the target $V_{t+1}$ and the prediction $V_t$, the training can oscillate or diverge.
 
-** The Solution: Periodic Target Updates (Polyak Averaging)
+*** The Solution: Periodic Target Updates (Polyak Averaging)
 We cannot easily afford a second full network. However, we can keep a **lightweight copy** of *just* the MTP heads (a few MBs).
 
 - **Active Heads ($\theta$):** Learn rapidly.
@@ -604,10 +855,10 @@ We cannot easily afford a second full network. However, we can keep a **lightwei
 - **Stabilized Rule:**
   $$ Y_t = r_{t+1} + \gamma \text{MTP}_{\text{target}}(s_{t+1}) $$
 
-** 4. Final Recommendation
+*** 4. Final Recommendation
 This algorithm is feasible but requires careful tuning of the **Auxiliary Loss Balance**.
 
-** The "Golden Ratio" Loss:
+*** The "Golden Ratio" Loss:
 $$ L = L_{\text{token}} + \lambda_1 L_{\text{MTP\_tokens}} + \lambda_2 L_{\text{TD\_Value}} $$
 
 - If $\lambda_2$ is too high, the "Value" objective will overwrite the "Language" objective (Catastrophic Forgetting).
