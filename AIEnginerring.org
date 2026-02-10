@@ -1,7 +1,7 @@
 #+title: AIEngineering
 #+OPTIONS: num:t
 #+STARTUP: overview
-#+EXPORT_FILE_NAME: /home/si/Dropbox/Base/html/AIEngineering.html
+#+EXPORT_FILE_NAME: /Users/silin/Dropbox/Base/html/AIEngineering.html
 #+PROPERTY: header-args :eval no-export
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
 
@@ -503,3 +503,29 @@ spec:
 #+begin_src sh
 kubectl port-forward svc/qdrant-headless 6333:6333  
 #+end_src
+
+
+* Langgraph
+** breakpoint
+Short comparison — static breakpoint (interrupt_before) vs dynamic NodeInterrupt:
+
+Trigger
+
+Static: set at compile time (interrupt_before=["node"]). Graph pauses whenever it reaches that node.
+Dynamic: thrown inside a node (raise NodeInterrupt) based on runtime logic/condition.
+Intent / payload
+
+Static: generic pause for approval/editing; no built-in message unless you add one via update_state.
+Dynamic: can carry a custom message/reason and is used to signal specific runtime issues or requests.
+Resumption behavior
+
+Static: calling graph.stream(None, ...) (or astream/client.runs.stream) resumes and will run the node; you do not have to change state to advance (though message content affects LLM output).
+Dynamic: if you resume without changing state, the same node may re-run and re-raise the NodeInterrupt (you’ll be stuck). You must update state so the interrupt condition is no longer true.
+Practical implication
+
+Use static breakpoints for manual inspection/approval or to inject human messages that simply continue execution.
+Use NodeInterrupt for conditional, semantic interruptions that require fixing state (or handling) before proceeding.
+APIs
+
+Both can be resumed with graph.stream/graph.astream or the SDK client streams; for NodeInterrupt you usually also call graph.update_state / client.threads.update_state to fix the condition before resuming.
+Summary: static breakpoints pause unconditionally at a point and resume on stream(None) regardless of content; NodeInterrupt pauses conditionally and usually requires a state change to avoid immediately re-triggering.

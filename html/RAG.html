@@ -3,13 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-02-06 Do 13:42 -->
+<!-- 2026-02-10 Di. 20:21 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>RAG</title>
-<meta name="author" content="si" />
+<title>RAG: Hybrid Search Optimization Notes — TF-IDF, BM25 &amp; RRF</title>
+<meta name="author" content="Silin Zhao" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -194,167 +194,927 @@
   .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">RAG</h1>
+<h1 class="title">RAG: Hybrid Search Optimization Notes — TF-IDF, BM25 &amp; RRF</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org799dda4">1. LLM construction</a>
+<li><a href="#orgfe37d6f">1. Hybrid Search</a>
 <ul>
-<li><a href="#orgbc416f7">1.1. Encoder</a></li>
-<li><a href="#orgb1186fd">1.2. Decoder</a></li>
-<li><a href="#org8c4c393">1.3. Encoder-Decoder</a></li>
-<li><a href="#org0cf5a3a">1.4. Autoencoder</a></li>
+<li><a href="#orgfdd3047">1.1. TF-IDF (Term Frequency-Inverse Document Frequency)</a>
+<ul>
+<li><a href="#orgbce4568">1.1.1. Introduction</a></li>
+<li><a href="#org09615ec">1.1.2. Core Formulas</a></li>
+<li><a href="#org5035ff9">1.1.3. Worked Example</a></li>
+<li><a href="#org7394480">1.1.4. Core Philosophy: The Tension Between Local and Global</a></li>
+<li><a href="#org95a450a">1.1.5. Advantages and Disadvantages</a></li>
+<li><a href="#org9b4524e">1.1.6. Code Example (Python)</a></li>
 </ul>
 </li>
-<li><a href="#org0612692">2. RAM</a>
+<li><a href="#orgb653328">1.2. BM25 (Best Matching 25)</a>
 <ul>
-<li><a href="#org730cee5">2.1. Prompte engineer</a></li>
-<li><a href="#org05110b0">2.2. GraphRAG</a></li>
-<li><a href="#orgf1254b0">2.3. Knowledge base</a></li>
-<li><a href="#org679bb78">2.4. Retraining</a></li>
-<li><a href="#org1413e96">2.5. LoRA</a></li>
-<li><a href="#org9a00d27">2.6. Quantization</a></li>
+<li><a href="#orgab8d7ed">1.2.1. Introduction</a></li>
+<li><a href="#org7f2a54b">1.2.2. Core Formula</a></li>
+<li><a href="#org77d1671">1.2.3. Key Improvements over TF-IDF</a></li>
+<li><a href="#org3364575">1.2.4. The Two Key Parameters</a></li>
 </ul>
 </li>
-<li><a href="#orgc053b8f">3. MCP</a></li>
-<li><a href="#orgd6d3eae">4. LLM hosting</a>
+<li><a href="#org69b3165">1.3. RRF (Reciprocal Rank Fusion)</a>
 <ul>
-<li><a href="#org58dd2ff">4.1. Ollama</a></li>
-<li><a href="#orgb7c0073">4.2. ChatOllama</a></li>
+<li><a href="#org2973723">1.3.1. Core Concept</a></li>
+<li><a href="#org3d347ca">1.3.2. RRF (Reciprocal Rank Fusion) Principle</a></li>
+<li><a href="#orgd5eff7d">1.3.3. Core Advantages of RRF</a></li>
 </ul>
 </li>
-<li><a href="#orgdb7661b">5. ONNX conversion</a></li>
-<li><a href="#orgb29716c">6. Rig</a></li>
+<li><a href="#orge296ccf">1.4. Summary: How It All Fits Together in RAG</a></li>
+<li><a href="#org96f781b">1.5. Key Takeaways</a></li>
+<li><a href="#orgb5c7952">1.6. Implementation</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-
-
-<div id="outline-container-org799dda4" class="outline-2">
-<h2 id="org799dda4"><span class="section-number-2">1.</span> LLM construction</h2>
+<div id="outline-container-orgfe37d6f" class="outline-2">
+<h2 id="orgfe37d6f"><span class="section-number-2">1.</span> Hybrid Search</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgbc416f7" class="outline-3">
-<h3 id="orgbc416f7"><span class="section-number-3">1.1.</span> Encoder</h3>
+<div id="outline-container-orgfdd3047" class="outline-3">
+<h3 id="orgfdd3047"><span class="section-number-3">1.1.</span> TF-IDF (Term Frequency-Inverse Document Frequency)</h3>
+<div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-orgb1186fd" class="outline-3">
-<h3 id="orgb1186fd"><span class="section-number-3">1.2.</span> Decoder</h3>
+<div id="outline-container-orgbce4568" class="outline-4">
+<h4 id="orgbce4568"><span class="section-number-4">1.1.1.</span> Introduction</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+<b>TF-IDF</b> (Term Frequency-Inverse Document Frequency) is a widely-used weighting technique in information retrieval and text mining.
+</p>
+
+<p>
+Its core purpose: <b>Evaluate how important a word is to a document within a collection or corpus.</b>
+</p>
+
+<blockquote>
+<p>
+The core idea in one sentence:
+<b>If a word appears frequently in a particular document (locally hot) but rarely across all other documents (globally rare), then that word best represents that document.</b>
+</p>
+</blockquote>
 </div>
-<div id="outline-container-org8c4c393" class="outline-3">
-<h3 id="org8c4c393"><span class="section-number-3">1.3.</span> Encoder-Decoder</h3>
 </div>
-<div id="outline-container-org0cf5a3a" class="outline-3">
-<h3 id="org0cf5a3a"><span class="section-number-3">1.4.</span> Autoencoder</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-org09615ec" class="outline-4">
+<h4 id="org09615ec"><span class="section-number-4">1.1.2.</span> Core Formulas</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+TF-IDF is composed of two parts: <b>TF (Term Frequency)</b> and <b>IDF (Inverse Document Frequency)</b>.
+</p>
+
+<p>
+\[ TF\text{-}IDF = TF \times IDF \]
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org092b284"></a>TF (Term Frequency)<br />
+<div class="outline-text-5" id="text-1-1-2-1">
+<p>
+Measures how often term \(t\) appears in document \(d\).
+</p>
+
+<ul class="org-ul">
+<li><b>Intuition</b>: The more frequently a word appears in a document, the more important it likely is to that document's content.</li>
+<li><b>Formula</b>:
+\[ TF(t,d) = \frac{\text{Number of times term } t \text{ appears in document } d}{\text{Total number of terms in document } d} \]</li>
+</ul>
+</div>
+</li>
+<li><a id="orgc87dab2"></a>IDF (Inverse Document Frequency)<br />
+<div class="outline-text-5" id="text-1-1-2-2">
+<p>
+Measures how common or rare term \(t\) is across the entire corpus.
+</p>
+
+<ul class="org-ul">
+<li><b>Intuition</b>: If a word appears in many documents (e.g., "the", "is"), it has low discriminative power. Conversely, if a word is rare (e.g., "quantum mechanics"), its presence is highly informative.</li>
+<li><b>Formula</b>:
+\[ IDF(t) = \log \left( \frac{\text{Total number of documents in the corpus}}{\text{Number of documents containing term } t + 1} \right) \]
+<i>Note: Adding 1 to the denominator is for smoothing, preventing division by zero.</i></li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org5035ff9" class="outline-4">
+<h4 id="org5035ff9"><span class="section-number-4">1.1.3.</span> Worked Example</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<p>
+To build intuition, assume a tiny corpus of just three documents:
+</p>
+
+<ul class="org-ul">
+<li><b>Document A</b>: "bee likes flower"</li>
+<li><b>Document B</b>: "I like bee"</li>
+<li><b>Document C</b>: "I like apple"</li>
+</ul>
+</div>
+<ol class="org-ol">
+<li><a id="org208cb85"></a>Scenario 1: Importance of "bee" in Document A<br />
+<div class="outline-text-5" id="text-1-1-3-1">
+<ol class="org-ol">
+<li><p>
+<b>Calculate TF (local)</b>:
+</p>
+<ul class="org-ul">
+<li>"bee" appears 1 time in Document A.</li>
+<li>Total words in Document A = 3.</li>
+</ul>
+<p>
+\[ TF = \frac{1}{3} \approx 0.333 \]
+</p></li>
+
+<li><p>
+<b>Calculate IDF (global)</b>:
+</p>
+<ul class="org-ul">
+<li>Total documents in corpus = 3.</li>
+<li>Documents containing "bee" = 2 (A and B).</li>
+</ul>
+<p>
+\[ IDF = \log\left(\frac{3}{2+1}\right) = \log(1) = 0 \]
+<i>(Note: This demonstrates the principle. Without smoothing, IDF &gt; 0. In practice, common words have IDF approaching 0.)</i>
+</p></li>
+</ol>
+</div>
+</li>
+<li><a id="org1867e99"></a>Scenario 2: Importance of "flower" in Document A<br />
+<div class="outline-text-5" id="text-1-1-3-2">
+<ol class="org-ol">
+<li><b>Calculate TF</b>:
+\[ TF = \frac{1}{3} \approx 0.333 \]</li>
+
+<li><p>
+<b>Calculate IDF</b>:
+</p>
+<ul class="org-ul">
+<li>"flower" appears only in Document A (1 document).</li>
+</ul>
+<p>
+\[ IDF = \log\left(\frac{3}{1}\right) \approx 0.477 \] <i>(base 10)</i>
+</p></li>
+
+<li><b>Final TF-IDF</b>:
+\[ TF\text{-}IDF = 0.333 \times 0.477 \approx 0.159 \]</li>
+</ol>
+</div>
+</li>
+<li><a id="org66be348"></a>Conclusions from the Example<br />
+<div class="outline-text-5" id="text-1-1-3-3">
+<ul class="org-ul">
+<li>"flower" scores (0.159) higher than "bee" (0).</li>
+<li>"like" appears in all three documents, so its IDF is extremely low, scoring 0.</li>
+<li><b>This matches our expectation</b>: "flower" is a unique feature of Document A, therefore it is the most important term.</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org7394480" class="outline-4">
+<h4 id="org7394480"><span class="section-number-4">1.1.4.</span> Core Philosophy: The Tension Between Local and Global</h4>
+<div class="outline-text-4" id="text-1-1-4">
+<p>
+The essence of TF-IDF is solving one problem: <b>How to find the balance between "local importance" and "global commonality"?</b>
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org5ad02b3"></a>Philosophical Breakdown<br />
+<div class="outline-text-5" id="text-1-1-4-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Concept</th>
+<th scope="col" class="org-left">Metric</th>
+<th scope="col" class="org-left">Perspective</th>
+<th scope="col" class="org-left">Subtext</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><b>Specific Document</b></td>
+<td class="org-left">TF</td>
+<td class="org-left">Local</td>
+<td class="org-left">"In this small environment, this word appears so many times — it must be important."</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>Global Observation</b></td>
+<td class="org-left">IDF</td>
+<td class="org-left">Global</td>
+<td class="org-left">"Wait! Let me check if this word is everywhere in other documents. If it's a commodity, local frequency is useless."</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>Importance</b></td>
+<td class="org-left">Result</td>
+<td class="org-left">Weighted Judgment</td>
+<td class="org-left">Only words that are <b>locally hot + globally rare</b> are the true "local specialties."</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><a id="org0959614"></a>Analogy: Finding a Regional Specialty<br />
+<div class="outline-text-5" id="text-1-1-4-2">
+<ul class="org-ul">
+<li><b>Bottled water</b>: Abundant in one store (high TF), but available in every convenience store nationwide (low IDF) &rarr; NOT a specialty.</li>
+<li><b>Yak butter tea</b>: Abundant in one store (high TF), but rarely seen in other regions (high IDF) &rarr; IS a specialty.</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org95a450a" class="outline-4">
+<h4 id="org95a450a"><span class="section-number-4">1.1.5.</span> Advantages and Disadvantages</h4>
+<div class="outline-text-4" id="text-1-1-5">
+</div>
+<ol class="org-ol">
+<li><a id="orged5dd23"></a>Advantages<br />
+<div class="outline-text-5" id="text-1-1-5-1">
+<ol class="org-ol">
+<li><b>Simple and effective</b>: Clear logic, low computational cost, easy to implement.</li>
+<li><b>Automatic filtering</b>: Automatically down-weights stop words (e.g., "the", "is", "a") without manual intervention.</li>
+<li><b>Strong baseline model</b>: An excellent baseline for NLP tasks.</li>
+</ol>
+</div>
+</li>
+<li><a id="org7e0fbe5"></a>Disadvantages<br />
+<div class="outline-text-5" id="text-1-1-5-2">
+<ol class="org-ol">
+<li><b>Ignores word order</b>: It is a "Bag of Words" model — cannot distinguish between "cat chases mouse" and "mouse chases cat".</li>
+<li><b>Ignores semantics</b>: Cannot recognize synonyms (e.g., "computer" and "PC" are treated as entirely different words).</li>
+<li><b>Data sparsity</b>: In large-scale corpora, the term-document matrix becomes extremely sparse.</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org9b4524e" class="outline-4">
+<h4 id="org9b4524e"><span class="section-number-4">1.1.6.</span> Code Example (Python)</h4>
+<div class="outline-text-4" id="text-1-1-6">
+<p>
+Using the <code>scikit-learn</code> library for quick TF-IDF computation:
+</p>
+
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> torch
-<span style="color: #4f97d7; font-weight: bold;">from</span> torch <span style="color: #4f97d7; font-weight: bold;">import</span> nn
-<span style="color: #4f97d7; font-weight: bold;">from</span> transformers <span style="color: #4f97d7; font-weight: bold;">import</span> BertModel, GPT2LMHeadModel, BertTokenizer, GPT2Tokenizer
+<pre class="src src-python"><span style="color: #51afef;">from</span> sklearn.feature_extraction.text <span style="color: #51afef;">import</span> TfidfVectorizer
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Corpus
+</span><span style="color: #dcaeea;">corpus</span> <span style="color: #51afef;">=</span> [
+    <span style="color: #98be65;">'bee likes flower'</span>,
+    <span style="color: #98be65;">'I like bee'</span>,
+    <span style="color: #98be65;">'I like apple'</span>,
+]
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Initialize and compute
+</span><span style="color: #dcaeea;">vectorizer</span> <span style="color: #51afef;">=</span> TfidfVectorizer()
+<span style="color: #dcaeea;">X</span> <span style="color: #51afef;">=</span> vectorizer.fit_transform(corpus)
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Print feature words and corresponding TF-IDF matrix
+</span><span style="color: #c678dd;">print</span>(vectorizer.get_feature_names_out())
+<span style="color: #c678dd;">print</span>(X.toarray())
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb653328" class="outline-3">
+<h3 id="orgb653328"><span class="section-number-3">1.2.</span> BM25 (Best Matching 25)</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-orgab8d7ed" class="outline-4">
+<h4 id="orgab8d7ed"><span class="section-number-4">1.2.1.</span> Introduction</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+BM25 is the <b>probabilistic optimization</b> of TF-IDF and the current <b>gold standard</b> for keyword-based retrieval (Keyword Search). It primarily solves two problems that TF-IDF has:
+</p>
+<ol class="org-ol">
+<li><b>Unbounded term frequency</b>: TF-IDF allows term frequency to increase scores linearly without limit.</li>
+<li><b>No document length normalization</b>: TF-IDF does not account for varying document lengths.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org7f2a54b" class="outline-4">
+<h4 id="org7f2a54b"><span class="section-number-4">1.2.2.</span> Core Formula</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+\[Score(D, Q) = \sum_{i=1}^{n} IDF(q_i) \cdot \frac{f(q_i, D) \cdot (k_1 + 1)}{f(q_i, D) + k_1 \cdot (1 - b + b \cdot \frac{|D|}{avgdl})}\]
+</p>
 
 
+<p>
+The formula is composed of three parts:
+</p>
 
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Load BERT model and tokenizer</span>
-<span style="color: #7590db;">bert_model</span> = BertModel.from_pretrained(<span style="color: #2d9574;">'bert-base-uncased'</span>)
-<span style="color: #7590db;">bert_tokenizer</span> = BertTokenizer.from_pretrained(<span style="color: #2d9574;">'bert-base-uncased'</span>)
+<ol class="org-ol">
+<li><p>
+<b>IDF (Inverse Document Frequency)</b>: Measures the rarity (weight) of a term.
+</p>
 
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Load GPT-2 model and tokenizer</span>
-<span style="color: #7590db;">gpt2_model</span> = GPT2LMHeadModel.from_pretrained(<span style="color: #2d9574;">'gpt2'</span>)
-<span style="color: #7590db;">gpt2_tokenizer</span> = GPT2Tokenizer.from_pretrained(<span style="color: #2d9574;">'gpt2'</span>)
+<p>
+\[IDF(q_i) = \ln \frac{N - n(q_i) + 0.5}{n(q_i) + 0.5} + 1\]
+</p>
 
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Ensure GPT-2 tokenizer uses a padding token</span>
-gpt2_tokenizer.<span style="color: #7590db;">pad_token</span> = gpt2_tokenizer.eos_token
+<ul class="org-ul">
+<li>\(N\): total number of documentation</li>
+<li>\(n(q_i)\): the number of documentation contains \(q_i\)</li>
+<li><b><b>0.5</b></b> smoothing term: Prevents the denominator from becoming zero and corrects the internal values of the log function, ensuring the IDF remains stable even for common words (adding 1 is also typically done to guarantee non-negativity).</li>
+</ul></li>
 
+<li><b>TF Component (Term Frequency)</b>: Measures how often a term appears in a document (with a saturation mechanism).</li>
+<li><b>Length Normalization</b>: Adjusts the score based on document length.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org77d1671" class="outline-4">
+<h4 id="org77d1671"><span class="section-number-4">1.2.3.</span> Key Improvements over TF-IDF</h4>
+<div class="outline-text-4" id="text-1-2-3">
+</div>
+<ol class="org-ol">
+<li><a id="org72862f0"></a>A. Term Frequency Saturation<br />
+<div class="outline-text-5" id="text-1-2-3-1">
+<ul class="org-ul">
+<li><b>TF-IDF</b>: Term frequency increases score linearly without limit (easy to game, unreasonable).</li>
+<li><b>BM25</b>: Introduces <b>diminishing returns</b>. After term frequency reaches a certain level, the score saturates (upper bound is \(k_1 + 1\)).</li>
+</ul>
 
-<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">BertGpt2Autoencoder</span>(nn.Module):
-<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">__init__</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>, bert_model, gpt2_model):
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">super</span>(BertGpt2Autoencoder, <span style="color: #4f97d7; font-weight: bold;">self</span>).__init__()
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">bert</span> = bert_model
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">gpt2</span> = gpt2_model
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">latent_to_gpt2</span> = nn.Linear(bert_model.config.hidden_size, gpt2_model.config.n_embd)
+<p>
+The key insight: the 10th occurrence of a word in a document adds far less information than the 1st occurrence. BM25 models this reality; TF-IDF does not.
+</p>
+</div>
+</li>
+<li><a id="org7169943"></a>B. Document Length Normalization<br />
+<div class="outline-text-5" id="text-1-2-3-2">
+<ul class="org-ul">
+<li><b>Problem</b>: Longer documents naturally contain more words, giving them an unfair advantage.</li>
+<li><b>BM25</b>: Penalizes long documents (\(|D| > avgdl\)) and rewards shorter documents.</li>
+</ul>
 
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Add device attribute</span>
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #7590db;">device</span> = torch.device(<span style="color: #2d9574;">'cuda'</span> <span style="color: #4f97d7; font-weight: bold;">if</span> torch.cuda.is_available() <span style="color: #4f97d7; font-weight: bold;">else</span> <span style="color: #2d9574;">'cpu'</span>)
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">self</span>.to(<span style="color: #4f97d7; font-weight: bold;">self</span>.device)  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Move the model to the appropriate device</span>
-
-<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">forward</span>(<span style="color: #4f97d7; font-weight: bold;">self</span>, input_ids, attention_mask, labels):
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Encode input text using BERT</span>
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">encoder_outputs</span> = <span style="color: #4f97d7; font-weight: bold;">self</span>.bert(input_ids=input_ids, attention_mask=attention_mask)
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">latent_representation</span> = encoder_outputs.last_hidden_state[:, 0, :]  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">[CLS] token representation</span>
-
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Map latent representation to GPT-2 input size</span>
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">gpt2_input</span> = <span style="color: #4f97d7; font-weight: bold;">self</span>.latent_to_gpt2(latent_representation)
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">gpt2_input</span> = gpt2_input.unsqueeze(1).expand(-1, labels.size(1), -1)  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Expand to match label sequence length</span>
-
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Decode using GPT-2</span>
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">gpt2_outputs</span> = <span style="color: #4f97d7; font-weight: bold;">self</span>.gpt2(inputs_embeds=gpt2_input, labels=labels)
-
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> gpt2_outputs
-
-<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">prepare_data</span>(text, bert_tokenizer, gpt2_tokenizer):
-<span style="background-color: #292e34;"> </span>   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Tokenize input text using BERT tokenizer</span>
-<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">bert_inputs</span> = bert_tokenizer(text, return_tensors=<span style="color: #2d9574;">'pt'</span>, padding=<span style="color: #a45bad;">True</span>, truncation=<span style="color: #a45bad;">True</span>, max_length=64)
-
-<span style="background-color: #292e34;"> </span>   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Tokenize output text using GPT-2 tokenizer</span>
-<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">gpt2_inputs</span> = gpt2_tokenizer(text, return_tensors=<span style="color: #2d9574;">'pt'</span>, padding=<span style="color: #a45bad;">True</span>, truncation=<span style="color: #a45bad;">True</span>, max_length=64)
-
-<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> bert_inputs, gpt2_inputs
-
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Initialize the autoencoder</span>
-<span style="color: #7590db;">autoencoder</span> = BertGpt2Autoencoder(bert_model, gpt2_model)
-<span style="color: #7590db;">autoencoder</span> = autoencoder.to(autoencoder.device)
-
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Define optimizer</span>
-<span style="color: #7590db;">optimizer</span> = torch.optim.Adam(autoencoder.parameters(), lr=1e-5)
-
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Sample training data</span>
-<span style="color: #7590db;">texts</span> = [<span style="color: #2d9574;">"Payment for groceries"</span>, <span style="color: #2d9574;">"Rent for April"</span>, <span style="color: #2d9574;">"Monthly subscription fee"</span>, <span style="color: #2d9574;">"Electricity bill payment"</span>]
-
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Training loop</span>
-<span style="color: #4f97d7; font-weight: bold;">for</span> epoch <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(200):  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Number of epochs</span>
-<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> text <span style="color: #4f97d7; font-weight: bold;">in</span> texts:
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Prepare data</span>
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">bert_inputs</span>, <span style="color: #7590db;">gpt2_inputs</span> = prepare_data(text, bert_tokenizer, gpt2_tokenizer)
-
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">input_ids</span> = bert_inputs[<span style="color: #2d9574;">'input_ids'</span>].to(autoencoder.device)
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">attention_mask</span> = bert_inputs[<span style="color: #2d9574;">'attention_mask'</span>].to(autoencoder.device)
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">labels</span> = gpt2_inputs[<span style="color: #2d9574;">'input_ids'</span>].to(autoencoder.device)
-
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Forward pass</span>
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">outputs</span> = autoencoder(input_ids, attention_mask, labels)
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">loss</span> = outputs.loss  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Use the loss calculated by GPT-2</span>
-
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Backpropagation</span>
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   optimizer.zero_grad()
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   loss.backward()
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   optimizer.step()
-
-<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">"Epoch </span>{epoch + 1}<span style="color: #2d9574;">, Loss: </span>{loss.item()}<span style="color: #2d9574;">"</span>)
+<p>
+This means a concise, focused document matching a query is boosted relative to a lengthy document that happens to mention the query term among thousands of other words.
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org3364575" class="outline-4">
+<h4 id="org3364575"><span class="section-number-4">1.2.4.</span> The Two Key Parameters</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
+<colgroup>
+<col  class="org-left" />
 
-<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">detect_anomaly</span>(text, autoencoder, bert_tokenizer, gpt2_tokenizer, threshold=5.0):
-<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">bert_inputs</span>, <span style="color: #7590db;">gpt2_inputs</span> = prepare_data(text, bert_tokenizer, gpt2_tokenizer)
-<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">input_ids</span> = bert_inputs[<span style="color: #2d9574;">'input_ids'</span>].to(autoencoder.device)
-<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">attention_mask</span> = bert_inputs[<span style="color: #2d9574;">'attention_mask'</span>].to(autoencoder.device)
+<col  class="org-left" />
 
-<span style="background-color: #292e34;"> </span>   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Forward pass</span>
-<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">with</span> torch.no_grad():
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">outputs</span> = autoencoder(input_ids, attention_mask, gpt2_inputs[<span style="color: #2d9574;">'input_ids'</span>].to(autoencoder.device))
+<col  class="org-left" />
 
-<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">loss</span> = outputs.loss.item()  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Get the reconstruction loss</span>
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Parameter</td>
+<td class="org-left">Range</td>
+<td class="org-left">Role</td>
+<td class="org-left">Explanation</td>
+</tr>
 
-<span style="background-color: #292e34;"> </span>   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Anomaly detection based on threshold</span>
-<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">if</span> loss &gt; threshold:
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">"Anomaly detected! Loss: </span>{loss}<span style="color: #2d9574;">"</span>)
-<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">else</span>:
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">"Text is normal. Loss: </span>{loss}<span style="color: #2d9574;">"</span>)
+<tr>
+<td class="org-left"><b>\(k_1\)</b></td>
+<td class="org-left">1.2 - 2.0</td>
+<td class="org-left">Controls <b>TF saturation speed</b></td>
+<td class="org-left">Smaller values = faster saturation (repeated words matter less); larger values = more linear, closer to raw TF.</td>
+</tr>
 
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Example usage</span>
-detect_anomaly(<span style="color: #2d9574;">"Urgent transfer to offshore account"</span>, autoencoder, bert_tokenizer, gpt2_tokenizer)
+<tr>
+<td class="org-left"><b>\(b\)</b></td>
+<td class="org-left">0 - 1</td>
+<td class="org-left">Controls <b>length penalty strength</b></td>
+<td class="org-left">Default: 0.75. \(b=1\) = full length penalty; \(b=0\) = no length penalty at all.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-org69b3165" class="outline-3">
+<h3 id="org69b3165"><span class="section-number-3">1.3.</span> RRF (Reciprocal Rank Fusion)</h3>
+<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-org2973723" class="outline-4">
+<h4 id="org2973723"><span class="section-number-4">1.3.1.</span> Core Concept</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+In a RAG system, any single retrieval method has blind spots. <b>Hybrid retrieval</b> improves accuracy by combining two complementary search strategies.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Retrieval Type</td>
+<td class="org-left">Algorithm Representative</td>
+<td class="org-left">Strengths</td>
+<td class="org-left">Weaknesses</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>Keyword Search</b> (Sparse)</td>
+<td class="org-left">BM25</td>
+<td class="org-left">Exact matching, proper nouns, abbreviations, IDs</td>
+<td class="org-left">Cannot understand semantics, synonyms fail</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>Vector Search</b> (Dense)</td>
+<td class="org-left">Cosine Similarity</td>
+<td class="org-left">Semantic understanding, contextual relevance, fuzzy queries</td>
+<td class="org-left">Insensitive to precise details, prone to hallucination</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org3d347ca" class="outline-4">
+<h4 id="org3d347ca"><span class="section-number-4">1.3.2.</span> RRF (Reciprocal Rank Fusion) Principle</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<p>
+RRF is a fusion algorithm based on <b>rank</b> rather than score. It solves the problem that different retrievers produce scores on different scales (e.g., BM25 has no upper bound vs. Vector similarity is 0-1), making direct weighted combination difficult.
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org65cabce"></a>Formula<br />
+<div class="outline-text-5" id="text-1-3-2-1">
+<p>
+For the final score of document \(d\):
+</p>
+
+<p>
+\[RRFscore(d) = \sum_{r \in R} \frac{1}{k + r(d)}\]
+</p>
+
+<ul class="org-ul">
+<li>\(R\): The set of all retrieval result lists.</li>
+<li>\(r(d)\): The rank of document \(d\) in a given list (Rank 1 = first place).</li>
+<li>\(k\): Smoothing constant (typically set to <b>60</b>), used to prevent top-ranked documents from having disproportionately large weight.</li>
+</ul>
+</div>
+</li>
+<li><a id="org7091a47"></a>Workflow<br />
+<div class="outline-text-5" id="text-1-3-2-2">
+<ol class="org-ol">
+<li><b>Parallel Retrieval</b>: Execute BM25 and Vector Search simultaneously.</li>
+<li><b>Obtain Rankings</b>: Get two separate Top-K document lists.</li>
+<li><b>Fusion Calculation</b>: Ignore original scores; compute RRF Score based solely on ranks.</li>
+<li><b>Re-ranking</b>: Sort by RRF Score in descending order; take the Top-N results to feed to the LLM.</li>
+</ol>
+</div>
+</li>
+<li><a id="org0bb866d"></a>Worked Example<br />
+<div class="outline-text-5" id="text-1-3-2-3">
+<p>
+Suppose we search for "quantum computing applications":
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Document</th>
+<th scope="col" class="org-right">BM25 Rank</th>
+<th scope="col" class="org-right">Vector Rank</th>
+<th scope="col" class="org-left">RRF Score (k=60)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Doc X</td>
+<td class="org-right">3</td>
+<td class="org-right">1</td>
+<td class="org-left">1/63 + 1/61 = 0.0323</td>
+</tr>
+
+<tr>
+<td class="org-left">Doc Y</td>
+<td class="org-right">1</td>
+<td class="org-right">5</td>
+<td class="org-left">1/61 + 1/65 = 0.0318</td>
+</tr>
+
+<tr>
+<td class="org-left">Doc Z</td>
+<td class="org-right">2</td>
+<td class="org-right">4</td>
+<td class="org-left">1/62 + 1/64 = 0.0317</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Doc X wins because it ranks highly on <b>both</b> lists, even though it was not #1 on either individual list.
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-orgd5eff7d" class="outline-4">
+<h4 id="orgd5eff7d"><span class="section-number-4">1.3.3.</span> Core Advantages of RRF</h4>
+<div class="outline-text-4" id="text-1-3-3">
+<ol class="org-ol">
+<li><b>Normalization-Free</b>: No need for complex weight tuning (e.g., \(0.7 \times A + 0.3 \times B\)). Extremely robust.</li>
+<li><b>Complementary strengths</b>: Captures both "literally exact" matches (IDs, model numbers) and "semantically related" concepts.</li>
+<li><b>Cold-start friendly</b>: For new terms not seen in training data, BM25 serves as a fallback since it relies on lexical matching rather than learned embeddings.</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orge296ccf" class="outline-3">
+<h3 id="orge296ccf"><span class="section-number-3">1.4.</span> Summary: How It All Fits Together in RAG</h3>
+<div class="outline-text-3" id="text-1-4">
+<blockquote>
+<p>
+The retrieval pipeline in a RAG system:
+</p>
+
+<ol class="org-ol">
+<li><b>User Query</b> arrives.</li>
+<li><b>BM25</b> (sparse/keyword search) retrieves documents based on exact term matching, powered by TF-IDF principles with saturation and length normalization improvements.</li>
+<li><b>Vector Search</b> (dense/semantic search) retrieves documents based on embedding similarity, capturing meaning beyond exact words.</li>
+<li><b>RRF</b> fuses both result lists by rank, producing a single unified ranking that leverages the strengths of both approaches.</li>
+<li>The <b>Top-N</b> documents are passed as context to the <b>LLM</b> for answer generation.</li>
+</ol>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org96f781b" class="outline-3">
+<h3 id="org96f781b"><span class="section-number-3">1.5.</span> Key Takeaways</h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li><b>TF-IDF</b> is the foundation: locally frequent + globally rare = important. Simple but ignores word order and semantics.</li>
+<li><b>BM25</b> improves on TF-IDF with term frequency saturation (\(k_1\)) and document length normalization (\(b\)). It is the gold standard for keyword search.</li>
+<li><b>RRF</b> is the fusion layer: it elegantly combines keyword and vector search results using only rank positions, avoiding the score normalization problem entirely.</li>
+<li><b>Hybrid Search = BM25 + Vector Search + RRF</b>: This combination is the current best practice for RAG retrieval, giving you both precision (exact matches) and recall (semantic understanding).</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb5c7952" class="outline-3">
+<h3 id="orgb5c7952"><span class="section-number-3">1.6.</span> Implementation</h3>
+<div class="outline-text-3" id="text-1-6">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #83898d;">"""
+From-scratch implementation of hybrid search: BM25 + Vector Search + RRF.
+need OPENAI API key in environment
+
+All scoring formulas follow RAG.org:
+  - TF(t,d) = count(t,d) / |d|
+  - IDF(q)  = ln((N - n(q) + 0.5) / (n(q) + 0.5)) + 1        [BM25 variant]
+  - BM25    = &#931; IDF(qi) * f(qi,D)*(k1+1) / (f(qi,D) + k1*(1 - b + b*|D|/avgdl))
+  - RRF     = &#931; 1/(k + rank(d))
+"""</span>
+
+<span style="color: #51afef;">import</span> math
+<span style="color: #51afef;">import</span> re
+<span style="color: #51afef;">from</span> collections <span style="color: #51afef;">import</span> defaultdict
+<span style="color: #51afef;">from</span> dataclasses <span style="color: #51afef;">import</span> dataclass, field
+<span style="color: #51afef;">from</span> typing <span style="color: #51afef;">import</span> Any
+
+<span style="color: #51afef;">import</span> openai
+<span style="color: #51afef;">from</span> qdrant_client <span style="color: #51afef;">import</span> QdrantClient
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">---------------------------------------------------------------------------
+</span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Tokenizer
+</span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">---------------------------------------------------------------------------
+</span>
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">tokenize</span>(text: <span style="color: #c678dd;">str</span>) <span style="color: #51afef;">-&gt;</span> <span style="color: #c678dd;">list</span>[<span style="color: #c678dd;">str</span>]:
+    <span style="color: #83898d;">"""Lowercase and extract alphanumeric tokens."""</span>
+    <span style="color: #51afef;">return</span> re.findall(r<span style="color: #98be65;">"[a-z0-9]+"</span>, text.lower())
+
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">---------------------------------------------------------------------------
+</span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Corpus loader
+</span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">---------------------------------------------------------------------------
+</span>
+<span style="color: #ECBE7B;">@dataclass</span>
+<span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Document</span>:
+    <span style="color: #c678dd;">id</span>: <span style="color: #c678dd;">str</span>
+    tokens: <span style="color: #c678dd;">list</span>[<span style="color: #c678dd;">str</span>]
+    <span style="color: #dcaeea;">payload</span>: <span style="color: #c678dd;">dict</span>[<span style="color: #c678dd;">str</span>, <span style="color: #ECBE7B;">Any</span>] <span style="color: #51afef;">=</span> field(default_factory<span style="color: #51afef;">=</span><span style="color: #c678dd;">dict</span>)
+
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">load_corpus</span>(
+    collection_name: <span style="color: #c678dd;">str</span> <span style="color: #51afef;">=</span> <span style="color: #98be65;">"knowledge_base"</span>,
+    host: <span style="color: #c678dd;">str</span> <span style="color: #51afef;">=</span> <span style="color: #98be65;">"localhost"</span>,
+    port: <span style="color: #c678dd;">int</span> <span style="color: #51afef;">=</span> 6333,
+) <span style="color: #51afef;">-&gt;</span> <span style="color: #c678dd;">list</span>[Document]:
+    <span style="color: #83898d;">"""Scroll all points from Qdrant and build an in-memory corpus."""</span>
+    <span style="color: #dcaeea;">client</span> <span style="color: #51afef;">=</span> QdrantClient(host<span style="color: #51afef;">=</span>host, port<span style="color: #51afef;">=</span>port)
+    <span style="color: #dcaeea;">documents</span>: <span style="color: #c678dd;">list</span>[<span style="color: #ECBE7B;">Document</span>] <span style="color: #51afef;">=</span> []
+    <span style="color: #dcaeea;">offset</span> <span style="color: #51afef;">=</span> <span style="color: #a9a1e1;">None</span>
+
+    <span style="color: #51afef;">while</span> <span style="color: #a9a1e1;">True</span>:
+    <span style="color: #358856e97137;"> </span>   <span style="color: #dcaeea;">results</span>, <span style="color: #dcaeea;">next_offset</span> <span style="color: #51afef;">=</span> client.scroll(
+    <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   collection_name<span style="color: #51afef;">=</span>collection_name,
+    <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   offset<span style="color: #51afef;">=</span>offset,
+    <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   limit<span style="color: #51afef;">=</span>256,
+    <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   with_payload<span style="color: #51afef;">=</span><span style="color: #a9a1e1;">True</span>,
+    <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   with_vectors<span style="color: #51afef;">=</span><span style="color: #a9a1e1;">False</span>,
+    <span style="color: #358856e97137;"> </span>   )
+    <span style="color: #358856e97137;"> </span>   <span style="color: #51afef;">for</span> point <span style="color: #51afef;">in</span> results:
+    <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   <span style="color: #dcaeea;">text</span> <span style="color: #51afef;">=</span> (point.payload <span style="color: #51afef;">or</span> {}).get(<span style="color: #98be65;">"text"</span>, <span style="color: #98be65;">""</span>)
+    <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   documents.append(Document(
+    <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   <span style="color: #c678dd;">id</span><span style="color: #51afef;">=</span><span style="color: #c678dd;">str</span>(point.<span style="color: #c678dd;">id</span>),
+    <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   tokens<span style="color: #51afef;">=</span>tokenize(text),
+    <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   payload<span style="color: #51afef;">=</span>point.payload <span style="color: #51afef;">or</span> {},
+    <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   ))
+    <span style="color: #358856e97137;"> </span>   <span style="color: #51afef;">if</span> next_offset <span style="color: #51afef;">is</span> <span style="color: #a9a1e1;">None</span>:
+    <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   <span style="color: #51afef;">break</span>
+    <span style="color: #358856e97137;"> </span>   <span style="color: #dcaeea;">offset</span> <span style="color: #51afef;">=</span> next_offset
+     
+    <span style="color: #51afef;">return</span> documents
+
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">---------------------------------------------------------------------------
+</span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">BM25 scoring (from scratch)
+</span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">---------------------------------------------------------------------------
+</span>
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">bm25_search</span>(
+    query: <span style="color: #c678dd;">str</span>,
+    corpus: <span style="color: #c678dd;">list</span>[Document],
+    limit: <span style="color: #c678dd;">int</span> <span style="color: #51afef;">=</span> 15,
+    k1: <span style="color: #c678dd;">float</span> <span style="color: #51afef;">=</span> 1.5,
+    b: <span style="color: #c678dd;">float</span> <span style="color: #51afef;">=</span> 0.75,
+) <span style="color: #51afef;">-&gt;</span> <span style="color: #c678dd;">list</span>[<span style="color: #c678dd;">tuple</span>[Document, <span style="color: #c678dd;">float</span>]]:
+    <span style="color: #83898d;">"""
+    Score every document against the query using BM25.
+
+    BM25(D, Q) = &#931; IDF(qi) * f(qi,D)*(k1+1) / (f(qi,D) + k1*(1-b + b*|D|/avgdl))
+
+    IDF(qi) = ln((N - n(qi) + 0.5) / (n(qi) + 0.5)) + 1
+    """</span>
+    <span style="color: #dcaeea;">query_tokens</span> <span style="color: #51afef;">=</span> tokenize(query)
+    <span style="color: #51afef;">if</span> <span style="color: #51afef;">not</span> query_tokens <span style="color: #51afef;">or</span> <span style="color: #51afef;">not</span> corpus:
+    <span style="color: #358856e97137;"> </span>   <span style="color: #51afef;">return</span> []
+     
+    <span style="color: #dcaeea;">N</span> <span style="color: #51afef;">=</span> <span style="color: #c678dd;">len</span>(corpus)
+    <span style="color: #dcaeea;">avgdl</span> <span style="color: #51afef;">=</span> <span style="color: #c678dd;">sum</span>(<span style="color: #c678dd;">len</span>(doc.tokens) <span style="color: #51afef;">for</span> doc <span style="color: #51afef;">in</span> corpus) <span style="color: #51afef;">/</span> N
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Document frequency: how many docs contain each term
+</span>    <span style="color: #dcaeea;">df</span>: <span style="color: #c678dd;">dict</span>[<span style="color: #c678dd;">str</span>, <span style="color: #c678dd;">int</span>] <span style="color: #51afef;">=</span> defaultdict(<span style="color: #c678dd;">int</span>)
+    <span style="color: #51afef;">for</span> doc <span style="color: #51afef;">in</span> corpus:
+    <span style="color: #358856e97137;"> </span>   <span style="color: #dcaeea;">seen</span> <span style="color: #51afef;">=</span> <span style="color: #c678dd;">set</span>(doc.tokens)
+    <span style="color: #358856e97137;"> </span>   <span style="color: #51afef;">for</span> token <span style="color: #51afef;">in</span> seen:
+    <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   <span style="color: #dcaeea;">df</span>[token] <span style="color: #51afef;">+=</span> 1
+         
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Precompute IDF for query terms
+</span>    <span style="color: #dcaeea;">idf</span>: <span style="color: #c678dd;">dict</span>[<span style="color: #c678dd;">str</span>, <span style="color: #c678dd;">float</span>] <span style="color: #51afef;">=</span> {}
+    <span style="color: #51afef;">for</span> qt <span style="color: #51afef;">in</span> query_tokens:
+    <span style="color: #358856e97137;"> </span>   <span style="color: #dcaeea;">n_q</span> <span style="color: #51afef;">=</span> df.get(qt, 0)
+    <span style="color: #358856e97137;"> </span>   <span style="color: #dcaeea;">idf</span>[qt] <span style="color: #51afef;">=</span> math.log((N <span style="color: #51afef;">-</span> n_q <span style="color: #51afef;">+</span> 0.5) <span style="color: #51afef;">/</span> (n_q <span style="color: #51afef;">+</span> 0.5)) <span style="color: #51afef;">+</span> 1
+     
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Score each document
+</span>    <span style="color: #dcaeea;">scored</span>: <span style="color: #c678dd;">list</span>[<span style="color: #c678dd;">tuple</span>[<span style="color: #ECBE7B;">Document</span>, <span style="color: #c678dd;">float</span>]] <span style="color: #51afef;">=</span> []
+    <span style="color: #51afef;">for</span> doc <span style="color: #51afef;">in</span> corpus:
+    <span style="color: #358856e97137;"> </span>   <span style="color: #dcaeea;">score</span> <span style="color: #51afef;">=</span> 0.0
+    <span style="color: #358856e97137;"> </span>   <span style="color: #dcaeea;">doc_len</span> <span style="color: #51afef;">=</span> <span style="color: #c678dd;">len</span>(doc.tokens)
+    <span style="color: #358856e97137;"> </span>   <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Term frequency map for this document
+</span>    <span style="color: #358856e97137;"> </span>   <span style="color: #dcaeea;">tf</span>: <span style="color: #c678dd;">dict</span>[<span style="color: #c678dd;">str</span>, <span style="color: #c678dd;">int</span>] <span style="color: #51afef;">=</span> defaultdict(<span style="color: #c678dd;">int</span>)
+    <span style="color: #358856e97137;"> </span>   <span style="color: #51afef;">for</span> t <span style="color: #51afef;">in</span> doc.tokens:
+    <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   <span style="color: #dcaeea;">tf</span>[t] <span style="color: #51afef;">+=</span> 1
+         
+    <span style="color: #358856e97137;"> </span>   <span style="color: #51afef;">for</span> qt <span style="color: #51afef;">in</span> query_tokens:
+    <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   <span style="color: #dcaeea;">f_q</span> <span style="color: #51afef;">=</span> tf.get(qt, 0)
+    <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   <span style="color: #51afef;">if</span> f_q <span style="color: #51afef;">==</span> 0:
+    <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   <span style="color: #51afef;">continue</span>
+    <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   <span style="color: #dcaeea;">numerator</span> <span style="color: #51afef;">=</span> f_q <span style="color: #51afef;">*</span> (k1 <span style="color: #51afef;">+</span> 1)
+    <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   <span style="color: #dcaeea;">denominator</span> <span style="color: #51afef;">=</span> f_q <span style="color: #51afef;">+</span> k1 <span style="color: #51afef;">*</span> (1 <span style="color: #51afef;">-</span> b <span style="color: #51afef;">+</span> b <span style="color: #51afef;">*</span> doc_len <span style="color: #51afef;">/</span> avgdl)
+    <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   <span style="color: #dcaeea;">score</span> <span style="color: #51afef;">+=</span> idf[qt] <span style="color: #51afef;">*</span> numerator <span style="color: #51afef;">/</span> denominator
+         
+    <span style="color: #358856e97137;"> </span>   <span style="color: #51afef;">if</span> score <span style="color: #51afef;">&gt;</span> 0:
+    <span style="color: #358856e97137;"> </span>   <span style="color: #358856e97137;"> </span>   scored.append((doc, score))
+         
+    scored.sort(key<span style="color: #51afef;">=</span><span style="color: #51afef;">lambda</span> x: x[1], reverse<span style="color: #51afef;">=</span><span style="color: #a9a1e1;">True</span>)
+    <span style="color: #51afef;">return</span> scored[:limit]
+
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">---------------------------------------------------------------------------
+</span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Vector search (via Qdrant)
+</span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">---------------------------------------------------------------------------
+</span>
+<span style="color: #ECBE7B;">@dataclass</span>
+<span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">VectorResult</span>:
+    <span style="color: #c678dd;">id</span>: <span style="color: #c678dd;">str</span>
+    score: <span style="color: #c678dd;">float</span>
+    <span style="color: #dcaeea;">payload</span>: <span style="color: #c678dd;">dict</span>[<span style="color: #c678dd;">str</span>, <span style="color: #ECBE7B;">Any</span>] <span style="color: #51afef;">=</span> field(default_factory<span style="color: #51afef;">=</span><span style="color: #c678dd;">dict</span>)
+
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">vector_search</span>(
+    query: <span style="color: #c678dd;">str</span>,
+    collection_name: <span style="color: #c678dd;">str</span> <span style="color: #51afef;">=</span> <span style="color: #98be65;">"knowledge_base"</span>,
+    host: <span style="color: #c678dd;">str</span> <span style="color: #51afef;">=</span> <span style="color: #98be65;">"localhost"</span>,
+    port: <span style="color: #c678dd;">int</span> <span style="color: #51afef;">=</span> 6333,
+    limit: <span style="color: #c678dd;">int</span> <span style="color: #51afef;">=</span> 15,
+) <span style="color: #51afef;">-&gt;</span> <span style="color: #c678dd;">list</span>[VectorResult]:
+    <span style="color: #83898d;">"""Generate an OpenAI embedding and query Qdrant for nearest neighbors."""</span>
+    <span style="color: #dcaeea;">embedding</span> <span style="color: #51afef;">=</span> openai.OpenAI().embeddings.create(
+    <span style="color: #358856e97137;"> </span>   model<span style="color: #51afef;">=</span><span style="color: #98be65;">"text-embedding-3-small"</span>, <span style="color: #c678dd;">input</span><span style="color: #51afef;">=</span>query
+    ).data[0].embedding
+
+    <span style="color: #dcaeea;">client</span> <span style="color: #51afef;">=</span> QdrantClient(host<span style="color: #51afef;">=</span>host, port<span style="color: #51afef;">=</span>port)
+    <span style="color: #dcaeea;">response</span> <span style="color: #51afef;">=</span> client.query_points(
+    <span style="color: #358856e97137;"> </span>   collection_name<span style="color: #51afef;">=</span>collection_name,
+    <span style="color: #358856e97137;"> </span>   query<span style="color: #51afef;">=</span>embedding,
+    <span style="color: #358856e97137;"> </span>   limit<span style="color: #51afef;">=</span>limit,
+    <span style="color: #358856e97137;"> </span>   with_payload<span style="color: #51afef;">=</span><span style="color: #a9a1e1;">True</span>,
+    )
+    <span style="color: #dcaeea;">points</span> <span style="color: #51afef;">=</span> response.points <span style="color: #51afef;">if</span> <span style="color: #c678dd;">hasattr</span>(response, <span style="color: #98be65;">"points"</span>) <span style="color: #51afef;">else</span> response
+
+    <span style="color: #51afef;">return</span> [
+    <span style="color: #358856e97137;"> </span>   VectorResult(<span style="color: #c678dd;">id</span><span style="color: #51afef;">=</span><span style="color: #c678dd;">str</span>(p.<span style="color: #c678dd;">id</span>), score<span style="color: #51afef;">=</span>p.score, payload<span style="color: #51afef;">=</span>p.payload <span style="color: #51afef;">or</span> {})
+    <span style="color: #358856e97137;"> </span>   <span style="color: #51afef;">for</span> p <span style="color: #51afef;">in</span> points
+    ]
+
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">---------------------------------------------------------------------------
+</span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">RRF fusion
+</span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">---------------------------------------------------------------------------
+</span>
+<span style="color: #ECBE7B;">@dataclass</span>
+<span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">SearchResult</span>:
+    <span style="color: #c678dd;">id</span>: <span style="color: #c678dd;">str</span>
+    score: <span style="color: #c678dd;">float</span>
+    <span style="color: #dcaeea;">payload</span>: <span style="color: #c678dd;">dict</span>[<span style="color: #c678dd;">str</span>, <span style="color: #ECBE7B;">Any</span>] <span style="color: #51afef;">=</span> field(default_factory<span style="color: #51afef;">=</span><span style="color: #c678dd;">dict</span>)
+
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">rrf_fuse</span>(
+    bm25_results: <span style="color: #c678dd;">list</span>[<span style="color: #c678dd;">tuple</span>[Document, <span style="color: #c678dd;">float</span>]],
+    vec_results: <span style="color: #c678dd;">list</span>[VectorResult],
+    limit: <span style="color: #c678dd;">int</span> <span style="color: #51afef;">=</span> 5,
+    k: <span style="color: #c678dd;">int</span> <span style="color: #51afef;">=</span> 60,
+) <span style="color: #51afef;">-&gt;</span> <span style="color: #c678dd;">list</span>[SearchResult]:
+    <span style="color: #83898d;">"""
+    Reciprocal Rank Fusion: score(d) = &#931; 1/(k + rank(d))
+    """</span>
+    <span style="color: #dcaeea;">rrf_scores</span>: <span style="color: #c678dd;">dict</span>[<span style="color: #c678dd;">str</span>, <span style="color: #c678dd;">float</span>] <span style="color: #51afef;">=</span> defaultdict(<span style="color: #c678dd;">float</span>)
+    <span style="color: #dcaeea;">payloads</span>: <span style="color: #c678dd;">dict</span>[<span style="color: #c678dd;">str</span>, <span style="color: #c678dd;">dict</span>[<span style="color: #c678dd;">str</span>, <span style="color: #ECBE7B;">Any</span>]] <span style="color: #51afef;">=</span> {}
+
+    <span style="color: #51afef;">for</span> rank, (doc, _bm25_score) <span style="color: #51afef;">in</span> <span style="color: #c678dd;">enumerate</span>(bm25_results, start<span style="color: #51afef;">=</span>1):
+    <span style="color: #358856e97137;"> </span>   <span style="color: #dcaeea;">rrf_scores</span>[doc.<span style="color: #c678dd;">id</span>] <span style="color: #51afef;">+=</span> 1.0 <span style="color: #51afef;">/</span> (k <span style="color: #51afef;">+</span> rank)
+    <span style="color: #358856e97137;"> </span>   payloads.setdefault(doc.<span style="color: #c678dd;">id</span>, doc.payload)
+     
+    <span style="color: #51afef;">for</span> rank, vr <span style="color: #51afef;">in</span> <span style="color: #c678dd;">enumerate</span>(vec_results, start<span style="color: #51afef;">=</span>1):
+    <span style="color: #358856e97137;"> </span>   <span style="color: #dcaeea;">rrf_scores</span>[vr.<span style="color: #c678dd;">id</span>] <span style="color: #51afef;">+=</span> 1.0 <span style="color: #51afef;">/</span> (k <span style="color: #51afef;">+</span> rank)
+    <span style="color: #358856e97137;"> </span>   payloads.setdefault(vr.<span style="color: #c678dd;">id</span>, vr.payload)
+     
+    <span style="color: #dcaeea;">sorted_ids</span> <span style="color: #51afef;">=</span> <span style="color: #c678dd;">sorted</span>(rrf_scores.items(), key<span style="color: #51afef;">=</span><span style="color: #51afef;">lambda</span> x: x[1], reverse<span style="color: #51afef;">=</span><span style="color: #a9a1e1;">True</span>)[:limit]
+
+    <span style="color: #51afef;">return</span> [
+    <span style="color: #358856e97137;"> </span>   SearchResult(<span style="color: #c678dd;">id</span><span style="color: #51afef;">=</span>pid, score<span style="color: #51afef;">=</span>score, payload<span style="color: #51afef;">=</span>payloads[pid])
+    <span style="color: #358856e97137;"> </span>   <span style="color: #51afef;">for</span> pid, score <span style="color: #51afef;">in</span> sorted_ids
+    ]
+
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">---------------------------------------------------------------------------
+</span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Entry point: hybrid search
+</span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">---------------------------------------------------------------------------
+</span>
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">hybrid_search</span>(
+    query: <span style="color: #c678dd;">str</span>,
+    collection_name: <span style="color: #c678dd;">str</span> <span style="color: #51afef;">=</span> <span style="color: #98be65;">"knowledge_base"</span>,
+    host: <span style="color: #c678dd;">str</span> <span style="color: #51afef;">=</span> <span style="color: #98be65;">"localhost"</span>,
+    port: <span style="color: #c678dd;">int</span> <span style="color: #51afef;">=</span> 6333,
+    limit: <span style="color: #c678dd;">int</span> <span style="color: #51afef;">=</span> 5,
+    bm25_k1: <span style="color: #c678dd;">float</span> <span style="color: #51afef;">=</span> 1.5,
+    bm25_b: <span style="color: #c678dd;">float</span> <span style="color: #51afef;">=</span> 0.75,
+    rrf_k: <span style="color: #c678dd;">int</span> <span style="color: #51afef;">=</span> 60,
+) <span style="color: #51afef;">-&gt;</span> <span style="color: #c678dd;">list</span>[SearchResult]:
+    <span style="color: #83898d;">"""
+    Full hybrid search pipeline:
+    </span><span style="color: #358856e97137;"> </span><span style="color: #83898d;"> 1. Load corpus from Qdrant
+    </span><span style="color: #358856e97137;"> </span><span style="color: #83898d;"> 2. BM25 search (from scratch)
+    </span><span style="color: #358856e97137;"> </span><span style="color: #83898d;"> 3. Vector search (via Qdrant + OpenAI embeddings)
+    </span><span style="color: #358856e97137;"> </span><span style="color: #83898d;"> 4. RRF fusion
+    """</span>
+    <span style="color: #dcaeea;">prefetch</span> <span style="color: #51afef;">=</span> limit <span style="color: #51afef;">*</span> 3
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">1. Build BM25 corpus
+</span>    <span style="color: #dcaeea;">corpus</span> <span style="color: #51afef;">=</span> load_corpus(collection_name, host, port)
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">2. BM25 search
+</span>    <span style="color: #dcaeea;">bm25_results</span> <span style="color: #51afef;">=</span> bm25_search(query, corpus, limit<span style="color: #51afef;">=</span>prefetch, k1<span style="color: #51afef;">=</span>bm25_k1, b<span style="color: #51afef;">=</span>bm25_b)
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">3. Vector search
+</span>    <span style="color: #dcaeea;">vec_results</span> <span style="color: #51afef;">=</span> vector_search(query, collection_name, host, port, limit<span style="color: #51afef;">=</span>prefetch)
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">4. RRF fusion
+</span>    <span style="color: #51afef;">return</span> rrf_fuse(bm25_results, vec_results, limit<span style="color: #51afef;">=</span>limit, k<span style="color: #51afef;">=</span>rrf_k)
+
+
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">test_machine_learning_notes_exist</span>():
+    <span style="color: #83898d;">"""Query 'machine learning notes' and verify relevant results are returned."""</span>
+    <span style="color: #dcaeea;">results</span> <span style="color: #51afef;">=</span> hybrid_search(<span style="color: #98be65;">"machine learning notes"</span>, limit<span style="color: #51afef;">=</span>5)
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">At least one result should come back
+</span>    <span style="color: #51afef;">assert</span> <span style="color: #c678dd;">len</span>(results) <span style="color: #51afef;">&gt;</span> 0, <span style="color: #98be65;">"Expected at least one result for 'machine learning notes'"</span>
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">All RRF scores should be positive
+</span>    <span style="color: #51afef;">for</span> r <span style="color: #51afef;">in</span> results:
+    <span style="color: #358856e97137;"> </span>   <span style="color: #51afef;">assert</span> r.score <span style="color: #51afef;">&gt;</span> 0, f<span style="color: #98be65;">"RRF score should be positive, got </span>{r.score}<span style="color: #98be65;">"</span>
+     
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">At least one result should mention machine learning in its text payload
+</span>    <span style="color: #dcaeea;">texts</span> <span style="color: #51afef;">=</span> [r.payload.get(<span style="color: #98be65;">"text"</span>, <span style="color: #98be65;">""</span>).lower() <span style="color: #51afef;">for</span> r <span style="color: #51afef;">in</span> results]
+    <span style="color: #51afef;">assert</span> <span style="color: #c678dd;">any</span>(
+    <span style="color: #358856e97137;"> </span>   <span style="color: #98be65;">"machine learning"</span> <span style="color: #51afef;">in</span> t <span style="color: #51afef;">for</span> t <span style="color: #51afef;">in</span> texts
+    ), f<span style="color: #98be65;">"No result contained 'machine learning'. Top texts: </span>{[t[:80] <span style="color: #51afef;">for</span> t <span style="color: #51afef;">in</span> texts]}<span style="color: #98be65;">"</span>
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Print results for visibility
+</span>    <span style="color: #51afef;">for</span> i, r <span style="color: #51afef;">in</span> <span style="color: #c678dd;">enumerate</span>(results, 1):
+    <span style="color: #358856e97137;"> </span>   <span style="color: #dcaeea;">snippet</span> <span style="color: #51afef;">=</span> r.payload.get(<span style="color: #98be65;">"text"</span>, <span style="color: #98be65;">""</span>)[:120].replace(<span style="color: #98be65;">"</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">"</span>, <span style="color: #98be65;">" "</span>)
+    <span style="color: #358856e97137;"> </span>   <span style="color: #c678dd;">print</span>(f<span style="color: #98be65;">"  #</span>{i}<span style="color: #98be65;">  rrf_score=</span>{r.score:.5f}<span style="color: #98be65;">  id=</span>{r.<span style="color: #c678dd;">id</span>}<span style="color: #98be65;">"</span>)
+    <span style="color: #358856e97137;"> </span>   <span style="color: #c678dd;">print</span>(f<span style="color: #98be65;">"       source=</span>{r.payload.get('source_file', 'N<span style="color: #51afef;">/</span>A')}<span style="color: #98be65;">"</span>)
+    <span style="color: #358856e97137;"> </span>   <span style="color: #c678dd;">print</span>(f<span style="color: #98be65;">"       text=</span>{snippet}<span style="color: #98be65;">..."</span>)
+     
+     
+<span style="color: #51afef;">def</span> <span style="color: #c678dd;">main</span>():
+    <span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"Hello from rrf_from_scratch!"</span>)
+    test_machine_learning_notes_exist()
+    <span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"Test passed!"</span>)
+
+
+<span style="color: #51afef;">if</span> <span style="color: #c678dd;">__name__</span> <span style="color: #51afef;">==</span> <span style="color: #98be65;">"__main__"</span>:
+    main()
 
 
 </pre>
@@ -362,67 +1122,11 @@ detect_anomaly(<span style="color: #2d9574;">"Urgent transfer to offshore accoun
 </div>
 </div>
 </div>
-
-<div id="outline-container-org0612692" class="outline-2">
-<h2 id="org0612692"><span class="section-number-2">2.</span> RAM</h2>
-<div class="outline-text-2" id="text-2">
-</div>
-<div id="outline-container-org730cee5" class="outline-3">
-<h3 id="org730cee5"><span class="section-number-3">2.1.</span> Prompte engineer</h3>
-</div>
-<div id="outline-container-org05110b0" class="outline-3">
-<h3 id="org05110b0"><span class="section-number-3">2.2.</span> GraphRAG</h3>
-</div>
-<div id="outline-container-orgf1254b0" class="outline-3">
-<h3 id="orgf1254b0"><span class="section-number-3">2.3.</span> Knowledge base</h3>
-</div>
-<div id="outline-container-org679bb78" class="outline-3">
-<h3 id="org679bb78"><span class="section-number-3">2.4.</span> Retraining</h3>
-</div>
-<div id="outline-container-org1413e96" class="outline-3">
-<h3 id="org1413e96"><span class="section-number-3">2.5.</span> LoRA</h3>
-</div>
-<div id="outline-container-org9a00d27" class="outline-3">
-<h3 id="org9a00d27"><span class="section-number-3">2.6.</span> Quantization</h3>
-</div>
-</div>
-
-
-
-<div id="outline-container-orgc053b8f" class="outline-2">
-<h2 id="orgc053b8f"><span class="section-number-2">3.</span> MCP</h2>
-</div>
-
-<div id="outline-container-orgd6d3eae" class="outline-2">
-<h2 id="orgd6d3eae"><span class="section-number-2">4.</span> LLM hosting</h2>
-<div class="outline-text-2" id="text-4">
-</div>
-<div id="outline-container-org58dd2ff" class="outline-3">
-<h3 id="org58dd2ff"><span class="section-number-3">4.1.</span> Ollama</h3>
-<div class="outline-text-3" id="text-4-1">
-<ul class="org-ul">
-<li>multiple threads</li>
-<li></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-orgb7c0073" class="outline-3">
-<h3 id="orgb7c0073"><span class="section-number-3">4.2.</span> ChatOllama</h3>
-</div>
-</div>
-
-<div id="outline-container-orgdb7661b" class="outline-2">
-<h2 id="orgdb7661b"><span class="section-number-2">5.</span> ONNX conversion</h2>
-</div>
-
-<div id="outline-container-orgb29716c" class="outline-2">
-<h2 id="orgb29716c"><span class="section-number-2">6.</span> Rig</h2>
-</div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: si</p>
-<p class="date">Created: 2025-02-06 Do 13:42</p>
+<p class="date">Date: 2026-02-10 Di. 00:00</p>
+<p class="author">Author: Silin Zhao</p>
+<p class="date">Created: 2026-02-10 Di. 20:21</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
