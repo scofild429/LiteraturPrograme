@@ -1,0 +1,31 @@
+#+title:  LangChain
+#+EXPORT_FILE_NAME: /home/si/Dropbox/Base/html/LangChain.html
+
+
+* LangGraph
+
+- chickpoint: StateSnapshot presents chickpoint.
+
+** Time Travel
+- with threadID and checkpointID we can get the state  and rerun it with invoke or stream
+- before start the rerun, we can use (graph.update_state) update the state at first, and give a new name with (as_node), then rerun
+- 
+
+
+
+
+* Stream
+Agent stream mode
+- custom: only stream the customized content in Tools
+- message: stream token by token from LLM and final resulut from Tool
+- update: stream the final result of LLM node and Tool, be careful, for RaAct model, it can contains many LLM nodes.
+
+* Command
+- resume=...:
+   "Wake up a paused interrupt() and give it this data." (Usually sent from outside the graph).
+
+- goto=...:
+   "Stop this node and jump immediately to these specific nodes next." (Usually returned from inside a node).
+
+- update=...:
+   "Merge this dictionary into the graph's State." (Can be used inside or outside).

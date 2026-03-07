@@ -687,6 +687,111 @@ A new rollout is collected using the updated policy, and the process repeats
 
 
 
+#+begin_src
+for prompt in dataset:
+    # 1. Rollout
+    generated_tokens = ActorModel.generate(prompt)
+    full_text = prompt + generated_tokens
+    
+    # 2. Final Reward Score
+    reward_score = RewardModel(full_text)
+    
+    deltas = []
+    
+    # 3. Token-Level Loop (Iterate over GENERATED tokens only)
+    for t in generated_tokens:
+        
+        # KL Penalty
+        prob_actor = ActorModel(prompt + tokens_up_to_t)
+        prob_ref = ReferenceModel(prompt + tokens_up_to_t)
+        KL_t = log(prob_actor) - log(prob_ref)
+        
+        # Step Reward
+        if t == last_token:
+            r_t = reward_score - (beta * KL_t)
+        else:
+            r_t = -(beta * KL_t)
+            
+        # TD Error (Delta)
+        V_current = CriticModel(prompt + tokens_up_to_t)
+        V_next = CriticModel(prompt + tokens_up_to_t + t) 
+        delta_t = r_t + (gamma * V_next) - V_current
+        
+        deltas.append(delta_t)
+        
+    # 4. Calculate GAE (Advantage)
+    # Usually computed in reverse order to properly apply (gamma * lambda) discounts
+    A_t = compute_gae_backwards(deltas, gamma, lambda)
+    
+    # 5. PPO Loss Optimization
+    # 'ratio' is the probability of the token under updated weights vs old weights
+    ratio = P_actor_new(t) / P_actor_old(t) 
+    
+    # Clip the ratio, multiply by Advantage, and maximize (or minimize negative)
+    L = -mean( min(ratio * A_t, clip(ratio, 1-epsilon, 1+epsilon) * A_t) )
+    
+    Loss.backward()
+    Optimizer.step()
+
+
+
+
+---------------------------------------------
+for batch_prompts in dataset:
+    
+    # ==========================================
+    # PHASE 1: ROLLOUT (No Gradients)
+    # ==========================================
+    with torch.no_grad():
+        # 1. Generate responses
+        responses = ActorModel.generate(batch_prompts)
+        full_texts = batch_prompts + responses
+        
+        # 2. Get old log probabilities and values
+        old_log_probs = ActorModel.get_log_probs(full_texts)
+        ref_log_probs = ReferenceModel.get_log_probs(full_texts)
+        values = CriticModel(full_texts)
+        
+        # 3. Get Reward Model scores for the finished sentences
+        reward_scores = RewardModel(full_texts)
+        
+        # 4. Vectorized step math (Calculated all at once, no loop!)
+        KL_penalties = old_log_probs - ref_log_probs
+        step_rewards = compute_step_rewards(reward_scores, KL_penalties)
+        
+        # 5. Compute GAE and Returns for the whole batch
+        advantages, returns = compute_gae_vectorized(step_rewards, values, gamma, lambda)
+
+    # ==========================================
+    # PHASE 2: PPO TRAINING (With Gradients)
+    # ==========================================
+    # PPO reuses the rollout data for multiple epochs
+    for ppo_epoch in range(PPO_EPOCHS):
+        for mini_batch in create_mini_batches(full_texts, old_log_probs, advantages, returns):
+            
+            # 1. Get NEW log probs and NEW values from updated models
+            new_log_probs = ActorModel.get_log_probs(mini_batch.texts)
+            new_values = CriticModel(mini_batch.texts)
+            
+            # 2. Calculate Ratio
+            ratio = torch.exp(new_log_probs - mini_batch.old_log_probs)
+            
+            # 3. ACTOR LOSS (Policy Loss with Clipping)
+            surr1 = ratio * mini_batch.advantages
+            surr2 = torch.clamp(ratio, 1.0 - epsilon, 1.0 + epsilon) * mini_batch.advantages
+            actor_loss = -torch.min(surr1, surr2).mean()
+            
+            # 4. CRITIC LOSS (Value Loss: MSE between predicted values and actual returns)
+            critic_loss = MSE(new_values, mini_batch.returns)
+            
+            # 5. Total Loss & Backprop
+            total_loss = actor_loss + (value_coefficient * critic_loss)
+            
+            total_loss.backward()
+            Optimizer.step()
+
+#+end_src
+
 
 
 * GRPO
