@@ -19,13 +19,11 @@ export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
 export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
 export HADOOP_OPTS"-Djava.library.path=$HADOOP_HOME/lib/nativ"
 #+end_src
-
 *** $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 append to end
 #+begin_src
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 #+end_src
-
 *** $HADOOP_HOME/etc/hadoop/core-site.xml
 in configuration
 #+begin_src
@@ -40,7 +38,6 @@ in configuration
         <description>The name of the default file system></description>
     </property>
 #+end_src
-
 *** $HADOOP_HOME/etc/hadoop/hdfs-site.xml
 in configuration
 #+begin_src
@@ -57,7 +54,6 @@ in configuration
   <value>1</value>
 </property>
 #+end_src
-
 *** $HADOOP_HOME/etc/hadoop/mapred-site.xml
 in configuration
 #+begin_src
@@ -66,7 +62,6 @@ in configuration
   <value>yarn</value>
 </property>
 #+end_src
-
 *** $HADOOP_HOME/etc/hadoop/yarn-site.xml
 #+begin_src
 <property>
@@ -90,7 +85,6 @@ in configuration
   <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PERPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
 </property>
 #+end_src
-
 *** init nodename
 #+begin_src
 cd hadoop-3---
@@ -100,7 +94,6 @@ cd sbin
 ./start-yarn.sh
 jps
 #+end_src
-
 ** 3 node installation
 *** GWDG deployment
 |----------------+-------------+-----------------+-------------------|
@@ -128,7 +121,6 @@ export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
 export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
 export HADOOP_OPTS"-Djava.library.path=$HADOOP_HOME/lib/nativ"
 #+end_src
-
 *** $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 append to end
 #+begin_src
@@ -221,7 +213,6 @@ cd sbin
 ./start-yarn.sh
 jps
 #+end_src
-
 ** command
 general comands
 #+begin_src 
@@ -242,7 +233,6 @@ cd output
 hadoop fs -getmerge /hpda04-2.3-output/ out
 cat out
 #+end_src
-
 ** map()
 map(fun <key1, val1>) -> list(<key2, val2>)
 to a list of key-value pairs
@@ -251,12 +241,10 @@ all elemenet in list must have the same type
 schuffle(list(<key2, val2>)) -> list(<key2, list(val2)>)
 ** reduce
 reduce (fun, list(<key2, list(val2)>)) -> list(val3)
-
 ** Limitation
 1, multiple map() and reduce() must be manually specified
 2, intermediary results has to be written to  the HDFS, not on memory
 iterative algorithms are not very efficient with Hadoop.
-
 * HDFS
 ** descripation
 #+begin_src 
@@ -312,13 +300,11 @@ The NodeManager execute tasks on the local resources
 results do not  need to save in HDFS, it support in memory  executation.
 Resilient Distributed Datasets RDDS
 DataFrame from SparkSQL
-
 ** scala
 can from binary file
 can from source file
 can from IDEA blugin
 can from spark installation
-
 ** install
 *** from source
 this is a full eco system, can build a cluster by my own,
@@ -329,7 +315,6 @@ spark-submit --deploy-mode --master yarn test.py
 But I can't, I can even not find conf file in pip file for pyspark,
 if you still want to consturcte a cluster, use spark installation from source file,
 like following
-
 ** single  master node configuration with
 #+begin_src sh :results output
 cat ~/Documents/spark/myown/test.py
@@ -352,13 +337,11 @@ test.py will be executed
 ./bin/pyspark --master spark-url 
 #+end_src
 will open  a terminal with master configuration
-
 ** pyspark
 #+begin_src
 cd spark
 bin/spark-submit examples/src/main/python/wordcount.py testtext.txt &> output.txt
 #+end_src
-
 * Big data lecture
 ** Association Rule Minning
 - Transaction: T, one behavior, which accomplished a lot of things(items)
@@ -408,7 +391,6 @@ The impact of a on b to be done
 2.(with Confidence (C) )find all subsets of $L_{k}$, which satisfied C.
 
 *Note* all the operations in this 2 step is done in the whole Transaction sets
-
 ** Data Exploration
 Singal feather: histogram density, rug, Box-Whisker
 Box-Whisker: low quartile to high quartile is interquartile range (IQR)
@@ -421,7 +403,6 @@ pair-wise scatterplot
 hexbin plot
 
 correlation heatmap
-
 ** Time Series Analysis
 *** Descripation
 Discrete values  {$x_1$,....,$x_T$} = $(x_t)_{t=1}^T$
@@ -436,7 +417,7 @@ so   $$X = T + S + R$$
 **** stationary
 Time series is stationary
 Mean  and Variance of  the trend and seasonality  are constant and can be removed
-so the autocorrelation is stochastic process, 
+so the autocorrelation is stochastic process,
 **** Trend and Series Effects
 1. model the trend $T_{t}$ on the  time series $x_{t}$
 2. detrended time series $\hat{x}=x_{t}-T_{t}$
@@ -450,8 +431,7 @@ $Mean(\hat x^{´}_{t})$ is special for mod(t, s), in the recursive seasonal effe
 only the same time slot element will be calculated, this happens if
 the last season is not complete.
 
-*Cons* only works for linear trends and with seasonal effects that have no trend. 
-
+*Cons* only works for linear trends and with seasonal effects that have no trend.
 *** Differencing for not stationary
 for $y=f(x)$ for two points($x_1$, $y_1$) and ($x_2, y_2$),
 the first-order difference to detrended time series:  $\hat x_{t} = \Delta x^{1}_{t}=x_{t}-x_{t-1}$.
@@ -463,7 +443,6 @@ using  the difference  between two consecutive points in time during the season.
 $\hat{\hat{x}} = \Delta_{s} \hat x_{t} = \hat x_{t} - \hat x_{t-s}$
 
 *pro* it can deal with both changes in the mean, as well as changes in the movement of the mean
-
 *** Correlation
 Autocorrelation is the direct relationship of the values
 of the time series at different points in time, for two adjacent points
@@ -480,16 +459,13 @@ model the direct influence of the past p points on time series
 $c + \epsilon_{t} + \sum_{i=1}^{p}a_{i}x_{t-i}$
 c :constant over all time
 $\epsilon_{t}$: white noise, mean of 0, normal distribution
-
 **** MA: Moving average
 model the random effect on time series
 $c + \epsilon_{t} + \sum_{j=1}^{q}b_{j}\epsilon_{t-j}$
-the difference is the random influence of the past noise to next value 
-
+the difference is the random influence of the past noise to next value
 **** ARMA: autoregressive and Moving average
 
 $c + \epsilon_{t} + \sum_{i=1}^{p}a_{i}x_{t-i} + \sum_{j=1}^{q}b_{j}\epsilon_{t-j}$
-
 **** select p and q
 partial authentication estimate the p for AR, but if p can cover all the season,
 but if p is too big, it can lead to overfitting.
@@ -497,7 +473,6 @@ but if p is too big, it can lead to overfitting.
 autocorrelation can estimate the q for MA, using q as the steps for autocorrelation
 to be 0, so we look at when the autocorrelation goes towards zero and use this for q.
 at the same time the effect of AR should also be counted for determinate q.
-
 ** Text minning
 *** Preprocessing
 **** Creation of a Corpus
@@ -521,13 +496,11 @@ $$IDF_{t} = \log \frac{N}{D_{t}}$$
 t: word(term)
 N: the number of document in corpus
 $D_{t}$: the number of document in corpus, which contains word t
-
 **** TFIDF
 $$TFIDF = TF \cdot IDF $$
 **** beyond the bag-of-words
 ignore the structure of document
 ignore simiarity of words
-
 *** challages
 **** dimensionality
 **** Ambiguities
@@ -598,7 +571,6 @@ $$ y = H x + e $$
 3.182446305284263
 3.182446305284263
 #+end_example
-
 ** confidence level interval determinate
 #+BEGIN_SRC python
   import numpy as np
@@ -663,7 +635,6 @@ $$ y = H x + e $$
 #+END_SRC
 
 #+RESULTS:
-
 ** a complete ploted distribution on between region
 
 #+BEGIN_SRC python
@@ -850,7 +821,6 @@ $$ y = H x + e $$
 
 
 #+END_SRC
-
 * High performance Data Analysis lecture
 ** concepts
 High performance Data Analysis:
@@ -876,7 +846,6 @@ Consensus, Repication
 5. Challages:
 - Programm
 - resource sharing
-
 *** Levels of parallelism
 Bit-level, Instruction level, Data level, Task level
 *** Name typical applications for high-performance data analytics
@@ -919,7 +888,7 @@ Concurrency, Durability, Consensus,
 - Documents model (MongoDB)
 - Graph
 ** Chap03 Databases and DataWarehouses
-*** relatation model 
+*** relatation model
 **** Cardinality
 - one to one
 - one to many
@@ -958,7 +927,7 @@ ACID
 - Pivot
 *** Appraise the pro/cons of OLAP vs. traditional relational model
 Star-Schema: pro: simplification of query and performancd gain, emulates OLAP cube
-start-Schema: cons: data integrity is not guaranteed, no natural support of many to many relations, 
+start-Schema: cons: data integrity is not guaranteed, no natural support of many to many relations,
 *** Describe DBMS optimizations: index, bulk loading, garbage cleaning
 ** Chap04 Distributed Storage and Processing with Hadoop
 *** hadoop
@@ -991,13 +960,11 @@ reduce: receives all tuples with the same keys, accumulated
 - Pre-launch and re-use containers and caching intermediate results
 - Everyone has to wait for the prozess between mapping and reducing
 *** Sketch the parallel file access performed by MapReduce jobs
-
 ** Chap05 Big Data SQL using Hive
 *** Compare the execution model of SQL in an RDBMS with Hive
 - Table: Like in relational databases with a schema
 - Partitions: table key determining the mapping to directories
 - Buckets/Clusters: Data of partitions are mapped into files
-  
 *** Justify the features of the ORC format(Optimized Row Columnar)
  - Light-weight index stored within the file
  - Compression based on data type
@@ -1095,7 +1062,7 @@ Computation, Communicatation, Input/Output devices
 - Estimate the workload
 - Compute the workload throughout per node, W
 - Compute the Hardware capabilities P
-E = W / P  
+E = W / P
 ** Chap11
 *** Sketching the visual analytics workflow
 *** Listing optical illusions
@@ -1121,7 +1088,6 @@ Color, Size&Shape, Moving,Interpretation of objects,
 - in-situ: analyze results while the applications is still running
 - in-transit: analyze data while it is on the IO path
 - interact with application while it runs
-
 ** Chap12
 *** Sketch a typical I/O stack
 *** Develop a NetCDF data model for a given use case
@@ -1134,6 +1100,9 @@ Sometimes only possibility to understand hardware capabilities
 *** Describe an I/O performance optimization technique
 Read-ahead, write-behind, async-IO
 *** Describe a strategy for trustworthy benchmark result
+:PROPERTIES:
+:id: 69dea246-072a-43a7-8766-55a8cc5701cb
+:END:
 single-shot: acceptance test
 periodically: regression test
 ** 03-01
@@ -1316,7 +1285,6 @@ select id,  unnest(string_to_array(text , ' ')) as word, count(*) from Wikipedia
 |----+--------+-----------+----------+------|
 |  3 | chemie | chemistry | science  |    3 |
 |  4 | bio    | biology   | science  |    4 |
-
 ** 03-02
 #+BEGIN_SRC  dot :file ./foto/hpdas03-02.png
   digraph diagramm {
@@ -1334,7 +1302,6 @@ select id,  unnest(string_to_array(text , ' ')) as word, count(*) from Wikipedia
 
 #+RESULTS:
 [[file:./foto/hpdas03-02.png]]
-
 ** 04-01
 *** mapper and reducer in own
 #+begin_src python
@@ -1358,7 +1325,6 @@ select id,  unnest(string_to_array(text , ' ')) as word, count(*) from Wikipedia
       Wmr.emit(key, count)
 
 #+end_src
-
 *** sql
 #+begin_src sh
   cat ~/Documents/hpda0404.csv 
@@ -1400,7 +1366,6 @@ select id,  unnest(string_to_array(text , ' ')) as word, count(*) from Wikipedia
 | listed       | mysum |
 | 2            |     9 |
 | 1            |     3 |
-
 *** select
 #+begin_src python  :results output
   import csv
@@ -1428,7 +1393,6 @@ select id,  unnest(string_to_array(text , ' ')) as word, count(*) from Wikipedia
 : [{'num': '1', 'germany': 'eins', 'english': 'one', 'chinese': '一', 'listed': '1'}, {'num': '2', 'germany': 'zwei', 'english': 'two', 'chinese': '二', 'listed': '1'}, {'num': '3', 'germany': 'drei', 'english': 'three', 'chinese': '三', 'listed': '2'}, {'num': '6', 'germany': 'sechs', 'english': 'six', 'chinese': '六', 'listed': '2'}]
 : ['eins', 'zwei', 'drei', 'sechs']
 : select germany WHERE germany == zwei : ['zwei']
-
 *** summation
 #+begin_src python  :results output
   import csv
@@ -1464,7 +1428,6 @@ select id,  unnest(string_to_array(text , ' ')) as word, count(*) from Wikipedia
 : [{'num': '1', 'germany': 'eins', 'english': 'one', 'chinese': '一', 'listed': '1'}, {'num': '2', 'germany': 'zwei', 'english': 'two', 'chinese': '二', 'listed': '1'}, {'num': '3', 'germany': 'drei', 'english': 'three', 'chinese': '三', 'listed': '2'}, {'num': '6', 'germany': 'sechs', 'english': 'six', 'chinese': '六', 'listed': '2'}]
 : grouped by  {'1', '2'}
 : sum (num) GROUP) BY listed :  {'1': 3, '2': 9}
-
 *** join
 #+begin_src sh
   cat ~/Documents/hpda0404a.csv 
@@ -1518,7 +1481,6 @@ select id,  unnest(string_to_array(text , ' ')) as word, count(*) from Wikipedia
 : [{'id': '1', 'fan': 'une'}, {'id': '3', 'fan': 'trois'}, {'id': '4', 'fan': 'quatre'}, {'id': '8', 'fan': 'huit'}]
 : ['eins'] ['une']
 : ['drei'] ['trois']
-
 ** 04-02
 *** 2.1
 #+begin_src python :results output
@@ -2368,7 +2330,6 @@ With errors
 #+begin_src shell
   yarn jar share/hadoop/tools/lib/hadoop-streaming-3.3.1.jar -Dmapred.reduce.tasks=1 -Dmapred.map.tasks=11 --mapper /home/si/Documents/hpda/04/mapper.py -reducer /home/si/Documents/hpda/04/reducer.py -input /hpda04-2.3.txt --output /hpda04-2.3-output/
 #+end_src
-
 ** 05
 #+begin_src python :results output
 import csv
@@ -2419,7 +2380,6 @@ bd.write("/home/si/Documents/hpda/05/out.csv")
 
 #+RESULTS:
 : [['4711', 'Max Musterman', 'max.musterman@uni-goettingen.de', "['HPDA', 'MODULE2'] "], ['4710', 'Max musterman', 'max.musterman@uni-goettingen.doe', "['HPDA'] "], ['4712', 'Max Musterman', 'max.musterman@uni-goettingen.de', "['MODULE2'] "], ['4713', 'Max musterman', 'max.musterman@uni-goettingen.doe', "['HPDA'] "], ['4714', 'Max musterman', 'max.musterman@uni-goettingen.doe', "['HPDA'] "], ['4715', 'Max Musterman', 'max.musterman@uni-goettingen.de', "['MODULE2'] "], ['4716', 'Max musterman', 'max.musterman@uni-goettingen.doe', "['HPDA'] "]]
-
 ** 06
 MongoDB
 #+begin_src mongo :db testdatabase
@@ -2504,14 +2464,11 @@ MongoDB
 #+RESULTS:
 : switched to db testdatabase
 : true
-
 * Paralle compuation lecture
 ** performance
-***  Andel's law: 
+*** Andel's law: 
 $$ S_{total} = \frac{1}{1-p+\frac{p}{s}} $$
 $$S = \frac{s}{1-P_{B}-P_{D} + \frac{P_{B}}{N_{B}} + \frac{P_{D}}{N_{D}}} $$
- 
-
 *** if the task is changed, Gostafan's law,
 $$ s_{g} = \frac{T_{s} + p T_{p}}{T_{s} + T_{p}} $$
 
@@ -2519,17 +2476,13 @@ $$ s_{g} = \frac{T_{s} + p T_{p}}{T_{s} + T_{p}} $$
 $$ S = \frac{s_g}{(s_g - P_p) + \frac{P_p}{N_p}}$$
 
 all $P_{p}$ is changed task, such as 70% task doubled, will be 1.4
-
-
 *** Effectivy:
 $$ E = \frac{S}{P}$$
 
 $$ S = \frac{T_{s}}{T_{p}} = \frac{n}{\frac{n}{p}+ \log_{2} p}$$
-
 ** Chap1: introduction
 *** Von Nroven
 cpu, interconnection, memory
-
 *** memory mode
 shared memory
 distributed memory
@@ -2554,7 +2507,6 @@ $$T_{serial}$$:  The Time for task which can't be parallelized.
 $$T_{parallel}$$: The Time for task which can be parallelized.
 $$p$$: number of processes
 $$P$$: Precent of Task, which can be parallelized
-
 *** single Process:
 $$T_{parallel} = \frac{T_{serial}}{p}$$
 speedup: $$S = \frac{T_{serial}}{T_{parallel}}$$.
@@ -2564,14 +2516,11 @@ $$T_{parallel} = (1-P)T_{serial} +  \frac{P \cdot T_{serial}}{p}$$
 
 speedup: $$S = \frac{T_{serial}}{T_{parallel}} = \frac{1}{(1-P)+ \frac{P}{p}}$$. 
 $$S = \lim_{p -> \infty}\frac{1}{(1-P)+ \frac{P}{p}} = \frac{1}{1-P}$$
-
 *** Efficient
 $$E = \frac{S}{p}$$
-
 *** Adaes-low
 *** Gustafon low
 $$ S_{p} = \frac{T_{serial} -p T_{paralle}}{T_{seria} + T_{parallel}}$$
-
 * Cloud computation lecture
 ** Platform Virtualization
 *** Defination of Virtualization
@@ -2586,7 +2535,6 @@ the processes of creating software-based version of resources.
 - Encapsulation: current stats can be saved  copied and loaded
 - Minimal downtime
 - Fast provisioning
-  
 *** Full virtualization (Hypervisor system, Bare matal)
 - Translation of instructions
 - implantation: Virtual Box
@@ -2594,13 +2542,11 @@ the processes of creating software-based version of resources.
 - Hypervisor translate the request from Guest OS to HW
 - no need special HW support  
 - no need modified OS
-
 *** Hardware-assisted virtualization (Hypervisor system, Bare matal)
 - implantation: VMware Workstation
 - can install many virtual machine
 - need special HW support
 - no need modified OS
-
 *** Para virtualization (Hypervisor system, Bare matal)
 
 - VM(modified OS) runs on Host
@@ -2609,7 +2555,6 @@ the processes of creating software-based version of resources.
   
 - need modified OS
 - need Host OS level on hypervisor
-
 *** Host OS virtualization (Hypervisor system, Hosted)
 - Guest OS on Hypervisor
 - Hypervisor on Host OS
@@ -2619,13 +2564,10 @@ the processes of creating software-based version of resources.
 - no need modified OS
 - need Hypervisor on Host OS
 - inter VM communication is difficult
-
-
 *** OS-level virtualization (Container system)
 - no hypervisor
 - multiple useer instances(light-weight) run on a host OS
 - implantation: Docker
-
 *** Memory virtualization
 - shadow page table on Guest OS 
 - Extended Page table in Host
@@ -2637,7 +2579,6 @@ hypervisor provide virtual switch, offering every VM a ip address
 | Hardware abstraction |
 | Migration            |
 | Partation            |
-
 ** Kubernetes
 
 Container-Orchestration System 
@@ -2647,14 +2588,12 @@ Container-Orchestration System
 - Pod: many containers share the same volume
 - Deployment
 - Service
-
 ** Virtual Machine
 - Partition
 - Isolation
 - Encapsulation
 - Hardware abstraction
 - Live Migration
-
 ** Storage Virtualization
 *** SSD advantage and disadvanage over HDD
 - Reliablity
@@ -2663,7 +2602,6 @@ Container-Orchestration System
 
 - More expensive
 - less Space
-
 *** Storage virtualization advantage
 - Faster access: because you can have multiple data sources for the same data
 - Independence of logic storage resources
@@ -2672,17 +2610,14 @@ Container-Orchestration System
 - High effience: Replication and Duplication
 - compression, compaction
 - increasing volume if needed
-
 *** Provisioning:
 - allocate disk space to user on demand
 - give a mount of Storage, but not really allocated so much
-
 *** Deduplication
   Single instance Storage: 
   if the hash value of a datablock is the same with one we already stored,
   dann save its link
   - checksum with hash value
-   
 *** Compression:
 compacting the data so that it comsumes less space
 *** Cloning
@@ -2702,10 +2637,8 @@ with more physical disks at the same time
 - disadvanage
   Additional Complexity
   illusion of Stability
-
 *** Idempotent
 the same code generate the same result, without any change
-
 *** Infrastructure as code
 - Benefits:
   + Repeatablity
@@ -2716,7 +2649,6 @@ the same code generate the same result, without any change
   
 - Imperative:describe the stes to get to desired state
 - Declarative: describe the desired state
-
 *** Foreman:
 give the initial configuration to run an OS
 *** Puppet
@@ -2741,7 +2673,6 @@ Watch out the overhitting
 - Analysis: real time, short term, long term, Anomaly detection with AI
 - Alerting:
 - Virtualization
-  
 ** Cloud Computing Concepts
 *** Cloud Defination
 #+begin_src 
@@ -2751,8 +2682,6 @@ access to a shared pool of configurable computing resource
 be rapidly provisioned and released with minimal management
 effort or service provider interaction
 #+end_src
-
-
 *** SOA
 Servive Oriented Architecture
 SOA has become a core concept of service computing and provides the
@@ -2761,7 +2690,6 @@ fundamental technologies for realizing service computing
 - No captial costs
 - High scalability
 - Highh Flexiblity
-
 *** Network design
 Different: SDN: software define Network
 New architectures have a detached control plane
@@ -2774,8 +2702,6 @@ instead of heavy logic switching/routing in hardware
 - SSH authenticate
 - snapshotting
 - using Openstack
-
-
 *** Infrastructure as Service
 **** Different deployment methode
 | Private Cloud   |
@@ -2796,16 +2722,12 @@ example: AWS S3
 - complicated to change provider
 - dependency on provider
 - internet access is essential
-
 *** Platform as a Service
 - Rapid Time-to-Market
 - Minimal Development
 - Reduced Pressure on internal resources
-
-
 *** Software as a Service
 based on IaaS, fouce on Applications
-
 ** Web services
 *** Benefits
 - Programmable access
@@ -2821,7 +2743,6 @@ RPC based
 *** WSDL
 Web Services Description Language
 xml based
-
 *** REST
 + Everything is resource
 + Every resource is identified by a unique Identifier
@@ -2832,10 +2753,8 @@ xml based
 - more flexiblity
 - less redundancy, raw message based
 - URI and URL
-
 *** API
 Application Programming Interface
-
 ** Big Data Service
 *** feathers
 - Volume: Scale of data
@@ -2907,7 +2826,6 @@ of disaster.
 ssd
 *** fair data management
 Find-able Accessable Interoperable Reproducible
-
 ** ITIL &SLA
 *** non functional service
 organizational Operation of server
@@ -2919,9 +2837,8 @@ value
 value co-creation
 IT service Management
 IT service Provider
-
 *** ITIL Information Technology Infrastructure Library
-a framework of best practices of IT service management and delivering 
+a framework of best practices of IT service management and delivering
 **** service value system SVS
 ***** Guiding principles
 - focus on value
@@ -2931,7 +2848,6 @@ a framework of best practices of IT service management and delivering
 - think and work holistically
 - keep in simple and practical
 - optimize and automate
-  
 ***** Service Value Chain
   - plan
   - improve
@@ -2940,7 +2856,6 @@ a framework of best practices of IT service management and delivering
   - transition
   - obtain
   - deliver
-
 ***** ITIL Practices
 **** the four dimensions model
 Organization&People
@@ -2960,7 +2875,6 @@ Partners&suppliers
 - Performance parameters
 - what is measured, how and when(monitoring)
 - what is done to in case a SLA is voilated
-
 ** Security
 *** Confidentiality
 The ability to hide the information from the unauthorized people
@@ -3017,4 +2931,42 @@ verifies if you have the permission to access data
 confusion is to create faint ciphertexts in crytoprahic
 Diffusion, if one place of plain text the modified, many places can be modified
 
+* Association Rule Minning
+- Transaction: T, one behavior, which accomplished a lot of things(items)
+- Item : I, which stands for the smallest unit, that can be done.
+- Our task is to find out, the relationship between items
 
+*Confidence*
+$$C(a->b) = P(b|a) = \frac{P(ab)}{P(a)}$$
+#+begin_src 
+the Probabilities  If a is done, b will also be done.
+#+end_src
+
+*Support*
+$$S(a->b)=P(a\cap b) = P(ab)$$
+#+begin_src 
+a and b be done together from all Transaction, identify the special Transaction case
+#+end_src
+
+$$X -> Y(C=c, S=s)$$
+
+*practicability* (Lift)
+$$L(a->b)=\frac{Confidence(a->b)}{P(b)} =\frac{P(ab)}{P(a)P(b)}$$
+#+begin_src 
+The impact of a on b to be done
+#+end_src
+
+
+*Aprioir* *algorithm*
+
+1.(with support level(S) )
+- find the frequently itemset(L)
+- the subsets of frequently itemset is also frequently itemset
+- collect the total Transaction set(T), and set the the support level
+- find all $L_{1}$, which satisfied S,
+- find all $L_{2}$, which come from all 2-items combinations, which satisfied S
+- .....to only one left, $L_{k}$.
+
+2.(with Confidence (C) )find all subsets of $L_{k}$, which satisfied C.
+
+*Note* all the operations in this 2 step is done in the whole Transaction sets
