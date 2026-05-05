@@ -1,15 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2025-01-24 Fr 19:50 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<!-- 2026-05-05 Tue 20:04 -->
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Vue</title>
-<meta name="author" content="si" />
+<meta name="author" content="silin" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -193,36 +191,38 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<link rel="stylesheet" href="style.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<script src="toc-sidebar.js" defer></script>
 </head>
 <body>
-<div id="content" class="content">
+<div id="kb-content" class="content">
 <h1 class="title">Vue</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc6d5078">1. 数据绑定</a></li>
-<li><a href="#org4b3dd00">2. npm</a></li>
-<li><a href="#org7da8dd4">3. 操作</a></li>
-<li><a href="#orgbf037a7">4. 生命周期</a></li>
-<li><a href="#orgab24e11">5. component</a></li>
-<li><a href="#orga5721e2">6. Mustache</a></li>
-<li><a href="#orgf2203f1">7. v-bind</a>
+<li><a href="#org16113f1">1. 数据绑定</a></li>
+<li><a href="#org8fa10e2">2. npm</a></li>
+<li><a href="#org3a3ef05">3. 操作</a></li>
+<li><a href="#orgcad8875">4. 生命周期</a></li>
+<li><a href="#orgadc420f">5. component</a></li>
+<li><a href="#org8b2b6d1">6. Mustache</a></li>
+<li><a href="#orgd5b7166">7. v-bind</a>
 <ul>
-<li><a href="#org41d874d">7.1. multi class 动态绑定v-band</a></li>
-<li><a href="#orgd855f9c">7.2. multi style 动态绑定v-band</a></li>
+<li><a href="#org9572e96">7.1. multi class 动态绑定v-band</a></li>
+<li><a href="#org8de176a">7.2. multi style 动态绑定v-band</a></li>
 </ul>
 </li>
-<li><a href="#org78544f1">8. v-show</a></li>
-<li><a href="#org92c1b87">9. v-if</a></li>
-<li><a href="#org3dfee06">10. watch multiple value</a></li>
-<li><a href="#orgb3e9a1a">11. reactive multiple value</a></li>
+<li><a href="#orgc266d23">8. v-show</a></li>
+<li><a href="#orgddcad8e">9. v-if</a></li>
+<li><a href="#orga3234ba">10. watch multiple value</a></li>
+<li><a href="#org155b2eb">11. reactive multiple value</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc6d5078" class="outline-2">
-<h2 id="orgc6d5078"><span class="section-number-2">1.</span> 数据绑定</h2>
+<div id="outline-container-org16113f1" class="outline-2">
+<h2 id="org16113f1"><span class="section-number-2">1.</span> 数据绑定</h2>
 <div class="outline-text-2" id="text-1">
 <ol class="org-ol">
 <li>计算属性
@@ -239,33 +239,32 @@
 
 <div class="org-src-container">
 <pre class="src src-js">
-<span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">app</span> = Vue.createApp({
+const app = Vue.createApp({
     data() {
-        <span style="color: #4f97d7; font-weight: bold;">return</span> { count: 4 }
+        return { count: 4 }
     }
 })
 
-<span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">vm</span> = app.mount(<span style="color: #2d9574;">'#app'</span>)
+const vm = app.mount('#app')
 
-console.log(vm.$data.count) <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; 4</span>
-console.log(vm.count)       <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; 4</span>
+console.log(vm.$data.count) // =&gt; 4
+console.log(vm.count)       // =&gt; 4
 
-<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#20462;&#25913; vm.count &#30340;&#20540;&#20063;&#20250;&#26356;&#26032; $data.count</span>
+// 修改 vm.count 的值也会更新 $data.count
 vm.count = 5
-console.log(vm.$data.count) <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; 5</span>
+console.log(vm.$data.count) // =&gt; 5
 
-<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#21453;&#20043;&#20134;&#28982;</span>
+// 反之亦然
 vm.$data.count = 6
-console.log(vm.count) <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; 6</span>
+console.log(vm.count) // =&gt; 6
 
 </pre>
 </div></li>
 </ol>
 </div>
 </div>
-
-<div id="outline-container-org4b3dd00" class="outline-2">
-<h2 id="org4b3dd00"><span class="section-number-2">2.</span> npm</h2>
+<div id="outline-container-org8fa10e2" class="outline-2">
+<h2 id="org8fa10e2"><span class="section-number-2">2.</span> npm</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 npm install 将会执行package.json 的设定，
@@ -273,9 +272,8 @@ npm install 将会执行package.json 的设定，
 </p>
 </div>
 </div>
-
-<div id="outline-container-org7da8dd4" class="outline-2">
-<h2 id="org7da8dd4"><span class="section-number-2">3.</span> 操作</h2>
+<div id="outline-container-org3a3ef05" class="outline-2">
+<h2 id="org3a3ef05"><span class="section-number-2">3.</span> 操作</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 vd 是vue里的data属性
@@ -289,15 +287,15 @@ vm 是vue里的mothods方法
 ht 是html里的标签
 </p>
 
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <tbody>
 <tr>
@@ -387,17 +385,16 @@ ht 是html里的标签
 </table>
 </div>
 </div>
-
-<div id="outline-container-orgbf037a7" class="outline-2">
-<h2 id="orgbf037a7"><span class="section-number-2">4.</span> 生命周期</h2>
+<div id="outline-container-orgcad8875" class="outline-2">
+<h2 id="orgcad8875"><span class="section-number-2">4.</span> 生命周期</h2>
 <div class="outline-text-2" id="text-4">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <tbody>
 <tr>
@@ -448,9 +445,8 @@ ht 是html里的标签
 </table>
 </div>
 </div>
-
-<div id="outline-container-orgab24e11" class="outline-2">
-<h2 id="orgab24e11"><span class="section-number-2">5.</span> component</h2>
+<div id="outline-container-orgadc420f" class="outline-2">
+<h2 id="orgadc420f"><span class="section-number-2">5.</span> component</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 1, 用extends编写template
@@ -460,27 +456,24 @@ ht 是html里的标签
 </p>
 </div>
 </div>
-
-<div id="outline-container-orga5721e2" class="outline-2">
-<h2 id="orga5721e2"><span class="section-number-2">6.</span> Mustache</h2>
+<div id="outline-container-org8b2b6d1" class="outline-2">
+<h2 id="org8b2b6d1"><span class="section-number-2">6.</span> Mustache</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 {{item }} item von el can be here
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgf2203f1" class="outline-2">
-<h2 id="orgf2203f1"><span class="section-number-2">7.</span> v-bind</h2>
+<div id="outline-container-orgd5b7166" class="outline-2">
+<h2 id="orgd5b7166"><span class="section-number-2">7.</span> v-bind</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 v-bind: kann verbunden werden mit
 id, href, key, für characters von DOM elements
 </p>
 </div>
-
-<div id="outline-container-org41d874d" class="outline-3">
-<h3 id="org41d874d"><span class="section-number-3">7.1.</span> multi class 动态绑定v-band</h3>
+<div id="outline-container-org9572e96" class="outline-3">
+<h3 id="org9572e96"><span class="section-number-3">7.1.</span> multi class 动态绑定v-band</h3>
 <div class="outline-text-3" id="text-7-1">
 <ol class="org-ol">
 <li>三目运算指定class</li>
@@ -489,9 +482,8 @@ id, href, key, für characters von DOM elements
 </ol>
 </div>
 </div>
-
-<div id="outline-container-orgd855f9c" class="outline-3">
-<h3 id="orgd855f9c"><span class="section-number-3">7.2.</span> multi style 动态绑定v-band</h3>
+<div id="outline-container-org8de176a" class="outline-3">
+<h3 id="org8de176a"><span class="section-number-3">7.2.</span> multi style 动态绑定v-band</h3>
 <div class="outline-text-3" id="text-7-2">
 <ol class="org-ol">
 <li>三目运算指定style</li>
@@ -501,26 +493,24 @@ id, href, key, für characters von DOM elements
 </div>
 </div>
 </div>
-
-<div id="outline-container-org78544f1" class="outline-2">
-<h2 id="org78544f1"><span class="section-number-2">8.</span> v-show</h2>
+<div id="outline-container-orgc266d23" class="outline-2">
+<h2 id="orgc266d23"><span class="section-number-2">8.</span> v-show</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 if v-show is false, the DOM element is already included, but will not be presented.
 </p>
 </div>
 </div>
-
-<div id="outline-container-org92c1b87" class="outline-2">
-<h2 id="org92c1b87"><span class="section-number-2">9.</span> v-if</h2>
+<div id="outline-container-orgddcad8e" class="outline-2">
+<h2 id="orgddcad8e"><span class="section-number-2">9.</span> v-if</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 if v-if is false, the DOM element will be deleted
 </p>
 </div>
 </div>
-<div id="outline-container-org3dfee06" class="outline-2">
-<h2 id="org3dfee06"><span class="section-number-2">10.</span> watch multiple value</h2>
+<div id="outline-container-orga3234ba" class="outline-2">
+<h2 id="orga3234ba"><span class="section-number-2">10.</span> watch multiple value</h2>
 <div class="outline-text-2" id="text-10">
 <div class="org-src-container">
 <pre class="src src-js">watch(
@@ -533,22 +523,19 @@ if v-if is false, the DOM element will be deleted
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgb3e9a1a" class="outline-2">
-<h2 id="orgb3e9a1a"><span class="section-number-2">11.</span> reactive multiple value</h2>
+<div id="outline-container-org155b2eb" class="outline-2">
+<h2 id="org155b2eb"><span class="section-number-2">11.</span> reactive multiple value</h2>
 <div class="outline-text-2" id="text-11">
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">platedata</span> :PlatedataType[]  = reactive([])
-platedata.push({id:1, name:<span style="color: #2d9574;">"6 Well"</span>, highlight: <span style="color: #a45bad;">false</span>, editable: <span style="color: #a45bad;">true</span>, show: <span style="color: #a45bad;">false</span>})
+<pre class="src src-js">const platedata :PlatedataType[]  = reactive([])
+platedata.push({id:1, name:"6 Well", highlight: false, editable: true, show: false})
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="postamble" class="status">
-<p class="author">Author: si</p>
-<p class="date">Created: 2025-01-24 Fr 19:50</p>
-<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+<div id="kb-postamble" class="status">
+<div class="kb-footer"><a href="../index.html" target="_parent">&larr; Back to Index</a></div>
 </div>
 </body>
 </html>

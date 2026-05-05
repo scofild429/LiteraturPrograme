@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2026-05-05 Tue 20:04 -->
+<!-- 2026-05-05 Tue 20:03 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Postgresql</title>
+<title>LangChain</title>
 <meta name="author" content="silin" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
@@ -194,338 +194,68 @@
 <link rel="stylesheet" href="style.css"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <script src="toc-sidebar.js" defer></script>
-<script>
-  window.MathJax = {
-    tex: {
-      ams: {
-        multlineWidth: '85%'
-      },
-      tags: 'ams',
-      tagSide: 'right',
-      tagIndent: '.8em'
-    },
-    chtml: {
-      scale: 1.0,
-      displayAlign: 'center',
-      displayIndent: '0em'
-    },
-    svg: {
-      scale: 1.0,
-      displayAlign: 'center',
-      displayIndent: '0em'
-    },
-    output: {
-      font: 'mathjax-modern',
-      displayOverflow: 'overflow'
-    }
-  };
-</script>
-
-<script
-  id="MathJax-script"
-  async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
 </head>
 <body>
 <div id="kb-content" class="content">
-<h1 class="title">Postgresql</h1>
+<h1 class="title">LangChain</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2e4b215">1. basic OP</a></li>
-<li><a href="#org9666815">2. src block</a>
+<li><a href="#org77a7166">1. LangGraph</a>
 <ul>
-<li><a href="#orgd39dbff">2.1. with header</a></li>
-<li><a href="#orgf1bab3f">2.2. with session</a></li>
+<li><a href="#org03bc407">1.1. Time Travel</a></li>
 </ul>
 </li>
+<li><a href="#orgb3d3808">2. Stream</a></li>
+<li><a href="#org3d7793c">3. Command</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2e4b215" class="outline-2">
-<h2 id="org2e4b215"><span class="section-number-2">1.</span> basic OP</h2>
+<div id="outline-container-org77a7166" class="outline-2">
+<h2 id="org77a7166"><span class="section-number-2">1.</span> LangGraph</h2>
 <div class="outline-text-2" id="text-1">
-<div class="org-src-container">
-<pre class="src src-sh">sudo apt install postgresql-client-common
-
-sudo apt install postgresql postgresql-contrib
-</pre>
+<ul class="org-ul">
+<li>chickpoint: StateSnapshot presents chickpoint.</li>
+</ul>
 </div>
-
-<p>
-sudo -i -u postgres
-psql
-</p>
-<pre class="example">
-swith to psql user (postgres, auto created), and then login in
-</pre>
-
-
-<p>
-sudo -u postgres psql
-</p>
-<pre class="example">
-login psql from current user
-</pre>
-
-
-<p>
-\password postgres;
-OR
-alter user postgres with PASSWORD 'new<sub>password</sub>';
-</p>
-<pre class="example">
-set password
-</pre>
-
-
-
-<p>
-psql -h localhost -U 'user<sub>name</sub>' (with be asked for password)
-</p>
-<pre class="example">
-login with password, for locally distributed or remotely
-for remote login, please install at least one client version( install postgres-client-12)
-Had to set listen_addresses='*' in postgresql.conf to allow for incoming connections from any ip / all ip
-add &lt;hostssl	 all            all             0.0.0.0/0    		md5&gt; to allow ssl connection
-if remotely, please check if the port is open
-</pre>
-
-
-<p>
-psql "sslmode=require host=141.5.103.1 port=5432 dbname=postgres" &#x2013;username=postgres
-</p>
-
-<p>
-\l
-\c database
-\dt
-\q
-</p>
-
-
-<div class="org-src-container">
-<pre class="src src-nil">DROP SCHEMA public CASCADE;
-CREATE SCHEMA public;
-</pre>
-</div>
-<pre class="example">
-drop all table
-</pre>
+<div id="outline-container-org03bc407" class="outline-3">
+<h3 id="org03bc407"><span class="section-number-3">1.1.</span> Time Travel</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>with threadID and checkpointID we can get the state  and rerun it with invoke or stream</li>
+<li>before start the rerun, we can use (graph.update<sub>state</sub>) update the state at first, and give a new name with (as<sub>node</sub>), then rerun</li>
+<li></li>
+</ul>
 </div>
 </div>
-<div id="outline-container-org9666815" class="outline-2">
-<h2 id="org9666815"><span class="section-number-2">2.</span> src block</h2>
+</div>
+<div id="outline-container-orgb3d3808" class="outline-2">
+<h2 id="orgb3d3808"><span class="section-number-2">2.</span> Stream</h2>
 <div class="outline-text-2" id="text-2">
-</div>
-<div id="outline-container-orgd39dbff" class="outline-3">
-<h3 id="orgd39dbff"><span class="section-number-3">2.1.</span> with header</h3>
-<div class="outline-text-3" id="text-2-1">
-<div class="org-src-container">
-<pre class="src src-sql">create table personv (
- id int, 
- firstname varchar(50),
- lastname varchar(50),
- gender varchar(6),
- dataofbirth DATE
-) ;
-#+end_psrc
-
-#+RESULTS:
-|---|
-
-
-#+header: :engine postgresql
-#+header: :dbhost 141.5.103.1
-#+header: :dbuser postgres
-#+header: :dbpassword "xxx"
-#+header: :database postgres
-#+begin_src sql 
-CREATE TABLE articles (
-  id SERIAL PRIMARY KEY,
-  title VARCHAR(255),
-  content TEXT,
-  published_by INT,
-  published_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  CONSTRAINT fk_articles_users FOREIGN KEY (published_by) REFERENCES users (id)
-);
-</pre>
-</div>
-
-<table>
-
-
-<colgroup>
-<col  class="org-left">
-</colgroup>
-<tbody>
-<tr>
-<td class="org-left">CREATE TABLE</td>
-</tr>
-</tbody>
-</table>
+<p>
+Agent stream mode
+</p>
+<ul class="org-ul">
+<li>custom: only stream the customized content in Tools</li>
+<li>message: stream token by token from LLM and final resulut from Tool</li>
+<li>update: stream the final result of LLM node and Tool, be careful, for RaAct model, it can contains many LLM nodes.</li>
+</ul>
 </div>
 </div>
-<div id="outline-container-orgf1bab3f" class="outline-3">
-<h3 id="orgf1bab3f"><span class="section-number-3">2.2.</span> with session</h3>
-<div class="outline-text-3" id="text-2-2">
-<div class="org-src-container">
-<pre class="src src-sql">\l
-</pre>
-</div>
+<div id="outline-container-org3d7793c" class="outline-2">
+<h2 id="org3d7793c"><span class="section-number-2">3.</span> Command</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>resume=&#x2026;:
+"Wake up a paused interrupt() and give it this data." (Usually sent from outside the graph).</li>
 
-<table>
+<li>goto=&#x2026;:
+"Stop this node and jump immediately to these specific nodes next." (Usually returned from inside a node).</li>
 
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-left">
-
-<col  class="org-left">
-
-<col  class="org-left">
-
-<col  class="org-left">
-
-<col  class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">List of databases</th>
-<th scope="col" class="org-left">&#xa0;</th>
-<th scope="col" class="org-left">&#xa0;</th>
-<th scope="col" class="org-left">&#xa0;</th>
-<th scope="col" class="org-left">&#xa0;</th>
-<th scope="col" class="org-left">&#xa0;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">Name</td>
-<td class="org-left">Owner</td>
-<td class="org-left">Encoding</td>
-<td class="org-left">Collate</td>
-<td class="org-left">Ctype</td>
-<td class="org-left">Access privileges</td>
-</tr>
-
-<tr>
-<td class="org-left">postgres</td>
-<td class="org-left">postgres</td>
-<td class="org-left">UTF8</td>
-<td class="org-left">zh<sub>CN.UTF</sub>-8</td>
-<td class="org-left">zh<sub>CN.UTF</sub>-8</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">si</td>
-<td class="org-left">postgres</td>
-<td class="org-left">UTF8</td>
-<td class="org-left">zh<sub>CN.UTF</sub>-8</td>
-<td class="org-left">zh<sub>CN.UTF</sub>-8</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">template0</td>
-<td class="org-left">postgres</td>
-<td class="org-left">UTF8</td>
-<td class="org-left">zh<sub>CN.UTF</sub>-8</td>
-<td class="org-left">zh<sub>CN.UTF</sub>-8</td>
-<td class="org-left">=c/postgres</td>
-</tr>
-
-<tr>
-<td class="org-left">postgres=CTc/postgres</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">template1</td>
-<td class="org-left">postgres</td>
-<td class="org-left">UTF8</td>
-<td class="org-left">zh<sub>CN.UTF</sub>-8</td>
-<td class="org-left">zh<sub>CN.UTF</sub>-8</td>
-<td class="org-left">=c/postgres</td>
-</tr>
-
-<tr>
-<td class="org-left">postgres=CTc/postgres</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">test</td>
-<td class="org-left">postgres</td>
-<td class="org-left">UTF8</td>
-<td class="org-left">zh<sub>CN.UTF</sub>-8</td>
-<td class="org-left">zh<sub>CN.UTF</sub>-8</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-</tbody>
-</table>
-
-<div class="org-src-container">
-<pre class="src src-sql">\d 
-</pre>
-</div>
-
-<table>
-
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-left">
-
-<col  class="org-left">
-
-<col  class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">List of relations</th>
-<th scope="col" class="org-left">&#xa0;</th>
-<th scope="col" class="org-left">&#xa0;</th>
-<th scope="col" class="org-left">&#xa0;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">Schema</td>
-<td class="org-left">Name</td>
-<td class="org-left">Type</td>
-<td class="org-left">Owner</td>
-</tr>
-
-<tr>
-<td class="org-left">public</td>
-<td class="org-left">person</td>
-<td class="org-left">table</td>
-<td class="org-left">si</td>
-</tr>
-
-<tr>
-<td class="org-left">public</td>
-<td class="org-left">personv</td>
-<td class="org-left">table</td>
-<td class="org-left">postgres</td>
-</tr>
-</tbody>
-</table>
-</div>
+<li>update=&#x2026;:
+"Merge this dictionary into the graph's State." (Can be used inside or outside).</li>
+</ul>
 </div>
 </div>
 </div>

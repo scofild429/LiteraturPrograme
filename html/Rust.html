@@ -1,13 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2025-04-07 Mo 12:35 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<!-- 2026-05-05 Tue 20:04 -->
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>RUST</title>
-<meta name="author" content="si" />
+<meta name="author" content="silin" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
   #content { max-width: 60em; margin: auto; }
@@ -193,51 +191,92 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<link rel="stylesheet" href="style.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<script src="toc-sidebar.js" defer></script>
 </head>
 <body>
-<div id="content" class="content">
+<div id="kb-content" class="content">
 <h1 class="title">RUST</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org3ec6cf7">1. array and slienc</a></li>
-<li><a href="#org68a3c5e">2. str String &amp;[] Vec convert</a></li>
-<li><a href="#orgeee92bc">3. 所有权</a></li>
-<li><a href="#orgc3df001">4. test</a></li>
-<li><a href="#orgb311608">5. item collections</a></li>
-<li><a href="#orgab7cf32">6. 特征对象</a></li>
-<li><a href="#orgfda46e0">7. mut</a>
+<li><a href="#org8f1bd9c">1. Learning</a>
 <ul>
-<li><a href="#org7563934">7.1. mut example</a></li>
-<li><a href="#orgf665101">7.2. different lifetime</a></li>
+<li><a href="#org49503df">1.1. Send und Sync</a></li>
+<li><a href="#org921775c">1.2. Pin and Unpin</a></li>
 </ul>
 </li>
-<li><a href="#org8a307c1">8. Traits with where</a></li>
+<li><a href="#org3dd4926">2. array and slienc</a></li>
+<li><a href="#orgee10706">3. str String &amp;[] Vec convert</a></li>
+<li><a href="#org975f068">4. Bench</a></li>
+<li><a href="#org9197647">5. chain of opertation</a></li>
+<li><a href="#org7152b4b">6. 所有权</a></li>
+<li><a href="#org8d708c0">7. test</a></li>
+<li><a href="#orgacb23e4">8. item collections</a></li>
+<li><a href="#orgafe4ed3">9. 特征对象</a></li>
+<li><a href="#orgb82d5c2">10. mut</a>
+<ul>
+<li><a href="#org3f568f8">10.1. mut example</a></li>
+<li><a href="#orgaaed4c8">10.2. different lifetime</a></li>
+</ul>
+</li>
+<li><a href="#org35d80ff">11. Traits with where</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org3ec6cf7" class="outline-2">
-<h2 id="org3ec6cf7"><span class="section-number-2">1.</span> array and slienc</h2>
+<div id="outline-container-org8f1bd9c" class="outline-2">
+<h2 id="org8f1bd9c"><span class="section-number-2">1.</span> Learning</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+线程，进程，异步都可以实现并发
+</p>
+</div>
+<div id="outline-container-org49503df" class="outline-3">
+<h3 id="org49503df"><span class="section-number-3">1.1.</span> Send und Sync</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Send make sure the value can be transfered in difference threads saftly</li>
+<li>and Sync make sure the transfered value can be saftly modified in different threads</li>
+<li>Such as Mutex has both</li>
+<li>But RefCell has only Send, which makes this value can only be infered, not be modified.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org921775c" class="outline-3">
+<h3 id="org921775c"><span class="section-number-3">1.2.</span> Pin and Unpin</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>Pin is used to fix the address of a address, which means, it is for pointer, which is a address.</li>
+<li>Since in some cases, such fix is required, such as Future, (so that it can be recoverd later)</li>
+<li>Which wenn want to operate, move such cases, we need Unpin to make sure, move it together, not to break the Future down while reference</li>
+<li>A type is always either Unpin or !Unpin, regardless of pinning</li>
+<li>!Unpin can not be moved,</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org3dd4926" class="outline-2">
+<h2 id="org3dd4926"><span class="section-number-2">2.</span> array and slienc</h2>
+<div class="outline-text-2" id="text-2">
 <p>
 数组类型表示为[T; N]，数组的引用类型表示为&amp;[T;N]，Slice类型表示为[T]，Slice的引用类型表示为&amp;[T]。
 </p>
 </div>
 </div>
-<div id="outline-container-org68a3c5e" class="outline-2">
-<h2 id="org68a3c5e"><span class="section-number-2">2.</span> str String &amp;[] Vec convert</h2>
-<div class="outline-text-2" id="text-2">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<div id="outline-container-orgee10706" class="outline-2">
+<h2 id="orgee10706"><span class="section-number-2">3.</span> str String &amp;[] Vec convert</h2>
+<div class="outline-text-2" id="text-3">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <tbody>
 <tr>
@@ -321,33 +360,112 @@
 </table>
 </div>
 </div>
-<div id="outline-container-orgeee92bc" class="outline-2">
-<h2 id="orgeee92bc"><span class="section-number-2">3.</span> 所有权</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org975f068" class="outline-2">
+<h2 id="org975f068"><span class="section-number-2">4.</span> Bench</h2>
+<div class="outline-text-2" id="text-4">
 <div class="org-src-container">
-<pre class="src src-rust"><span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">main</span>() {
-    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">s1</span> = <span style="color: #ce537a; font-weight: bold;">String</span>::from(<span style="color: #2d9574;">"hello"</span>);
-    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">s2</span> = s1;
+<pre class="src src-rust">#![feature(test)]
 
-    <span style="color: #4f97d7;">println!</span>(<span style="color: #2d9574;">"</span><span style="color: #2d9574; font-style: italic;">{}</span><span style="color: #2d9574;">, world!"</span>, s2);
-    <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">println!("{}, world!", s1);  </span>
+extern crate rand;
+extern crate test;
+
+fn sum_for(x: &amp;[f64]) -&gt; f64 {
+    let mut result: f64 = 0.0;
+    for i in 0..x.len() {
+        result += x[i];
+    }
+    result
+}
+
+fn sum_iter(x: &amp;[f64]) -&gt; f64 {
+    x.iter().sum::&lt;f64&gt;()
+}
+
+#[cfg(test)]
+mod bench {
+    use test::Bencher;
+    use rand::{Rng,thread_rng};
+    use super::*;
+
+    const LEN: usize = 1024*1024;
+
+    fn rand_array(cnt: u32) -&gt; Vec&lt;f64&gt; {
+        let mut rng = thread_rng();
+        (0..cnt).map(|_| rng.gen::&lt;f64&gt;()).collect()
+    }
+
+    #[bench]
+    fn bench_for(b: &amp;mut Bencher) {
+        let samples = rand_array(LEN as u32);
+        b.iter(|| {
+            sum_for(&amp;samples)
+        })
+    }
+
+    #[bench]
+    fn bench_iter(b: &amp;mut Bencher) {
+        let samples = rand_array(LEN as u32);
+        b.iter(|| {
+            sum_iter(&amp;samples)
+        })
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org9197647" class="outline-2">
+<h2 id="org9197647"><span class="section-number-2">5.</span> chain of opertation</h2>
+<div class="outline-text-2" id="text-5">
+<div class="org-src-container">
+<pre class="src src-rust">fn main() {
+    let v = vec![1u64, 2, 3, 4, 5, 6];
+    let val = v.iter()
+        .enumerate()
+        .filter(|&amp;(idx, _)| idx % 2 == 0)
+        .map(|(_, val)| val)
+        .fold(0u64, |sum, acm| sum + acm);
+
+    println!("{}", val);
+
+}
+</pre>
+</div>
+
+<pre class="example">
+9
+</pre>
+</div>
+</div>
+<div id="outline-container-org7152b4b" class="outline-2">
+<h2 id="org7152b4b"><span class="section-number-2">6.</span> 所有权</h2>
+<div class="outline-text-2" id="text-6">
+<div class="org-src-container">
+<pre class="src src-rust">fn main() {
+    let s1 = String::from("hello");
+    let s2 = s1;
+
+    println!("{}, world!", s2);
+    // println!("{}, world!", s1);  
 
 }
 
 </pre>
 </div>
 
+
+
 <div class="org-src-container">
-<pre class="src src-rust"><span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">main</span>() {
-    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">s</span> = <span style="color: #ce537a; font-weight: bold;">String</span>::from(<span style="color: #2d9574;">"hello world"</span>);
+<pre class="src src-rust">fn main() {
+    let s = String::from("hello world");
 
-    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">word</span> = first_word(s);
+    let word = first_word(s);
 
-    <span style="color: #2aa1ae; background-color: #292e34;">//      </span><span style="color: #2aa1ae; background-color: #292e34;">s.clear(); // error!</span>
+    //      s.clear(); // error!
 
-    <span style="color: #4f97d7;">println!</span>(<span style="color: #2d9574;">"the first word is: </span><span style="color: #2d9574; font-style: italic;">{}</span><span style="color: #2d9574;">"</span>, word);
+    println!("the first word is: {}", word);
 }
-<span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">first_word</span>(<span style="color: #7590db;">s</span>: <span style="color: #ce537a; font-weight: bold;">String</span>) -&gt; <span style="color: #ce537a; font-weight: bold;">String</span> {
+fn first_word(s: String) -&gt; String {
     s
 }
 
@@ -355,38 +473,43 @@
 </pre>
 </div>
 
+<pre class="example">
+the first word is: hello world
+</pre>
+
+
 
 <div class="org-src-container">
-<pre class="src src-rust"><span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">main</span>() {
-    <span style="color: #bc6ec5;">#[derive(Debug)]</span>
-    <span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #ce537a; font-weight: bold;">User</span> {
-        <span style="color: #7590db;">active</span>: <span style="color: #ce537a; font-weight: bold;">bool</span>,
-        <span style="color: #7590db;">username</span>: <span style="color: #ce537a; font-weight: bold;">String</span>,
-        <span style="color: #7590db;">email</span>: <span style="color: #ce537a; font-weight: bold;">String</span>,
-        <span style="color: #7590db;">sign_in_count</span>: <span style="color: #ce537a; font-weight: bold;">u64</span>,
+<pre class="src src-rust">fn main() {
+    #[derive(Debug)]
+    struct User {
+        active: bool,
+        username: String,
+        email: String,
+        sign_in_count: u64,
     }
 
-    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">user1</span> = <span style="color: #ce537a; font-weight: bold;">User</span> {
-        <span style="color: #7590db;">email</span>: <span style="color: #ce537a; font-weight: bold;">String</span>::from(<span style="color: #2d9574;">"someone@example.com"</span>),
-        <span style="color: #7590db;">username</span>: <span style="color: #ce537a; font-weight: bold;">String</span>::from(<span style="color: #2d9574;">"someusername123"</span>),
-        <span style="color: #7590db;">active</span>: <span style="color: #4f97d7; font-weight: bold;">true</span>,
-        <span style="color: #7590db;">sign_in_count</span>: 1,
+    let user1 = User {
+        email: String::from("someone@example.com"),
+        username: String::from("someusername123"),
+        active: true,
+        sign_in_count: 1,
     };
-    <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">let user2 = User {</span>
-    <span style="color: #2aa1ae; background-color: #292e34;">//     </span><span style="color: #2aa1ae; background-color: #292e34;">email: String::from("another@example.com"),</span>
-    <span style="color: #2aa1ae; background-color: #292e34;">//     </span><span style="color: #2aa1ae; background-color: #292e34;">..user1</span>
-    <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">};</span>
+    // let user2 = User {
+    //     email: String::from("another@example.com"),
+    //     ..user1
+    // };
 
-    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">user2</span> = <span style="color: #ce537a; font-weight: bold;">User</span> {
-        <span style="color: #7590db;">active</span>: user1.active,
-        <span style="color: #7590db;">username</span>: <span style="color: #ce537a; font-weight: bold;">String</span>::from(<span style="color: #2d9574;">"uset2"</span>),
-        <span style="color: #7590db;">email</span>: <span style="color: #ce537a; font-weight: bold;">String</span>::from(<span style="color: #2d9574;">"another@example.com"</span>),
-        <span style="color: #7590db;">sign_in_count</span>: user1.sign_in_count,
+    let user2 = User {
+        active: user1.active,
+        username: String::from("uset2"),
+        email: String::from("another@example.com"),
+        sign_in_count: user1.sign_in_count,
     };
 
-    <span style="color: #4f97d7;">println!</span>(<span style="color: #2d9574;">"</span><span style="color: #2d9574; font-style: italic;">{}</span><span style="color: #2d9574;">"</span>, user1.email);
-    <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#19979;&#38754;&#36825;&#34892;&#20250;&#25253;&#38169;</span>
-    <span style="color: #4f97d7;">println!</span>(<span style="color: #2d9574;">"</span><span style="color: #2d9574; font-style: italic;">{:?}</span><span style="color: #2d9574;">"</span>, user2)
+    println!("{}", user1.email);
+    // 下面这行会报错
+    println!("{:?}", user2)
 
 }
 
@@ -395,36 +518,42 @@
 </pre>
 </div>
 
+<pre class="example">
+someone@example.com
+User { active: true, username: "uset2", email: "another@example.com", sign_in_count: 1 }
+</pre>
+
+
 <ul class="org-ul">
 <li>HITS:
 no matter  with   ..user1 or  xxx: user1.xxx to create new user with old user, if only  fundemantal  elements have been copy, the old user can still be available, and the other  non-fundemantal attributes also . Otherwise the old user instance and also the non-fundemantal attributes are both not available.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc3df001" class="outline-2">
-<h2 id="orgc3df001"><span class="section-number-2">4.</span> test</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-org8d708c0" class="outline-2">
+<h2 id="org8d708c0"><span class="section-number-2">7.</span> test</h2>
+<div class="outline-text-2" id="text-7">
 <div class="org-src-container">
-<pre class="src src-rust"><span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">main</span>() {
-    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">greetings</span> = [<span style="color: #2d9574;">"Hello"</span>, <span style="color: #2d9574;">"Hola"</span>, <span style="color: #2d9574;">"Bonjour"</span>,
-                     <span style="color: #2d9574;">"Ciao"</span>, <span style="color: #2d9574;">"&#12371;&#12435;&#12395;&#12385;&#12399;"</span>, <span style="color: #2d9574;">"&#50504;&#45397;&#54616;&#49464;&#50836;"</span>,
-                     <span style="color: #2d9574;">"Cze&#347;&#263;"</span>, <span style="color: #2d9574;">"Ol&#225;"</span>, <span style="color: #2d9574;">"&#1047;&#1076;&#1088;&#1072;&#1074;&#1089;&#1090;&#1074;&#1091;&#1081;&#1090;&#1077;"</span>,
-                     <span style="color: #2d9574;">"ch&#224;o b&#7841;n"</span>, <span style="color: #2d9574;">"&#24744;&#22909;"</span>];
+<pre class="src src-rust">fn main() {
+    let greetings = ["Hello", "Hola", "Bonjour",
+                     "Ciao", "こんにちは", "안녕하세요",
+                     "Cześć", "Olá", "Здравствуйте",
+                     "chào bạn", "您好"];
 
-    <span style="color: #4f97d7; font-weight: bold;">for</span> (num, greeting) <span style="color: #4f97d7; font-weight: bold;">in</span> greetings.iter().enumerate() {
-        <span style="color: #4f97d7;">print!</span>(<span style="color: #2d9574;">"</span><span style="color: #2d9574; font-style: italic;">{}</span><span style="color: #2d9574;"> : "</span>, greeting);
-        <span style="color: #4f97d7; font-weight: bold;">match</span> num {
-            0 =&gt;  <span style="color: #4f97d7;">println!</span>(<span style="color: #2d9574;">"This code is editable and runnable!"</span>),
-            1 =&gt;  <span style="color: #4f97d7;">println!</span>(<span style="color: #2d9574;">"Este c&#243;digo es editable y ejecutable!"</span>),
-            2 =&gt;  <span style="color: #4f97d7;">println!</span>(<span style="color: #2d9574;">"Ce code est modifiable et ex&#233;cutable!"</span>),
-            3 =&gt;  <span style="color: #4f97d7;">println!</span>(<span style="color: #2d9574;">"Questo codice &#232; modificabile ed eseguibile!"</span>),
-            4 =&gt;  <span style="color: #4f97d7;">println!</span>(<span style="color: #2d9574;">"&#12371;&#12398;&#12467;&#12540;&#12489;&#12399;&#32232;&#38598;&#12375;&#12390;&#23455;&#34892;&#20986;&#26469;&#12414;&#12377;&#65281;"</span>),
-            5 =&gt;  <span style="color: #4f97d7;">println!</span>(<span style="color: #2d9574;">"&#50668;&#44592;&#50640;&#49436; &#53076;&#46300;&#47484; &#49688;&#51221;&#54616;&#44256; &#49892;&#54665;&#54624; &#49688; &#51080;&#49845;&#45768;&#45796;!"</span>),
-            6 =&gt;  <span style="color: #4f97d7;">println!</span>(<span style="color: #2d9574;">"Ten kod mo&#380;na edytowa&#263; oraz uruchomi&#263;!"</span>),
-            7 =&gt;  <span style="color: #4f97d7;">println!</span>(<span style="color: #2d9574;">"Esse c&#243;digo &#233; edit&#225;vel e execut&#225;vel!"</span>),
-            8 =&gt;  <span style="color: #4f97d7;">println!</span>(<span style="color: #2d9574;">"&#1069;&#1090;&#1086;&#1090; &#1082;&#1086;&#1076; &#1084;&#1086;&#1078;&#1085;&#1086; &#1086;&#1090;&#1088;&#1077;&#1076;&#1072;&#1082;&#1090;&#1080;&#1088;&#1086;&#1074;&#1072;&#1090;&#1100; &#1080; &#1079;&#1072;&#1087;&#1091;&#1089;&#1090;&#1080;&#1090;&#1100;!"</span>),
-            9 =&gt;  <span style="color: #4f97d7;">println!</span>(<span style="color: #2d9574;">"B&#7841;n c&#243; th&#7875; edit v&#224; run code tr&#7921;c ti&#7871;p!"</span>),
-            10 =&gt;  <span style="color: #4f97d7;">println!</span>(<span style="color: #2d9574;">"&#36825;&#27573;&#20195;&#30721;&#26159;&#21487;&#20197;&#32534;&#36753;&#24182;&#19988;&#33021;&#22815;&#36816;&#34892;&#30340;&#65281;"</span>),
+    for (num, greeting) in greetings.iter().enumerate() {
+        print!("{} : ", greeting);
+        match num {
+            0 =&gt;  println!("This code is editable and runnable!"),
+            1 =&gt;  println!("Este código es editable y ejecutable!"),
+            2 =&gt;  println!("Ce code est modifiable et exécutable!"),
+            3 =&gt;  println!("Questo codice è modificabile ed eseguibile!"),
+            4 =&gt;  println!("このコードは編集して実行出来ます！"),
+            5 =&gt;  println!("여기에서 코드를 수정하고 실행할 수 있습니다!"),
+            6 =&gt;  println!("Ten kod można edytować oraz uruchomić!"),
+            7 =&gt;  println!("Esse código é editável e executável!"),
+            8 =&gt;  println!("Этот код можно отредактировать и запустить!"),
+            9 =&gt;  println!("Bạn có thể edit và run code trực tiếp!"),
+            10 =&gt;  println!("这段代码是可以编辑并且能够运行的！"),
             _ =&gt;  {},
         }
     }
@@ -433,106 +562,111 @@ no matter  with   ..user1 or  xxx: user1.xxx to create new user with old user, i
 </div>
 </div>
 </div>
-<div id="outline-container-orgb311608" class="outline-2">
-<h2 id="orgb311608"><span class="section-number-2">5.</span> item collections</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orgacb23e4" class="outline-2">
+<h2 id="orgacb23e4"><span class="section-number-2">8.</span> item collections</h2>
+<div class="outline-text-2" id="text-8">
 <div class="org-src-container">
-<pre class="src src-rust"><span style="color: #4f97d7; font-weight: bold;">impl</span> <span style="color: #ce537a; font-weight: bold;">Summary</span> <span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #ce537a; font-weight: bold;">Post</span>    
+<pre class="src src-rust">impl Summary for Post    
 
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-rust"><span style="color: #4f97d7; font-weight: bold;">pub</span> <span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">notify</span>&lt;<span style="color: #7590db;">T</span>: <span style="color: #ce537a; font-weight: bold;">Summary</span>&gt;(<span style="color: #7590db;">item</span>: <span style="color: #b2b2b2; background-color: #292b2e;">&amp;</span><span style="color: #ce537a; font-weight: bold;">T</span>) {
-    <span style="color: #4f97d7;">println!</span>(<span style="color: #2d9574;">"Breaking news! </span><span style="color: #2d9574; font-style: italic;">{}</span><span style="color: #2d9574;">"</span>, item.summarize());
+<pre class="src src-rust">pub fn notify&lt;T: Summary&gt;(item: &amp;T) {
+    println!("Breaking news! {}", item.summarize());
 }
-<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">is like</span>
-<span style="color: #4f97d7; font-weight: bold;">pub</span> <span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">notify</span>(<span style="color: #7590db;">item</span>: <span style="color: #b2b2b2; background-color: #292b2e;">&amp;</span><span style="color: #4f97d7; font-weight: bold;">impl</span> <span style="color: #ce537a; font-weight: bold;">Summary</span>) {
-    <span style="color: #4f97d7;">println!</span>(<span style="color: #2d9574;">"Breaking news! </span><span style="color: #2d9574; font-style: italic;">{}</span><span style="color: #2d9574;">"</span>, item.summarize());
+// is like
+pub fn notify(item: &amp;impl Summary) {
+    println!("Breaking news! {}", item.summarize());
 }
 
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-rust"><span style="color: #bc6ec5;">#[derive(Debug)]</span>
-<span style="color: #4f97d7; font-weight: bold;">enum</span> <span style="color: #ce537a; font-weight: bold;">UiObject</span> {
-    <span style="color: #ce537a; font-weight: bold;">Button</span>,
-    <span style="color: #ce537a; font-weight: bold;">SelectBox</span>,
+<pre class="src src-rust">#[derive(Debug)]
+enum UiObject {
+    Button,
+    SelectBox,
 }
 
-<span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">main</span>() {
-    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">objects</span> = [
-        <span style="color: #ce537a; font-weight: bold;">UiObject</span>::<span style="color: #ce537a; font-weight: bold;">Button</span>,
-        <span style="color: #ce537a; font-weight: bold;">UiObject</span>::<span style="color: #ce537a; font-weight: bold;">SelectBox</span>
+fn main() {
+    let objects = [
+        UiObject::Button,
+        UiObject::SelectBox
     ];
 
-    <span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #7590db;">o</span> <span style="color: #4f97d7; font-weight: bold;">in</span> objects {
+    for o in objects {
         draw(o)
     }
 }
 
-<span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">draw</span>(<span style="color: #7590db;">o</span>: <span style="color: #ce537a; font-weight: bold;">UiObject</span>) {
-    <span style="color: #4f97d7;">println!</span>(<span style="color: #2d9574;">"</span><span style="color: #2d9574; font-style: italic;">{:?}</span><span style="color: #2d9574;">"</span>,o);
+fn draw(o: UiObject) {
+    println!("{:?}",o);
 }
 </pre>
 </div>
+
+<pre class="example">
+Button
+SelectBox
+</pre>
 </div>
 </div>
-<div id="outline-container-orgab7cf32" class="outline-2">
-<h2 id="orgab7cf32"><span class="section-number-2">6.</span> 特征对象</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-orgafe4ed3" class="outline-2">
+<h2 id="orgafe4ed3"><span class="section-number-2">9.</span> 特征对象</h2>
+<div class="outline-text-2" id="text-9">
 <div class="org-src-container">
-<pre class="src src-rust"><span style="color: #4f97d7; font-weight: bold;">pub</span> <span style="color: #4f97d7; font-weight: bold;">trait</span> <span style="color: #ce537a; font-weight: bold;">Draw</span> {
-    <span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">draw</span>(<span style="color: #b2b2b2; background-color: #292b2e;">&amp;</span><span style="color: #4f97d7; font-weight: bold;">self</span>);
+<pre class="src src-rust">pub trait Draw {
+    fn draw(&amp;self);
 }
 
-<span style="color: #4f97d7; font-weight: bold;">pub</span> <span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #ce537a; font-weight: bold;">Button</span> {
-    <span style="color: #4f97d7; font-weight: bold;">pub</span> <span style="color: #7590db;">width</span>: <span style="color: #ce537a; font-weight: bold;">u32</span>,
-    <span style="color: #4f97d7; font-weight: bold;">pub</span> <span style="color: #7590db;">height</span>: <span style="color: #ce537a; font-weight: bold;">u32</span>,
-    <span style="color: #4f97d7; font-weight: bold;">pub</span> <span style="color: #7590db;">label</span>: <span style="color: #ce537a; font-weight: bold;">String</span>,
+pub struct Button {
+    pub width: u32,
+    pub height: u32,
+    pub label: String,
 }
 
-<span style="color: #4f97d7; font-weight: bold;">impl</span> <span style="color: #ce537a; font-weight: bold;">Draw</span> <span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #ce537a; font-weight: bold;">Button</span> {
-    <span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">draw</span>(<span style="color: #b2b2b2; background-color: #292b2e;">&amp;</span><span style="color: #4f97d7; font-weight: bold;">self</span>) {
-        <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#32472;&#21046;&#25353;&#38062;&#30340;&#20195;&#30721;</span>
-        <span style="color: #4f97d7;">println!</span>(<span style="color: #2d9574;">"draw for Button, </span><span style="color: #2d9574; font-style: italic;">{}</span><span style="color: #2d9574;">, </span><span style="color: #2d9574; font-style: italic;">{}</span><span style="color: #2d9574;">, </span><span style="color: #2d9574; font-style: italic;">{}</span><span style="color: #2d9574;">"</span>, <span style="color: #b2b2b2; background-color: #292b2e;">&amp;</span><span style="color: #4f97d7; font-weight: bold;">self</span>.width, <span style="color: #b2b2b2; background-color: #292b2e;">&amp;</span><span style="color: #4f97d7; font-weight: bold;">self</span>.height, <span style="color: #b2b2b2; background-color: #292b2e;">&amp;</span><span style="color: #4f97d7; font-weight: bold;">self</span>.label);
+impl Draw for Button {
+    fn draw(&amp;self) {
+        // 绘制按钮的代码
+        println!("draw for Button, {}, {}, {}", &amp;self.width, &amp;self.height, &amp;self.label);
     }
 }
 
-<span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #ce537a; font-weight: bold;">SelectBox</span> {
-    <span style="color: #7590db;">width</span>: <span style="color: #ce537a; font-weight: bold;">u32</span>,
-    <span style="color: #7590db;">height</span>: <span style="color: #ce537a; font-weight: bold;">u32</span>,
-    <span style="color: #7590db;">options</span>: <span style="color: #ce537a; font-weight: bold;">Vec</span>&lt;<span style="color: #ce537a; font-weight: bold;">String</span>&gt;,
+struct SelectBox {
+    width: u32,
+    height: u32,
+    options: Vec&lt;String&gt;,
 }
 
-<span style="color: #4f97d7; font-weight: bold;">impl</span> <span style="color: #ce537a; font-weight: bold;">Draw</span> <span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #ce537a; font-weight: bold;">SelectBox</span> {
-    <span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">draw</span>(<span style="color: #b2b2b2; background-color: #292b2e;">&amp;</span><span style="color: #4f97d7; font-weight: bold;">self</span>) {
-        <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#32472;&#21046;SelectBox&#30340;&#20195;&#30721;</span>
-        <span style="color: #4f97d7;">println!</span>(<span style="color: #2d9574;">"draw for Selectbox </span><span style="color: #2d9574; font-style: italic;">{}</span><span style="color: #2d9574;">, </span><span style="color: #2d9574; font-style: italic;">{}</span><span style="color: #2d9574;">, </span><span style="color: #2d9574; font-style: italic;">{:?}</span><span style="color: #2d9574;">"</span>, <span style="color: #b2b2b2; background-color: #292b2e;">&amp;</span><span style="color: #4f97d7; font-weight: bold;">self</span>.width, <span style="color: #b2b2b2; background-color: #292b2e;">&amp;</span><span style="color: #4f97d7; font-weight: bold;">self</span>.height, <span style="color: #b2b2b2; background-color: #292b2e;">&amp;</span><span style="color: #4f97d7; font-weight: bold;">self</span>.options);
+impl Draw for SelectBox {
+    fn draw(&amp;self) {
+        // 绘制SelectBox的代码
+        println!("draw for Selectbox {}, {}, {:?}", &amp;self.width, &amp;self.height, &amp;self.options);
     }
 }
 
 
-<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">pub struct Screen {</span>
-<span style="color: #2aa1ae; background-color: #292e34;">//     </span><span style="color: #2aa1ae; background-color: #292e34;">pub components: Vec&lt;Box&lt;dyn Draw&gt;&gt;,</span>
-<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">}</span>
-<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">impl Screen {</span>
-<span style="color: #2aa1ae; background-color: #292e34;">//     </span><span style="color: #2aa1ae; background-color: #292e34;">pub fn run(&amp;self) {</span>
-<span style="color: #2aa1ae; background-color: #292e34;">//         </span><span style="color: #2aa1ae; background-color: #292e34;">for component in self.components.iter() {</span>
-<span style="color: #2aa1ae; background-color: #292e34;">//             </span><span style="color: #2aa1ae; background-color: #292e34;">component.draw();</span>
-<span style="color: #2aa1ae; background-color: #292e34;">//         </span><span style="color: #2aa1ae; background-color: #292e34;">}</span>
-<span style="color: #2aa1ae; background-color: #292e34;">//     </span><span style="color: #2aa1ae; background-color: #292e34;">}</span>
-<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">}</span>
+// pub struct Screen {
+//     pub components: Vec&lt;Box&lt;dyn Draw&gt;&gt;,
+// }
+// impl Screen {
+//     pub fn run(&amp;self) {
+//         for component in self.components.iter() {
+//             component.draw();
+//         }
+//     }
+// }
 
-<span style="color: #4f97d7; font-weight: bold;">pub</span> <span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #ce537a; font-weight: bold;">Screen</span>&lt;<span style="color: #7590db;">T</span>: <span style="color: #ce537a; font-weight: bold;">Draw</span>&gt; {
-    <span style="color: #4f97d7; font-weight: bold;">pub</span> <span style="color: #7590db;">components</span>: <span style="color: #ce537a; font-weight: bold;">Vec</span>&lt;<span style="color: #ce537a; font-weight: bold;">T</span>&gt;,
+pub struct Screen&lt;T: Draw&gt; {
+    pub components: Vec&lt;T&gt;,
 }
 
-<span style="color: #4f97d7; font-weight: bold;">impl</span>&lt;<span style="color: #ce537a; font-weight: bold;">T</span>&gt; <span style="color: #ce537a; font-weight: bold;">Screen</span> &lt;<span style="color: #ce537a; font-weight: bold;">T</span>&gt;
-<span style="color: #4f97d7; font-weight: bold;">where</span> <span style="color: #7590db;">T</span>: <span style="color: #ce537a; font-weight: bold;">Draw</span> {
-    <span style="color: #4f97d7; font-weight: bold;">pub</span> <span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">run</span>(<span style="color: #b2b2b2; background-color: #292b2e;">&amp;</span><span style="color: #4f97d7; font-weight: bold;">self</span>) {
-        <span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #7590db;">component</span> <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7; font-weight: bold;">self</span>.components.iter() {
+impl&lt;T&gt; Screen &lt;T&gt;
+where T: Draw {
+    pub fn run(&amp;self) {
+        for component in self.components.iter() {
             component.draw();
         }
     }
@@ -541,22 +675,22 @@ no matter  with   ..user1 or  xxx: user1.xxx to create new user with old user, i
 
 
 
-<span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">main</span>() {
-    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">screen</span> = <span style="color: #ce537a; font-weight: bold;">Screen</span> {
-        <span style="color: #7590db;">components</span>: <span style="color: #bc6ec5;">vec!</span>[
-            <span style="color: #ce537a; font-weight: bold;">Box</span>::new(<span style="color: #ce537a; font-weight: bold;">SelectBox</span> {
-                <span style="color: #7590db;">width</span>: 75,
-                <span style="color: #7590db;">height</span>: 10,
-                <span style="color: #7590db;">options</span>: <span style="color: #bc6ec5;">vec!</span>[
-                    <span style="color: #ce537a; font-weight: bold;">String</span>::from(<span style="color: #2d9574;">"Yes"</span>),
-                    <span style="color: #ce537a; font-weight: bold;">String</span>::from(<span style="color: #2d9574;">"Maybe"</span>),
-                    <span style="color: #ce537a; font-weight: bold;">String</span>::from(<span style="color: #2d9574;">"No"</span>)
+fn main() {
+    let screen = Screen {
+        components: vec![
+            Box::new(SelectBox {
+                width: 75,
+                height: 10,
+                options: vec![
+                    String::from("Yes"),
+                    String::from("Maybe"),
+                    String::from("No")
                 ],
             }),
-            <span style="color: #ce537a; font-weight: bold;">Box</span>::new(<span style="color: #ce537a; font-weight: bold;">Button</span> {
-                <span style="color: #7590db;">width</span>: 50,
-                <span style="color: #7590db;">height</span>: 10,
-                <span style="color: #7590db;">label</span>: <span style="color: #ce537a; font-weight: bold;">String</span>::from(<span style="color: #2d9574;">"OK"</span>),
+            Box::new(Button {
+                width: 50,
+                height: 10,
+                label: String::from("OK"),
             }),
         ],
     };
@@ -568,37 +702,37 @@ no matter  with   ..user1 or  xxx: user1.xxx to create new user with old user, i
 </div>
 </div>
 </div>
-<div id="outline-container-orgfda46e0" class="outline-2">
-<h2 id="orgfda46e0"><span class="section-number-2">7.</span> mut</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-orgb82d5c2" class="outline-2">
+<h2 id="orgb82d5c2"><span class="section-number-2">10.</span> mut</h2>
+<div class="outline-text-2" id="text-10">
 </div>
-<div id="outline-container-org7563934" class="outline-3">
-<h3 id="org7563934"><span class="section-number-3">7.1.</span> mut example</h3>
-<div class="outline-text-3" id="text-7-1">
+<div id="outline-container-org3f568f8" class="outline-3">
+<h3 id="org3f568f8"><span class="section-number-3">10.1.</span> mut example</h3>
+<div class="outline-text-3" id="text-10-1">
 <div class="org-src-container">
 <pre class="src src-rust">fnmain() {
-    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">x</span> :<span style="color: #ce537a; font-weight: bold;">i32</span> = 48;
-    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">X</span> :<span style="color: #ce537a; font-weight: bold;">i32</span> = 480;
-    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #4f97d7; font-weight: bold;">mut</span> <span style="color: #7590db;">y</span> :<span style="color: #b2b2b2; background-color: #292b2e;">&amp;</span><span style="color: #ce537a; font-weight: bold;">i32</span>        = <span style="color: #b2b2b2; background-color: #292b2e;">&amp;</span>x;    <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">y can be redirected from x to X, but y can not change x</span>
-    <span style="color: #4f97d7; font-weight: bold;">let</span>      <span style="color: #7590db;">z</span>: <span style="color: #b2b2b2; background-color: #292b2e;">&amp;</span><span style="color: #4f97d7; font-weight: bold;">mut</span> <span style="color: #b2b2b2; background-color: #292b2e;">&amp;</span><span style="color: #ce537a; font-weight: bold;">i32</span> = <span style="color: #b2b2b2; background-color: #292b2e;">&amp;</span><span style="color: #4f97d7; font-weight: bold;">mut</span> y  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">z can not be redirected, but z can change y</span>
+    let x :i32 = 48;
+    let X :i32 = 480;
+    let mut y :&amp;i32        = &amp;x;    // y can be redirected from x to X, but y can not change x
+    let      z: &amp;mut &amp;i32 = &amp;mut y  // z can not be redirected, but z can change y
 }
 
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf665101" class="outline-3">
-<h3 id="orgf665101"><span class="section-number-3">7.2.</span> different lifetime</h3>
-<div class="outline-text-3" id="text-7-2">
+<div id="outline-container-orgaaed4c8" class="outline-3">
+<h3 id="orgaaed4c8"><span class="section-number-3">10.2.</span> different lifetime</h3>
+<div class="outline-text-3" id="text-10-2">
 <div class="org-src-container">
-<pre class="src src-rust"><span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">main</span>() {
-    <span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #ce537a; font-weight: bold;">MutStr</span>&lt;'<span style="color: #7590db;">a</span>, '<span style="color: #7590db;">b</span>&gt; {
-        <span style="color: #7590db;">s</span>: <span style="color: #b2b2b2; background-color: #292b2e;">&amp;</span>'<span style="color: #7590db;">a</span> <span style="color: #4f97d7; font-weight: bold;">mut</span> <span style="color: #b2b2b2; background-color: #292b2e;">&amp;</span>'<span style="color: #7590db;">b</span> <span style="color: #ce537a; font-weight: bold;">str</span>,
+<pre class="src src-rust">fn main() {
+    struct MutStr&lt;'a, 'b&gt; {
+        s: &amp;'a mut &amp;'b str,
     }
 
-    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #4f97d7; font-weight: bold;">mut</span> <span style="color: #7590db;">r</span>: <span style="color: #b2b2b2; background-color: #292b2e;">&amp;</span><span style="color: #ce537a; font-weight: bold;">str</span> = <span style="color: #2d9574;">"hello"</span>;
-    <span style="color: #ce537a; font-weight: bold;">Mutstr</span>{<span style="color: #7590db;">s</span>: <span style="color: #b2b2b2; background-color: #292b2e;">&amp;</span><span style="color: #4f97d7; font-weight: bold;">mut</span> r}.s = <span style="color: #2d9574;">"world"</span>;
-    <span style="color: #4f97d7;">println!</span>(<span style="color: #2d9574;">"</span><span style="color: #2d9574; font-style: italic;">{}</span><span style="color: #2d9574;">"</span>, r);
+    let mut r: &amp;str = "hello";
+    Mutstr{s: &amp;mut r}.s = "world";
+    println!("{}", r);
 }
 
 </pre>
@@ -606,86 +740,84 @@ no matter  with   ..user1 or  xxx: user1.xxx to create new user with old user, i
 </div>
 </div>
 </div>
-<div id="outline-container-org8a307c1" class="outline-2">
-<h2 id="org8a307c1"><span class="section-number-2">8.</span> Traits with where</h2>
-<div class="outline-text-2" id="text-8">
+<div id="outline-container-org35d80ff" class="outline-2">
+<h2 id="org35d80ff"><span class="section-number-2">11.</span> Traits with where</h2>
+<div class="outline-text-2" id="text-11">
 <div class="org-src-container">
-<pre class="src src-rust"><span style="color: #4f97d7; font-weight: bold;">struct</span> <span style="color: #ce537a; font-weight: bold;">Cacher</span>&lt;<span style="color: #ce537a; font-weight: bold;">T</span>, <span style="color: #ce537a; font-weight: bold;">E</span>&gt;
-<span style="color: #4f97d7; font-weight: bold;">where</span>
-    <span style="color: #7590db;">T</span>: <span style="color: #ce537a; font-weight: bold;">Fn</span>(<span style="color: #ce537a; font-weight: bold;">E</span>) -&gt; <span style="color: #ce537a; font-weight: bold;">E</span>,
-    <span style="color: #7590db;">E</span>: <span style="color: #ce537a; font-weight: bold;">Copy</span>,
+<pre class="src src-rust">struct Cacher&lt;T, E&gt;
+where
+    T: Fn(E) -&gt; E,
+    E: Copy,
 {
-    <span style="color: #7590db;">query</span>: <span style="color: #ce537a; font-weight: bold;">T</span>,
-    <span style="color: #7590db;">value</span>: <span style="color: #ce537a; font-weight: bold;">Option</span>&lt;<span style="color: #ce537a; font-weight: bold;">E</span>&gt;,
+    query: T,
+    value: Option&lt;E&gt;,
 }
 
-<span style="color: #4f97d7; font-weight: bold;">impl</span>&lt;<span style="color: #ce537a; font-weight: bold;">T</span>, <span style="color: #ce537a; font-weight: bold;">E</span>&gt; <span style="color: #ce537a; font-weight: bold;">Cacher</span>&lt;<span style="color: #ce537a; font-weight: bold;">T</span>, <span style="color: #ce537a; font-weight: bold;">E</span>&gt;
-<span style="color: #4f97d7; font-weight: bold;">where</span>
-    <span style="color: #7590db;">T</span>: <span style="color: #ce537a; font-weight: bold;">Fn</span>(<span style="color: #ce537a; font-weight: bold;">E</span>) -&gt; <span style="color: #ce537a; font-weight: bold;">E</span>,
-    <span style="color: #7590db;">E</span>: <span style="color: #ce537a; font-weight: bold;">Copy</span>,
+impl&lt;T, E&gt; Cacher&lt;T, E&gt;
+where
+    T: Fn(E) -&gt; E,
+    E: Copy,
 {
-    <span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">new</span>(<span style="color: #7590db;">query</span>: <span style="color: #ce537a; font-weight: bold;">T</span>) -&gt; <span style="color: #ce537a; font-weight: bold;">Cacher</span>&lt;<span style="color: #ce537a; font-weight: bold;">T</span>, <span style="color: #ce537a; font-weight: bold;">E</span>&gt; {
-        <span style="color: #ce537a; font-weight: bold;">Cacher</span> { query, <span style="color: #7590db;">value</span>: <span style="color: #ce537a; font-weight: bold;">None</span> }
+    fn new(query: T) -&gt; Cacher&lt;T, E&gt; {
+        Cacher { query, value: None }
     }
 
-    <span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">value</span>(<span style="color: #b2b2b2; background-color: #292b2e;">&amp;</span><span style="color: #4f97d7; font-weight: bold;">mut</span> <span style="color: #4f97d7; font-weight: bold;">self</span>, <span style="color: #7590db;">arg</span>: <span style="color: #ce537a; font-weight: bold;">E</span>) -&gt; <span style="color: #ce537a; font-weight: bold;">E</span> {
-        <span style="color: #4f97d7; font-weight: bold;">match</span> <span style="color: #4f97d7; font-weight: bold;">self</span>.value {
-            <span style="color: #ce537a; font-weight: bold;">Some</span>(v) =&gt; v,
-            <span style="color: #ce537a; font-weight: bold;">None</span> =&gt; {
-                <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">v</span> = (<span style="color: #4f97d7; font-weight: bold;">self</span>.query)(arg);
-                <span style="color: #4f97d7; font-weight: bold;">self</span>.value = <span style="color: #ce537a; font-weight: bold;">Some</span>(v);
+    fn value(&amp;mut self, arg: E) -&gt; E {
+        match self.value {
+            Some(v) =&gt; v,
+            None =&gt; {
+                let v = (self.query)(arg);
+                self.value = Some(v);
                 v
             }
         }
     }
 }
 
-<span style="color: #bc6ec5;">#[cfg(test)]</span>
-<span style="color: #4f97d7; font-weight: bold;">mod</span> <span style="color: #a45bad;">tests</span> {
-    <span style="color: #4f97d7; font-weight: bold;">use</span> <span style="color: #4f97d7; font-weight: bold;">super</span>::*;
-
-    <span style="color: #bc6ec5;">#[test]</span>
-    <span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">call_with_different_values</span>() {
-        <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #4f97d7; font-weight: bold;">mut</span> <span style="color: #7590db;">c</span> = <span style="color: #ce537a; font-weight: bold;">Cacher</span>::new(|a| a);
+#[cfg(test)]
+mod tests {
+    use super::*;
+    
+    #[test]
+    fn call_with_different_values() {
+        let mut c = Cacher::new(|a| a);
         c.value(1);
 
-        <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">v1</span> = c.value(1);
-        <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">v2</span> = c.value(2);
+        let v1 = c.value(1);
+        let v2 = c.value(2);
 
-        <span style="color: #bc6ec5;">assert_eq!</span>(v2, 1);
-        <span style="color: #bc6ec5;">assert_eq!</span>(v2, v1);
+        assert_eq!(v2, 1);
+        assert_eq!(v2, v1);
     }
 
-    <span style="color: #bc6ec5;">#[test]</span>
-    <span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">call_with_str</span>() {
-        <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #4f97d7; font-weight: bold;">mut</span> <span style="color: #7590db;">b</span> = <span style="color: #ce537a; font-weight: bold;">Cacher</span>::new(|a| a);
-        <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">b1</span> = b.value(<span style="color: #2d9574;">"test"</span>);
+    #[test]
+    fn call_with_str() {
+        let mut b = Cacher::new(|a| a);
+        let b1 = b.value("test");
 
-        <span style="color: #bc6ec5;">assert_eq!</span>(<span style="color: #2d9574;">"test"</span>, b1);
+        assert_eq!("test", b1);
     }
-    <span style="color: #4f97d7; font-weight: bold;">pub</span> <span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">run_tests_manually</span>() {
+    pub fn run_tests_manually() {
         call_with_different_values();
         call_with_str();
     }
 }
-<span style="color: #4f97d7; font-weight: bold;">fn</span> <span style="color: #bc6ec5; font-weight: bold;">main</span>() {
-    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #4f97d7; font-weight: bold;">mut</span> <span style="color: #7590db;">c</span> = <span style="color: #ce537a; font-weight: bold;">Cacher</span>::new(|a| a+2);
+fn main() {
+    let mut c = Cacher::new(|a| a+2);
     c.value(1);
-    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">v1</span> = c.value(1);
-    <span style="color: #bc6ec5;">assert_eq!</span>(v1, 3);
-
-    <span style="color: #bc6ec5;">#[cfg(test)]</span>
-    <span style="color: #a45bad;">tests</span>::run_tests_manually();
+    let v1 = c.value(1);
+    assert_eq!(v1, 3);
+    
+    #[cfg(test)]
+    tests::run_tests_manually();
 }
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="postamble" class="status">
-<p class="author">Author: si</p>
-<p class="date">Created: 2025-04-07 Mo 12:35</p>
-<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+<div id="kb-postamble" class="status">
+<div class="kb-footer"><a href="../index.html" target="_parent">&larr; Back to Index</a></div>
 </div>
 </body>
 </html>

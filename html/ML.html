@@ -1,15 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2025-01-24 Fr 19:30 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<!-- 2026-05-05 Tue 20:04 -->
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MachineLearning</title>
-<meta name="author" content="si" />
+<meta name="author" content="silin" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -193,7 +191,9 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<link rel="stylesheet" href="style.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<script src="toc-sidebar.js" defer></script>
 <script>
   window.MathJax = {
     tex: {
@@ -228,182 +228,182 @@
 </script>
 </head>
 <body>
-<div id="content" class="content">
+<div id="kb-content" class="content">
 <h1 class="title">MachineLearning</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2e620e1">1. Math for ML</a>
+<li><a href="#org56e3acb">1. Math for ML</a>
 <ul>
-<li><a href="#org5b12b60">1.1. Self Entropy</a></li>
-<li><a href="#org1f23e22">1.2. Information Entropy</a></li>
-<li><a href="#org9a33f66">1.3. cross Enteopy</a></li>
-<li><a href="#org63c1ba4">1.4. Conditional enteopy</a></li>
-<li><a href="#orgf7a1674">1.5. Gini</a></li>
-<li><a href="#org37ab39a">1.6. KL</a></li>
-<li><a href="#org5514515">1.7. Matrix</a>
+<li><a href="#org8cdae22">1.1. Self Entropy</a></li>
+<li><a href="#org819e942">1.2. Information Entropy</a></li>
+<li><a href="#org2221d6f">1.3. cross Enteopy</a></li>
+<li><a href="#org22df58b">1.4. Conditional enteopy</a></li>
+<li><a href="#orge42ab7a">1.5. Gini</a></li>
+<li><a href="#org5b56de3">1.6. KL</a></li>
+<li><a href="#org8045ec0">1.7. Matrix</a>
 <ul>
-<li><a href="#org561b15e">1.7.1. Conjugate transpose Matrix</a></li>
-<li><a href="#org342f70b">1.7.2. Normal Matrix</a></li>
-<li><a href="#org3b043c2">1.7.3. Unitary Matrix</a></li>
-<li><a href="#org448dbe2">1.7.4. orthogonal matrix</a></li>
-<li><a href="#orgfa2a05e">1.7.5. Hermitian matrix</a></li>
+<li><a href="#org038cbee">1.7.1. Conjugate transpose Matrix</a></li>
+<li><a href="#org429a3ba">1.7.2. Normal Matrix</a></li>
+<li><a href="#org5c8a66e">1.7.3. Unitary Matrix</a></li>
+<li><a href="#org8f33898">1.7.4. orthogonal matrix</a></li>
+<li><a href="#org0395366">1.7.5. Hermitian matrix</a></li>
 </ul>
 </li>
-<li><a href="#orga1f93b2">1.8. Eigenwertzerlegung eigende decompostion</a></li>
-<li><a href="#org3aede4d">1.9. SVD Singular value decompostion</a></li>
-<li><a href="#orgb84edd0">1.10. Bayes's Rule</a></li>
-<li><a href="#org7bd464d">1.11. Kovarianz Matrix</a></li>
-<li><a href="#org44747ac">1.12. Regularization</a></li>
-<li><a href="#org3ed4af3">1.13. Error Bias-Variance-trade-off</a></li>
-<li><a href="#orgc03b18f">1.14. Multi variable Gaussian distribution</a></li>
-<li><a href="#org5325b9e">1.15. Mahalanobis distance</a></li>
-<li><a href="#org8659e31">1.16. K-fold Cross Validation</a></li>
-<li><a href="#org21a78aa">1.17. confusion matrix</a>
+<li><a href="#orgb9df422">1.8. Eigenwertzerlegung eigende decompostion</a></li>
+<li><a href="#orgb97a3e5">1.9. SVD Singular value decompostion</a></li>
+<li><a href="#org63f5ca3">1.10. Bayes's Rule</a></li>
+<li><a href="#org5e475a1">1.11. Kovarianz Matrix</a></li>
+<li><a href="#org3fb2e4c">1.12. Regularization</a></li>
+<li><a href="#org4fcdeb1">1.13. Error Bias-Variance-trade-off</a></li>
+<li><a href="#org84087fc">1.14. Multi variable Gaussian distribution</a></li>
+<li><a href="#orgf04a921">1.15. Mahalanobis distance</a></li>
+<li><a href="#org6323327">1.16. K-fold Cross Validation</a></li>
+<li><a href="#org7bca3aa">1.17. confusion matrix</a>
 <ul>
-<li><a href="#orged9c522">1.17.1. Ture Positive Rate (recall)</a></li>
-<li><a href="#orga8c4132">1.17.2. False Postive Rate</a></li>
-<li><a href="#org40d777d">1.17.3. ROC Receivert Operator Characteristic</a></li>
-<li><a href="#orgd497826">1.17.4. AUC Area under the Curve</a></li>
-<li><a href="#orgba906af">1.17.5. F1</a></li>
+<li><a href="#org3e7ac0c">1.17.1. Ture Positive Rate (recall)</a></li>
+<li><a href="#org76b2dd2">1.17.2. False Postive Rate</a></li>
+<li><a href="#orgbdd8cf1">1.17.3. ROC Receivert Operator Characteristic</a></li>
+<li><a href="#org827f7df">1.17.4. AUC Area under the Curve</a></li>
+<li><a href="#org7ed4fc8">1.17.5. F1</a></li>
 </ul>
 </li>
-<li><a href="#orge57aeeb">1.18. Macro Micro Average</a>
+<li><a href="#org446ae78">1.18. Macro Micro Average</a>
 <ul>
-<li><a href="#org689eec1">1.18.1. Macro Average</a></li>
-<li><a href="#orgfb22090">1.18.2. Micro Average</a></li>
+<li><a href="#org626b522">1.18.1. Macro Average</a></li>
+<li><a href="#org240a28b">1.18.2. Micro Average</a></li>
 </ul>
 </li>
-<li><a href="#org64baa6f">1.19. Jacobin matrix</a></li>
-<li><a href="#orgba106c8">1.20. 预剪枝和后剪枝</a></li>
-<li><a href="#org7547346">1.21. 属性有连续值和缺失值</a></li>
+<li><a href="#orgb50ebd9">1.19. Jacobin matrix</a></li>
+<li><a href="#org7de700d">1.20. 预剪枝和后剪枝</a></li>
+<li><a href="#org8a4d80e">1.21. 属性有连续值和缺失值</a></li>
 </ul>
 </li>
-<li><a href="#orgc43cd9f">2. activation function</a>
+<li><a href="#orga0141e0">2. activation function</a>
 <ul>
-<li><a href="#orga323a22">2.1. activation</a></li>
-<li><a href="#org6f17b24">2.2. Sigmoid</a></li>
-<li><a href="#org3b62026">2.3. ReLU</a></li>
-<li><a href="#org7d1cffe">2.4. LeakyReLU</a></li>
-<li><a href="#orgc708853">2.5. Tanh</a></li>
-<li><a href="#org5b533f6">2.6. MSE</a></li>
-<li><a href="#orge462a9b">2.7. inf entropy</a></li>
-<li><a href="#orgd6466c7">2.8. softmax</a></li>
-<li><a href="#org02f10b4">2.9. cross entropy</a></li>
+<li><a href="#orgd6610ab">2.1. activation</a></li>
+<li><a href="#orgb596067">2.2. Sigmoid</a></li>
+<li><a href="#orga9b0e68">2.3. ReLU</a></li>
+<li><a href="#org518df69">2.4. LeakyReLU</a></li>
+<li><a href="#orgada9348">2.5. Tanh</a></li>
+<li><a href="#orgcb4377e">2.6. MSE</a></li>
+<li><a href="#orgd8ca8f8">2.7. inf entropy</a></li>
+<li><a href="#org2841aa3">2.8. softmax</a></li>
+<li><a href="#org8f20f40">2.9. cross entropy</a></li>
 </ul>
 </li>
-<li><a href="#orga37dcf5">3. example bagging</a></li>
-<li><a href="#org6480d20">4. Boosting</a></li>
-<li><a href="#orgf65e920">5. gradient decent</a></li>
-<li><a href="#org9a90b38">6. Ordinary Least Squares(OLS)</a>
+<li><a href="#org0cf44cf">3. example bagging</a></li>
+<li><a href="#org2be959e">4. Boosting</a></li>
+<li><a href="#orgdf80011">5. gradient decent</a></li>
+<li><a href="#orgc6372b2">6. Ordinary Least Squares(OLS)</a>
 <ul>
-<li><a href="#org3a3602b">6.1. 正规化方程</a></li>
-<li><a href="#orgea394a9">6.2. 正则化正规化方程</a></li>
+<li><a href="#org535b832">6.1. 正规化方程</a></li>
+<li><a href="#org7e4407f">6.2. 正则化正规化方程</a></li>
 </ul>
 </li>
-<li><a href="#orga360c27">7. Lasso regression</a></li>
-<li><a href="#org87a94d6">8. Ridge regression</a></li>
-<li><a href="#orge32d8b8">9. Elastic Net regression</a></li>
-<li><a href="#orgdc111ef">10. Decision List</a></li>
-<li><a href="#orgaa62d6b">11. linear regression</a></li>
-<li><a href="#orgb0df331">12. linear Discriminate Analysis</a>
+<li><a href="#orgf4b03a4">7. Lasso regression</a></li>
+<li><a href="#orgb1af64f">8. Ridge regression</a></li>
+<li><a href="#org3cf12ab">9. Elastic Net regression</a></li>
+<li><a href="#org35666cc">10. Decision List</a></li>
+<li><a href="#orgaf5052f">11. linear regression</a></li>
+<li><a href="#orgbc3d452">12. linear Discriminate Analysis</a>
 <ul>
-<li><a href="#org9c2cab7">12.1. Fisher's linear discriminant</a></li>
-<li><a href="#org9cbcaed">12.2. Fisher's linear discriminant with Kernel method</a></li>
-<li><a href="#org293d201">12.3. Probabilistic Generative Model</a></li>
-<li><a href="#orgcd1eab1">12.4. Probabilistic Discriminant Model</a></li>
+<li><a href="#org6ab025b">12.1. Fisher's linear discriminant</a></li>
+<li><a href="#org92705eb">12.2. Fisher's linear discriminant with Kernel method</a></li>
+<li><a href="#org7aaf7d2">12.3. Probabilistic Generative Model</a></li>
+<li><a href="#orgdcb46df">12.4. Probabilistic Discriminant Model</a></li>
 </ul>
 </li>
-<li><a href="#org91796f2">13. Principe Component Analysis</a>
+<li><a href="#org4482916">13. Principe Component Analysis</a>
 <ul>
-<li><a href="#org8824246">13.1. PCA Algorithms</a></li>
-<li><a href="#org3deb736">13.2. Probabilistic generative model for PCA</a></li>
+<li><a href="#orgaa3826a">13.1. PCA Algorithms</a></li>
+<li><a href="#org2102499">13.2. Probabilistic generative model for PCA</a></li>
 </ul>
 </li>
-<li><a href="#org25bbd18">14. K-Nearest Neighbor&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></a>
+<li><a href="#org08d6f60">14. K-Nearest Neighbor&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></a>
 <ul>
-<li><a href="#orgeca9d23">14.1. Algorithms</a></li>
+<li><a href="#orgf54460b">14.1. Algorithms</a></li>
 </ul>
 </li>
-<li><a href="#org8a32907">15. Decision tree&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></a>
+<li><a href="#org9b18fd3">15. Decision tree&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></a>
 <ul>
-<li><a href="#org98811fe">15.1. Algorithms</a></li>
+<li><a href="#orgc198aba">15.1. Algorithms</a></li>
 </ul>
 </li>
-<li><a href="#org7aaddcd">16. Random Forest&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></a>
+<li><a href="#orgd34903d">16. Random Forest&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></a>
 <ul>
-<li><a href="#org84ce22e">16.1. algorithms on decision tree</a></li>
+<li><a href="#orga882007">16.1. algorithms on decision tree</a></li>
 </ul>
 </li>
-<li><a href="#org1abe1f4">17. Naivi Bayes's&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></a></li>
-<li><a href="#org188b66f">18. logistic regression&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></a>
+<li><a href="#org8aa69fa">17. Naivi Bayes's&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></a></li>
+<li><a href="#org750a62a">18. logistic regression&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></a>
 <ul>
-<li><a href="#org8965e36">18.1. Odd</a></li>
-<li><a href="#org89752e3">18.2. Odd ratio</a></li>
-<li><a href="#org17c5468">18.3. algorithms</a></li>
+<li><a href="#org0a9f538">18.1. Odd</a></li>
+<li><a href="#org5023262">18.2. Odd ratio</a></li>
+<li><a href="#orgc6c2958">18.3. algorithms</a></li>
 </ul>
 </li>
-<li><a href="#orgeea398b">19. Support Vector Machine&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></a>
+<li><a href="#orgd61956d">19. Support Vector Machine&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></a>
 <ul>
-<li><a href="#org535f2a4">19.1. without soft margin</a></li>
-<li><a href="#org37b483e">19.2. with soft margin</a></li>
-<li><a href="#orge6cf6e1">19.3. kernel function</a></li>
+<li><a href="#orgefb9bae">19.1. without soft margin</a></li>
+<li><a href="#orga7c3016">19.2. with soft margin</a></li>
+<li><a href="#orgd3d8cd1">19.3. kernel function</a></li>
 </ul>
 </li>
-<li><a href="#org39c913a">20. Neural network&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></a>
+<li><a href="#org12094b1">20. Neural network&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></a>
 <ul>
-<li><a href="#orgefa7dc4">20.1. Backpropagation</a>
+<li><a href="#orgd5a7144">20.1. Backpropagation</a>
 <ul>
-<li><a href="#orgbe8e554">20.1.1. 感知机</a></li>
-<li><a href="#org2e643a6">20.1.2. 多层神经网络</a></li>
+<li><a href="#org7d2f35c">20.1.1. 感知机</a></li>
+<li><a href="#orgd03327c">20.1.2. 多层神经网络</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org2a6fffd">21. K-Means&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></a>
+<li><a href="#org4fea8fb">21. K-Means&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></a>
 <ul>
-<li><a href="#orgf5828b1">21.1. algothism</a></li>
-<li><a href="#org798b48c">21.2. select the best k</a>
+<li><a href="#org6dc353b">21.1. algothism</a></li>
+<li><a href="#org9934b20">21.2. select the best k</a>
 <ul>
-<li><a href="#org3d734ac">21.2.1. based on domain knowlegde:</a></li>
-<li><a href="#org0510324">21.2.2. Visualizations</a></li>
-<li><a href="#org38552ee">21.2.3. Within-Sum-of-Squares</a></li>
+<li><a href="#orga4673b9">21.2.1. based on domain knowlegde:</a></li>
+<li><a href="#org526f62b">21.2.2. Visualizations</a></li>
+<li><a href="#org758d607">21.2.3. Within-Sum-of-Squares</a></li>
 </ul>
 </li>
-<li><a href="#orgcfb764c">21.3. Problems</a></li>
+<li><a href="#org9fabb30">21.3. Problems</a></li>
 </ul>
 </li>
-<li><a href="#org0b79f5d">22. EM algorithms for Gaussian Mixture model&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></a>
+<li><a href="#org0de6d1f">22. EM algorithms for Gaussian Mixture model&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></a>
 <ul>
-<li><a href="#org56de894">22.1. k selecting</a></li>
-<li><a href="#orga350ebd">22.2. Algorithm</a></li>
-<li><a href="#orgc4d4cc4">22.3. problem</a></li>
+<li><a href="#orge0769cf">22.1. k selecting</a></li>
+<li><a href="#orgcba732c">22.2. Algorithm</a></li>
+<li><a href="#org251ec0b">22.3. problem</a></li>
 </ul>
 </li>
-<li><a href="#org8c5b665">23. DBSCAN&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></a>
+<li><a href="#org2c85d83">23. DBSCAN&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></a>
 <ul>
-<li><a href="#org1889a68">23.1. concepts \(\epsilon\)  minPts</a></li>
-<li><a href="#org83428c1">23.2. Algorithm</a></li>
-<li><a href="#orge802f56">23.3. select \(\epsilon\) and minpts</a></li>
-<li><a href="#org749893c">23.4. problems</a></li>
+<li><a href="#orgefb50ec">23.1. concepts \(\epsilon\)  minPts</a></li>
+<li><a href="#orgdc680d8">23.2. Algorithm</a></li>
+<li><a href="#orgff3da6b">23.3. select \(\epsilon\) and minpts</a></li>
+<li><a href="#org4654b47">23.4. problems</a></li>
 </ul>
 </li>
-<li><a href="#orgde9fb44">24. Single Linkage Clustering&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></a>
+<li><a href="#orgaeeee4b">24. Single Linkage Clustering&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></a>
 <ul>
-<li><a href="#orge43557c">24.1. Algorithm</a></li>
-<li><a href="#org39a1ad1">24.2. problems</a></li>
+<li><a href="#org16d7f4f">24.1. Algorithm</a></li>
+<li><a href="#org5fbe30d">24.2. problems</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2e620e1" class="outline-2">
-<h2 id="org2e620e1"><span class="section-number-2">1.</span> Math for ML</h2>
+<div id="outline-container-org56e3acb" class="outline-2">
+<h2 id="org56e3acb"><span class="section-number-2">1.</span> Math for ML</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org5b12b60" class="outline-3">
-<h3 id="org5b12b60"><span class="section-number-3">1.1.</span> Self Entropy</h3>
+<div id="outline-container-org8cdae22" class="outline-3">
+<h3 id="org8cdae22"><span class="section-number-3">1.1.</span> Self Entropy</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 One thing happens, how much information can be persent. how meanful it is
@@ -411,8 +411,8 @@ One thing happens, how much information can be persent. how meanful it is
 </p>
 </div>
 </div>
-<div id="outline-container-org1f23e22" class="outline-3">
-<h3 id="org1f23e22"><span class="section-number-3">1.2.</span> Information Entropy</h3>
+<div id="outline-container-org819e942" class="outline-3">
+<h3 id="org819e942"><span class="section-number-3">1.2.</span> Information Entropy</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 \[H(p) = E_{x\backsim p}[I(p_i)] = -E_{x\backsim p}[\log(p_{i})]\]
@@ -421,8 +421,8 @@ One thing happens, how much information can be persent. how meanful it is
 </p>
 </div>
 </div>
-<div id="outline-container-org9a33f66" class="outline-3">
-<h3 id="org9a33f66"><span class="section-number-3">1.3.</span> cross Enteopy</h3>
+<div id="outline-container-org2221d6f" class="outline-3">
+<h3 id="org2221d6f"><span class="section-number-3">1.3.</span> cross Enteopy</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 \[H(p, q) = E_{x\backsim p}[I(q_i)] = -E_{x\backsim p}[\log(q_{i})]\]
@@ -431,8 +431,8 @@ One thing happens, how much information can be persent. how meanful it is
 </p>
 </div>
 </div>
-<div id="outline-container-org63c1ba4" class="outline-3">
-<h3 id="org63c1ba4"><span class="section-number-3">1.4.</span> Conditional enteopy</h3>
+<div id="outline-container-org22df58b" class="outline-3">
+<h3 id="org22df58b"><span class="section-number-3">1.4.</span> Conditional enteopy</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 Under the condition than Y has been happened, estimate the
@@ -442,9 +442,8 @@ Enteopy of X to be happened
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgf7a1674" class="outline-3">
-<h3 id="orgf7a1674"><span class="section-number-3">1.5.</span> Gini</h3>
+<div id="outline-container-orge42ab7a" class="outline-3">
+<h3 id="orge42ab7a"><span class="section-number-3">1.5.</span> Gini</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 吉尼系数
@@ -452,9 +451,8 @@ Enteopy of X to be happened
 </p>
 </div>
 </div>
-
-<div id="outline-container-org37ab39a" class="outline-3">
-<h3 id="org37ab39a"><span class="section-number-3">1.6.</span> KL</h3>
+<div id="outline-container-org5b56de3" class="outline-3">
+<h3 id="org5b56de3"><span class="section-number-3">1.6.</span> KL</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 the difference between p and q
@@ -463,12 +461,12 @@ the difference between p and q
 </p>
 </div>
 </div>
-<div id="outline-container-org5514515" class="outline-3">
-<h3 id="org5514515"><span class="section-number-3">1.7.</span> Matrix</h3>
+<div id="outline-container-org8045ec0" class="outline-3">
+<h3 id="org8045ec0"><span class="section-number-3">1.7.</span> Matrix</h3>
 <div class="outline-text-3" id="text-1-7">
 </div>
-<div id="outline-container-org561b15e" class="outline-4">
-<h4 id="org561b15e"><span class="section-number-4">1.7.1.</span> Conjugate transpose Matrix</h4>
+<div id="outline-container-org038cbee" class="outline-4">
+<h4 id="org038cbee"><span class="section-number-4">1.7.1.</span> Conjugate transpose Matrix</h4>
 <div class="outline-text-4" id="text-1-7-1">
 <p>
 \[ A^{*} = (\bar{A})^{T} = \bar{A^{T}}\]
@@ -476,8 +474,8 @@ the difference between p and q
 </p>
 </div>
 </div>
-<div id="outline-container-org342f70b" class="outline-4">
-<h4 id="org342f70b"><span class="section-number-4">1.7.2.</span> Normal Matrix</h4>
+<div id="outline-container-org429a3ba" class="outline-4">
+<h4 id="org429a3ba"><span class="section-number-4">1.7.2.</span> Normal Matrix</h4>
 <div class="outline-text-4" id="text-1-7-2">
 <p>
 \[ A^{*}A = A A^{*}\]
@@ -487,8 +485,8 @@ the difference between p and q
 </p>
 </div>
 </div>
-<div id="outline-container-org3b043c2" class="outline-4">
-<h4 id="org3b043c2"><span class="section-number-4">1.7.3.</span> Unitary Matrix</h4>
+<div id="outline-container-org5c8a66e" class="outline-4">
+<h4 id="org5c8a66e"><span class="section-number-4">1.7.3.</span> Unitary Matrix</h4>
 <div class="outline-text-4" id="text-1-7-3">
 <p>
 \[ A^{*}A = A A^{*} = I \]
@@ -496,9 +494,8 @@ the difference between p and q
 </p>
 </div>
 </div>
-
-<div id="outline-container-org448dbe2" class="outline-4">
-<h4 id="org448dbe2"><span class="section-number-4">1.7.4.</span> orthogonal matrix</h4>
+<div id="outline-container-org8f33898" class="outline-4">
+<h4 id="org8f33898"><span class="section-number-4">1.7.4.</span> orthogonal matrix</h4>
 <div class="outline-text-4" id="text-1-7-4">
 <p>
 实数酉矩阵
@@ -512,9 +509,8 @@ the difference between p and q
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgfa2a05e" class="outline-4">
-<h4 id="orgfa2a05e"><span class="section-number-4">1.7.5.</span> Hermitian matrix</h4>
+<div id="outline-container-org0395366" class="outline-4">
+<h4 id="org0395366"><span class="section-number-4">1.7.5.</span> Hermitian matrix</h4>
 <div class="outline-text-4" id="text-1-7-5">
 <p>
 \[ A = A^{H}\], \(a_{i,j} = \bar{a_{j,i}}\)
@@ -524,8 +520,8 @@ the difference between p and q
 </div>
 </div>
 </div>
-<div id="outline-container-orga1f93b2" class="outline-3">
-<h3 id="orga1f93b2"><span class="section-number-3">1.8.</span> Eigenwertzerlegung eigende decompostion</h3>
+<div id="outline-container-orgb9df422" class="outline-3">
+<h3 id="orgb9df422"><span class="section-number-3">1.8.</span> Eigenwertzerlegung eigende decompostion</h3>
 <div class="outline-text-3" id="text-1-8">
 <p>
 对于矩阵求特征值特征向量，特征值分解，但是要求必须是方阵，如果不是，先
@@ -538,24 +534,33 @@ the difference between p and q
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
-<span style="color: #7590db;">a</span> = np.mat([[1,2,3,4],[1,1,1,1]])
-<span style="color: #7590db;">A</span> = a*a.T
-<span style="color: #7590db;">B</span>, <span style="color: #7590db;">U</span> = np.linalg.eig(A)
-<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"eigenvalue of A : "</span>)
-<span style="color: #4f97d7;">print</span>(B)
-<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"eigenvalue of a :(should be equal to the following) "</span>)
-<span style="color: #4f97d7;">print</span>(np.sqrt(B))
-<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"eigenvactor : "</span>)
-<span style="color: #4f97d7;">print</span>(U)
+<pre class="src src-python">import numpy as np
+a = np.mat([[1,2,3,4],[1,1,1,1]])
+A = a*a.T
+B, U = np.linalg.eig(A)
+print("eigenvalue of A : ")
+print(B)
+print("eigenvalue of a :(should be equal to the following) ")
+print(np.sqrt(B))
+print("eigenvactor : ")
+print(U)
 
 </pre>
 </div>
-</div>
-</div>
 
-<div id="outline-container-org3aede4d" class="outline-3">
-<h3 id="org3aede4d"><span class="section-number-3">1.9.</span> SVD Singular value decompostion</h3>
+<pre class="example">
+eigenvalue of A :
+[33.40121947  0.59878053]
+eigenvalue of a :
+[5.77937881 0.77380911]
+eigenvactor :
+[[ 0.94673755 -0.32200622]
+ [ 0.32200622  0.94673755]]
+</pre>
+</div>
+</div>
+<div id="outline-container-orgb97a3e5" class="outline-3">
+<h3 id="orgb97a3e5"><span class="section-number-3">1.9.</span> SVD Singular value decompostion</h3>
 <div class="outline-text-3" id="text-1-9">
 <p>
 但是对于一般矩阵，不是方阵，可以奇异值分解：
@@ -565,45 +570,60 @@ the difference between p and q
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
-<span style="color: #7590db;">a</span> = np.mat([[1,2,3,4],[1,1,1,1]])
-<span style="color: #7590db;">U</span>, <span style="color: #7590db;">B</span>, <span style="color: #7590db;">Vt</span> = np.linalg.svd(a)
-<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"left eigenvalue : "</span>)
-<span style="color: #4f97d7;">print</span>(U)
-<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"eigenvactor of a : "</span>)
-<span style="color: #4f97d7;">print</span>(B)
-<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"right eigenvalue : "</span>)
-<span style="color: #4f97d7;">print</span>(Vt)
+<pre class="src src-python">import numpy as np
+a = np.mat([[1,2,3,4],[1,1,1,1]])
+U, B, Vt = np.linalg.svd(a)
+print("left eigenvalue : ")
+print(U)
+print("eigenvactor of a : ")
+print(B)
+print("right eigenvalue : ")
+print(Vt)
+</pre>
+</div>
+
+<pre class="example" id="orgde52637">
+left eigenvalue :
+[[-0.94673755 -0.32200622]
+ [-0.32200622  0.94673755]]
+eigenvactor of a :
+[5.77937881 0.77380911]
+right eigenvalue :
+[[-0.21952944 -0.38334247 -0.5471555  -0.71096853]
+ [ 0.80734554  0.3912142  -0.02491713 -0.44104847]
+ [-0.40008743  0.25463292  0.69099646 -0.54554195]
+ [-0.37407225  0.79697056 -0.47172438  0.04882607]]
 </pre>
 </div>
 </div>
-</div>
-
-<div id="outline-container-orgb84edd0" class="outline-3">
-<h3 id="orgb84edd0"><span class="section-number-3">1.10.</span> Bayes's Rule</h3>
+<div id="outline-container-org63f5ca3" class="outline-3">
+<h3 id="org63f5ca3"><span class="section-number-3">1.10.</span> Bayes's Rule</h3>
 <div class="outline-text-3" id="text-1-10">
 <p>
 if x and y are independent:
 \[ p(x,y) =  p(y)p(x) = p(x) p(y) = p(y,x) \]
 </p>
 
-<pre class="example">
-条件概率：
+<div class="org-src-container">
+<pre class="src src-nil">条件概率：
 条件概率 = 联合概率/边缘概率
 先验概率和后验概率都是条件概率，但是条件已知是先验
 </pre>
+</div>
 <p>
 \[ P(y|x) = \frac{ P(x,y)}{P(x)}\]
 </p>
-<pre class="example">
-全概率公式
+<div class="org-src-container">
+<pre class="src src-nil">全概率公式
 </pre>
+</div>
 <p>
 \[ p(y) = \sum_{i=1}^{n} p(y,x_{i}) \]
 </p>
-<pre class="example">
-贝叶斯公式
+<div class="org-src-container">
+<pre class="src src-nil">贝叶斯公式
 </pre>
+</div>
 
 <p>
 \[ P(AB)=P(BA) \]
@@ -611,9 +631,10 @@ if x and y are independent:
 \[ P(y|x) = \frac{ P(x|y) P(y)}{P(x)}\]
 </p>
 
-<pre class="example">
-贝叶斯公式 + 全概率公式 + 条件概率
+<div class="org-src-container">
+<pre class="src src-nil">贝叶斯公式 + 全概率公式 + 条件概率
 </pre>
+</div>
 
 \begin{eqnarray*}
 P(A|B) &= \frac{P(B|A)P(A)}{P(B)} \\
@@ -622,9 +643,8 @@ P(A|B) &= \frac{P(B|A)P(A)}{P(B)} \\
 \end{eqnarray*}
 </div>
 </div>
-
-<div id="outline-container-org7bd464d" class="outline-3">
-<h3 id="org7bd464d"><span class="section-number-3">1.11.</span> Kovarianz Matrix</h3>
+<div id="outline-container-org5e475a1" class="outline-3">
+<h3 id="org5e475a1"><span class="section-number-3">1.11.</span> Kovarianz Matrix</h3>
 <div class="outline-text-3" id="text-1-11">
 <p>
 for i = {1&#x2026;n}, \(x_{i}\) is a random variable, which belongs to
@@ -671,9 +691,8 @@ co-variance matrix \(\Sigma = E [(X-\bar{X})(X-\bar{X})^{T} ]\)
 </p>
 </div>
 </div>
-
-<div id="outline-container-org44747ac" class="outline-3">
-<h3 id="org44747ac"><span class="section-number-3">1.12.</span> Regularization</h3>
+<div id="outline-container-org3fb2e4c" class="outline-3">
+<h3 id="org3fb2e4c"><span class="section-number-3">1.12.</span> Regularization</h3>
 <div class="outline-text-3" id="text-1-12">
 <p>
 L Regularization
@@ -691,13 +710,13 @@ L Regularization
 \[ Loss = \frac{1}{2}\sum^{N}_{i=1}(y_{i}-w^{t}\phi(x_{i}))^{2}+\frac{\lambda}{2}\sum^{M}_{j=1}|w_{j}|^{q} \]
 </p>
 
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <tbody>
 <tr>
@@ -764,27 +783,27 @@ Loss 要最小，part1 刚好和 part2 相接，l1会在坐标轴上，所以如
 </p>
 </div>
 </div>
-
-<div id="outline-container-org3ed4af3" class="outline-3">
-<h3 id="org3ed4af3"><span class="section-number-3">1.13.</span> Error Bias-Variance-trade-off</h3>
+<div id="outline-container-org4fcdeb1" class="outline-3">
+<h3 id="org4fcdeb1"><span class="section-number-3">1.13.</span> Error Bias-Variance-trade-off</h3>
 <div class="outline-text-3" id="text-1-13">
-<pre class="example">
-Error = Bias + Variance + noise
+<div class="org-src-container">
+<pre class="src src-nil">Error = Bias + Variance + noise
 </pre>
+</div>
 
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <tbody>
 <tr>
@@ -814,9 +833,8 @@ Error = Bias + Variance + noise
 </table>
 </div>
 </div>
-
-<div id="outline-container-orgc03b18f" class="outline-3">
-<h3 id="orgc03b18f"><span class="section-number-3">1.14.</span> Multi variable Gaussian distribution</h3>
+<div id="outline-container-org84087fc" class="outline-3">
+<h3 id="org84087fc"><span class="section-number-3">1.14.</span> Multi variable Gaussian distribution</h3>
 <div class="outline-text-3" id="text-1-14">
 <p>
 seeing the link 知乎
@@ -834,23 +852,22 @@ seeing the link 知乎
 
 <div class="org-src-container">
 <pre class="src src-python">
-<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">gaussian</span>(x,mean,cov):
-<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">dim</span> = np.shape(cov)[0] <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#32500;&#24230;</span>
-<span style="background-color: #292e34;"> </span>   <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#20043;&#25152;&#20197;&#21152;&#20837;&#21333;&#20301;&#30697;&#38453;&#26159;&#20026;&#20102;&#38450;&#27490;&#34892;&#21015;&#24335;&#20026;0&#30340;&#24773;&#20917;</span>
-<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">covdet</span> = np.linalg.det(cov+np.eye(dim)*0.01) <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#21327;&#26041;&#24046;&#30697;&#38453;&#30340;&#34892;&#21015;&#24335;</span>
-<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">covinv</span> = np.linalg.inv(cov+np.eye(dim)*0.01) <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#21327;&#26041;&#24046;&#30697;&#38453;&#30340;&#36870;</span>
-<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">xdiff</span> = x - mean
-<span style="background-color: #292e34;"> </span>   <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#27010;&#29575;&#23494;&#24230;</span>
-<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">prob</span> = 1.0/np.power(2*np.pi,1.0*dim/2)/np.sqrt(np.<span style="color: #4f97d7;">abs</span>(covdet))*np.exp(-1.0/2*np.dot(np.dot(xdiff,covinv),xdiff))
-<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> prob
+def gaussian(x,mean,cov):
+    dim = np.shape(cov)[0] #维度
+    #之所以加入单位矩阵是为了防止行列式为0的情况
+    covdet = np.linalg.det(cov+np.eye(dim)*0.01) #协方差矩阵的行列式
+    covinv = np.linalg.inv(cov+np.eye(dim)*0.01) #协方差矩阵的逆
+    xdiff = x - mean
+    #概率密度
+    prob = 1.0/np.power(2*np.pi,1.0*dim/2)/np.sqrt(np.abs(covdet))*np.exp(-1.0/2*np.dot(np.dot(xdiff,covinv),xdiff))
+    return prob
 
 </pre>
 </div>
 </div>
 </div>
-
-<div id="outline-container-org5325b9e" class="outline-3">
-<h3 id="org5325b9e"><span class="section-number-3">1.15.</span> Mahalanobis distance</h3>
+<div id="outline-container-orgf04a921" class="outline-3">
+<h3 id="orgf04a921"><span class="section-number-3">1.15.</span> Mahalanobis distance</h3>
 <div class="outline-text-3" id="text-1-15">
 <p>
 \[ \Delta = \left(-{\frac {1}{2}}({\mathbf {x} }-{\boldsymbol {\mu }})^{\mathrm
@@ -879,17 +896,16 @@ seeing the link 知乎
 </p>
 </div>
 </div>
-
-<div id="outline-container-org8659e31" class="outline-3">
-<h3 id="org8659e31"><span class="section-number-3">1.16.</span> K-fold Cross Validation</h3>
+<div id="outline-container-org6323327" class="outline-3">
+<h3 id="org6323327"><span class="section-number-3">1.16.</span> K-fold Cross Validation</h3>
 <div class="outline-text-3" id="text-1-16">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <tbody>
 <tr>
@@ -920,19 +936,18 @@ seeing the link 知乎
 </table>
 </div>
 </div>
-
-<div id="outline-container-org21a78aa" class="outline-3">
-<h3 id="org21a78aa"><span class="section-number-3">1.17.</span> confusion matrix</h3>
+<div id="outline-container-org7bca3aa" class="outline-3">
+<h3 id="org7bca3aa"><span class="section-number-3">1.17.</span> confusion matrix</h3>
 <div class="outline-text-3" id="text-1-17">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <tbody>
 <tr>
@@ -955,9 +970,8 @@ seeing the link 知乎
 </tbody>
 </table>
 </div>
-
-<div id="outline-container-orged9c522" class="outline-4">
-<h4 id="orged9c522"><span class="section-number-4">1.17.1.</span> Ture Positive Rate (recall)</h4>
+<div id="outline-container-org3e7ac0c" class="outline-4">
+<h4 id="org3e7ac0c"><span class="section-number-4">1.17.1.</span> Ture Positive Rate (recall)</h4>
 <div class="outline-text-4" id="text-1-17-1">
 <p>
 namely, Ture Positive Rate, y axes of ROC
@@ -968,8 +982,8 @@ namely, Ture Positive Rate, y axes of ROC
 </p>
 </div>
 </div>
-<div id="outline-container-orga8c4132" class="outline-4">
-<h4 id="orga8c4132"><span class="section-number-4">1.17.2.</span> False Postive Rate</h4>
+<div id="outline-container-org76b2dd2" class="outline-4">
+<h4 id="org76b2dd2"><span class="section-number-4">1.17.2.</span> False Postive Rate</h4>
 <div class="outline-text-4" id="text-1-17-2">
 <p>
 namely, false Position, x axes of ROC
@@ -980,9 +994,8 @@ namely, false Position, x axes of ROC
 </p>
 </div>
 </div>
-
-<div id="outline-container-org40d777d" class="outline-4">
-<h4 id="org40d777d"><span class="section-number-4">1.17.3.</span> ROC Receivert Operator Characteristic</h4>
+<div id="outline-container-orgbdd8cf1" class="outline-4">
+<h4 id="orgbdd8cf1"><span class="section-number-4">1.17.3.</span> ROC Receivert Operator Characteristic</h4>
 <div class="outline-text-4" id="text-1-17-3">
 <p>
 under the acceptable  x (1 -  Sensitivity) , we want the best  y (Sensitivity).
@@ -990,9 +1003,8 @@ from side to side is all classifed to Positive to all classifed to negative
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgd497826" class="outline-4">
-<h4 id="orgd497826"><span class="section-number-4">1.17.4.</span> AUC Area under the Curve</h4>
+<div id="outline-container-org827f7df" class="outline-4">
+<h4 id="org827f7df"><span class="section-number-4">1.17.4.</span> AUC Area under the Curve</h4>
 <div class="outline-text-4" id="text-1-17-4">
 <p>
 je mehr Fachsgebiet, desto besser for the Method,
@@ -1000,9 +1012,8 @@ we use this target to choice our Method
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgba906af" class="outline-4">
-<h4 id="orgba906af"><span class="section-number-4">1.17.5.</span> F1</h4>
+<div id="outline-container-org7ed4fc8" class="outline-4">
+<h4 id="org7ed4fc8"><span class="section-number-4">1.17.5.</span> F1</h4>
 <div class="outline-text-4" id="text-1-17-5">
 <p>
 harmonic mean of recall and precision
@@ -1018,26 +1029,24 @@ harmonic mean of recall and precision
 </div>
 </div>
 </div>
-
-<div id="outline-container-orge57aeeb" class="outline-3">
-<h3 id="orge57aeeb"><span class="section-number-3">1.18.</span> Macro Micro Average</h3>
+<div id="outline-container-org446ae78" class="outline-3">
+<h3 id="org446ae78"><span class="section-number-3">1.18.</span> Macro Micro Average</h3>
 <div class="outline-text-3" id="text-1-18">
 <p>
 This is for non-binary classification
 at frist calcalete for all feather the confusion matrix als binary classification
 </p>
 </div>
-<div id="outline-container-org689eec1" class="outline-4">
-<h4 id="org689eec1"><span class="section-number-4">1.18.1.</span> Macro Average</h4>
+<div id="outline-container-org626b522" class="outline-4">
+<h4 id="org626b522"><span class="section-number-4">1.18.1.</span> Macro Average</h4>
 <div class="outline-text-4" id="text-1-18-1">
 <p>
 \[TPR_{macro} = \frac{1}{|C|}\sum_{c \in C}\frac{TP_{c}}{TP_{c}+FN_{c}}\]
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgfb22090" class="outline-4">
-<h4 id="orgfb22090"><span class="section-number-4">1.18.2.</span> Micro Average</h4>
+<div id="outline-container-org240a28b" class="outline-4">
+<h4 id="org240a28b"><span class="section-number-4">1.18.2.</span> Micro Average</h4>
 <div class="outline-text-4" id="text-1-18-2">
 <p>
 \[TPR_{micro}=\frac{\sum_{c \in C} TP_{c} }{\sum_{c \in C}TP_{c}+ \sum_{c \in C}FN_{c} }\]
@@ -1045,9 +1054,8 @@ at frist calcalete for all feather the confusion matrix als binary classificatio
 </div>
 </div>
 </div>
-
-<div id="outline-container-org64baa6f" class="outline-3">
-<h3 id="org64baa6f"><span class="section-number-3">1.19.</span> Jacobin matrix</h3>
+<div id="outline-container-orgb50ebd9" class="outline-3">
+<h3 id="orgb50ebd9"><span class="section-number-3">1.19.</span> Jacobin matrix</h3>
 <div class="outline-text-3" id="text-1-19">
 <p>
 for \[ Y_{m} = f(X_{n}), Y =(y_{1}, y_{2}, y_{3}....y_{m}), X = (x_{1}
@@ -1088,9 +1096,8 @@ z}{\partial \theta }}&{\dfrac {\partial z}{\partial \varphi
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgba106c8" class="outline-3">
-<h3 id="orgba106c8"><span class="section-number-3">1.20.</span> 预剪枝和后剪枝</h3>
+<div id="outline-container-org7de700d" class="outline-3">
+<h3 id="org7de700d"><span class="section-number-3">1.20.</span> 预剪枝和后剪枝</h3>
 <div class="outline-text-3" id="text-1-20">
 <p>
 在利用训练集的最大信息增益确定划分属性后，用验证集来检验划分，如果验证
@@ -1103,8 +1110,8 @@ z}{\partial \theta }}&{\dfrac {\partial z}{\partial \varphi
 </p>
 </div>
 </div>
-<div id="outline-container-org7547346" class="outline-3">
-<h3 id="org7547346"><span class="section-number-3">1.21.</span> 属性有连续值和缺失值</h3>
+<div id="outline-container-org8a4d80e" class="outline-3">
+<h3 id="org8a4d80e"><span class="section-number-3">1.21.</span> 属性有连续值和缺失值</h3>
 <div class="outline-text-3" id="text-1-21">
 <p>
 连续值离散化：排列该属性的所有取值n个，在n-1个区间中去中间值为离散值，
@@ -1119,20 +1126,20 @@ z}{\partial \theta }}&{\dfrac {\partial z}{\partial \varphi
 </div>
 </div>
 </div>
-<div id="outline-container-orgc43cd9f" class="outline-2">
-<h2 id="orgc43cd9f"><span class="section-number-2">2.</span> activation function</h2>
+<div id="outline-container-orga0141e0" class="outline-2">
+<h2 id="orga0141e0"><span class="section-number-2">2.</span> activation function</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orga323a22" class="outline-3">
-<h3 id="orga323a22"><span class="section-number-3">2.1.</span> activation</h3>
+<div id="outline-container-orgd6610ab" class="outline-3">
+<h3 id="orgd6610ab"><span class="section-number-3">2.1.</span> activation</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 输出为实数空间或某个区间， 连续变化。直接有输出值和真实值比较
 </p>
 </div>
 </div>
-<div id="outline-container-org6f17b24" class="outline-3">
-<h3 id="org6f17b24"><span class="section-number-3">2.2.</span> Sigmoid</h3>
+<div id="outline-container-orgb596067" class="outline-3">
+<h3 id="orgb596067"><span class="section-number-3">2.2.</span> Sigmoid</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 \[ Sigmoid(x) = \frac{1}{1+e^{-x}}\]
@@ -1143,9 +1150,8 @@ z}{\partial \theta }}&{\dfrac {\partial z}{\partial \varphi
 </p>
 </div>
 </div>
-
-<div id="outline-container-org3b62026" class="outline-3">
-<h3 id="org3b62026"><span class="section-number-3">2.3.</span> ReLU</h3>
+<div id="outline-container-orga9b0e68" class="outline-3">
+<h3 id="orga9b0e68"><span class="section-number-3">2.3.</span> ReLU</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 \[ Relu(x) =
@@ -1160,9 +1166,8 @@ x&  x >=0 \\
 </p>
 </div>
 </div>
-
-<div id="outline-container-org7d1cffe" class="outline-3">
-<h3 id="org7d1cffe"><span class="section-number-3">2.4.</span> LeakyReLU</h3>
+<div id="outline-container-org518df69" class="outline-3">
+<h3 id="org518df69"><span class="section-number-3">2.4.</span> LeakyReLU</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 \[ LeakyReLU(x) = \begin{cases}
@@ -1172,9 +1177,8 @@ px& x <0, 0<p<<1
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgc708853" class="outline-3">
-<h3 id="orgc708853"><span class="section-number-3">2.5.</span> Tanh</h3>
+<div id="outline-container-orgada9348" class="outline-3">
+<h3 id="orgada9348"><span class="section-number-3">2.5.</span> Tanh</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 \[ tanh(x) = \frac{e^{x}-e^{-x}}{e^{x}+e^{-x}}\]
@@ -1183,9 +1187,8 @@ px& x <0, 0<p<<1
 </p>
 </div>
 </div>
-
-<div id="outline-container-org5b533f6" class="outline-3">
-<h3 id="org5b533f6"><span class="section-number-3">2.6.</span> MSE</h3>
+<div id="outline-container-orgcb4377e" class="outline-3">
+<h3 id="orgcb4377e"><span class="section-number-3">2.6.</span> MSE</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 \[ \mathcal{L} = MSE(y, o) =
@@ -1194,17 +1197,16 @@ px& x <0, 0<p<<1
 </p>
 </div>
 </div>
-
-<div id="outline-container-orge462a9b" class="outline-3">
-<h3 id="orge462a9b"><span class="section-number-3">2.7.</span> inf entropy</h3>
+<div id="outline-container-orgd8ca8f8" class="outline-3">
+<h3 id="orgd8ca8f8"><span class="section-number-3">2.7.</span> inf entropy</h3>
 <div class="outline-text-3" id="text-2-7">
 <p>
 \[ H(p) = -\sum_{i}P(i)\log_{2}^{P_{i}}\]
 </p>
 </div>
 </div>
-<div id="outline-container-orgd6466c7" class="outline-3">
-<h3 id="orgd6466c7"><span class="section-number-3">2.8.</span> softmax</h3>
+<div id="outline-container-org2841aa3" class="outline-3">
+<h3 id="org2841aa3"><span class="section-number-3">2.8.</span> softmax</h3>
 <div class="outline-text-3" id="text-2-8">
 <p>
 \[ p_{z_{i}} = \frac{e^{z_{i}}}{\sum_{j}e^{z_{j}}}\]
@@ -1218,9 +1220,8 @@ p_{i}(1-p_{j}) &  if i =j \\
 </p>
 </div>
 </div>
-
-<div id="outline-container-org02f10b4" class="outline-3">
-<h3 id="org02f10b4"><span class="section-number-3">2.9.</span> cross entropy</h3>
+<div id="outline-container-org8f20f40" class="outline-3">
+<h3 id="org8f20f40"><span class="section-number-3">2.9.</span> cross entropy</h3>
 <div class="outline-text-3" id="text-2-9">
 <p>
 在计算交叉熵时， 一般是和 softmax 函数一起使用的
@@ -1265,22 +1266,21 @@ if a is far away from y, the update will be its difference
 </div>
 </div>
 </div>
-
-<div id="outline-container-orga37dcf5" class="outline-2">
-<h2 id="orga37dcf5"><span class="section-number-2">3.</span> example bagging</h2>
+<div id="outline-container-org0cf44cf" class="outline-2">
+<h2 id="org0cf44cf"><span class="section-number-2">3.</span> example bagging</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 多次放回抽样，用不同抽样的数据集在多棵树上并行计算，
 </p>
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <tbody>
 <tr>
@@ -1295,8 +1295,8 @@ if a is far away from y, the update will be its difference
 </p>
 </div>
 </div>
-<div id="outline-container-org6480d20" class="outline-2">
-<h2 id="org6480d20"><span class="section-number-2">4.</span> Boosting</h2>
+<div id="outline-container-org2be959e" class="outline-2">
+<h2 id="org2be959e"><span class="section-number-2">4.</span> Boosting</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 固定数据集，在多个串行的模型上顺序计算，模型间强相关，防止过拟合，用弱
@@ -1304,76 +1304,85 @@ if a is far away from y, the update will be its difference
 </p>
 </div>
 </div>
-<div id="outline-container-orgf65e920" class="outline-2">
-<h2 id="orgf65e920"><span class="section-number-2">5.</span> gradient decent</h2>
+<div id="outline-container-orgdf80011" class="outline-2">
+<h2 id="orgdf80011"><span class="section-number-2">5.</span> gradient decent</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 当数据点很多是，正则化方法计算量将非常大，此时较多使用梯度下降
 </p>
 
-<pre class="example">
-sklearn API
+<div class="org-src-container">
+<pre class="src src-nil">sklearn API
 </pre>
+</div>
 
 <div class="org-src-container">
 <pre class="src src-python">
-<span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
-<span style="color: #4f97d7; font-weight: bold;">import</span> random
-<span style="color: #4f97d7; font-weight: bold;">from</span> sklearn <span style="color: #4f97d7; font-weight: bold;">import</span> linear_model
-<span style="color: #7590db;">testsize</span> = 5
+import numpy as np
+import random
+from sklearn import linear_model
+testsize = 5
 
-<span style="color: #7590db;">x</span> = np.array([a <span style="color: #4f97d7; font-weight: bold;">for</span> a <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(100)])
-<span style="color: #7590db;">onesx</span> = np.ones(x.shape)
-<span style="color: #7590db;">X</span> = np.c_[x, 2*x, onesx]
-<span style="color: #7590db;">y</span> = np.array([a*5 + 20 + random.randint(0,3) <span style="color: #4f97d7; font-weight: bold;">for</span> a <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(100)])
-<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"the X shape is {}, and y shape is {}"</span>.<span style="color: #4f97d7;">format</span>(X.shape, y.shape))
+x = np.array([a for a in range(100)])
+onesx = np.ones(x.shape)
+X = np.c_[x, 2*x, onesx]
+y = np.array([a*5 + 20 + random.randint(0,3) for a in range(100)])
+print("the X shape is {}, and y shape is {}".format(X.shape, y.shape))
 
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Sklearn API</span>
-<span style="color: #7590db;">reg</span> = linear_model.LinearRegression()
-<span style="color: #7590db;">model</span> = reg.fit(X,y)
-<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"Sklearn: the weith is {}, and the intercept is {}"</span>.<span style="color: #4f97d7;">format</span>(model.coef_[:-1] ,model.intercept_))
-<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"the predect of 3 ele is {}"</span>.<span style="color: #4f97d7;">format</span>(model.predict(np.c_[np.arange(testsize), np.arange(testsize),np.ones(testsize)])))
+# Sklearn API
+reg = linear_model.LinearRegression()
+model = reg.fit(X,y)
+print("Sklearn: the weith is {}, and the intercept is {}".format(model.coef_[:-1] ,model.intercept_))
+print("the predect of 3 ele is {}".format(model.predict(np.c_[np.arange(testsize), np.arange(testsize),np.ones(testsize)])))
 
 
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">manual</span>
-<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">featureNormalize</span>(X):
-<span style="background-color: #292e34;"> </span>   (<span style="color: #7590db;">m</span>,<span style="color: #7590db;">n</span>) = X.shape
-<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">X_norm</span> = X
-<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">mu</span> = np.zeros(n);
-<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">sigma</span> = np.zeros(n);
-<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> i <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(n):
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">mu</span>[i] = np.mean(X[:,i])
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">sigma</span>[i] = np.std(X[:,i])
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">X_norm</span>[:,i] = (X_norm[:,i]-mu[i])/sigma[i]
-<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> X_norm
-<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">computeCost</span>(X, y, theta):
-<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> np.<span style="color: #4f97d7;">sum</span>((np.dot(X,theta) -y)**2)/(2*<span style="color: #4f97d7;">len</span>(y));
+# manual
+def featureNormalize(X):
+    (m,n) = X.shape
+    X_norm = X
+    mu = np.zeros(n);
+    sigma = np.zeros(n);
+    for i in range(n):
+        mu[i] = np.mean(X[:,i])
+        sigma[i] = np.std(X[:,i])
+        X_norm[:,i] = (X_norm[:,i]-mu[i])/sigma[i]
+    return X_norm
+def computeCost(X, y, theta):
+    return np.sum((np.dot(X,theta) -y)**2)/(2*len(y));
 
-<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">gradientDescent</span>(X, y, theta, alpha, num_iters):
-<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">m</span> = <span style="color: #4f97d7;">len</span>(y)
-<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">J_history</span> = np.zeros(num_iters);
-<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">theta_len</span> = <span style="color: #4f97d7;">len</span>(theta);
-<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> num_iter <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(num_iters):
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">theta</span> = theta - (alpha/m)*np.dot(X.T,(np.dot(X,theta).reshape(-1)-y))
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">J_history</span>[num_iter] = computeCost(X, y, theta)
-<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> theta, J_history
+def gradientDescent(X, y, theta, alpha, num_iters):
+    m = len(y)
+    J_history = np.zeros(num_iters);
+    theta_len = len(theta);
+    for num_iter in range(num_iters):
+        theta = theta - (alpha/m)*np.dot(X.T,(np.dot(X,theta).reshape(-1)-y))
+        J_history[num_iter] = computeCost(X, y, theta)
+    return theta, J_history
 
-<span style="color: #7590db;">alpha</span> = 0.0001
-<span style="color: #7590db;">num_iters</span> = 400000
-<span style="color: #7590db;">theta</span> = np.zeros(2+1)
-<span style="color: #7590db;">theta</span>, <span style="color: #7590db;">J_history</span> = gradientDescent(X, y, theta, alpha, num_iters)
-<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"Greadient decent: the weight is {}, and the intercept is {}"</span>.<span style="color: #4f97d7;">format</span>(theta[:-1],theta[-1]))
-<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"the predect of 3 ele is {}"</span>.<span style="color: #4f97d7;">format</span>(np.dot(np.c_[np.arange(testsize), np.arange(testsize),np.ones(testsize)], theta)))
+alpha = 0.0001
+num_iters = 400000
+theta = np.zeros(2+1)
+theta, J_history = gradientDescent(X, y, theta, alpha, num_iters)
+print("Greadient decent: the weight is {}, and the intercept is {}".format(theta[:-1],theta[-1]))
+print("the predect of 3 ele is {}".format(np.dot(np.c_[np.arange(testsize), np.arange(testsize),np.ones(testsize)], theta)))
+</pre>
+</div>
+
+<pre class="example">
+the X shape is (100, 3), and y shape is (100,)
+Sklearn: the weith is [0.99925113 1.99850225], and the intercept is 21.64534653465344
+the predect of 3 ele is [21.64534653 24.64309991 27.64085329 30.63860666 33.63636004]
+Greadient decent: the weight is [0.99925367 1.99850734], and the intercept is 21.64450170230179
+the predect of 3 ele is [21.6445017  24.64226272 27.64002374 30.63778475 33.63554577]
 </pre>
 </div>
 </div>
-</div>
-<div id="outline-container-org9a90b38" class="outline-2">
-<h2 id="org9a90b38"><span class="section-number-2">6.</span> Ordinary Least Squares(OLS)</h2>
+<div id="outline-container-orgc6372b2" class="outline-2">
+<h2 id="orgc6372b2"><span class="section-number-2">6.</span> Ordinary Least Squares(OLS)</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org3a3602b" class="outline-3">
-<h3 id="org3a3602b"><span class="section-number-3">6.1.</span> 正规化方程</h3>
+<div id="outline-container-org535b832" class="outline-3">
+<h3 id="org535b832"><span class="section-number-3">6.1.</span> 正规化方程</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 正则化方程的推导，用高斯分布的多变量分布的Maxisum likelihood,能一起求得对weight和bias值 :
@@ -1397,9 +1406,8 @@ Loss function:
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgea394a9" class="outline-3">
-<h3 id="orgea394a9"><span class="section-number-3">6.2.</span> 正则化正规化方程</h3>
+<div id="outline-container-org7e4407f" class="outline-3">
+<h3 id="org7e4407f"><span class="section-number-3">6.2.</span> 正则化正规化方程</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 \[w = (\Phi^{T}\Phi + \lambda I)^{-1} \Phi^{T}y \]
@@ -1407,57 +1415,70 @@ Loss function:
 
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
-<span style="color: #4f97d7; font-weight: bold;">import</span> random
-<span style="color: #4f97d7; font-weight: bold;">from</span> sklearn <span style="color: #4f97d7; font-weight: bold;">import</span> linear_model
-<span style="color: #7590db;">testsize</span> = 5
+<pre class="src src-python">import numpy as np
+import random
+from sklearn import linear_model
+testsize = 5
 
-<span style="color: #7590db;">x</span> = np.array([a <span style="color: #4f97d7; font-weight: bold;">for</span> a <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(100)])
-<span style="color: #7590db;">onesx</span> = np.ones(x.shape)
-<span style="color: #7590db;">X</span> = np.c_[x,onesx]
-<span style="color: #7590db;">y</span> = np.array([a*5 + 20 + random.randint(0,3) <span style="color: #4f97d7; font-weight: bold;">for</span> a <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(100)])
-<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"the X shape is {}, and y shape is {}"</span>.<span style="color: #4f97d7;">format</span>(X.shape, y.shape))
+x = np.array([a for a in range(100)])
+onesx = np.ones(x.shape)
+X = np.c_[x,onesx]
+y = np.array([a*5 + 20 + random.randint(0,3) for a in range(100)])
+print("the X shape is {}, and y shape is {}".format(X.shape, y.shape))
 
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">weight = np.dot(np.dot(np.linalg.pinv(np.dot(X.T, X)), X.T), y)</span>
-<span style="color: #7590db;">weight</span> = np.linalg.inv(X.T.dot(X)).dot(X.T).dot(y)
+# weight = np.dot(np.dot(np.linalg.pinv(np.dot(X.T, X)), X.T), y)
+weight = np.linalg.inv(X.T.dot(X)).dot(X.T).dot(y)
 
-<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"OLS : the weight is{}, and the bais is {} "</span>.<span style="color: #4f97d7;">format</span>(weight[:-1], weight[-1]))
-<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"the predect of 5 ele is {}"</span>.<span style="color: #4f97d7;">format</span>(np.dot(np.c_[np.arange(testsize),np.ones(testsize)], weight)))
+print("OLS : the weight is{}, and the bais is {} ".format(weight[:-1], weight[-1]))
+print("the predect of 5 ele is {}".format(np.dot(np.c_[np.arange(testsize),np.ones(testsize)], weight)))
 
 
 </pre>
 </div>
 
 <pre class="example">
-也可以是对变量 with multi variables
+the X shape is (100, 2), and y shape is (100,)
+OLS : the weight is[5.00063606], and the bais is 21.508514851485195
+the predect of 5 ele is [21.50851485 26.50915092 31.50978698 36.51042304 41.51105911]
 </pre>
+
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
-<span style="color: #4f97d7; font-weight: bold;">import</span> random
-<span style="color: #4f97d7; font-weight: bold;">from</span> sklearn <span style="color: #4f97d7; font-weight: bold;">import</span> linear_model
-<span style="color: #7590db;">testsize</span> = 5
+<pre class="src src-nil">也可以是对变量 with multi variables
+</pre>
+</div>
 
-<span style="color: #7590db;">x</span> = np.array([a <span style="color: #4f97d7; font-weight: bold;">for</span> a <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(100)])
-<span style="color: #7590db;">onesx</span> = np.ones(x.shape)
-<span style="color: #7590db;">X</span> = np.c_[onesx, x, 2*x]
-<span style="color: #7590db;">y</span> = np.array([a*5 + 20 + random.randint(0,3) <span style="color: #4f97d7; font-weight: bold;">for</span> a <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(100)])
-<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"the X shape is {}, and y shape is {}"</span>.<span style="color: #4f97d7;">format</span>(X.shape, y.shape))
+<div class="org-src-container">
+<pre class="src src-python">import numpy as np
+import random
+from sklearn import linear_model
+testsize = 5
 
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">ordinary  least squares (&#27491;&#35268;&#21270;&#26041;&#27861;&#65289;</span>
-<span style="color: #7590db;">weight</span> = np.dot(np.dot(np.linalg.pinv(np.dot(X.T, X)), X.T), y)
-<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"OLS : the weight is{}, and the bais is {} "</span>.<span style="color: #4f97d7;">format</span>(weight[:-1], weight[-1]))
-<span style="color: #4f97d7;">print</span>(<span style="color: #2d9574;">"the predect of 5 ele is {}"</span>.<span style="color: #4f97d7;">format</span>(np.dot(np.c_[np.arange(testsize), np.arange(testsize),np.ones(testsize)], weight)))
+x = np.array([a for a in range(100)])
+onesx = np.ones(x.shape)
+X = np.c_[onesx, x, 2*x]
+y = np.array([a*5 + 20 + random.randint(0,3) for a in range(100)])
+print("the X shape is {}, and y shape is {}".format(X.shape, y.shape))
+
+# ordinary  least squares (正规化方法）
+weight = np.dot(np.dot(np.linalg.pinv(np.dot(X.T, X)), X.T), y)
+print("OLS : the weight is{}, and the bais is {} ".format(weight[:-1], weight[-1]))
+print("the predect of 5 ele is {}".format(np.dot(np.c_[np.arange(testsize), np.arange(testsize),np.ones(testsize)], weight)))
 
 
 </pre>
 </div>
-</div>
-</div>
-</div>
 
-<div id="outline-container-orga360c27" class="outline-2">
-<h2 id="orga360c27"><span class="section-number-2">7.</span> Lasso regression</h2>
+<pre class="example">
+the X shape is (100, 3), and y shape is (100,)
+OLS : the weight is[21.35089109  0.9999964 ], and the bais is 1.999992799280042
+the predect of 5 ele is [ 1.9999928  24.35088029 46.70176778 69.05265527 91.40354275]
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf4b03a4" class="outline-2">
+<h2 id="orgf4b03a4"><span class="section-number-2">7.</span> Lasso regression</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 we reform the Loss function from OLS
@@ -1482,9 +1503,8 @@ This reduce many feather coefficient to be 0,
 </p>
 </div>
 </div>
-
-<div id="outline-container-org87a94d6" class="outline-2">
-<h2 id="org87a94d6"><span class="section-number-2">8.</span> Ridge regression</h2>
+<div id="outline-container-orgb1af64f" class="outline-2">
+<h2 id="orgb1af64f"><span class="section-number-2">8.</span> Ridge regression</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 we reform the Loss function from OLS
@@ -1510,9 +1530,8 @@ This reduce many feather coefficient to be as small as possible
 </p>
 </div>
 </div>
-
-<div id="outline-container-orge32d8b8" class="outline-2">
-<h2 id="orge32d8b8"><span class="section-number-2">9.</span> Elastic Net regression</h2>
+<div id="outline-container-org3cf12ab" class="outline-2">
+<h2 id="org3cf12ab"><span class="section-number-2">9.</span> Elastic Net regression</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 combinate Lasso regession and Ridge regression
@@ -1523,9 +1542,8 @@ combinate Lasso regession and Ridge regression
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgdc111ef" class="outline-2">
-<h2 id="orgdc111ef"><span class="section-number-2">10.</span> Decision List</h2>
+<div id="outline-container-org35666cc" class="outline-2">
+<h2 id="org35666cc"><span class="section-number-2">10.</span> Decision List</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 (f1,v1),(f2,v2)&#x2026;.(fr,vr)
@@ -1534,23 +1552,23 @@ true. and each term can be viewed as if else extended. if fi is
 matched, so vi is its value.
 </p>
 
-<pre class="example">
-for 0&lt;k&lt;n, k-CNF and k-DNF are proper
+<div class="org-src-container">
+<pre class="src src-nil">for 0&lt;k&lt;n, k-CNF and k-DNF are proper
 
 
 </pre>
 </div>
 </div>
-
-<div id="outline-container-orgaa62d6b" class="outline-2">
-<h2 id="orgaa62d6b"><span class="section-number-2">11.</span> linear regression</h2>
 </div>
-<div id="outline-container-orgb0df331" class="outline-2">
-<h2 id="orgb0df331"><span class="section-number-2">12.</span> linear Discriminate Analysis</h2>
+<div id="outline-container-orgaf5052f" class="outline-2">
+<h2 id="orgaf5052f"><span class="section-number-2">11.</span> linear regression</h2>
+</div>
+<div id="outline-container-orgbc3d452" class="outline-2">
+<h2 id="orgbc3d452"><span class="section-number-2">12.</span> linear Discriminate Analysis</h2>
 <div class="outline-text-2" id="text-12">
 </div>
-<div id="outline-container-org9c2cab7" class="outline-3">
-<h3 id="org9c2cab7"><span class="section-number-3">12.1.</span> Fisher's linear discriminant</h3>
+<div id="outline-container-org6ab025b" class="outline-3">
+<h3 id="org6ab025b"><span class="section-number-3">12.1.</span> Fisher's linear discriminant</h3>
 <div class="outline-text-3" id="text-12-1">
 <p>
 输入为j=0，1类样本，每类分别 \(N_{j}\) 个样本
@@ -1565,8 +1583,8 @@ for 0&lt;k&lt;n, k-CNF and k-DNF are proper
 </p>
 </div>
 </div>
-<div id="outline-container-org9cbcaed" class="outline-3">
-<h3 id="org9cbcaed"><span class="section-number-3">12.2.</span> Fisher's linear discriminant with Kernel method</h3>
+<div id="outline-container-org92705eb" class="outline-3">
+<h3 id="org92705eb"><span class="section-number-3">12.2.</span> Fisher's linear discriminant with Kernel method</h3>
 <div class="outline-text-3" id="text-12-2">
 <p>
 \[ J(w) = \frac{(m_{2}-m_{1})^{2}}{s_{1}^{2} + s_{2}^{2}} =
@@ -1600,16 +1618,16 @@ Denominator:
 </p>
 </div>
 </div>
-
-<div id="outline-container-org293d201" class="outline-3">
-<h3 id="org293d201"><span class="section-number-3">12.3.</span> Probabilistic Generative Model</h3>
+<div id="outline-container-org7aaf7d2" class="outline-3">
+<h3 id="org7aaf7d2"><span class="section-number-3">12.3.</span> Probabilistic Generative Model</h3>
 <div class="outline-text-3" id="text-12-3">
 <p>
 用贝叶斯定理求出每个可能的概率，再取最大的值
 </p>
-<pre class="example">
-one two class case
+<div class="org-src-container">
+<pre class="src src-nil">one two class case
 </pre>
+</div>
 <p>
 \[ P(C_{1}|x) = \frac{P(C_{1}|x)P(C_{1})}{P(C_{1}|x)P(C_{1}) +
 P(C_{2}|x)P(C_{2})} = \frac{1}{1+exp(log
@@ -1617,9 +1635,10 @@ P(C_{2}|x)P(C_{2})} = \frac{1}{1+exp(log
 即可以 Logistic sigmoid 函数求解
 </p>
 
-<pre class="example">
-multi class case
+<div class="org-src-container">
+<pre class="src src-nil">multi class case
 </pre>
+</div>
 
 <p>
 \[P(C_{k}|x) = \frac{P(x|C_{k})P(C_{k})}{\sum_{j} P(x|C_{j})P(C_{j})}\]
@@ -1630,9 +1649,8 @@ multi class case
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgcd1eab1" class="outline-3">
-<h3 id="orgcd1eab1"><span class="section-number-3">12.4.</span> Probabilistic Discriminant Model</h3>
+<div id="outline-container-orgdcb46df" class="outline-3">
+<h3 id="orgdcb46df"><span class="section-number-3">12.4.</span> Probabilistic Discriminant Model</h3>
 <div class="outline-text-3" id="text-12-4">
 <p>
 Better predictive performance if assumptions about class-conditional
@@ -1646,13 +1664,12 @@ logical regression, See logical regression
 </div>
 </div>
 </div>
-
-<div id="outline-container-org91796f2" class="outline-2">
-<h2 id="org91796f2"><span class="section-number-2">13.</span> Principe Component Analysis</h2>
+<div id="outline-container-org4482916" class="outline-2">
+<h2 id="org4482916"><span class="section-number-2">13.</span> Principe Component Analysis</h2>
 <div class="outline-text-2" id="text-13">
 </div>
-<div id="outline-container-org8824246" class="outline-3">
-<h3 id="org8824246"><span class="section-number-3">13.1.</span> PCA Algorithms</h3>
+<div id="outline-container-orgaa3826a" class="outline-3">
+<h3 id="orgaa3826a"><span class="section-number-3">13.1.</span> PCA Algorithms</h3>
 <div class="outline-text-3" id="text-13-1">
 <p>
 将原来的数据坐标进行线性组合，组成新的坐标基底，让数据在新基底
@@ -1668,8 +1685,8 @@ logical regression, See logical regression
 </ol>
 </div>
 </div>
-<div id="outline-container-org3deb736" class="outline-3">
-<h3 id="org3deb736"><span class="section-number-3">13.2.</span> Probabilistic generative model for PCA</h3>
+<div id="outline-container-org2102499" class="outline-3">
+<h3 id="org2102499"><span class="section-number-3">13.2.</span> Probabilistic generative model for PCA</h3>
 <div class="outline-text-3" id="text-13-2">
 <p>
 State the probabilistic generative model underlying Probabilistic PCA
@@ -1703,16 +1720,15 @@ So, \(p(x) = \int p(x|z)p(z)dz\)
 </div>
 </div>
 </div>
-
-<div id="outline-container-org25bbd18" class="outline-2">
-<h2 id="org25bbd18"><span class="section-number-2">14.</span> K-Nearest Neighbor&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></h2>
+<div id="outline-container-org08d6f60" class="outline-2">
+<h2 id="org08d6f60"><span class="section-number-2">14.</span> K-Nearest Neighbor&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></h2>
 <div class="outline-text-2" id="text-14">
 <p>
 This is based on the idea that instances of the same class are close to each othera
 </p>
 </div>
-<div id="outline-container-orgeca9d23" class="outline-3">
-<h3 id="orgeca9d23"><span class="section-number-3">14.1.</span> Algorithms</h3>
+<div id="outline-container-orgf54460b" class="outline-3">
+<h3 id="orgf54460b"><span class="section-number-3">14.1.</span> Algorithms</h3>
 <div class="outline-text-3" id="text-14-1">
 <p>
 selecting the k nearest neighbor from the new instance, and leabel it as the
@@ -1721,16 +1737,15 @@ majority target from k nearest neighbor instance
 </div>
 </div>
 </div>
-
-<div id="outline-container-org8a32907" class="outline-2">
-<h2 id="org8a32907"><span class="section-number-2">15.</span> Decision tree&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></h2>
+<div id="outline-container-org9b18fd3" class="outline-2">
+<h2 id="org9b18fd3"><span class="section-number-2">15.</span> Decision tree&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></h2>
 <div class="outline-text-2" id="text-15">
 <p>
 to find the "most informative feature"
 </p>
 </div>
-<div id="outline-container-org98811fe" class="outline-3">
-<h3 id="org98811fe"><span class="section-number-3">15.1.</span> Algorithms</h3>
+<div id="outline-container-orgc198aba" class="outline-3">
+<h3 id="orgc198aba"><span class="section-number-3">15.1.</span> Algorithms</h3>
 <div class="outline-text-3" id="text-15-1">
 <p>
 在训练集内以最大信息增益来确定划分属性，在各个子区内再重复剩下的属性
@@ -1750,21 +1765,20 @@ over this again and again
 </div>
 </div>
 </div>
-
-<div id="outline-container-org7aaddcd" class="outline-2">
-<h2 id="org7aaddcd"><span class="section-number-2">16.</span> Random Forest&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></h2>
+<div id="outline-container-orgd34903d" class="outline-2">
+<h2 id="orgd34903d"><span class="section-number-2">16.</span> Random Forest&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></h2>
 <div class="outline-text-2" id="text-16">
 <p>
 combining multiple decision trees into a single classifier.
 Random Forest = Decision Tree + Bagging + random Eigenschaften
 </p>
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <tbody>
 <tr>
@@ -1779,8 +1793,8 @@ Random Forest = Decision Tree + Bagging + random Eigenschaften
 </tbody>
 </table>
 </div>
-<div id="outline-container-org84ce22e" class="outline-3">
-<h3 id="org84ce22e"><span class="section-number-3">16.1.</span> algorithms on decision tree</h3>
+<div id="outline-container-orga882007" class="outline-3">
+<h3 id="orga882007"><span class="section-number-3">16.1.</span> algorithms on decision tree</h3>
 <div class="outline-text-3" id="text-16-1">
 <p>
 1, examples randomization for training
@@ -1789,9 +1803,8 @@ Random Forest = Decision Tree + Bagging + random Eigenschaften
 </div>
 </div>
 </div>
-
-<div id="outline-container-org1abe1f4" class="outline-2">
-<h2 id="org1abe1f4"><span class="section-number-2">17.</span> Naivi Bayes's&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></h2>
+<div id="outline-container-org8aa69fa" class="outline-2">
+<h2 id="org8aa69fa"><span class="section-number-2">17.</span> Naivi Bayes's&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></h2>
 <div class="outline-text-2" id="text-17">
 <p>
 \[P(y|x_{1},x_{2},,x_{i}) = \frac{P(x_{1},x_{2},,x_{i}|y) P(y)}{P(x_{1},x_{2},,x_{i})}\]
@@ -1810,8 +1823,8 @@ For \(\prod^{i}_{k=i}P(x_{k}|y)\) can be calcaleted with Multinomial Navie Bayes
 and Graussian Navie Bayes, later one is better for continuons examples
 </p>
 
-<pre class="example">
-假设各个属性完全独立的条件下
+<div class="org-src-container">
+<pre class="src src-nil">假设各个属性完全独立的条件下
 
 要计算在某些条件下某个事件出现的概率（分数）等于
 在每个条件下该事件发生的条件概率的连乘再乘以该事件发生的总概率
@@ -1821,13 +1834,13 @@ and Graussian Navie Bayes, later one is better for continuons examples
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org188b66f" class="outline-2">
-<h2 id="org188b66f"><span class="section-number-2">18.</span> logistic regression&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></h2>
+</div>
+<div id="outline-container-org750a62a" class="outline-2">
+<h2 id="org750a62a"><span class="section-number-2">18.</span> logistic regression&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></h2>
 <div class="outline-text-2" id="text-18">
 </div>
-<div id="outline-container-org8965e36" class="outline-3">
-<h3 id="org8965e36"><span class="section-number-3">18.1.</span> Odd</h3>
+<div id="outline-container-org0a9f538" class="outline-3">
+<h3 id="org0a9f538"><span class="section-number-3">18.1.</span> Odd</h3>
 <div class="outline-text-3" id="text-18-1">
 <p>
 \[Odd(x) = \frac{p_{x}}{1-p_{x}}\], which is the probability of x happen to it not happen
@@ -1842,9 +1855,8 @@ fit logit with linear regression: \(logit(P)=W^{T}X\)
 </p>
 </div>
 </div>
-
-<div id="outline-container-org89752e3" class="outline-3">
-<h3 id="org89752e3"><span class="section-number-3">18.2.</span> Odd ratio</h3>
+<div id="outline-container-org5023262" class="outline-3">
+<h3 id="org5023262"><span class="section-number-3">18.2.</span> Odd ratio</h3>
 <div class="outline-text-3" id="text-18-2">
 <p>
 Odd ratio of \(X_{i}\):
@@ -1862,14 +1874,14 @@ if Odd ratio smaller than one, Odd decrease if x increase
 </p>
 </div>
 </div>
-
-<div id="outline-container-org17c5468" class="outline-3">
-<h3 id="org17c5468"><span class="section-number-3">18.3.</span> algorithms</h3>
+<div id="outline-container-orgc6c2958" class="outline-3">
+<h3 id="orgc6c2958"><span class="section-number-3">18.3.</span> algorithms</h3>
 <div class="outline-text-3" id="text-18-3">
-<pre class="example">
-Logistic regression tries to estimate the logarithm of odds that an instance belongs to a class
+<div class="org-src-container">
+<pre class="src src-nil">Logistic regression tries to estimate the logarithm of odds that an instance belongs to a class
 i.e., that is nothing else but the logarithm of the odds that the instance is of that class.
 </pre>
+</div>
 <p>
 \[Logit(P(X=x)) = \ln (\frac{P(X=x)}{P(X!=x)}) = \ln (\frac{P(X=x)}{1-P(X=x)})\]
 </p>
@@ -1883,13 +1895,12 @@ This is also the same form of sigmoid function
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgeea398b" class="outline-2">
-<h2 id="orgeea398b"><span class="section-number-2">19.</span> Support Vector Machine&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></h2>
+<div id="outline-container-orgd61956d" class="outline-2">
+<h2 id="orgd61956d"><span class="section-number-2">19.</span> Support Vector Machine&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></h2>
 <div class="outline-text-2" id="text-19">
 </div>
-<div id="outline-container-org535f2a4" class="outline-3">
-<h3 id="org535f2a4"><span class="section-number-3">19.1.</span> without soft margin</h3>
+<div id="outline-container-orgefb9bae" class="outline-3">
+<h3 id="orgefb9bae"><span class="section-number-3">19.1.</span> without soft margin</h3>
 <div class="outline-text-3" id="text-19-1">
 <p>
 对于点的划分，由decision theory:
@@ -1913,24 +1924,23 @@ So,
 </p>
 </div>
 </div>
-
-<div id="outline-container-org37b483e" class="outline-3">
-<h3 id="org37b483e"><span class="section-number-3">19.2.</span> with soft margin</h3>
+<div id="outline-container-orga7c3016" class="outline-3">
+<h3 id="orga7c3016"><span class="section-number-3">19.2.</span> with soft margin</h3>
 <div class="outline-text-3" id="text-19-2">
 <p>
 对于不能绝对线性分割的，可以允许某些点进入空白分割区域（从-1到1的区域）
 </p>
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <tbody>
 <tr>
@@ -1952,17 +1962,17 @@ So,
 <p>
 this L satisfied the KKT condition, and can be solved.
 </p>
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <tbody>
 <tr>
@@ -1996,9 +2006,8 @@ this L satisfied the KKT condition, and can be solved.
 </table>
 </div>
 </div>
-
-<div id="outline-container-orge6cf6e1" class="outline-3">
-<h3 id="orge6cf6e1"><span class="section-number-3">19.3.</span> kernel function</h3>
+<div id="outline-container-orgd3d8cd1" class="outline-3">
+<h3 id="orgd3d8cd1"><span class="section-number-3">19.3.</span> kernel function</h3>
 <div class="outline-text-3" id="text-19-3">
 <p>
 high dimension separable
@@ -2006,17 +2015,16 @@ high dimension separable
 </div>
 </div>
 </div>
-
-<div id="outline-container-org39c913a" class="outline-2">
-<h2 id="org39c913a"><span class="section-number-2">20.</span> Neural network&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></h2>
+<div id="outline-container-org12094b1" class="outline-2">
+<h2 id="org12094b1"><span class="section-number-2">20.</span> Neural network&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classification">classification</span></span></h2>
 <div class="outline-text-2" id="text-20">
 </div>
-<div id="outline-container-orgefa7dc4" class="outline-3">
-<h3 id="orgefa7dc4"><span class="section-number-3">20.1.</span> Backpropagation</h3>
+<div id="outline-container-orgd5a7144" class="outline-3">
+<h3 id="orgd5a7144"><span class="section-number-3">20.1.</span> Backpropagation</h3>
 <div class="outline-text-3" id="text-20-1">
 </div>
-<div id="outline-container-orgbe8e554" class="outline-4">
-<h4 id="orgbe8e554"><span class="section-number-4">20.1.1.</span> 感知机</h4>
+<div id="outline-container-org7d2f35c" class="outline-4">
+<h4 id="org7d2f35c"><span class="section-number-4">20.1.1.</span> 感知机</h4>
 <div class="outline-text-4" id="text-20-1-1">
 <p>
 对x的向后更正，\(x^{'}= x - \eta \cdot \frac{dy}{dx}\).
@@ -2029,9 +2037,8 @@ high dimension separable
 </p>
 </div>
 </div>
-
-<div id="outline-container-org2e643a6" class="outline-4">
-<h4 id="org2e643a6"><span class="section-number-4">20.1.2.</span> 多层神经网络</h4>
+<div id="outline-container-orgd03327c" class="outline-4">
+<h4 id="orgd03327c"><span class="section-number-4">20.1.2.</span> 多层神经网络</h4>
 <div class="outline-text-4" id="text-20-1-2">
 <p>
 而对于多层神经网络，\(z = w^{T}x + b\), \(\frac{\partial z}{\partial w} =x\),  \(\frac{\partial z}{\partial b} = 1\).
@@ -2064,20 +2071,19 @@ L逐步回推到w。
 </div>
 </div>
 </div>
-
-<div id="outline-container-org2a6fffd" class="outline-2">
-<h2 id="org2a6fffd"><span class="section-number-2">21.</span> K-Means&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></h2>
+<div id="outline-container-org4fea8fb" class="outline-2">
+<h2 id="org4fea8fb"><span class="section-number-2">21.</span> K-Means&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></h2>
 <div class="outline-text-2" id="text-21">
 <p>
 K-means is an example for centroid-based clustering.
 We can determine the cluster of any instance \(x \in F\) as \(c(x) = argmin_{i=1,..k}d(x,C_{i})\).
 </p>
 </div>
-<div id="outline-container-orgf5828b1" class="outline-3">
-<h3 id="orgf5828b1"><span class="section-number-3">21.1.</span> algothism</h3>
+<div id="outline-container-org6dc353b" class="outline-3">
+<h3 id="org6dc353b"><span class="section-number-3">21.1.</span> algothism</h3>
 <div class="outline-text-3" id="text-21-1">
-<pre class="example">
-输入样本集 D: $x_{1}, x_{1}, x_{2},,,x_{m}$
+<div class="org-src-container">
+<pre class="src src-nil">输入样本集 D: $x_{1}, x_{1}, x_{2},,,x_{m}$
 聚类数 k,
 最大迭代数 N,
 期望输出: $C_{1}, C_{2},,,C_{k}$
@@ -2089,75 +2095,75 @@ for i= 1,2,..N:
     对于所有相同标记的聚类X更新中心，再重复上一步骤，直到没有变化为止,或者达到迭代次数限制
 
 </pre>
+</div>
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> random
-<span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
-<span style="color: #4f97d7; font-weight: bold;">import</span> matplotlib.pyplot <span style="color: #4f97d7; font-weight: bold;">as</span> plt
+<pre class="src src-python">import random
+import numpy as np
+import matplotlib.pyplot as plt
 
-<span style="color: #7590db;">b</span> = []
-<span style="color: #4f97d7; font-weight: bold;">for</span> i <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(100):
-<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">a</span> = np.array(<span style="color: #4f97d7;">list</span>([(20,50),(30,10),(60,30)]))
-<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> j <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(a.shape[0]):
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> k <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(a.shape[1]):
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   a[j][k] += random.randint(0,30)
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   b.append(a[j])
+b = []
+for i in range(100):
+    a = np.array(list([(20,50),(30,10),(60,30)]))
+    for j in range(a.shape[0]):
+        for k in range(a.shape[1]):
+            a[j][k] += random.randint(0,30)
+            b.append(a[j])
 
-<span style="color: #7590db;">b</span> = np.array(b)
-plt.plot(b[:,0], b[:,1], <span style="color: #2d9574;">'ro'</span>)
-plt.title(<span style="color: #2d9574;">"toy data"</span>)
+b = np.array(b)
+plt.plot(b[:,0], b[:,1], 'ro')
+plt.title("toy data")
 plt.show()
 
 
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">sklearn API</span>
-<span style="color: #4f97d7; font-weight: bold;">from</span> sklearn.cluster <span style="color: #4f97d7; font-weight: bold;">import</span> KMeans
-<span style="color: #7590db;">y_pred</span> = KMeans(n_clusters=3, random_state=9).fit_predict(b)
+# sklearn API
+from sklearn.cluster import KMeans
+y_pred = KMeans(n_clusters=3, random_state=9).fit_predict(b)
 plt.scatter(b[:, 0], b[:, 1], c=y_pred)
-plt.title(<span style="color: #2d9574;">"toy data with sklearn API"</span>)
+plt.title("toy data with sklearn API")
 plt.show()
 
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">manual</span>
-<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">findClosestCentroids</span>(X, centroids):
-<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">distance</span> = np.zeros((<span style="color: #4f97d7;">len</span>(X),<span style="color: #4f97d7;">len</span>(centroids)))
-<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> i <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(<span style="color: #4f97d7;">len</span>(X)):
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> j <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(<span style="color: #4f97d7;">len</span>(centroids)):
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">distance</span>[<span style="color: #7590db;">i</span>,<span style="color: #7590db;">j</span>] = np.linalg.norm(X[i,:]-centroids[j,:])
-<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> np.argmin(distance,axis=1)
+# manual
+def findClosestCentroids(X, centroids):
+    distance = np.zeros((len(X),len(centroids)))
+    for i in range(len(X)):
+        for j in range(len(centroids)):
+            distance[i,j] = np.linalg.norm(X[i,:]-centroids[j,:])
+    return np.argmin(distance,axis=1)
 
-<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">computeCentroids</span>(X, idx, K):
-<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">centroids</span> = np.zeros((K,X.shape[1]))
-<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> i <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(K):
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">centroids</span>[i,:] = np.mean(X[idx == i],axis = 0)
-<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">return</span> centroids
+def computeCentroids(X, idx, K):
+    centroids = np.zeros((K,X.shape[1]))
+    for i in range(K):
+        centroids[i,:] = np.mean(X[idx == i],axis = 0)
+    return centroids
 
 
-<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">runkMeans</span>(X,K,max_iters):
-<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">indexs</span> = np.random.choice(np.array(<span style="color: #4f97d7;">range</span>(<span style="color: #4f97d7;">len</span>(X))), K,replace=<span style="color: #a45bad;">False</span>)
-<span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">centroids</span> = X[indexs]
-<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> max_iter <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(max_iters):
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">idx</span> = findClosestCentroids(X, centroids)
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">centroids</span> = computeCentroids(X, idx, K)
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #7590db;">colors</span> = [<span style="color: #2d9574;">''</span>,<span style="color: #2d9574;">''</span>,<span style="color: #2d9574;">''</span>]
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7; font-weight: bold;">for</span> i <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span>(K):
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   plt.scatter(X[idx==i, 0], X[idx==i, 1])
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   plt.scatter(centroids[:, 0], centroids[:, 1], c=<span style="color: #2d9574;">'r'</span>)
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   plt.title(<span style="color: #2d9574;">"toy data with manual {} time"</span>.<span style="color: #4f97d7;">format</span>(max_iter))
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span>   plt.show()
-<span style="color: #7590db;">K</span> = 3
-<span style="color: #7590db;">max_iters</span> = 3
+def runkMeans(X,K,max_iters):
+    indexs = np.random.choice(np.array(range(len(X))), K,replace=False)
+    centroids = X[indexs]
+    for max_iter in range(max_iters):
+        idx = findClosestCentroids(X, centroids)
+        centroids = computeCentroids(X, idx, K)
+        colors = ['','','']
+        for i in range(K):
+            plt.scatter(X[idx==i, 0], X[idx==i, 1])
+        plt.scatter(centroids[:, 0], centroids[:, 1], c='r')
+        plt.title("toy data with manual {} time".format(max_iter))
+        plt.show()
+K = 3
+max_iters = 3
 runkMeans(b,K,max_iters)
 
 </pre>
 </div>
 </div>
 </div>
-
-<div id="outline-container-org798b48c" class="outline-3">
-<h3 id="org798b48c"><span class="section-number-3">21.2.</span> select the best k</h3>
+<div id="outline-container-org9934b20" class="outline-3">
+<h3 id="org9934b20"><span class="section-number-3">21.2.</span> select the best k</h3>
 <div class="outline-text-3" id="text-21-2">
 </div>
-<div id="outline-container-org3d734ac" class="outline-4">
-<h4 id="org3d734ac"><span class="section-number-4">21.2.1.</span> based on domain knowlegde:</h4>
+<div id="outline-container-orga4673b9" class="outline-4">
+<h4 id="orga4673b9"><span class="section-number-4">21.2.1.</span> based on domain knowlegde:</h4>
 <div class="outline-text-4" id="text-21-2-1">
 <p>
 cluster are not internally similar, increase k
@@ -2165,16 +2171,16 @@ similar objects are in different clusters, decrease k
 </p>
 </div>
 </div>
-<div id="outline-container-org0510324" class="outline-4">
-<h4 id="org0510324"><span class="section-number-4">21.2.2.</span> Visualizations</h4>
+<div id="outline-container-org526f62b" class="outline-4">
+<h4 id="org526f62b"><span class="section-number-4">21.2.2.</span> Visualizations</h4>
 <div class="outline-text-4" id="text-21-2-2">
 <p>
 this give us a intuitive aspects
 </p>
 </div>
 </div>
-<div id="outline-container-org38552ee" class="outline-4">
-<h4 id="org38552ee"><span class="section-number-4">21.2.3.</span> Within-Sum-of-Squares</h4>
+<div id="outline-container-org758d607" class="outline-4">
+<h4 id="org758d607"><span class="section-number-4">21.2.3.</span> Within-Sum-of-Squares</h4>
 <div class="outline-text-4" id="text-21-2-3">
 <p>
 minimizing the intra-cluster variance
@@ -2183,8 +2189,8 @@ minimizing the intra-cluster variance
 </div>
 </div>
 </div>
-<div id="outline-container-orgcfb764c" class="outline-3">
-<h3 id="orgcfb764c"><span class="section-number-3">21.3.</span> Problems</h3>
+<div id="outline-container-org9fabb30" class="outline-3">
+<h3 id="org9fabb30"><span class="section-number-3">21.3.</span> Problems</h3>
 <div class="outline-text-3" id="text-21-3">
 <p>
 1, k -Means is sensitive to the initial clusters.
@@ -2204,9 +2210,8 @@ minimizing the intra-cluster variance
 </div>
 </div>
 </div>
-
-<div id="outline-container-org0b79f5d" class="outline-2">
-<h2 id="org0b79f5d"><span class="section-number-2">22.</span> EM algorithms for Gaussian Mixture model&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></h2>
+<div id="outline-container-org0de6d1f" class="outline-2">
+<h2 id="org0de6d1f"><span class="section-number-2">22.</span> EM algorithms for Gaussian Mixture model&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></h2>
 <div class="outline-text-2" id="text-22">
 <p>
 This concept is called distribution-based clustering.
@@ -2214,8 +2219,8 @@ Each instance is assigned to the most likely cluster with \(c(x) = max_{i=1,2...
 and the initialization means random mean values and random covariance matrices at first.
 </p>
 </div>
-<div id="outline-container-org56de894" class="outline-3">
-<h3 id="org56de894"><span class="section-number-3">22.1.</span> k selecting</h3>
+<div id="outline-container-orge0769cf" class="outline-3">
+<h3 id="orge0769cf"><span class="section-number-3">22.1.</span> k selecting</h3>
 <div class="outline-text-3" id="text-22-1">
 <p>
 Bayesian Information Criterion for clusters K
@@ -2224,9 +2229,8 @@ for \(k^{'} =k \cdot (d + \frac{d(d+1)}{2})\)
 </p>
 </div>
 </div>
-
-<div id="outline-container-orga350ebd" class="outline-3">
-<h3 id="orga350ebd"><span class="section-number-3">22.2.</span> Algorithm</h3>
+<div id="outline-container-orgcba732c" class="outline-3">
+<h3 id="orgcba732c"><span class="section-number-3">22.2.</span> Algorithm</h3>
 <div class="outline-text-3" id="text-22-2">
 <p>
 \(x_{1}\), \(x_{2}\)&#x2026;.\(x_{n}\) \(\in N_{1...k}\) for \(N_{i}(\mu_{i}, \sigma^{2}_{i})\)
@@ -2269,9 +2273,8 @@ cluster priors:\[\pi_{k} = \frac{N_{k}}{N}\]
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgc4d4cc4" class="outline-3">
-<h3 id="orgc4d4cc4"><span class="section-number-3">22.3.</span> problem</h3>
+<div id="outline-container-org251ec0b" class="outline-3">
+<h3 id="org251ec0b"><span class="section-number-3">22.3.</span> problem</h3>
 <div class="outline-text-3" id="text-22-3">
 <p>
 1, This is  also sensitive to the initination.
@@ -2287,16 +2290,15 @@ cluster priors:\[\pi_{k} = \frac{N_{k}}{N}\]
 </div>
 </div>
 </div>
-
-<div id="outline-container-org8c5b665" class="outline-2">
-<h2 id="org8c5b665"><span class="section-number-2">23.</span> DBSCAN&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></h2>
+<div id="outline-container-org2c85d83" class="outline-2">
+<h2 id="org2c85d83"><span class="section-number-2">23.</span> DBSCAN&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></h2>
 <div class="outline-text-2" id="text-23">
 <p>
 This is density-based clustering
 </p>
 </div>
-<div id="outline-container-org1889a68" class="outline-3">
-<h3 id="org1889a68"><span class="section-number-3">23.1.</span> concepts \(\epsilon\)  minPts</h3>
+<div id="outline-container-orgefb50ec" class="outline-3">
+<h3 id="orgefb50ec"><span class="section-number-3">23.1.</span> concepts \(\epsilon\)  minPts</h3>
 <div class="outline-text-3" id="text-23-1">
 <p>
 neighbors(x) = {x' \(\in\) X: d(x, x') &lt;= \(\epsilon\)}
@@ -2312,9 +2314,8 @@ each dense neighbors exist at last on core point
 </p>
 </div>
 </div>
-
-<div id="outline-container-org83428c1" class="outline-3">
-<h3 id="org83428c1"><span class="section-number-3">23.2.</span> Algorithm</h3>
+<div id="outline-container-orgdc680d8" class="outline-3">
+<h3 id="orgdc680d8"><span class="section-number-3">23.2.</span> Algorithm</h3>
 <div class="outline-text-3" id="text-23-2">
 <p>
 1, randomly select one core point as the first cluster
@@ -2324,17 +2325,16 @@ each dense neighbors exist at last on core point
 </p>
 </div>
 </div>
-
-<div id="outline-container-orge802f56" class="outline-3">
-<h3 id="orge802f56"><span class="section-number-3">23.3.</span> select \(\epsilon\) and minpts</h3>
+<div id="outline-container-orgff3da6b" class="outline-3">
+<h3 id="orgff3da6b"><span class="section-number-3">23.3.</span> select \(\epsilon\) and minpts</h3>
 <div class="outline-text-3" id="text-23-3">
 <p>
 with largest curvature ,sharpest change in lines for difference \(\epsilon\) and minPts
 </p>
 </div>
 </div>
-<div id="outline-container-org749893c" class="outline-3">
-<h3 id="org749893c"><span class="section-number-3">23.4.</span> problems</h3>
+<div id="outline-container-org4654b47" class="outline-3">
+<h3 id="org4654b47"><span class="section-number-3">23.4.</span> problems</h3>
 <div class="outline-text-3" id="text-23-4">
 <p>
 1, difficult selection of \(\epsilon\) and minPts
@@ -2344,15 +2344,15 @@ with largest curvature ,sharpest change in lines for difference \(\epsilon\) and
 </div>
 </div>
 </div>
-<div id="outline-container-orgde9fb44" class="outline-2">
-<h2 id="orgde9fb44"><span class="section-number-2">24.</span> Single Linkage Clustering&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></h2>
+<div id="outline-container-orgaeeee4b" class="outline-2">
+<h2 id="orgaeeee4b"><span class="section-number-2">24.</span> Single Linkage Clustering&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Cluster">Cluster</span></span></h2>
 <div class="outline-text-2" id="text-24">
 <p>
 hierarchical clustering
 </p>
 </div>
-<div id="outline-container-orge43557c" class="outline-3">
-<h3 id="orge43557c"><span class="section-number-3">24.1.</span> Algorithm</h3>
+<div id="outline-container-org16d7f4f" class="outline-3">
+<h3 id="org16d7f4f"><span class="section-number-3">24.1.</span> Algorithm</h3>
 <div class="outline-text-3" id="text-24-1">
 <p>
 1, every instance as a cluster
@@ -2360,9 +2360,8 @@ hierarchical clustering
 </p>
 </div>
 </div>
-
-<div id="outline-container-org39a1ad1" class="outline-3">
-<h3 id="org39a1ad1"><span class="section-number-3">24.2.</span> problems</h3>
+<div id="outline-container-org5fbe30d" class="outline-3">
+<h3 id="org5fbe30d"><span class="section-number-3">24.2.</span> problems</h3>
 <div class="outline-text-3" id="text-24-2">
 <p>
 large storage of scalability
@@ -2373,10 +2372,8 @@ scale sensitive
 </div>
 </div>
 </div>
-<div id="postamble" class="status">
-<p class="author">Author: si</p>
-<p class="date">Created: 2025-01-24 Fr 19:30</p>
-<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+<div id="kb-postamble" class="status">
+<div class="kb-footer"><a href="../index.html" target="_parent">&larr; Back to Index</a></div>
 </div>
 </body>
 </html>

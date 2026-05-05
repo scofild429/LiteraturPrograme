@@ -1,15 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2025-01-24 Fr 19:30 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<!-- 2026-05-05 Tue 20:04 -->
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>NLP</title>
-<meta name="author" content="si" />
+<meta name="author" content="silin" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -193,7 +191,9 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<link rel="stylesheet" href="style.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<script src="toc-sidebar.js" defer></script>
 <script>
   window.MathJax = {
     tex: {
@@ -228,199 +228,258 @@
 </script>
 </head>
 <body>
-<div id="content" class="content">
+<div id="kb-content" class="content">
 <h1 class="title">NLP</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga2427be">1. Data process</a>
+<li><a href="#org44b01cb">1. Data process</a>
 <ul>
-<li><a href="#orgf619440">1.1. Data load</a></li>
-<li><a href="#orga63f217">1.2. Alpha filter</a></li>
-<li><a href="#org7db2b0a">1.3. Stop words</a></li>
-<li><a href="#org4e55645">1.4. Lemmatization</a></li>
-<li><a href="#orgb86b0e0">1.5. Stemming</a></li>
-<li><a href="#orge41b819">1.6. Part of speech Tagging</a></li>
-<li><a href="#org57fa794">1.7. Named Entity Recognition (NER)</a></li>
-<li><a href="#org99df95c">1.8. Frequency Analysis</a></li>
-<li><a href="#org9937729">1.9. one-hot coding</a></li>
-<li><a href="#org2723d9e">1.10. Tokenizationn</a>
+<li><a href="#org6b6f779">1.1. Data load</a></li>
+<li><a href="#org886d413">1.2. Alpha filter</a></li>
+<li><a href="#orgec0f1a0">1.3. Stop words</a></li>
+<li><a href="#org14c5467">1.4. Lemmatization</a></li>
+<li><a href="#org385ce3f">1.5. Stemming</a></li>
+<li><a href="#org1776de0">1.6. Part of speech Tagging</a></li>
+<li><a href="#org519f9f7">1.7. Named Entity Recognition (NER)</a></li>
+<li><a href="#orgae1ef9f">1.8. Frequency Analysis</a></li>
+<li><a href="#orgd88bf58">1.9. one-hot coding</a></li>
+<li><a href="#orgb7e4df4">1.10. Tokenizationn</a>
 <ul>
-<li><a href="#org6d6abd6">1.10.1. Tokenize with nltk</a></li>
+<li><a href="#org1f3da00">1.10.1. Tokenize with nltk</a></li>
 </ul>
 </li>
-<li><a href="#orgb116e69">1.11. Word Embedding</a></li>
-<li><a href="#org3450da8">1.12. Words Count</a></li>
-<li><a href="#orgd4b0cec">1.13. TF-IDF for weight title and body</a></li>
-<li><a href="#org2426b62">1.14. Vectorizing tf-idf</a></li>
+<li><a href="#org63994a5">1.11. Word Embedding</a></li>
+<li><a href="#org31cf9a5">1.12. Words Count</a></li>
+<li><a href="#org0074f2b">1.13. TF-IDF for weight title and body</a></li>
+<li><a href="#orgcd4e184">1.14. Vectorizing tf-idf</a></li>
 </ul>
 </li>
-<li><a href="#org5e391a6">2. language model</a>
+<li><a href="#org71d73ba">2. language model</a>
 <ul>
-<li><a href="#org8a44269">2.1. skip-gram</a></li>
-<li><a href="#orgdd57d94">2.2. CBOW</a></li>
+<li><a href="#org3a27937">2.1. skip-gram</a></li>
+<li><a href="#org1ad15c0">2.2. CBOW</a></li>
 </ul>
 </li>
-<li><a href="#org61c7529">3. text generatation</a></li>
-<li><a href="#orgdc147c2">4. seq2seq</a></li>
-<li><a href="#orgc35ffb7">5. Transformer</a>
+<li><a href="#orgd4d5594">3. text generatation</a></li>
+<li><a href="#orge7bef8b">4. seq2seq</a></li>
+<li><a href="#org39a2b65">5. Transformer</a>
 <ul>
-<li><a href="#org87e7b40">5.1. simple RNN + attention</a></li>
-<li><a href="#orgad0e969">5.2. simple RNN + self attention</a></li>
-<li><a href="#org99b2d14">5.3. attention layer</a></li>
-<li><a href="#org56b471e">5.4. self attention layer</a></li>
-<li><a href="#org4372f68">5.5. transformer model</a></li>
+<li><a href="#orga207849">5.1. simple RNN + attention</a></li>
+<li><a href="#orgf838231">5.2. simple RNN + self attention</a></li>
+<li><a href="#orgdcd951a">5.3. attention layer</a></li>
+<li><a href="#orgaec21af">5.4. self attention layer</a></li>
+<li><a href="#orga91f424">5.5. transformer model</a></li>
 </ul>
 </li>
-<li><a href="#org905f838">6. Bert</a></li>
-<li><a href="#org79bbd5f">7. ViT</a></li>
+<li><a href="#orgedd545b">6. Bert</a></li>
+<li><a href="#orgecde5b2">7. ViT</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga2427be" class="outline-2">
-<h2 id="orga2427be"><span class="section-number-2">1.</span> Data process</h2>
+<div id="outline-container-org44b01cb" class="outline-2">
+<h2 id="org44b01cb"><span class="section-number-2">1.</span> Data process</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgf619440" class="outline-3">
-<h3 id="orgf619440"><span class="section-number-3">1.1.</span> Data load</h3>
+<div id="outline-container-org6b6f779" class="outline-3">
+<h3 id="org6b6f779"><span class="section-number-3">1.1.</span> Data load</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> nltk
-nltk.download(<span style="color: #2d9574;">'punkt'</span>)
+<pre class="src src-python">import nltk
+nltk.download('punkt')
 
-<span style="color: #4f97d7; font-weight: bold;">with</span> <span style="color: #4f97d7;">open</span>(<span style="color: #2d9574;">'/home/si/Desktop/textPreprocessing/frankenstein.txt'</span>) <span style="color: #4f97d7; font-weight: bold;">as</span> f:
-<span style="background-color: #292e34;"> </span>   <span style="background-color: #292e34;"> </span><span style="color: #7590db;">frankensteintext</span> = f.read()
-<span style="color: #7590db;">sentences</span> = nltk.sent_tokenize(frankensteintext)
-<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">'the length of frankenstein txt is </span>{<span style="color: #4f97d7;">len</span>(sentences)}<span style="color: #2d9574;">!'</span>)  
+with open('/home/si/Desktop/textPreprocessing/frankenstein.txt') as f:
+     frankensteintext = f.read()
+sentences = nltk.sent_tokenize(frankensteintext)
+print(f'the length of frankenstein txt is {len(sentences)}!')  
+</pre>
+</div>
+
+<pre class="example">
+[nltk_data] Error loading punkt: &lt;urlopen error [Errno -3] Temporary
+[nltk_data]     failure in name resolution&gt;
+the length of frankenstein txt is 3430!
 </pre>
 </div>
 </div>
-</div>
-
-
-<div id="outline-container-orga63f217" class="outline-3">
-<h3 id="orga63f217"><span class="section-number-3">1.2.</span> Alpha filter</h3>
+<div id="outline-container-org886d413" class="outline-3">
+<h3 id="org886d413"><span class="section-number-3">1.2.</span> Alpha filter</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #7590db;">AlphaFilter_words</span> = nltk.word_tokenize(sentences[0])
-<span style="color: #7590db;">AlphaFilter_words</span> = [token <span style="color: #4f97d7; font-weight: bold;">for</span> token <span style="color: #4f97d7; font-weight: bold;">in</span> AlphaFilter_words <span style="color: #4f97d7; font-weight: bold;">if</span> token[0].isalpha()]
-<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">'the length of the first sentence is </span>{<span style="color: #4f97d7;">len</span>(AlphaFilter_words)}<span style="color: #2d9574;">'</span>)
-<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">'the word is </span>{AlphaFilter_words}<span style="color: #2d9574;">'</span>)
+<pre class="src src-python">AlphaFilter_words = nltk.word_tokenize(sentences[0])
+AlphaFilter_words = [token for token in AlphaFilter_words if token[0].isalpha()]
+print(f'the length of the first sentence is {len(AlphaFilter_words)}')
+print(f'the word is {AlphaFilter_words}')
+</pre>
+</div>
+
+<pre class="example">
+the length of the first sentence is 26
+the word is ['Project', 'Gutenberg', 'Frankenstein', 'by', 'Mary', 'Wollstonecraft', 'Godwin', 'Shelley', 'This', 'eBook', 'is', 'for', 'the', 'use', 'of', 'anyone', 'anywhere', 'at', 'no', 'cost', 'and', 'with', 'almost', 'no', 'restrictions', 'whatsoever']
 </pre>
 </div>
 </div>
-</div>
-
-<div id="outline-container-org7db2b0a" class="outline-3">
-<h3 id="org7db2b0a"><span class="section-number-3">1.3.</span> Stop words</h3>
+<div id="outline-container-orgec0f1a0" class="outline-3">
+<h3 id="orgec0f1a0"><span class="section-number-3">1.3.</span> Stop words</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> nltk
-nltk.download(<span style="color: #2d9574;">'stopwords'</span>)
-<span style="color: #4f97d7; font-weight: bold;">from</span> nltk.corpus <span style="color: #4f97d7; font-weight: bold;">import</span> stopwords
-<span style="color: #4f97d7; font-weight: bold;">from</span> nltk.tokenize <span style="color: #4f97d7; font-weight: bold;">import</span> word_tokenize
-<span style="color: #7590db;">stopwords</span> = stopwords.words(<span style="color: #2d9574;">"english"</span>)
-<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">"the length of stop words is </span>{<span style="color: #4f97d7;">len</span>(stopwords)}<span style="color: #2d9574;">"</span>)
+<pre class="src src-python">import nltk
+nltk.download('stopwords')
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+stopwords = stopwords.words("english")
+print(f"the length of stop words is {len(stopwords)}")
 
-<span style="color: #7590db;">words</span> = word_tokenize(sentences[0])
-<span style="color: #7590db;">words</span> = [token <span style="color: #4f97d7; font-weight: bold;">for</span> token <span style="color: #4f97d7; font-weight: bold;">in</span> words <span style="color: #4f97d7; font-weight: bold;">if</span> <span style="color: #4f97d7; font-weight: bold;">not</span> token <span style="color: #4f97d7; font-weight: bold;">in</span> stopwords]
-<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">'the length of the first sentence is </span>{<span style="color: #4f97d7;">len</span>(words)}<span style="color: #2d9574;">'</span>)
-<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">'the word is </span>{words}<span style="color: #2d9574;">'</span>)
+words = word_tokenize(sentences[0])
+words = [token for token in words if not token in stopwords]
+print(f'the length of the first sentence is {len(words)}')
+print(f'the word is {words}')
 
 </pre>
 </div>
+
+<pre class="example">
+[nltk_data] Downloading package stopwords to /home/si/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+the length of stop words is 179
+the length of the first sentence is 21
+the word is ['Project', 'Gutenberg', "'s", 'Frankenstein', ',', 'Mary', 'Wollstonecraft', '(', 'Godwin', ')', 'Shelley', 'This', 'eBook', 'use', 'anyone', 'anywhere', 'cost', 'almost', 'restrictions', 'whatsoever', '.']
+</pre>
 </div>
 </div>
-<div id="outline-container-org4e55645" class="outline-3">
-<h3 id="org4e55645"><span class="section-number-3">1.4.</span> Lemmatization</h3>
+<div id="outline-container-org14c5467" class="outline-3">
+<h3 id="org14c5467"><span class="section-number-3">1.4.</span> Lemmatization</h3>
 <div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
-<pre class="src src-python">nltk.download(<span style="color: #2d9574;">"wordnet"</span>)
-<span style="color: #4f97d7; font-weight: bold;">from</span> nltk.stem <span style="color: #4f97d7; font-weight: bold;">import</span> PorterStemmer
-<span style="color: #4f97d7; font-weight: bold;">from</span> nltk.stem <span style="color: #4f97d7; font-weight: bold;">import</span> WordNetLemmatizer
-<span style="color: #4f97d7; font-weight: bold;">from</span> nltk.tokenize <span style="color: #4f97d7; font-weight: bold;">import</span> word_tokenize
-<span style="color: #4f97d7; font-weight: bold;">import</span> spacy
+<pre class="src src-python">nltk.download("wordnet")
+from nltk.stem import PorterStemmer
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
+import spacy
 
-<span style="color: #7590db;">ps</span> = PorterStemmer()
-<span style="color: #7590db;">stemmed_words</span> = []
-<span style="color: #7590db;">words</span> = word_tokenize(sentences[0])
-<span style="color: #4f97d7; font-weight: bold;">for</span> token <span style="color: #4f97d7; font-weight: bold;">in</span> words:
-<span style="background-color: #292e34;"> </span>   stemmed_words.append(ps.stem(token))
-<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">'the length of the first sentence is </span>{<span style="color: #4f97d7;">len</span>(stemmed_words)}<span style="color: #2d9574;">'</span>)
-<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">'the word is </span>{stemmed_words}<span style="color: #2d9574;">'</span>)
+ps = PorterStemmer()
+stemmed_words = []
+words = word_tokenize(sentences[0])
+for token in words:
+    stemmed_words.append(ps.stem(token))
+print(f'the length of the first sentence is {len(stemmed_words)}')
+print(f'the word is {stemmed_words}')
 
 </pre>
 </div>
+
+<pre class="example">
+[nltk_data] Downloading package wordnet to /home/si/nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!
+the length of the first sentence is 31
+the word is ['project', 'gutenberg', "'s", 'frankenstein', ',', 'by', 'mari', 'wollstonecraft', '(', 'godwin', ')', 'shelley', 'thi', 'ebook', 'is', 'for', 'the', 'use', 'of', 'anyon', 'anywher', 'at', 'no', 'cost', 'and', 'with', 'almost', 'no', 'restrict', 'whatsoev', '.']
+</pre>
 </div>
 </div>
-<div id="outline-container-orgb86b0e0" class="outline-3">
-<h3 id="orgb86b0e0"><span class="section-number-3">1.5.</span> Stemming</h3>
+<div id="outline-container-org385ce3f" class="outline-3">
+<h3 id="org385ce3f"><span class="section-number-3">1.5.</span> Stemming</h3>
 <div class="outline-text-3" id="text-1-5">
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #7590db;">nlp</span> = spacy.load(<span style="color: #2d9574;">'en_core_web_sm'</span>)
-<span style="color: #7590db;">doc</span> = nlp(sentences[0])
-<span style="color: #7590db;">lemma_words</span> = [token.lemma_ <span style="color: #4f97d7; font-weight: bold;">for</span> token <span style="color: #4f97d7; font-weight: bold;">in</span> doc]
-<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">'the length of the first sentence is </span>{<span style="color: #4f97d7;">len</span>(lemma_words)}<span style="color: #2d9574;">'</span>)
-<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">'the word is </span>{lemma_words}<span style="color: #2d9574;">'</span>)
+<pre class="src src-python">nlp = spacy.load('en_core_web_sm')
+doc = nlp(sentences[0])
+lemma_words = [token.lemma_ for token in doc]
+print(f'the length of the first sentence is {len(lemma_words)}')
+print(f'the word is {lemma_words}')
+</pre>
+</div>
+
+<pre class="example">
+the length of the first sentence is 33
+the word is ['Project', 'Gutenberg', "'s", 'Frankenstein', ',', 'by', 'Mary', 'Wollstonecraft', '(', 'Godwin', ')', 'Shelley', '\n\n', 'this', 'eBook', 'be', 'for', 'the', 'use', 'of', 'anyone', 'anywhere', 'at', 'no', 'cost', 'and', 'with', '\n', 'almost', 'no', 'restriction', 'whatsoever', '.']
 </pre>
 </div>
 </div>
-</div>
-<div id="outline-container-orge41b819" class="outline-3">
-<h3 id="orge41b819"><span class="section-number-3">1.6.</span> Part of speech Tagging</h3>
+<div id="outline-container-org1776de0" class="outline-3">
+<h3 id="org1776de0"><span class="section-number-3">1.6.</span> Part of speech Tagging</h3>
 <div class="outline-text-3" id="text-1-6">
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> spacy
-<span style="color: #4f97d7; font-weight: bold;">from</span> spacy.lang.en.examples <span style="color: #4f97d7; font-weight: bold;">import</span> sentences
+<pre class="src src-python">import spacy
+from spacy.lang.en.examples import sentences
 
-<span style="color: #7590db;">nlp</span> = spacy.load(<span style="color: #2d9574;">'en_core_web_sm'</span>)
-<span style="color: #7590db;">doc</span> = nlp(sentences[0])
+nlp = spacy.load('en_core_web_sm')
+doc = nlp(sentences[0])
 
-<span style="color: #4f97d7;">print</span>(doc.text)
+print(doc.text)
 
-<span style="color: #4f97d7; font-weight: bold;">for</span> token <span style="color: #4f97d7; font-weight: bold;">in</span> doc:
-<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(token.text, token.pos_, token.dep_)
+for token in doc:
+    print(token.text, token.pos_, token.dep_)
+</pre>
+</div>
+
+<pre class="example" id="orgfb960ad">
+Apple is looking at buying U.K. startup for $1 billion
+Apple PROPN nsubj
+is AUX aux
+looking VERB ROOT
+at ADP prep
+buying VERB pcomp
+U.K. PROPN dobj
+startup NOUN dep
+for ADP prep
+$ SYM quantmod
+1 NUM compound
+billion NUM pobj
 </pre>
 </div>
 </div>
-</div>
-<div id="outline-container-org57fa794" class="outline-3">
-<h3 id="org57fa794"><span class="section-number-3">1.7.</span> Named Entity Recognition (NER)</h3>
+<div id="outline-container-org519f9f7" class="outline-3">
+<h3 id="org519f9f7"><span class="section-number-3">1.7.</span> Named Entity Recognition (NER)</h3>
 <div class="outline-text-3" id="text-1-7">
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #4f97d7;">print</span>(doc.text)
+<pre class="src src-python">print(doc.text)
 
-<span style="color: #4f97d7; font-weight: bold;">for</span> token <span style="color: #4f97d7; font-weight: bold;">in</span> doc.ents:
-<span style="background-color: #292e34;"> </span>   <span style="color: #4f97d7;">print</span>(token.text, token.label_)
+for token in doc.ents:
+    print(token.text, token.label_)
+</pre>
+</div>
+
+<pre class="example">
+Apple is looking at buying U.K. startup for $1 billion
+Apple ORG
+U.K. GPE
+$1 billion MONEY
 </pre>
 </div>
 </div>
-</div>
-<div id="outline-container-org99df95c" class="outline-3">
-<h3 id="org99df95c"><span class="section-number-3">1.8.</span> Frequency Analysis</h3>
+<div id="outline-container-orgae1ef9f" class="outline-3">
+<h3 id="orgae1ef9f"><span class="section-number-3">1.8.</span> Frequency Analysis</h3>
 <div class="outline-text-3" id="text-1-8">
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> nltk
-<span style="color: #4f97d7; font-weight: bold;">from</span> nltk <span style="color: #4f97d7; font-weight: bold;">import</span> FreqDist
+<pre class="src src-python">import nltk
+from nltk import FreqDist
 
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Assuming 'tokens' are already generated from the text</span>
-<span style="color: #4f97d7;">print</span>(sentences[0])
-<span style="color: #7590db;">freq_dist</span> = FreqDist(sentences[0])
-<span style="color: #4f97d7;">print</span>(freq_dist.most_common(10))
+# Assuming 'tokens' are already generated from the text
+print(sentences[0])
+freq_dist = FreqDist(sentences[0])
+print(freq_dist.most_common(10))
 
-<span style="color: #7590db;">words</span> = word_tokenize(sentences[0])
-<span style="color: #4f97d7;">print</span>(words)
-<span style="color: #7590db;">freq_dist</span> = FreqDist(words)
-<span style="color: #4f97d7;">print</span>(freq_dist.most_common(10))
+words = word_tokenize(sentences[0])
+print(words)
+freq_dist = FreqDist(words)
+print(freq_dist.most_common(10))
 
 </pre>
 </div>
-</div>
-</div>
 
-<div id="outline-container-org9937729" class="outline-3">
-<h3 id="org9937729"><span class="section-number-3">1.9.</span> one-hot coding</h3>
+<pre class="example">
+Project Gutenberg's Frankenstein, by Mary Wollstonecraft (Godwin) Shelley
+
+This eBook is for the use of anyone anywhere at no cost and with
+almost no restrictions whatsoever.
+[(' ', 23), ('e', 17), ('o', 15), ('t', 13), ('n', 13), ('s', 11), ('r', 10), ('a', 9), ('i', 7), ('h', 6)]
+['Project', 'Gutenberg', "'s", 'Frankenstein', ',', 'by', 'Mary', 'Wollstonecraft', '(', 'Godwin', ')', 'Shelley', 'This', 'eBook', 'is', 'for', 'the', 'use', 'of', 'anyone', 'anywhere', 'at', 'no', 'cost', 'and', 'with', 'almost', 'no', 'restrictions', 'whatsoever', '.']
+[('no', 2), ('Project', 1), ('Gutenberg', 1), ("'s", 1), ('Frankenstein', 1), (',', 1), ('by', 1), ('Mary', 1), ('Wollstonecraft', 1), ('(', 1)]
+</pre>
+</div>
+</div>
+<div id="outline-container-orgd88bf58" class="outline-3">
+<h3 id="orgd88bf58"><span class="section-number-3">1.9.</span> one-hot coding</h3>
 <div class="outline-text-3" id="text-1-9">
 <p>
 all input should numerical,
@@ -428,8 +487,8 @@ categorized character shoud be one-hot coded, starting with 1
 </p>
 </div>
 </div>
-<div id="outline-container-org2723d9e" class="outline-3">
-<h3 id="org2723d9e"><span class="section-number-3">1.10.</span> Tokenizationn</h3>
+<div id="outline-container-orgb7e4df4" class="outline-3">
+<h3 id="orgb7e4df4"><span class="section-number-3">1.10.</span> Tokenizationn</h3>
 <div class="outline-text-3" id="text-1-10">
 <ul class="org-ul">
 <li><b>Breaking</b> text to words (There are many steps to consider )</li>
@@ -448,28 +507,27 @@ categorized character shoud be one-hot coded, starting with 1
 <li>if one-hot code vector is not so lang, word embedding is not needed</li>
 </ul></li>
 </ul>
-<pre class="example">
-tests[5] = "this is a cat and a"
+<div class="org-src-container">
+<pre class="src src-nil">tests[5] = "this is a cat and a"
 tests_dict = {"this": {1:1}, "is": {2:1}, "a":{3:2}, "cat":{4:1}, "and":{5:1}}
 tests_sequences = [1,2,3,4,3]
 </pre>
 </div>
-
-<div id="outline-container-org6d6abd6" class="outline-4">
-<h4 id="org6d6abd6"><span class="section-number-4">1.10.1.</span> Tokenize with nltk</h4>
+</div>
+<div id="outline-container-org1f3da00" class="outline-4">
+<h4 id="org1f3da00"><span class="section-number-4">1.10.1.</span> Tokenize with nltk</h4>
 <div class="outline-text-4" id="text-1-10-1">
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #7590db;">tokenize_words</span> = nltk.word_tokenize(sentences[0])
-<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">'the length of the first sentence is </span>{<span style="color: #4f97d7;">len</span>(tokenize_words)}<span style="color: #2d9574;">'</span>)
-<span style="color: #4f97d7;">print</span>(f<span style="color: #2d9574;">'the word is </span>{tokenize_words}<span style="color: #2d9574;">'</span>)
+<pre class="src src-python">tokenize_words = nltk.word_tokenize(sentences[0])
+print(f'the length of the first sentence is {len(tokenize_words)}')
+print(f'the word is {tokenize_words}')
 </pre>
 </div>
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgb116e69" class="outline-3">
-<h3 id="orgb116e69"><span class="section-number-3">1.11.</span> Word Embedding</h3>
+<div id="outline-container-org63994a5" class="outline-3">
+<h3 id="org63994a5"><span class="section-number-3">1.11.</span> Word Embedding</h3>
 <div class="outline-text-3" id="text-1-11">
 <p>
 compose high dimension one-hot vector to low dimension
@@ -487,15 +545,13 @@ v*d : parameters for this layer
 </p>
 </div>
 </div>
-
-<div id="outline-container-org3450da8" class="outline-3">
-<h3 id="org3450da8"><span class="section-number-3">1.12.</span> Words Count</h3>
+<div id="outline-container-org31cf9a5" class="outline-3">
+<h3 id="org31cf9a5"><span class="section-number-3">1.12.</span> Words Count</h3>
 </div>
 
 
-
-<div id="outline-container-orgd4b0cec" class="outline-3">
-<h3 id="orgd4b0cec"><span class="section-number-3">1.13.</span> TF-IDF for weight title and body</h3>
+<div id="outline-container-org0074f2b" class="outline-3">
+<h3 id="org0074f2b"><span class="section-number-3">1.13.</span> TF-IDF for weight title and body</h3>
 <div class="outline-text-3" id="text-1-13">
 <p>
 the idea is to give weights for title and text. Afterwards the title has a huge impact for document = body + title
@@ -503,28 +559,22 @@ the idea is to give weights for title and text. Afterwards the title has a huge 
 </p>
 </div>
 </div>
-<div id="outline-container-org2426b62" class="outline-3">
-<h3 id="org2426b62"><span class="section-number-3">1.14.</span> Vectorizing tf-idf</h3>
+<div id="outline-container-orgcd4e184" class="outline-3">
+<h3 id="orgcd4e184"><span class="section-number-3">1.14.</span> Vectorizing tf-idf</h3>
 </div>
 </div>
-
-
-
-<div id="outline-container-org5e391a6" class="outline-2">
-<h2 id="org5e391a6"><span class="section-number-2">2.</span> language model</h2>
+<div id="outline-container-org71d73ba" class="outline-2">
+<h2 id="org71d73ba"><span class="section-number-2">2.</span> language model</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 A model that computes \(P(W)\) or \(P(W_{n}|W_{1},W_{2},W_{3},W_{4}....W_{n-1})\) is called  a language model.
 </p>
 </div>
-
-
-
-<div id="outline-container-org8a44269" class="outline-3">
-<h3 id="org8a44269"><span class="section-number-3">2.1.</span> skip-gram</h3>
+<div id="outline-container-org3a27937" class="outline-3">
+<h3 id="org3a27937"><span class="section-number-3">2.1.</span> skip-gram</h3>
 </div>
-<div id="outline-container-orgdd57d94" class="outline-3">
-<h3 id="orgdd57d94"><span class="section-number-3">2.2.</span> CBOW</h3>
+<div id="outline-container-org1ad15c0" class="outline-3">
+<h3 id="org1ad15c0"><span class="section-number-3">2.2.</span> CBOW</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 continuous bag of words
@@ -532,9 +582,8 @@ continuous bag of words
 </div>
 </div>
 </div>
-
-<div id="outline-container-org61c7529" class="outline-2">
-<h2 id="org61c7529"><span class="section-number-2">3.</span> text generatation</h2>
+<div id="outline-container-orgd4d5594" class="outline-2">
+<h2 id="orgd4d5594"><span class="section-number-2">3.</span> text generatation</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Encoder:
@@ -546,8 +595,8 @@ but many content of input will be forget
 </p>
 </div>
 </div>
-<div id="outline-container-orgdc147c2" class="outline-2">
-<h2 id="orgdc147c2"><span class="section-number-2">4.</span> seq2seq</h2>
+<div id="outline-container-orge7bef8b" class="outline-2">
+<h2 id="orge7bef8b"><span class="section-number-2">4.</span> seq2seq</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 After one resulte in Decode is generated,
@@ -557,12 +606,12 @@ consuming the previously generated symbols as additional input when generating t
 </p>
 </div>
 </div>
-<div id="outline-container-orgc35ffb7" class="outline-2">
-<h2 id="orgc35ffb7"><span class="section-number-2">5.</span> Transformer</h2>
+<div id="outline-container-org39a2b65" class="outline-2">
+<h2 id="org39a2b65"><span class="section-number-2">5.</span> Transformer</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org87e7b40" class="outline-3">
-<h3 id="org87e7b40"><span class="section-number-3">5.1.</span> simple RNN + attention</h3>
+<div id="outline-container-orga207849" class="outline-3">
+<h3 id="orga207849"><span class="section-number-3">5.1.</span> simple RNN + attention</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 Encoder Input  E\(X = x_{1}, x_{2},,,,x_{m}\)
@@ -601,9 +650,8 @@ with softmax(c)  get the prediciton, and corss enteopy update network back(\(W^{
 </ol>
 </div>
 </div>
-
-<div id="outline-container-orgad0e969" class="outline-3">
-<h3 id="orgad0e969"><span class="section-number-3">5.2.</span> simple RNN + self attention</h3>
+<div id="outline-container-orgf838231" class="outline-3">
+<h3 id="orgf838231"><span class="section-number-3">5.2.</span> simple RNN + self attention</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 only Encoder, e\(X = x_{1}, x_{2},,,,x_{m}\)
@@ -647,9 +695,8 @@ Notion:
 </ol>
 </div>
 </div>
-
-<div id="outline-container-org99b2d14" class="outline-3">
-<h3 id="org99b2d14"><span class="section-number-3">5.3.</span> attention layer</h3>
+<div id="outline-container-orgdcd951a" class="outline-3">
+<h3 id="orgdcd951a"><span class="section-number-3">5.3.</span> attention layer</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 An attention function can be described as mapping a query and a set of key-value pairs to an output
@@ -688,9 +735,8 @@ Notion:
 </ol>
 </div>
 </div>
-
-<div id="outline-container-org56b471e" class="outline-3">
-<h3 id="org56b471e"><span class="section-number-3">5.4.</span> self attention layer</h3>
+<div id="outline-container-orgaec21af" class="outline-3">
+<h3 id="orgaec21af"><span class="section-number-3">5.4.</span> self attention layer</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 only Encoder, e\(X = x_{1}, x_{2},,,,x_{m}\)
@@ -727,29 +773,70 @@ with softmax(c)  get the prediciton, and corss enteopy update network back(\(W^{
 </ol>
 </div>
 </div>
-<div id="outline-container-org4372f68" class="outline-3">
-<h3 id="org4372f68"><span class="section-number-3">5.5.</span> transformer model</h3>
+<div id="outline-container-orga91f424" class="outline-3">
+<h3 id="orga91f424"><span class="section-number-3">5.5.</span> transformer model</h3>
 <div class="outline-text-3" id="text-5-5">
+<div class="org-src-container">
+<pre class="src src-ditaa">  /--+--\    /-----\    /-----\    /-----\   
+  |a_1  |    |a_2  |    |a_3  |    |a_m  |  
+  |     |    |     |    |     |    |     |
+  \-----/    \-----/    \-----/    \-----/
+
++-------------------------------------------+
+|cBLU                                       |
+|Encoder                                    |
+|    h1         h2         h3        hm     |
+| +------+   +-----+    +-----+   +-----+   |
+| |      |   |     |    |     |   |     |   |&gt;------\
+| | A    |   | A   |    | A   |   | A   |   |       |
+| +--+---+   +--+--+    +--+--+   +---+-+   |       |
+|    ^          ^          ^          ^     |       |
++----+----------+----------+----------+-----+       |
+     |          |          |          |             |
+  /--+--\    /-----\    /-----\    /-----\          |
+  |X_1  |    |X_2  |    |X_3  |    |X_m  |          |
+  |     |    |     |    |     |    |     |          |
+  \-----/    \-----/    \-----/    \-----/          |
+                                                    |        /--+--\    /-----\    /-----\    /-----\       
+                                                    |        |c_1  |    |c_2  |    |c_3  |    |c_m  |  
+                                                    |        |s_1  |    |s_2  |    |s_3  |    |s_m  |
+                                                    |        \-----/    \-----/    \-----/    \-----/
+                                                    |
+                                                    |        +-------------------------------------------+
+                                                    |        | c1AB                                      |
+                                                    \-------&gt;| Decoder                                   |
+                                                             | +------+   +-----+    +-----+   +-----+   |
+                                                             | |      |   |     |    |     |   |     |   |
+                                                             | | A'   |   | A'  |    | A'  |   | A'  |   |
+                                                             | +--+---+   +--+--+    +--+--+   +---+-+   |
+                                                             |    ^          ^          ^          ^     |
+                                                             +----+----------+----------+----------+-----+
+                                                                  |          |          |          |	
+                                                               /--+--\    /-----\    /-----\    /-----\ 
+                                                               |X'1  |    |X'2  |    |X'3  |    |X'm  |  
+                                                               |     |    |     |    |     |    |     |
+                                                               \-----/    \-----/    \-----/    \-----/
+
+</pre>
+</div>
+
 <p>
-<img src="./foto/RNN_attention.png" alt="RNN_attention.png" />
+<img src="./foto/RNN_attention.png" alt="RNN_attention.png">
 after 6 stacked multi head self attention layers,
 another 6 stacked multi head attention layers, each time take the input of 6 self attention layer
 </p>
 </div>
 </div>
 </div>
-
-<div id="outline-container-org905f838" class="outline-2">
-<h2 id="org905f838"><span class="section-number-2">6.</span> Bert</h2>
+<div id="outline-container-orgedd545b" class="outline-2">
+<h2 id="orgedd545b"><span class="section-number-2">6.</span> Bert</h2>
 </div>
-<div id="outline-container-org79bbd5f" class="outline-2">
-<h2 id="org79bbd5f"><span class="section-number-2">7.</span> ViT</h2>
+<div id="outline-container-orgecde5b2" class="outline-2">
+<h2 id="orgecde5b2"><span class="section-number-2">7.</span> ViT</h2>
 </div>
 </div>
-<div id="postamble" class="status">
-<p class="author">Author: si</p>
-<p class="date">Created: 2025-01-24 Fr 19:30</p>
-<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+<div id="kb-postamble" class="status">
+<div class="kb-footer"><a href="../index.html" target="_parent">&larr; Back to Index</a></div>
 </div>
 </body>
 </html>

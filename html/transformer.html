@@ -4,7 +4,7 @@
 <!-- 2026-05-05 Tue 20:04 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Postgresql</title>
+<title>Transformer</title>
 <meta name="author" content="silin" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
@@ -194,337 +194,205 @@
 <link rel="stylesheet" href="style.css"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <script src="toc-sidebar.js" defer></script>
-<script>
-  window.MathJax = {
-    tex: {
-      ams: {
-        multlineWidth: '85%'
-      },
-      tags: 'ams',
-      tagSide: 'right',
-      tagIndent: '.8em'
-    },
-    chtml: {
-      scale: 1.0,
-      displayAlign: 'center',
-      displayIndent: '0em'
-    },
-    svg: {
-      scale: 1.0,
-      displayAlign: 'center',
-      displayIndent: '0em'
-    },
-    output: {
-      font: 'mathjax-modern',
-      displayOverflow: 'overflow'
-    }
-  };
-</script>
-
-<script
-  id="MathJax-script"
-  async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
 </head>
 <body>
 <div id="kb-content" class="content">
-<h1 class="title">Postgresql</h1>
+<h1 class="title">Transformer</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2e4b215">1. basic OP</a></li>
-<li><a href="#org9666815">2. src block</a>
+<li><a href="#org948260c">1. Softmax</a>
 <ul>
-<li><a href="#orgd39dbff">2.1. with header</a></li>
-<li><a href="#orgf1bab3f">2.2. with session</a></li>
+<li><a href="#orgda84508">1.1. Normal Softmax</a></li>
+<li><a href="#org88fc082">1.2. Safe Softmax</a></li>
+<li><a href="#orgfc96d6a">1.3. Online Softmax</a></li>
+<li><a href="#orgc665683">1.4. block online softmax</a></li>
+<li><a href="#org5a96ed6">1.5. batch online softmax</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2e4b215" class="outline-2">
-<h2 id="org2e4b215"><span class="section-number-2">1.</span> basic OP</h2>
+<div id="outline-container-org948260c" class="outline-2">
+<h2 id="org948260c"><span class="section-number-2">1.</span> Softmax</h2>
 <div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgda84508" class="outline-3">
+<h3 id="orgda84508"><span class="section-number-3">1.1.</span> Normal Softmax</h3>
+<div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
-<pre class="src src-sh">sudo apt install postgresql-client-common
-
-sudo apt install postgresql postgresql-contrib
+<pre class="src src-python">import torch
+X = torch.tensor([-0.3, 0.2, 0.5, 0.7, 0.1, 0.8])
+X_exp_sum = X.exp().sum()
+X_softmax_hand = torch.exp(X) / X_exp_sum
+print(X_softmax_hand)
 </pre>
 </div>
 
-<p>
-sudo -i -u postgres
-psql
-</p>
 <pre class="example">
-swith to psql user (postgres, auto created), and then login in
+tensor([0.0827, 0.1364, 0.1841, 0.2249, 0.1234, 0.2485])
 </pre>
-
-
-<p>
-sudo -u postgres psql
-</p>
-<pre class="example">
-login psql from current user
-</pre>
-
-
-<p>
-\password postgres;
-OR
-alter user postgres with PASSWORD 'new<sub>password</sub>';
-</p>
-<pre class="example">
-set password
-</pre>
-
-
-
-<p>
-psql -h localhost -U 'user<sub>name</sub>' (with be asked for password)
-</p>
-<pre class="example">
-login with password, for locally distributed or remotely
-for remote login, please install at least one client version( install postgres-client-12)
-Had to set listen_addresses='*' in postgresql.conf to allow for incoming connections from any ip / all ip
-add &lt;hostssl	 all            all             0.0.0.0/0    		md5&gt; to allow ssl connection
-if remotely, please check if the port is open
-</pre>
-
-
-<p>
-psql "sslmode=require host=141.5.103.1 port=5432 dbname=postgres" &#x2013;username=postgres
-</p>
-
-<p>
-\l
-\c database
-\dt
-\q
-</p>
-
-
+</div>
+</div>
+<div id="outline-container-org88fc082" class="outline-3">
+<h3 id="org88fc082"><span class="section-number-3">1.2.</span> Safe Softmax</h3>
+<div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
-<pre class="src src-nil">DROP SCHEMA public CASCADE;
-CREATE SCHEMA public;
+<pre class="src src-python">import torch
+X = torch.tensor([-0.3, 0.2, 0.5, 0.7, 0.1, 0.8])
+X_max = X.max()
+X_exp_sum_sub_max = torch.exp(X-X_max).sum()
+X_safe_softmax_hand = torch.exp(X - X_max) / X_exp_sum_sub_max
+print(X_safe_softmax_hand)
 </pre>
 </div>
+
 <pre class="example">
-drop all table
+tensor([0.0827, 0.1364, 0.1841, 0.2249, 0.1234, 0.2485])
 </pre>
 </div>
 </div>
-<div id="outline-container-org9666815" class="outline-2">
-<h2 id="org9666815"><span class="section-number-2">2.</span> src block</h2>
-<div class="outline-text-2" id="text-2">
-</div>
-<div id="outline-container-orgd39dbff" class="outline-3">
-<h3 id="orgd39dbff"><span class="section-number-3">2.1.</span> with header</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-orgfc96d6a" class="outline-3">
+<h3 id="orgfc96d6a"><span class="section-number-3">1.3.</span> Online Softmax</h3>
+<div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
-<pre class="src src-sql">create table personv (
- id int, 
- firstname varchar(50),
- lastname varchar(50),
- gender varchar(6),
- dataofbirth DATE
-) ;
-#+end_psrc
+<pre class="src src-python">import torch
+X = torch.tensor([-0.3, 0.2, 0.5, 0.7, 0.1, 0.8])
+X_pre = X[:-1]
+print('input x')
+print(X)
+print(X_pre)
+print(X[-1])
 
-#+RESULTS:
-|---|
+# we calculative t-1 time Online Softmax
+X_max_pre = X_pre.max()
+X_sum_pre = torch.exp(X_pre - X_max_pre).sum()
 
+# we calculative t time Online Softmax
+X_max_cur = torch.max(X_max_pre, X[-1]) # X[-1] is new data
+X_sum_cur = X_sum_pre * torch.exp(X_max_pre - X_max_cur) + torch.exp(X[-1] - X_max_cur)
 
-#+header: :engine postgresql
-#+header: :dbhost 141.5.103.1
-#+header: :dbuser postgres
-#+header: :dbpassword "xxx"
-#+header: :database postgres
-#+begin_src sql 
-CREATE TABLE articles (
-  id SERIAL PRIMARY KEY,
-  title VARCHAR(255),
-  content TEXT,
-  published_by INT,
-  published_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  CONSTRAINT fk_articles_users FOREIGN KEY (published_by) REFERENCES users (id)
-);
+# final we calculative online softmax
+X_online_softmax = torch.exp(X - X_max_cur) / X_sum_cur
+print('online softmax result: ', X_online_softmax)
 </pre>
 </div>
 
-<table>
-
-
-<colgroup>
-<col  class="org-left">
-</colgroup>
-<tbody>
-<tr>
-<td class="org-left">CREATE TABLE</td>
-</tr>
-</tbody>
-</table>
+<pre class="example">
+input x
+tensor([-0.3000,  0.2000,  0.5000,  0.7000,  0.1000,  0.8000])
+tensor([-0.3000,  0.2000,  0.5000,  0.7000,  0.1000])
+tensor(0.8000)
+online softmax result:  tensor([0.0827, 0.1364, 0.1841, 0.2249, 0.1234, 0.2485])
+</pre>
 </div>
 </div>
-<div id="outline-container-orgf1bab3f" class="outline-3">
-<h3 id="orgf1bab3f"><span class="section-number-3">2.2.</span> with session</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-orgc665683" class="outline-3">
+<h3 id="orgc665683"><span class="section-number-3">1.4.</span> block online softmax</h3>
+<div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
-<pre class="src src-sql">\l
+<pre class="src src-python">import torch
+X = torch.tensor([-0.3, 0.2, 0.5, 0.7, 0.1, 0.8])
+X_block = torch.split(X, split_size_or_sections = 3 , dim = 0) 
+print(X)
+print(X_block)
+
+# we parallel calculate  different block max &amp; sum
+X_block_0_max = X_block[0].max()
+X_block_0_sum = torch.exp(X_block[0] - X_block_0_max).sum()
+
+X_block_1_max = X_block[1].max()
+X_block_1_sum = torch.exp(X_block[1] - X_block_1_max).sum()
+
+# online block update max &amp; sum
+X_block_1_max_update = torch.max(X_block_0_max, X_block_1_max) # X[-1] is new data
+X_block_1_sum_update = X_block_0_sum * torch.exp(X_block_0_max - X_block_1_max_update) \
+    + torch.exp(X_block[1] - X_block_1_max_update).sum() # block sum
+
+X_block_online_softmax = torch.exp(X - X_block_1_max_update) / X_block_1_sum_update
+print(X_block_online_softmax)
+
 </pre>
 </div>
 
-<table>
+<pre class="example">
+tensor([-0.3000,  0.2000,  0.5000,  0.7000,  0.1000,  0.8000])
+(tensor([-0.3000,  0.2000,  0.5000]), tensor([0.7000, 0.1000, 0.8000]))
+tensor([0.0827, 0.1364, 0.1841, 0.2249, 0.1234, 0.2485])
+</pre>
+</div>
+</div>
+<div id="outline-container-org5a96ed6" class="outline-3">
+<h3 id="org5a96ed6"><span class="section-number-3">1.5.</span> batch online softmax</h3>
+<div class="outline-text-3" id="text-1-5">
+<div class="org-src-container">
+<pre class="src src-python">import torch
+torch.manual_seed(42)
+X_batch = torch.randn(4, 6)
+_, d = X_batch.shape
+
+X_batch_block_0 = X_batch[:, :d//2]
+X_batch_block_1 = X_batch[:, d//2:]
+
+# we parallel calculate  different block max &amp; sum
+X_batch_0_max, _ = X_batch_block_0.max(dim = 1, keepdim = True)
+X_batch_0_sum = torch.exp(X_batch_block_0 - X_batch_0_max).sum(dim = 1, keepdim = True)
+
+X_batch_1_max, _ = X_batch_block_1.max(dim = 1, keepdim = True)
+X_batch_1_sum = torch.exp(X_batch_block_1 - X_batch_1_max).sum(dim = 1, keepdim = True)
+
+# online batch block update max &amp; sum
+X_batch_1_max_update = torch.maximum(X_batch_0_max, X_batch_1_max) # 逐个元素找最大值
+X_batch_1_sum_update = X_batch_0_sum * torch.exp(X_batch_0_max - X_batch_1_max_update) \
+    + torch.exp(X_batch_block_1 - X_batch_1_max_update).sum(dim = 1, keepdim = True) # block sum
+
+X_batch_online_softmax = torch.exp(X_batch - X_batch_1_max_update) / X_batch_1_sum_update
+print(X_batch_online_softmax)
+</pre>
+</div>
+
+<pre class="example">
+tensor([[0.4256, 0.2742, 0.1525, 0.0075, 0.1221, 0.0180],
+        [0.1926, 0.0404, 0.2870, 0.1012, 0.1228, 0.2560],
+        [0.0881, 0.2934, 0.0264, 0.2155, 0.1964, 0.1802],
+        [0.3666, 0.0882, 0.0908, 0.1541, 0.0717, 0.2286]])
+</pre>
 
 
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-left">
-
-<col  class="org-left">
-
-<col  class="org-left">
-
-<col  class="org-left">
-
-<col  class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">List of databases</th>
-<th scope="col" class="org-left">&#xa0;</th>
-<th scope="col" class="org-left">&#xa0;</th>
-<th scope="col" class="org-left">&#xa0;</th>
-<th scope="col" class="org-left">&#xa0;</th>
-<th scope="col" class="org-left">&#xa0;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">Name</td>
-<td class="org-left">Owner</td>
-<td class="org-left">Encoding</td>
-<td class="org-left">Collate</td>
-<td class="org-left">Ctype</td>
-<td class="org-left">Access privileges</td>
-</tr>
-
-<tr>
-<td class="org-left">postgres</td>
-<td class="org-left">postgres</td>
-<td class="org-left">UTF8</td>
-<td class="org-left">zh<sub>CN.UTF</sub>-8</td>
-<td class="org-left">zh<sub>CN.UTF</sub>-8</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">si</td>
-<td class="org-left">postgres</td>
-<td class="org-left">UTF8</td>
-<td class="org-left">zh<sub>CN.UTF</sub>-8</td>
-<td class="org-left">zh<sub>CN.UTF</sub>-8</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">template0</td>
-<td class="org-left">postgres</td>
-<td class="org-left">UTF8</td>
-<td class="org-left">zh<sub>CN.UTF</sub>-8</td>
-<td class="org-left">zh<sub>CN.UTF</sub>-8</td>
-<td class="org-left">=c/postgres</td>
-</tr>
-
-<tr>
-<td class="org-left">postgres=CTc/postgres</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">template1</td>
-<td class="org-left">postgres</td>
-<td class="org-left">UTF8</td>
-<td class="org-left">zh<sub>CN.UTF</sub>-8</td>
-<td class="org-left">zh<sub>CN.UTF</sub>-8</td>
-<td class="org-left">=c/postgres</td>
-</tr>
-
-<tr>
-<td class="org-left">postgres=CTc/postgres</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-
-<tr>
-<td class="org-left">test</td>
-<td class="org-left">postgres</td>
-<td class="org-left">UTF8</td>
-<td class="org-left">zh<sub>CN.UTF</sub>-8</td>
-<td class="org-left">zh<sub>CN.UTF</sub>-8</td>
-<td class="org-left">&#xa0;</td>
-</tr>
-</tbody>
-</table>
 
 <div class="org-src-container">
-<pre class="src src-sql">\d 
+<pre class="src src-python">import torch
+torch.manual_seed(42)
+X_batch = torch.randn(4, 6)
+_, d = X_batch.shape
+
+X_batch_block_0 = X_batch[:, :d//2]
+X_batch_block_1 = X_batch[:, d//2:]
+
+# we parallel calculate  different block max &amp; sum
+X_batch_0_max, _ = X_batch_block_0.max(dim = 1, keepdim = True)
+X_batch_0_sum = torch.exp(X_batch_block_0 - X_batch_0_max).sum(dim = 1, keepdim = True)
+
+X_batch_1_max, _ = X_batch_block_1.max(dim = 1, keepdim = True)
+X_batch_1_sum = torch.exp(X_batch_block_1 - X_batch_1_max).sum(dim = 1, keepdim = True)
+
+# online batch block update max &amp; sum
+X_batch_1_max_update = torch.maximum(X_batch_0_max, X_batch_1_max) # 逐个元素找最大值
+X_batch_1_sum_update = X_batch_0_sum * torch.exp(X_batch_0_max - X_batch_1_max_update) \
+                                       + X_batch_1_sum * torch.exp(X_batch_1_max - X_batch_1_max_update) 
+
+X_batch_online_softmax = torch.exp(X_batch - X_batch_1_max_update) / X_batch_1_sum_update
+print(X_batch_online_softmax)
 </pre>
 </div>
 
-<table>
-
-
-<colgroup>
-<col  class="org-left">
-
-<col  class="org-left">
-
-<col  class="org-left">
-
-<col  class="org-left">
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">List of relations</th>
-<th scope="col" class="org-left">&#xa0;</th>
-<th scope="col" class="org-left">&#xa0;</th>
-<th scope="col" class="org-left">&#xa0;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">Schema</td>
-<td class="org-left">Name</td>
-<td class="org-left">Type</td>
-<td class="org-left">Owner</td>
-</tr>
-
-<tr>
-<td class="org-left">public</td>
-<td class="org-left">person</td>
-<td class="org-left">table</td>
-<td class="org-left">si</td>
-</tr>
-
-<tr>
-<td class="org-left">public</td>
-<td class="org-left">personv</td>
-<td class="org-left">table</td>
-<td class="org-left">postgres</td>
-</tr>
-</tbody>
-</table>
+<pre class="example">
+tensor([[0.4256, 0.2742, 0.1525, 0.0075, 0.1221, 0.0180],
+        [0.1926, 0.0404, 0.2870, 0.1012, 0.1228, 0.2560],
+        [0.0881, 0.2934, 0.0264, 0.2155, 0.1964, 0.1802],
+        [0.3666, 0.0882, 0.0908, 0.1541, 0.0717, 0.2286]])
+</pre>
 </div>
 </div>
 </div>

@@ -1,15 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2025-01-24 Fr 15:41 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<!-- 2026-05-05 Tue 20:03 -->
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>JS</title>
-<meta name="author" content="si" />
+<meta name="author" content="silin" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -193,7 +191,9 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<link rel="stylesheet" href="style.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<script src="toc-sidebar.js" defer></script>
 <script>
   window.MathJax = {
     tex: {
@@ -228,154 +228,154 @@
 </script>
 </head>
 <body>
-<div id="content" class="content">
+<div id="kb-content" class="content">
 <h1 class="title">JS</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9df8d50">1. Array</a></li>
-<li><a href="#orgbe02874">2. set array 去重 求交</a></li>
-<li><a href="#org4732edf">3. Class</a>
+<li><a href="#org64d9eb5">1. Array</a></li>
+<li><a href="#org31d5e7a">2. set array 去重 求交</a></li>
+<li><a href="#orge75503a">3. Class</a>
 <ul>
-<li><a href="#orgf78725b">3.1. ES5</a></li>
-<li><a href="#org0612e8b">3.2. ES6</a></li>
+<li><a href="#org0114f35">3.1. ES5</a></li>
+<li><a href="#org0560bfb">3.2. ES6</a></li>
 </ul>
 </li>
-<li><a href="#org100cec8">4. setTimeout</a></li>
-<li><a href="#org4b8ed15">5. no name function</a></li>
-<li><a href="#orga3681bc">6. 构造函数也是类</a></li>
-<li><a href="#org424d86d">7. let</a>
+<li><a href="#orged448c9">4. setTimeout</a></li>
+<li><a href="#org2ddcb54">5. no name function</a></li>
+<li><a href="#org8f546e9">6. 构造函数也是类</a></li>
+<li><a href="#org91a6e7c">7. let</a>
 <ul>
-<li><a href="#org38ad943">7.1. 不能重复赋值</a></li>
-<li><a href="#orgba4f0aa">7.2. 有块级作用域</a></li>
-<li><a href="#org1f533ef">7.3. 没有变量提升</a></li>
+<li><a href="#orgc921089">7.1. 不能重复赋值</a></li>
+<li><a href="#orgf756e90">7.2. 有块级作用域</a></li>
+<li><a href="#org6a9fb19">7.3. 没有变量提升</a></li>
 </ul>
 </li>
-<li><a href="#orge7dc42e">8. const</a>
+<li><a href="#org71e5289">8. const</a>
 <ul>
-<li><a href="#orge44b8c0">8.1. 注意</a></li>
-<li><a href="#orgc403163">8.2. 对象和复合型的可以修改</a></li>
-<li><a href="#org668fcd5">8.3. 数组和对象可以被解构的赋值</a></li>
+<li><a href="#org357159c">8.1. 注意</a></li>
+<li><a href="#org37b0a84">8.2. 对象和复合型的可以修改</a></li>
+<li><a href="#org24d24ec">8.3. 数组和对象可以被解构的赋值</a></li>
 </ul>
 </li>
-<li><a href="#orgf6a97fb">9. 模板字符串可以换行，拼接</a></li>
-<li><a href="#org7f9e994">10. 简化对象</a></li>
-<li><a href="#org917a21c">11. 箭头函数</a></li>
-<li><a href="#org418ff7a">12. rest</a>
+<li><a href="#org744481d">9. 模板字符串可以换行，拼接</a></li>
+<li><a href="#orgbcf6e6c">10. 简化对象</a></li>
+<li><a href="#org99fba04">11. 箭头函数</a></li>
+<li><a href="#org68b3528">12. rest</a>
 <ul>
-<li><a href="#org3ad132c">12.1. ES5</a></li>
-<li><a href="#org683665c">12.2. ES6</a></li>
+<li><a href="#org702c4ff">12.1. ES5</a></li>
+<li><a href="#orgc346197">12.2. ES6</a></li>
 </ul>
 </li>
-<li><a href="#org2fe9bf1">13. 扩展运算符&#x2026;</a>
+<li><a href="#orga9fc4b2">13. 扩展运算符&#x2026;</a>
 <ul>
-<li><a href="#orgd4a4a0e">13.1. Beispiel 将内容转化为数组</a></li>
-<li><a href="#orge135ff2">13.2. Anwendung</a></li>
+<li><a href="#org3e31570">13.1. Beispiel 将内容转化为数组</a></li>
+<li><a href="#orge69bdcd">13.2. Anwendung</a></li>
 </ul>
 </li>
-<li><a href="#org614a4d0">14. Symbol</a>
+<li><a href="#orgd284f39">14. Symbol</a>
 <ul>
-<li><a href="#org513df4d">14.1. 唯一性, 不能运算, 用for表唯一</a></li>
-<li><a href="#orgfe910c9">14.2. 给对象添加属性和方法</a></li>
+<li><a href="#org4059de0">14.1. 唯一性, 不能运算, 用for表唯一</a></li>
+<li><a href="#org33c2e88">14.2. 给对象添加属性和方法</a></li>
 </ul>
 </li>
-<li><a href="#orgce25c5c">15. 迭代器</a></li>
-<li><a href="#org54285bd">16. 生成器</a></li>
-<li><a href="#orgfca1ed8">17. type vaildation</a>
+<li><a href="#org8a2d5c4">15. 迭代器</a></li>
+<li><a href="#org8ea208e">16. 生成器</a></li>
+<li><a href="#org6de2afd">17. type vaildation</a>
 <ul>
-<li><a href="#org34bfa70">17.1. basic</a></li>
-<li><a href="#org332cee1">17.2. class</a></li>
+<li><a href="#org4f477e4">17.1. basic</a></li>
+<li><a href="#org7a9382c">17.2. class</a></li>
 </ul>
 </li>
-<li><a href="#orgb5e9020">18. multi assigment</a></li>
-<li><a href="#orgd0c8d63">19. call</a></li>
-<li><a href="#org524ef85">20. IIFE Immediately Invoked Function Expression</a>
+<li><a href="#orgd4c58f9">18. multi assigment</a></li>
+<li><a href="#org165d476">19. call</a></li>
+<li><a href="#org0771fb5">20. IIFE Immediately Invoked Function Expression</a>
 <ul>
-<li><a href="#org8b49e77">20.1. Beispiel</a></li>
-<li><a href="#org96ab211">20.2. 浏览器端列子</a></li>
-<li><a href="#org355f1a5">20.3. 服务器端列子</a></li>
+<li><a href="#org8e32f8b">20.1. Beispiel</a></li>
+<li><a href="#org7d16a48">20.2. 浏览器端列子</a></li>
+<li><a href="#org20761bc">20.3. 服务器端列子</a></li>
 </ul>
 </li>
-<li><a href="#orgc8e3b26">21. this</a></li>
-<li><a href="#orgcba02c6">22. 括号</a></li>
-<li><a href="#orgf125e54">23. callback</a>
+<li><a href="#org0729826">21. this</a></li>
+<li><a href="#orgd861361">22. 括号</a></li>
+<li><a href="#orgbe607c5">23. callback</a>
 <ul>
-<li><a href="#orgdcd1f54">23.1. callback named function</a></li>
-<li><a href="#orgdd84b7d">23.2. callback no named function</a></li>
-<li><a href="#orgcb4636d">23.3. no named function callback no named function</a></li>
+<li><a href="#org1d29471">23.1. callback named function</a></li>
+<li><a href="#org8e5e75d">23.2. callback no named function</a></li>
+<li><a href="#orga7df09f">23.3. no named function callback no named function</a></li>
 </ul>
 </li>
-<li><a href="#org14593c6">24. promise</a>
+<li><a href="#org8fb0c0b">24. promise</a>
 <ul>
-<li><a href="#org3f2d1fa">24.1. resolve and reject</a></li>
-<li><a href="#org3d42d7c">24.2. resolve and reject with recusive</a></li>
-<li><a href="#orge862032">24.3. resolve and reject with recusive with return</a></li>
+<li><a href="#org7fe365c">24.1. resolve and reject</a></li>
+<li><a href="#org4a4d99e">24.2. resolve and reject with recusive</a></li>
+<li><a href="#org9c305be">24.3. resolve and reject with recusive with return</a></li>
 </ul>
 </li>
-<li><a href="#org961d787">25. Closure</a>
+<li><a href="#org92b016e">25. Closure</a>
 <ul>
-<li><a href="#org51668be">25.1. conuter将函数作为另一个函数的返回值</a></li>
-<li><a href="#org3cfb732">25.2. 将函数作为实参传给另一个函数调用</a></li>
-<li><a href="#org1d24df6">25.3. multi return</a></li>
+<li><a href="#orge0e2758">25.1. conuter将函数作为另一个函数的返回值</a></li>
+<li><a href="#orgc3d3005">25.2. 将函数作为实参传给另一个函数调用</a></li>
+<li><a href="#org43d313c">25.3. multi return</a></li>
 </ul>
 </li>
-<li><a href="#org10f8a16">26. Prototype</a>
+<li><a href="#orgb96dfbd">26. Prototype</a>
 <ul>
-<li><a href="#org976c3a9">26.1. new note</a></li>
-<li><a href="#orgca01408">26.2. alte note</a></li>
+<li><a href="#org57d49c2">26.1. new note</a></li>
+<li><a href="#org9add6f5">26.2. alte note</a></li>
 </ul>
 </li>
-<li><a href="#orgfb7921a">27. event loop事件循环</a></li>
-<li><a href="#orgf0b88f0">28. async/await</a>
+<li><a href="#org17a6822">27. event loop事件循环</a></li>
+<li><a href="#org12a2358">28. async/await</a>
 <ul>
-<li><a href="#org1a27b2e">28.1. 执行async函数， 返回的是Promise</a></li>
-<li><a href="#org84036dc">28.2. await 相当于 Promise + then</a>
+<li><a href="#org49dcf2f">28.1. 执行async函数， 返回的是Promise</a></li>
+<li><a href="#org769c09c">28.2. await 相当于 Promise + then</a>
 <ul>
-<li><a href="#orgc4d2d3d">28.2.1. await 后面跟数值也会自动封装</a></li>
-<li><a href="#org113196a">28.2.2. await 跟Promise</a></li>
-<li><a href="#org58c2f91">28.2.3. await跟async函数</a></li>
+<li><a href="#org510576f">28.2.1. await 后面跟数值也会自动封装</a></li>
+<li><a href="#org69dc385">28.2.2. await 跟Promise</a></li>
+<li><a href="#org14b8e9f">28.2.3. await跟async函数</a></li>
 </ul>
 </li>
-<li><a href="#org916eb6d">28.3. try catch 捕获异常,代替Promise+catch</a></li>
-<li><a href="#org53f01eb">28.4. 包装长时耗的异步函数</a></li>
+<li><a href="#org94a3cc1">28.3. try catch 捕获异常,代替Promise+catch</a></li>
+<li><a href="#org5c4091c">28.4. 包装长时耗的异步函数</a></li>
 </ul>
 </li>
-<li><a href="#orga3c70fb">29. js in Dom</a></li>
-<li><a href="#org96cb800">30. &#x2026;rests</a></li>
-<li><a href="#org7d72966">31. add function to window</a></li>
-<li><a href="#org8015eb1">32. change this with call  apply bind</a>
+<li><a href="#org9fe9078">29. js in Dom</a></li>
+<li><a href="#orge7b6f01">30. &#x2026;rests</a></li>
+<li><a href="#org881fb16">31. add function to window</a></li>
+<li><a href="#org8483543">32. change this with call  apply bind</a>
 <ul>
-<li><a href="#orgeb2f0e0">32.1. call function</a></li>
-<li><a href="#org72b623f">32.2. apply function</a></li>
-<li><a href="#orgf50bdfd">32.3. bind function</a></li>
+<li><a href="#orgc0c4832">32.1. call function</a></li>
+<li><a href="#org20083bc">32.2. apply function</a></li>
+<li><a href="#org8a81d38">32.3. bind function</a></li>
 </ul>
 </li>
-<li><a href="#org0d9b670">33. Jest</a>
+<li><a href="#org4d024f7">33. Jest</a>
 <ul>
-<li><a href="#orgf216708">33.1. init</a></li>
-<li><a href="#orgd892f73">33.2. runing node npm js fetch async await</a></li>
-<li><a href="#org92ee1be">33.3. jest test npm js fetch async await</a></li>
-<li><a href="#org82e85d4">33.4. yarn ts fetch async await</a></li>
+<li><a href="#orgd12c07d">33.1. init</a></li>
+<li><a href="#org9a2a080">33.2. runing node npm js fetch async await</a></li>
+<li><a href="#orgc6980a2">33.3. jest test npm js fetch async await</a></li>
+<li><a href="#org6e402a5">33.4. yarn ts fetch async await</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org9df8d50" class="outline-2">
-<h2 id="org9df8d50"><span class="section-number-2">1.</span> Array</h2>
+<div id="outline-container-org64d9eb5" class="outline-2">
+<h2 id="org64d9eb5"><span class="section-number-2">1.</span> Array</h2>
 <div class="outline-text-2" id="text-1">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <tbody>
 <tr>
@@ -388,17 +388,17 @@
 </table>
 
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">arrayy</span> = [<span style="color: #2d9574;">"Apple"</span>, <span style="color: #2d9574;">"Banane"</span>, <span style="color: #2d9574;">"Orange"</span>]
-console.log(<span style="color: #2d9574;">"push Krisch"</span>);
-arrayy.push(<span style="color: #2d9574;">"Krisch"</span>)
+<pre class="src src-js">let arrayy = ["Apple", "Banane", "Orange"]
+console.log("push Krisch");
+arrayy.push("Krisch")
 console.log(arrayy);
-console.log(<span style="color: #2d9574;">"unshift Biren"</span>);
-arrayy.unshift(<span style="color: #2d9574;">"Biren"</span>)
+console.log("unshift Biren");
+arrayy.unshift("Biren")
 console.log(arrayy);
-console.log(<span style="color: #2d9574;">"pop"</span>);
+console.log("pop");
 arrayy.pop();  
 console.log(arrayy);
-console.log(<span style="color: #2d9574;">"shift"</span>);
+console.log("shift");
 arrayy.shift();  
 console.log(arrayy);  
 
@@ -420,11 +420,11 @@ shift
 <p>
 methods for Array
 </p>
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <tbody>
 <tr>
@@ -502,139 +502,168 @@ methods for Array
 </table>
 
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">mymap</span>(<span style="color: #7590db;">value</span>, <span style="color: #7590db;">index</span>, <span style="color: #7590db;">array</span>){
-  <span style="color: #4f97d7; font-weight: bold;">return</span> value*array[index]
+<pre class="src src-js">function mymap(value, index, array){
+  return value*array[index]
 }
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">arr</span> = [1,2,3,4,5];
+let arr = [1,2,3,4,5];
 console.log(arr.map(mymap));
 </pre>
 </div>
 
+<pre class="example">
+[ 1, 4, 9, 16, 25 ]
+</pre>
+
+
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">myreduce</span>(<span style="color: #7590db;">total</span>, <span style="color: #7590db;">value</span>, <span style="color: #7590db;">index</span>, <span style="color: #7590db;">array</span>){
-  <span style="color: #4f97d7; font-weight: bold;">return</span> total+value*array[index]
+<pre class="src src-js">function myreduce(total, value, index, array){
+  return total+value*array[index]
 }
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">arr</span> = [1,2,3,4,5];
+let arr = [1,2,3,4,5];
 console.log(arr.reduce(myreduce, 10));
 </pre>
 </div>
-</div>
-</div>
 
-<div id="outline-container-orgbe02874" class="outline-2">
-<h2 id="orgbe02874"><span class="section-number-2">2.</span> set array 去重 求交</h2>
+<pre class="example">
+65
+</pre>
+</div>
+</div>
+<div id="outline-container-org31d5e7a" class="outline-2">
+<h2 id="org31d5e7a"><span class="section-number-2">2.</span> set array 去重 求交</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
-<pre class="src src-javascript"><span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">arr</span> = [1,2,3,4,5,6,7,4,5,6];
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">arr2</span> = [2,4,6];
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">result</span> = [...<span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">Set</span>(arr)].filter(
-  item =&gt; <span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">Set</span>(arr2).has(item)
+<pre class="src src-javascript">let arr = [1,2,3,4,5,6,7,4,5,6];
+let arr2 = [2,4,6];
+let result = [...new Set(arr)].filter(
+  item =&gt; new Set(arr2).has(item)
 );
 console.log(result);
 </pre>
 </div>
-</div>
-</div>
 
-<div id="outline-container-org4732edf" class="outline-2">
-<h2 id="org4732edf"><span class="section-number-2">3.</span> Class</h2>
+<pre class="example">
+[ 2, 4, 6 ]
+</pre>
+</div>
+</div>
+<div id="outline-container-orge75503a" class="outline-2">
+<h2 id="orge75503a"><span class="section-number-2">3.</span> Class</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgf78725b" class="outline-3">
-<h3 id="orgf78725b"><span class="section-number-3">3.1.</span> ES5</h3>
+<div id="outline-container-org0114f35" class="outline-3">
+<h3 id="org0114f35"><span class="section-number-3">3.1.</span> ES5</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 class mit generate function
 </p>
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">Phone</span>(<span style="color: #7590db;">brand</span>, <span style="color: #7590db;">price</span>){
-    <span style="color: #a45bad;">this</span>.brand = brand;
-    <span style="color: #a45bad;">this</span>.price = price;
+<pre class="src src-js">function Phone(brand, price){
+    this.brand = brand;
+    this.price = price;
 }
 
-Phone.<span style="color: #a45bad;">prototype</span>.call = <span style="color: #4f97d7; font-weight: bold;">function</span>(){
-    console.log(<span style="color: #2d9574;">"I want to make a phone"</span>);
+Phone.prototype.call = function(){
+    console.log("I want to make a phone");
 }
 
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">Huawei</span> = <span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">Phone</span>(<span style="color: #2d9574;">"HuAwei"</span>, 5998);
+let Huawei = new Phone("HuAwei", 5998);
 
 console.log(Huawei)
 
 </pre>
 </div>
-</div>
-</div>
 
-<div id="outline-container-org0612e8b" class="outline-3">
-<h3 id="org0612e8b"><span class="section-number-3">3.2.</span> ES6</h3>
+<pre class="example">
+Phone { brand: 'HuAwei', price: 5998 }
+</pre>
+</div>
+</div>
+<div id="outline-container-org0560bfb" class="outline-3">
+<h3 id="org0560bfb"><span class="section-number-3">3.2.</span> ES6</h3>
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">class</span> Phone{
+<pre class="src src-js">class Phone{
     constructor(brand, price){
-        <span style="color: #a45bad;">this</span>.brand = brand;
-        <span style="color: #a45bad;">this</span>.price = price;
+        this.brand = brand;
+        this.price = price;
     }
 
     call(){
-        console.log(<span style="color: #2d9574;">"I will make a call"</span>);
+        console.log("I will make a call");
     }
 }
 
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">onePlus</span> = <span style="color: #4f97d7; font-weight: bold;">new</span>  <span style="color: #ce537a; font-weight: bold;">Phone</span>(<span style="color: #2d9574;">"1+"</span>, 2000);
+let onePlus = new  Phone("1+", 2000);
 console.log(onePlus);
 
 </pre>
 </div>
-</div>
-</div>
-</div>
 
-<div id="outline-container-org100cec8" class="outline-2">
-<h2 id="org100cec8"><span class="section-number-2">4.</span> setTimeout</h2>
+<pre class="example">
+Phone { brand: '1+', price: 2000 }
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orged448c9" class="outline-2">
+<h2 id="orged448c9"><span class="section-number-2">4.</span> setTimeout</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <pre class="src src-js">
-setTimeout(  <span style="color: #4f97d7; font-weight: bold;">function</span>(){console.log(<span style="color: #2d9574;">"1090kjk0"</span>)}    , 2000);
-setTimeout(  ()=&gt;{console.log(<span style="color: #2d9574;">"10900"</span>)}             , 2000);
+setTimeout(  function(){console.log("1090kjk0")}    , 2000);
+setTimeout(  ()=&gt;{console.log("10900")}             , 2000);
 
 setTimeout(  ()=&gt;{      } , 2000);
 
 </pre>
 </div>
+
+<pre class="example">
+1090kjk0
+10900
+</pre>
 </div>
 </div>
-<div id="outline-container-org4b8ed15" class="outline-2">
-<h2 id="org4b8ed15"><span class="section-number-2">5.</span> no name function</h2>
+<div id="outline-container-org2ddcb54" class="outline-2">
+<h2 id="org2ddcb54"><span class="section-number-2">5.</span> no name function</h2>
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
-<pre class="src src-js">(()=&gt;{console.log(<span style="color: #2d9574;">"testtest"</span>) })();
+<pre class="src src-js">(()=&gt;{console.log("testtest") })();
 </pre>
 </div>
+<pre class="example">
+testtest
+</pre>
+
 
 <div class="org-src-container">
-<pre class="src src-js">(<span style="color: #4f97d7; font-weight: bold;">function</span>(){console.log(<span style="color: #2d9574;">"testtest"</span>)})()
+<pre class="src src-js">(function(){console.log("testtest")})()
+</pre>
+</div>
+
+<pre class="example">
+testtest
 </pre>
 </div>
 </div>
-</div>
-
-<div id="outline-container-orga3681bc" class="outline-2">
-<h2 id="orga3681bc"><span class="section-number-2">6.</span> 构造函数也是类</h2>
+<div id="outline-container-org8f546e9" class="outline-2">
+<h2 id="org8f546e9"><span class="section-number-2">6.</span> 构造函数也是类</h2>
 <div class="outline-text-2" id="text-6">
 <div class="org-src-container">
-<pre class="src src-js">  <span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">Person</span>(<span style="color: #7590db;">name</span>, <span style="color: #7590db;">age</span>){
-      <span style="color: #a45bad;">this</span>.name = name;
-      <span style="color: #a45bad;">this</span>.age = age;
-      <span style="color: #a45bad;">this</span>.sagenhallo = <span style="color: #4f97d7; font-weight: bold;">function</span>(){
-          console.log(<span style="color: #2d9574;">"hallo"</span>);
+<pre class="src src-js">  function Person(name, age){
+      this.name = name;
+      this.age = age;
+      this.sagenhallo = function(){
+          console.log("hallo");
       }
-    <span style="color: #4f97d7; font-weight: bold;">return</span> {a:<span style="color: #a45bad;">this</span>.age};
+    return {a:this.age};
   }
 
-  <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">xiaoming</span> =  Person(<span style="color: #2d9574;">"xiaoming"</span>, 20);
+  let xiaoming =  Person("xiaoming", 20);
   console.log(xiaoming);
   console.log(xiaoming.name);
-<span style="color: #2aa1ae; background-color: #292e34;">//  </span><span style="color: #2aa1ae; background-color: #292e34;">xiaoming.sagenhallo();</span>
+//  xiaoming.sagenhallo();
 
 
 
@@ -647,34 +676,32 @@ undefined
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org424d86d" class="outline-2">
-<h2 id="org424d86d"><span class="section-number-2">7.</span> let</h2>
+<div id="outline-container-org91a6e7c" class="outline-2">
+<h2 id="org91a6e7c"><span class="section-number-2">7.</span> let</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org38ad943" class="outline-3">
-<h3 id="org38ad943"><span class="section-number-3">7.1.</span> 不能重复赋值</h3>
+<div id="outline-container-orgc921089" class="outline-3">
+<h3 id="orgc921089"><span class="section-number-3">7.1.</span> 不能重复赋值</h3>
 <div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">a</span> = 1;
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">b</span> = [];
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">c</span> = <span style="color: #2d9574;">"kdjfie"</span>;
+<pre class="src src-js">let a = 1;
+let b = [];
+let c = "kdjfie";
 console.log(c)
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">a</span> = 3;
+let a = 3;
 
 </pre>
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgba4f0aa" class="outline-3">
-<h3 id="orgba4f0aa"><span class="section-number-3">7.2.</span> 有块级作用域</h3>
+<div id="outline-container-orgf756e90" class="outline-3">
+<h3 id="orgf756e90"><span class="section-number-3">7.2.</span> 有块级作用域</h3>
 <div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
 <pre class="src src-js">{
-    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">girls</span> = <span style="color: #2d9574;">"meimei"</span>;
+    let girls = "meimei";
 
-    <span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">fnnn</span>(){
+    function fnnn(){
         console.log(girls);
     }
 
@@ -690,26 +717,24 @@ meimei
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org1f533ef" class="outline-3">
-<h3 id="org1f533ef"><span class="section-number-3">7.3.</span> 没有变量提升</h3>
+<div id="outline-container-org6a9fb19" class="outline-3">
+<h3 id="org6a9fb19"><span class="section-number-3">7.3.</span> 没有变量提升</h3>
 <div class="outline-text-3" id="text-7-3">
 <div class="org-src-container">
 <pre class="src src-js">console.log(song)
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">song</span> = <span style="color: #2d9574;">"kaka"</span>
+let song = "kaka"
 
 </pre>
 </div>
 </div>
 </div>
 </div>
-
-<div id="outline-container-orge7dc42e" class="outline-2">
-<h2 id="orge7dc42e"><span class="section-number-2">8.</span> const</h2>
+<div id="outline-container-org71e5289" class="outline-2">
+<h2 id="org71e5289"><span class="section-number-2">8.</span> const</h2>
 <div class="outline-text-2" id="text-8">
 </div>
-<div id="outline-container-orge44b8c0" class="outline-3">
-<h3 id="orge44b8c0"><span class="section-number-3">8.1.</span> 注意</h3>
+<div id="outline-container-org357159c" class="outline-3">
+<h3 id="org357159c"><span class="section-number-3">8.1.</span> 注意</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 初始一定要赋值
@@ -719,12 +744,12 @@ meimei
 </p>
 </div>
 </div>
-<div id="outline-container-orgc403163" class="outline-3">
-<h3 id="orgc403163"><span class="section-number-3">8.2.</span> 对象和复合型的可以修改</h3>
+<div id="outline-container-org37b0a84" class="outline-3">
+<h3 id="org37b0a84"><span class="section-number-3">8.2.</span> 对象和复合型的可以修改</h3>
 <div class="outline-text-3" id="text-8-2">
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">name</span> = [<span style="color: #2d9574;">"wangba"</span>, <span style="color: #2d9574;">"wuqing"</span>, <span style="color: #2d9574;">"tiankong"</span>]
-name.push(<span style="color: #2d9574;">"gousi"</span>)
+<pre class="src src-js">const name = ["wangba", "wuqing", "tiankong"]
+name.push("gousi")
 console.log(name)
 
 </pre>
@@ -735,13 +760,12 @@ console.log(name)
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org668fcd5" class="outline-3">
-<h3 id="org668fcd5"><span class="section-number-3">8.3.</span> 数组和对象可以被解构的赋值</h3>
+<div id="outline-container-org24d24ec" class="outline-3">
+<h3 id="org24d24ec"><span class="section-number-3">8.3.</span> 数组和对象可以被解构的赋值</h3>
 <div class="outline-text-3" id="text-8-3">
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">F4</span> = [<span style="color: #2d9574;">"zhangsan"</span>, <span style="color: #2d9574;">"lisi"</span>, <span style="color: #2d9574;">"wangwu"</span>, <span style="color: #2d9574;">"zhaoliu"</span>];
-<span style="color: #4f97d7; font-weight: bold;">let</span> [<span style="color: #7590db;">f1</span>, <span style="color: #7590db;">f2</span>, <span style="color: #7590db;">f3</span>, <span style="color: #7590db;">f4</span>] = F4
+<pre class="src src-js">const F4 = ["zhangsan", "lisi", "wangwu", "zhaoliu"];
+let [f1, f2, f3, f4] = F4
 console.log(f2)
 
 </pre>
@@ -753,14 +777,14 @@ lisi
 
 
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">zhao</span> = {
-    name: <span style="color: #2d9574;">"benshan"</span>,
-    age:<span style="color: #2d9574;">"unkownen"</span>,
-    <span style="color: #bc6ec5; font-weight: bold;">xiaoping</span> :<span style="color: #4f97d7; font-weight: bold;">function</span>(){
-        console.log(<span style="color: #2d9574;">"I K y"</span>);
+<pre class="src src-js">const zhao = {
+    name: "benshan",
+    age:"unkownen",
+    xiaoping :function(){
+        console.log("I K y");
     }
 };
-<span style="color: #4f97d7; font-weight: bold;">let</span> {name, age, xiaoping} = zhao;
+let {name, age, xiaoping} = zhao;
 console.log(age);
 console.log(xiaoping);
 xiaoping();
@@ -776,9 +800,8 @@ I K y
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgf6a97fb" class="outline-2">
-<h2 id="orgf6a97fb"><span class="section-number-2">9.</span> 模板字符串可以换行，拼接</h2>
+<div id="outline-container-org744481d" class="outline-2">
+<h2 id="org744481d"><span class="section-number-2">9.</span> 模板字符串可以换行，拼接</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 ´${}´ 可以拼接变量 
@@ -786,21 +809,20 @@ I K y
 </p>
 </div>
 </div>
-
-<div id="outline-container-org7f9e994" class="outline-2">
-<h2 id="org7f9e994"><span class="section-number-2">10.</span> 简化对象</h2>
+<div id="outline-container-orgbcf6e6c" class="outline-2">
+<h2 id="orgbcf6e6c"><span class="section-number-2">10.</span> 简化对象</h2>
 <div class="outline-text-2" id="text-10">
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">name</span> = <span style="color: #2d9574;">"sangguigu"</span>;
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">change</span> = <span style="color: #4f97d7; font-weight: bold;">function</span>(){
-    console.log(<span style="color: #2d9574;">"I can make it"</span>);
+<pre class="src src-js">let name = "sangguigu";
+let change = function(){
+    console.log("I can make it");
 };
 
-<span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">school</span> = {
+const school = {
     name,
     change,
     improve(){
-        console.log(<span style="color: #2d9574;">"We can help you"</span>);
+        console.log("We can help you");
     }
 };
 
@@ -820,9 +842,8 @@ We can help you
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org917a21c" class="outline-2">
-<h2 id="org917a21c"><span class="section-number-2">11.</span> 箭头函数</h2>
+<div id="outline-container-org99fba04" class="outline-2">
+<h2 id="org99fba04"><span class="section-number-2">11.</span> 箭头函数</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 静态的this, 当前作用域的this，call都不能改变
@@ -830,8 +851,8 @@ We can help you
 不能使用arguments
 </p>
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">qual</span> = n =&gt; n*n;
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">fn</span> = (a,b) =&gt; { <span style="color: #4f97d7; font-weight: bold;">return</span> a*b};
+<pre class="src src-js">let qual = n =&gt; n*n;
+let fn = (a,b) =&gt; { return a*b};
 console.log(qual(3))
 console.log(fn(2,5));
 </pre>
@@ -843,19 +864,18 @@ console.log(fn(2,5));
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org418ff7a" class="outline-2">
-<h2 id="org418ff7a"><span class="section-number-2">12.</span> rest</h2>
+<div id="outline-container-org68b3528" class="outline-2">
+<h2 id="org68b3528"><span class="section-number-2">12.</span> rest</h2>
 <div class="outline-text-2" id="text-12">
 </div>
-<div id="outline-container-org3ad132c" class="outline-3">
-<h3 id="org3ad132c"><span class="section-number-3">12.1.</span> ES5</h3>
+<div id="outline-container-org702c4ff" class="outline-3">
+<h3 id="org702c4ff"><span class="section-number-3">12.1.</span> ES5</h3>
 <div class="outline-text-3" id="text-12-1">
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">data</span>(){
-    console.log(<span style="color: #a45bad;">arguments</span>);
+<pre class="src src-js">function data(){
+    console.log(arguments);
 }
-data(<span style="color: #2d9574;">"nihao"</span>, <span style="color: #2d9574;">"niyehao"</span>);
+data("nihao", "niyehao");
 
 </pre>
 </div>
@@ -865,12 +885,11 @@ data(<span style="color: #2d9574;">"nihao"</span>, <span style="color: #2d9574;"
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org683665c" class="outline-3">
-<h3 id="org683665c"><span class="section-number-3">12.2.</span> ES6</h3>
+<div id="outline-container-orgc346197" class="outline-3">
+<h3 id="orgc346197"><span class="section-number-3">12.2.</span> ES6</h3>
 <div class="outline-text-3" id="text-12-2">
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">data</span>(...args){
+<pre class="src src-js">function data(...args){
     console.log(args);
 }
 data(1,2,3,4);
@@ -884,7 +903,7 @@ data(1,2,3,4);
 
 
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">data</span>(<span style="color: #7590db;">a</span>, <span style="color: #7590db;">b</span>, ...<span style="color: #7590db;">args</span>){
+<pre class="src src-js">function data(a, b, ...args){
     console.log(a);
     console.log(b);
     console.log(args);
@@ -902,18 +921,17 @@ data(1,2,3,4,5,6);
 </div>
 </div>
 </div>
-
-<div id="outline-container-org2fe9bf1" class="outline-2">
-<h2 id="org2fe9bf1"><span class="section-number-2">13.</span> 扩展运算符&#x2026;</h2>
+<div id="outline-container-orga9fc4b2" class="outline-2">
+<h2 id="orga9fc4b2"><span class="section-number-2">13.</span> 扩展运算符&#x2026;</h2>
 <div class="outline-text-2" id="text-13">
 </div>
-<div id="outline-container-orgd4a4a0e" class="outline-3">
-<h3 id="orgd4a4a0e"><span class="section-number-3">13.1.</span> Beispiel 将内容转化为数组</h3>
+<div id="outline-container-org3e31570" class="outline-3">
+<h3 id="org3e31570"><span class="section-number-3">13.1.</span> Beispiel 将内容转化为数组</h3>
 <div class="outline-text-3" id="text-13-1">
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">name</span> = [<span style="color: #2d9574;">"wangyi"</span>, <span style="color: #2d9574;">"wanger"</span>,<span style="color: #2d9574;">"wangsan"</span>];
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">putname</span> = <span style="color: #4f97d7; font-weight: bold;">function</span>(){
-    console.log(<span style="color: #a45bad;">arguments</span>);
+<pre class="src src-js">const name = ["wangyi", "wanger","wangsan"];
+let putname = function(){
+    console.log(arguments);
 };
 putname(...name);
 
@@ -925,13 +943,12 @@ putname(...name);
 </pre>
 </div>
 </div>
-
-<div id="outline-container-orge135ff2" class="outline-3">
-<h3 id="orge135ff2"><span class="section-number-3">13.2.</span> Anwendung</h3>
+<div id="outline-container-orge69bdcd" class="outline-3">
+<h3 id="orge69bdcd"><span class="section-number-3">13.2.</span> Anwendung</h3>
 <div class="outline-text-3" id="text-13-2">
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">kuaizi</span> = [<span style="color: #2d9574;">"&#29579;&#22826;&#21033;"</span>,<span style="color: #2d9574;">"&#32918;&#25196;"</span>];
-<span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">fenghuang</span> = [<span style="color: #2d9574;">"&#20911;&#22372;"</span>, <span style="color: #2d9574;">"&#26469;&#29992;"</span>];
+<pre class="src src-js">const kuaizi = ["王太利","肖扬"];
+const fenghuang = ["冯坤", "来用"];
 console.log(kuaizi.concat(fenghuang));
 console.log([...kuaizi, ...fenghuang])
 
@@ -945,22 +962,21 @@ console.log([...kuaizi, ...fenghuang])
 </div>
 </div>
 </div>
-
-<div id="outline-container-org614a4d0" class="outline-2">
-<h2 id="org614a4d0"><span class="section-number-2">14.</span> Symbol</h2>
+<div id="outline-container-orgd284f39" class="outline-2">
+<h2 id="orgd284f39"><span class="section-number-2">14.</span> Symbol</h2>
 <div class="outline-text-2" id="text-14">
 </div>
-<div id="outline-container-org513df4d" class="outline-3">
-<h3 id="org513df4d"><span class="section-number-3">14.1.</span> 唯一性, 不能运算, 用for表唯一</h3>
+<div id="outline-container-org4059de0" class="outline-3">
+<h3 id="org4059de0"><span class="section-number-3">14.1.</span> 唯一性, 不能运算, 用for表唯一</h3>
 <div class="outline-text-3" id="text-14-1">
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">s</span> = Symbol();
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">ss</span> = Symbol(<span style="color: #2d9574;">"shanggui"</span>);
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">sss</span> = Symbol(<span style="color: #2d9574;">"shanggui"</span>);
+<pre class="src src-js">let s = Symbol();
+let ss = Symbol("shanggui");
+let sss = Symbol("shanggui");
 console.log(ss === sss);
 
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">ss1</span> = Symbol.<span style="color: #4f97d7; font-weight: bold;">for</span>(<span style="color: #2d9574;">"shanggui"</span>);
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">sss1</span> = Symbol.<span style="color: #4f97d7; font-weight: bold;">for</span>(<span style="color: #2d9574;">"shanggui"</span>);
+let ss1 = Symbol.for("shanggui");
+let sss1 = Symbol.for("shanggui");
 console.log(ss1 === sss1);
 
 </pre>
@@ -972,40 +988,40 @@ true
 </pre>
 </div>
 </div>
-<div id="outline-container-orgfe910c9" class="outline-3">
-<h3 id="orgfe910c9"><span class="section-number-3">14.2.</span> 给对象添加属性和方法</h3>
+<div id="outline-container-org33c2e88" class="outline-3">
+<h3 id="org33c2e88"><span class="section-number-3">14.2.</span> 给对象添加属性和方法</h3>
 <div class="outline-text-3" id="text-14-2">
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">youxi</span> = {
-    name:<span style="color: #2d9574;">"&#29436;&#20154;&#26432;"</span>,
-    [Symbol(<span style="color: #2d9574;">"say"</span>)]: <span style="color: #4f97d7; font-weight: bold;">function</span>(){
-        console.log(<span style="color: #2d9574;">"&#21457;&#35328;"</span>);
+<pre class="src src-js">let youxi = {
+    name:"狼人杀",
+    [Symbol("say")]: function(){
+        console.log("发言");
     },
-    [Symbol(<span style="color: #2d9574;">"nosay"</span>)]: <span style="color: #4f97d7; font-weight: bold;">function</span>(){
-        console.log(<span style="color: #2d9574;">"&#38381;&#30524;"</span>);
+    [Symbol("nosay")]: function(){
+        console.log("闭眼");
     }
 };
 
 console.log(youxi);
 
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">addmethod</span> = {
+let addmethod = {
     up: Symbol(),
     down:Symbol()
 };
 
-youxi[addmethod.up] = <span style="color: #4f97d7; font-weight: bold;">function</span>(){
-    console.log(<span style="color: #2d9574;">"up"</span>);
+youxi[addmethod.up] = function(){
+    console.log("up");
 };
 
-youxi[addmethod.down] = <span style="color: #4f97d7; font-weight: bold;">function</span>(){
-    console.log(<span style="color: #2d9574;">"down"</span>);
+youxi[addmethod.down] = function(){
+    console.log("down");
 };
 
 console.log(youxi);
 </pre>
 </div>
 
-<pre class="example" id="orgdce1934">
+<pre class="example" id="org3dd4099">
 {
   name: '狼人杀',
   [Symbol(say)]: [Function: [say]],
@@ -1022,17 +1038,16 @@ console.log(youxi);
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgce25c5c" class="outline-2">
-<h2 id="orgce25c5c"><span class="section-number-2">15.</span> 迭代器</h2>
+<div id="outline-container-org8a2d5c4" class="outline-2">
+<h2 id="org8a2d5c4"><span class="section-number-2">15.</span> 迭代器</h2>
 <div class="outline-text-2" id="text-15">
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">xiyou</span> = [<span style="color: #2d9574;">"&#21776;&#20711;"</span>, <span style="color: #2d9574;">"&#23385;&#24735;&#31354;"</span>, <span style="color: #2d9574;">"&#29482;&#20843;&#25106;"</span>, <span style="color: #2d9574;">"&#27801;&#20711;"</span>]
-<span style="color: #4f97d7; font-weight: bold;">for</span> (<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">v</span> <span style="color: #4f97d7; font-weight: bold;">in</span> xiyou){
+<pre class="src src-js">const xiyou = ["唐僧", "孙悟空", "猪八戒", "沙僧"]
+for (let v in xiyou){
     console.log(v);
 }
 
-<span style="color: #4f97d7; font-weight: bold;">for</span> (<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">v</span> <span style="color: #4f97d7; font-weight: bold;">of</span> xiyou){
+for (let v of xiyou){
     console.log(v);
 }
 
@@ -1052,27 +1067,27 @@ console.log(youxi);
 
 
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">cluster</span> = {
-    name:<span style="color: #2d9574;">"tiankong"</span>,
+<pre class="src src-js">let cluster = {
+    name:"tiankong",
     age: [1,2,3,5,7,9],
     [Symbol.iterator]() {
-        <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">index</span> = 0;
-        <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">_that</span> = <span style="color: #a45bad;">this</span>;
-        <span style="color: #4f97d7; font-weight: bold;">return</span> {
-            <span style="color: #bc6ec5; font-weight: bold;">next</span>: <span style="color: #4f97d7; font-weight: bold;">function</span>(){
-                <span style="color: #4f97d7; font-weight: bold;">if</span> (index &lt; _that.age.length) {
-                    <span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">result</span> = {value:_that.age[index], done:<span style="color: #a45bad;">false</span> };
+        let index = 0;
+        let _that = this;
+        return {
+            next: function(){
+                if (index &lt; _that.age.length) {
+                    const result = {value:_that.age[index], done:false };
                     index++;
-                    <span style="color: #4f97d7; font-weight: bold;">return</span> result;
-                }<span style="color: #4f97d7; font-weight: bold;">else</span>{
-                    <span style="color: #4f97d7; font-weight: bold;">return</span> {value:<span style="color: #a45bad;">undefined</span>, done:<span style="color: #a45bad;">true</span>};
+                    return result;
+                }else{
+                    return {value:undefined, done:true};
                 }
             }
         };
     }
 }
 
-<span style="color: #4f97d7; font-weight: bold;">for</span>(<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">v</span> <span style="color: #4f97d7; font-weight: bold;">of</span> cluster){
+for(let v of cluster){
     console.log(v);
 }
 
@@ -1089,26 +1104,25 @@ console.log(youxi);
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org54285bd" class="outline-2">
-<h2 id="org54285bd"><span class="section-number-2">16.</span> 生成器</h2>
+<div id="outline-container-org8ea208e" class="outline-2">
+<h2 id="org8ea208e"><span class="section-number-2">16.</span> 生成器</h2>
 <div class="outline-text-2" id="text-16">
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">function</span> *<span style="color: #bc6ec5; font-weight: bold;">gen</span>(){
-    console.log(<span style="color: #2d9574;">"1"</span>);
-    <span style="color: #4f97d7; font-weight: bold;">yield</span> <span style="color: #2d9574;">"&#19968;"</span>;
-    console.log(<span style="color: #2d9574;">"2"</span>);
-    <span style="color: #4f97d7; font-weight: bold;">yield</span> <span style="color: #2d9574;">"&#20108;"</span>;
+<pre class="src src-js">function *gen(){
+    console.log("1");
+    yield "一";
+    console.log("2");
+    yield "二";
 }
 
-<span style="color: #4f97d7; font-weight: bold;">for</span> (<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">v</span> <span style="color: #4f97d7; font-weight: bold;">of</span> gen()){
+for (let v of gen()){
     console.log(v);
 }
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">iter</span> = gen();
+let iter = gen();
 
 
 iter.next();
-<span style="color: #4f97d7; font-weight: bold;">for</span> (<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">v</span> <span style="color: #4f97d7; font-weight: bold;">of</span> iter){
+for (let v of iter){
     console.log(v);
 }
 
@@ -1127,22 +1141,22 @@ iter.next();
 
 
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">function</span> *<span style="color: #bc6ec5; font-weight: bold;">gen</span>(args){
-    console.log(args);   <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">can only be passed once at first</span>
-    console.log(<span style="color: #2d9574;">"1"</span>);
-    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">mmm</span> = <span style="color: #4f97d7; font-weight: bold;">yield</span> <span style="color: #2d9574;">"&#19968;"</span>; <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">each step can be passed</span>
+<pre class="src src-js">function *gen(args){
+    console.log(args);   // can only be passed once at first
+    console.log("1");
+    let mmm = yield "一"; // each step can be passed
     console.log(mmm);
-    console.log(<span style="color: #2d9574;">"2"</span>);
-    <span style="color: #4f97d7; font-weight: bold;">yield</span> <span style="color: #2d9574;">"&#20108;"</span>;
-    console.log(<span style="color: #2d9574;">"3"</span>);
-    <span style="color: #4f97d7; font-weight: bold;">yield</span> <span style="color: #2d9574;">"&#19977;"</span>;
+    console.log("2");
+    yield "二";
+    console.log("3");
+    yield "三";
 
 }
 
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">iter</span> = gen(<span style="color: #2d9574;">"aaa"</span>);
+let iter = gen("aaa");
 
 iter.next();
-iter.next(<span style="color: #2d9574;">"MMM"</span>)
+iter.next("MMM")
 iter.next();
 
 </pre>
@@ -1157,13 +1171,12 @@ MMM
 </pre>
 </div>
 </div>
-
-<div id="outline-container-orgfca1ed8" class="outline-2">
-<h2 id="orgfca1ed8"><span class="section-number-2">17.</span> type vaildation</h2>
+<div id="outline-container-org6de2afd" class="outline-2">
+<h2 id="org6de2afd"><span class="section-number-2">17.</span> type vaildation</h2>
 <div class="outline-text-2" id="text-17">
 </div>
-<div id="outline-container-org34bfa70" class="outline-3">
-<h3 id="org34bfa70"><span class="section-number-3">17.1.</span> basic</h3>
+<div id="outline-container-org4f477e4" class="outline-3">
+<h3 id="org4f477e4"><span class="section-number-3">17.1.</span> basic</h3>
 <div class="outline-text-3" id="text-17-1">
 <p>
 tpyeof: the rest
@@ -1173,12 +1186,12 @@ tpyeof: the rest
 </p>
 
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">a</span>;
+<pre class="src src-js">var a;
 console.log()
-console.log(<span style="color: #4f97d7; font-weight: bold;">typeof</span>(a))
-console.log(<span style="color: #4f97d7; font-weight: bold;">typeof</span> a)
-console.log(<span style="color: #4f97d7; font-weight: bold;">typeof</span> a===<span style="color: #2d9574;">"undefined"</span> )
-console.log(a===<span style="color: #a45bad;">undefined</span> )
+console.log(typeof(a))
+console.log(typeof a)
+console.log(typeof a==="undefined" )
+console.log(a===undefined )
 </pre>
 </div>
 
@@ -1191,28 +1204,27 @@ true
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org332cee1" class="outline-3">
-<h3 id="org332cee1"><span class="section-number-3">17.2.</span> class</h3>
+<div id="outline-container-org7a9382c" class="outline-3">
+<h3 id="org7a9382c"><span class="section-number-3">17.2.</span> class</h3>
 <div class="outline-text-3" id="text-17-2">
 <p>
 instanceof
 typeof 不能区分数组和函数和对象
 </p>
 <div class="org-src-container">
-<pre class="src src-js">  <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">bb</span> = {
-    bb1 : [1, <span style="color: #2d9574;">"niaho"</span>, console.log],
-    <span style="color: #bc6ec5; font-weight: bold;">bb2</span> : <span style="color: #4f97d7; font-weight: bold;">function</span>(){
-      console.log(<span style="color: #2d9574;">"nidf"</span>);
+<pre class="src src-js">  var bb = {
+    bb1 : [1, "niaho", console.log],
+    bb2 : function(){
+      console.log("nidf");
     }
   }
 
-console.log(bb <span style="color: #4f97d7; font-weight: bold;">instanceof</span> <span style="color: #ce537a; font-weight: bold;">Object</span>);
-console.log(bb.bb1 <span style="color: #4f97d7; font-weight: bold;">instanceof</span> <span style="color: #ce537a; font-weight: bold;">Array</span>);
-console.log(bb.bb1 <span style="color: #4f97d7; font-weight: bold;">instanceof</span> <span style="color: #ce537a; font-weight: bold;">Object</span>);
-console.log(bb.bb2 <span style="color: #4f97d7; font-weight: bold;">instanceof</span> <span style="color: #ce537a; font-weight: bold;">Function</span>);
-console.log(bb.bb2 <span style="color: #4f97d7; font-weight: bold;">instanceof</span> <span style="color: #ce537a; font-weight: bold;">Object</span>);
-console.log( <span style="color: #4f97d7; font-weight: bold;">typeof</span> bb.bb1[2] === <span style="color: #2d9574;">"function"</span>)
+console.log(bb instanceof Object);
+console.log(bb.bb1 instanceof Array);
+console.log(bb.bb1 instanceof Object);
+console.log(bb.bb2 instanceof Function);
+console.log(bb.bb2 instanceof Object);
+console.log( typeof bb.bb1[2] === "function")
 bb.bb1[2](4)
 
 </pre>
@@ -1230,9 +1242,8 @@ true
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgb5e9020" class="outline-2">
-<h2 id="orgb5e9020"><span class="section-number-2">18.</span> multi assigment</h2>
+<div id="outline-container-orgd4c58f9" class="outline-2">
+<h2 id="orgd4c58f9"><span class="section-number-2">18.</span> multi assigment</h2>
 <div class="outline-text-2" id="text-18">
 <p>
 如果两个变量指向一个引用地址，修改其中一个，修改结果另一个可见
@@ -1240,9 +1251,8 @@ true
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgd0c8d63" class="outline-2">
-<h2 id="orgd0c8d63"><span class="section-number-2">19.</span> call</h2>
+<div id="outline-container-org165d476" class="outline-2">
+<h2 id="org165d476"><span class="section-number-2">19.</span> call</h2>
 <div class="outline-text-2" id="text-19">
 <p>
 对于obj没有test()方法， 临时调用
@@ -1251,22 +1261,21 @@ test.apply(obj) <code>=</code> obj.test()
 </p>
 </div>
 </div>
-
-<div id="outline-container-org524ef85" class="outline-2">
-<h2 id="org524ef85"><span class="section-number-2">20.</span> IIFE Immediately Invoked Function Expression</h2>
+<div id="outline-container-org0771fb5" class="outline-2">
+<h2 id="org0771fb5"><span class="section-number-2">20.</span> IIFE Immediately Invoked Function Expression</h2>
 <div class="outline-text-2" id="text-20">
 </div>
-<div id="outline-container-org8b49e77" class="outline-3">
-<h3 id="org8b49e77"><span class="section-number-3">20.1.</span> Beispiel</h3>
+<div id="outline-container-org8e32f8b" class="outline-3">
+<h3 id="org8e32f8b"><span class="section-number-3">20.1.</span> Beispiel</h3>
 <div class="outline-text-3" id="text-20-1">
 <p>
 1: 不影响全局命名空间
 2：可以暴露
 </p>
 <div class="org-src-container">
-<pre class="src src-js">(<span style="color: #4f97d7; font-weight: bold;">function</span> (){
-    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">a</span> = 34;
-    console.log(<span style="color: #2d9574;">"kk!!!!"</span>);
+<pre class="src src-js">(function (){
+    let a = 34;
+    console.log("kk!!!!");
     console.log(a*34);
 })();
 
@@ -1279,22 +1288,21 @@ kk!!!!
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org96ab211" class="outline-3">
-<h3 id="org96ab211"><span class="section-number-3">20.2.</span> 浏览器端列子</h3>
+<div id="outline-container-org7d16a48" class="outline-3">
+<h3 id="org7d16a48"><span class="section-number-3">20.2.</span> 浏览器端列子</h3>
 <div class="outline-text-3" id="text-20-2">
 <p>
 这里不能执行
 </p>
 <div class="org-src-container">
 <pre class="src src-js">(
-    <span style="color: #4f97d7; font-weight: bold;">function</span>(){
-        <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">aa</span> = 1;
-        <span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">test</span>(){
+    function(){
+        let aa = 1;
+        function test(){
             console.log(++aa);
         };
-        window.$ = <span style="color: #4f97d7; font-weight: bold;">function</span>(){
-            <span style="color: #4f97d7; font-weight: bold;">return</span> {
+        window.$ = function(){
+            return {
                 test:test
             };
         };
@@ -1309,26 +1317,25 @@ $().test();
 </div>
 </div>
 </div>
-
-<div id="outline-container-org355f1a5" class="outline-3">
-<h3 id="org355f1a5"><span class="section-number-3">20.3.</span> 服务器端列子</h3>
+<div id="outline-container-org20761bc" class="outline-3">
+<h3 id="org20761bc"><span class="section-number-3">20.3.</span> 服务器端列子</h3>
 <div class="outline-text-3" id="text-20-3">
 <div class="org-src-container">
 <pre class="src src-js">(
-    <span style="color: #4f97d7; font-weight: bold;">function</span>(<span style="color: #7590db;">window</span>){
-        <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">aa</span> = 1;
-        <span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">test</span>(){
+    function(window){
+        let aa = 1;
+        function test(){
             console.log(++aa);
         };
-        window.$ = <span style="color: #4f97d7; font-weight: bold;">function</span>(){
-            <span style="color: #4f97d7; font-weight: bold;">return</span> {
+        window.$ = function(){
+            return {
                 test:test
             };
         };
     }
-)(<span style="color: #a45bad;">this</span>);
+)(this);
 
-<span style="color: #a45bad;">this</span>.$().test();
+this.$().test();
 
 
 
@@ -1341,9 +1348,8 @@ $().test();
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgc8e3b26" class="outline-2">
-<h2 id="orgc8e3b26"><span class="section-number-2">21.</span> this</h2>
+<div id="outline-container-org0729826" class="outline-2">
+<h2 id="org0729826"><span class="section-number-2">21.</span> this</h2>
 <div class="outline-text-2" id="text-21">
 <p>
 任何函数本质都是通过对象来调用的，
@@ -1351,8 +1357,8 @@ $().test();
 </p>
 </div>
 </div>
-<div id="outline-container-orgcba02c6" class="outline-2">
-<h2 id="orgcba02c6"><span class="section-number-2">22.</span> 括号</h2>
+<div id="outline-container-orgd861361" class="outline-2">
+<h2 id="orgd861361"><span class="section-number-2">22.</span> 括号</h2>
 <div class="outline-text-2" id="text-22">
 <p>
 小括弧(IIFE)和中括弧(Beispiel untern)前面的语句后必须加分号，
@@ -1360,7 +1366,7 @@ $().test();
 </p>
 
 <div class="org-src-container">
-<pre class="src src-js">[1,2,3,4].forEach(<span style="color: #4f97d7; font-weight: bold;">function</span>(<span style="color: #7590db;">a</span>){console.log(a)})
+<pre class="src src-js">[1,2,3,4].forEach(function(a){console.log(a)})
 ;[1,2,3,4].forEach(a =&gt;console.log(a))
 
 </pre>
@@ -1378,84 +1384,98 @@ $().test();
 </pre>
 </div>
 </div>
-
-<div id="outline-container-orgf125e54" class="outline-2">
-<h2 id="orgf125e54"><span class="section-number-2">23.</span> callback</h2>
+<div id="outline-container-orgbe607c5" class="outline-2">
+<h2 id="orgbe607c5"><span class="section-number-2">23.</span> callback</h2>
 <div class="outline-text-2" id="text-23">
 </div>
-<div id="outline-container-orgdcd1f54" class="outline-3">
-<h3 id="orgdcd1f54"><span class="section-number-3">23.1.</span> callback named function</h3>
+<div id="outline-container-org1d29471" class="outline-3">
+<h3 id="org1d29471"><span class="section-number-3">23.1.</span> callback named function</h3>
 <div class="outline-text-3" id="text-23-1">
 <div class="org-src-container">
-<pre class="src src-js"> <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">test</span> = <span style="color: #4f97d7; font-weight: bold;">function</span>(<span style="color: #7590db;">msg</span>, <span style="color: #7590db;">callback</span>){
-     setTimeout(<span style="color: #4f97d7; font-weight: bold;">function</span>(){ console.log(msg);   }, 2000);
-     <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">console.log(msg);</span>
+<pre class="src src-js"> var test = function(msg, callback){
+     setTimeout(function(){ console.log(msg);   }, 2000);
+     //console.log(msg);
      callback(); 
  }
-<span style="color: #4f97d7; font-weight: bold;">function</span>  <span style="color: #bc6ec5; font-weight: bold;">justcall</span>(){
-     console.log(<span style="color: #2d9574;">"juskjktcallkkjk to i "</span>);
+function  justcall(){
+     console.log("juskjktcallkkjk to i ");
  }
-<span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">just</span> = <span style="color: #4f97d7; font-weight: bold;">function</span>(){
-     console.log(<span style="color: #2d9574;">"juskjktcallkkjk to i "</span>);
+var just = function(){
+     console.log("juskjktcallkkjk to i ");
  }
- test(<span style="color: #2d9574;">"nisho 0p"</span>, justcall)
- test(<span style="color: #2d9574;">"nisho 0p"</span>, just)
+ test("nisho 0p", justcall)
+ test("nisho 0p", just)
+</pre>
+</div>
+
+<pre class="example">
+juskjktcallkkjk to i 
+juskjktcallkkjk to i 
+nisho 0p
+nisho 0p
 </pre>
 </div>
 </div>
-</div>
-
-<div id="outline-container-orgdd84b7d" class="outline-3">
-<h3 id="orgdd84b7d"><span class="section-number-3">23.2.</span> callback no named function</h3>
+<div id="outline-container-org8e5e75d" class="outline-3">
+<h3 id="org8e5e75d"><span class="section-number-3">23.2.</span> callback no named function</h3>
 <div class="outline-text-3" id="text-23-2">
 <div class="org-src-container">
-<pre class="src src-js">  <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">test</span> = <span style="color: #4f97d7; font-weight: bold;">function</span>(<span style="color: #7590db;">msg</span> , <span style="color: #7590db;">didi</span>){
-<span style="color: #2aa1ae; background-color: #292e34;">//      </span><span style="color: #2aa1ae; background-color: #292e34;">setTimeout( ()=&gt;{   console.log(msg);   } , 2000);</span>
+<pre class="src src-js">  var test = function(msg , didi){
+//      setTimeout( ()=&gt;{   console.log(msg);   } , 2000);
       console.log(msg);
       didi(msg);
   }
 
-  test(<span style="color: #2d9574;">"kdjfi"</span>, msg =&gt; {
+  test("kdjfi", msg =&gt; {
       console.log(msg);
   });
 </pre>
 </div>
-</div>
-</div>
 
-<div id="outline-container-orgcb4636d" class="outline-3">
-<h3 id="orgcb4636d"><span class="section-number-3">23.3.</span> no named function callback no named function</h3>
+<pre class="example">
+kdjfi
+kdjfi
+</pre>
+</div>
+</div>
+<div id="outline-container-orga7df09f" class="outline-3">
+<h3 id="orga7df09f"><span class="section-number-3">23.3.</span> no named function callback no named function</h3>
 <div class="outline-text-3" id="text-23-3">
 <div class="org-src-container">
 <pre class="src src-js">(
     (msg , didi) =&gt; {
         console.log(msg);
-        <span style="color: #2aa1ae; background-color: #292e34;">//          </span><span style="color: #2aa1ae; background-color: #292e34;">setTimeout(  ()=&gt;{    didi(msg);  } , 2000);  // can only be used in  function body</span>
+        //          setTimeout(  ()=&gt;{    didi(msg);  } , 2000);  // can only be used in  function body
         didi(msg); 
     }
 )
-( <span style="color: #2d9574;">"kdiikkjkjk"</span>,
+( "kdiikkjkjk",
   msg =&gt; {
       console.log(msg);
   }
 )
 </pre>
 </div>
+
+<pre class="example">
+kdiikkjkjk
+kdiikkjkjk
+</pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org14593c6" class="outline-2">
-<h2 id="org14593c6"><span class="section-number-2">24.</span> promise</h2>
+<div id="outline-container-org8fb0c0b" class="outline-2">
+<h2 id="org8fb0c0b"><span class="section-number-2">24.</span> promise</h2>
 <div class="outline-text-2" id="text-24">
 </div>
-<div id="outline-container-org3f2d1fa" class="outline-3">
-<h3 id="org3f2d1fa"><span class="section-number-3">24.1.</span> resolve and reject</h3>
+<div id="outline-container-org7fe365c" class="outline-3">
+<h3 id="org7fe365c"><span class="section-number-3">24.1.</span> resolve and reject</h3>
 <div class="outline-text-3" id="text-24-1">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <tbody>
 <tr>
@@ -1469,19 +1489,19 @@ $().test();
 </table>
 
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">sentSuccess</span> = <span style="color: #a45bad;">false</span>;
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">p</span> = <span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">Promise</span>(<span style="color: #4f97d7; font-weight: bold;">function</span>(<span style="color: #7590db;">resolve</span>, <span style="color: #7590db;">reject</span>) {
-  <span style="color: #4f97d7; font-weight: bold;">if</span>(sentSuccess){
-    resolve(<span style="color: #2d9574;">"Successed"</span>);
-  } <span style="color: #4f97d7; font-weight: bold;">else</span> {
-    reject(<span style="color: #2d9574;">"Failed"</span>);
+<pre class="src src-js">let sentSuccess = false;
+let p = new Promise(function(resolve, reject) {
+  if(sentSuccess){
+    resolve("Successed");
+  } else {
+    reject("Failed");
   }
 });
 
-p.then(<span style="color: #4f97d7; font-weight: bold;">function</span>(<span style="color: #7590db;">message</span>) {
-  console.log(<span style="color: #2d9574;">`${message} is coming`</span>);
-}).<span style="color: #4f97d7; font-weight: bold;">catch</span>(<span style="color: #4f97d7; font-weight: bold;">function</span>(<span style="color: #7590db;">message</span>){
-  console.log(<span style="color: #2d9574;">`${message} is coming`</span>);
+p.then(function(message) {
+  console.log(`${message} is coming`);
+}).catch(function(message){
+  console.log(`${message} is coming`);
 })
 
 </pre>
@@ -1492,14 +1512,14 @@ Failed is coming
 </pre>
 </div>
 </div>
-<div id="outline-container-org3d42d7c" class="outline-3">
-<h3 id="org3d42d7c"><span class="section-number-3">24.2.</span> resolve and reject with recusive</h3>
+<div id="outline-container-org4a4d99e" class="outline-3">
+<h3 id="org4a4d99e"><span class="section-number-3">24.2.</span> resolve and reject with recusive</h3>
 <div class="outline-text-3" id="text-24-2">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table>
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="org-left">
 </colgroup>
 <tbody>
 <tr>
@@ -1515,7 +1535,7 @@ Failed is coming
 <div class="org-src-container">
 <pre class="src src-js">Promise.resolve().then( ()=&gt; {
     console.log(1);
-}).<span style="color: #4f97d7; font-weight: bold;">catch</span>(()=&gt; {
+}).catch(()=&gt; {
     console.log(2);
 }).then(()=&gt; {
     console.log(3);
@@ -1533,8 +1553,8 @@ Failed is coming
 <div class="org-src-container">
 <pre class="src src-js">Promise.resolve().then( ()=&gt; {
     console.log(1);
-    <span style="color: #4f97d7; font-weight: bold;">throw</span> <span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">Error</span> (<span style="color: #2d9574;">'Error'</span>);
-}).<span style="color: #4f97d7; font-weight: bold;">catch</span>(()=&gt; {
+    throw new Error ('Error');
+}).catch(()=&gt; {
     console.log(2);
 }).then(()=&gt; {
     console.log(3);
@@ -1553,10 +1573,10 @@ Failed is coming
 <div class="org-src-container">
 <pre class="src src-js">Promise.resolve().then( ()=&gt; {
     console.log(1);
-    <span style="color: #4f97d7; font-weight: bold;">throw</span> <span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">Error</span> (<span style="color: #2d9574;">'Error'</span>);
-}).<span style="color: #4f97d7; font-weight: bold;">catch</span>(()=&gt; {
+    throw new Error ('Error');
+}).catch(()=&gt; {
     console.log(2);
-}).<span style="color: #4f97d7; font-weight: bold;">catch</span>(()=&gt; {
+}).catch(()=&gt; {
     console.log(3);
 });
 
@@ -1570,25 +1590,25 @@ Failed is coming
 
 
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">sentSuccess</span> = <span style="color: #a45bad;">true</span>;
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">p</span> = <span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">Promise</span>(<span style="color: #4f97d7; font-weight: bold;">function</span>(<span style="color: #7590db;">resolve</span>, <span style="color: #7590db;">reject</span>) {
-  <span style="color: #4f97d7; font-weight: bold;">if</span>(sentSuccess){
-    resolve(<span style="color: #2d9574;">"Successed"</span>);
-  } <span style="color: #4f97d7; font-weight: bold;">else</span> {
-    reject(<span style="color: #2d9574;">"Failed"</span>);
+<pre class="src src-js">let sentSuccess = true;
+let p = new Promise(function(resolve, reject) {
+  if(sentSuccess){
+    resolve("Successed");
+  } else {
+    reject("Failed");
   }
 });
 
-p.then(<span style="color: #4f97d7; font-weight: bold;">function</span>(<span style="color: #7590db;">message</span>) {
-  console.log(<span style="color: #2d9574;">`${message} is coming`</span>);
+p.then(function(message) {
+  console.log(`${message} is coming`);
   console.log(1);
-  <span style="color: #4f97d7; font-weight: bold;">throw</span> <span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">Error</span> (<span style="color: #2d9574;">'Error'</span>);
-}).<span style="color: #4f97d7; font-weight: bold;">catch</span>(()=&gt; {
+  throw new Error ('Error');
+}).catch(()=&gt; {
   console.log(2);
-}).<span style="color: #4f97d7; font-weight: bold;">catch</span>(()=&gt; {
+}).catch(()=&gt; {
   console.log(3);
-}).<span style="color: #4f97d7; font-weight: bold;">catch</span>(<span style="color: #4f97d7; font-weight: bold;">function</span>(<span style="color: #7590db;">message</span>){
-  console.log(<span style="color: #2d9574;">`${message} is coming`</span>);
+}).catch(function(message){
+  console.log(`${message} is coming`);
 }).then(() =&gt; {
   console.log(4);  
 });
@@ -1604,9 +1624,8 @@ Successed is coming
 </pre>
 </div>
 </div>
-
-<div id="outline-container-orge862032" class="outline-3">
-<h3 id="orge862032"><span class="section-number-3">24.3.</span> resolve and reject with recusive with return</h3>
+<div id="outline-container-org9c305be" class="outline-3">
+<h3 id="org9c305be"><span class="section-number-3">24.3.</span> resolve and reject with recusive with return</h3>
 <div class="outline-text-3" id="text-24-3">
 <p>
 #+begin<sub>src</sub> js :results output :exports both
@@ -1636,25 +1655,24 @@ p.then(function(message) {
 </div>
 </div>
 </div>
-
-<div id="outline-container-org961d787" class="outline-2">
-<h2 id="org961d787"><span class="section-number-2">25.</span> Closure</h2>
+<div id="outline-container-org92b016e" class="outline-2">
+<h2 id="org92b016e"><span class="section-number-2">25.</span> Closure</h2>
 <div class="outline-text-2" id="text-25">
 </div>
-<div id="outline-container-org51668be" class="outline-3">
-<h3 id="org51668be"><span class="section-number-3">25.1.</span> conuter将函数作为另一个函数的返回值</h3>
+<div id="outline-container-orge0e2758" class="outline-3">
+<h3 id="orge0e2758"><span class="section-number-3">25.1.</span> conuter将函数作为另一个函数的返回值</h3>
 <div class="outline-text-3" id="text-25-1">
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">f1</span>(){
-    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">a</span> = 0;
-    <span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">f2</span>(){
+<pre class="src src-js">function f1(){
+    let a = 0;
+    function f2(){
         a++;
         console.log(a);
     }
-    <span style="color: #4f97d7; font-weight: bold;">return</span> f2;
+    return f2;
 }
 
-<span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">f</span> = f1();
+var f = f1();
 f()
 f()
 f();
@@ -1669,21 +1687,20 @@ f();
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org3cfb732" class="outline-3">
-<h3 id="org3cfb732"><span class="section-number-3">25.2.</span> 将函数作为实参传给另一个函数调用</h3>
+<div id="outline-container-orgc3d3005" class="outline-3">
+<h3 id="orgc3d3005"><span class="section-number-3">25.2.</span> 将函数作为实参传给另一个函数调用</h3>
 <div class="outline-text-3" id="text-25-2">
 <p>
 实际上，这和回调函数是一样的
 </p>
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">print</span>(<span style="color: #7590db;">fn</span>){
-    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">a</span> = 200;
+<pre class="src src-js">function print(fn){
+    let a = 200;
     fn();
 }
 
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">a</span> = 100;
-<span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">fn</span>(){
+let a = 100;
+function fn(){
     console.log(a);
 }
 print(fn);
@@ -1696,28 +1713,27 @@ print(fn);
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org1d24df6" class="outline-3">
-<h3 id="org1d24df6"><span class="section-number-3">25.3.</span> multi return</h3>
+<div id="outline-container-org43d313c" class="outline-3">
+<h3 id="org43d313c"><span class="section-number-3">25.3.</span> multi return</h3>
 <div class="outline-text-3" id="text-25-3">
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">myModule</span>(){
-    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">msg</span> = <span style="color: #2d9574;">"My Massage"</span>;
+<pre class="src src-js">function myModule(){
+    let msg = "My Massage";
 
-    <span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">doSomething</span>(){
-        console.log(<span style="color: #2d9574;">"do Something..."</span>+msg);
+    function doSomething(){
+        console.log("do Something..."+msg);
     }
-    <span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">doOtherthing</span>(){
-        console.log(<span style="color: #2d9574;">"do Otherthing..."</span> + msg);
+    function doOtherthing(){
+        console.log("do Otherthing..." + msg);
     }
 
-    <span style="color: #4f97d7; font-weight: bold;">return</span> {
+    return {
         Something:doSomething,
         Otherthing:doOtherthing
     };
 }
 
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">F</span> = myModule();
+let F = myModule();
 F.Something()
 F.Otherthing()
 
@@ -1731,12 +1747,12 @@ do Otherthing...My Massage
 </div>
 </div>
 </div>
-<div id="outline-container-org10f8a16" class="outline-2">
-<h2 id="org10f8a16"><span class="section-number-2">26.</span> Prototype</h2>
+<div id="outline-container-orgb96dfbd" class="outline-2">
+<h2 id="orgb96dfbd"><span class="section-number-2">26.</span> Prototype</h2>
 <div class="outline-text-2" id="text-26">
 </div>
-<div id="outline-container-org976c3a9" class="outline-3">
-<h3 id="org976c3a9"><span class="section-number-3">26.1.</span> new note</h3>
+<div id="outline-container-org57d49c2" class="outline-3">
+<h3 id="org57d49c2"><span class="section-number-3">26.1.</span> new note</h3>
 <div class="outline-text-3" id="text-26-1">
 <p>
 每一个函数都有一个prototpye属性&amp;，默认是个对象， 即原型对象
@@ -1749,11 +1765,11 @@ fun.prototype = &amp;, &amp;.constructor = fun
 <b>constructor</b>
 </p>
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">Fun</span>(){  }
-<span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">yuanxing</span> = Fun.<span style="color: #a45bad;">prototype</span>
-<span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">yuanhanshu</span> = yuanxing.constructor
+<pre class="src src-js">function Fun(){  }
+var yuanxing = Fun.prototype
+var yuanhanshu = yuanxing.constructor
 console.log(yuanhanshu == Fun)
-console.log(Fun.<span style="color: #a45bad;">prototype</span>.constructor == Fun)
+console.log(Fun.prototype.constructor == Fun)
 </pre>
 </div>
 
@@ -1769,9 +1785,9 @@ true
 还可以对原型对象添加自定义的属性和方法，让原型对象的函数的实列来使用
 </p>
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">Fun</span>(){  }
-Fun.<span style="color: #a45bad;">prototype</span>.test = <span style="color: #4f97d7; font-weight: bold;">function</span>(){console.log(<span style="color: #2d9574;">"prototype for test"</span>)}
-<span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">fun</span> = <span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">Fun</span>()
+<pre class="src src-js">function Fun(){  }
+Fun.prototype.test = function(){console.log("prototype for test")}
+var fun = new Fun()
 fun.test()
 </pre>
 </div>
@@ -1782,18 +1798,18 @@ prototype for test
 
 
 <p>
-<b>_<sub>proto</sub>__</b> <b>隐式原型</b> <b>实列</b> <b>实列化时生成</b>
+<b><span class="underline"><span class="underline">proto</span></span></b> <b>隐式原型</b> <b>实列</b> <b>实列化时生成</b>
 </p>
 
 <p>
 类的显式原型等于实列的隐式原型
 </p>
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">Fun</span>(){}
-<span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">fun</span> = <span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">Fun</span>()
-console.log(Fun.<span style="color: #a45bad;">prototype</span>)
+<pre class="src src-js">function Fun(){}
+var fun = new Fun()
+console.log(Fun.prototype)
 console.log(fun.__proto__)
-console.log(Fun.<span style="color: #a45bad;">prototype</span> == fun.__proto__)
+console.log(Fun.prototype == fun.__proto__)
 </pre>
 </div>
 
@@ -1805,18 +1821,18 @@ true
 
 
 <p>
-<b>_<sub>proto</sub>__</b> 原型链*
+<b><span class="underline"><span class="underline">proto</span></span></b> 原型链*
 如果为被复制，则默认为系统Object空对象
 </p>
 <div class="org-src-container">
-<pre class="src src-js">    <span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">Fun</span>(){}
-    <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">fun</span> = <span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">Fun</span>()
+<pre class="src src-js">    function Fun(){}
+    var fun = new Fun()
 
-    <span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">FFun</span> (){}
-    <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">ffun</span> = <span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">FFun</span>()
+    function FFun (){}
+    var ffun = new FFun()
 
-  FFun.<span style="color: #a45bad;">prototype</span>.__proto__ = fun
-<span style="color: #2aa1ae; background-color: #292e34;">//  </span><span style="color: #2aa1ae; background-color: #292e34;">ffun.__proto__.__proto__ = fun</span>
+  FFun.prototype.__proto__ = fun
+//  ffun.__proto__.__proto__ = fun
 
     console.log(ffun.__proto__.__proto__)
 </pre>
@@ -1827,17 +1843,12 @@ Fun {}
 </pre>
 </div>
 </div>
-
-
-
-
-
-<div id="outline-container-orgca01408" class="outline-3">
-<h3 id="orgca01408"><span class="section-number-3">26.2.</span> alte note</h3>
+<div id="outline-container-org9add6f5" class="outline-3">
+<h3 id="org9add6f5"><span class="section-number-3">26.2.</span> alte note</h3>
 <div class="outline-text-3" id="text-26-2">
 <p>
 对象的隐式原型(<span class="underline"><span class="underline">proto</span></span>)等于对应的构造函数的显式原型(prototype)的值
-<a href="file:///home/si/Dropbox/subjects/foto/JS_Obj_Fuck_prototype.png">photolink</a>
+<a href="file:///Users/silin/Dropbox/subjects/foto/JS_Obj_Fuck_prototype.png">photolink</a>
 对象的属性组成：
 1：本身的声明
 2：_<sub>proto</sub>_<sub>隐式原型链属性</sub>
@@ -1845,15 +1856,15 @@ Fun {}
 </p>
 
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">Fn</span> (){
+<pre class="src src-js">function Fn (){
 }
-<span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">fn</span> = <span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">Fn</span>();
+var fn = new Fn();
 
-Fn.<span style="color: #a45bad;">prototype</span>.test = <span style="color: #4f97d7; font-weight: bold;">function</span>(){
-    console.log(<span style="color: #2d9574;">"from prototype"</span>);
+Fn.prototype.test = function(){
+    console.log("from prototype");
 }
 
-fn.test();  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">=== fn.__proto__.test();</span>
+fn.test();  // === fn.__proto__.test();
 fn.__proto__.test();
 
 </pre>
@@ -1865,9 +1876,9 @@ from prototype
 </pre>
 
 <div class="org-src-container">
-<pre class="src src-js">console.log(Object.<span style="color: #a45bad;">prototype</span> <span style="color: #4f97d7; font-weight: bold;">instanceof</span> <span style="color: #ce537a; font-weight: bold;">Object</span>)
-console.log(Function.<span style="color: #a45bad;">prototype</span> <span style="color: #4f97d7; font-weight: bold;">instanceof</span> <span style="color: #ce537a; font-weight: bold;">Object</span>)
-console.log(Function.__proto__ === Function.<span style="color: #a45bad;">prototype</span>)
+<pre class="src src-js">console.log(Object.prototype instanceof Object)
+console.log(Function.prototype instanceof Object)
+console.log(Function.__proto__ === Function.prototype)
 </pre>
 </div>
 
@@ -1879,14 +1890,14 @@ true
 
 
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">A</span>(){};
-A.<span style="color: #a45bad;">prototype</span>.n = 1;
-<span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">b</span> = <span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">A</span>();
-<span style="color: #ce537a; font-weight: bold;">A</span>.<span style="color: #a45bad;">prototype</span> = {
+<pre class="src src-js">function A(){};
+A.prototype.n = 1;
+var b = new A();
+A.prototype = {
     n:2,
     m:3
 };
-<span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">c</span> = <span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">A</span>();
+var c = new A();
 console.log(b.n, b.m, c.n, c.m);
 </pre>
 </div>
@@ -1897,15 +1908,15 @@ console.log(b.n, b.m, c.n, c.m);
 
 
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">F</span>(){}
+<pre class="src src-js">function F(){}
 
-Object.<span style="color: #a45bad;">prototype</span>.a = <span style="color: #4f97d7; font-weight: bold;">function</span>(){
-    console.log(<span style="color: #2d9574;">"a"</span>)
+Object.prototype.a = function(){
+    console.log("a")
 }
-Function.<span style="color: #a45bad;">prototype</span>.b = <span style="color: #4f97d7; font-weight: bold;">function</span>(){
-    console.log(<span style="color: #2d9574;">"b"</span>)
+Function.prototype.b = function(){
+    console.log("b")
 }
-<span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">f</span> = <span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">F</span>();
+var f = new F();
 f.a()
 f.b()
 F.a()
@@ -1917,9 +1928,8 @@ F.b()
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgfb7921a" class="outline-2">
-<h2 id="orgfb7921a"><span class="section-number-2">27.</span> event loop事件循环</h2>
+<div id="outline-container-org17a6822" class="outline-2">
+<h2 id="org17a6822"><span class="section-number-2">27.</span> event loop事件循环</h2>
 <div class="outline-text-2" id="text-27">
 <ul class="org-ul">
 <li>browser interpreter</li>
@@ -1930,9 +1940,8 @@ F.b()
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orgf0b88f0" class="outline-2">
-<h2 id="orgf0b88f0"><span class="section-number-2">28.</span> async/await</h2>
+<div id="outline-container-org12a2358" class="outline-2">
+<h2 id="org12a2358"><span class="section-number-2">28.</span> async/await</h2>
 <div class="outline-text-2" id="text-28">
 <div class="org-center">
 <p>
@@ -1940,19 +1949,18 @@ F.b()
 </p>
 </div>
 </div>
-
-<div id="outline-container-org1a27b2e" class="outline-3">
-<h3 id="org1a27b2e"><span class="section-number-3">28.1.</span> 执行async函数， 返回的是Promise</h3>
+<div id="outline-container-org49dcf2f" class="outline-3">
+<h3 id="org49dcf2f"><span class="section-number-3">28.1.</span> 执行async函数， 返回的是Promise</h3>
 <div class="outline-text-3" id="text-28-1">
 <p>
 如果没有Promise的调用，也会自动封装为Promise
 </p>
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">async</span> <span style="color: #4f97d7; font-weight: bold;">function</span> fn1(){
-    <span style="color: #4f97d7; font-weight: bold;">return</span> 1000;
+<pre class="src src-js">async function fn1(){
+    return 1000;
 }
 fn1().then(data =&gt; {
-    console.log(<span style="color: #2d9574;">"data :"</span>, data);
+    console.log("data :", data);
 });
 </pre>
 </div>
@@ -1966,12 +1974,12 @@ data : 1000
 如果有，则直接返回该Promise
 </p>
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">async</span> <span style="color: #4f97d7; font-weight: bold;">function</span> fn1(){
-    <span style="color: #4f97d7; font-weight: bold;">return</span> Promise.resolve(200);
+<pre class="src src-js">async function fn1(){
+    return Promise.resolve(200);
 }
-<span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">res1</span> = fn1();
+const res1 = fn1();
 res1.then(data =&gt; {
-    console.log(<span style="color: #2d9574;">"data :"</span>, data);
+    console.log("data :", data);
 });
 </pre>
 </div>
@@ -1981,16 +1989,16 @@ data : 200
 </pre>
 </div>
 </div>
-<div id="outline-container-org84036dc" class="outline-3">
-<h3 id="org84036dc"><span class="section-number-3">28.2.</span> await 相当于 Promise + then</h3>
+<div id="outline-container-org769c09c" class="outline-3">
+<h3 id="org769c09c"><span class="section-number-3">28.2.</span> await 相当于 Promise + then</h3>
 <div class="outline-text-3" id="text-28-2">
 </div>
-<div id="outline-container-orgc4d2d3d" class="outline-4">
-<h4 id="orgc4d2d3d"><span class="section-number-4">28.2.1.</span> await 后面跟数值也会自动封装</h4>
+<div id="outline-container-org510576f" class="outline-4">
+<h4 id="org510576f"><span class="section-number-4">28.2.1.</span> await 后面跟数值也会自动封装</h4>
 <div class="outline-text-4" id="text-28-2-1">
 <div class="org-src-container">
-<pre class="src src-js">(<span style="color: #4f97d7; font-weight: bold;">async</span> <span style="color: #4f97d7; font-weight: bold;">function</span> (){
-    <span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">data</span> = <span style="color: #4f97d7; font-weight: bold;">await</span> 300;
+<pre class="src src-js">(async function (){
+    const data = await 300;
     console.log(data);
 })();
 </pre>
@@ -2001,14 +2009,13 @@ data : 200
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org113196a" class="outline-4">
-<h4 id="org113196a"><span class="section-number-4">28.2.2.</span> await 跟Promise</h4>
+<div id="outline-container-org69dc385" class="outline-4">
+<h4 id="org69dc385"><span class="section-number-4">28.2.2.</span> await 跟Promise</h4>
 <div class="outline-text-4" id="text-28-2-2">
 <div class="org-src-container">
-<pre class="src src-js">(<span style="color: #4f97d7; font-weight: bold;">async</span> <span style="color: #4f97d7; font-weight: bold;">function</span> (){
-    <span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">p1</span> = Promise.resolve(200);
-    <span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">data</span> = <span style="color: #4f97d7; font-weight: bold;">await</span> p1;
+<pre class="src src-js">(async function (){
+    const p1 = Promise.resolve(200);
+    const data = await p1;
     console.log(data);
 } )();
 </pre>
@@ -2019,18 +2026,17 @@ data : 200
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org58c2f91" class="outline-4">
-<h4 id="org58c2f91"><span class="section-number-4">28.2.3.</span> await跟async函数</h4>
+<div id="outline-container-org14b8e9f" class="outline-4">
+<h4 id="org14b8e9f"><span class="section-number-4">28.2.3.</span> await跟async函数</h4>
 <div class="outline-text-4" id="text-28-2-3">
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">async</span> <span style="color: #4f97d7; font-weight: bold;">function</span> fn1(){
-    <span style="color: #4f97d7; font-weight: bold;">return</span> 300;
+<pre class="src src-js">async function fn1(){
+    return 300;
 }
 
-(<span style="color: #4f97d7; font-weight: bold;">async</span> <span style="color: #4f97d7; font-weight: bold;">function</span> (){
-    <span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">data</span> = <span style="color: #4f97d7; font-weight: bold;">await</span> fn1();
-    console.log(data);  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#27492;&#26102;await&#21518;&#38754;&#30340;&#21629;&#20196;&#30456;&#24403;&#19982;setTimeout&#30340;&#31532;&#20108;&#20010;&#21442;&#25968;&#65292;&#21363;&#26032;&#30340;&#24322;&#27493;&#20998;&#25903;</span>
+(async function (){
+    const data = await fn1();
+    console.log(data);  // 此时await后面的命令相当与setTimeout的第二个参数，即新的异步分支
 } )();
 </pre>
 </div>
@@ -2041,19 +2047,19 @@ data : 200
 </div>
 </div>
 </div>
-<div id="outline-container-org916eb6d" class="outline-3">
-<h3 id="org916eb6d"><span class="section-number-3">28.3.</span> try catch 捕获异常,代替Promise+catch</h3>
+<div id="outline-container-org94a3cc1" class="outline-3">
+<h3 id="org94a3cc1"><span class="section-number-3">28.3.</span> try catch 捕获异常,代替Promise+catch</h3>
 <div class="outline-text-3" id="text-28-3">
 <div class="org-src-container">
-<pre class="src src-js">(<span style="color: #4f97d7; font-weight: bold;">async</span> <span style="color: #4f97d7; font-weight: bold;">function</span> (){
-    <span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">p4</span> = Promise.reject(<span style="color: #2d9574;">'Error'</span>);
-    <span style="color: #4f97d7; font-weight: bold;">try</span> {
-        <span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">res</span> = <span style="color: #4f97d7; font-weight: bold;">await</span> p4;
-        console.log(res); <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">reject for Promise + then, this will not be executed</span>
-    } <span style="color: #4f97d7; font-weight: bold;">catch</span> (err) {
+<pre class="src src-js">(async function (){
+    const p4 = Promise.reject('Error');
+    try {
+        const res = await p4;
+        console.log(res); // reject for Promise + then, this will not be executed
+    } catch (err) {
         console.log(err);
-    } <span style="color: #4f97d7; font-weight: bold;">finally</span> {
-        console.log(<span style="color: #2d9574;">"It's done"</span>);
+    } finally {
+        console.log("It's done");
     }
 })();
 </pre>
@@ -2065,27 +2071,26 @@ It's done
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org53f01eb" class="outline-3">
-<h3 id="org53f01eb"><span class="section-number-3">28.4.</span> 包装长时耗的异步函数</h3>
+<div id="outline-container-org5c4091c" class="outline-3">
+<h3 id="org5c4091c"><span class="section-number-3">28.4.</span> 包装长时耗的异步函数</h3>
 <div class="outline-text-3" id="text-28-4">
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">sendRequest</span>(){
-  <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">Promise</span>(<span style="color: #4f97d7; font-weight: bold;">function</span>(<span style="color: #7590db;">resolve</span>, <span style="color: #7590db;">reject</span>) {
-    setTimeout( <span style="color: #4f97d7; font-weight: bold;">function</span>(){
-      reject(<span style="color: #2d9574;">"Request reject"</span>);
+<pre class="src src-js">function sendRequest(){
+  return new Promise(function(resolve, reject) {
+    setTimeout( function(){
+      reject("Request reject");
     }, 2000);
   });
 }
 
-<span style="color: #4f97d7; font-weight: bold;">async</span> <span style="color: #4f97d7; font-weight: bold;">function</span> getUsername() {
-  <span style="color: #4f97d7; font-weight: bold;">try</span> {
-    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">username</span> =  <span style="color: #4f97d7; font-weight: bold;">await</span> sendRequest();
+async function getUsername() {
+  try {
+    let username =  await sendRequest();
     console.log(username);
-  } <span style="color: #4f97d7; font-weight: bold;">catch</span> (err) {
-    console.log(<span style="color: #2d9574;">`Error: ${err}`</span>);
-  } <span style="color: #4f97d7; font-weight: bold;">finally</span> {
-    console.log(<span style="color: #2d9574;">"Gut"</span>);
+  } catch (err) {
+    console.log(`Error: ${err}`);
+  } finally {
+    console.log("Gut");
   }
 }
 
@@ -2101,36 +2106,34 @@ Gut
 </div>
 </div>
 </div>
-
-<div id="outline-container-orga3c70fb" class="outline-2">
-<h2 id="orga3c70fb"><span class="section-number-2">29.</span> js in Dom</h2>
+<div id="outline-container-org9fe9078" class="outline-2">
+<h2 id="org9fe9078"><span class="section-number-2">29.</span> js in Dom</h2>
 <div class="outline-text-2" id="text-29">
 <div class="org-src-container">
-<pre class="src src-html">&lt;<span style="color: #bc6ec5; font-weight: bold;">li</span>&gt;&lt;<span style="color: #bc6ec5; font-weight: bold;">a</span> <span style="color: #7590db;">onclick</span>=<span style="color: #2d9574;">"emacs()"</span> <span style="color: #7590db;">href</span>=<span style="color: #2d9574;">"#"</span>&gt;Emacs&lt;/<span style="color: #bc6ec5; font-weight: bold;">a</span>&gt;&lt;/<span style="color: #bc6ec5; font-weight: bold;">li</span>&gt;
-&lt;<span style="color: #bc6ec5; font-weight: bold;">iframe</span> <span style="color: #7590db;">src</span>=<span style="color: #2d9574;">"emacs.html"</span> <span style="color: #7590db;">id</span>=<span style="color: #2d9574;">"emacs"</span> <span style="color: #7590db;">class</span>=<span style="color: #2d9574;">"hidden"</span> ; <span style="color: #7590db;">style</span>=<span style="color: #2d9574;">"position:fixed; top:50px; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"</span> &gt;&lt;/<span style="color: #bc6ec5; font-weight: bold;">iframe</span>&gt;
+<pre class="src src-html">&lt;li&gt;&lt;a onclick="emacs()" href="#"&gt;Emacs&lt;/a&gt;&lt;/li&gt;
+&lt;iframe src="emacs.html" id="emacs" class="hidden" ; style="position:fixed; top:50px; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;" &gt;&lt;/iframe&gt;
 </pre>
 </div>
 <div class="org-src-container">
-<pre class="src src-js">document.querySelectorAll(<span style="color: #2d9574;">'iframe'</span>).forEach( item =&gt; item.setAttribute(<span style="color: #2d9574;">'class'</span>,<span style="color: #2d9574;">'hidden'</span>))
-document.getElementById(<span style="color: #2d9574;">"UniversalHashing"</span>).setAttribute(<span style="color: #2d9574;">'class'</span>,<span style="color: #2d9574;">'showing'</span>)
+<pre class="src src-js">document.querySelectorAll('iframe').forEach( item =&gt; item.setAttribute('class','hidden'))
+document.getElementById("UniversalHashing").setAttribute('class','showing')
 </pre>
 </div>
 </div>
 </div>
-
-<div id="outline-container-org96cb800" class="outline-2">
-<h2 id="org96cb800"><span class="section-number-2">30.</span> &#x2026;rests</h2>
+<div id="outline-container-orge7b6f01" class="outline-2">
+<h2 id="orge7b6f01"><span class="section-number-2">30.</span> &#x2026;rests</h2>
 <div class="outline-text-2" id="text-30">
 <p>
 使用在一个表达式前，表示整个表达式的值， 例如整个数组或者对象
 </p>
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">test</span> = {a:0, b:1, c:2}
-<span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">testall</span> = {...test, d:5}
+<pre class="src src-js">var test = {a:0, b:1, c:2}
+var testall = {...test, d:5}
 console.log(testall)
 
-<span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">parts</span> = [<span style="color: #2d9574;">'0'</span>, <span style="color: #2d9574;">'1'</span>,<span style="color: #2d9574;">'2'</span>]
-<span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">alles</span> = [...parts, <span style="color: #2d9574;">'3'</span>]
+var parts = ['0', '1','2']
+var alles = [...parts, '3']
 console.log(alles)
 
 
@@ -2143,33 +2146,32 @@ console.log(alles)
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org7d72966" class="outline-2">
-<h2 id="org7d72966"><span class="section-number-2">31.</span> add function to window</h2>
+<div id="outline-container-org881fb16" class="outline-2">
+<h2 id="org881fb16"><span class="section-number-2">31.</span> add function to window</h2>
 <div class="outline-text-2" id="text-31">
 <p>
 with $ this example is special for now, virtual DOM 
 </p>
 <div class="org-src-container">
-<pre class="src src-js">( <span style="color: #4f97d7; font-weight: bold;">function</span>(<span style="color: #7590db;">window</span>){
-    <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">aa</span> = 9;
-    <span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">test</span>(){
+<pre class="src src-js">( function(window){
+    let aa = 9;
+    function test(){
         console.log(++aa);
     };
-    window.$ = <span style="color: #4f97d7; font-weight: bold;">function</span>(){
-        <span style="color: #4f97d7; font-weight: bold;">return</span> {
+    window.$ = function(){
+        return {
             test:test,
             aa:aa
         };
     };
 }
-)(<span style="color: #a45bad;">this</span>);
+)(this);
 
-console.log(<span style="color: #a45bad;">this</span>);
-console.log(<span style="color: #a45bad;">this</span>.$);
-console.log(<span style="color: #a45bad;">this</span>.$());
-console.log(<span style="color: #a45bad;">this</span>.$().aa);
-<span style="color: #a45bad;">this</span>.$().test();
+console.log(this);
+console.log(this.$);
+console.log(this.$());
+console.log(this.$().aa);
+this.$().test();
 </pre>
 </div>
 
@@ -2182,13 +2184,12 @@ console.log(<span style="color: #a45bad;">this</span>.$().aa);
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org8015eb1" class="outline-2">
-<h2 id="org8015eb1"><span class="section-number-2">32.</span> change this with call  apply bind</h2>
+<div id="outline-container-org8483543" class="outline-2">
+<h2 id="org8483543"><span class="section-number-2">32.</span> change this with call  apply bind</h2>
 <div class="outline-text-2" id="text-32">
 </div>
-<div id="outline-container-orgeb2f0e0" class="outline-3">
-<h3 id="orgeb2f0e0"><span class="section-number-3">32.1.</span> call function</h3>
+<div id="outline-container-orgc0c4832" class="outline-3">
+<h3 id="orgc0c4832"><span class="section-number-3">32.1.</span> call function</h3>
 <div class="outline-text-3" id="text-32-1">
 <p>
 改变函数运行的this值，即指向, 并得到运行后的结果, 通过增加方法并事后删除的方式完成
@@ -2201,35 +2202,35 @@ if the another instance is null or undefined, in ES11, globalThis will
 replace this instance with window
 </p>
 <div class="org-src-container">
-<pre class="src src-js">  <span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">call</span>(<span style="color: #7590db;">Fn</span>, <span style="color: #7590db;">obj</span>, ...<span style="color: #7590db;">args</span>){
-      <span style="color: #4f97d7; font-weight: bold;">if</span> (obj == <span style="color: #a45bad;">undefined</span> || obj == <span style="color: #a45bad;">null</span>) {
+<pre class="src src-js">  function call(Fn, obj, ...args){
+      if (obj == undefined || obj == null) {
           obj = globalThis;
       }
       obj.temp = Fn;
-      <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">resulte</span> = obj.temp(...args);
-      <span style="color: #4f97d7; font-weight: bold;">delete</span>  obj.temp;
-      <span style="color: #4f97d7; font-weight: bold;">return</span> resulte;
+      var resulte = obj.temp(...args);
+      delete  obj.temp;
+      return resulte;
   }
 
-  <span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">add</span>(<span style="color: #7590db;">a</span>, <span style="color: #7590db;">b</span>){
-      console.log(<span style="color: #a45bad;">this</span>);
-      <span style="color: #4f97d7; font-weight: bold;">return</span> a+b+<span style="color: #a45bad;">this</span>.c;
+  function add(a, b){
+      console.log(this);
+      return a+b+this.c;
   }
-  <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">obj</span> ={
+  let obj ={
       c:2
   };
 
   console.log(call(add, obj, 10, 10));
-<span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">&#23558;add&#30340;this&#20540;&#31561;&#20110;obj&#30340;this</span>
+//将add的this值等于obj的this
 
-  <span style="color: #2aa1ae; background-color: #292e34;">//  </span><span style="color: #2aa1ae; background-color: #292e34;">window.c = 10;</span>
+  //  window.c = 10;
 globalThis.c = 2;
-console.log(call(add, <span style="color: #a45bad;">null</span>, 10, 10));
+console.log(call(add, null, 10, 10));
 
 </pre>
 </div>
 
-<pre class="example" id="org9b8a1d0">
+<pre class="example" id="org1721535">
 { c: 2, temp: [Function: add] }
 22
 &lt;ref *1&gt; Object [global] {
@@ -2253,40 +2254,39 @@ console.log(call(add, <span style="color: #a45bad;">null</span>, 10, 10));
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org72b623f" class="outline-3">
-<h3 id="org72b623f"><span class="section-number-3">32.2.</span> apply function</h3>
+<div id="outline-container-org20083bc" class="outline-3">
+<h3 id="org20083bc"><span class="section-number-3">32.2.</span> apply function</h3>
 <div class="outline-text-3" id="text-32-2">
 <p>
 唯一和call不同是: apply的第三个开始的数据参数是一个整体，比如数组
 </p>
 <div class="org-src-container">
-<pre class="src src-js">  <span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">apply</span>(<span style="color: #7590db;">Fn</span>, <span style="color: #7590db;">obj</span>, <span style="color: #7590db;">args</span>){
-      <span style="color: #4f97d7; font-weight: bold;">if</span> (obj == <span style="color: #a45bad;">undefined</span> || obj == <span style="color: #a45bad;">null</span>) {
+<pre class="src src-js">  function apply(Fn, obj, args){
+      if (obj == undefined || obj == null) {
           obj = globalThis;
       }
       obj.temp = Fn;
-      <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">resulte</span> = obj.temp( ...args);
-      <span style="color: #4f97d7; font-weight: bold;">delete</span>  obj.temp;
-      <span style="color: #4f97d7; font-weight: bold;">return</span> resulte;
+      var resulte = obj.temp( ...args);
+      delete  obj.temp;
+      return resulte;
   }
-  <span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">add</span>(<span style="color: #7590db;">a</span>, <span style="color: #7590db;">b</span>){
-      console.log(<span style="color: #a45bad;">this</span>);
-      <span style="color: #4f97d7; font-weight: bold;">return</span> a+b+<span style="color: #a45bad;">this</span>.c;
+  function add(a, b){
+      console.log(this);
+      return a+b+this.c;
   }
-  <span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">obj</span> ={
+  let obj ={
       c:2
   };
   global.a = 3;
   console.log(apply(add, obj, [2,4]));
-<span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">&#23558;add&#30340;this&#20540;&#31561;&#20110;obj&#30340;this</span>
-  <span style="color: #2aa1ae; background-color: #292e34;">//  </span><span style="color: #2aa1ae; background-color: #292e34;">window.c = 10;</span>
+//将add的this值等于obj的this
+  //  window.c = 10;
 globalThis.c = 2;
-console.log(apply(add, <span style="color: #a45bad;">null</span>, [2, 4]));
+console.log(apply(add, null, [2, 4]));
 </pre>
 </div>
 
-<pre class="example" id="org2ba75a2">
+<pre class="example" id="orge59e7d7">
 { c: 2, temp: [Function: add] }
 8
 &lt;ref *1&gt; Object [global] {
@@ -2310,9 +2310,8 @@ console.log(apply(add, <span style="color: #a45bad;">null</span>, [2, 4]));
 </pre>
 </div>
 </div>
-
-<div id="outline-container-orgf50bdfd" class="outline-3">
-<h3 id="orgf50bdfd"><span class="section-number-3">32.3.</span> bind function</h3>
+<div id="outline-container-org8a81d38" class="outline-3">
+<h3 id="org8a81d38"><span class="section-number-3">32.3.</span> bind function</h3>
 <div class="outline-text-3" id="text-32-3">
 <p>
 do the same thing as call, but do not execute,
@@ -2320,30 +2319,30 @@ return a function which can be executed.
 <b>注意传值</b>
 </p>
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">call</span>(<span style="color: #7590db;">Fn</span>, <span style="color: #7590db;">obj</span>, ...<span style="color: #7590db;">args</span>){
-    <span style="color: #4f97d7; font-weight: bold;">if</span> (obj == <span style="color: #a45bad;">undefined</span> || obj == <span style="color: #a45bad;">null</span>) {
+<pre class="src src-js">function call(Fn, obj, ...args){
+    if (obj == undefined || obj == null) {
         obj = globalThis;
     }
     obj.temp = Fn;
-    <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">resulte</span> = obj.temp(...args);
-    <span style="color: #4f97d7; font-weight: bold;">delete</span> obj.temp;
-    <span style="color: #4f97d7; font-weight: bold;">return</span> resulte;
+    var resulte = obj.temp(...args);
+    delete obj.temp;
+    return resulte;
 };
 
-<span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">bind</span>(<span style="color: #7590db;">Fn</span>, <span style="color: #7590db;">obj</span>, ...<span style="color: #7590db;">args</span>){
-    <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #4f97d7; font-weight: bold;">function</span>(...arg){
-        <span style="color: #4f97d7; font-weight: bold;">return</span> call(Fn, obj, ...args, ...arg);
+function bind(Fn, obj, ...args){
+    return function(...arg){
+        return call(Fn, obj, ...args, ...arg);
     };
 
 }
 
 globalThis.c = 2;
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">obj</span> = {c:2};
+let obj = {c:2};
 
-<span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">add</span>(<span style="color: #7590db;">a</span>, <span style="color: #7590db;">b</span>){
-    <span style="color: #4f97d7; font-weight: bold;">return</span> a+b+<span style="color: #a45bad;">this</span>.c;
+function add(a, b){
+    return a+b+this.c;
 }
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">fff</span> =bind(add, obj, 2);
+let fff =bind(add, obj, 2);
 console.log(fff(1));
 
 </pre>
@@ -2355,13 +2354,12 @@ console.log(fff(1));
 </div>
 </div>
 </div>
-
-<div id="outline-container-org0d9b670" class="outline-2">
-<h2 id="org0d9b670"><span class="section-number-2">33.</span> Jest</h2>
+<div id="outline-container-org4d024f7" class="outline-2">
+<h2 id="org4d024f7"><span class="section-number-2">33.</span> Jest</h2>
 <div class="outline-text-2" id="text-33">
 </div>
-<div id="outline-container-orgf216708" class="outline-3">
-<h3 id="orgf216708"><span class="section-number-3">33.1.</span> init</h3>
+<div id="outline-container-orgd12c07d" class="outline-3">
+<h3 id="orgd12c07d"><span class="section-number-3">33.1.</span> init</h3>
 <div class="outline-text-3" id="text-33-1">
 <ul class="org-ul">
 <li>init</li>
@@ -2398,9 +2396,8 @@ p model
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgd892f73" class="outline-3">
-<h3 id="orgd892f73"><span class="section-number-3">33.2.</span> runing node npm js fetch async await</h3>
+<div id="outline-container-org9a2a080" class="outline-3">
+<h3 id="org9a2a080"><span class="section-number-3">33.2.</span> runing node npm js fetch async await</h3>
 <div class="outline-text-3" id="text-33-2">
 <ul class="org-ul">
 <li>npm init</li>
@@ -2409,9 +2406,9 @@ p model
 npm install node-fetch
 </p>
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">import</span> fetch from <span style="color: #2d9574;">'node-fetch'</span>;
+<pre class="src src-js">import fetch from 'node-fetch';
 
-fetch(<span style="color: #2d9574;">"https://pokeapi.co/api/v2/pokemon/"</span>)
+fetch("https://pokeapi.co/api/v2/pokemon/")
   .then((res) =&gt; res.json())
   .then((data) =&gt; console.log(data)); 
 </pre>
@@ -2420,8 +2417,8 @@ fetch(<span style="color: #2d9574;">"https://pokeapi.co/api/v2/pokemon/"</span>)
 </ul>
 </div>
 </div>
-<div id="outline-container-org92ee1be" class="outline-3">
-<h3 id="org92ee1be"><span class="section-number-3">33.3.</span> jest test npm js fetch async await</h3>
+<div id="outline-container-orgc6980a2" class="outline-3">
+<h3 id="orgc6980a2"><span class="section-number-3">33.3.</span> jest test npm js fetch async await</h3>
 <div class="outline-text-3" id="text-33-3">
 <ul class="org-ul">
 <li>npm init -y</li>
@@ -2430,22 +2427,22 @@ fetch(<span style="color: #2d9574;">"https://pokeapi.co/api/v2/pokemon/"</span>)
 npm install node-fetch
 </p>
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">import</span> fetch from <span style="color: #2d9574;">'node-fetch'</span>;
+<pre class="src src-js">import fetch from 'node-fetch';
 
-<span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">getPokemonList</span> = <span style="color: #4f97d7; font-weight: bold;">async</span>() =&gt; {
-  <span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">listRep</span> = <span style="color: #4f97d7; font-weight: bold;">await</span> fetch(<span style="color: #2d9574;">"https://pokeapi.co/api/v2/pokemon/"</span>);
-  <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #4f97d7; font-weight: bold;">await</span> listRep.json();
+const getPokemonList = async() =&gt; {
+  const listRep = await fetch("https://pokeapi.co/api/v2/pokemon/");
+  return await listRep.json();
 };
 
-<span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">getPokemon</span> = <span style="color: #4f97d7; font-weight: bold;">async</span>(url) =&gt; {
-  <span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">dataResp</span> = <span style="color: #4f97d7; font-weight: bold;">await</span> fetch(url);
-  <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #4f97d7; font-weight: bold;">await</span> dataResp.json();
+const getPokemon = async(url) =&gt; {
+  const dataResp = await fetch(url);
+  return await dataResp.json();
 };
 
 
 
-<span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">sum</span>(<span style="color: #7590db;">a</span>, <span style="color: #7590db;">b</span>) {
-  <span style="color: #4f97d7; font-weight: bold;">return</span> a + b;
+function sum(a, b) {
+  return a + b;
 }
 module.exports = {
   sum,
@@ -2461,23 +2458,23 @@ Because node-fetch after version 3, it will be convert to ES6.</li>
 npm install node-fetch@2.6.2
 </p>
 <div class="org-src-container">
-<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">const</span> {sum, getPokemon, getPokemonList } = require(<span style="color: #2d9574;">'./index'</span>);
+<pre class="src src-js">const {sum, getPokemon, getPokemonList } = require('./index');
 
-test(<span style="color: #2d9574;">"testSum"</span>, () =&gt; {
+test("testSum", () =&gt; {
   expect( sum(1, 2) ).toBe(3);
 });
 
-test(<span style="color: #2d9574;">"testDict"</span>, () =&gt; {
-  <span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">data</span> = {one: 1};
-  data[<span style="color: #2d9574;">"two"</span>] = 2;
+test("testDict", () =&gt; {
+  const data = {one: 1};
+  data["two"] = 2;
   expect( data ).toEqual({one:1, two:2});
 });
 
 
-test(<span style="color: #2d9574;">"testgetPokemonList"</span>, <span style="color: #4f97d7; font-weight: bold;">async</span> () =&gt; {
-  <span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">pokemonList</span> = <span style="color: #4f97d7; font-weight: bold;">await</span> getPokemonList();
-  <span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">firstPokemon</span> = <span style="color: #4f97d7; font-weight: bold;">await</span> getPokemon(pokemonList.results[0].url);
-  expect(firstPokemon.name).toBe(<span style="color: #2d9574;">"bulbasaur"</span>);
+test("testgetPokemonList", async () =&gt; {
+  const pokemonList = await getPokemonList();
+  const firstPokemon = await getPokemon(pokemonList.results[0].url);
+  expect(firstPokemon.name).toBe("bulbasaur");
 });
 
 
@@ -2489,18 +2486,18 @@ test(<span style="color: #2d9574;">"testgetPokemonList"</span>, <span style="col
 <li><p>
 touch .babelrc
 </p>
-<pre class="example">
-{
+<div class="org-src-container">
+<pre class="src src-nil">{
   "presets": ["@babel/preset-env"]
 }
-</pre></li>
+</pre>
+</div></li>
 <li>npm run test should now work</li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-org82e85d4" class="outline-3">
-<h3 id="org82e85d4"><span class="section-number-3">33.4.</span> yarn ts fetch async await</h3>
+<div id="outline-container-org6e402a5" class="outline-3">
+<h3 id="org6e402a5"><span class="section-number-3">33.4.</span> yarn ts fetch async await</h3>
 <div class="outline-text-3" id="text-33-4">
 <ul class="org-ul">
 <li>cd asyncts</li>
@@ -2512,10 +2509,10 @@ npx tsc &#x2013;init
 </p>
 
 <div class="org-src-container">
-<pre class="src src-typescript"><span style="color: #4f97d7; font-weight: bold;">import</span> fetch <span style="color: #4f97d7; font-weight: bold;">from</span> <span style="color: #2d9574;">"node-fetch"</span>
-<span style="color: #bc6ec5; font-weight: bold;">fetch</span>(<span style="color: #2d9574;">"https://pokeapi.co/api/v2/pokemon/"</span>)
-  .<span style="color: #bc6ec5; font-weight: bold;">then</span>((res) <span style="color: #4f97d7; font-weight: bold;">=&gt;</span> res.<span style="color: #bc6ec5; font-weight: bold;">json</span>())
-  .<span style="color: #bc6ec5; font-weight: bold;">then</span>((data) <span style="color: #4f97d7; font-weight: bold;">=&gt;</span> <span style="color: #ce537a; font-weight: bold;">console</span>.<span style="color: #bc6ec5; font-weight: bold;">log</span>(data)); 
+<pre class="src src-typescript">import fetch from "node-fetch"
+fetch("https://pokeapi.co/api/v2/pokemon/")
+  .then((res) =&gt; res.json())
+  .then((data) =&gt; console.log(data)); 
 
 </pre>
 </div></li>
@@ -2537,10 +2534,8 @@ if you meet some error, please use the last version 2
 </div>
 </div>
 </div>
-<div id="postamble" class="status">
-<p class="author">Author: si</p>
-<p class="date">Created: 2025-01-24 Fr 15:41</p>
-<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+<div id="kb-postamble" class="status">
+<div class="kb-footer"><a href="../index.html" target="_parent">&larr; Back to Index</a></div>
 </div>
 </body>
 </html>

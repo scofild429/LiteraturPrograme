@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2026-05-05 Tue 20:04 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OpenIdProject</title>
+<meta name="author" content="Silin Zhao" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" href="style.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<script src="toc-sidebar.js" defer></script>
+</head>
+<body>
+<div id="kb-content" class="content">
+<h1 class="title">OpenIdProject</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org3f47883">1. Project Description</a></li>
+<li><a href="#org4a986be">2. What will be noted</a>
+<ul>
+<li><a href="#org6d4389f">2.1. Was is valuable for us</a>
+<ul>
+<li><a href="#orga6f8dc2">2.1.1. Personal Information</a></li>
+<li><a href="#org18ef531">2.1.2. original work of copy right</a></li>
+<li><a href="#orgcb81be3">2.1.3. Smartcontract</a></li>
+<li><a href="#org2841626">2.1.4. Records into block chain</a></li>
+<li><a href="#org8e7388d">2.1.5. sensitive information</a></li>
+<li><a href="#org5bb7447">2.1.6. &#x2026;&#x2026;</a></li>
+</ul>
+</li>
+<li><a href="#orgd3cc38f">2.2. Open philosophy</a></li>
+<li><a href="#orgd200c5f">2.3. Building a personal identification oriented Databank</a></li>
+<li><a href="#orgb275742">2.4. Why and How to Avoid Information Loss</a></li>
+</ul>
+</li>
+<li><a href="#org93440a6">3. How records will be holded</a>
+<ul>
+<li><a href="#org287bf44">3.1. Decentralized Storage Architecture</a></li>
+<li><a href="#orge032cd3">3.2. Identity-Based Encryption</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3f47883" class="outline-2">
+<h2 id="org3f47883"><span class="section-number-2">1.</span> Project Description</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+OpenID Project is an open-source decentralized identity management system leveraging blockchain technology and zero-knowledge proofs. The platform enables users to:
+</p>
+
+<ul class="org-ul">
+<li>Maintain sovereign control over personal digital identity</li>
+<li>Create verifiable credentials with cryptographically signed attestations</li>
+<li>Establish trust relationships through decentralized identifiers (DIDs)</li>
+<li>Securely store sensitive information using homomorphic encryption</li>
+<li>Track information provenance through immutable audit trails</li>
+</ul>
+
+<p>
+Key Technical Components:
+</p>
+<ol class="org-ol">
+<li><b><b>Identity Blockchain</b></b>: Permissioned blockchain using Practical Byzantine Fault Tolerance (PBFT) consensus</li>
+<li><b><b>ZK-SNARKs Protocol</b></b>: For privacy-preserving credential verification</li>
+<li><b><b>IPFS Integration</b></b>: Distributed storage for credential documents and attachments</li>
+<li><b><b>Cross-Chain Bridges</b></b>: Interoperability with Ethereum, Hyperledger, and Polkadot</li>
+<li><b><b>Quantum-Resistant Cryptography</b></b>: NIST-approved post-quantum algorithms</li>
+</ol>
+
+<p>
+Project Timeline:
+</p>
+<ul class="org-ul">
+<li>2018: Initial concept and cryptographic research</li>
+<li>2020: Core blockchain prototype development</li>
+<li>2022: Mainnet launch (August 3) with basic identity features</li>
+<li>2023 Q2: Planned integration with EU eIDAS standards</li>
+<li>2024: Target for enterprise-ready version 2.0 release</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4a986be" class="outline-2">
+<h2 id="org4a986be"><span class="section-number-2">2.</span> What will be noted</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org6d4389f" class="outline-3">
+<h3 id="org6d4389f"><span class="section-number-3">2.1.</span> Was is valuable for us</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Information is the only valuable matter, according to my personal opinion. irony, it's invisible.
+From deep aspect, information is just one porperties of visible matter, one of  permutations of atoms.
+so if people change the permutation, the corresponding information is lost.
+</p>
+
+<p>
+According to the desige of the project, all information, which has been recorded with this application
+should be able to be proofed with aspect to its exisence.
+</p>
+
+<p>
+With the development of our social state, information access is getting more faster, but its purity and
+ownership is not get guaranteed. But for a referencing, the purity and ownership of information should be so important as information itself. Those are valuable for us.
+</p>
+
+<p>
+Here I list some information which can be as a example for our project.
+</p>
+</div>
+<div id="outline-container-orga6f8dc2" class="outline-4">
+<h4 id="orga6f8dc2"><span class="section-number-4">2.1.1.</span> Personal Information</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+In our society each of us should already has a identification, it can even be referenced to personal DNA serial. But now, our personal information is separated in different parts, health records, educational background, work experience&#x2026; In the near further, I believe we should easily be able to  get known such information.
+</p>
+</div>
+</div>
+<div id="outline-container-org18ef531" class="outline-4">
+<h4 id="org18ef531"><span class="section-number-4">2.1.2.</span> original work of copy right</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<p>
+creative ideas, digital artistic product, literary and artistic creative&#x2026;
+any of such things, should be labeled from its creator. All such records will be embeded into personal block chain with timestamp and ownership detail information. Copy right problem for  digital product can be solved with this project.
+</p>
+</div>
+</div>
+<div id="outline-container-orgcb81be3" class="outline-4">
+<h4 id="orgcb81be3"><span class="section-number-4">2.1.3.</span> Smartcontract</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<p>
+basically, all smartcontract involved can be referenced also here, seeing later update
+</p>
+</div>
+</div>
+<div id="outline-container-org2841626" class="outline-4">
+<h4 id="org2841626"><span class="section-number-4">2.1.4.</span> Records into block chain</h4>
+<div class="outline-text-4" id="text-2-1-4">
+<p>
+Each records has unified hashtag. Even only one letter has been changed, its unified hashtag will be changed totally. This hashtag can only proof that, the original records has occured at its timestamp. Important, the recorded itself will NOT be embeded into block chain, only its hashtag. so if someone what to proof the exisence of one record, this person has to have the record.
+</p>
+</div>
+</div>
+<div id="outline-container-org8e7388d" class="outline-4">
+<h4 id="org8e7388d"><span class="section-number-4">2.1.5.</span> sensitive information</h4>
+<div class="outline-text-4" id="text-2-1-5">
+<p>
+from my understand, We don't need to hidden something. Our thinking, emotional feeling,  thoughts, amount of properties in bank&#x2026; each of those should be unified labeled, and ownership protected in its owner personal chain.
+</p>
+</div>
+</div>
+<div id="outline-container-org5bb7447" class="outline-4">
+<h4 id="org5bb7447"><span class="section-number-4">2.1.6.</span> &#x2026;&#x2026;</h4>
+</div>
+</div>
+<div id="outline-container-orgd3cc38f" class="outline-3">
+<h3 id="orgd3cc38f"><span class="section-number-3">2.2.</span> Open philosophy</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+The best way to protect something is to let everyone knowning what it is.
+Open, Open, Open is the core idea of this project, I don't need to hidden, of course, if I decide that I don't put something into the chain, and willing to take the risk for lossing it. It's totally my personal decision, but I courage myself to put all stuff into my chain.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd200c5f" class="outline-3">
+<h3 id="orgd200c5f"><span class="section-number-3">2.3.</span> Building a personal identification oriented Databank</h3>
+</div>
+<div id="outline-container-orgb275742" class="outline-3">
+<h3 id="orgb275742"><span class="section-number-3">2.4.</span> Why and How to Avoid Information Loss</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+Critical strategies for data preservation:
+</p>
+
+<ol class="org-ol">
+<li><a href="https://ipfs.io/">IPFS</a> Content-Addressed Storage:
+<ul class="org-ul">
+<li>Cryptographic hashing of all content</li>
+<li>Distributed storage across network nodes</li>
+<li>Automatic content replication based on usage patterns</li>
+</ul></li>
+
+<li>Erasure Coding Redundancy:
+<ul class="org-ul">
+<li>32/48 erasure coding scheme for shard recovery</li>
+<li>Geographic distribution of data shards</li>
+<li>Quarterly integrity checks with automatic repair</li>
+</ul></li>
+
+<li>Decentralized Backup Incentives:
+<ul class="org-ul">
+<li>Storage miners earn tokens for maintaining copies</li>
+<li>Proof-of-Retrievability protocol</li>
+<li>Slashing conditions for failed availability</li>
+</ul></li>
+
+<li>Cryptographic Proof of Existence:
+<ul class="org-ul">
+<li>Weekly Merkle root commits to Ethereum</li>
+<li>Zero-knowledge proofs for state validity</li>
+<li>Blockchain timestamping of audit trails</li>
+</ul></li>
+
+<li>Versioned Migration Protocol:
+<ul class="org-ul">
+<li>Automated format migration every 5 years</li>
+<li>Cross-version compatibility layers</li>
+<li>Graceful deprecation of legacy formats</li>
+</ul></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org93440a6" class="outline-2">
+<h2 id="org93440a6"><span class="section-number-2">3.</span> How records will be holded</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org287bf44" class="outline-3">
+<h3 id="org287bf44"><span class="section-number-3">3.1.</span> Decentralized Storage Architecture</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>Records stored across distributed nodes using blockchain sharding</li>
+<li>Each node maintains encrypted fragments of records</li>
+<li>Full record reconstruction requires multi-party consensus</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge032cd3" class="outline-3">
+<h3 id="orge032cd3"><span class="section-number-3">3.2.</span> Identity-Based Encryption</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>Records encrypted using owner's public key</li>
+<li>Decryption requires corresponding private key</li>
+<li>Automatic key rotation every 6 months</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="kb-postamble" class="status">
+<div class="kb-footer"><a href="../index.html" target="_parent">&larr; Back to Index</a></div>
+</div>
+</body>
+</html>

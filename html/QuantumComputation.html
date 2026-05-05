@@ -1,15 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2025-01-24 Fr 19:49 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<!-- 2026-05-05 Tue 20:04 -->
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Quantum Computation</title>
-<meta name="author" content="si" />
+<meta name="author" content="silin" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -193,7 +191,9 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<link rel="stylesheet" href="style.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<script src="toc-sidebar.js" defer></script>
 <script>
   window.MathJax = {
     tex: {
@@ -228,41 +228,41 @@
 </script>
 </head>
 <body>
-<div id="content" class="content">
+<div id="kb-content" class="content">
 <h1 class="title">Quantum Computation</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org6d48974">1. Basic states and operations</a>
+<li><a href="#orge73f70c">1. Basic states and operations</a>
 <ul>
-<li><a href="#org82c60b3">1.1. ketbra</a></li>
-<li><a href="#org9f25b6f">1.2. states</a></li>
-<li><a href="#orgaa5452c">1.3. Measurements</a></li>
-<li><a href="#org2289d25">1.4. Single Qutantum circuits</a></li>
-<li><a href="#orgf5f52f5">1.5. Multipartite quantum states</a></li>
-<li><a href="#org9559da4">1.6. XOR gate</a></li>
-<li><a href="#org30f76d3">1.7. Bell states</a></li>
-<li><a href="#org6fad5c8">1.8. Teleportion</a></li>
+<li><a href="#org805ecc8">1.1. ketbra</a></li>
+<li><a href="#org9419efd">1.2. states</a></li>
+<li><a href="#orga1d32c5">1.3. Measurements</a></li>
+<li><a href="#orga6f1f30">1.4. Single Qutantum circuits</a></li>
+<li><a href="#orgf1496fd">1.5. Multipartite quantum states</a></li>
+<li><a href="#org01e26ab">1.6. XOR gate</a></li>
+<li><a href="#org94ebefa">1.7. Bell states</a></li>
+<li><a href="#org4e4677d">1.8. Teleportion</a></li>
 </ul>
 </li>
-<li><a href="#org49fc242">2. Deutsche-Jose</a>
+<li><a href="#orgd422581">2. Deutsche-Jose</a>
 <ul>
-<li><a href="#org8fefc6a">2.1. Bit oracle</a></li>
-<li><a href="#org9daa86c">2.2. Hadamard on n qubits</a></li>
-<li><a href="#org2e78d40">2.3. Deutsche Jose algorithm</a></li>
+<li><a href="#orge2babb4">2.1. Bit oracle</a></li>
+<li><a href="#org475948c">2.2. Hadamard on n qubits</a></li>
+<li><a href="#org1c42944">2.3. Deutsche Jose algorithm</a></li>
 </ul>
 </li>
-<li><a href="#org83779e9">3. Gover's Algrithmus</a></li>
+<li><a href="#org2818dcc">3. Gover's Algrithmus</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org6d48974" class="outline-2">
-<h2 id="org6d48974"><span class="section-number-2">1.</span> Basic states and operations</h2>
+<div id="outline-container-orge73f70c" class="outline-2">
+<h2 id="orge73f70c"><span class="section-number-2">1.</span> Basic states and operations</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org82c60b3" class="outline-3">
-<h3 id="org82c60b3"><span class="section-number-3">1.1.</span> ketbra</h3>
+<div id="outline-container-org805ecc8" class="outline-3">
+<h3 id="org805ecc8"><span class="section-number-3">1.1.</span> ketbra</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>Ket:  \[ |a\rangle = \begin{pmatrix} a_{1} \\ a_{2} \end{pmatrix} \]</li>
@@ -275,8 +275,8 @@
 </p>
 </div>
 </div>
-<div id="outline-container-org9f25b6f" class="outline-3">
-<h3 id="org9f25b6f"><span class="section-number-3">1.2.</span> states</h3>
+<div id="outline-container-org9419efd" class="outline-3">
+<h3 id="org9419efd"><span class="section-number-3">1.2.</span> states</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 \[|0\rangle := \begin{pmatrix} 1 \\ 0 \end{pmatrix} \]
@@ -314,17 +314,16 @@ The coefficient has to be \(\frac{1}{\sqrt{2}}\) because of normalisation\(\lang
 </p>
 </div>
 </div>
-<div id="outline-container-orgaa5452c" class="outline-3">
-<h3 id="orgaa5452c"><span class="section-number-3">1.3.</span> Measurements</h3>
+<div id="outline-container-orga1d32c5" class="outline-3">
+<h3 id="orga1d32c5"><span class="section-number-3">1.3.</span> Measurements</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 for states basis of{ \(x_1\) } and { \(x_2\) }, the measurement of state \(\phi\) on { \(x_{1}\) } is \(\langle x_{1}|\phi\rangle^2\).
 </p>
 </div>
 </div>
-
-<div id="outline-container-org2289d25" class="outline-3">
-<h3 id="org2289d25"><span class="section-number-3">1.4.</span> Single Qutantum circuits</h3>
+<div id="outline-container-orga6f1f30" class="outline-3">
+<h3 id="orga6f1f30"><span class="section-number-3">1.4.</span> Single Qutantum circuits</h3>
 <div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
 <li><p>
@@ -347,9 +346,8 @@ bit flip: \(\sigma_{x}|0 \rangle = |1 \rangle\) :
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orgf5f52f5" class="outline-3">
-<h3 id="orgf5f52f5"><span class="section-number-3">1.5.</span> Multipartite quantum states</h3>
+<div id="outline-container-orgf1496fd" class="outline-3">
+<h3 id="orgf1496fd"><span class="section-number-3">1.5.</span> Multipartite quantum states</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 we use tensor products to describe multiple states
@@ -360,9 +358,8 @@ otherweise it's correlated, and  when some fully correlated are called entangled
 </p>
 </div>
 </div>
-
-<div id="outline-container-org9559da4" class="outline-3">
-<h3 id="org9559da4"><span class="section-number-3">1.6.</span> XOR gate</h3>
+<div id="outline-container-org01e26ab" class="outline-3">
+<h3 id="org01e26ab"><span class="section-number-3">1.6.</span> XOR gate</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 \[CNOT = \begin{pmatrix} 1 & 0 & 0 & 0  \\ 0 & 1 & 0 & 0  \\ 0 & 0 & 1 & 0  \\ 0 & 0 & 0 & 1    \end{pmatrix} \]
@@ -370,15 +367,23 @@ otherweise it's correlated, and  when some fully correlated are called entangled
 
 
 
+<div class="org-src-container">
+<pre class="src src-latex">\Qcircuit @C=1em @R=1em {
+\lstick{\ket{x}} &amp; \ctrl{1} &amp; \rstick{\ket{x}} \qw \\
+\lstick{\ket{y}} &amp; \targ   &amp; \rstick{\ket{x \oplus y }} \qw
+}
+
+</pre>
+</div>
+
 <p>
-<img src="./foto/QCCNOT.png" alt="QCCNOT.png" />
+<img src="./foto/QCCNOT.png" alt="QCCNOT.png">
 Photo <a href="https://github.com/scofild429/LiteraturPrograme/blob/main/content/foto/QCCNOT.png">Link</a> here
 </p>
 </div>
 </div>
-
-<div id="outline-container-org30f76d3" class="outline-3">
-<h3 id="org30f76d3"><span class="section-number-3">1.7.</span> Bell states</h3>
+<div id="outline-container-org94ebefa" class="outline-3">
+<h3 id="org94ebefa"><span class="section-number-3">1.7.</span> Bell states</h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
 Example of fully correlated states (maximally entangled),
@@ -395,15 +400,22 @@ Example of fully correlated states (maximally entangled),
 Create Bell states
 </p>
 
+<div class="org-src-container">
+<pre class="src src-latex">\Qcircuit @C=1em @R=1em {
+\lstick{\ket{i}_A} &amp; \gate{H} &amp; \ctrl{1} &amp;  \qw \\
+\lstick{\ket{j}_B} &amp;  \qw    &amp;   \targ   &amp;  \qw
+  }
+</pre>
+</div>
+
 <p>
-<img src="./foto/QCBellstates.png" alt="QCBellstates.png" />
+<img src="./foto/QCBellstates.png" alt="QCBellstates.png">
 Photo <a href="https://github.com/scofild429/LiteraturPrograme/blob/main/content/foto/QCBellstates.png">Link</a> here
 </p>
 </div>
 </div>
-
-<div id="outline-container-org6fad5c8" class="outline-3">
-<h3 id="org6fad5c8"><span class="section-number-3">1.8.</span> Teleportion</h3>
+<div id="outline-container-org4e4677d" class="outline-3">
+<h3 id="org4e4677d"><span class="section-number-3">1.8.</span> Teleportion</h3>
 <div class="outline-text-3" id="text-1-8">
 <p>
 If Alise and Bob share the same bell states \(| \varphi^{00}_{AB}  \rangle  = \frac{1}{\sqrt{2}}( |00 \rangle_{AB} + |11 \rangle_{AB})\),
@@ -436,9 +448,18 @@ Now Alias want to send stetas \(|\phi \rangle_{S} = \alpha |0 \rangle_{S} + \bet
 </ul>
 
 
+<div class="org-src-container">
+<pre class="src src-latex">\Qcircuit @C=1em @R=.7em {
+ \lstick{\ket{\phi_s}_A}          &amp; \multigate{1}{Bell Meas} &amp; \cw &amp; \cw    &amp; \cwx[2] \\
+ \lstick{\ket{\varphi^{00}_A}}    &amp; \ghost{Bell Meas}        &amp; \cw &amp; \cwx[1]   \\
+ \lstick{\ket{\varphi^{00}_B}}    &amp;  \qw                    &amp; \qw &amp; \gate{\sigma_x^j}&amp; \gate{\sigma_x^j }&amp; \qw &amp;  \rstick{\ket{\phi_s}_B} 
+}
+</pre>
+</div>
 
-<div id="org9a4862f" class="figure">
-<p><img src="./foto/QCteleportation.png" alt="QCteleportation.png" />
+
+<div id="org21a01a5" class="figure">
+<p><img src="./foto/QCteleportation.png" alt="QCteleportation.png">
 </p>
 </div>
 
@@ -448,17 +469,24 @@ Photo  <a href="https://github.com/scofild429/LiteraturPrograme/blob/main/conten
 </div>
 </div>
 </div>
-
-
-<div id="outline-container-org49fc242" class="outline-2">
-<h2 id="org49fc242"><span class="section-number-2">2.</span> Deutsche-Jose</h2>
+<div id="outline-container-orgd422581" class="outline-2">
+<h2 id="orgd422581"><span class="section-number-2">2.</span> Deutsche-Jose</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org8fefc6a" class="outline-3">
-<h3 id="org8fefc6a"><span class="section-number-3">2.1.</span> Bit oracle</h3>
+<div id="outline-container-orge2babb4" class="outline-3">
+<h3 id="orge2babb4"><span class="section-number-3">2.1.</span> Bit oracle</h3>
 <div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+<pre class="src src-latex">\Qcircuit @C=1em @R=1em {
+\lstick{\ket{x}} &amp; \multigate{1}{O_f} &amp; \rstick{U_f \ket{x}} \qw \\
+\lstick{\ket{y}} &amp; \ghost{O_f} &amp; \rstick{\ket{y}} \qw
+}
+</pre>
+</div>
+
+
 <p>
-<img src="./foto/QCbitoracle.png" alt="QCbitoracle.png" />
+<img src="./foto/QCbitoracle.png" alt="QCbitoracle.png">
 Photo <a href="https://github.com/scofild429/LiteraturPrograme/blob/main/content/foto/QCbitoracle.png">Link</a> here
 </p>
 
@@ -469,9 +497,8 @@ Photo <a href="https://github.com/scofild429/LiteraturPrograme/blob/main/content
 </p>
 </div>
 </div>
-
-<div id="outline-container-org9daa86c" class="outline-3">
-<h3 id="org9daa86c"><span class="section-number-3">2.2.</span> Hadamard on n qubits</h3>
+<div id="outline-container-org475948c" class="outline-3">
+<h3 id="org475948c"><span class="section-number-3">2.2.</span> Hadamard on n qubits</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 for \(x \in \{0, 1\}\),
@@ -488,12 +515,20 @@ for for \(x \in \{0, 1\}^{n}\),
 </p>
 </div>
 </div>
-
-<div id="outline-container-org2e78d40" class="outline-3">
-<h3 id="org2e78d40"><span class="section-number-3">2.3.</span> Deutsche Jose algorithm</h3>
+<div id="outline-container-org1c42944" class="outline-3">
+<h3 id="org1c42944"><span class="section-number-3">2.3.</span> Deutsche Jose algorithm</h3>
 <div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+<pre class="src src-latex">\Qcircuit @C=1em @R=1em {
+\lstick{\ket{0}}  &amp; \gate{H} &amp; \multigate{2}{U_f} &amp; \gate{H} &amp; \meter &amp; \cw  &amp; \rstick{\ket{y_0}} \\
+\lstick{\ket{0}} &amp; \gate{H} &amp; \ghost{U_f} &amp; \gate{H} &amp; \meter &amp; \cw  &amp; \rstick{\ket{y_1}} \\
+\lstick{\ket{0}} &amp; \gate{H} &amp; \ghost{U_f} &amp; \gate{H} &amp; \meter &amp; \cw  &amp; \rstick{\ket{y_n}} 
+}
+</pre>
+</div>
+
 <p>
-<img src="./foto/QCDeutschJose.png" alt="QCDeutschJose.png" />
+<img src="./foto/QCDeutschJose.png" alt="QCDeutschJose.png">
 Photo  <a href="https://github.com/scofild429/LiteraturPrograme/blob/main/content/foto/QCDeutschJose.png">Link</a> here
 </p>
 
@@ -530,16 +565,12 @@ and \(P=0\) if f is balanced
 </div>
 </div>
 </div>
-
-
-<div id="outline-container-org83779e9" class="outline-2">
-<h2 id="org83779e9"><span class="section-number-2">3.</span> Gover's Algrithmus</h2>
+<div id="outline-container-org2818dcc" class="outline-2">
+<h2 id="org2818dcc"><span class="section-number-2">3.</span> Gover's Algrithmus</h2>
 </div>
 </div>
-<div id="postamble" class="status">
-<p class="author">Author: si</p>
-<p class="date">Created: 2025-01-24 Fr 19:49</p>
-<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+<div id="kb-postamble" class="status">
+<div class="kb-footer"><a href="../index.html" target="_parent">&larr; Back to Index</a></div>
 </div>
 </body>
 </html>

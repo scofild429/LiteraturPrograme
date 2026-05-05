@@ -1,15 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2025-01-24 Fr 19:51 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<!-- 2026-05-05 Tue 20:04 -->
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Typescript</title>
-<meta name="author" content="si" />
+<meta name="author" content="silin" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -193,38 +191,40 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<link rel="stylesheet" href="style.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<script src="toc-sidebar.js" defer></script>
 </head>
 <body>
-<div id="content" class="content">
+<div id="kb-content" class="content">
 <h1 class="title">Typescript</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7615555">1. basic</a></li>
-<li><a href="#org5e6b70e">2. callback</a></li>
-<li><a href="#orgd3d341e">3. Generic</a>
+<li><a href="#org52c628a">1. basic</a></li>
+<li><a href="#orgee4cd89">2. callback</a></li>
+<li><a href="#orgf5d6efc">3. Generic</a>
 <ul>
-<li><a href="#org6bcdc71">3.1. withour generic</a></li>
-<li><a href="#org5ed5edf">3.2. with generic</a></li>
-<li><a href="#orga0e0a63">3.3. advanced example</a></li>
-<li><a href="#orgb8a09ca">3.4. interface</a></li>
+<li><a href="#org354c108">3.1. withour generic</a></li>
+<li><a href="#org33bd11b">3.2. with generic</a></li>
+<li><a href="#org259e90b">3.3. advanced example</a></li>
+<li><a href="#org17ebb6b">3.4. interface</a></li>
 </ul>
 </li>
-<li><a href="#org1a5f829">4. collection</a></li>
+<li><a href="#orgd69efd8">4. collection</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org7615555" class="outline-2">
-<h2 id="org7615555"><span class="section-number-2">1.</span> basic</h2>
+<div id="outline-container-org52c628a" class="outline-2">
+<h2 id="org52c628a"><span class="section-number-2">1.</span> basic</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
-<pre class="src src-typescript"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">greeter</span>(<span style="color: #7590db;">person</span>: <span style="color: #4f97d7; font-weight: bold;">string</span>) {
-    <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #2d9574;">"Hello, "</span> + person
+<pre class="src src-typescript">function greeter(person: string) {
+    return "Hello, " + person
 }
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">user</span> = <span style="color: #2d9574;">"Yee"</span>
-<span style="color: #ce537a; font-weight: bold;">console</span>.<span style="color: #bc6ec5; font-weight: bold;">log</span>(<span style="color: #bc6ec5; font-weight: bold;">greeter</span>(user))
+let user = "Yee"
+console.log(greeter(user))
 </pre>
 </div>
 
@@ -234,12 +234,12 @@ Hello, Yee
 
 
 <div class="org-src-container">
-<pre class="src src-typescript"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">greeter</span>(<span style="color: #7590db;">person</span>: <span style="color: #4f97d7; font-weight: bold;">string</span>) {
-    <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #2d9574;">"Hello, "</span> + person
+<pre class="src src-typescript">function greeter(person: string) {
+    return "Hello, " + person
 }
-<span style="color: #2d9574;">"use strict"</span>;
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">user</span> = [2, 39]
-<span style="color: #ce537a; font-weight: bold;">console</span>.<span style="color: #bc6ec5; font-weight: bold;">log</span>(<span style="color: #bc6ec5; font-weight: bold;">greeter</span>(user))
+"use strict";
+let user = [2, 39]
+console.log(greeter(user))
 </pre>
 </div>
 
@@ -251,28 +251,28 @@ Hello, 2,39
 
 
 <div class="org-src-container">
-<pre class="src src-typescript"><span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">User</span>{
-    Fristname:<span style="color: #4f97d7; font-weight: bold;">string</span>
-    Lastname:<span style="color: #4f97d7; font-weight: bold;">string</span>
-    Fullname:<span style="color: #4f97d7; font-weight: bold;">string</span>
+<pre class="src src-typescript">class User{
+    Fristname:string
+    Lastname:string
+    Fullname:string
 
-    <span style="color: #4f97d7; font-weight: bold;">constructor</span>(firstname:<span style="color: #4f97d7; font-weight: bold;">string</span>, lastname:<span style="color: #4f97d7; font-weight: bold;">string</span>){
-        <span style="color: #4f97d7; font-weight: bold;">this</span>.Fristname = firstname
-        <span style="color: #4f97d7; font-weight: bold;">this</span>.Lastname = lastname
-        <span style="color: #4f97d7; font-weight: bold;">this</span>.Fullname = <span style="color: #4f97d7; font-weight: bold;">this</span>.Fristname+<span style="color: #4f97d7; font-weight: bold;">this</span>.Lastname
+    constructor(firstname:string, lastname:string){
+        this.Fristname = firstname
+        this.Lastname = lastname
+        this.Fullname = this.Fristname+this.Lastname
     }
 }
-<span style="color: #4f97d7; font-weight: bold;">interface</span> <span style="color: #ce537a; font-weight: bold;">Person</span>{
-    Fristname:<span style="color: #4f97d7; font-weight: bold;">string</span>
-    Lastname:<span style="color: #4f97d7; font-weight: bold;">string</span>
+interface Person{
+    Fristname:string
+    Lastname:string
 }
 
-<span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">Greeter</span>(<span style="color: #7590db;">Person</span>){
-    <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #2d9574;">"hello, "</span>+Person.Fristname + Person.Lastname
+function Greeter(Person){
+    return "hello, "+Person.Fristname + Person.Lastname
 }
-<span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">user</span> = <span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">User</span>(<span style="color: #2d9574;">"li"</span>, <span style="color: #2d9574;">"san"</span>)
+var user = new User("li", "san")
 
-<span style="color: #ce537a; font-weight: bold;">console</span>.<span style="color: #bc6ec5; font-weight: bold;">log</span>(<span style="color: #bc6ec5; font-weight: bold;">Greeter</span>(user))
+console.log(Greeter(user))
 
 </pre>
 </div>
@@ -283,18 +283,17 @@ hello, lisan
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org5e6b70e" class="outline-2">
-<h2 id="org5e6b70e"><span class="section-number-2">2.</span> callback</h2>
+<div id="outline-container-orgee4cd89" class="outline-2">
+<h2 id="orgee4cd89"><span class="section-number-2">2.</span> callback</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
-<pre class="src src-typescript"><span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">n</span>: <span style="color: #4f97d7; font-weight: bold;">number</span> = 10
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">qual</span> = n <span style="color: #4f97d7; font-weight: bold;">=&gt;</span> n*n;  
-<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">m</span> = (() <span style="color: #4f97d7; font-weight: bold;">=&gt;</span> {
-    <span style="color: #ce537a; font-weight: bold;">console</span>.<span style="color: #bc6ec5; font-weight: bold;">log</span>(<span style="color: #2d9574;">'nidh'</span>, n, <span style="color: #bc6ec5; font-weight: bold;">qual</span>(4))
-    <span style="color: #4f97d7; font-weight: bold;">return</span> 9
+<pre class="src src-typescript">const n: number = 10
+let qual = n =&gt; n*n;  
+let m = (() =&gt; {
+    console.log('nidh', n, qual(4))
+    return 9
 })()
-<span style="color: #ce537a; font-weight: bold;">console</span>.<span style="color: #bc6ec5; font-weight: bold;">log</span>(m)
+console.log(m)
 
 </pre>
 </div>
@@ -307,20 +306,20 @@ nidh 10 16
 
 
 <div class="org-src-container">
-<pre class="src src-typescript"><span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">jj</span> = (
-    (<span style="color: #7590db;">msg</span> , <span style="color: #7590db;">didi</span>) <span style="color: #4f97d7; font-weight: bold;">=&gt;</span> {
-        <span style="color: #ce537a; font-weight: bold;">console</span>.<span style="color: #bc6ec5; font-weight: bold;">log</span>(msg);
-        <span style="color: #bc6ec5; font-weight: bold;">didi</span>(msg);
-        <span style="color: #4f97d7; font-weight: bold;">return</span> 9
+<pre class="src src-typescript">let jj = (
+    (msg , didi) =&gt; {
+        console.log(msg);
+        didi(msg);
+        return 9
     }
 )
-( <span style="color: #2d9574;">"kdiikkjkjk"</span>,
-  msg <span style="color: #4f97d7; font-weight: bold;">=&gt;</span> {
-      <span style="color: #ce537a; font-weight: bold;">console</span>.<span style="color: #bc6ec5; font-weight: bold;">log</span>(msg);
+( "kdiikkjkjk",
+  msg =&gt; {
+      console.log(msg);
   }
 )
 
-<span style="color: #ce537a; font-weight: bold;">console</span>.<span style="color: #bc6ec5; font-weight: bold;">log</span>(jj)
+console.log(jj)
 </pre>
 </div>
 
@@ -332,28 +331,27 @@ kdiikkjkjk
 </pre>
 </div>
 </div>
-
-<div id="outline-container-orgd3d341e" class="outline-2">
-<h2 id="orgd3d341e"><span class="section-number-2">3.</span> Generic</h2>
+<div id="outline-container-orgf5d6efc" class="outline-2">
+<h2 id="orgf5d6efc"><span class="section-number-2">3.</span> Generic</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org6bcdc71" class="outline-3">
-<h3 id="org6bcdc71"><span class="section-number-3">3.1.</span> withour generic</h3>
+<div id="outline-container-org354c108" class="outline-3">
+<h3 id="org354c108"><span class="section-number-3">3.1.</span> withour generic</h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
-<pre class="src src-typescript"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">createArray</span>(<span style="color: #7590db;">value</span>: <span style="color: #4f97d7; font-weight: bold;">any</span>, <span style="color: #7590db;">count</span>: <span style="color: #4f97d7; font-weight: bold;">number</span>): <span style="color: #4f97d7; font-weight: bold;">any</span>[] {
-  <span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">arr</span>: <span style="color: #4f97d7; font-weight: bold;">any</span>[] = []
-  <span style="color: #4f97d7; font-weight: bold;">for</span> (<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">index</span> = 0; index &lt; <span style="color: #ce537a; font-weight: bold;">count</span>; <span style="color: #ce537a; font-weight: bold;">index</span>++) {
-    arr.<span style="color: #bc6ec5; font-weight: bold;">push</span>(value)
+<pre class="src src-typescript">function createArray(value: any, count: number): any[] {
+  const arr: any[] = []
+  for (let index = 0; index &lt; count; index++) {
+    arr.push(value)
   }
-  <span style="color: #4f97d7; font-weight: bold;">return</span> arr
+  return arr
 }
 
-<span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">arr1</span> = <span style="color: #bc6ec5; font-weight: bold;">createArray</span>(11, 3)
-<span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">arr2</span> = <span style="color: #bc6ec5; font-weight: bold;">createArray</span>(<span style="color: #2d9574;">'aa'</span>, 3)
-<span style="color: #ce537a; font-weight: bold;">console</span>.<span style="color: #bc6ec5; font-weight: bold;">log</span>(arr1)
-<span style="color: #ce537a; font-weight: bold;">console</span>.<span style="color: #bc6ec5; font-weight: bold;">log</span>(arr2)
-<span style="color: #ce537a; font-weight: bold;">console</span>.<span style="color: #bc6ec5; font-weight: bold;">log</span>(arr1[0].<span style="color: #bc6ec5; font-weight: bold;">toFixed</span>(), arr2[0].<span style="color: #bc6ec5; font-weight: bold;">split</span>(<span style="color: #2d9574;">''</span>))
+const arr1 = createArray(11, 3)
+const arr2 = createArray('aa', 3)
+console.log(arr1)
+console.log(arr2)
+console.log(arr1[0].toFixed(), arr2[0].split(''))
 </pre>
 </div>
 
@@ -364,24 +362,23 @@ kdiikkjkjk
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org5ed5edf" class="outline-3">
-<h3 id="org5ed5edf"><span class="section-number-3">3.2.</span> with generic</h3>
+<div id="outline-container-org33bd11b" class="outline-3">
+<h3 id="org33bd11b"><span class="section-number-3">3.2.</span> with generic</h3>
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
-<pre class="src src-typescript"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">createArray2</span> &lt;<span style="color: #ce537a; font-weight: bold;">T</span>&gt; (<span style="color: #7590db;">value</span>: T, <span style="color: #7590db;">count</span>: <span style="color: #4f97d7; font-weight: bold;">number</span>):T[] {
-  <span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">arr</span>: <span style="color: #ce537a; font-weight: bold;">Array</span>&lt;<span style="color: #ce537a; font-weight: bold;">T</span>&gt; = []
-  <span style="color: #4f97d7; font-weight: bold;">for</span> (<span style="color: #4f97d7; font-weight: bold;">let</span> <span style="color: #7590db;">index</span> = 0; index &lt; <span style="color: #ce537a; font-weight: bold;">count</span>; <span style="color: #ce537a; font-weight: bold;">index</span>++) {
-    arr.<span style="color: #bc6ec5; font-weight: bold;">push</span>(value)
+<pre class="src src-typescript">function createArray2 &lt;T&gt; (value: T, count: number):T[] {
+  const arr: Array&lt;T&gt; = []
+  for (let index = 0; index &lt; count; index++) {
+    arr.push(value)
   }
-  <span style="color: #4f97d7; font-weight: bold;">return</span> arr
+  return arr
 }
-<span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">arr3</span> = <span style="color: #bc6ec5; font-weight: bold;">createArray2</span>&lt;<span style="color: #4f97d7; font-weight: bold;">number</span>&gt;(11, 3)
-<span style="color: #ce537a; font-weight: bold;">console</span>.<span style="color: #bc6ec5; font-weight: bold;">log</span>(arr3[0].<span style="color: #bc6ec5; font-weight: bold;">toFixed</span>())
-<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">console.</span><span style="color: #bc6ec5; font-weight: bold;">log</span><span style="color: #2aa1ae; background-color: #292e34;">(arr3[0].</span><span style="color: #bc6ec5; font-weight: bold;">split</span><span style="color: #2aa1ae; background-color: #292e34;">('')) // </span><span style="color: #7590db;">error</span>
-<span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">arr4</span> = <span style="color: #bc6ec5; font-weight: bold;">createArray2</span>&lt;<span style="color: #4f97d7; font-weight: bold;">string</span>&gt;(<span style="color: #2d9574;">'aa'</span>, 3)
-<span style="color: #ce537a; font-weight: bold;">console</span>.<span style="color: #bc6ec5; font-weight: bold;">log</span>(arr4[0].<span style="color: #bc6ec5; font-weight: bold;">split</span>(<span style="color: #2d9574;">''</span>))
-<span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">console.</span><span style="color: #bc6ec5; font-weight: bold;">log</span><span style="color: #2aa1ae; background-color: #292e34;">(arr4[0].</span><span style="color: #bc6ec5; font-weight: bold;">toFixed</span><span style="color: #2aa1ae; background-color: #292e34;">()) // </span><span style="color: #7590db;">error</span>
+const arr3 = createArray2&lt;number&gt;(11, 3)
+console.log(arr3[0].toFixed())
+// console.log(arr3[0].split('')) // error
+const arr4 = createArray2&lt;string&gt;('aa', 3)
+console.log(arr4[0].split(''))
+// console.log(arr4[0].toFixed()) // error
 </pre>
 </div>
 
@@ -391,48 +388,47 @@ kdiikkjkjk
 </pre>
 </div>
 </div>
-
-<div id="outline-container-orga0e0a63" class="outline-3">
-<h3 id="orga0e0a63"><span class="section-number-3">3.3.</span> advanced example</h3>
+<div id="outline-container-org259e90b" class="outline-3">
+<h3 id="org259e90b"><span class="section-number-3">3.3.</span> advanced example</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
-<pre class="src src-typescript"><span style="color: #4f97d7; font-weight: bold;">interface</span> <span style="color: #ce537a; font-weight: bold;">IbaseCRUD</span> &lt;<span style="color: #ce537a; font-weight: bold;">T</span>&gt; {
+<pre class="src src-typescript">interface IbaseCRUD &lt;T&gt; {
   data: T[]
-  add: (t: T) <span style="color: #4f97d7; font-weight: bold;">=&gt;</span> <span style="color: #4f97d7; font-weight: bold;">void</span>
-  getById: (id: <span style="color: #4f97d7; font-weight: bold;">number</span>) <span style="color: #4f97d7; font-weight: bold;">=&gt;</span> T
+  add: (t: T) =&gt; void
+  getById: (id: number) =&gt; T
 
 }
 
-<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">User</span> {
-  id?: <span style="color: #4f97d7; font-weight: bold;">number</span>; <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">id&#20027;&#38190;&#33258;&#22686;</span>
-  name: <span style="color: #4f97d7; font-weight: bold;">string</span>; <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">&#22995;&#21517;</span>
-  age: <span style="color: #4f97d7; font-weight: bold;">number</span>; <span style="color: #2aa1ae; background-color: #292e34;">//</span><span style="color: #2aa1ae; background-color: #292e34;">&#24180;&#40836;</span>
+class User {
+  id?: number; //id主键自增
+  name: string; //姓名
+  age: number; //年龄
 
-  <span style="color: #4f97d7; font-weight: bold;">constructor</span> (name, age) {
-    <span style="color: #4f97d7; font-weight: bold;">this</span>.name = name
-    <span style="color: #4f97d7; font-weight: bold;">this</span>.age = age
+  constructor (name, age) {
+    this.name = name
+    this.age = age
   }
 }
 
-<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">UserCRUD</span> <span style="color: #4f97d7; font-weight: bold;">implements</span> <span style="color: #ce537a; font-weight: bold;">IbaseCRUD</span> &lt;<span style="color: #ce537a; font-weight: bold;">User</span>&gt; {
-  data: <span style="color: #ce537a; font-weight: bold;">User</span>[] = []
+class UserCRUD implements IbaseCRUD &lt;User&gt; {
+  data: User[] = []
 
-  <span style="color: #bc6ec5; font-weight: bold;">add</span>(<span style="color: #7590db;">user</span>: <span style="color: #ce537a; font-weight: bold;">User</span>): <span style="color: #4f97d7; font-weight: bold;">void</span> {
-    user = {...user, id: <span style="color: #ce537a; font-weight: bold;">Date</span>.<span style="color: #bc6ec5; font-weight: bold;">now</span>()}
-    <span style="color: #4f97d7; font-weight: bold;">this</span>.data.<span style="color: #bc6ec5; font-weight: bold;">push</span>(user)
-    <span style="color: #ce537a; font-weight: bold;">console</span>.<span style="color: #bc6ec5; font-weight: bold;">log</span>(<span style="color: #2d9574;">'&#20445;&#23384;user'</span>, user.id)
+  add(user: User): void {
+    user = {...user, id: Date.now()}
+    this.data.push(user)
+    console.log('保存user', user.id)
   }
 
-  <span style="color: #bc6ec5; font-weight: bold;">getById</span>(<span style="color: #7590db;">id</span>: <span style="color: #4f97d7; font-weight: bold;">number</span>): <span style="color: #ce537a; font-weight: bold;">User</span> {
-    <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #4f97d7; font-weight: bold;">this</span>.data.<span style="color: #bc6ec5; font-weight: bold;">find</span>(item <span style="color: #4f97d7; font-weight: bold;">=&gt;</span> item.id===id)
+  getById(id: number): User {
+    return this.data.find(item =&gt; item.id===id)
   }
 }
 
 
-<span style="color: #4f97d7; font-weight: bold;">const</span> <span style="color: #7590db;">userCRUD</span> = <span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">UserCRUD</span>()
-userCRUD.<span style="color: #bc6ec5; font-weight: bold;">add</span>(<span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">User</span>(<span style="color: #2d9574;">'tom'</span>, 12))
-userCRUD.<span style="color: #bc6ec5; font-weight: bold;">add</span>(<span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">User</span>(<span style="color: #2d9574;">'tom2'</span>, 13))
-<span style="color: #ce537a; font-weight: bold;">console</span>.<span style="color: #bc6ec5; font-weight: bold;">log</span>(userCRUD.data)
+const userCRUD = new UserCRUD()
+userCRUD.add(new User('tom', 12))
+userCRUD.add(new User('tom2', 13))
+console.log(userCRUD.data)
 </pre>
 </div>
 
@@ -448,33 +444,32 @@ userCRUD.<span style="color: #bc6ec5; font-weight: bold;">add</span>(<span style
 </pre>
 </div>
 </div>
-
-<div id="outline-container-orgb8a09ca" class="outline-3">
-<h3 id="orgb8a09ca"><span class="section-number-3">3.4.</span> interface</h3>
+<div id="outline-container-org17ebb6b" class="outline-3">
+<h3 id="org17ebb6b"><span class="section-number-3">3.4.</span> interface</h3>
 <div class="outline-text-3" id="text-3-4">
 <div class="org-src-container">
-<pre class="src src-typescript"><span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">User</span>{
-    Fristname:<span style="color: #4f97d7; font-weight: bold;">string</span>
-    Lastname:<span style="color: #4f97d7; font-weight: bold;">string</span>
-    Fullname:<span style="color: #4f97d7; font-weight: bold;">string</span>
+<pre class="src src-typescript">class User{
+    Fristname:string
+    Lastname:string
+    Fullname:string
 
-    <span style="color: #4f97d7; font-weight: bold;">constructor</span>(firstname:<span style="color: #4f97d7; font-weight: bold;">string</span>, lastname:<span style="color: #4f97d7; font-weight: bold;">string</span>){
-        <span style="color: #4f97d7; font-weight: bold;">this</span>.Fristname = firstname
-        <span style="color: #4f97d7; font-weight: bold;">this</span>.Lastname = lastname
-        <span style="color: #4f97d7; font-weight: bold;">this</span>.Fullname = <span style="color: #4f97d7; font-weight: bold;">this</span>.Fristname+<span style="color: #4f97d7; font-weight: bold;">this</span>.Lastname
+    constructor(firstname:string, lastname:string){
+        this.Fristname = firstname
+        this.Lastname = lastname
+        this.Fullname = this.Fristname+this.Lastname
     }
 }
-<span style="color: #4f97d7; font-weight: bold;">interface</span> <span style="color: #ce537a; font-weight: bold;">Person</span>{
-    Fristname:<span style="color: #4f97d7; font-weight: bold;">string</span>
-    Lastname:<span style="color: #4f97d7; font-weight: bold;">string</span>
+interface Person{
+    Fristname:string
+    Lastname:string
 }
 
-<span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">Greeter</span>(<span style="color: #7590db;">Person</span>){
-    <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #2d9574;">"hello, "</span>+Person.Fristname + Person.Lastname
+function Greeter(Person){
+    return "hello, "+Person.Fristname + Person.Lastname
 }
-<span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">user</span> = <span style="color: #4f97d7; font-weight: bold;">new</span> <span style="color: #ce537a; font-weight: bold;">User</span>(<span style="color: #2d9574;">"li"</span>, <span style="color: #2d9574;">"san"</span>)
+var user = new User("li", "san")
 
-<span style="color: #ce537a; font-weight: bold;">console</span>.<span style="color: #bc6ec5; font-weight: bold;">log</span>(<span style="color: #bc6ec5; font-weight: bold;">Greeter</span>(user))
+console.log(Greeter(user))
 
 </pre>
 </div>
@@ -486,15 +481,12 @@ hello, lisan
 </div>
 </div>
 </div>
-
-
-
-<div id="outline-container-org1a5f829" class="outline-2">
-<h2 id="org1a5f829"><span class="section-number-2">4.</span> collection</h2>
+<div id="outline-container-orgd69efd8" class="outline-2">
+<h2 id="orgd69efd8"><span class="section-number-2">4.</span> collection</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
-<pre class="src src-typescript"><span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">nn</span> = 10.00002
-<span style="color: #ce537a; font-weight: bold;">console</span>.<span style="color: #bc6ec5; font-weight: bold;">log</span>(+nn.<span style="color: #bc6ec5; font-weight: bold;">toFixed</span>(2))
+<pre class="src src-typescript">var nn = 10.00002
+console.log(+nn.toFixed(2))
 </pre>
 </div>
 
@@ -504,10 +496,8 @@ hello, lisan
 </div>
 </div>
 </div>
-<div id="postamble" class="status">
-<p class="author">Author: si</p>
-<p class="date">Created: 2025-01-24 Fr 19:51</p>
-<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+<div id="kb-postamble" class="status">
+<div class="kb-footer"><a href="../index.html" target="_parent">&larr; Back to Index</a></div>
 </div>
 </body>
 </html>

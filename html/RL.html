@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2026-03-07 Sat 21:58 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<!-- 2026-05-05 Tue 20:04 -->
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>RL</title>
 <meta name="author" content="silin" />
@@ -193,7 +191,9 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<link rel="stylesheet" href="style.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<script src="toc-sidebar.js" defer></script>
 <script>
   window.MathJax = {
     tex: {
@@ -228,131 +228,131 @@
 </script>
 </head>
 <body>
-<div id="content" class="content">
+<div id="kb-content" class="content">
 <h1 class="title">RL</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org8354665">1. Markov Decision Process (MDP)</a></li>
-<li><a href="#org2500db8">2. Bellman Equation</a></li>
-<li><a href="#orge0ee7ef">3. Dynamic Programming Iterations in RL</a>
+<li><a href="#org9a3c089">1. Markov Decision Process (MDP)</a></li>
+<li><a href="#orgdf4abb2">2. Bellman Equation</a></li>
+<li><a href="#org5944b80">3. Dynamic Programming Iterations in RL</a>
 <ul>
-<li><a href="#org25f59f3">3.1. Value Iteration</a></li>
-<li><a href="#org67af970">3.2. Policy Iteration</a>
+<li><a href="#orgcdad1d0">3.1. Value Iteration</a></li>
+<li><a href="#org26a6296">3.2. Policy Iteration</a>
 <ul>
-<li><a href="#org1a5a8ab">3.2.1. Phase 1: Policy Evaluation (The Inner Loop)</a></li>
-<li><a href="#orgc381763">3.2.2. Phase 2: Policy Improvement (The Outer Loop)</a></li>
+<li><a href="#orgdd73f45">3.2.1. Phase 1: Policy Evaluation (The Inner Loop)</a></li>
+<li><a href="#org7ed7a73">3.2.2. Phase 2: Policy Improvement (The Outer Loop)</a></li>
 </ul>
 </li>
-<li><a href="#org9343b3f">3.3. Truncated Policy Iteration</a></li>
+<li><a href="#orgd3283fe">3.3. Truncated Policy Iteration</a></li>
 </ul>
 </li>
-<li><a href="#org0c4c664">4. Monte Carlo Methods in RL</a>
+<li><a href="#org085d235">4. Monte Carlo Methods in RL</a>
 <ul>
-<li><a href="#org07dd07b">4.1. 1. MC Basic (The Theoretical Baseline)</a></li>
-<li><a href="#org59604f7">4.2. 2. MC Exploring Starts (The Efficient Simulator)</a></li>
-<li><a href="#org58eab62">4.3. 3. MC Epsilon-Greedy (The Practical Solution)</a>
+<li><a href="#org842e120">4.1. 1. MC Basic (The Theoretical Baseline)</a></li>
+<li><a href="#org046f668">4.2. 2. MC Exploring Starts (The Efficient Simulator)</a></li>
+<li><a href="#org6ca27d5">4.3. 3. MC Epsilon-Greedy (The Practical Solution)</a>
 <ul>
-<li><a href="#orgb56914c">4.3.1. Core Concept: Soft Policies</a></li>
-<li><a href="#orgfd4b1b0">4.3.2. Exploration vs. Exploitation</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgec15a4c">5. Temporal Difference</a>
-<ul>
-<li><a href="#orgd4fe79c">5.1. The Mathematical Driver</a></li>
-<li><a href="#orgee87619">5.2. The Derivation</a></li>
-<li><a href="#orgaccb6d1">5.3. Unified View of TD-series</a>
-<ul>
-<li><a href="#org07bf155">5.3.1. 1. The General Update Rule</a></li>
-<li><a href="#org9f638a4">5.3.2. 2. Algorithm Specifics</a></li>
-</ul>
-</li>
-<li><a href="#org2281016">5.4. Deep Q-learning</a></li>
-</ul>
-</li>
-<li><a href="#org24e08c7">6. Policy Gradient</a>
-<ul>
-<li><a href="#orgccb011d">6.1. Metrics</a></li>
-<li><a href="#org27654b6">6.2. General objective function for metrics</a></li>
-<li><a href="#org8d46b11">6.3. Policy parameters update</a></li>
-<li><a href="#org6d2fab8">6.4. Theory</a></li>
-<li><a href="#orga3d4d47">6.5. REINFORCE Algorithm</a></li>
-</ul>
-</li>
-<li><a href="#org06199d8">7. Actor-Critic</a>
-<ul>
-<li><a href="#org60e1711">7.1. Q-Actor-Critic (QAC)</a>
-<ul>
-<li><a href="#orga6b99b5">7.1.1. Background</a></li>
-<li><a href="#org8a04ee4">7.1.2. Initialization</a></li>
-<li><a href="#orge80c6ad">7.1.3. Loop (for each time step \(t\) in episode):</a></li>
-</ul>
-</li>
-<li><a href="#orgd67f6dd">7.2. Advantage Actor-Critic</a>
-<ul>
-<li><a href="#orgb34d6bf">7.2.1. Add baseline</a></li>
-<li><a href="#org0019920">7.2.2. The Advantage Function (\(\delta_t\))</a></li>
-<li><a href="#org4a66a4d">7.2.3. Algorithm</a></li>
-</ul>
-</li>
-<li><a href="#org88c0905">7.3. Off-Policy Actor-Critic</a>
-<ul>
-<li><a href="#org0b377e3">7.3.1. The Objective Gradient</a></li>
-<li><a href="#orga740f4a">7.3.2. The Update Rule</a></li>
+<li><a href="#orgb216886">4.3.1. Core Concept: Soft Policies</a></li>
+<li><a href="#org81356e8">4.3.2. Exploration vs. Exploitation</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgdce931e">8. RL for LLM</a>
+<li><a href="#orgf96f817">5. Temporal Difference</a>
 <ul>
-<li><a href="#org01f06c2">8.1. Objective function to maximase the Reward</a>
+<li><a href="#org3a7b828">5.1. The Mathematical Driver</a></li>
+<li><a href="#orgf128804">5.2. The Derivation</a></li>
+<li><a href="#orgb72c6bc">5.3. Unified View of TD-series</a>
 <ul>
-<li><a href="#org9f6d434">8.1.1. Start from MDP</a></li>
-<li><a href="#orgb7e4dbc">8.1.2. The Policy Gradient Theorem</a></li>
-<li><a href="#org40d4c97">8.1.3. Final Merged Expression for derivate of objective function</a></li>
-<li><a href="#org998765e">8.1.4. Advantage function \(A_{t}\)</a></li>
-<li><a href="#org930c895">8.1.5. Value model Loss function</a></li>
+<li><a href="#org59f65d3">5.3.1. 1. The General Update Rule</a></li>
+<li><a href="#org6770e97">5.3.2. 2. Algorithm Specifics</a></li>
 </ul>
 </li>
-<li><a href="#org6f40de6">8.2. Vanilla Policy Gradient (VPG / REINFORCE)</a></li>
-<li><a href="#org46866c1">8.3. Trust Region Policy Optimization (TRPO)</a></li>
-<li><a href="#orgcbf7334">8.4. Proximal Policy Optimization (PPO)</a></li>
-<li><a href="#org3f98f82">8.5. Training</a>
+<li><a href="#orga9948b6">5.4. Deep Q-learning</a></li>
+</ul>
+</li>
+<li><a href="#org60f2b34">6. Policy Gradient</a>
 <ul>
-<li><a href="#orgb6df384">8.5.1. Using sepreate network</a></li>
-<li><a href="#orgee06d22">8.5.2. Processing</a></li>
+<li><a href="#org1072a16">6.1. Metrics</a></li>
+<li><a href="#org20e4ff8">6.2. General objective function for metrics</a></li>
+<li><a href="#orgc825230">6.3. Policy parameters update</a></li>
+<li><a href="#orgedc645b">6.4. Theory</a></li>
+<li><a href="#org38a1ea7">6.5. REINFORCE Algorithm</a></li>
+</ul>
+</li>
+<li><a href="#org08920cb">7. Actor-Critic</a>
+<ul>
+<li><a href="#org26ee9a1">7.1. Q-Actor-Critic (QAC)</a>
+<ul>
+<li><a href="#orgb72d17f">7.1.1. Background</a></li>
+<li><a href="#orgcebd39c">7.1.2. Initialization</a></li>
+<li><a href="#org2cd9558">7.1.3. Loop (for each time step \(t\) in episode):</a></li>
+</ul>
+</li>
+<li><a href="#org509ec11">7.2. Advantage Actor-Critic</a>
+<ul>
+<li><a href="#org5d760d7">7.2.1. Add baseline</a></li>
+<li><a href="#orgd524d93">7.2.2. The Advantage Function (\(\delta_t\))</a></li>
+<li><a href="#org8e2d315">7.2.3. Algorithm</a></li>
+</ul>
+</li>
+<li><a href="#org1feacc1">7.3. Off-Policy Actor-Critic</a>
+<ul>
+<li><a href="#org10bff66">7.3.1. The Objective Gradient</a></li>
+<li><a href="#org85bc1de">7.3.2. The Update Rule</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org9a76192">9. GRPO</a>
+<li><a href="#orgdacc450">8. RL for LLM</a>
 <ul>
-<li><a href="#orgea8f042">9.1. MoE</a></li>
+<li><a href="#org40fdc23">8.1. Objective function to maximase the Reward</a>
+<ul>
+<li><a href="#orgc007fb6">8.1.1. Start from MDP</a></li>
+<li><a href="#orge99ad5a">8.1.2. The Policy Gradient Theorem</a></li>
+<li><a href="#org1b040eb">8.1.3. Final Merged Expression for derivate of objective function</a></li>
+<li><a href="#orgf7fe9fd">8.1.4. Advantage function \(A_{t}\)</a></li>
+<li><a href="#org4427bc2">8.1.5. Value model Loss function</a></li>
 </ul>
 </li>
-<li><a href="#orgc71a49e">10. Multi-token training</a>
+<li><a href="#org91f868d">8.2. Vanilla Policy Gradient (VPG / REINFORCE)</a></li>
+<li><a href="#org256697b">8.3. Trust Region Policy Optimization (TRPO)</a></li>
+<li><a href="#orgccd058e">8.4. Proximal Policy Optimization (PPO)</a></li>
+<li><a href="#orge5a6e21">8.5. Training</a>
 <ul>
-<li><a href="#org55b4ac4">10.1. Multi-token prodiction</a>
-<ul>
-<li><a href="#org500d84e">10.1.1. The Core Concept: MTP as an Implicit Critic</a></li>
-<li><a href="#orgcb37d61">10.1.2. Architecture: The "Value-Aware" MTP Head</a></li>
-<li><a href="#org465b11f">10.1.3. The Algorithm: Recursive Value Propagation</a></li>
-<li><a href="#org4a9c53e">10.1.4. Why this meets the criteria</a></li>
-<li><a href="#org790c8f9">10.1.5. Visualization of Data Flow</a></li>
+<li><a href="#orgd74d593">8.5.1. Using sepreate network</a></li>
+<li><a href="#orgd79a070">8.5.2. Processing</a></li>
 </ul>
 </li>
-<li><a href="#org8f3608e">10.2. New way with stable assumpation</a>
+</ul>
+</li>
+<li><a href="#orga72bb06">9. GRPO</a>
 <ul>
-<li><a href="#orgf9f178f">10.2.1. 1. The Core Innovation</a></li>
-<li><a href="#org9ad74f8">10.2.2. 2. Strengths (Why do this?)</a></li>
-<li><a href="#orgf8ea71a">10.2.3. 3. The "Stability" Bottleneck (Critical Risk)</a></li>
-<li><a href="#org1c5ec8d">10.2.4. The Problem: Chasing your own Tail</a></li>
-<li><a href="#org5e199d6">10.2.5. The Solution: Periodic Target Updates (Polyak Averaging)</a></li>
-<li><a href="#orgf28cbea">10.2.6. 4. Final Recommendation</a></li>
-<li><a href="#org5acaf3b">10.2.7. The "Golden Ratio" Loss:</a></li>
+<li><a href="#org71e5edb">9.1. MoE</a></li>
+</ul>
+</li>
+<li><a href="#org48a53de">10. Multi-token training</a>
+<ul>
+<li><a href="#orgd25698f">10.1. Multi-token prodiction</a>
+<ul>
+<li><a href="#org41adbfd">10.1.1. The Core Concept: MTP as an Implicit Critic</a></li>
+<li><a href="#org8f753be">10.1.2. Architecture: The "Value-Aware" MTP Head</a></li>
+<li><a href="#org50cf4d9">10.1.3. The Algorithm: Recursive Value Propagation</a></li>
+<li><a href="#org8758ff4">10.1.4. Why this meets the criteria</a></li>
+<li><a href="#org53f3a37">10.1.5. Visualization of Data Flow</a></li>
+</ul>
+</li>
+<li><a href="#org7161c2e">10.2. New way with stable assumpation</a>
+<ul>
+<li><a href="#orgc1b5d6d">10.2.1. 1. The Core Innovation</a></li>
+<li><a href="#orgbcacfa0">10.2.2. 2. Strengths (Why do this?)</a></li>
+<li><a href="#orgcd31a05">10.2.3. 3. The "Stability" Bottleneck (Critical Risk)</a></li>
+<li><a href="#org6f23f25">10.2.4. The Problem: Chasing your own Tail</a></li>
+<li><a href="#org66b0d04">10.2.5. The Solution: Periodic Target Updates (Polyak Averaging)</a></li>
+<li><a href="#org27f1ddf">10.2.6. 4. Final Recommendation</a></li>
+<li><a href="#org7e7570c">10.2.7. The "Golden Ratio" Loss:</a></li>
 </ul>
 </li>
 </ul>
@@ -360,8 +360,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org8354665" class="outline-2">
-<h2 id="org8354665"><span class="section-number-2">1.</span> Markov Decision Process (MDP)</h2>
+<div id="outline-container-org9a3c089" class="outline-2">
+<h2 id="org9a3c089"><span class="section-number-2">1.</span> Markov Decision Process (MDP)</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li><b>State</b>: the set of states \( S \)
@@ -418,8 +418,8 @@ Memoryless property:
 </ul>
 </div>
 </div>
-<div id="outline-container-org2500db8" class="outline-2">
-<h2 id="org2500db8"><span class="section-number-2">2.</span> Bellman Equation</h2>
+<div id="outline-container-orgdf4abb2" class="outline-2">
+<h2 id="orgdf4abb2"><span class="section-number-2">2.</span> Bellman Equation</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li><b>Return</b> : summary of all discount return in one complete trajectory</li>
@@ -439,12 +439,12 @@ Relationship to state value   \[ Q_{\pi}(s, a) = \sum_{s', r} p(s', r | s, a) \l
 </ul>
 </div>
 </div>
-<div id="outline-container-orge0ee7ef" class="outline-2">
-<h2 id="orge0ee7ef"><span class="section-number-2">3.</span> Dynamic Programming Iterations in RL</h2>
+<div id="outline-container-org5944b80" class="outline-2">
+<h2 id="org5944b80"><span class="section-number-2">3.</span> Dynamic Programming Iterations in RL</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org25f59f3" class="outline-3">
-<h3 id="org25f59f3"><span class="section-number-3">3.1.</span> Value Iteration</h3>
+<div id="outline-container-orgcdad1d0" class="outline-3">
+<h3 id="orgcdad1d0"><span class="section-number-3">3.1.</span> Value Iteration</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Value Iteration combines policy improvement and a single step of policy evaluation into one operation.
@@ -461,15 +461,15 @@ Value Iteration combines policy improvement and a single step of policy evaluati
 </ul>
 </div>
 </div>
-<div id="outline-container-org67af970" class="outline-3">
-<h3 id="org67af970"><span class="section-number-3">3.2.</span> Policy Iteration</h3>
+<div id="outline-container-org26a6296" class="outline-3">
+<h3 id="org26a6296"><span class="section-number-3">3.2.</span> Policy Iteration</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Policy Iteration separates the process into two distinct phases. Crucially, the <b><b>Policy Evaluation</b></b> phase is itself an iterative process that looks very similar to Value Iteration, but with a <b>fixed</b> policy.
 </p>
 </div>
-<div id="outline-container-org1a5a8ab" class="outline-4">
-<h4 id="org1a5a8ab"><span class="section-number-4">3.2.1.</span> Phase 1: Policy Evaluation (The Inner Loop)</h4>
+<div id="outline-container-orgdd73f45" class="outline-4">
+<h4 id="orgdd73f45"><span class="section-number-4">3.2.1.</span> Phase 1: Policy Evaluation (The Inner Loop)</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
 This phase starts with a policy \(\pi\) and calculates its value \(v_{\pi}\).
@@ -487,8 +487,8 @@ This phase starts with a policy \(\pi\) and calculates its value \(v_{\pi}\).
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc381763" class="outline-4">
-<h4 id="orgc381763"><span class="section-number-4">3.2.2.</span> Phase 2: Policy Improvement (The Outer Loop)</h4>
+<div id="outline-container-org7ed7a73" class="outline-4">
+<h4 id="org7ed7a73"><span class="section-number-4">3.2.2.</span> Phase 2: Policy Improvement (The Outer Loop)</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <p>
 Once we know exactly how good the current policy \(\pi_k\) is (from Phase 1), we make it greedy.
@@ -500,8 +500,8 @@ Once we know exactly how good the current policy \(\pi_k\) is (from Phase 1), we
 </div>
 </div>
 </div>
-<div id="outline-container-org9343b3f" class="outline-3">
-<h3 id="org9343b3f"><span class="section-number-3">3.3.</span> Truncated Policy Iteration</h3>
+<div id="outline-container-orgd3283fe" class="outline-3">
+<h3 id="orgd3283fe"><span class="section-number-3">3.3.</span> Truncated Policy Iteration</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 The mathematical connection is defined by the depth of the evaluation step (the number of iterations \(j\) in Phase 1):
@@ -513,15 +513,15 @@ The mathematical connection is defined by the depth of the evaluation step (the 
 </div>
 </div>
 </div>
-<div id="outline-container-org0c4c664" class="outline-2">
-<h2 id="org0c4c664"><span class="section-number-2">4.</span> Monte Carlo Methods in RL</h2>
+<div id="outline-container-org085d235" class="outline-2">
+<h2 id="org085d235"><span class="section-number-2">4.</span> Monte Carlo Methods in RL</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Model-free, without to know the model, we use the expecation of example from MC to fine-tune Action value:  \(q_{\pi_{k}(s,a)} = E(G_{t}| S_{t}=s, A_{t}=a )\). Basic the process works the same as Policy iteration(Policy evaluation and policy improvement), only the evaluation is with the exampling from MC.
 </p>
 </div>
-<div id="outline-container-org07dd07b" class="outline-3">
-<h3 id="org07dd07b"><span class="section-number-3">4.1.</span> 1. MC Basic (The Theoretical Baseline)</h3>
+<div id="outline-container-org842e120" class="outline-3">
+<h3 id="org842e120"><span class="section-number-3">4.1.</span> 1. MC Basic (The Theoretical Baseline)</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 This is the simplest form, adapted directly from Policy Iteration logic but using sample returns instead of models.
@@ -540,8 +540,8 @@ This is the simplest form, adapted directly from Policy Iteration logic but usin
 </ul>
 </div>
 </div>
-<div id="outline-container-org59604f7" class="outline-3">
-<h3 id="org59604f7"><span class="section-number-3">4.2.</span> 2. MC Exploring Starts (The Efficient Simulator)</h3>
+<div id="outline-container-org046f668" class="outline-3">
+<h3 id="org046f668"><span class="section-number-3">4.2.</span> 2. MC Exploring Starts (The Efficient Simulator)</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 An extension designed to fix sample efficiency but introduces a strong dependency on environment control.
@@ -560,15 +560,15 @@ An extension designed to fix sample efficiency but introduces a strong dependenc
 </ul>
 </div>
 </div>
-<div id="outline-container-org58eab62" class="outline-3">
-<h3 id="org58eab62"><span class="section-number-3">4.3.</span> 3. MC Epsilon-Greedy (The Practical Solution)</h3>
+<div id="outline-container-org6ca27d5" class="outline-3">
+<h3 id="org6ca27d5"><span class="section-number-3">4.3.</span> 3. MC Epsilon-Greedy (The Practical Solution)</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 This method removes the unrealistic "Exploring Starts" assumption, making MC methods viable for real-world learning where you cannot control the starting state.
 </p>
 </div>
-<div id="outline-container-orgb56914c" class="outline-4">
-<h4 id="orgb56914c"><span class="section-number-4">4.3.1.</span> Core Concept: Soft Policies</h4>
+<div id="outline-container-orgb216886" class="outline-4">
+<h4 id="orgb216886"><span class="section-number-4">4.3.1.</span> Core Concept: Soft Policies</h4>
 <div class="outline-text-4" id="text-4-3-1">
 <p>
 Instead of forcing the environment to <b>start</b> randomly, we force the agent to <b>behave</b> randomly occasionally.
@@ -579,8 +579,8 @@ Instead of forcing the environment to <b>start</b> randomly, we force the agent 
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfd4b1b0" class="outline-4">
-<h4 id="orgfd4b1b0"><span class="section-number-4">4.3.2.</span> Exploration vs. Exploitation</h4>
+<div id="outline-container-org81356e8" class="outline-4">
+<h4 id="org81356e8"><span class="section-number-4">4.3.2.</span> Exploration vs. Exploitation</h4>
 <div class="outline-text-4" id="text-4-3-2">
 <p>
 The algorithm balances these two conflicting goals via the parameter \(\epsilon\) (epsilon).
@@ -607,16 +607,16 @@ The algorithm balances these two conflicting goals via the parameter \(\epsilon\
 </div>
 </div>
 </div>
-<div id="outline-container-orgec15a4c" class="outline-2">
-<h2 id="orgec15a4c"><span class="section-number-2">5.</span> Temporal Difference</h2>
+<div id="outline-container-orgf96f817" class="outline-2">
+<h2 id="orgf96f817"><span class="section-number-2">5.</span> Temporal Difference</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 <b>Core Concept</b>
 TD Learning is the solution(policy) to the Bellman Expectation Equation, formulated as a root-finding problem and solved using the Robbins-Monro stochastic approximation algorithm.
 </p>
 </div>
-<div id="outline-container-orgd4fe79c" class="outline-3">
-<h3 id="orgd4fe79c"><span class="section-number-3">5.1.</span> The Mathematical Driver</h3>
+<div id="outline-container-org3a7b828" class="outline-3">
+<h3 id="org3a7b828"><span class="section-number-3">5.1.</span> The Mathematical Driver</h3>
 <div class="outline-text-3" id="text-5-1">
 <ul class="org-ul">
 <li>The Goal: Bellman Expectation Equation
@@ -636,8 +636,8 @@ Iteratively find root \(\theta^*\) of \(f(\theta)=0\) using noisy observations \
 </ul>
 </div>
 </div>
-<div id="outline-container-orgee87619" class="outline-3">
-<h3 id="orgee87619"><span class="section-number-3">5.2.</span> The Derivation</h3>
+<div id="outline-container-orgf128804" class="outline-3">
+<h3 id="orgf128804"><span class="section-number-3">5.2.</span> The Derivation</h3>
 <div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
 <li>The Noisy Observation (TD Error)
@@ -663,12 +663,12 @@ Substituting \(\tilde{f}(\theta)\) into the Robbins-Monro update:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgaccb6d1" class="outline-3">
-<h3 id="orgaccb6d1"><span class="section-number-3">5.3.</span> Unified View of TD-series</h3>
+<div id="outline-container-orgb72c6bc" class="outline-3">
+<h3 id="orgb72c6bc"><span class="section-number-3">5.3.</span> Unified View of TD-series</h3>
 <div class="outline-text-3" id="text-5-3">
 </div>
-<div id="outline-container-org07bf155" class="outline-4">
-<h4 id="org07bf155"><span class="section-number-4">5.3.1.</span> 1. The General Update Rule</h4>
+<div id="outline-container-org59f65d3" class="outline-4">
+<h4 id="org59f65d3"><span class="section-number-4">5.3.1.</span> 1. The General Update Rule</h4>
 <div class="outline-text-4" id="text-5-3-1">
 <p>
 When we use Action value instead of policy for TD, all discussed algorithms can be expressed as a stochastic approximation update solving a Bellman equation.
@@ -687,8 +687,8 @@ The unified update rule (Gradient Descent form) is:
 </ul>
 </div>
 </div>
-<div id="outline-container-org9f638a4" class="outline-4">
-<h4 id="org9f638a4"><span class="section-number-4">5.3.2.</span> 2. Algorithm Specifics</h4>
+<div id="outline-container-org6770e97" class="outline-4">
+<h4 id="org6770e97"><span class="section-number-4">5.3.2.</span> 2. Algorithm Specifics</h4>
 <div class="outline-text-4" id="text-5-3-2">
 <ul class="org-ul">
 <li>Sarsa:
@@ -737,8 +737,8 @@ The unified update rule (Gradient Descent form) is:
 </div>
 </div>
 </div>
-<div id="outline-container-org2281016" class="outline-3">
-<h3 id="org2281016"><span class="section-number-3">5.4.</span> Deep Q-learning</h3>
+<div id="outline-container-orga9948b6" class="outline-3">
+<h3 id="orga9948b6"><span class="section-number-3">5.4.</span> Deep Q-learning</h3>
 <div class="outline-text-3" id="text-5-4">
 <ul class="org-ul">
 <li>Deep Q-learning replaces the tabular \(q(s,a)\) with a parameterized neural network \(\hat{q}(s, a, w)\).</li>
@@ -781,12 +781,12 @@ Set \(w_T = w\) every \(C\) iterations.</li>
 </div>
 </div>
 </div>
-<div id="outline-container-org24e08c7" class="outline-2">
-<h2 id="org24e08c7"><span class="section-number-2">6.</span> Policy Gradient</h2>
+<div id="outline-container-org60f2b34" class="outline-2">
+<h2 id="org60f2b34"><span class="section-number-2">6.</span> Policy Gradient</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-orgccb011d" class="outline-3">
-<h3 id="orgccb011d"><span class="section-number-3">6.1.</span> Metrics</h3>
+<div id="outline-container-org1072a16" class="outline-3">
+<h3 id="org1072a16"><span class="section-number-3">6.1.</span> Metrics</h3>
 <div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li>\(\bar{v}_\pi\)  (Discounted Average Value)
@@ -801,8 +801,8 @@ Set \(w_T = w\) every \(C\) iterations.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org27654b6" class="outline-3">
-<h3 id="org27654b6"><span class="section-number-3">6.2.</span> General objective function for metrics</h3>
+<div id="outline-container-org20e4ff8" class="outline-3">
+<h3 id="org20e4ff8"><span class="section-number-3">6.2.</span> General objective function for metrics</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 The gradient of the objective function \(J(\theta)\) is given by the Policy Gradient Theorem:
@@ -831,8 +831,8 @@ Moreover, as an expectation:\[  \nabla_\theta J(\theta)
 </p>
 </div>
 </div>
-<div id="outline-container-org8d46b11" class="outline-3">
-<h3 id="org8d46b11"><span class="section-number-3">6.3.</span> Policy parameters update</h3>
+<div id="outline-container-orgc825230" class="outline-3">
+<h3 id="orgc825230"><span class="section-number-3">6.3.</span> Policy parameters update</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 \[  \theta_{t+1} = \theta_t + \alpha \nabla_\theta J(\theta_t)\]
@@ -857,8 +857,8 @@ We do not have \(q_{\pi}(S, A)\), so use \(\hat{q}(S_t, A_t)\) from sampling.
 </ul>
 </div>
 </div>
-<div id="outline-container-org6d2fab8" class="outline-3">
-<h3 id="org6d2fab8"><span class="section-number-3">6.4.</span> Theory</h3>
+<div id="outline-container-orgedc645b" class="outline-3">
+<h3 id="orgedc645b"><span class="section-number-3">6.4.</span> Theory</h3>
 <div class="outline-text-3" id="text-6-4">
 <p>
 \[\theta_{t+1} = \theta_t + \alpha \nabla_{\theta} \ln \pi(a_t \mid s_t, \theta_t) q_t(s_t, a_t)\]
@@ -886,8 +886,8 @@ So, defining \(\beta_t = \frac{q_t(s_t, a_t)}{\pi(a_t \mid s_t, \theta_t)}\):
 </ul>
 </div>
 </div>
-<div id="outline-container-orga3d4d47" class="outline-3">
-<h3 id="orga3d4d47"><span class="section-number-3">6.5.</span> REINFORCE Algorithm</h3>
+<div id="outline-container-org38a1ea7" class="outline-3">
+<h3 id="org38a1ea7"><span class="section-number-3">6.5.</span> REINFORCE Algorithm</h3>
 <div class="outline-text-3" id="text-6-5">
 <p>
 Monte Carlo Policy Gradient
@@ -912,16 +912,16 @@ Loop for each episode:
 </div>
 </div>
 </div>
-<div id="outline-container-org06199d8" class="outline-2">
-<h2 id="org06199d8"><span class="section-number-2">7.</span> Actor-Critic</h2>
+<div id="outline-container-org08920cb" class="outline-2">
+<h2 id="org08920cb"><span class="section-number-2">7.</span> Actor-Critic</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org60e1711" class="outline-3">
-<h3 id="org60e1711"><span class="section-number-3">7.1.</span> Q-Actor-Critic (QAC)</h3>
+<div id="outline-container-org26ee9a1" class="outline-3">
+<h3 id="org26ee9a1"><span class="section-number-3">7.1.</span> Q-Actor-Critic (QAC)</h3>
 <div class="outline-text-3" id="text-7-1">
 </div>
-<div id="outline-container-orga6b99b5" class="outline-4">
-<h4 id="orga6b99b5"><span class="section-number-4">7.1.1.</span> Background</h4>
+<div id="outline-container-orgb72d17f" class="outline-4">
+<h4 id="orgb72d17f"><span class="section-number-4">7.1.1.</span> Background</h4>
 <div class="outline-text-4" id="text-7-1-1">
 <p>
 Derived from the Policy Gradient theorem, QAC replaces the Monte Carlo (MC) return with a <b><b>Temporal Difference (TD)</b></b> value function approximation.
@@ -930,8 +930,8 @@ The policy parameters are updated using the gradient of the log-probability scal
 </p>
 </div>
 </div>
-<div id="outline-container-org8a04ee4" class="outline-4">
-<h4 id="org8a04ee4"><span class="section-number-4">7.1.2.</span> Initialization</h4>
+<div id="outline-container-orgcebd39c" class="outline-4">
+<h4 id="orgcebd39c"><span class="section-number-4">7.1.2.</span> Initialization</h4>
 <div class="outline-text-4" id="text-7-1-2">
 <ul class="org-ul">
 <li><b>Policy Function:</b> \(\pi(a|s, \theta_0)\) with initial parameters \(\theta_0\).</li>
@@ -941,8 +941,8 @@ The policy parameters are updated using the gradient of the log-probability scal
 </ul>
 </div>
 </div>
-<div id="outline-container-orge80c6ad" class="outline-4">
-<h4 id="orge80c6ad"><span class="section-number-4">7.1.3.</span> Loop (for each time step \(t\) in episode):</h4>
+<div id="outline-container-org2cd9558" class="outline-4">
+<h4 id="org2cd9558"><span class="section-number-4">7.1.3.</span> Loop (for each time step \(t\) in episode):</h4>
 <div class="outline-text-4" id="text-7-1-3">
 <ol class="org-ol">
 <li><b><b>Generate Action:</b></b> Sample \(a_t \sim \pi(a|s_t, \theta_t)\).</li>
@@ -960,12 +960,12 @@ Update the action-value parameters using the semi-gradient TD error:
 </div>
 </div>
 </div>
-<div id="outline-container-orgd67f6dd" class="outline-3">
-<h3 id="orgd67f6dd"><span class="section-number-3">7.2.</span> Advantage Actor-Critic</h3>
+<div id="outline-container-org509ec11" class="outline-3">
+<h3 id="org509ec11"><span class="section-number-3">7.2.</span> Advantage Actor-Critic</h3>
 <div class="outline-text-3" id="text-7-2">
 </div>
-<div id="outline-container-orgb34d6bf" class="outline-4">
-<h4 id="orgb34d6bf"><span class="section-number-4">7.2.1.</span> Add baseline</h4>
+<div id="outline-container-org5d760d7" class="outline-4">
+<h4 id="org5d760d7"><span class="section-number-4">7.2.1.</span> Add baseline</h4>
 <div class="outline-text-4" id="text-7-2-1">
 <p>
 To improve the stability of the Policy Gradient, we introduce a <b><b>baseline</b></b> to the update function. Subtracting a state-value function \(v(s)\) from the return reduces variance without introducing bias. The standard gradient update is modified by subtracting the baseline \(v_t(s_t)\):
@@ -973,8 +973,8 @@ To improve the stability of the Policy Gradient, we introduce a <b><b>baseline</
 </p>
 </div>
 </div>
-<div id="outline-container-org0019920" class="outline-4">
-<h4 id="org0019920"><span class="section-number-4">7.2.2.</span> The Advantage Function (\(\delta_t\))</h4>
+<div id="outline-container-orgd524d93" class="outline-4">
+<h4 id="orgd524d93"><span class="section-number-4">7.2.2.</span> The Advantage Function (\(\delta_t\))</h4>
 <div class="outline-text-4" id="text-7-2-2">
 <p>
 We define the <b><b>Advantage Function</b></b> as the difference between the action-value and the state-value. However, since we often do not know \(q_t\) explicitly, we approximate it using the <b><b>TD Error</b></b> \(\delta_t\):
@@ -995,8 +995,8 @@ The advantage \(\delta_t\) effectively measures how much better an action \(a_t\
 </p>
 </div>
 </div>
-<div id="outline-container-org4a66a4d" class="outline-4">
-<h4 id="org4a66a4d"><span class="section-number-4">7.2.3.</span> Algorithm</h4>
+<div id="outline-container-org8e2d315" class="outline-4">
+<h4 id="org8e2d315"><span class="section-number-4">7.2.3.</span> Algorithm</h4>
 <div class="outline-text-4" id="text-7-2-3">
 <ul class="org-ul">
 <li><b>Policy Function (Actor):</b> \(\pi(a|s, \theta_0)\) with initial parameters \(\theta_0\).</li>
@@ -1028,23 +1028,23 @@ Update the value function parameters to minimize the TD error:
 </div>
 </div>
 </div>
-<div id="outline-container-org88c0905" class="outline-3">
-<h3 id="org88c0905"><span class="section-number-3">7.3.</span> Off-Policy Actor-Critic</h3>
+<div id="outline-container-org1feacc1" class="outline-3">
+<h3 id="org1feacc1"><span class="section-number-3">7.3.</span> Off-Policy Actor-Critic</h3>
 <div class="outline-text-3" id="text-7-3">
 <p>
 We use a behavior policy \(\beta\) to generate experience samples. To estimate the gradient of the target policy \(\pi\), we must use <b><b>Importance Sampling</b></b>.
 </p>
 </div>
-<div id="outline-container-org0b377e3" class="outline-4">
-<h4 id="org0b377e3"><span class="section-number-4">7.3.1.</span> The Objective Gradient</h4>
+<div id="outline-container-org10bff66" class="outline-4">
+<h4 id="org10bff66"><span class="section-number-4">7.3.1.</span> The Objective Gradient</h4>
 <div class="outline-text-4" id="text-7-3-1">
 <p>
 \[ \nabla_{\theta} J(\theta) = \mathbb{E}_{S \sim \rho, A \sim \beta} \left[ \frac{\pi(A|S, \theta)}{\beta(A|S)} \nabla_{\theta} \ln \pi(A|S, \theta) q_{\pi}(S, A) \right] \]
 </p>
 </div>
 </div>
-<div id="outline-container-orga740f4a" class="outline-4">
-<h4 id="orga740f4a"><span class="section-number-4">7.3.2.</span> The Update Rule</h4>
+<div id="outline-container-org85bc1de" class="outline-4">
+<h4 id="org85bc1de"><span class="section-number-4">7.3.2.</span> The Update Rule</h4>
 <div class="outline-text-4" id="text-7-3-2">
 <p>
 The update is similar to A2C but scaled by the importance sampling ratio \(\rho_t\):
@@ -1066,16 +1066,16 @@ Algorithm is similar only with difference of factor \(\beta(a_{t}|s_{t})\)
 </div>
 </div>
 </div>
-<div id="outline-container-orgdce931e" class="outline-2">
-<h2 id="orgdce931e"><span class="section-number-2">8.</span> RL for LLM</h2>
+<div id="outline-container-orgdacc450" class="outline-2">
+<h2 id="orgdacc450"><span class="section-number-2">8.</span> RL for LLM</h2>
 <div class="outline-text-2" id="text-8">
 </div>
-<div id="outline-container-org01f06c2" class="outline-3">
-<h3 id="org01f06c2"><span class="section-number-3">8.1.</span> Objective function to maximase the Reward</h3>
+<div id="outline-container-org40fdc23" class="outline-3">
+<h3 id="org40fdc23"><span class="section-number-3">8.1.</span> Objective function to maximase the Reward</h3>
 <div class="outline-text-3" id="text-8-1">
 </div>
-<div id="outline-container-org9f6d434" class="outline-4">
-<h4 id="org9f6d434"><span class="section-number-4">8.1.1.</span> Start from MDP</h4>
+<div id="outline-container-orgc007fb6" class="outline-4">
+<h4 id="orgc007fb6"><span class="section-number-4">8.1.1.</span> Start from MDP</h4>
 <div class="outline-text-4" id="text-8-1-1">
 <p>
 We write the probability of a trajectory with MDP for \(\tau = (s_0, a_0, \dots, s_T, a_T)\) :
@@ -1104,8 +1104,8 @@ do not depend on the policy parameters \(\theta\), their gradients are zero:
 </p>
 </div>
 </div>
-<div id="outline-container-orgb7e4dbc" class="outline-4">
-<h4 id="orgb7e4dbc"><span class="section-number-4">8.1.2.</span> The Policy Gradient Theorem</h4>
+<div id="outline-container-orge99ad5a" class="outline-4">
+<h4 id="orge99ad5a"><span class="section-number-4">8.1.2.</span> The Policy Gradient Theorem</h4>
 <div class="outline-text-4" id="text-8-1-2">
 <p>
 We aim to maximize the objective \(J(\pi_\theta) = \mathbb{E}_{\tau \sim \pi_\theta} [R(\tau)]\).
@@ -1120,16 +1120,16 @@ We aim to maximize the objective \(J(\pi_\theta) = \mathbb{E}_{\tau \sim \pi_\th
 \end{align*}
 </div>
 </div>
-<div id="outline-container-org40d4c97" class="outline-4">
-<h4 id="org40d4c97"><span class="section-number-4">8.1.3.</span> Final Merged Expression for derivate of objective function</h4>
+<div id="outline-container-org1b040eb" class="outline-4">
+<h4 id="org1b040eb"><span class="section-number-4">8.1.3.</span> Final Merged Expression for derivate of objective function</h4>
 <div class="outline-text-4" id="text-8-1-3">
 <p>
 \[\nabla_\theta J(\pi_\theta) = \mathbb{E}_{\tau \sim \pi_\theta} \left[ \left( \sum_{t=0}^{T} \nabla_\theta \log \pi_\theta(a_t|s_t) \right) R(\tau) \right]\]
 </p>
 </div>
 </div>
-<div id="outline-container-org998765e" class="outline-4">
-<h4 id="org998765e"><span class="section-number-4">8.1.4.</span> Advantage function \(A_{t}\)</h4>
+<div id="outline-container-orgf7fe9fd" class="outline-4">
+<h4 id="orgf7fe9fd"><span class="section-number-4">8.1.4.</span> Advantage function \(A_{t}\)</h4>
 <div class="outline-text-4" id="text-8-1-4">
 <p>
 From the above function, we introduce a baseline for \(R{\tau}\) for reducing the variance. A great option is the current value \(V(\tau)\). So we have the advantage function for objective function derivative: A = Q - V.
@@ -1146,8 +1146,8 @@ using \(Q=r+ \gamma V(s_{t+1}​)\), so \(A = \delta_t^{V} = Q-V = r_t + \gamma 
 </ul>
 </div>
 </div>
-<div id="outline-container-org930c895" class="outline-4">
-<h4 id="org930c895"><span class="section-number-4">8.1.5.</span> Value model Loss function</h4>
+<div id="outline-container-org4427bc2" class="outline-4">
+<h4 id="org4427bc2"><span class="section-number-4">8.1.5.</span> Value model Loss function</h4>
 <div class="outline-text-4" id="text-8-1-5">
 <p>
 use MSE, \((V-Q)^2\), where V is the output of value model and Q is the expected value of current step, we use Q = A + V to share the advantage calculation from above.
@@ -1165,8 +1165,8 @@ The value function (critic) is trained by minimizing the mean squared error betw
 </div>
 </div>
 </div>
-<div id="outline-container-org6f40de6" class="outline-3">
-<h3 id="org6f40de6"><span class="section-number-3">8.2.</span> Vanilla Policy Gradient (VPG / REINFORCE)</h3>
+<div id="outline-container-org91f868d" class="outline-3">
+<h3 id="org91f868d"><span class="section-number-3">8.2.</span> Vanilla Policy Gradient (VPG / REINFORCE)</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 \[g = \mathbb{E}_{\tau \sim \pi_\theta} \left[ \sum_{t=0}^{T} \nabla_\theta \log \pi_\theta(a_t|s_t) \hat{A}_t \right]\]
@@ -1179,8 +1179,8 @@ The value function (critic) is trained by minimizing the mean squared error betw
 </ul>
 </div>
 </div>
-<div id="outline-container-org46866c1" class="outline-3">
-<h3 id="org46866c1"><span class="section-number-3">8.3.</span> Trust Region Policy Optimization (TRPO)</h3>
+<div id="outline-container-org256697b" class="outline-3">
+<h3 id="org256697b"><span class="section-number-3">8.3.</span> Trust Region Policy Optimization (TRPO)</h3>
 <div class="outline-text-3" id="text-8-3">
 <p>
 TRPO solves the stability issue by ensuring the new policy doesn't move too far from the old policy, using KL Divergence as a constraint.
@@ -1199,8 +1199,8 @@ TRPO solves the stability issue by ensuring the new policy doesn't move too far 
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcbf7334" class="outline-3">
-<h3 id="orgcbf7334"><span class="section-number-3">8.4.</span> Proximal Policy Optimization (PPO)</h3>
+<div id="outline-container-orgccd058e" class="outline-3">
+<h3 id="orgccd058e"><span class="section-number-3">8.4.</span> Proximal Policy Optimization (PPO)</h3>
 <div class="outline-text-3" id="text-8-4">
 <p>
 PPO is the industry standard for LLM fine-tuning (RLHF). It mimics TRPO's stability but uses a much simpler "clipped" objective function.
@@ -1229,19 +1229,19 @@ The clipped PPO policy loss with Generalized Advantage Estimation (GAE) is defin
 </p>
 </div>
 </div>
-<div id="outline-container-org3f98f82" class="outline-3">
-<h3 id="org3f98f82"><span class="section-number-3">8.5.</span> Training</h3>
+<div id="outline-container-orge5a6e21" class="outline-3">
+<h3 id="orge5a6e21"><span class="section-number-3">8.5.</span> Training</h3>
 <div class="outline-text-3" id="text-8-5">
 </div>
-<div id="outline-container-orgb6df384" class="outline-4">
-<h4 id="orgb6df384"><span class="section-number-4">8.5.1.</span> Using sepreate network</h4>
+<div id="outline-container-orgd74d593" class="outline-4">
+<h4 id="orgd74d593"><span class="section-number-4">8.5.1.</span> Using sepreate network</h4>
 <div class="outline-text-4" id="text-8-5-1">
 <p>
 Unlike traditional RL (e.g., Atari) where state representation is efficiently shared, LLM-based RL often requires decoupling the Actor and Critic due to <b><b>Negative Transfer</b></b> and <b><b>Optimization Divergence</b></b>.
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="orgd58b7b3"></a>1. Negative Transfer (Objective Interference)<br />
+<li><a id="orgbd7fe85"></a>1. Negative Transfer (Objective Interference)<br>
 <div class="outline-text-5" id="text-8-5-1-1">
 <p>
 The Actor and Critic optimize fundamentally conflicting objectives, leading to <b><b>Catastrophic Forgetting</b></b> in shared architectures.
@@ -1253,7 +1253,7 @@ The Actor and Critic optimize fundamentally conflicting objectives, leading to <
 </ul>
 </div>
 </li>
-<li><a id="org3adef77"></a>2. Optimization Divergence (Timescale Mismatch)<br />
+<li><a id="org2c080fe"></a>2. Optimization Divergence (Timescale Mismatch)<br>
 <div class="outline-text-5" id="text-8-5-1-2">
 <p>
 Shared weights prevent the necessary decoupling of learning dynamics between the two heads.
@@ -1269,7 +1269,7 @@ In a shared body, you cannot tune optimizers independently. A learning rate high
 </ul>
 </div>
 </li>
-<li><a id="orgb3fb497"></a>3. Phasic Policy Gradient<br />
+<li><a id="orgf2d744c"></a>3. Phasic Policy Gradient<br>
 <div class="outline-text-5" id="text-8-5-1-3">
 <p>
 Separating policy and value function training into distinct phases  <a href="https://arxiv.org/abs/2009.04416">PPG</a>. 
@@ -1278,88 +1278,120 @@ Separating policy and value function training into distinct phases  <a href="htt
 </li>
 </ol>
 </div>
-<div id="outline-container-orgee06d22" class="outline-4">
-<h4 id="orgee06d22"><span class="section-number-4">8.5.2.</span> Processing</h4>
+<div id="outline-container-orgd79a070" class="outline-4">
+<h4 id="orgd79a070"><span class="section-number-4">8.5.2.</span> Processing</h4>
 <div class="outline-text-4" id="text-8-5-2">
+<div class="org-src-container">
+<pre class="src src-mermaid">graph LR
+    %% Styles
+    classDef trained fill:#fff2cc,stroke:#d6b656,stroke-width:2px;
+    classDef frozen fill:#dae8fc,stroke:#6c8ebf,stroke-width:2px;
+    classDef neutral fill:#fff,stroke:#333,stroke-width:1px;
 
-<div id="org8f0b41b" class="figure">
-<p><img src="./reinforcement_learning_ppo.png" alt="reinforcement_learning_ppo.png" />
+    X[x] -- A --&gt; LLM[Policy model]
+    LLM -- B --&gt; Y[y]
+
+    Y -- C --&gt; RM1[Reference Model]
+    Y -- D --&gt; RM2[Reward Model]
+    Y -- E --&gt; BE[Value model]
+
+    RM1 -- "F KL" --&gt; R((r))
+    RM2 -- "G KL" --&gt; R
+    BE -- H --&gt; RB((r_b))
+
+    R -- I --&gt; GAE[GAE]
+    RB -- J --&gt; GAE
+
+    GAE -- K --&gt; ADV[Advantage]
+    ADV -. L .-&gt; LLM
+
+    %% Classes
+    class LLM,BE trained
+    class RM1,RM2 frozen
+    class X,Y,R,RB,GAE,ADV neutral
+  
+</pre>
+</div>
+
+
+<div id="org64ff925" class="figure">
+<p><img src="./reinforcement_learning_ppo.png" alt="reinforcement_learning_ppo.png">
 </p>
 </div>
 
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #51afef;">import</span> torch
-<span style="color: #51afef;">import</span> torch.nn.functional <span style="color: #51afef;">as</span> F
+<pre class="src src-python">import torch
+import torch.nn.functional as F
 
-<span style="color: #5B6268;"># </span><span style="color: #5B6268;">constants
-</span><span style="color: #dcaeea;">kl_beta</span> <span style="color: #51afef;">=</span> 0.1
-<span style="color: #dcaeea;">critic_weight</span> <span style="color: #51afef;">=</span> 0.5
-<span style="color: #dcaeea;">ppo_eps</span> <span style="color: #51afef;">=</span> 0.2
+# constants
+kl_beta = 0.1
+critic_weight = 0.5
+ppo_eps = 0.2
 
-<span style="color: #5B6268;"># </span><span style="color: #5B6268;">sample prompt completions and rewards
-</span><span style="color: #51afef;">with</span> torch.no_grad():
-    <span style="color: #dcaeea;">completions</span> <span style="color: #51afef;">=</span> LLM.generate(prompts)  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">(B*G, L)
-</span>    <span style="color: #dcaeea;">rewards</span> <span style="color: #51afef;">=</span> RM(completions)  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">(B*G, 1)
-</span>
-<span style="color: #5B6268;"># </span><span style="color: #5B6268;">create a padding mask from lengths of completions in batch
-</span><span style="color: #dcaeea;">completion_mask</span> <span style="color: #51afef;">=</span> <span style="color: #51afef;">&lt;</span>... mask out padding tokens ...<span style="color: #51afef;">&gt;</span>
+# sample prompt completions and rewards
+with torch.no_grad():
+    completions = LLM.generate(prompts)  # (B*G, L)
+    rewards = RM(completions)  # (B*G, 1)
 
-<span style="color: #5B6268;"># </span><span style="color: #5B6268;">compute value function / critic output
-</span><span style="color: #dcaeea;">values</span> <span style="color: #51afef;">=</span> CRITIC(completions)  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">(B*G, L) - predicted reward per token!
-</span>
-<span style="color: #5B6268;"># </span><span style="color: #5B6268;">get policy logprobs for each action
-</span><span style="color: #dcaeea;">llm_out</span> <span style="color: #51afef;">=</span> LLM(completions)
-<span style="color: #dcaeea;">per_token_logps</span> <span style="color: #51afef;">=</span> F.log_softmax(llm_out, dim<span style="color: #51afef;">=-</span>1)  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">(B*G, L)
-</span>
-<span style="color: #5B6268;"># </span><span style="color: #5B6268;">get reference logprobs for each action
-</span><span style="color: #dcaeea;">ref_out</span> <span style="color: #51afef;">=</span> REF(completions)
-<span style="color: #dcaeea;">ref_per_token_logps</span> <span style="color: #51afef;">=</span> F.log_softmax(ref_out, dim<span style="color: #51afef;">=-</span>1)  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">(B*G, L)
-</span>
-<span style="color: #5B6268;"># </span><span style="color: #5B6268;">compute KL divergence between policy and reference policy
-</span><span style="color: #dcaeea;">kl_div</span> <span style="color: #51afef;">=</span> per_token_logps <span style="color: #51afef;">-</span> ref_per_token_logps
+# create a padding mask from lengths of completions in batch
+completion_mask = &lt;... mask out padding tokens ...&gt;
 
-<span style="color: #5B6268;"># </span><span style="color: #5B6268;">directly subtract KL divergence from rewards
-</span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">NOTE: KL div is per token, so reward becomes per token and reward
-</span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">for all tokens (besides last token) is just kl divergence.
-</span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Reward for last token is sum of outcome reward and KL div.
-</span><span style="color: #dcaeea;">rewards</span> <span style="color: #51afef;">-=</span> kl_beta <span style="color: #51afef;">*</span> kl_div <span style="color: #5B6268;"># </span><span style="color: #5B6268;">(B*G, L)
-</span>
-<span style="color: #5B6268;"># </span><span style="color: #5B6268;">compute the advantage - simple approach
-</span><span style="color: #dcaeea;">advantage</span> <span style="color: #51afef;">=</span> rewards <span style="color: #51afef;">-</span> values.detach()  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">(B*G, L)
-</span>
-<span style="color: #5B6268;"># </span><span style="color: #5B6268;">compute the policy ratio
-</span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">NOTE: old_per_token_logps must be persisted during first policy
-</span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">update for this batch of data and re-used in each subsequent update
-</span><span style="color: #dcaeea;">policy_ratio</span> <span style="color: #51afef;">=</span> torch.exp(
-    per_token_logps <span style="color: #51afef;">-</span> old_per_token_logps,
-)  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">(B*G, L)
-</span><span style="color: #dcaeea;">clip_policy_ratio</span> <span style="color: #51afef;">=</span> torch.clamp(
+# compute value function / critic output
+values = CRITIC(completions)  # (B*G, L) - predicted reward per token!
+
+# get policy logprobs for each action
+llm_out = LLM(completions)
+per_token_logps = F.log_softmax(llm_out, dim=-1)  # (B*G, L)
+
+# get reference logprobs for each action
+ref_out = REF(completions)
+ref_per_token_logps = F.log_softmax(ref_out, dim=-1)  # (B*G, L)
+
+# compute KL divergence between policy and reference policy
+kl_div = per_token_logps - ref_per_token_logps
+
+# directly subtract KL divergence from rewards
+# NOTE: KL div is per token, so reward becomes per token and reward
+# for all tokens (besides last token) is just kl divergence.
+# Reward for last token is sum of outcome reward and KL div.
+rewards -= kl_beta * kl_div # (B*G, L)
+
+# compute the advantage - simple approach
+advantage = rewards - values.detach()  # (B*G, L)
+
+# compute the policy ratio
+# NOTE: old_per_token_logps must be persisted during first policy
+# update for this batch of data and re-used in each subsequent update
+policy_ratio = torch.exp(
+    per_token_logps - old_per_token_logps,
+)  # (B*G, L)
+clip_policy_ratio = torch.clamp(
     policy_ratio,
-    <span style="color: #c678dd;">min</span><span style="color: #51afef;">=</span>1.0 <span style="color: #51afef;">-</span> ppo_eps,
-    <span style="color: #c678dd;">max</span><span style="color: #51afef;">=</span>1.0 <span style="color: #51afef;">+</span> ppo_eps,
+    min=1.0 - ppo_eps,
+    max=1.0 + ppo_eps,
 )
 
-<span style="color: #5B6268;"># </span><span style="color: #5B6268;">compute the ppo loss
-</span><span style="color: #dcaeea;">ppo_loss</span> <span style="color: #51afef;">=</span> torch.<span style="color: #c678dd;">min</span>(
-    advantage <span style="color: #51afef;">*</span> policy_ratio,
-    advantage <span style="color: #51afef;">*</span> clip_policy_ratio,
-)  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">(B*G, L)
-</span><span style="color: #dcaeea;">ppo_loss</span> <span style="color: #51afef;">=</span> <span style="color: #51afef;">-</span>ppo_loss
+# compute the ppo loss
+ppo_loss = torch.min(
+    advantage * policy_ratio,
+    advantage * clip_policy_ratio,
+)  # (B*G, L)
+ppo_loss = -ppo_loss
 
-<span style="color: #5B6268;"># </span><span style="color: #5B6268;">combine ppo loss and critic mse loss
-</span><span style="color: #dcaeea;">critic_loss</span> <span style="color: #51afef;">=</span> ((rewards <span style="color: #51afef;">-</span> values) <span style="color: #51afef;">**</span> 2)  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">(B*G, L)
-</span><span style="color: #dcaeea;">loss</span> <span style="color: #51afef;">=</span> ppo_loss <span style="color: #51afef;">+</span> critic_weight <span style="color: #51afef;">*</span> critic_loss
+# combine ppo loss and critic mse loss
+critic_loss = ((rewards - values) ** 2)  # (B*G, L)
+loss = ppo_loss + critic_weight * critic_loss
 
-<span style="color: #5B6268;"># </span><span style="color: #5B6268;">aggregate the loss across tokens (many options exist here)
-</span><span style="color: #dcaeea;">loss</span> <span style="color: #51afef;">=</span> ((loss <span style="color: #51afef;">*</span> completion_mask).<span style="color: #c678dd;">sum</span>(axis<span style="color: #51afef;">=-</span>1) <span style="color: #51afef;">/</span>
-    <span style="color: #358856e97137;"> </span>   completion_mask.<span style="color: #c678dd;">sum</span>(axis<span style="color: #51afef;">=-</span>1)).mean()
-     
-<span style="color: #5B6268;"># </span><span style="color: #5B6268;">perform policy gradient update
-</span>optimizer.zero_grad()
+# aggregate the loss across tokens (many options exist here)
+loss = ((loss * completion_mask).sum(axis=-1) /
+        completion_mask.sum(axis=-1)).mean()
+
+# perform policy gradient update
+optimizer.zero_grad()
 loss.backward()
 optimizer.step()
-
+  
 </pre>
 </div>
 
@@ -1446,44 +1478,44 @@ A new rollout is collected using the updated policy, and the process repeats
     # 1. Rollout
     generated_tokens = ActorModel.generate(prompt)
     full_text = prompt + generated_tokens
-
+    
     # 2. Final Reward Score
     reward_score = RewardModel(full_text)
-
+    
     deltas = []
-
+    
     # 3. Token-Level Loop (Iterate over GENERATED tokens only)
     for t in generated_tokens:
-
+        
         # KL Penalty
         prob_actor = ActorModel(prompt + tokens_up_to_t)
         prob_ref = ReferenceModel(prompt + tokens_up_to_t)
         KL_t = log(prob_actor) - log(prob_ref)
-
+        
         # Step Reward
         if t == last_token:
             r_t = reward_score - (beta * KL_t)
         else:
             r_t = -(beta * KL_t)
-
+            
         # TD Error (Delta)
         V_current = CriticModel(prompt + tokens_up_to_t)
         V_next = CriticModel(prompt + tokens_up_to_t + t) 
         delta_t = r_t + (gamma * V_next) - V_current
-
+        
         deltas.append(delta_t)
-
+        
     # 4. Calculate GAE (Advantage)
     # Usually computed in reverse order to properly apply (gamma * lambda) discounts
     A_t = compute_gae_backwards(deltas, gamma, lambda)
-
+    
     # 5. PPO Loss Optimization
     # 'ratio' is the probability of the token under updated weights vs old weights
     ratio = P_actor_new(t) / P_actor_old(t) 
-
+    
     # Clip the ratio, multiply by Advantage, and maximize (or minimize negative)
     L = -mean( min(ratio * A_t, clip(ratio, 1-epsilon, 1+epsilon) * A_t) )
-
+    
     Loss.backward()
     Optimizer.step()
 
@@ -1492,7 +1524,7 @@ A new rollout is collected using the updated policy, and the process repeats
 
 ---------------------------------------------
 for batch_prompts in dataset:
-
+    
     # ==========================================
     # PHASE 1: ROLLOUT (No Gradients)
     # ==========================================
@@ -1500,19 +1532,19 @@ for batch_prompts in dataset:
         # 1. Generate responses
         responses = ActorModel.generate(batch_prompts)
         full_texts = batch_prompts + responses
-
+        
         # 2. Get old log probabilities and values
         old_log_probs = ActorModel.get_log_probs(full_texts)
         ref_log_probs = ReferenceModel.get_log_probs(full_texts)
         values = CriticModel(full_texts)
-
+        
         # 3. Get Reward Model scores for the finished sentences
         reward_scores = RewardModel(full_texts)
-
+        
         # 4. Vectorized step math (Calculated all at once, no loop!)
         KL_penalties = old_log_probs - ref_log_probs
         step_rewards = compute_step_rewards(reward_scores, KL_penalties)
-
+        
         # 5. Compute GAE and Returns for the whole batch
         advantages, returns = compute_gae_vectorized(step_rewards, values, gamma, lambda)
 
@@ -1522,25 +1554,25 @@ for batch_prompts in dataset:
     # PPO reuses the rollout data for multiple epochs
     for ppo_epoch in range(PPO_EPOCHS):
         for mini_batch in create_mini_batches(full_texts, old_log_probs, advantages, returns):
-
+            
             # 1. Get NEW log probs and NEW values from updated models
             new_log_probs = ActorModel.get_log_probs(mini_batch.texts)
             new_values = CriticModel(mini_batch.texts)
-
+            
             # 2. Calculate Ratio
             ratio = torch.exp(new_log_probs - mini_batch.old_log_probs)
-
+            
             # 3. ACTOR LOSS (Policy Loss with Clipping)
             surr1 = ratio * mini_batch.advantages
             surr2 = torch.clamp(ratio, 1.0 - epsilon, 1.0 + epsilon) * mini_batch.advantages
             actor_loss = -torch.min(surr1, surr2).mean()
-
+            
             # 4. CRITIC LOSS (Value Loss: MSE between predicted values and actual returns)
             critic_loss = MSE(new_values, mini_batch.returns)
-
+            
             # 5. Total Loss &amp; Backprop
             total_loss = actor_loss + (value_coefficient * critic_loss)
-
+            
             total_loss.backward()
             Optimizer.step()
 
@@ -1550,12 +1582,40 @@ for batch_prompts in dataset:
 </div>
 </div>
 </div>
-<div id="outline-container-org9a76192" class="outline-2">
-<h2 id="org9a76192"><span class="section-number-2">9.</span> GRPO</h2>
+<div id="outline-container-orga72bb06" class="outline-2">
+<h2 id="orga72bb06"><span class="section-number-2">9.</span> GRPO</h2>
 <div class="outline-text-2" id="text-9">
+<div class="org-src-container">
+<pre class="src src-mermaid">graph LR
+    %% Styles
+    classDef trained fill:#fff2cc,stroke:#d6b656,stroke-width:2px;
+    classDef frozen fill:#dae8fc,stroke:#6c8ebf,stroke-width:2px;
+    classDef neutral fill:#fff,stroke:#333,stroke-width:1px;
 
-<div id="orgd3c54a5" class="figure">
-<p><img src="./reinforcement_learning_grpo.png" alt="reinforcement_learning_grpo.png" />
+    X[x] -- A --&gt; LLM[Your LLM]
+    LLM -- B --&gt; YG["Group outputs (y1 y2 yG)"]
+
+    YG -- C --&gt; RM[Reference Model]
+    YG -- D --&gt; RewM[Reward Model]
+
+    RM -- "E KL" --&gt; RG((r_group))
+    RewM -- F --&gt; RG
+
+    RG -- G --&gt; GC[Group-relative computation]
+    GC -- H --&gt; ADV["Advantages per sample"]
+    ADV -. I .-&gt; LLM
+
+    %% Classes
+    class LLM trained
+    class RM,RewM frozen
+    class X,YG,RG,GC,ADV neutral
+
+</pre>
+</div>
+
+
+<div id="org5cecc5b" class="figure">
+<p><img src="./reinforcement_learning_grpo.png" alt="reinforcement_learning_grpo.png">
 </p>
 </div>
 
@@ -1569,8 +1629,8 @@ By removing the Critic part, GRPO removes the <b>source</b> of the interference.
   \[ A_i = \frac{r_i - \text{mean}(r_{1..G})}{\text{std}(r_{1..G})} \]
 </p>
 </div>
-<div id="outline-container-orgea8f042" class="outline-3">
-<h3 id="orgea8f042"><span class="section-number-3">9.1.</span> MoE</h3>
+<div id="outline-container-org71e5edb" class="outline-3">
+<h3 id="org71e5edb"><span class="section-number-3">9.1.</span> MoE</h3>
 <div class="outline-text-3" id="text-9-1">
 <p>
 With shared Experts for common sense training.
@@ -1589,19 +1649,19 @@ in order to training all Experts P,
 </div>
 </div>
 </div>
-<div id="outline-container-orgc71a49e" class="outline-2">
-<h2 id="orgc71a49e"><span class="section-number-2">10.</span> Multi-token training</h2>
+<div id="outline-container-org48a53de" class="outline-2">
+<h2 id="org48a53de"><span class="section-number-2">10.</span> Multi-token training</h2>
 <div class="outline-text-2" id="text-10">
 </div>
-<div id="outline-container-org55b4ac4" class="outline-3">
-<h3 id="org55b4ac4"><span class="section-number-3">10.1.</span> Multi-token prodiction</h3>
+<div id="outline-container-orgd25698f" class="outline-3">
+<h3 id="orgd25698f"><span class="section-number-3">10.1.</span> Multi-token prodiction</h3>
 <div class="outline-text-3" id="text-10-1">
 <p>
 predict multiple token, some are from small model. If LLM accepte them, it does not need to generate them again.
 </p>
 </div>
-<div id="outline-container-org500d84e" class="outline-4">
-<h4 id="org500d84e"><span class="section-number-4">10.1.1.</span> The Core Concept: MTP as an Implicit Critic</h4>
+<div id="outline-container-org41adbfd" class="outline-4">
+<h4 id="org41adbfd"><span class="section-number-4">10.1.1.</span> The Core Concept: MTP as an Implicit Critic</h4>
 <div class="outline-text-4" id="text-10-1-1">
 <p>
 We reject GRPO (which requires generating groups for a baseline). Instead, we use <b><b>Time</b></b> as our baseline.
@@ -1618,8 +1678,8 @@ We use a single Transformer. The <b><b>MTP Modules</b></b> (which normally predi
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcb37d61" class="outline-4">
-<h4 id="orgcb37d61"><span class="section-number-4">10.1.2.</span> Architecture: The "Value-Aware" MTP Head</h4>
+<div id="outline-container-org8f753be" class="outline-4">
+<h4 id="org8f753be"><span class="section-number-4">10.1.2.</span> Architecture: The "Value-Aware" MTP Head</h4>
 <div class="outline-text-4" id="text-10-1-2">
 <p>
 Standard DeepSeek MTP predicts tokens \(t_{n+1}, t_{n+2} \dots\).
@@ -1637,12 +1697,12 @@ Where \(v_k\) represents the expected return starting from step \(n+k\).
 </p>
 </div>
 </div>
-<div id="outline-container-org465b11f" class="outline-4">
-<h4 id="org465b11f"><span class="section-number-4">10.1.3.</span> The Algorithm: Recursive Value Propagation</h4>
+<div id="outline-container-org50cf4d9" class="outline-4">
+<h4 id="org50cf4d9"><span class="section-number-4">10.1.3.</span> The Algorithm: Recursive Value Propagation</h4>
 <div class="outline-text-4" id="text-10-1-3">
 </div>
 <ol class="org-ol">
-<li><a id="org3b2ac15"></a>A. Forward Pass (Generation &amp; Storage)<br />
+<li><a id="org1ee44f5"></a>A. Forward Pass (Generation &amp; Storage)<br>
 <div class="outline-text-5" id="text-10-1-3-1">
 <p>
 At time step \(t\), the network produces:
@@ -1661,7 +1721,7 @@ We <b><b>save</b></b> these internal value estimates \(v^{(k)}_t\) into a buffer
 </p>
 </div>
 </li>
-<li><a id="org8780fa6"></a>B. Interaction<br />
+<li><a id="org8f2e5f6"></a>B. Interaction<br>
 <div class="outline-text-5" id="text-10-1-3-2">
 <p>
 Execute action \(a_t\).
@@ -1669,7 +1729,7 @@ Observe Reward \(r_{t+1}\) and next state \(s_{t+1}\).
 </p>
 </div>
 </li>
-<li><a id="org99deb35"></a>C. The "Next Step" Operation (Bootstrapping)<br />
+<li><a id="org9a8199f"></a>C. The "Next Step" Operation (Bootstrapping)<br>
 <div class="outline-text-5" id="text-10-1-3-3">
 <p>
 This is the key requirement you mentioned. We use the value calculated at \(t+1\) to update the network at \(t\).
@@ -1682,7 +1742,7 @@ We define the <b><b>TD Target</b></b> (Temporal Difference):
 </p>
 </div>
 </li>
-<li><a id="orgd7305bf"></a>D. The Update (Loss Function)<br />
+<li><a id="org73ff37f"></a>D. The Update (Loss Function)<br>
 <div class="outline-text-5" id="text-10-1-3-4">
 <p>
 We update the single network \(\theta\) with three components:
@@ -1714,8 +1774,8 @@ Keep the standard MTP token prediction to ensure the representations remain grou
 </li>
 </ol>
 </div>
-<div id="outline-container-org4a9c53e" class="outline-4">
-<h4 id="org4a9c53e"><span class="section-number-4">10.1.4.</span> Why this meets the criteria</h4>
+<div id="outline-container-org8758ff4" class="outline-4">
+<h4 id="org8758ff4"><span class="section-number-4">10.1.4.</span> Why this meets the criteria</h4>
 <div class="outline-text-4" id="text-10-1-4">
 <ol class="org-ol">
 <li><b><b>Single Network:</b></b> The Policy and Value are fused. The "Value" is just a tiny scalar output on the existing MTP heads.</li>
@@ -1725,8 +1785,8 @@ Keep the standard MTP token prediction to ensure the representations remain grou
 </ol>
 </div>
 </div>
-<div id="outline-container-org790c8f9" class="outline-4">
-<h4 id="org790c8f9"><span class="section-number-4">10.1.5.</span> Visualization of Data Flow</h4>
+<div id="outline-container-org53f3a37" class="outline-4">
+<h4 id="org53f3a37"><span class="section-number-4">10.1.5.</span> Visualization of Data Flow</h4>
 <div class="outline-text-4" id="text-10-1-5">
 <div class="org-src-container">
 <pre class="src src-text">Step T:
@@ -1749,12 +1809,12 @@ Update T:
 </div>
 </div>
 </div>
-<div id="outline-container-org8f3608e" class="outline-3">
-<h3 id="org8f3608e"><span class="section-number-3">10.2.</span> New way with stable assumpation</h3>
+<div id="outline-container-org7161c2e" class="outline-3">
+<h3 id="org7161c2e"><span class="section-number-3">10.2.</span> New way with stable assumpation</h3>
 <div class="outline-text-3" id="text-10-2">
 </div>
-<div id="outline-container-orgf9f178f" class="outline-4">
-<h4 id="orgf9f178f"><span class="section-number-4">10.2.1.</span> 1. The Core Innovation</h4>
+<div id="outline-container-orgc1b5d6d" class="outline-4">
+<h4 id="orgc1b5d6d"><span class="section-number-4">10.2.1.</span> 1. The Core Innovation</h4>
 <div class="outline-text-4" id="text-10-2-1">
 <p>
 A unified architecture where <b><b>MTP Heads</b></b> serve a dual purpose:
@@ -1765,8 +1825,8 @@ A unified architecture where <b><b>MTP Heads</b></b> serve a dual purpose:
 </ol>
 </div>
 </div>
-<div id="outline-container-org9ad74f8" class="outline-4">
-<h4 id="org9ad74f8"><span class="section-number-4">10.2.2.</span> 2. Strengths (Why do this?)</h4>
+<div id="outline-container-orgbcacfa0" class="outline-4">
+<h4 id="orgbcacfa0"><span class="section-number-4">10.2.2.</span> 2. Strengths (Why do this?)</h4>
 <div class="outline-text-4" id="text-10-2-2">
 <ul class="org-ul">
 <li><b><b>Extreme Efficiency:</b></b> Eliminates the memory cost of a separate Critic (PPO) and the compute cost of Group Sampling (GRPO).</li>
@@ -1775,19 +1835,19 @@ A unified architecture where <b><b>MTP Heads</b></b> serve a dual purpose:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf8ea71a" class="outline-4">
-<h4 id="orgf8ea71a"><span class="section-number-4">10.2.3.</span> 3. The "Stability" Bottleneck (Critical Risk)</h4>
+<div id="outline-container-orgcd31a05" class="outline-4">
+<h4 id="orgcd31a05"><span class="section-number-4">10.2.3.</span> 3. The "Stability" Bottleneck (Critical Risk)</h4>
 </div>
-<div id="outline-container-org1c5ec8d" class="outline-4">
-<h4 id="org1c5ec8d"><span class="section-number-4">10.2.4.</span> The Problem: Chasing your own Tail</h4>
+<div id="outline-container-org6f23f25" class="outline-4">
+<h4 id="org6f23f25"><span class="section-number-4">10.2.4.</span> The Problem: Chasing your own Tail</h4>
 <div class="outline-text-4" id="text-10-2-4">
 <p>
 Since we use the <b>same network</b> to generate the target \(V_{t+1}\) and the prediction \(V_t\), the training can oscillate or diverge.
 </p>
 </div>
 </div>
-<div id="outline-container-org5e199d6" class="outline-4">
-<h4 id="org5e199d6"><span class="section-number-4">10.2.5.</span> The Solution: Periodic Target Updates (Polyak Averaging)</h4>
+<div id="outline-container-org66b0d04" class="outline-4">
+<h4 id="org66b0d04"><span class="section-number-4">10.2.5.</span> The Solution: Periodic Target Updates (Polyak Averaging)</h4>
 <div class="outline-text-4" id="text-10-2-5">
 <p>
 We cannot easily afford a second full network. However, we can keep a <b><b>lightweight copy</b></b> of <b>just</b> the MTP heads (a few MBs).
@@ -1801,16 +1861,16 @@ We cannot easily afford a second full network. However, we can keep a <b><b>ligh
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf28cbea" class="outline-4">
-<h4 id="orgf28cbea"><span class="section-number-4">10.2.6.</span> 4. Final Recommendation</h4>
+<div id="outline-container-org27f1ddf" class="outline-4">
+<h4 id="org27f1ddf"><span class="section-number-4">10.2.6.</span> 4. Final Recommendation</h4>
 <div class="outline-text-4" id="text-10-2-6">
 <p>
 This algorithm is feasible but requires careful tuning of the <b><b>Auxiliary Loss Balance</b></b>.
 </p>
 </div>
 </div>
-<div id="outline-container-org5acaf3b" class="outline-4">
-<h4 id="org5acaf3b"><span class="section-number-4">10.2.7.</span> The "Golden Ratio" Loss:</h4>
+<div id="outline-container-org7e7570c" class="outline-4">
+<h4 id="org7e7570c"><span class="section-number-4">10.2.7.</span> The "Golden Ratio" Loss:</h4>
 <div class="outline-text-4" id="text-10-2-7">
 <p>
 \[ L = L_{\text{token}} + \lambda_1 L_{\text{MTP\_tokens}} + \lambda_2 L_{\text{TD\_Value}} \]
@@ -1826,10 +1886,8 @@ This algorithm is feasible but requires careful tuning of the <b><b>Auxiliary Lo
 </div>
 </div>
 </div>
-<div id="postamble" class="status">
-<p class="author">Author: silin</p>
-<p class="date">Created: 2026-03-07 Sat 21:58</p>
-<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+<div id="kb-postamble" class="status">
+<div class="kb-footer"><a href="../index.html" target="_parent">&larr; Back to Index</a></div>
 </div>
 </body>
 </html>

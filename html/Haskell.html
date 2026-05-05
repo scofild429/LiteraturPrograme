@@ -1,15 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2025-01-24 Fr 15:38 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<!-- 2026-05-05 Tue 20:03 -->
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Haskell</title>
-<meta name="author" content="si" />
+<meta name="author" content="silin" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -193,7 +191,9 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<link rel="stylesheet" href="style.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<script src="toc-sidebar.js" defer></script>
 <script>
   window.MathJax = {
     tex: {
@@ -228,56 +228,56 @@
 </script>
 </head>
 <body>
-<div id="content" class="content">
+<div id="kb-content" class="content">
 <h1 class="title">Haskell</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgefe7435">1. commands</a>
+<li><a href="#orgd4cf209">1. commands</a>
 <ul>
-<li><a href="#orga4e97a4">1.1. in file.hs</a></li>
-<li><a href="#org7f3238d">1.2. C-c C-c call in src</a></li>
-<li><a href="#org3270b17">1.3. send to haskell/org-src-block</a></li>
+<li><a href="#orgb88bd3c">1.1. in file.hs</a></li>
+<li><a href="#orgd07a4f9">1.2. C-c C-c call in src</a></li>
+<li><a href="#orgf95ee83">1.3. send to haskell/org-src-block</a></li>
 </ul>
 </li>
-<li><a href="#orgf70c6ba">2. Functional Programm</a>
+<li><a href="#org576dea7">2. Functional Programm</a>
 <ul>
-<li><a href="#orgad41e8a">2.1. Grundlage</a></li>
-<li><a href="#org7b066fc">2.2. Pattern Matching</a></li>
-<li><a href="#orgc00e69d">2.3. Alternativen</a></li>
-<li><a href="#org3e51145">2.4. Recursion</a></li>
-<li><a href="#orgd005a49">2.5. Type conversion1</a></li>
-<li><a href="#orgc205190">2.6. Factorial</a></li>
-<li><a href="#orgb4d6a00">2.7. Stern Brocot Floge</a></li>
+<li><a href="#orge7ded45">2.1. Grundlage</a></li>
+<li><a href="#org4c23ab3">2.2. Pattern Matching</a></li>
+<li><a href="#orgd0f1a0b">2.3. Alternativen</a></li>
+<li><a href="#org114add8">2.4. Recursion</a></li>
+<li><a href="#org83f4a53">2.5. Type conversion1</a></li>
+<li><a href="#org1caaede">2.6. Factorial</a></li>
+<li><a href="#org1f618dd">2.7. Stern Brocot Floge</a></li>
 </ul>
 </li>
-<li><a href="#orge21881d">3. List</a>
+<li><a href="#org22504c4">3. List</a>
 <ul>
-<li><a href="#orgc990a3d">3.1. List  add</a></li>
+<li><a href="#org9a5a430">3.1. List  add</a></li>
 </ul>
 </li>
-<li><a href="#org01a647c">4. Symbol</a></li>
-<li><a href="#orge01a6d1">5. Functional Programm of Haskell</a>
+<li><a href="#org4a6c970">4. Symbol</a></li>
+<li><a href="#org9cb3b3d">5. Functional Programm of Haskell</a>
 <ul>
-<li><a href="#org6acb936">5.1. Grundlage</a></li>
-<li><a href="#org3506afb">5.2. Pattern Matching</a></li>
-<li><a href="#org40424a8">5.3. Alternativen</a></li>
-<li><a href="#org4f12cbb">5.4. Recursion</a></li>
-<li><a href="#orge1515b3">5.5. type conversion</a></li>
-<li><a href="#org4332488">5.6. Factorial</a></li>
-<li><a href="#orgc58fcd6">5.7. Stern Brocot Floge</a></li>
+<li><a href="#org96d0d92">5.1. Grundlage</a></li>
+<li><a href="#org90b8550">5.2. Pattern Matching</a></li>
+<li><a href="#org6a382c4">5.3. Alternativen</a></li>
+<li><a href="#orgdce7702">5.4. Recursion</a></li>
+<li><a href="#org5b4407e">5.5. type conversion</a></li>
+<li><a href="#orgfa6255d">5.6. Factorial</a></li>
+<li><a href="#org0d2e361">5.7. Stern Brocot Floge</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgefe7435" class="outline-2">
-<h2 id="orgefe7435"><span class="section-number-2">1.</span> commands</h2>
+<div id="outline-container-orgd4cf209" class="outline-2">
+<h2 id="orgd4cf209"><span class="section-number-2">1.</span> commands</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orga4e97a4" class="outline-3">
-<h3 id="orga4e97a4"><span class="section-number-3">1.1.</span> in file.hs</h3>
+<div id="outline-container-orgb88bd3c" class="outline-3">
+<h3 id="orgb88bd3c"><span class="section-number-3">1.1.</span> in file.hs</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 C-c C-l  to execute file.hs and go to interactive environment 
@@ -285,12 +285,12 @@ Seeing ./black.hs
 </p>
 </div>
 </div>
-<div id="outline-container-org7f3238d" class="outline-3">
-<h3 id="org7f3238d"><span class="section-number-3">1.2.</span> C-c C-c call in src</h3>
+<div id="outline-container-orgd07a4f9" class="outline-3">
+<h3 id="orgd07a4f9"><span class="section-number-3">1.2.</span> C-c C-c call in src</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">log2</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Float</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Float</span>
-  log2 <span style="color: #7590db;">=</span> logBase 2
+<pre class="src src-haskell">log2 :: Float -&gt; Float
+  log2 = logBase 2
   log2 43
 
 </pre>
@@ -315,16 +315,21 @@ Seeing Literatur Programm Grundlage
 </p>
 </div>
 </div>
-<div id="outline-container-org3270b17" class="outline-3">
-<h3 id="org3270b17"><span class="section-number-3">1.3.</span> send to haskell/org-src-block</h3>
+<div id="outline-container-orgf95ee83" class="outline-3">
+<h3 id="orgf95ee83"><span class="section-number-3">1.3.</span> send to haskell/org-src-block</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">log2</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Float</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Float</span>
-  log2 <span style="color: #7590db;">=</span> logBase 2
+<pre class="src src-haskell">log2 :: Float -&gt; Float
+  log2 = logBase 2
   log2 43
 
 </pre>
 </div>
+
+<pre class="example">
+Prelude&gt; 5.426264754702098
+</pre>
+
 
 
 
@@ -353,86 +358,114 @@ Seeing Literatur Programm Alternativen
 </div>
 </div>
 </div>
-<div id="outline-container-orgf70c6ba" class="outline-2">
-<h2 id="orgf70c6ba"><span class="section-number-2">2.</span> Functional Programm</h2>
+<div id="outline-container-org576dea7" class="outline-2">
+<h2 id="org576dea7"><span class="section-number-2">2.</span> Functional Programm</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgad41e8a" class="outline-3">
-<h3 id="orgad41e8a"><span class="section-number-3">2.1.</span> Grundlage</h3>
+<div id="outline-container-orge7ded45" class="outline-3">
+<h3 id="orge7ded45"><span class="section-number-3">2.1.</span> Grundlage</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 basic function call
 </p>
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">log2</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Float</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Float</span>
-  log2 <span style="color: #7590db;">=</span> logBase 2
+<pre class="src src-haskell">log2 :: Float -&gt; Float
+  log2 = logBase 2
   log2 43
 
 </pre>
 </div>
+
+<pre class="example">
+Prelude&gt; 5.426264754702098
+</pre>
+
 <p>
 implication
 </p>
 <div class="org-src-container">
-<pre class="src src-haskell">(<span style="color: #bc6ec5; font-weight: bold;">==&gt;</span>)<span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span>
-<span style="color: #bc6ec5; font-weight: bold;">a</span> <span style="color: #bc6ec5; font-weight: bold;">==&gt;</span> b <span style="color: #7590db;">=</span> not a <span style="color: #7590db;">||</span> not b
-<span style="color: #ce537a; font-weight: bold;">Flase</span> <span style="color: #bc6ec5; font-weight: bold;">==&gt;</span> <span style="color: #ce537a; font-weight: bold;">True</span>
-<span style="color: #ce537a; font-weight: bold;">False</span><span style="color: #bc6ec5; font-weight: bold;">==&gt;</span> <span style="color: #ce537a; font-weight: bold;">False</span>
-<span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #bc6ec5; font-weight: bold;">==&gt;</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+<pre class="src src-haskell">(==&gt;):: Bool -&gt; Bool -&gt; Bool
+a ==&gt; b = not a || not b
+Flase ==&gt; True
+False==&gt; False
+True ==&gt; True
 
 </pre>
 </div>
+
+<pre class="example">
+False
+</pre>
+
 
 
 <p>
 &#x2013;euler numbers
 </p>
 <div class="org-src-container">
-<pre class="src src-haskell">e<span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Float</span>
-<span style="color: #bc6ec5; font-weight: bold;">e</span> <span style="color: #7590db;">=</span> exp 1
+<pre class="src src-haskell">e:: Float
+e = exp 1
 e 
 </pre>
 </div>
-</div>
-</div>
 
-<div id="outline-container-org7b066fc" class="outline-3">
-<h3 id="org7b066fc"><span class="section-number-3">2.2.</span> Pattern Matching</h3>
+<pre class="example">
+Prelude&gt; 2.718281828459045
+</pre>
+</div>
+</div>
+<div id="outline-container-org4c23ab3" class="outline-3">
+<h3 id="org4c23ab3"><span class="section-number-3">2.2.</span> Pattern Matching</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 one of the calling must match one case of pattern
 </p>
 <div class="org-src-container">
-<pre class="src src-haskell">(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span>
-  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">False</span> <span style="color: #ce537a; font-weight: bold;">False</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">False</span>
-  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">False</span> <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">True</span>
-  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">False</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">True</span>
-  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+<pre class="src src-haskell">(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+  (&lt;#&gt;) False False = False
+  (&lt;#&gt;) False True = True
+  (&lt;#&gt;) True False = True
+  (&lt;#&gt;) True True = True
 
 
-<span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+True &lt;#&gt; True
 </pre>
 </div>
+
+<pre class="example">
+Prelude&gt; Prelude&gt; Prelude&gt; Prelude&gt; Prelude&gt; Prelude&gt; True
+</pre>
+
 
 
 <div class="org-src-container">
 <pre class="src src-haskell">
-(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span>
-  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">True</span>
-  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #4f97d7; font-weight: bold;">_</span> <span style="color: #4f97d7; font-weight: bold;">_</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">False</span>
+(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+  (&lt;#&gt;) True True = True
+  (&lt;#&gt;) _ _ = False
 
-(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">True</span>
-(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">False</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+(&lt;#&gt;) True True
+(&lt;#&gt;) False True
 
 </pre>
 </div>
+
+<pre class="example">
+False
+</pre>
+
 
 <div class="org-src-container">
-<pre class="src src-haskell">(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span>
-  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">True</span> 
+<pre class="src src-haskell">(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+  (&lt;#&gt;) True True 
 
 </pre>
 </div>
+
+<pre class="example">
+True
+</pre>
+
 
 <p>
 case : this can only be executed in a .hs file,
@@ -446,298 +479,360 @@ so long the indentation is correct, so works
 </p>
 
 <div class="org-src-container">
-<pre class="src src-haskell">(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span>
-(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) a b
-  <span style="color: #7590db;">|</span> a <span style="color: #7590db;">==</span> b <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">False</span>
-  <span style="color: #7590db;">|</span> otherwise <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+<pre class="src src-haskell">(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+(&lt;#&gt;) a b
+  | a == b = False
+  | otherwise = True
 
 
 </pre>
 </div>
-</div>
-</div>
 
-<div id="outline-container-orgc00e69d" class="outline-3">
-<h3 id="orgc00e69d"><span class="section-number-3">2.3.</span> Alternativen</h3>
+<pre class="example">
+&lt;interactive&gt;:48:3: error: parse error on input ‘|’
+</pre>
+</div>
+</div>
+<div id="outline-container-orgd0f1a0b" class="outline-3">
+<h3 id="orgd0f1a0b"><span class="section-number-3">2.3.</span> Alternativen</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 if else then
 </p>
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">absolute</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Int</span>
-<span style="color: #bc6ec5; font-weight: bold;">absolute</span> x <span style="color: #7590db;">=</span> <span style="color: #4f97d7; font-weight: bold;">if</span> x <span style="color: #7590db;">&lt;</span> 0 <span style="color: #4f97d7; font-weight: bold;">then</span> <span style="color: #7590db;">-</span>x <span style="color: #4f97d7; font-weight: bold;">else</span> x
+<pre class="src src-haskell">absolute :: Int -&gt; Int
+absolute x = if x &lt; 0 then -x else x
 
 </pre>
 </div>
-</div>
-</div>
 
-<div id="outline-container-org3e51145" class="outline-3">
-<h3 id="org3e51145"><span class="section-number-3">2.4.</span> Recursion</h3>
+<pre class="example">
+&lt;interactive&gt;:50:1-8: error:
+    Variable not in scope: absolute :: Int -&gt; Int
+</pre>
+</div>
+</div>
+<div id="outline-container-org114add8" class="outline-3">
+<h3 id="org114add8"><span class="section-number-3">2.4.</span> Recursion</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 easy fib
 </p>
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">heronA</span> <span style="color: #7590db;">::</span>(<span style="color: #ce537a; font-weight: bold;">Int</span>, <span style="color: #ce537a; font-weight: bold;">Double</span>) <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span>
-<span style="color: #bc6ec5; font-weight: bold;">heronA</span> (n,a)
-  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">&gt;</span> 0     <span style="color: #7590db;">=</span> (heronA(n<span style="color: #7590db;">-</span>1,a) <span style="color: #7590db;">+</span> a<span style="color: #7590db;">/</span>heronA(n<span style="color: #7590db;">-</span>1, a))<span style="color: #7590db;">/</span>2
-  <span style="color: #7590db;">|</span> otherwise <span style="color: #7590db;">=</span> a
+<pre class="src src-haskell">heronA ::(Int, Double) -&gt; Double
+heronA (n,a)
+  | n &gt; 0     = (heronA(n-1,a) + a/heronA(n-1, a))/2
+  | otherwise = a
 
-<span style="color: #bc6ec5; font-weight: bold;">absolute</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Int</span>
-<span style="color: #bc6ec5; font-weight: bold;">absolute</span> x <span style="color: #7590db;">=</span> <span style="color: #4f97d7; font-weight: bold;">if</span> x <span style="color: #7590db;">&lt;</span> 0 <span style="color: #4f97d7; font-weight: bold;">then</span> <span style="color: #7590db;">-</span>x <span style="color: #4f97d7; font-weight: bold;">else</span> x
+absolute :: Int -&gt; Int
+absolute x = if x &lt; 0 then -x else x
 
-<span style="color: #bc6ec5; font-weight: bold;">heronB</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span>
-<span style="color: #bc6ec5; font-weight: bold;">heronB</span> n a
-  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">&gt;</span> 0     <span style="color: #7590db;">=</span> (heronB (n<span style="color: #7590db;">-</span>1) a <span style="color: #7590db;">+</span> a<span style="color: #7590db;">/</span>heronB(n<span style="color: #7590db;">-</span>1) a)<span style="color: #7590db;">/</span>2
-  <span style="color: #7590db;">|</span> otherwise <span style="color: #7590db;">=</span> a
+heronB :: Int -&gt; Double -&gt; Double
+heronB n a
+  | n &gt; 0     = (heronB (n-1) a + a/heronB(n-1) a)/2
+  | otherwise = a
 
 </pre>
 </div>
+
+<pre class="example">
+&lt;interactive&gt;:70:3: error: parse error on input ‘|’
+</pre>
+
 
 
 <p>
 where 
 </p>
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">heronC</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span>
-<span style="color: #bc6ec5; font-weight: bold;">heronC</span> n a
-  <span style="color: #7590db;">|</span>n <span style="color: #7590db;">&gt;</span> 0      <span style="color: #7590db;">=</span> (x <span style="color: #7590db;">+</span> a<span style="color: #7590db;">/</span>x)<span style="color: #7590db;">/</span>2
-  <span style="color: #7590db;">|</span>otherwise  <span style="color: #7590db;">=</span> a
-  <span style="color: #4f97d7; font-weight: bold;">where</span> x <span style="color: #7590db;">=</span> heronC (n<span style="color: #7590db;">-</span>1) a
+<pre class="src src-haskell">heronC :: Int -&gt; Double -&gt; Double
+heronC n a
+  |n &gt; 0      = (x + a/x)/2
+  |otherwise  = a
+  where x = heronC (n-1) a
 </pre>
 </div>
+
+<pre class="example">
+&lt;interactive&gt;:79:3-7: error: parse error on input ‘where’
+</pre>
+
 
 <p>
 fib &amp; where
 </p>
 
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">fibA</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Int</span>
-<span style="color: #bc6ec5; font-weight: bold;">fibA</span> n
-  <span style="color: #7590db;">|</span>n <span style="color: #7590db;">==</span> 0    <span style="color: #7590db;">=</span> 0
-  <span style="color: #7590db;">|</span>n <span style="color: #7590db;">==</span> 1    <span style="color: #7590db;">=</span> 1
-  <span style="color: #7590db;">|</span>otherwise <span style="color: #7590db;">=</span> x <span style="color: #7590db;">+</span>y
-  <span style="color: #4f97d7; font-weight: bold;">where</span>
-    x <span style="color: #7590db;">=</span> fibA (n<span style="color: #7590db;">-</span>1)
-    y <span style="color: #7590db;">=</span> fibA (n<span style="color: #7590db;">-</span>2)
+<pre class="src src-haskell">fibA :: Int -&gt; Int
+fibA n
+  |n == 0    = 0
+  |n == 1    = 1
+  |otherwise = x +y
+  where
+    x = fibA (n-1)
+    y = fibA (n-2)
 
 </pre>
 </div>
+
+<pre class="example">
+&lt;interactive&gt;:88:9-12: error:
+    Variable not in scope: fibA :: Integer -&gt; t
+
+&lt;interactive&gt;:88:15: error: Variable not in scope: n :: Integer
+</pre>
+
 
 <p>
 fib &amp; where &amp; pattern matching
 </p>
 
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">fibB</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Int</span>
-<span style="color: #bc6ec5; font-weight: bold;">fibB</span> 0 <span style="color: #7590db;">=</span> 0
-<span style="color: #bc6ec5; font-weight: bold;">fibB</span> 1 <span style="color: #7590db;">=</span> 1
-<span style="color: #bc6ec5; font-weight: bold;">fibB</span> n <span style="color: #7590db;">=</span> fibB (n<span style="color: #7590db;">-</span>1) <span style="color: #7590db;">+</span> fibB (n<span style="color: #7590db;">-</span>2)
+<pre class="src src-haskell">fibB :: Int -&gt; Int
+fibB 0 = 0
+fibB 1 = 1
+fibB n = fibB (n-1) + fibB (n-2)
 
 
-<span style="color: #bc6ec5; font-weight: bold;">fibC</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Int</span>
-<span style="color: #bc6ec5; font-weight: bold;">fibC</span> 0 <span style="color: #7590db;">=</span> 0
-<span style="color: #bc6ec5; font-weight: bold;">fibC</span> 1 <span style="color: #7590db;">=</span> 1
-<span style="color: #bc6ec5; font-weight: bold;">fibC</span> n
-  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">&lt;</span> 0      <span style="color: #7590db;">=</span> error <span style="color: #2d9574;">"illegal arguement"</span>
-  <span style="color: #7590db;">|</span> otherwise  <span style="color: #7590db;">=</span> fibB (n<span style="color: #7590db;">-</span>1) <span style="color: #7590db;">+</span> fibB (n<span style="color: #7590db;">-</span>2)
+fibC :: Int -&gt; Int
+fibC 0 = 0
+fibC 1 = 1
+fibC n
+  | n &lt; 0      = error "illegal arguement"
+  | otherwise  = fibB (n-1) + fibB (n-2)
 
 
-(<span style="color: #bc6ec5; font-weight: bold;">&lt;##&gt;</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span>
-0 <span style="color: #7590db;">&lt;##&gt;</span> a   <span style="color: #7590db;">=</span> a
-n <span style="color: #bc6ec5; font-weight: bold;">&lt;##&gt;</span> a  
-  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">&gt;</span> 0  <span style="color: #7590db;">=</span> (x <span style="color: #7590db;">+</span> a<span style="color: #7590db;">/</span>x)<span style="color: #7590db;">/</span>2
-  <span style="color: #7590db;">|</span> otherwise  <span style="color: #7590db;">=</span> error <span style="color: #2d9574;">"illegal arguement"</span>
-  <span style="color: #4f97d7; font-weight: bold;">where</span> x <span style="color: #7590db;">=</span> (n<span style="color: #7590db;">-</span>1) <span style="color: #7590db;">&lt;##&gt;</span> a
+(&lt;##&gt;) :: Int -&gt; Double -&gt; Double
+0 &lt;##&gt; a   = a
+n &lt;##&gt; a  
+  | n &gt; 0  = (x + a/x)/2
+  | otherwise  = error "illegal arguement"
+  where x = (n-1) &lt;##&gt; a
+</pre>
+</div>
+
+<pre class="example">
+&lt;interactive&gt;:109:3-7: error: parse error on input ‘where’
 </pre>
 </div>
 </div>
-</div>
-
-<div id="outline-container-orgd005a49" class="outline-3">
-<h3 id="orgd005a49"><span class="section-number-3">2.5.</span> Type conversion1</h3>
+<div id="outline-container-org83f4a53" class="outline-3">
+<h3 id="org83f4a53"><span class="section-number-3">2.5.</span> Type conversion1</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 Guides
 </p>
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">vielleichtdreifach</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
-<span style="color: #bc6ec5; font-weight: bold;">vielleichtdreifach</span> verdreifach nochmal n
-  <span style="color: #7590db;">|</span> verdreifach <span style="color: #7590db;">&amp;&amp;</span> nochmal <span style="color: #7590db;">=</span> maldrei ( maldrei n)
-  <span style="color: #7590db;">|</span> verdreifach            <span style="color: #7590db;">=</span> maldrei n
-  <span style="color: #7590db;">|</span> otherwise              <span style="color: #7590db;">=</span> n
-  <span style="color: #4f97d7; font-weight: bold;">where</span> maldrei n <span style="color: #7590db;">=</span> 3<span style="color: #7590db;">*</span>n 
+<pre class="src src-haskell">vielleichtdreifach :: Bool -&gt; Bool -&gt; Integer -&gt; Integer
+vielleichtdreifach verdreifach nochmal n
+  | verdreifach &amp;&amp; nochmal = maldrei ( maldrei n)
+  | verdreifach            = maldrei n
+  | otherwise              = n
+  where maldrei n = 3*n 
 
-<span style="color: #bc6ec5; font-weight: bold;">dreifach</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
-<span style="color: #bc6ec5; font-weight: bold;">dreifach</span> <span style="color: #7590db;">=</span> vielleichtdreifach <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">False</span> 
+dreifach :: Integer -&gt; Integer
+dreifach = vielleichtdreifach True False 
 
-<span style="color: #bc6ec5; font-weight: bold;">neudreifach</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
-<span style="color: #bc6ec5; font-weight: bold;">neudreifach</span> <span style="color: #7590db;">=</span> vielleichtdreifach <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+neudreifach :: Integer -&gt; Integer
+neudreifach = vielleichtdreifach True True
 
 </pre>
 </div>
+
+<pre class="example">
+&lt;interactive&gt;:33:15-32: error:
+    Variable not in scope: vielleichtdreifach :: Bool -&gt; Bool -&gt; t
+</pre>
+
 
 <p>
 vielleichtdreifach Bool Bool -&gt; Integer
 </p>
 </div>
 </div>
-
-<div id="outline-container-orgc205190" class="outline-3">
-<h3 id="orgc205190"><span class="section-number-3">2.6.</span> Factorial</h3>
+<div id="outline-container-org1caaede" class="outline-3">
+<h3 id="org1caaede"><span class="section-number-3">2.6.</span> Factorial</h3>
 <div class="outline-text-3" id="text-2-6">
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">fac</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
-<span style="color: #bc6ec5; font-weight: bold;">fac</span> n
-  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">==</span> 0  <span style="color: #7590db;">=</span> 1
-  <span style="color: #7590db;">|</span> otherwise <span style="color: #7590db;">=</span> fac (n<span style="color: #7590db;">-</span>1) <span style="color: #7590db;">*</span> n
+<pre class="src src-haskell">fac :: Integer -&gt; Integer
+fac n
+  | n == 0  = 1
+  | otherwise = fac (n-1) * n
+</pre>
+</div>
+
+<pre class="example">
+&lt;interactive&gt;:127:3: error: parse error on input ‘|’
 </pre>
 </div>
 </div>
-</div>
-
-<div id="outline-container-orgb4d6a00" class="outline-3">
-<h3 id="orgb4d6a00"><span class="section-number-3">2.7.</span> Stern Brocot Floge</h3>
+<div id="outline-container-org1f618dd" class="outline-3">
+<h3 id="org1f618dd"><span class="section-number-3">2.7.</span> Stern Brocot Floge</h3>
 <div class="outline-text-3" id="text-2-7">
 <p>
 \(\\s_{0} = 0 \\ s_{1} = 1 \\ s_{2n} = s_{n} \\ s_{2n+1} = s_{n} + s_{n+1}\)
 </p>
 
 <div class="org-src-container">
-<pre class="src src-haskell">(<span style="color: #bc6ec5; font-weight: bold;">*/*</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
-(<span style="color: #bc6ec5; font-weight: bold;">*/*</span>) <span style="color: #7590db;">=</span> div
+<pre class="src src-haskell">(*/*) :: Integer -&gt; Integer -&gt; Integer
+(*/*) = div
 
-(<span style="color: #bc6ec5; font-weight: bold;">*%*</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
-(<span style="color: #bc6ec5; font-weight: bold;">*%*</span>) <span style="color: #7590db;">=</span> rem
+(*%*) :: Integer -&gt; Integer -&gt; Integer
+(*%*) = rem
 
-<span style="color: #bc6ec5; font-weight: bold;">sternBrocot</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
-<span style="color: #bc6ec5; font-weight: bold;">sternBrocot</span> n
-  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">==</span> 0      <span style="color: #7590db;">=</span> 0
-  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">==</span> 1      <span style="color: #7590db;">=</span> 1
-  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">*%*</span> 2 <span style="color: #7590db;">==</span> 0 <span style="color: #7590db;">=</span> sternBrocot half
-  <span style="color: #7590db;">|</span> otherwise    <span style="color: #7590db;">=</span> sternBrocot half <span style="color: #7590db;">+</span> sternBrocot (half <span style="color: #7590db;">+</span> 1)
-  <span style="color: #4f97d7; font-weight: bold;">where</span> half <span style="color: #7590db;">=</span> n <span style="color: #7590db;">*/*</span> 2
+sternBrocot :: Integer -&gt; Integer
+sternBrocot n
+  | n == 0      = 0
+  | n == 1      = 1
+  | n *%* 2 == 0 = sternBrocot half
+  | otherwise    = sternBrocot half + sternBrocot (half + 1)
+  where half = n */* 2
 
-<span style="color: #bc6ec5; font-weight: bold;">suche</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
-<span style="color: #bc6ec5; font-weight: bold;">suche</span> suchziel postionziel
-  <span style="color: #7590db;">|</span> sternBrocot postionziel <span style="color: #7590db;">&gt;</span> suchziel <span style="color: #7590db;">=</span> postionziel
-  <span style="color: #7590db;">|</span> otherwise                          <span style="color: #7590db;">=</span> suche suchziel (postionziel <span style="color: #7590db;">+</span>1)
+suche :: Integer -&gt; Integer -&gt; Integer
+suche suchziel postionziel
+  | sternBrocot postionziel &gt; suchziel = postionziel
+  | otherwise                          = suche suchziel (postionziel +1)
 
+</pre>
+</div>
+
+<pre class="example">
+&lt;interactive&gt;:146:3: error: parse error on input ‘|’
 </pre>
 </div>
 </div>
 </div>
-</div>
-<div id="outline-container-orge21881d" class="outline-2">
-<h2 id="orge21881d"><span class="section-number-2">3.</span> List</h2>
+<div id="outline-container-org22504c4" class="outline-2">
+<h2 id="org22504c4"><span class="section-number-2">3.</span> List</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 字符串就是单一字符的列表
 </p>
 </div>
-<div id="outline-container-orgc990a3d" class="outline-3">
-<h3 id="orgc990a3d"><span class="section-number-3">3.1.</span> List  add</h3>
+<div id="outline-container-org9a5a430" class="outline-3">
+<h3 id="org9a5a430"><span class="section-number-3">3.1.</span> List  add</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 in prelude
 </p>
 <div class="org-src-container">
-<pre class="src src-haskell">[1,2,3] <span style="color: #7590db;">++</span> [3,4,5]
-2 <span style="color: #ce537a; font-weight: bold;">:</span> [3,4]
+<pre class="src src-haskell">[1,2,3] ++ [3,4,5]
+2 : [3,4]
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-org01a647c" class="outline-2">
-<h2 id="org01a647c"><span class="section-number-2">4.</span> Symbol</h2>
+<div id="outline-container-org4a6c970" class="outline-2">
+<h2 id="org4a6c970"><span class="section-number-2">4.</span> Symbol</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 需要时刻谨记是用  .  来做函数组合的，$ 是用来降低函数执行优先级的。
 </p>
 </div>
 </div>
-
-<div id="outline-container-orge01a6d1" class="outline-2">
-<h2 id="orge01a6d1"><span class="section-number-2">5.</span> Functional Programm of Haskell</h2>
+<div id="outline-container-org9cb3b3d" class="outline-2">
+<h2 id="org9cb3b3d"><span class="section-number-2">5.</span> Functional Programm of Haskell</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org6acb936" class="outline-3">
-<h3 id="org6acb936"><span class="section-number-3">5.1.</span> Grundlage</h3>
+<div id="outline-container-org96d0d92" class="outline-3">
+<h3 id="org96d0d92"><span class="section-number-3">5.1.</span> Grundlage</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 basic function call
 </p>
 <div class="org-src-container">
-<pre class="src src-haskell">  log2 <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Float</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Float</span>
-  log2 <span style="color: #7590db;">=</span> logBase 2
-<span style="color: #bc6ec5; font-weight: bold;">log2</span> 43
+<pre class="src src-haskell">  log2 :: Float -&gt; Float
+  log2 = logBase 2
+log2 43
 
 </pre>
 </div>
+
+<pre class="example">
+Prelude&gt; 5.426264754702098
+</pre>
+
 
 <p>
 implication
 </p>
 <div class="org-src-container">
 <pre class="src src-haskell">
-(<span style="color: #bc6ec5; font-weight: bold;">==&gt;</span>)<span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span>
-<span style="color: #bc6ec5; font-weight: bold;">a</span> <span style="color: #bc6ec5; font-weight: bold;">==&gt;</span> b <span style="color: #7590db;">=</span> not a <span style="color: #7590db;">||</span> not b
-<span style="color: #ce537a; font-weight: bold;">Flase</span> <span style="color: #bc6ec5; font-weight: bold;">==&gt;</span> <span style="color: #ce537a; font-weight: bold;">True</span>
-<span style="color: #ce537a; font-weight: bold;">False</span><span style="color: #bc6ec5; font-weight: bold;">==&gt;</span> <span style="color: #ce537a; font-weight: bold;">False</span>
-<span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #bc6ec5; font-weight: bold;">==&gt;</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+(==&gt;):: Bool -&gt; Bool -&gt; Bool
+a ==&gt; b = not a || not b
+Flase ==&gt; True
+False==&gt; False
+True ==&gt; True
 
 </pre>
 </div>
+
+<pre class="example">
+False
+</pre>
+
 
 <p>
 &#x2013;euler numbers
 </p>
 <div class="org-src-container">
 <pre class="src src-haskell">
-  e<span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Float</span>
-    e <span style="color: #7590db;">=</span> exp 1
+  e:: Float
+    e = exp 1
 e 
 </pre>
 </div>
-</div>
-</div>
 
-<div id="outline-container-org3506afb" class="outline-3">
-<h3 id="org3506afb"><span class="section-number-3">5.2.</span> Pattern Matching</h3>
+<pre class="example">
+2.718281828459045
+</pre>
+</div>
+</div>
+<div id="outline-container-org90b8550" class="outline-3">
+<h3 id="org90b8550"><span class="section-number-3">5.2.</span> Pattern Matching</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 one of the calling must match one case of pattern
 </p>
 <div class="org-src-container">
-<pre class="src src-haskell">(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span>
-  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">False</span> <span style="color: #ce537a; font-weight: bold;">False</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">False</span>
-  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">False</span> <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">True</span>
-  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">False</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">True</span>
-  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+<pre class="src src-haskell">(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+  (&lt;#&gt;) False False = False
+  (&lt;#&gt;) False True = True
+  (&lt;#&gt;) True False = True
+  (&lt;#&gt;) True True = True
 
 
-<span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+True &lt;#&gt; True
 </pre>
 </div>
+
+<pre class="example">
+Prelude&gt; Prelude&gt; Prelude&gt; Prelude&gt; Prelude&gt; Prelude&gt; True
+</pre>
+
 
 
 
 <div class="org-src-container">
-<pre class="src src-haskell">(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span>
-  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">True</span>
-  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #4f97d7; font-weight: bold;">_</span> <span style="color: #4f97d7; font-weight: bold;">_</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">False</span>
+<pre class="src src-haskell">(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+  (&lt;#&gt;) True True = True
+  (&lt;#&gt;) _ _ = False
 
-(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">True</span>
-(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">False</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+(&lt;#&gt;) True True
+(&lt;#&gt;) False True
 
 </pre>
 </div>
 
+<pre class="example">
+False
+</pre>
+
+
 <div class="org-src-container">
-<pre class="src src-haskell">(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span>
-  (<span style="color: #7590db;">&lt;#&gt;</span>) <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+<pre class="src src-haskell">(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+  (&lt;#&gt;) True True = True
 
 </pre>
 </div>
@@ -754,51 +849,49 @@ so long the indentation is correct, so works
 </p>
 
 <div class="org-src-container">
-<pre class="src src-haskell">(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span>
-(<span style="color: #bc6ec5; font-weight: bold;">&lt;#&gt;</span>) a b
-  <span style="color: #7590db;">|</span> a <span style="color: #7590db;">==</span> b <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">False</span>
-  <span style="color: #7590db;">|</span> otherwise <span style="color: #7590db;">=</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+<pre class="src src-haskell">(&lt;#&gt;) :: Bool -&gt; Bool -&gt; Bool
+(&lt;#&gt;) a b
+  | a == b = False
+  | otherwise = True
 
 
 </pre>
 </div>
 </div>
 </div>
-
-<div id="outline-container-org40424a8" class="outline-3">
-<h3 id="org40424a8"><span class="section-number-3">5.3.</span> Alternativen</h3>
+<div id="outline-container-org6a382c4" class="outline-3">
+<h3 id="org6a382c4"><span class="section-number-3">5.3.</span> Alternativen</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 if else then
 </p>
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">absolute</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Int</span>
-<span style="color: #bc6ec5; font-weight: bold;">absolute</span> x <span style="color: #7590db;">=</span> <span style="color: #4f97d7; font-weight: bold;">if</span> x <span style="color: #7590db;">&lt;</span> 0 <span style="color: #4f97d7; font-weight: bold;">then</span> <span style="color: #7590db;">-</span>x <span style="color: #4f97d7; font-weight: bold;">else</span> x
+<pre class="src src-haskell">absolute :: Int -&gt; Int
+absolute x = if x &lt; 0 then -x else x
 
 </pre>
 </div>
 </div>
 </div>
-
-<div id="outline-container-org4f12cbb" class="outline-3">
-<h3 id="org4f12cbb"><span class="section-number-3">5.4.</span> Recursion</h3>
+<div id="outline-container-orgdce7702" class="outline-3">
+<h3 id="orgdce7702"><span class="section-number-3">5.4.</span> Recursion</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 easy fib
 </p>
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">heronA</span> <span style="color: #7590db;">::</span>(<span style="color: #ce537a; font-weight: bold;">Int</span>, <span style="color: #ce537a; font-weight: bold;">Double</span>) <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span>
-<span style="color: #bc6ec5; font-weight: bold;">heronA</span> (n,a)
-  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">&gt;</span> 0     <span style="color: #7590db;">=</span> (heronA(n<span style="color: #7590db;">-</span>1,a) <span style="color: #7590db;">+</span> a<span style="color: #7590db;">/</span>heronA(n<span style="color: #7590db;">-</span>1, a))<span style="color: #7590db;">/</span>2
-  <span style="color: #7590db;">|</span> otherwise <span style="color: #7590db;">=</span> a
+<pre class="src src-haskell">heronA ::(Int, Double) -&gt; Double
+heronA (n,a)
+  | n &gt; 0     = (heronA(n-1,a) + a/heronA(n-1, a))/2
+  | otherwise = a
 
-<span style="color: #bc6ec5; font-weight: bold;">absolute</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Int</span>
-<span style="color: #bc6ec5; font-weight: bold;">absolute</span> x <span style="color: #7590db;">=</span> <span style="color: #4f97d7; font-weight: bold;">if</span> x <span style="color: #7590db;">&lt;</span> 0 <span style="color: #4f97d7; font-weight: bold;">then</span> <span style="color: #7590db;">-</span>x <span style="color: #4f97d7; font-weight: bold;">else</span> x
+absolute :: Int -&gt; Int
+absolute x = if x &lt; 0 then -x else x
 
-<span style="color: #bc6ec5; font-weight: bold;">heronB</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span>
-<span style="color: #bc6ec5; font-weight: bold;">heronB</span> n a
-  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">&gt;</span> 0     <span style="color: #7590db;">=</span> (heronB (n<span style="color: #7590db;">-</span>1) a <span style="color: #7590db;">+</span> a<span style="color: #7590db;">/</span>heronB(n<span style="color: #7590db;">-</span>1) a)<span style="color: #7590db;">/</span>2
-  <span style="color: #7590db;">|</span> otherwise <span style="color: #7590db;">=</span> a
+heronB :: Int -&gt; Double -&gt; Double
+heronB n a
+  | n &gt; 0     = (heronB (n-1) a + a/heronB(n-1) a)/2
+  | otherwise = a
 
 </pre>
 </div>
@@ -808,11 +901,11 @@ easy fib
 where 
 </p>
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">heronC</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span>
-<span style="color: #bc6ec5; font-weight: bold;">heronC</span> n a
-  <span style="color: #7590db;">|</span>n <span style="color: #7590db;">&gt;</span> 0      <span style="color: #7590db;">=</span> (x <span style="color: #7590db;">+</span> a<span style="color: #7590db;">/</span>x)<span style="color: #7590db;">/</span>2
-  <span style="color: #7590db;">|</span>otherwise  <span style="color: #7590db;">=</span> a
-  <span style="color: #4f97d7; font-weight: bold;">where</span> x <span style="color: #7590db;">=</span> heronC (n<span style="color: #7590db;">-</span>1) a
+<pre class="src src-haskell">heronC :: Int -&gt; Double -&gt; Double
+heronC n a
+  |n &gt; 0      = (x + a/x)/2
+  |otherwise  = a
+  where x = heronC (n-1) a
 </pre>
 </div>
 
@@ -821,14 +914,14 @@ fib &amp; where
 </p>
 
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">fibA</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Int</span>
-<span style="color: #bc6ec5; font-weight: bold;">fibA</span> n
-  <span style="color: #7590db;">|</span>n <span style="color: #7590db;">==</span> 0    <span style="color: #7590db;">=</span> 0
-  <span style="color: #7590db;">|</span>n <span style="color: #7590db;">==</span> 1    <span style="color: #7590db;">=</span> 1
-  <span style="color: #7590db;">|</span>otherwise <span style="color: #7590db;">=</span> x <span style="color: #7590db;">+</span>y
-  <span style="color: #4f97d7; font-weight: bold;">where</span>
-    x <span style="color: #7590db;">=</span> fibA (n<span style="color: #7590db;">-</span>1)
-    y <span style="color: #7590db;">=</span> fibA (n<span style="color: #7590db;">-</span>2)
+<pre class="src src-haskell">fibA :: Int -&gt; Int
+fibA n
+  |n == 0    = 0
+  |n == 1    = 1
+  |otherwise = x +y
+  where
+    x = fibA (n-1)
+    y = fibA (n-2)
 
 </pre>
 </div>
@@ -838,50 +931,49 @@ fib &amp; where &amp; pattern matching
 </p>
 
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">fibB</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Int</span>
-<span style="color: #bc6ec5; font-weight: bold;">fibB</span> 0 <span style="color: #7590db;">=</span> 0
-<span style="color: #bc6ec5; font-weight: bold;">fibB</span> 1 <span style="color: #7590db;">=</span> 1
-<span style="color: #bc6ec5; font-weight: bold;">fibB</span> n <span style="color: #7590db;">=</span> fibB (n<span style="color: #7590db;">-</span>1) <span style="color: #7590db;">+</span> fibB (n<span style="color: #7590db;">-</span>2)
+<pre class="src src-haskell">fibB :: Int -&gt; Int
+fibB 0 = 0
+fibB 1 = 1
+fibB n = fibB (n-1) + fibB (n-2)
 
 
-<span style="color: #bc6ec5; font-weight: bold;">fibC</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Int</span>
-<span style="color: #bc6ec5; font-weight: bold;">fibC</span> 0 <span style="color: #7590db;">=</span> 0
-<span style="color: #bc6ec5; font-weight: bold;">fibC</span> 1 <span style="color: #7590db;">=</span> 1
-<span style="color: #bc6ec5; font-weight: bold;">fibC</span> n
-  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">&lt;</span> 0      <span style="color: #7590db;">=</span> error <span style="color: #2d9574;">"illegal arguement"</span>
-  <span style="color: #7590db;">|</span> otherwise  <span style="color: #7590db;">=</span> fibB (n<span style="color: #7590db;">-</span>1) <span style="color: #7590db;">+</span> fibB (n<span style="color: #7590db;">-</span>2)
+fibC :: Int -&gt; Int
+fibC 0 = 0
+fibC 1 = 1
+fibC n
+  | n &lt; 0      = error "illegal arguement"
+  | otherwise  = fibB (n-1) + fibB (n-2)
 
 
-(<span style="color: #bc6ec5; font-weight: bold;">&lt;##&gt;</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Int</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Double</span>
-0 <span style="color: #7590db;">&lt;##&gt;</span> a   <span style="color: #7590db;">=</span> a
-n <span style="color: #bc6ec5; font-weight: bold;">&lt;##&gt;</span> a  
-  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">&gt;</span> 0  <span style="color: #7590db;">=</span> (x <span style="color: #7590db;">+</span> a<span style="color: #7590db;">/</span>x)<span style="color: #7590db;">/</span>2
-  <span style="color: #7590db;">|</span> otherwise  <span style="color: #7590db;">=</span> error <span style="color: #2d9574;">"illegal arguement"</span>
-  <span style="color: #4f97d7; font-weight: bold;">where</span> x <span style="color: #7590db;">=</span> (n<span style="color: #7590db;">-</span>1) <span style="color: #7590db;">&lt;##&gt;</span> a
+(&lt;##&gt;) :: Int -&gt; Double -&gt; Double
+0 &lt;##&gt; a   = a
+n &lt;##&gt; a  
+  | n &gt; 0  = (x + a/x)/2
+  | otherwise  = error "illegal arguement"
+  where x = (n-1) &lt;##&gt; a
 </pre>
 </div>
 </div>
 </div>
-
-<div id="outline-container-orge1515b3" class="outline-3">
-<h3 id="orge1515b3"><span class="section-number-3">5.5.</span> type conversion</h3>
+<div id="outline-container-org5b4407e" class="outline-3">
+<h3 id="org5b4407e"><span class="section-number-3">5.5.</span> type conversion</h3>
 <div class="outline-text-3" id="text-5-5">
 <p>
 Guides
 </p>
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">vielleichtdreifach</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Bool</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
-<span style="color: #bc6ec5; font-weight: bold;">vielleichtdreifach</span> verdreifach nochmal n
-  <span style="color: #7590db;">|</span> verdreifach <span style="color: #7590db;">&amp;&amp;</span> nochmal <span style="color: #7590db;">=</span> maldrei ( maldrei n)
-  <span style="color: #7590db;">|</span> verdreifach            <span style="color: #7590db;">=</span> maldrei n
-  <span style="color: #7590db;">|</span> otherwise              <span style="color: #7590db;">=</span> n
-  <span style="color: #4f97d7; font-weight: bold;">where</span> maldrei n <span style="color: #7590db;">=</span> 3<span style="color: #7590db;">*</span>n 
+<pre class="src src-haskell">vielleichtdreifach :: Bool -&gt; Bool -&gt; Integer -&gt; Integer
+vielleichtdreifach verdreifach nochmal n
+  | verdreifach &amp;&amp; nochmal = maldrei ( maldrei n)
+  | verdreifach            = maldrei n
+  | otherwise              = n
+  where maldrei n = 3*n 
 
-<span style="color: #bc6ec5; font-weight: bold;">dreifach</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
-<span style="color: #bc6ec5; font-weight: bold;">dreifach</span> <span style="color: #7590db;">=</span> vielleichtdreifach <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">False</span> 
+dreifach :: Integer -&gt; Integer
+dreifach = vielleichtdreifach True False 
 
-<span style="color: #bc6ec5; font-weight: bold;">neudreifach</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
-<span style="color: #bc6ec5; font-weight: bold;">neudreifach</span> <span style="color: #7590db;">=</span> vielleichtdreifach <span style="color: #ce537a; font-weight: bold;">True</span> <span style="color: #ce537a; font-weight: bold;">True</span>
+neudreifach :: Integer -&gt; Integer
+neudreifach = vielleichtdreifach True True
 
 </pre>
 </div>
@@ -890,46 +982,44 @@ vielleichtdreifach Bool Bool -&gt; Integer
 </p>
 </div>
 </div>
-
-<div id="outline-container-org4332488" class="outline-3">
-<h3 id="org4332488"><span class="section-number-3">5.6.</span> Factorial</h3>
+<div id="outline-container-orgfa6255d" class="outline-3">
+<h3 id="orgfa6255d"><span class="section-number-3">5.6.</span> Factorial</h3>
 <div class="outline-text-3" id="text-5-6">
 <div class="org-src-container">
-<pre class="src src-haskell"><span style="color: #bc6ec5; font-weight: bold;">fac</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
-<span style="color: #bc6ec5; font-weight: bold;">fac</span> n
-  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">==</span> 0  <span style="color: #7590db;">=</span> 1
-  <span style="color: #7590db;">|</span> otherwise <span style="color: #7590db;">=</span> fac (n<span style="color: #7590db;">-</span>1) <span style="color: #7590db;">*</span> n
+<pre class="src src-haskell">fac :: Integer -&gt; Integer
+fac n
+  | n == 0  = 1
+  | otherwise = fac (n-1) * n
 </pre>
 </div>
 </div>
 </div>
-
-<div id="outline-container-orgc58fcd6" class="outline-3">
-<h3 id="orgc58fcd6"><span class="section-number-3">5.7.</span> Stern Brocot Floge</h3>
+<div id="outline-container-org0d2e361" class="outline-3">
+<h3 id="org0d2e361"><span class="section-number-3">5.7.</span> Stern Brocot Floge</h3>
 <div class="outline-text-3" id="text-5-7">
 <p>
 \(\\s_{0} = 0 \\ s_{1} = 1 \\ s_{2n} = s_{n} \\ s_{2n+1} = s_{n} + s_{n+1}\)
 </p>
 
 <div class="org-src-container">
-<pre class="src src-haskell">(<span style="color: #bc6ec5; font-weight: bold;">*/*</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
-(<span style="color: #bc6ec5; font-weight: bold;">*/*</span>) <span style="color: #7590db;">=</span> div
+<pre class="src src-haskell">(*/*) :: Integer -&gt; Integer -&gt; Integer
+(*/*) = div
 
-(<span style="color: #bc6ec5; font-weight: bold;">*%*</span>) <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
-(<span style="color: #bc6ec5; font-weight: bold;">*%*</span>) <span style="color: #7590db;">=</span> rem
+(*%*) :: Integer -&gt; Integer -&gt; Integer
+(*%*) = rem
 
-<span style="color: #bc6ec5; font-weight: bold;">sternBrocot</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
-<span style="color: #bc6ec5; font-weight: bold;">sternBrocot</span> n
-  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">==</span> 0      <span style="color: #7590db;">=</span> 0
-  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">==</span> 1      <span style="color: #7590db;">=</span> 1
-  <span style="color: #7590db;">|</span> n <span style="color: #7590db;">*%*</span> 2 <span style="color: #7590db;">==</span> 0 <span style="color: #7590db;">=</span> sternBrocot half
-  <span style="color: #7590db;">|</span> otherwise    <span style="color: #7590db;">=</span> sternBrocot half <span style="color: #7590db;">+</span> sternBrocot (half <span style="color: #7590db;">+</span> 1)
-  <span style="color: #4f97d7; font-weight: bold;">where</span> half <span style="color: #7590db;">=</span> n <span style="color: #7590db;">*/*</span> 2
+sternBrocot :: Integer -&gt; Integer
+sternBrocot n
+  | n == 0      = 0
+  | n == 1      = 1
+  | n *%* 2 == 0 = sternBrocot half
+  | otherwise    = sternBrocot half + sternBrocot (half + 1)
+  where half = n */* 2
 
-<span style="color: #bc6ec5; font-weight: bold;">suche</span> <span style="color: #7590db;">::</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span> <span style="color: #7590db;">-&gt;</span> <span style="color: #ce537a; font-weight: bold;">Integer</span>
-<span style="color: #bc6ec5; font-weight: bold;">suche</span> suchziel postionziel
-  <span style="color: #7590db;">|</span> sternBrocot postionziel <span style="color: #7590db;">&gt;</span> suchziel <span style="color: #7590db;">=</span> postionziel
-  <span style="color: #7590db;">|</span> otherwise                          <span style="color: #7590db;">=</span> suche suchziel (postionziel <span style="color: #7590db;">+</span>1)
+suche :: Integer -&gt; Integer -&gt; Integer
+suche suchziel postionziel
+  | sternBrocot postionziel &gt; suchziel = postionziel
+  | otherwise                          = suche suchziel (postionziel +1)
 
 </pre>
 </div>
@@ -937,10 +1027,8 @@ vielleichtdreifach Bool Bool -&gt; Integer
 </div>
 </div>
 </div>
-<div id="postamble" class="status">
-<p class="author">Author: si</p>
-<p class="date">Created: 2025-01-24 Fr 15:38</p>
-<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+<div id="kb-postamble" class="status">
+<div class="kb-footer"><a href="../index.html" target="_parent">&larr; Back to Index</a></div>
 </div>
 </body>
 </html>

@@ -1,15 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- 2025-01-24 Fr 15:36 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<!-- 2026-05-05 Tue 20:03 -->
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>CUDA</title>
-<meta name="author" content="si" />
+<meta name="author" content="silin" />
 <meta name="generator" content="Org Mode" />
-<style>
+<style type="text/css">
   #content { max-width: 60em; margin: auto; }
   .title  { text-align: center;
              margin-bottom: .2em; }
@@ -193,23 +191,41 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<link rel="stylesheet" href="style.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<script src="toc-sidebar.js" defer></script>
 </head>
 <body>
-<div id="content" class="content">
+<div id="kb-content" class="content">
 <h1 class="title">CUDA</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgde96a91">1. install cuda toolkit for U24 with dependence libinfo5</a></li>
+<li><a href="#org423d963">1. Nvidia modprobe</a></li>
+<li><a href="#orgdc72261">2. install cuda toolkit for U24 with dependence libinfo5</a></li>
 </ul>
 </div>
 </div>
-
-<div id="outline-container-orgde96a91" class="outline-2">
-<h2 id="orgde96a91"><span class="section-number-2">1.</span> install cuda toolkit for U24 with dependence libinfo5</h2>
+<div id="outline-container-org423d963" class="outline-2">
+<h2 id="org423d963"><span class="section-number-2">1.</span> Nvidia modprobe</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+Even the CUDA driver and torch is good installed, still print(f"CUDA Available:  {torch.cuda.is<sub>available</sub>()}") may return False, also arise problem for other cases.
+Please set the modprobe and reboot:
+It manually creates the Unified Memory (UVM) device files that PyTorch relies on.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil">sudo nvidia-modprobe -u -c=0
+sudo nvidia-modprobe -m
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdc72261" class="outline-2">
+<h2 id="orgdc72261"><span class="section-number-2">2.</span> install cuda toolkit for U24 with dependence libinfo5</h2>
+<div class="outline-text-2" id="text-2">
 <p>
 U24 install toolkit for U22, libinfo5 is missing. Then follow the instruction, set password
 </p>
@@ -221,10 +237,8 @@ sudo dpkg -i  libtinfo5_6.2-0ubuntu2_amd64.deb
 </div>
 </div>
 </div>
-<div id="postamble" class="status">
-<p class="author">Author: si</p>
-<p class="date">Created: 2025-01-24 Fr 15:36</p>
-<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+<div id="kb-postamble" class="status">
+<div class="kb-footer"><a href="../index.html" target="_parent">&larr; Back to Index</a></div>
 </div>
 </body>
 </html>
