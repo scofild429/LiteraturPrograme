@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2026-05-19 Tue 18:09 -->
+<!-- 2026-05-19 Tue 21:20 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>NLP</title>
@@ -234,56 +234,56 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd92bfc7">1. Data process</a>
+<li><a href="#org18c7818">1. Data process</a>
 <ul>
-<li><a href="#orgfa74151">1.1. Data load</a></li>
-<li><a href="#org1c7bf78">1.2. Alpha filter</a></li>
-<li><a href="#org4efaaa5">1.3. Stop words</a></li>
-<li><a href="#org22dc538">1.4. Lemmatization</a></li>
-<li><a href="#orgbb5fa07">1.5. Stemming</a></li>
-<li><a href="#orga24b011">1.6. Part of speech Tagging</a></li>
-<li><a href="#org1f6d359">1.7. Named Entity Recognition (NER)</a></li>
-<li><a href="#orgce18585">1.8. Frequency Analysis</a></li>
-<li><a href="#org84032d9">1.9. one-hot coding</a></li>
-<li><a href="#org229b519">1.10. Tokenizationn</a>
+<li><a href="#org5ea9e57">1.1. Data load</a></li>
+<li><a href="#orgeba61df">1.2. Alpha filter</a></li>
+<li><a href="#org86dd3f9">1.3. Stop words</a></li>
+<li><a href="#orgd2740d8">1.4. Lemmatization</a></li>
+<li><a href="#org1f464cd">1.5. Stemming</a></li>
+<li><a href="#org82dd800">1.6. Part of speech Tagging</a></li>
+<li><a href="#org7705e63">1.7. Named Entity Recognition (NER)</a></li>
+<li><a href="#org5d474c8">1.8. Frequency Analysis</a></li>
+<li><a href="#org6a4bce2">1.9. one-hot coding</a></li>
+<li><a href="#orgad78b36">1.10. Tokenizationn</a>
 <ul>
-<li><a href="#org7dd6361">1.10.1. Tokenize with nltk</a></li>
+<li><a href="#orgc75aa92">1.10.1. Tokenize with nltk</a></li>
 </ul>
 </li>
-<li><a href="#org5661d67">1.11. Word Embedding</a></li>
-<li><a href="#org82650eb">1.12. Words Count</a></li>
-<li><a href="#orgd8b9ef8">1.13. TF-IDF for weight title and body</a></li>
-<li><a href="#orgbf31711">1.14. Vectorizing tf-idf</a></li>
+<li><a href="#org8197f0d">1.11. Word Embedding</a></li>
+<li><a href="#orgb72b40c">1.12. Words Count</a></li>
+<li><a href="#orgd47e728">1.13. TF-IDF for weight title and body</a></li>
+<li><a href="#org254795d">1.14. Vectorizing tf-idf</a></li>
 </ul>
 </li>
-<li><a href="#org5be24d9">2. language model</a>
+<li><a href="#orgd0c272e">2. language model</a>
 <ul>
-<li><a href="#org1550ab6">2.1. skip-gram</a></li>
-<li><a href="#org648f9ce">2.2. CBOW</a></li>
+<li><a href="#orga66bc49">2.1. skip-gram</a></li>
+<li><a href="#org6af74d8">2.2. CBOW</a></li>
 </ul>
 </li>
-<li><a href="#org8c47333">3. text generatation</a></li>
-<li><a href="#org6cf03b2">4. seq2seq</a></li>
-<li><a href="#org4f43955">5. Transformer</a>
+<li><a href="#org235290a">3. text generatation</a></li>
+<li><a href="#org1531d7d">4. seq2seq</a></li>
+<li><a href="#orgbd83011">5. Transformer</a>
 <ul>
-<li><a href="#org2f103b7">5.1. simple RNN + attention</a></li>
-<li><a href="#org07da9bf">5.2. simple RNN + self attention</a></li>
-<li><a href="#orgd293e25">5.3. attention layer</a></li>
-<li><a href="#org911427d">5.4. self attention layer</a></li>
-<li><a href="#org4859c71">5.5. transformer model</a></li>
+<li><a href="#orgb9fe574">5.1. simple RNN + attention</a></li>
+<li><a href="#orgd23896b">5.2. simple RNN + self attention</a></li>
+<li><a href="#orgf8dc6a5">5.3. attention layer</a></li>
+<li><a href="#org9f28ca5">5.4. self attention layer</a></li>
+<li><a href="#org0904469">5.5. transformer model</a></li>
 </ul>
 </li>
-<li><a href="#org096a89d">6. Bert</a></li>
-<li><a href="#org85bedbb">7. ViT</a></li>
+<li><a href="#org18d5430">6. Bert</a></li>
+<li><a href="#orgc8100c6">7. ViT</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd92bfc7" class="outline-2">
-<h2 id="orgd92bfc7"><span class="section-number-2">1.</span> Data process</h2>
+<div id="outline-container-org18c7818" class="outline-2">
+<h2 id="org18c7818"><span class="section-number-2">1.</span> Data process</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgfa74151" class="outline-3">
-<h3 id="orgfa74151"><span class="section-number-3">1.1.</span> Data load</h3>
+<div id="outline-container-org5ea9e57" class="outline-3">
+<h3 id="org5ea9e57"><span class="section-number-3">1.1.</span> Data load</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-python">import nltk
@@ -303,8 +303,8 @@ the length of frankenstein txt is 3430!
 </pre>
 </div>
 </div>
-<div id="outline-container-org1c7bf78" class="outline-3">
-<h3 id="org1c7bf78"><span class="section-number-3">1.2.</span> Alpha filter</h3>
+<div id="outline-container-orgeba61df" class="outline-3">
+<h3 id="orgeba61df"><span class="section-number-3">1.2.</span> Alpha filter</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <pre class="src src-python">AlphaFilter_words = nltk.word_tokenize(sentences[0])
@@ -320,8 +320,8 @@ the word is ['Project', 'Gutenberg', 'Frankenstein', 'by', 'Mary', 'Wollstonecra
 </pre>
 </div>
 </div>
-<div id="outline-container-org4efaaa5" class="outline-3">
-<h3 id="org4efaaa5"><span class="section-number-3">1.3.</span> Stop words</h3>
+<div id="outline-container-org86dd3f9" class="outline-3">
+<h3 id="org86dd3f9"><span class="section-number-3">1.3.</span> Stop words</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 <pre class="src src-python">import nltk
@@ -348,8 +348,8 @@ the word is ['Project', 'Gutenberg', "'s", 'Frankenstein', ',', 'Mary', 'Wollsto
 </pre>
 </div>
 </div>
-<div id="outline-container-org22dc538" class="outline-3">
-<h3 id="org22dc538"><span class="section-number-3">1.4.</span> Lemmatization</h3>
+<div id="outline-container-orgd2740d8" class="outline-3">
+<h3 id="orgd2740d8"><span class="section-number-3">1.4.</span> Lemmatization</h3>
 <div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
 <pre class="src src-python">nltk.download("wordnet")
@@ -377,8 +377,8 @@ the word is ['project', 'gutenberg', "'s", 'frankenstein', ',', 'by', 'mari', 'w
 </pre>
 </div>
 </div>
-<div id="outline-container-orgbb5fa07" class="outline-3">
-<h3 id="orgbb5fa07"><span class="section-number-3">1.5.</span> Stemming</h3>
+<div id="outline-container-org1f464cd" class="outline-3">
+<h3 id="org1f464cd"><span class="section-number-3">1.5.</span> Stemming</h3>
 <div class="outline-text-3" id="text-1-5">
 <div class="org-src-container">
 <pre class="src src-python">nlp = spacy.load('en_core_web_sm')
@@ -395,8 +395,8 @@ the word is ['Project', 'Gutenberg', "'s", 'Frankenstein', ',', 'by', 'Mary', 'W
 </pre>
 </div>
 </div>
-<div id="outline-container-orga24b011" class="outline-3">
-<h3 id="orga24b011"><span class="section-number-3">1.6.</span> Part of speech Tagging</h3>
+<div id="outline-container-org82dd800" class="outline-3">
+<h3 id="org82dd800"><span class="section-number-3">1.6.</span> Part of speech Tagging</h3>
 <div class="outline-text-3" id="text-1-6">
 <div class="org-src-container">
 <pre class="src src-python">import spacy
@@ -412,7 +412,7 @@ for token in doc:
 </pre>
 </div>
 
-<pre class="example" id="org0bcd7ff">
+<pre class="example" id="orgad26a5b">
 Apple is looking at buying U.K. startup for $1 billion
 Apple PROPN nsubj
 is AUX aux
@@ -428,8 +428,8 @@ billion NUM pobj
 </pre>
 </div>
 </div>
-<div id="outline-container-org1f6d359" class="outline-3">
-<h3 id="org1f6d359"><span class="section-number-3">1.7.</span> Named Entity Recognition (NER)</h3>
+<div id="outline-container-org7705e63" class="outline-3">
+<h3 id="org7705e63"><span class="section-number-3">1.7.</span> Named Entity Recognition (NER)</h3>
 <div class="outline-text-3" id="text-1-7">
 <div class="org-src-container">
 <pre class="src src-python">print(doc.text)
@@ -447,8 +447,8 @@ $1 billion MONEY
 </pre>
 </div>
 </div>
-<div id="outline-container-orgce18585" class="outline-3">
-<h3 id="orgce18585"><span class="section-number-3">1.8.</span> Frequency Analysis</h3>
+<div id="outline-container-org5d474c8" class="outline-3">
+<h3 id="org5d474c8"><span class="section-number-3">1.8.</span> Frequency Analysis</h3>
 <div class="outline-text-3" id="text-1-8">
 <div class="org-src-container">
 <pre class="src src-python">import nltk
@@ -478,8 +478,8 @@ almost no restrictions whatsoever.
 </pre>
 </div>
 </div>
-<div id="outline-container-org84032d9" class="outline-3">
-<h3 id="org84032d9"><span class="section-number-3">1.9.</span> one-hot coding</h3>
+<div id="outline-container-org6a4bce2" class="outline-3">
+<h3 id="org6a4bce2"><span class="section-number-3">1.9.</span> one-hot coding</h3>
 <div class="outline-text-3" id="text-1-9">
 <p>
 all input should numerical,
@@ -487,8 +487,8 @@ categorized character shoud be one-hot coded, starting with 1
 </p>
 </div>
 </div>
-<div id="outline-container-org229b519" class="outline-3">
-<h3 id="org229b519"><span class="section-number-3">1.10.</span> Tokenizationn</h3>
+<div id="outline-container-orgad78b36" class="outline-3">
+<h3 id="orgad78b36"><span class="section-number-3">1.10.</span> Tokenizationn</h3>
 <div class="outline-text-3" id="text-1-10">
 <ul class="org-ul">
 <li><b>Breaking</b> text to words (There are many steps to consider )</li>
@@ -514,8 +514,8 @@ tests_sequences = [1,2,3,4,3]
 </pre>
 </div>
 </div>
-<div id="outline-container-org7dd6361" class="outline-4">
-<h4 id="org7dd6361"><span class="section-number-4">1.10.1.</span> Tokenize with nltk</h4>
+<div id="outline-container-orgc75aa92" class="outline-4">
+<h4 id="orgc75aa92"><span class="section-number-4">1.10.1.</span> Tokenize with nltk</h4>
 <div class="outline-text-4" id="text-1-10-1">
 <div class="org-src-container">
 <pre class="src src-python">tokenize_words = nltk.word_tokenize(sentences[0])
@@ -526,8 +526,8 @@ print(f'the word is {tokenize_words}')
 </div>
 </div>
 </div>
-<div id="outline-container-org5661d67" class="outline-3">
-<h3 id="org5661d67"><span class="section-number-3">1.11.</span> Word Embedding</h3>
+<div id="outline-container-org8197f0d" class="outline-3">
+<h3 id="org8197f0d"><span class="section-number-3">1.11.</span> Word Embedding</h3>
 <div class="outline-text-3" id="text-1-11">
 <p>
 compose high dimension one-hot vector to low dimension
@@ -545,13 +545,13 @@ v*d : parameters for this layer
 </p>
 </div>
 </div>
-<div id="outline-container-org82650eb" class="outline-3">
-<h3 id="org82650eb"><span class="section-number-3">1.12.</span> Words Count</h3>
+<div id="outline-container-orgb72b40c" class="outline-3">
+<h3 id="orgb72b40c"><span class="section-number-3">1.12.</span> Words Count</h3>
 </div>
 
 
-<div id="outline-container-orgd8b9ef8" class="outline-3">
-<h3 id="orgd8b9ef8"><span class="section-number-3">1.13.</span> TF-IDF for weight title and body</h3>
+<div id="outline-container-orgd47e728" class="outline-3">
+<h3 id="orgd47e728"><span class="section-number-3">1.13.</span> TF-IDF for weight title and body</h3>
 <div class="outline-text-3" id="text-1-13">
 <p>
 the idea is to give weights for title and text. Afterwards the title has a huge impact for document = body + title
@@ -559,22 +559,22 @@ the idea is to give weights for title and text. Afterwards the title has a huge 
 </p>
 </div>
 </div>
-<div id="outline-container-orgbf31711" class="outline-3">
-<h3 id="orgbf31711"><span class="section-number-3">1.14.</span> Vectorizing tf-idf</h3>
+<div id="outline-container-org254795d" class="outline-3">
+<h3 id="org254795d"><span class="section-number-3">1.14.</span> Vectorizing tf-idf</h3>
 </div>
 </div>
-<div id="outline-container-org5be24d9" class="outline-2">
-<h2 id="org5be24d9"><span class="section-number-2">2.</span> language model</h2>
+<div id="outline-container-orgd0c272e" class="outline-2">
+<h2 id="orgd0c272e"><span class="section-number-2">2.</span> language model</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 A model that computes \(P(W)\) or \(P(W_{n}|W_{1},W_{2},W_{3},W_{4}....W_{n-1})\) is called  a language model.
 </p>
 </div>
-<div id="outline-container-org1550ab6" class="outline-3">
-<h3 id="org1550ab6"><span class="section-number-3">2.1.</span> skip-gram</h3>
+<div id="outline-container-orga66bc49" class="outline-3">
+<h3 id="orga66bc49"><span class="section-number-3">2.1.</span> skip-gram</h3>
 </div>
-<div id="outline-container-org648f9ce" class="outline-3">
-<h3 id="org648f9ce"><span class="section-number-3">2.2.</span> CBOW</h3>
+<div id="outline-container-org6af74d8" class="outline-3">
+<h3 id="org6af74d8"><span class="section-number-3">2.2.</span> CBOW</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 continuous bag of words
@@ -582,8 +582,8 @@ continuous bag of words
 </div>
 </div>
 </div>
-<div id="outline-container-org8c47333" class="outline-2">
-<h2 id="org8c47333"><span class="section-number-2">3.</span> text generatation</h2>
+<div id="outline-container-org235290a" class="outline-2">
+<h2 id="org235290a"><span class="section-number-2">3.</span> text generatation</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Encoder:
@@ -595,8 +595,8 @@ but many content of input will be forget
 </p>
 </div>
 </div>
-<div id="outline-container-org6cf03b2" class="outline-2">
-<h2 id="org6cf03b2"><span class="section-number-2">4.</span> seq2seq</h2>
+<div id="outline-container-org1531d7d" class="outline-2">
+<h2 id="org1531d7d"><span class="section-number-2">4.</span> seq2seq</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 After one resulte in Decode is generated,
@@ -606,12 +606,12 @@ consuming the previously generated symbols as additional input when generating t
 </p>
 </div>
 </div>
-<div id="outline-container-org4f43955" class="outline-2">
-<h2 id="org4f43955"><span class="section-number-2">5.</span> Transformer</h2>
+<div id="outline-container-orgbd83011" class="outline-2">
+<h2 id="orgbd83011"><span class="section-number-2">5.</span> Transformer</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org2f103b7" class="outline-3">
-<h3 id="org2f103b7"><span class="section-number-3">5.1.</span> simple RNN + attention</h3>
+<div id="outline-container-orgb9fe574" class="outline-3">
+<h3 id="orgb9fe574"><span class="section-number-3">5.1.</span> simple RNN + attention</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 Encoder Input  E\(X = x_{1}, x_{2},,,,x_{m}\)
@@ -650,8 +650,8 @@ with softmax(c)  get the prediciton, and corss enteopy update network back(\(W^{
 </ol>
 </div>
 </div>
-<div id="outline-container-org07da9bf" class="outline-3">
-<h3 id="org07da9bf"><span class="section-number-3">5.2.</span> simple RNN + self attention</h3>
+<div id="outline-container-orgd23896b" class="outline-3">
+<h3 id="orgd23896b"><span class="section-number-3">5.2.</span> simple RNN + self attention</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 only Encoder, e\(X = x_{1}, x_{2},,,,x_{m}\)
@@ -695,8 +695,8 @@ Notion:
 </ol>
 </div>
 </div>
-<div id="outline-container-orgd293e25" class="outline-3">
-<h3 id="orgd293e25"><span class="section-number-3">5.3.</span> attention layer</h3>
+<div id="outline-container-orgf8dc6a5" class="outline-3">
+<h3 id="orgf8dc6a5"><span class="section-number-3">5.3.</span> attention layer</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 An attention function can be described as mapping a query and a set of key-value pairs to an output
@@ -735,8 +735,8 @@ Notion:
 </ol>
 </div>
 </div>
-<div id="outline-container-org911427d" class="outline-3">
-<h3 id="org911427d"><span class="section-number-3">5.4.</span> self attention layer</h3>
+<div id="outline-container-org9f28ca5" class="outline-3">
+<h3 id="org9f28ca5"><span class="section-number-3">5.4.</span> self attention layer</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 only Encoder, e\(X = x_{1}, x_{2},,,,x_{m}\)
@@ -773,8 +773,8 @@ with softmax(c)  get the prediciton, and corss enteopy update network back(\(W^{
 </ol>
 </div>
 </div>
-<div id="outline-container-org4859c71" class="outline-3">
-<h3 id="org4859c71"><span class="section-number-3">5.5.</span> transformer model</h3>
+<div id="outline-container-org0904469" class="outline-3">
+<h3 id="org0904469"><span class="section-number-3">5.5.</span> transformer model</h3>
 <div class="outline-text-3" id="text-5-5">
 <div class="org-src-container">
 <pre class="src src-ditaa">  /--+--\    /-----\    /-----\    /-----\   
@@ -828,11 +828,11 @@ another 6 stacked multi head attention layers, each time take the input of 6 sel
 </div>
 </div>
 </div>
-<div id="outline-container-org096a89d" class="outline-2">
-<h2 id="org096a89d"><span class="section-number-2">6.</span> Bert</h2>
+<div id="outline-container-org18d5430" class="outline-2">
+<h2 id="org18d5430"><span class="section-number-2">6.</span> Bert</h2>
 </div>
-<div id="outline-container-org85bedbb" class="outline-2">
-<h2 id="org85bedbb"><span class="section-number-2">7.</span> ViT</h2>
+<div id="outline-container-orgc8100c6" class="outline-2">
+<h2 id="orgc8100c6"><span class="section-number-2">7.</span> ViT</h2>
 </div>
 </div>
 <div id="kb-postamble" class="status">

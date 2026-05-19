@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2026-05-19 Tue 18:09 -->
+<!-- 2026-05-19 Tue 21:21 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Transformer</title>
@@ -202,24 +202,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc8c18ad">1. Softmax</a>
+<li><a href="#orgeda9625">1. Flash attention</a>
 <ul>
-<li><a href="#org1a8f4c5">1.1. Normal Softmax</a></li>
-<li><a href="#orgfa1825f">1.2. Safe Softmax</a></li>
-<li><a href="#orgde768c6">1.3. Online Softmax</a></li>
-<li><a href="#orgb1fa46b">1.4. block online softmax</a></li>
-<li><a href="#org257ec1d">1.5. batch online softmax</a></li>
+<li><a href="#orga857682">1.1. Normal Softmax</a></li>
+<li><a href="#org499b82f">1.2. Safe Softmax</a></li>
+<li><a href="#org5d18b17">1.3. Online Softmax</a></li>
+<li><a href="#org8ff2912">1.4. block online softmax</a></li>
+<li><a href="#org669b8ea">1.5. batch online softmax</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc8c18ad" class="outline-2">
-<h2 id="orgc8c18ad"><span class="section-number-2">1.</span> Softmax</h2>
+<p>
+:ID:       15FE120F-9AB9-4D5C-899F-13C047ABBCC9
+</p>
+<div id="outline-container-orgeda9625" class="outline-2">
+<h2 id="orgeda9625"><span class="section-number-2">1.</span> Flash attention</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org1a8f4c5" class="outline-3">
-<h3 id="org1a8f4c5"><span class="section-number-3">1.1.</span> Normal Softmax</h3>
+<div id="outline-container-orga857682" class="outline-3">
+<h3 id="orga857682"><span class="section-number-3">1.1.</span> Normal Softmax</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-python">import torch
@@ -235,8 +238,8 @@ tensor([0.0827, 0.1364, 0.1841, 0.2249, 0.1234, 0.2485])
 </pre>
 </div>
 </div>
-<div id="outline-container-orgfa1825f" class="outline-3">
-<h3 id="orgfa1825f"><span class="section-number-3">1.2.</span> Safe Softmax</h3>
+<div id="outline-container-org499b82f" class="outline-3">
+<h3 id="org499b82f"><span class="section-number-3">1.2.</span> Safe Softmax</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <pre class="src src-python">import torch
@@ -253,8 +256,8 @@ tensor([0.0827, 0.1364, 0.1841, 0.2249, 0.1234, 0.2485])
 </pre>
 </div>
 </div>
-<div id="outline-container-orgde768c6" class="outline-3">
-<h3 id="orgde768c6"><span class="section-number-3">1.3.</span> Online Softmax</h3>
+<div id="outline-container-org5d18b17" class="outline-3">
+<h3 id="org5d18b17"><span class="section-number-3">1.3.</span> Online Softmax</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 <pre class="src src-python">import torch
@@ -288,8 +291,8 @@ online softmax result:  tensor([0.0827, 0.1364, 0.1841, 0.2249, 0.1234, 0.2485])
 </pre>
 </div>
 </div>
-<div id="outline-container-orgb1fa46b" class="outline-3">
-<h3 id="orgb1fa46b"><span class="section-number-3">1.4.</span> block online softmax</h3>
+<div id="outline-container-org8ff2912" class="outline-3">
+<h3 id="org8ff2912"><span class="section-number-3">1.4.</span> block online softmax</h3>
 <div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
 <pre class="src src-python">import torch
@@ -323,8 +326,8 @@ tensor([0.0827, 0.1364, 0.1841, 0.2249, 0.1234, 0.2485])
 </pre>
 </div>
 </div>
-<div id="outline-container-org257ec1d" class="outline-3">
-<h3 id="org257ec1d"><span class="section-number-3">1.5.</span> batch online softmax</h3>
+<div id="outline-container-org669b8ea" class="outline-3">
+<h3 id="org669b8ea"><span class="section-number-3">1.5.</span> batch online softmax</h3>
 <div class="outline-text-3" id="text-1-5">
 <div class="org-src-container">
 <pre class="src src-python">import torch

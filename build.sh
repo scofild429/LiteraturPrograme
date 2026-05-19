@@ -118,13 +118,12 @@ TEMPLATES_DIR = "$TEMPLATES_DIR"
 # Edit these lists to reorganize notes into categories.
 # Note names should match the HTML filename (without .html)
 CATEGORIES = [
-    ("Computer Science",       "Linux Algorithm Blockchain CloudComputation CS CUDA DAMA DataStructure Mac OpenIdProject Parallelisum QuantumComputation".split()),
-    ("Programming Languages",  "C Emacs Golang Haskell JS Java Lisp Mysql Postgresql Python Rust TS ROS".split()),
-    ("Artificial Intelligence", "DataScience DL ML NLP RL RAG AIEngineering LangChain transformer".split()),
-    ("Website Development",    "Vue Web".split()),
-    ("Disciplines",            "Physics Math".split()),
-    ("Infrastructure",         "k8s".split()),
-    ("中文笔记",               "受难记 笔记".split()),
+    ("Computer Science",        "Linux  Blockchain CloudComputation CS CUDA k8s Mac ".split()),
+    ("Programming Languages",   "C Emacs Golang Haskell JS Java Lisp Mysql Postgresql Python Rust TS ROS".split()),
+    ("Artificial Intelligence", "DL ML NLP RL RAG AIEngineering LangChain transformer".split()),
+    ("Website Development",     "Vue Web".split()),
+    ("Disciplines",             "Physics Math Algorithm Parallelisum QuantumComputation DataScience DAMA DataStructure".split()),
+    ("Notes",                   "受难记 笔记 OpenIdProject".split()),
 ]
 
 EXTERNAL_LINKS = [

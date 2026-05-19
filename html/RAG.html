@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2026-05-19 Tue 18:09 -->
+<!-- 2026-05-19 Tue 21:20 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>RAG: Hybrid Search Optimization Notes — TF-IDF, BM25 &amp; RRF</title>
+<title>RRF in RAG</title>
 <meta name="author" content="Silin Zhao" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
@@ -229,56 +229,56 @@
 </head>
 <body>
 <div id="kb-content" class="content">
-<h1 class="title">RAG: Hybrid Search Optimization Notes — TF-IDF, BM25 &amp; RRF</h1>
+<h1 class="title">RRF in RAG</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0d568d1">1. Hybrid Search</a>
+<li><a href="#orge58d0c4">1. Hybrid Search Optimization Notes — TF-IDF, BM25</a>
 <ul>
-<li><a href="#orgdc97708">1.1. TF-IDF (Term Frequency-Inverse Document Frequency)</a>
+<li><a href="#orge396133">1.1. TF-IDF (Term Frequency-Inverse Document Frequency)</a>
 <ul>
-<li><a href="#org914f004">1.1.1. Introduction</a></li>
-<li><a href="#org4870351">1.1.2. Core Formulas</a></li>
-<li><a href="#org3c919d9">1.1.3. Worked Example</a></li>
-<li><a href="#orgc194a75">1.1.4. Core Philosophy: The Tension Between Local and Global</a></li>
-<li><a href="#org290377e">1.1.5. Advantages and Disadvantages</a></li>
-<li><a href="#orgdad7cc9">1.1.6. Code Example (Python)</a></li>
+<li><a href="#orged7baec">1.1.1. Introduction</a></li>
+<li><a href="#org134c483">1.1.2. Core Formulas</a></li>
+<li><a href="#org40eeb62">1.1.3. Worked Example</a></li>
+<li><a href="#org897b10d">1.1.4. Core Philosophy: The Tension Between Local and Global</a></li>
+<li><a href="#org76cc86e">1.1.5. Advantages and Disadvantages</a></li>
+<li><a href="#org98f517f">1.1.6. Code Example (Python)</a></li>
 </ul>
 </li>
-<li><a href="#orgd966e22">1.2. BM25 (Best Matching 25)</a>
+<li><a href="#orgdd602d2">1.2. BM25 (Best Matching 25)</a>
 <ul>
-<li><a href="#org1e96789">1.2.1. Introduction</a></li>
-<li><a href="#org2a42dca">1.2.2. Core Formula</a></li>
-<li><a href="#org88948f6">1.2.3. Key Improvements over TF-IDF</a></li>
-<li><a href="#orgcece574">1.2.4. The Two Key Parameters</a></li>
+<li><a href="#orga110ef5">1.2.1. Introduction</a></li>
+<li><a href="#org05076a1">1.2.2. Core Formula</a></li>
+<li><a href="#orgbcb2c12">1.2.3. Key Improvements over TF-IDF</a></li>
+<li><a href="#org382a495">1.2.4. The Two Key Parameters</a></li>
 </ul>
 </li>
-<li><a href="#org3bf6ecb">1.3. RRF (Reciprocal Rank Fusion)</a>
+<li><a href="#org2455c00">1.3. RRF (Reciprocal Rank Fusion)</a>
 <ul>
-<li><a href="#org7b2b4c5">1.3.1. Core Concept</a></li>
-<li><a href="#orgd827dd8">1.3.2. RRF (Reciprocal Rank Fusion) Principle</a></li>
-<li><a href="#org4582f74">1.3.3. Core Advantages of RRF</a></li>
+<li><a href="#org3575ce2">1.3.1. Core Concept</a></li>
+<li><a href="#org4487a68">1.3.2. RRF (Reciprocal Rank Fusion) Principle</a></li>
+<li><a href="#org74e65dd">1.3.3. Core Advantages of RRF</a></li>
 </ul>
 </li>
-<li><a href="#org02e7f46">1.4. Summary: How It All Fits Together in RAG</a></li>
-<li><a href="#orgbde3e85">1.5. Key Takeaways</a></li>
-<li><a href="#orgb7b7caa">1.6. Implementation</a></li>
+<li><a href="#org07016c0">1.4. Summary: How It All Fits Together in RAG</a></li>
+<li><a href="#org4f577f1">1.5. Key Takeaways</a></li>
+<li><a href="#org92dd615">1.6. Implementation</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0d568d1" class="outline-2">
-<h2 id="org0d568d1"><span class="section-number-2">1.</span> Hybrid Search</h2>
+<div id="outline-container-orge58d0c4" class="outline-2">
+<h2 id="orge58d0c4"><span class="section-number-2">1.</span> Hybrid Search Optimization Notes — TF-IDF, BM25</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgdc97708" class="outline-3">
-<h3 id="orgdc97708"><span class="section-number-3">1.1.</span> TF-IDF (Term Frequency-Inverse Document Frequency)</h3>
+<div id="outline-container-orge396133" class="outline-3">
+<h3 id="orge396133"><span class="section-number-3">1.1.</span> TF-IDF (Term Frequency-Inverse Document Frequency)</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-org914f004" class="outline-4">
-<h4 id="org914f004"><span class="section-number-4">1.1.1.</span> Introduction</h4>
+<div id="outline-container-orged7baec" class="outline-4">
+<h4 id="orged7baec"><span class="section-number-4">1.1.1.</span> Introduction</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <p>
 <b>TF-IDF</b> (Term Frequency-Inverse Document Frequency) is a widely-used weighting technique in information retrieval and text mining.
@@ -296,8 +296,8 @@ The core idea in one sentence:
 </blockquote>
 </div>
 </div>
-<div id="outline-container-org4870351" class="outline-4">
-<h4 id="org4870351"><span class="section-number-4">1.1.2.</span> Core Formulas</h4>
+<div id="outline-container-org134c483" class="outline-4">
+<h4 id="org134c483"><span class="section-number-4">1.1.2.</span> Core Formulas</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <p>
 TF-IDF is composed of two parts: <b>TF (Term Frequency)</b> and <b>IDF (Inverse Document Frequency)</b>.
@@ -308,7 +308,7 @@ TF-IDF is composed of two parts: <b>TF (Term Frequency)</b> and <b>IDF (Inverse 
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="orgc56fd33"></a>TF (Term Frequency)<br>
+<li><a id="org3ff5cd3"></a>TF (Term Frequency)<br>
 <div class="outline-text-5" id="text-1-1-2-1">
 <p>
 Measures how often term \(t\) appears in document \(d\).
@@ -321,7 +321,7 @@ Measures how often term \(t\) appears in document \(d\).
 </ul>
 </div>
 </li>
-<li><a id="org6e3dc69"></a>IDF (Inverse Document Frequency)<br>
+<li><a id="orge5acfdb"></a>IDF (Inverse Document Frequency)<br>
 <div class="outline-text-5" id="text-1-1-2-2">
 <p>
 Measures how common or rare term \(t\) is across the entire corpus.
@@ -337,8 +337,8 @@ Measures how common or rare term \(t\) is across the entire corpus.
 </li>
 </ol>
 </div>
-<div id="outline-container-org3c919d9" class="outline-4">
-<h4 id="org3c919d9"><span class="section-number-4">1.1.3.</span> Worked Example</h4>
+<div id="outline-container-org40eeb62" class="outline-4">
+<h4 id="org40eeb62"><span class="section-number-4">1.1.3.</span> Worked Example</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <p>
 To build intuition, assume a tiny corpus of just three documents:
@@ -351,7 +351,7 @@ To build intuition, assume a tiny corpus of just three documents:
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="org3a8f0ae"></a>Scenario 1: Importance of "bee" in Document A<br>
+<li><a id="org1401623"></a>Scenario 1: Importance of "bee" in Document A<br>
 <div class="outline-text-5" id="text-1-1-3-1">
 <ol class="org-ol">
 <li><p>
@@ -379,7 +379,7 @@ To build intuition, assume a tiny corpus of just three documents:
 </ol>
 </div>
 </li>
-<li><a id="org487a714"></a>Scenario 2: Importance of "flower" in Document A<br>
+<li><a id="orgc35970f"></a>Scenario 2: Importance of "flower" in Document A<br>
 <div class="outline-text-5" id="text-1-1-3-2">
 <ol class="org-ol">
 <li><b>Calculate TF</b>:
@@ -400,7 +400,7 @@ To build intuition, assume a tiny corpus of just three documents:
 </ol>
 </div>
 </li>
-<li><a id="org3486460"></a>Conclusions from the Example<br>
+<li><a id="org1382b5e"></a>Conclusions from the Example<br>
 <div class="outline-text-5" id="text-1-1-3-3">
 <ul class="org-ul">
 <li>"flower" scores (0.159) higher than "bee" (0).</li>
@@ -411,15 +411,15 @@ To build intuition, assume a tiny corpus of just three documents:
 </li>
 </ol>
 </div>
-<div id="outline-container-orgc194a75" class="outline-4">
-<h4 id="orgc194a75"><span class="section-number-4">1.1.4.</span> Core Philosophy: The Tension Between Local and Global</h4>
+<div id="outline-container-org897b10d" class="outline-4">
+<h4 id="org897b10d"><span class="section-number-4">1.1.4.</span> Core Philosophy: The Tension Between Local and Global</h4>
 <div class="outline-text-4" id="text-1-1-4">
 <p>
 The essence of TF-IDF is solving one problem: <b>How to find the balance between "local importance" and "global commonality"?</b>
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="orgfddadfe"></a>Philosophical Breakdown<br>
+<li><a id="orgc2939c4"></a>Philosophical Breakdown<br>
 <div class="outline-text-5" id="text-1-1-4-1">
 <table>
 
@@ -466,7 +466,7 @@ The essence of TF-IDF is solving one problem: <b>How to find the balance between
 </table>
 </div>
 </li>
-<li><a id="org5c643d4"></a>Analogy: Finding a Regional Specialty<br>
+<li><a id="orgb41e739"></a>Analogy: Finding a Regional Specialty<br>
 <div class="outline-text-5" id="text-1-1-4-2">
 <ul class="org-ul">
 <li><b>Bottled water</b>: Abundant in one store (high TF), but available in every convenience store nationwide (low IDF) &rarr; NOT a specialty.</li>
@@ -476,12 +476,12 @@ The essence of TF-IDF is solving one problem: <b>How to find the balance between
 </li>
 </ol>
 </div>
-<div id="outline-container-org290377e" class="outline-4">
-<h4 id="org290377e"><span class="section-number-4">1.1.5.</span> Advantages and Disadvantages</h4>
+<div id="outline-container-org76cc86e" class="outline-4">
+<h4 id="org76cc86e"><span class="section-number-4">1.1.5.</span> Advantages and Disadvantages</h4>
 <div class="outline-text-4" id="text-1-1-5">
 </div>
 <ol class="org-ol">
-<li><a id="org2740bd8"></a>Advantages<br>
+<li><a id="org088dfa8"></a>Advantages<br>
 <div class="outline-text-5" id="text-1-1-5-1">
 <ol class="org-ol">
 <li><b>Simple and effective</b>: Clear logic, low computational cost, easy to implement.</li>
@@ -490,7 +490,7 @@ The essence of TF-IDF is solving one problem: <b>How to find the balance between
 </ol>
 </div>
 </li>
-<li><a id="org1e49c2b"></a>Disadvantages<br>
+<li><a id="org5ab1a24"></a>Disadvantages<br>
 <div class="outline-text-5" id="text-1-1-5-2">
 <ol class="org-ol">
 <li><b>Ignores word order</b>: It is a "Bag of Words" model — cannot distinguish between "cat chases mouse" and "mouse chases cat".</li>
@@ -501,8 +501,8 @@ The essence of TF-IDF is solving one problem: <b>How to find the balance between
 </li>
 </ol>
 </div>
-<div id="outline-container-orgdad7cc9" class="outline-4">
-<h4 id="orgdad7cc9"><span class="section-number-4">1.1.6.</span> Code Example (Python)</h4>
+<div id="outline-container-org98f517f" class="outline-4">
+<h4 id="org98f517f"><span class="section-number-4">1.1.6.</span> Code Example (Python)</h4>
 <div class="outline-text-4" id="text-1-1-6">
 <p>
 Using the <code>scikit-learn</code> library for quick TF-IDF computation:
@@ -530,12 +530,12 @@ print(X.toarray())
 </div>
 </div>
 </div>
-<div id="outline-container-orgd966e22" class="outline-3">
-<h3 id="orgd966e22"><span class="section-number-3">1.2.</span> BM25 (Best Matching 25)</h3>
+<div id="outline-container-orgdd602d2" class="outline-3">
+<h3 id="orgdd602d2"><span class="section-number-3">1.2.</span> BM25 (Best Matching 25)</h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-org1e96789" class="outline-4">
-<h4 id="org1e96789"><span class="section-number-4">1.2.1.</span> Introduction</h4>
+<div id="outline-container-orga110ef5" class="outline-4">
+<h4 id="orga110ef5"><span class="section-number-4">1.2.1.</span> Introduction</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 BM25 is the <b>probabilistic optimization</b> of TF-IDF and the current <b>gold standard</b> for keyword-based retrieval (Keyword Search). It primarily solves two problems that TF-IDF has:
@@ -546,8 +546,8 @@ BM25 is the <b>probabilistic optimization</b> of TF-IDF and the current <b>gold 
 </ol>
 </div>
 </div>
-<div id="outline-container-org2a42dca" class="outline-4">
-<h4 id="org2a42dca"><span class="section-number-4">1.2.2.</span> Core Formula</h4>
+<div id="outline-container-org05076a1" class="outline-4">
+<h4 id="org05076a1"><span class="section-number-4">1.2.2.</span> Core Formula</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <p>
 \[Score(D, Q) = \sum_{i=1}^{n} IDF(q_i) \cdot \frac{f(q_i, D) \cdot (k_1 + 1)}{f(q_i, D) + k_1 \cdot (1 - b + b \cdot \frac{|D|}{avgdl})}\]
@@ -578,12 +578,12 @@ The formula is composed of three parts:
 </ol>
 </div>
 </div>
-<div id="outline-container-org88948f6" class="outline-4">
-<h4 id="org88948f6"><span class="section-number-4">1.2.3.</span> Key Improvements over TF-IDF</h4>
+<div id="outline-container-orgbcb2c12" class="outline-4">
+<h4 id="orgbcb2c12"><span class="section-number-4">1.2.3.</span> Key Improvements over TF-IDF</h4>
 <div class="outline-text-4" id="text-1-2-3">
 </div>
 <ol class="org-ol">
-<li><a id="org91931e9"></a>A. Term Frequency Saturation<br>
+<li><a id="org816e87f"></a>A. Term Frequency Saturation<br>
 <div class="outline-text-5" id="text-1-2-3-1">
 <ul class="org-ul">
 <li><b>TF-IDF</b>: Term frequency increases score linearly without limit (easy to game, unreasonable).</li>
@@ -595,7 +595,7 @@ The key insight: the 10th occurrence of a word in a document adds far less infor
 </p>
 </div>
 </li>
-<li><a id="org6819b00"></a>B. Document Length Normalization<br>
+<li><a id="org4aefab3"></a>B. Document Length Normalization<br>
 <div class="outline-text-5" id="text-1-2-3-2">
 <ul class="org-ul">
 <li><b>Problem</b>: Longer documents naturally contain more words, giving them an unfair advantage.</li>
@@ -609,8 +609,8 @@ This means a concise, focused document matching a query is boosted relative to a
 </li>
 </ol>
 </div>
-<div id="outline-container-orgcece574" class="outline-4">
-<h4 id="orgcece574"><span class="section-number-4">1.2.4.</span> The Two Key Parameters</h4>
+<div id="outline-container-org382a495" class="outline-4">
+<h4 id="org382a495"><span class="section-number-4">1.2.4.</span> The Two Key Parameters</h4>
 <div class="outline-text-4" id="text-1-2-4">
 <table>
 
@@ -650,12 +650,12 @@ This means a concise, focused document matching a query is boosted relative to a
 </div>
 </div>
 </div>
-<div id="outline-container-org3bf6ecb" class="outline-3">
-<h3 id="org3bf6ecb"><span class="section-number-3">1.3.</span> RRF (Reciprocal Rank Fusion)</h3>
+<div id="outline-container-org2455c00" class="outline-3">
+<h3 id="org2455c00"><span class="section-number-3">1.3.</span> RRF (Reciprocal Rank Fusion)</h3>
 <div class="outline-text-3" id="text-1-3">
 </div>
-<div id="outline-container-org7b2b4c5" class="outline-4">
-<h4 id="org7b2b4c5"><span class="section-number-4">1.3.1.</span> Core Concept</h4>
+<div id="outline-container-org3575ce2" class="outline-4">
+<h4 id="org3575ce2"><span class="section-number-4">1.3.1.</span> Core Concept</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 In a RAG system, any single retrieval method has blind spots. <b>Hybrid retrieval</b> improves accuracy by combining two complementary search strategies.
@@ -698,15 +698,15 @@ In a RAG system, any single retrieval method has blind spots. <b>Hybrid retrieva
 </table>
 </div>
 </div>
-<div id="outline-container-orgd827dd8" class="outline-4">
-<h4 id="orgd827dd8"><span class="section-number-4">1.3.2.</span> RRF (Reciprocal Rank Fusion) Principle</h4>
+<div id="outline-container-org4487a68" class="outline-4">
+<h4 id="org4487a68"><span class="section-number-4">1.3.2.</span> RRF (Reciprocal Rank Fusion) Principle</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <p>
 RRF is a fusion algorithm based on <b>rank</b> rather than score. It solves the problem that different retrievers produce scores on different scales (e.g., BM25 has no upper bound vs. Vector similarity is 0-1), making direct weighted combination difficult.
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="org911f389"></a>Formula<br>
+<li><a id="org04ee35c"></a>Formula<br>
 <div class="outline-text-5" id="text-1-3-2-1">
 <p>
 For the final score of document \(d\):
@@ -723,7 +723,7 @@ For the final score of document \(d\):
 </ul>
 </div>
 </li>
-<li><a id="org06f7604"></a>Workflow<br>
+<li><a id="org1e41795"></a>Workflow<br>
 <div class="outline-text-5" id="text-1-3-2-2">
 <ol class="org-ol">
 <li><b>Parallel Retrieval</b>: Execute BM25 and Vector Search simultaneously.</li>
@@ -733,7 +733,7 @@ For the final score of document \(d\):
 </ol>
 </div>
 </li>
-<li><a id="orgf246f1b"></a>Worked Example<br>
+<li><a id="org4fa9f0c"></a>Worked Example<br>
 <div class="outline-text-5" id="text-1-3-2-3">
 <p>
 Suppose we search for "quantum computing applications":
@@ -790,8 +790,8 @@ Doc X wins because it ranks highly on <b>both</b> lists, even though it was not 
 </li>
 </ol>
 </div>
-<div id="outline-container-org4582f74" class="outline-4">
-<h4 id="org4582f74"><span class="section-number-4">1.3.3.</span> Core Advantages of RRF</h4>
+<div id="outline-container-org74e65dd" class="outline-4">
+<h4 id="org74e65dd"><span class="section-number-4">1.3.3.</span> Core Advantages of RRF</h4>
 <div class="outline-text-4" id="text-1-3-3">
 <ol class="org-ol">
 <li><b>Normalization-Free</b>: No need for complex weight tuning (e.g., \(0.7 \times A + 0.3 \times B\)). Extremely robust.</li>
@@ -801,8 +801,8 @@ Doc X wins because it ranks highly on <b>both</b> lists, even though it was not 
 </div>
 </div>
 </div>
-<div id="outline-container-org02e7f46" class="outline-3">
-<h3 id="org02e7f46"><span class="section-number-3">1.4.</span> Summary: How It All Fits Together in RAG</h3>
+<div id="outline-container-org07016c0" class="outline-3">
+<h3 id="org07016c0"><span class="section-number-3">1.4.</span> Summary: How It All Fits Together in RAG</h3>
 <div class="outline-text-3" id="text-1-4">
 <blockquote>
 <p>
@@ -819,8 +819,8 @@ The retrieval pipeline in a RAG system:
 </blockquote>
 </div>
 </div>
-<div id="outline-container-orgbde3e85" class="outline-3">
-<h3 id="orgbde3e85"><span class="section-number-3">1.5.</span> Key Takeaways</h3>
+<div id="outline-container-org4f577f1" class="outline-3">
+<h3 id="org4f577f1"><span class="section-number-3">1.5.</span> Key Takeaways</h3>
 <div class="outline-text-3" id="text-1-5">
 <ul class="org-ul">
 <li><b>TF-IDF</b> is the foundation: locally frequent + globally rare = important. Simple but ignores word order and semantics.</li>
@@ -830,8 +830,8 @@ The retrieval pipeline in a RAG system:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb7b7caa" class="outline-3">
-<h3 id="orgb7b7caa"><span class="section-number-3">1.6.</span> Implementation</h3>
+<div id="outline-container-org92dd615" class="outline-3">
+<h3 id="org92dd615"><span class="section-number-3">1.6.</span> Implementation</h3>
 <div class="outline-text-3" id="text-1-6">
 <div class="org-src-container">
 <pre class="src src-python">"""
