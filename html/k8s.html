@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2026-05-05 Tue 20:03 -->
+<!-- 2026-05-19 Tue 18:09 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>k8s</title>
@@ -202,175 +202,208 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgfa6b5f1">1. Docker</a>
+<li><a href="#org3031f36">1. Docker</a>
 <ul>
-<li><a href="#org7324da0">1.1. pull</a></li>
-<li><a href="#orga9fae3f">1.2. build</a></li>
-<li><a href="#orgdff8a6c">1.3. tag</a></li>
-<li><a href="#org460b22c">1.4. Microservices</a></li>
+<li><a href="#orgd882a08">1.1. pull</a></li>
+<li><a href="#org9d5e947">1.2. build</a></li>
+<li><a href="#orgb456ac3">1.3. tag</a></li>
+<li><a href="#orgb3fc436">1.4. Microservices</a></li>
 </ul>
 </li>
-<li><a href="#org446edee">2. Dokcerfile</a>
+<li><a href="#org2467aaa">2. Dokcerfile</a>
 <ul>
-<li><a href="#orgee1090c">2.1. EXPOSE</a></li>
-<li><a href="#org8215f50">2.2. CMD echo "Hello World" &amp;&amp; CMD ["echo", "Hello World"]</a></li>
-<li><a href="#org3b8e8e1">2.3. ENTRYPORT</a></li>
-<li><a href="#org8e99708">2.4. Docker's multi-stage</a></li>
+<li><a href="#orgf4cc6e4">2.1. EXPOSE</a></li>
+<li><a href="#org1aac2a8">2.2. CMD echo "Hello World" &amp;&amp; CMD ["echo", "Hello World"]</a></li>
+<li><a href="#org5e42919">2.3. ENTRYPORT</a></li>
+<li><a href="#org4c4a13d">2.4. Docker's multi-stage</a></li>
 </ul>
 </li>
-<li><a href="#orgdc5bcc0">3. Kubernetes</a>
+<li><a href="#org0f50249">3. Kubernetes</a>
 <ul>
-<li><a href="#org15dde73">3.1. namespace</a></li>
-<li><a href="#orgee395b2">3.2. Pod</a></li>
-<li><a href="#orgf77c29e">3.3. Labels</a></li>
-<li><a href="#org40ef7f0">3.4. Selectors</a>
+<li><a href="#org8f8be5c">3.1. namespace</a></li>
+<li><a href="#org697b29c">3.2. Pod</a></li>
+<li><a href="#org381b90e">3.3. Labels</a></li>
+<li><a href="#org54c620a">3.4. Selectors</a>
 <ul>
-<li><a href="#org093e579">3.4.1. Equality-Based</a></li>
-<li><a href="#org4615a0f">3.4.2. Set-Based</a></li>
+<li><a href="#org12d5bc5">3.4.1. Equality-Based</a></li>
+<li><a href="#org596e546">3.4.2. Set-Based</a></li>
 </ul>
 </li>
-<li><a href="#org5e64d6c">3.5. ReplicationController</a></li>
-<li><a href="#org65b0a07">3.6. ReplicaSet</a></li>
-<li><a href="#orge6c30af">3.7. Deployment</a></li>
-<li><a href="#org73f9618">3.8. Annotation</a>
+<li><a href="#org7ce3d53">3.5. ReplicationController</a></li>
+<li><a href="#org2de8e84">3.6. ReplicaSet</a></li>
+<li><a href="#org6c97b38">3.7. Deployment</a></li>
+<li><a href="#org9aded48">3.8. Annotation</a>
 <ul>
-<li><a href="#org8afedb6">3.8.1. A:</a></li>
-<li><a href="#orga5fc91a">3.8.2. B:</a></li>
-<li><a href="#org01c9cb4">3.8.3. C:</a></li>
-<li><a href="#org9141fb5">3.8.4. D:</a></li>
+<li><a href="#org02b30eb">3.8.1. A:</a></li>
+<li><a href="#org053ba6d">3.8.2. B:</a></li>
+<li><a href="#org6261b44">3.8.3. C:</a></li>
+<li><a href="#org5b0ff1e">3.8.4. D:</a></li>
 </ul>
 </li>
-<li><a href="#orgac370f0">3.9. Service</a>
+<li><a href="#org4535b85">3.9. Service</a>
 <ul>
-<li><a href="#org4c88eee">3.9.1. ClusterIP</a></li>
-<li><a href="#org163259a">3.9.2. NordPort</a></li>
-<li><a href="#org319f94b">3.9.3. Loadbalance</a></li>
-<li><a href="#org53042d4">3.9.4. ExternalName</a></li>
+<li><a href="#org83d1e20">3.9.1. ClusterIP</a></li>
+<li><a href="#org121196d">3.9.2. NordPort</a></li>
+<li><a href="#orgf1eb890">3.9.3. Loadbalance</a></li>
+<li><a href="#org8f69f79">3.9.4. ExternalName</a></li>
 </ul>
 </li>
-<li><a href="#orgcbf61f2">3.10. Manual scheduling</a></li>
-<li><a href="#org835a3ea">3.11. Static pods</a></li>
-<li><a href="#orga894de6">3.12. nodeSelector</a>
+<li><a href="#org642fb02">3.10. Manual scheduling</a></li>
+<li><a href="#org42dd8bb">3.11. Static pods</a></li>
+<li><a href="#org610fb3d">3.12. nodeSelector</a>
 <ul>
-<li><a href="#org1355f96">3.12.1. label: Apply label to node</a></li>
-<li><a href="#orge322bcd">3.12.2. selector apply to pod/Deployment</a></li>
-<li><a href="#orgdbaca57">3.12.3. Takeaway: Pure lebel matching mechanismus,lack of flexibility, only with key-value matching selection</a></li>
+<li><a href="#org0628203">3.12.1. label: Apply label to node</a></li>
+<li><a href="#org695dc52">3.12.2. selector apply to pod/Deployment</a></li>
+<li><a href="#org8a4c8c9">3.12.3. Takeaway: Pure lebel matching mechanismus,lack of flexibility, only with key-value matching selection</a></li>
 </ul>
 </li>
-<li><a href="#org998cd11">3.13. Taints and Tolerations</a>
+<li><a href="#orgfe0d44b">3.13. Taints and Tolerations</a>
 <ul>
-<li><a href="#orgfd46881">3.13.1. Taints Apply to node</a></li>
-<li><a href="#org07d0e74">3.13.2. Toleration Apply to pod</a></li>
-<li><a href="#org74c8b62">3.13.3. Takeaway: Lebel matching with hardness configuation, NoExecute supports re-evaluation. If a node’s taints change and a pod doesn’t tolerate them, it will be evicted</a></li>
-<li><a href="#orgf1db88d">3.13.4. The effect should be match for scheduling</a></li>
-<li><a href="#orgfbd9417">3.13.5. tolerationSeconds is only work with NoExecute, which limits the lifetime of pod if other match. While if not set, the match and scheduling stay forever.</a></li>
+<li><a href="#orgc2346dd">3.13.1. Taints Apply to node</a></li>
+<li><a href="#org644dfe7">3.13.2. Toleration Apply to pod</a></li>
+<li><a href="#orgf12214f">3.13.3. Takeaway: Lebel matching with hardness configuation, NoExecute supports re-evaluation. If a node’s taints change and a pod doesn’t tolerate them, it will be evicted</a></li>
+<li><a href="#org35f8ccd">3.13.4. The effect should be match for scheduling</a></li>
+<li><a href="#org0182847">3.13.5. tolerationSeconds is only work with NoExecute, which limits the lifetime of pod if other match. While if not set, the match and scheduling stay forever.</a></li>
 </ul>
 </li>
-<li><a href="#org2397799">3.14. Node Affinity</a>
+<li><a href="#org452a82c">3.14. Node Affinity</a>
 <ul>
-<li><a href="#org7a9345c">3.14.1. Takeaway: The most flexible way to optimize the resource utilization, be careful for multiple conditions(AND / OR)</a></li>
+<li><a href="#org7d80bd7">3.14.1. Takeaway: The most flexible way to optimize the resource utilization, be careful for multiple conditions(AND / OR)</a></li>
 </ul>
 </li>
-<li><a href="#org8a4d8e1">3.15. nodeSelector vs train/toleration vs nodeAffinity</a></li>
-<li><a href="#orgf14e427">3.16. Request and limits</a>
+<li><a href="#org80fda72">3.15. nodeSelector vs train/toleration vs nodeAffinity</a></li>
+<li><a href="#org8e29a24">3.16. Request and limits</a>
 <ul>
-<li><a href="#orgdaa556d">3.16.1. Monitoring</a></li>
+<li><a href="#orge680eea">3.16.1. Monitoring</a></li>
 </ul>
 </li>
-<li><a href="#orga493db1">3.17. Scaling</a>
+<li><a href="#org5df88fd">3.17. Scaling</a>
 <ul>
-<li><a href="#orgcb8ced6">3.17.1. Horizontal Scaling</a></li>
-<li><a href="#orgbb74aae">3.17.2. Vertical Scaling</a></li>
-<li><a href="#org56ec90d">3.17.3. Node side</a></li>
+<li><a href="#orgf7d364a">3.17.1. Horizontal Scaling</a></li>
+<li><a href="#org9cd40bf">3.17.2. Vertical Scaling</a></li>
+<li><a href="#orgaf20fbd">3.17.3. Node side</a></li>
 </ul>
 </li>
-<li><a href="#orge9cb2c7">3.18. Horizontal Pod Autoscaler (HPA)</a></li>
-<li><a href="#orgfcd3927">3.19. Vertical Pod Autoscaler (VPA)</a></li>
-<li><a href="#org00d60c9">3.20. Multi-container pods</a>
+<li><a href="#org8a921c1">3.18. Horizontal Pod Autoscaler (HPA)</a></li>
+<li><a href="#orgeec6480">3.19. Vertical Pod Autoscaler (VPA)</a></li>
+<li><a href="#org9434358">3.20. Multi-container pods</a>
 <ul>
-<li><a href="#org9fd7666">3.20.1. Init Containers</a></li>
-<li><a href="#org632b436">3.20.2. Sidecar Pattern</a></li>
-<li><a href="#org13695ff">3.20.3. Ambassador Pattern</a></li>
-<li><a href="#org93dc7c8">3.20.4. Adapter Pattern</a></li>
+<li><a href="#orga500359">3.20.1. Init Containers</a></li>
+<li><a href="#orgfbe0a8b">3.20.2. Sidecar Pattern</a></li>
+<li><a href="#org9640373">3.20.3. Ambassador Pattern</a></li>
+<li><a href="#orgbb23eee">3.20.4. Adapter Pattern</a></li>
 </ul>
 </li>
-<li><a href="#org4e852e4">3.21. Pod Policies</a>
+<li><a href="#orge9e48ce">3.21. Pod Policies</a>
 <ul>
-<li><a href="#orgf54fa54">3.21.1. Delete policies</a></li>
-<li><a href="#orgb4bedb5">3.21.2. Restart Policies</a></li>
-<li><a href="#orgbf6140f">3.21.3. Image Pull Policies</a></li>
-<li><a href="#orgab92a61">3.21.4. Pod Lifecycle and debugging see Day 22</a></li>
+<li><a href="#org57267d0">3.21.1. Delete policies</a></li>
+<li><a href="#org67df722">3.21.2. Restart Policies</a></li>
+<li><a href="#org5b2a4e2">3.21.3. Image Pull Policies</a></li>
+<li><a href="#org37f3c2c">3.21.4. Pod Lifecycle and debugging see Day 22</a></li>
 </ul>
 </li>
-<li><a href="#org0360cfa">3.22. health probes</a>
+<li><a href="#org628929f">3.22. health probes</a>
 <ul>
-<li><a href="#org3817dd7">3.22.1. Readiness Probes</a></li>
-<li><a href="#orgb69a0d8">3.22.2. Liveness Probes</a></li>
-<li><a href="#org859bcb5">3.22.3. Startup Probes</a></li>
-<li><a href="#orgccc55ec">3.22.4. Methode</a></li>
+<li><a href="#org3bf5ea8">3.22.1. Readiness Probes</a></li>
+<li><a href="#orge90afbf">3.22.2. Liveness Probes</a></li>
+<li><a href="#orgfa00179">3.22.3. Startup Probes</a></li>
+<li><a href="#org38afa93">3.22.4. Methode</a></li>
 </ul>
 </li>
-<li><a href="#org79c611e">3.23. Ephemeral Storage</a>
+<li><a href="#org5d6304f">3.23. Ephemeral Storage</a>
 <ul>
-<li><a href="#orged53904">3.23.1. emptyDir</a></li>
-<li><a href="#org5e5c1dc">3.23.2. Downward API</a></li>
+<li><a href="#org877f311">3.23.1. emptyDir</a></li>
+<li><a href="#org54f30db">3.23.2. Downward API</a></li>
 </ul>
 </li>
-<li><a href="#org34052ab">3.24. Volume link</a>
+<li><a href="#org9cf64ce">3.24. Volume link</a>
 <ul>
-<li><a href="#org816f365">3.24.1. PV vs PVC</a></li>
-<li><a href="#orga3e01de">3.24.2. hostPath</a></li>
-<li><a href="#org717f14c">3.24.3. storageClassName</a></li>
-<li><a href="#org4c8c3b0">3.24.4. volumeName</a></li>
-<li><a href="#org26244e7">3.24.5. configMap</a></li>
-<li><a href="#org5ea28cf">3.24.6. secret</a></li>
-<li><a href="#org31ed887">3.24.7. environment value with configMap and secret</a></li>
-<li><a href="#orgccfe9d7">3.24.8. usage</a></li>
+<li><a href="#org6dbe647">3.24.1. PV vs PVC</a></li>
+<li><a href="#org00248d8">3.24.2. hostPath</a></li>
+<li><a href="#org555cf8e">3.24.3. storageClassName</a></li>
+<li><a href="#orgd8b4d25">3.24.4. volumeName</a></li>
+<li><a href="#org2c49ec7">3.24.5. configMap</a></li>
+<li><a href="#org0d764ac">3.24.6. secret</a></li>
+<li><a href="#org5ff3bd6">3.24.7. environment value with configMap and secret</a></li>
+<li><a href="#org554ebff">3.24.8. usage</a></li>
 </ul>
 </li>
-<li><a href="#orge74a0a5">3.25. Matrics server</a></li>
-<li><a href="#orge9edf96">3.26. selector</a></li>
-<li><a href="#org831683e">3.27. nodeAffinity</a></li>
-<li><a href="#orgbdd2788">3.28. networkPolicy</a></li>
-<li><a href="#org5f49b4d">3.29. update and rollback</a>
+<li><a href="#orgd963b62">3.25. Matrics server</a></li>
+<li><a href="#orgb7d9155">3.26. selector</a></li>
+<li><a href="#org36c052c">3.27. nodeAffinity</a></li>
+<li><a href="#orgec7db89">3.28. networkPolicy</a></li>
+<li><a href="#org112307b">3.29. update and rollback</a>
 <ul>
-<li><a href="#orgd9bde56">3.29.1. 1. create the deployment and  add description in metadata</a></li>
-<li><a href="#org6526dca">3.29.2. 2. make change</a></li>
-<li><a href="#orgbc4be18">3.29.3. 3. rollback to wanted version and check again</a></li>
-<li><a href="#orgb22657a">3.29.4. 4. clean</a></li>
+<li><a href="#org89cdc11">3.29.1. 1. create the deployment and  add description in metadata</a></li>
+<li><a href="#org34e517a">3.29.2. 2. make change</a></li>
+<li><a href="#org7a45e69">3.29.3. 3. rollback to wanted version and check again</a></li>
+<li><a href="#orgb358961">3.29.4. 4. clean</a></li>
 </ul>
 </li>
-<li><a href="#org43fd7ac">3.30. DaemonSets</a></li>
+<li><a href="#org82bf4da">3.30. DaemonSets</a></li>
 </ul>
 </li>
-<li><a href="#orgae5c436">4. Kubectl imperative</a>
+<li><a href="#org9350d96">4. Kubectl imperative</a>
 <ul>
-<li><a href="#org68d69c9">4.1. Deployment</a></li>
+<li><a href="#orgda35e11">4.1. Deployment</a></li>
 </ul>
 </li>
-<li><a href="#orgbe3a2a2">5. Examples</a>
+<li><a href="#org0c21081">5. Examples</a>
 <ul>
-<li><a href="#org57e3737">5.1. Ingress</a></li>
-<li><a href="#orgd915769">5.2. Milvus</a></li>
+<li><a href="#org4bdb26a">5.1. Ingress</a></li>
+<li><a href="#org568c2ef">5.2. Milvus</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfa6b5f1" class="outline-2">
-<h2 id="orgfa6b5f1"><span class="section-number-2">1.</span> Docker</h2>
+<p>
+Week-agenda (W21-W22):
+Tuesday    19 May 2026
+               8:00 ┄┄┄┄┄ ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+  Appointment:10:00 ┄┄┄┄┄ Deadline:   Only the time
+              10:00 ┄┄┄┄┄ ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+  Appointment:12:00 ┄┄┄┄┄ Scheduled:  Rust for Async
+              12:00 ┄┄┄┄┄ ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+              14:00 ┄┄┄┄┄ ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+  Appointment:15:00 ┄┄┄┄┄ Deadline:   % ::Am The Way <span class="timestamp-wrapper"><span class="timestamp">[2026-05-19 Tue]</span></span>
+  Appointment:16:00 ┄┄┄┄┄ Only the time
+              16:00 ┄┄┄┄┄ ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+  Appointment:16:07 ┄┄┄┄┄ Scheduled:  Loli
+  Appointment:16:18 ┄┄┄┄┄ Scheduled:  Calo
+  Appointment:18:00 ┄┄┄┄┄ Einkaufen
+              18:00 ┄┄┄┄┄ ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+              18:01 ┄┄┄┄┄ ← now ───────────────────────────────────────────────
+  Appointment:20:00 ┄┄┄┄┄ Deadline:   TODO Rust
+  Appointment:20:00 ┄┄┄┄┄ Deadline:   agenda test
+              20:00 ┄┄┄┄┄ ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+  2022-01-12: 1588 d. ago:  12:51 : give up Guix
+  Appointment:Sched. 1x:  agenda test
+Wednesday  20 May 2026
+Thursday   21 May 2026
+  Appointment:15:00 ┄┄┄┄┄ Scheduled:  TODO Rust
+Friday     22 May 2026
+  Diary:      Shavuot
+Saturday   23 May 2026
+  Diary:      Declaration of the Báb
+Sunday     24 May 2026
+Monday     25 May 2026 W22
+  Diary:      Memorial Day
+</p>
+<div id="outline-container-org3031f36" class="outline-2">
+<h2 id="org3031f36"><span class="section-number-2">1.</span> Docker</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org7324da0" class="outline-3">
-<h3 id="org7324da0"><span class="section-number-3">1.1.</span> pull</h3>
+<div id="outline-container-orgd882a08" class="outline-3">
+<h3 id="orgd882a08"><span class="section-number-3">1.1.</span> pull</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Docker daemon prefixes docker.io/library/ for default images on Docker Hub when no registry is specified
 </p>
 </div>
 </div>
-<div id="outline-container-orga9fae3f" class="outline-3">
-<h3 id="orga9fae3f"><span class="section-number-3">1.2.</span> build</h3>
+<div id="outline-container-org9d5e947" class="outline-3">
+<h3 id="org9d5e947"><span class="section-number-3">1.2.</span> build</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <pre class="src src-nil">docker build -t name:tag .
@@ -385,8 +418,8 @@ docker build -t entry-image -f /path/to/custom-dockerfile /path/to/build-context
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdff8a6c" class="outline-3">
-<h3 id="orgdff8a6c"><span class="section-number-3">1.3.</span> tag</h3>
+<div id="outline-container-orgb456ac3" class="outline-3">
+<h3 id="orgb456ac3"><span class="section-number-3">1.3.</span> tag</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 <pre class="src src-nil">docker tag my-current-image:tag my-username-in-dockerhub/my-wanted-image-name:mytag
@@ -398,8 +431,8 @@ tag change the name(with dockerhub name) and the tag for pushing
 </p>
 </div>
 </div>
-<div id="outline-container-org460b22c" class="outline-3">
-<h3 id="org460b22c"><span class="section-number-3">1.4.</span> Microservices</h3>
+<div id="outline-container-orgb3fc436" class="outline-3">
+<h3 id="orgb3fc436"><span class="section-number-3">1.4.</span> Microservices</h3>
 <div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
 <li>Scalability	Each microservice can scale independently based on demand.</li>
@@ -411,20 +444,20 @@ tag change the name(with dockerhub name) and the tag for pushing
 </div>
 </div>
 </div>
-<div id="outline-container-org446edee" class="outline-2">
-<h2 id="org446edee"><span class="section-number-2">2.</span> Dokcerfile</h2>
+<div id="outline-container-org2467aaa" class="outline-2">
+<h2 id="org2467aaa"><span class="section-number-2">2.</span> Dokcerfile</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgee1090c" class="outline-3">
-<h3 id="orgee1090c"><span class="section-number-3">2.1.</span> EXPOSE</h3>
+<div id="outline-container-orgf4cc6e4" class="outline-3">
+<h3 id="orgf4cc6e4"><span class="section-number-3">2.1.</span> EXPOSE</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Missing EXPOSE 5000 won’t break your setup if you explicitly map ports with -p 80:5000. It’s primarily a documentation and automation feature. For clarity and best practices, include EXPOSE 5000 in your Dockerfile to indicate the port your application uses.
 </p>
 </div>
 </div>
-<div id="outline-container-org8215f50" class="outline-3">
-<h3 id="org8215f50"><span class="section-number-3">2.2.</span> CMD echo "Hello World" &amp;&amp; CMD ["echo", "Hello World"]</h3>
+<div id="outline-container-org1aac2a8" class="outline-3">
+<h3 id="org1aac2a8"><span class="section-number-3">2.2.</span> CMD echo "Hello World" &amp;&amp; CMD ["echo", "Hello World"]</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>CMD echo "Hello World":  start a shell and run the command, with shell features</li>
@@ -433,8 +466,8 @@ Missing EXPOSE 5000 won’t break your setup if you explicitly map ports with -p
 </ul>
 </div>
 </div>
-<div id="outline-container-org3b8e8e1" class="outline-3">
-<h3 id="org3b8e8e1"><span class="section-number-3">2.3.</span> ENTRYPORT</h3>
+<div id="outline-container-org5e42919" class="outline-3">
+<h3 id="org5e42919"><span class="section-number-3">2.3.</span> ENTRYPORT</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>Can only be explicitly overridden by docker run &#x2026; &#x2013;entryport &#x2026;</li>
@@ -442,8 +475,8 @@ Missing EXPOSE 5000 won’t break your setup if you explicitly map ports with -p
 </ul>
 </div>
 </div>
-<div id="outline-container-org8e99708" class="outline-3">
-<h3 id="org8e99708"><span class="section-number-3">2.4.</span> Docker's multi-stage</h3>
+<div id="outline-container-org4c4a13d" class="outline-3">
+<h3 id="org4c4a13d"><span class="section-number-3">2.4.</span> Docker's multi-stage</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 builds offer a powerful way to manage production environments by separating build and runtime stages, ensuring smaller images, faster deployments, and enhanced security.
@@ -451,12 +484,12 @@ builds offer a powerful way to manage production environments by separating buil
 </div>
 </div>
 </div>
-<div id="outline-container-orgdc5bcc0" class="outline-2">
-<h2 id="orgdc5bcc0"><span class="section-number-2">3.</span> Kubernetes</h2>
+<div id="outline-container-org0f50249" class="outline-2">
+<h2 id="org0f50249"><span class="section-number-2">3.</span> Kubernetes</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org15dde73" class="outline-3">
-<h3 id="org15dde73"><span class="section-number-3">3.1.</span> namespace</h3>
+<div id="outline-container-org8f8be5c" class="outline-3">
+<h3 id="org8f8be5c"><span class="section-number-3">3.1.</span> namespace</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>Context contains cluster, users, and namespace, they are not coupled, we can change the namespace of a contex.</li>
@@ -467,8 +500,8 @@ builds offer a powerful way to manage production environments by separating buil
 </div>
 </div>
 </div>
-<div id="outline-container-orgee395b2" class="outline-3">
-<h3 id="orgee395b2"><span class="section-number-3">3.2.</span> Pod</h3>
+<div id="outline-container-org697b29c" class="outline-3">
+<h3 id="org697b29c"><span class="section-number-3">3.2.</span> Pod</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Basic Pod-Related Commands
@@ -487,8 +520,8 @@ Basic Pod-Related Commands
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf77c29e" class="outline-3">
-<h3 id="orgf77c29e"><span class="section-number-3">3.3.</span> Labels</h3>
+<div id="outline-container-org381b90e" class="outline-3">
+<h3 id="org381b90e"><span class="section-number-3">3.3.</span> Labels</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>Labels: Key-value pairs attached to Kubernetes objects like pods, enabling logical grouping and selection.</li>
@@ -517,16 +550,16 @@ kubectl label nodes my-second-cluster-worker storage-
 </ul>
 </div>
 </div>
-<div id="outline-container-org40ef7f0" class="outline-3">
-<h3 id="org40ef7f0"><span class="section-number-3">3.4.</span> Selectors</h3>
+<div id="outline-container-org54c620a" class="outline-3">
+<h3 id="org54c620a"><span class="section-number-3">3.4.</span> Selectors</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li>Selectors: Expressions or equality-based filters used to match objects based on their labels, enabling precise control over resource management.</li>
 <li>It only apply to the Pod level(Node or Service), not to the container level</li>
 </ul>
 </div>
-<div id="outline-container-org093e579" class="outline-4">
-<h4 id="org093e579"><span class="section-number-4">3.4.1.</span> Equality-Based</h4>
+<div id="outline-container-org12d5bc5" class="outline-4">
+<h4 id="org12d5bc5"><span class="section-number-4">3.4.1.</span> Equality-Based</h4>
 <div class="outline-text-4" id="text-3-4-1">
 <p>
 for
@@ -546,8 +579,8 @@ deployment
 </ul>
 </div>
 </div>
-<div id="outline-container-org4615a0f" class="outline-4">
-<h4 id="org4615a0f"><span class="section-number-4">3.4.2.</span> Set-Based</h4>
+<div id="outline-container-org596e546" class="outline-4">
+<h4 id="org596e546"><span class="section-number-4">3.4.2.</span> Set-Based</h4>
 <div class="outline-text-4" id="text-3-4-2">
 <ul class="org-ul">
 <li>for rs, and deloyment</li>
@@ -576,16 +609,16 @@ usign: In, NotIn, Exists, DoesNotExist
 </div>
 </div>
 </div>
-<div id="outline-container-org5e64d6c" class="outline-3">
-<h3 id="org5e64d6c"><span class="section-number-3">3.5.</span> ReplicationController</h3>
+<div id="outline-container-org7ce3d53" class="outline-3">
+<h3 id="org7ce3d53"><span class="section-number-3">3.5.</span> ReplicationController</h3>
 <div class="outline-text-3" id="text-3-5">
 <ul class="org-ul">
 <li>Ensures a specified number of pod replicas are running at any given time</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org65b0a07" class="outline-3">
-<h3 id="org65b0a07"><span class="section-number-3">3.6.</span> ReplicaSet</h3>
+<div id="outline-container-org2de8e84" class="outline-3">
+<h3 id="org2de8e84"><span class="section-number-3">3.6.</span> ReplicaSet</h3>
 <div class="outline-text-3" id="text-3-6">
 <ul class="org-ul">
 <li>ReplicaSet is an improved version of ReplicationController.</li>
@@ -594,24 +627,24 @@ usign: In, NotIn, Exists, DoesNotExist
 </ul>
 </div>
 </div>
-<div id="outline-container-orge6c30af" class="outline-3">
-<h3 id="orge6c30af"><span class="section-number-3">3.7.</span> Deployment</h3>
+<div id="outline-container-org6c97b38" class="outline-3">
+<h3 id="org6c97b38"><span class="section-number-3">3.7.</span> Deployment</h3>
 <div class="outline-text-3" id="text-3-7">
 <ul class="org-ul">
 <li>build on top of ReplicaSets, with rolling update and rollbacks, automated update, scaling and simplified management</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org73f9618" class="outline-3">
-<h3 id="org73f9618"><span class="section-number-3">3.8.</span> Annotation</h3>
+<div id="outline-container-org9aded48" class="outline-3">
+<h3 id="org9aded48"><span class="section-number-3">3.8.</span> Annotation</h3>
 <div class="outline-text-3" id="text-3-8">
 <ul class="org-ul">
 <li>They are used to record important information to assist other tools. useful case for keep tracking some values. such as following:  kubernetes.io/change-cause</li>
 <li>Annoations can only under the metedata attributes, neither directly under the object metedata, or spec.templated.metedata!!!</li>
 </ul>
 </div>
-<div id="outline-container-org8afedb6" class="outline-4">
-<h4 id="org8afedb6"><span class="section-number-4">3.8.1.</span> A:</h4>
+<div id="outline-container-org02b30eb" class="outline-4">
+<h4 id="org02b30eb"><span class="section-number-4">3.8.1.</span> A:</h4>
 <div class="outline-text-4" id="text-3-8-1">
 <div class="org-src-container">
 <pre class="src src-nil">apiVersion: apps/v1
@@ -626,8 +659,8 @@ spec:
 </div>
 </div>
 </div>
-<div id="outline-container-orga5fc91a" class="outline-4">
-<h4 id="orga5fc91a"><span class="section-number-4">3.8.2.</span> B:</h4>
+<div id="outline-container-org053ba6d" class="outline-4">
+<h4 id="org053ba6d"><span class="section-number-4">3.8.2.</span> B:</h4>
 <div class="outline-text-4" id="text-3-8-2">
 <p>
 after applying the file and check the annoation
@@ -641,8 +674,8 @@ I would able to see the default annotation.
 </p>
 </div>
 </div>
-<div id="outline-container-org01c9cb4" class="outline-4">
-<h4 id="org01c9cb4"><span class="section-number-4">3.8.3.</span> C:</h4>
+<div id="outline-container-org6261b44" class="outline-4">
+<h4 id="org6261b44"><span class="section-number-4">3.8.3.</span> C:</h4>
 <div class="outline-text-4" id="text-3-8-3">
 <p>
 Then I can update my container for next version(only for deployment, not rc and rs)
@@ -668,8 +701,8 @@ Now verify the history with
 </div>
 </div>
 </div>
-<div id="outline-container-org9141fb5" class="outline-4">
-<h4 id="org9141fb5"><span class="section-number-4">3.8.4.</span> D:</h4>
+<div id="outline-container-org5b0ff1e" class="outline-4">
+<h4 id="org5b0ff1e"><span class="section-number-4">3.8.4.</span> D:</h4>
 <div class="outline-text-4" id="text-3-8-4">
 <p>
 rollback to special version with
@@ -681,8 +714,8 @@ rollback to special version with
 </div>
 </div>
 </div>
-<div id="outline-container-orgac370f0" class="outline-3">
-<h3 id="orgac370f0"><span class="section-number-3">3.9.</span> Service</h3>
+<div id="outline-container-org4535b85" class="outline-3">
+<h3 id="org4535b85"><span class="section-number-3">3.9.</span> Service</h3>
 <div class="outline-text-3" id="text-3-9">
 <ul class="org-ul">
 <li>A fixed IP and DNS name so that pods can always be found, even if their individual IPs change.</li>
@@ -690,22 +723,22 @@ rollback to special version with
 <li>Internal and external communication</li>
 </ul>
 </div>
-<div id="outline-container-org4c88eee" class="outline-4">
-<h4 id="org4c88eee"><span class="section-number-4">3.9.1.</span> ClusterIP</h4>
+<div id="outline-container-org83d1e20" class="outline-4">
+<h4 id="org83d1e20"><span class="section-number-4">3.9.1.</span> ClusterIP</h4>
 </div>
 
-<div id="outline-container-org163259a" class="outline-4">
-<h4 id="org163259a"><span class="section-number-4">3.9.2.</span> NordPort</h4>
+<div id="outline-container-org121196d" class="outline-4">
+<h4 id="org121196d"><span class="section-number-4">3.9.2.</span> NordPort</h4>
 </div>
-<div id="outline-container-org319f94b" class="outline-4">
-<h4 id="org319f94b"><span class="section-number-4">3.9.3.</span> Loadbalance</h4>
+<div id="outline-container-orgf1eb890" class="outline-4">
+<h4 id="orgf1eb890"><span class="section-number-4">3.9.3.</span> Loadbalance</h4>
 </div>
-<div id="outline-container-org53042d4" class="outline-4">
-<h4 id="org53042d4"><span class="section-number-4">3.9.4.</span> ExternalName</h4>
+<div id="outline-container-org8f69f79" class="outline-4">
+<h4 id="org8f69f79"><span class="section-number-4">3.9.4.</span> ExternalName</h4>
 </div>
 </div>
-<div id="outline-container-orgcbf61f2" class="outline-3">
-<h3 id="orgcbf61f2"><span class="section-number-3">3.10.</span> Manual scheduling</h3>
+<div id="outline-container-org642fb02" class="outline-3">
+<h3 id="org642fb02"><span class="section-number-3">3.10.</span> Manual scheduling</h3>
 <div class="outline-text-3" id="text-3-10">
 <ul class="org-ul">
 <li>Explicitly assigning a pod to a node using the nodeName field in the pod’s YAML manifest</li>
@@ -724,8 +757,8 @@ spec:
 </div>
 </div>
 </div>
-<div id="outline-container-org835a3ea" class="outline-3">
-<h3 id="org835a3ea"><span class="section-number-3">3.11.</span> Static pods</h3>
+<div id="outline-container-org42dd8bb" class="outline-3">
+<h3 id="org42dd8bb"><span class="section-number-3">3.11.</span> Static pods</h3>
 <div class="outline-text-3" id="text-3-11">
 <ul class="org-ul">
 <li>Static pods are defined in <i>etc/kubernetes/manifests</i> and  not managed by the Kubernetes API server</li>
@@ -734,16 +767,16 @@ spec:
 </ul>
 </div>
 </div>
-<div id="outline-container-orga894de6" class="outline-3">
-<h3 id="orga894de6"><span class="section-number-3">3.12.</span> nodeSelector</h3>
+<div id="outline-container-org610fb3d" class="outline-3">
+<h3 id="org610fb3d"><span class="section-number-3">3.12.</span> nodeSelector</h3>
 <div class="outline-text-3" id="text-3-12">
 <ul class="org-ul">
 <li>at Pod level</li>
 <li>at least one match key-value lable</li>
 </ul>
 </div>
-<div id="outline-container-org1355f96" class="outline-4">
-<h4 id="org1355f96"><span class="section-number-4">3.12.1.</span> label: Apply label to node</h4>
+<div id="outline-container-org0628203" class="outline-4">
+<h4 id="org0628203"><span class="section-number-4">3.12.1.</span> label: Apply label to node</h4>
 <div class="outline-text-4" id="text-3-12-1">
 <div class="org-src-container">
 <pre class="src src-nil">kubectl label nodes my-second-cluster-worker storage=ssd
@@ -752,8 +785,8 @@ kubectl label nodes my-second-cluster-worker storage-
 </div>
 </div>
 </div>
-<div id="outline-container-orge322bcd" class="outline-4">
-<h4 id="orge322bcd"><span class="section-number-4">3.12.2.</span> selector apply to pod/Deployment</h4>
+<div id="outline-container-org695dc52" class="outline-4">
+<h4 id="org695dc52"><span class="section-number-4">3.12.2.</span> selector apply to pod/Deployment</h4>
 <div class="outline-text-4" id="text-3-12-2">
 <div class="org-src-container">
 <pre class="src src-nil">apiVersion: apps/v1
@@ -783,20 +816,20 @@ spec:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdbaca57" class="outline-4">
-<h4 id="orgdbaca57"><span class="section-number-4">3.12.3.</span> Takeaway: Pure lebel matching mechanismus,lack of flexibility, only with key-value matching selection</h4>
+<div id="outline-container-org8a4c8c9" class="outline-4">
+<h4 id="org8a4c8c9"><span class="section-number-4">3.12.3.</span> Takeaway: Pure lebel matching mechanismus,lack of flexibility, only with key-value matching selection</h4>
 </div>
 </div>
-<div id="outline-container-org998cd11" class="outline-3">
-<h3 id="org998cd11"><span class="section-number-3">3.13.</span> Taints and Tolerations</h3>
+<div id="outline-container-orgfe0d44b" class="outline-3">
+<h3 id="orgfe0d44b"><span class="section-number-3">3.13.</span> Taints and Tolerations</h3>
 <div class="outline-text-3" id="text-3-13">
 <ul class="org-ul">
 <li>Taints and Tolerations help control which pods can be scheduled on which nodes</li>
 <li>Taints and tolerations are applied during scheduling</li>
 </ul>
 </div>
-<div id="outline-container-orgfd46881" class="outline-4">
-<h4 id="orgfd46881"><span class="section-number-4">3.13.1.</span> Taints Apply to node</h4>
+<div id="outline-container-orgc2346dd" class="outline-4">
+<h4 id="orgc2346dd"><span class="section-number-4">3.13.1.</span> Taints Apply to node</h4>
 <div class="outline-text-4" id="text-3-13-1">
 <div class="org-src-container">
 <pre class="src src-nil">kubectl taint nodes my-second-cluster-worker storage=ssd:NoSchedule
@@ -838,8 +871,8 @@ kubectl taint nodes my-second-cluster-worker storage=ssd:NoSchedule-
 </table>
 </div>
 </div>
-<div id="outline-container-org07d0e74" class="outline-4">
-<h4 id="org07d0e74"><span class="section-number-4">3.13.2.</span> Toleration Apply to pod</h4>
+<div id="outline-container-org644dfe7" class="outline-4">
+<h4 id="org644dfe7"><span class="section-number-4">3.13.2.</span> Toleration Apply to pod</h4>
 <div class="outline-text-4" id="text-3-13-2">
 <div class="org-src-container">
 <pre class="src src-nil">tolerations:
@@ -856,18 +889,18 @@ kubectl taint nodes my-second-cluster-worker storage=ssd:NoSchedule-
 </ul>
 </div>
 </div>
-<div id="outline-container-org74c8b62" class="outline-4">
-<h4 id="org74c8b62"><span class="section-number-4">3.13.3.</span> Takeaway: Lebel matching with hardness configuation, NoExecute supports re-evaluation. If a node’s taints change and a pod doesn’t tolerate them, it will be evicted</h4>
+<div id="outline-container-orgf12214f" class="outline-4">
+<h4 id="orgf12214f"><span class="section-number-4">3.13.3.</span> Takeaway: Lebel matching with hardness configuation, NoExecute supports re-evaluation. If a node’s taints change and a pod doesn’t tolerate them, it will be evicted</h4>
 </div>
-<div id="outline-container-orgf1db88d" class="outline-4">
-<h4 id="orgf1db88d"><span class="section-number-4">3.13.4.</span> The effect should be match for scheduling</h4>
+<div id="outline-container-org35f8ccd" class="outline-4">
+<h4 id="org35f8ccd"><span class="section-number-4">3.13.4.</span> The effect should be match for scheduling</h4>
 </div>
-<div id="outline-container-orgfbd9417" class="outline-4">
-<h4 id="orgfbd9417"><span class="section-number-4">3.13.5.</span> tolerationSeconds is only work with NoExecute, which limits the lifetime of pod if other match. While if not set, the match and scheduling stay forever.</h4>
+<div id="outline-container-org0182847" class="outline-4">
+<h4 id="org0182847"><span class="section-number-4">3.13.5.</span> tolerationSeconds is only work with NoExecute, which limits the lifetime of pod if other match. While if not set, the match and scheduling stay forever.</h4>
 </div>
 </div>
-<div id="outline-container-org2397799" class="outline-3">
-<h3 id="org2397799"><span class="section-number-3">3.14.</span> Node Affinity</h3>
+<div id="outline-container-org452a82c" class="outline-3">
+<h3 id="org452a82c"><span class="section-number-3">3.14.</span> Node Affinity</h3>
 <div class="outline-text-3" id="text-3-14">
 <ul class="org-ul">
 <li>requiredDuringSchedulingIgnoredDuringExecution: Hard rule, must match</li>
@@ -969,12 +1002,12 @@ spec:
 </tbody>
 </table>
 </div>
-<div id="outline-container-org7a9345c" class="outline-4">
-<h4 id="org7a9345c"><span class="section-number-4">3.14.1.</span> Takeaway: The most flexible way to optimize the resource utilization, be careful for multiple conditions(AND / OR)</h4>
+<div id="outline-container-org7d80bd7" class="outline-4">
+<h4 id="org7d80bd7"><span class="section-number-4">3.14.1.</span> Takeaway: The most flexible way to optimize the resource utilization, be careful for multiple conditions(AND / OR)</h4>
 </div>
 </div>
-<div id="outline-container-org8a4d8e1" class="outline-3">
-<h3 id="org8a4d8e1"><span class="section-number-3">3.15.</span> nodeSelector vs train/toleration vs nodeAffinity</h3>
+<div id="outline-container-org80fda72" class="outline-3">
+<h3 id="org80fda72"><span class="section-number-3">3.15.</span> nodeSelector vs train/toleration vs nodeAffinity</h3>
 <div class="outline-text-3" id="text-3-15">
 <ul class="org-ul">
 <li>nodeSelector specify explicitly, hard rule to only include the one</li>
@@ -982,8 +1015,8 @@ spec:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf14e427" class="outline-3">
-<h3 id="orgf14e427"><span class="section-number-3">3.16.</span> Request and limits</h3>
+<div id="outline-container-org8e29a24" class="outline-3">
+<h3 id="org8e29a24"><span class="section-number-3">3.16.</span> Request and limits</h3>
 <div class="outline-text-3" id="text-3-16">
 <ul class="org-ul">
 <li>Requests and limits must be defined per container inside a Pod.</li>
@@ -992,8 +1025,8 @@ spec:
 <li>If a container exceeds its limited Memary resource: the kernel may kill it,  But If there is no memory pressure, the container may not be killed immediately</li>
 </ul>
 </div>
-<div id="outline-container-orgdaa556d" class="outline-4">
-<h4 id="orgdaa556d"><span class="section-number-4">3.16.1.</span> Monitoring</h4>
+<div id="outline-container-orge680eea" class="outline-4">
+<h4 id="orge680eea"><span class="section-number-4">3.16.1.</span> Monitoring</h4>
 <div class="outline-text-4" id="text-3-16-1">
 <p>
 Install metrics server on Kubernetes
@@ -1005,15 +1038,15 @@ Install metrics server on Kubernetes
 </div>
 </div>
 </div>
-<div id="outline-container-orga493db1" class="outline-3">
-<h3 id="orga493db1"><span class="section-number-3">3.17.</span> Scaling</h3>
+<div id="outline-container-org5df88fd" class="outline-3">
+<h3 id="org5df88fd"><span class="section-number-3">3.17.</span> Scaling</h3>
 <div class="outline-text-3" id="text-3-17">
 <ul class="org-ul">
 <li>Scaling refers to adjusting the resources available to an application based on its demand/load.</li>
 </ul>
 </div>
-<div id="outline-container-orgcb8ced6" class="outline-4">
-<h4 id="orgcb8ced6"><span class="section-number-4">3.17.1.</span> Horizontal Scaling</h4>
+<div id="outline-container-orgf7d364a" class="outline-4">
+<h4 id="orgf7d364a"><span class="section-number-4">3.17.1.</span> Horizontal Scaling</h4>
 <div class="outline-text-4" id="text-3-17-1">
 <ul class="org-ul">
 <li>Scale-Out: Increasing the number of pod replicas</li>
@@ -1023,8 +1056,8 @@ Install metrics server on Kubernetes
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbb74aae" class="outline-4">
-<h4 id="orgbb74aae"><span class="section-number-4">3.17.2.</span> Vertical Scaling</h4>
+<div id="outline-container-org9cd40bf" class="outline-4">
+<h4 id="org9cd40bf"><span class="section-number-4">3.17.2.</span> Vertical Scaling</h4>
 <div class="outline-text-4" id="text-3-17-2">
 <ul class="org-ul">
 <li>Scaling Up: Increasing CPU/Memory resources of the existing pod or VM.</li>
@@ -1034,8 +1067,8 @@ Install metrics server on Kubernetes
 </ul>
 </div>
 </div>
-<div id="outline-container-org56ec90d" class="outline-4">
-<h4 id="org56ec90d"><span class="section-number-4">3.17.3.</span> Node side</h4>
+<div id="outline-container-orgaf20fbd" class="outline-4">
+<h4 id="orgaf20fbd"><span class="section-number-4">3.17.3.</span> Node side</h4>
 <div class="outline-text-4" id="text-3-17-3">
 <p>
 clusters rely on horizontal scaling of nodes to maintain availability. vertical scaling requeir restarting, which is not working for production environment
@@ -1043,26 +1076,26 @@ clusters rely on horizontal scaling of nodes to maintain availability. vertical 
 </div>
 </div>
 </div>
-<div id="outline-container-orge9cb2c7" class="outline-3">
-<h3 id="orge9cb2c7"><span class="section-number-3">3.18.</span> Horizontal Pod Autoscaler (HPA)</h3>
+<div id="outline-container-org8a921c1" class="outline-3">
+<h3 id="org8a921c1"><span class="section-number-3">3.18.</span> Horizontal Pod Autoscaler (HPA)</h3>
 <div class="outline-text-3" id="text-3-18">
 <p>
 based on the default/custom/External Resource Metrics to automatically scale out/in
 </p>
 </div>
 </div>
-<div id="outline-container-orgfcd3927" class="outline-3">
-<h3 id="orgfcd3927"><span class="section-number-3">3.19.</span> Vertical Pod Autoscaler (VPA)</h3>
+<div id="outline-container-orgeec6480" class="outline-3">
+<h3 id="orgeec6480"><span class="section-number-3">3.19.</span> Vertical Pod Autoscaler (VPA)</h3>
 </div>
-<div id="outline-container-org00d60c9" class="outline-3">
-<h3 id="org00d60c9"><span class="section-number-3">3.20.</span> Multi-container pods</h3>
+<div id="outline-container-org9434358" class="outline-3">
+<h3 id="org9434358"><span class="section-number-3">3.20.</span> Multi-container pods</h3>
 <div class="outline-text-3" id="text-3-20">
 <p>
 a primary container complemented by one or more helper containers
 </p>
 </div>
-<div id="outline-container-org9fd7666" class="outline-4">
-<h4 id="org9fd7666"><span class="section-number-4">3.20.1.</span> Init Containers</h4>
+<div id="outline-container-orga500359" class="outline-4">
+<h4 id="orga500359"><span class="section-number-4">3.20.1.</span> Init Containers</h4>
 <div class="outline-text-4" id="text-3-20-1">
 <p>
 successfully complete before the primary container runs as pre-requests
@@ -1094,8 +1127,8 @@ spec:
 </div>
 </div>
 </div>
-<div id="outline-container-org632b436" class="outline-4">
-<h4 id="org632b436"><span class="section-number-4">3.20.2.</span> Sidecar Pattern</h4>
+<div id="outline-container-orgfbe0a8b" class="outline-4">
+<h4 id="orgfbe0a8b"><span class="section-number-4">3.20.2.</span> Sidecar Pattern</h4>
 <div class="outline-text-4" id="text-3-20-2">
 <p>
 run alongside the primary container and operate independently to extend or complement the main container's functionality.
@@ -1128,16 +1161,16 @@ spec:
 </div>
 </div>
 </div>
-<div id="outline-container-org13695ff" class="outline-4">
-<h4 id="org13695ff"><span class="section-number-4">3.20.3.</span> Ambassador Pattern</h4>
+<div id="outline-container-org9640373" class="outline-4">
+<h4 id="org9640373"><span class="section-number-4">3.20.3.</span> Ambassador Pattern</h4>
 <div class="outline-text-4" id="text-3-20-3">
 <p>
 like sidecar but only focus on handling external communication
 </p>
 </div>
 </div>
-<div id="outline-container-org93dc7c8" class="outline-4">
-<h4 id="org93dc7c8"><span class="section-number-4">3.20.4.</span> Adapter Pattern</h4>
+<div id="outline-container-orgbb23eee" class="outline-4">
+<h4 id="orgbb23eee"><span class="section-number-4">3.20.4.</span> Adapter Pattern</h4>
 <div class="outline-text-4" id="text-3-20-4">
 <p>
 like sidecar but only focus on data transforming or normalizing
@@ -1145,12 +1178,12 @@ like sidecar but only focus on data transforming or normalizing
 </div>
 </div>
 </div>
-<div id="outline-container-org4e852e4" class="outline-3">
-<h3 id="org4e852e4"><span class="section-number-3">3.21.</span> Pod Policies</h3>
+<div id="outline-container-orge9e48ce" class="outline-3">
+<h3 id="orge9e48ce"><span class="section-number-3">3.21.</span> Pod Policies</h3>
 <div class="outline-text-3" id="text-3-21">
 </div>
-<div id="outline-container-orgf54fa54" class="outline-4">
-<h4 id="orgf54fa54"><span class="section-number-4">3.21.1.</span> Delete policies</h4>
+<div id="outline-container-org57267d0" class="outline-4">
+<h4 id="org57267d0"><span class="section-number-4">3.21.1.</span> Delete policies</h4>
 <div class="outline-text-4" id="text-3-21-1">
 <ul class="org-ul">
 <li><p>
@@ -1186,8 +1219,8 @@ for forceful deletion:
 </div>
 </div>
 </div>
-<div id="outline-container-orgb4bedb5" class="outline-4">
-<h4 id="orgb4bedb5"><span class="section-number-4">3.21.2.</span> Restart Policies</h4>
+<div id="outline-container-org67df722" class="outline-4">
+<h4 id="org67df722"><span class="section-number-4">3.21.2.</span> Restart Policies</h4>
 <div class="outline-text-4" id="text-3-21-2">
 <p>
 how Kubernetes responds when containers within a pod terminate, it's at the pod level and apply to all containers within the pod
@@ -1231,8 +1264,8 @@ spec:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbf6140f" class="outline-4">
-<h4 id="orgbf6140f"><span class="section-number-4">3.21.3.</span> Image Pull Policies</h4>
+<div id="outline-container-org5b2a4e2" class="outline-4">
+<h4 id="org5b2a4e2"><span class="section-number-4">3.21.3.</span> Image Pull Policies</h4>
 <div class="outline-text-4" id="text-3-21-3">
 <p>
 how the container runtime pulls container images for initialization. At Container level for each containter customizable
@@ -1259,8 +1292,8 @@ spec:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgab92a61" class="outline-4">
-<h4 id="orgab92a61"><span class="section-number-4">3.21.4.</span> Pod Lifecycle and debugging see <a href="https://github.com/CloudWithVarJosh/CKA-Certification-Course-2025/tree/main/Day%2022">Day 22</a></h4>
+<div id="outline-container-org37f3c2c" class="outline-4">
+<h4 id="org37f3c2c"><span class="section-number-4">3.21.4.</span> Pod Lifecycle and debugging see <a href="https://github.com/CloudWithVarJosh/CKA-Certification-Course-2025/tree/main/Day%2022">Day 22</a></h4>
 <div class="outline-text-4" id="text-3-21-4">
 <ul class="org-ul">
 <li>Pending, Runing, Successded, Failed, Unknown</li>
@@ -1269,39 +1302,39 @@ spec:
 </div>
 </div>
 </div>
-<div id="outline-container-org0360cfa" class="outline-3">
-<h3 id="org0360cfa"><span class="section-number-3">3.22.</span> health probes</h3>
+<div id="outline-container-org628929f" class="outline-3">
+<h3 id="org628929f"><span class="section-number-3">3.22.</span> health probes</h3>
 <div class="outline-text-3" id="text-3-22">
 <p>
 The kubelet is responsible for performing these probes. 
 </p>
 </div>
-<div id="outline-container-org3817dd7" class="outline-4">
-<h4 id="org3817dd7"><span class="section-number-4">3.22.1.</span> Readiness Probes</h4>
+<div id="outline-container-org3bf5ea8" class="outline-4">
+<h4 id="org3bf5ea8"><span class="section-number-4">3.22.1.</span> Readiness Probes</h4>
 <div class="outline-text-4" id="text-3-22-1">
 <p>
 only health pods receiving traffic, otherwise removed, no restart
 </p>
 </div>
 </div>
-<div id="outline-container-orgb69a0d8" class="outline-4">
-<h4 id="orgb69a0d8"><span class="section-number-4">3.22.2.</span> Liveness Probes</h4>
+<div id="outline-container-orge90afbf" class="outline-4">
+<h4 id="orge90afbf"><span class="section-number-4">3.22.2.</span> Liveness Probes</h4>
 <div class="outline-text-4" id="text-3-22-2">
 <p>
 with restarting if failed
 </p>
 </div>
 </div>
-<div id="outline-container-org859bcb5" class="outline-4">
-<h4 id="org859bcb5"><span class="section-number-4">3.22.3.</span> Startup Probes</h4>
+<div id="outline-container-orgfa00179" class="outline-4">
+<h4 id="orgfa00179"><span class="section-number-4">3.22.3.</span> Startup Probes</h4>
 <div class="outline-text-4" id="text-3-22-3">
 <p>
 set threshold times of attempts before marked as failed for slow-starting
 </p>
 </div>
 </div>
-<div id="outline-container-orgccc55ec" class="outline-4">
-<h4 id="orgccc55ec"><span class="section-number-4">3.22.4.</span> Methode</h4>
+<div id="outline-container-org38afa93" class="outline-4">
+<h4 id="org38afa93"><span class="section-number-4">3.22.4.</span> Methode</h4>
 <div class="outline-text-4" id="text-3-22-4">
 <ul class="org-ul">
 <li>HTTP GET Requests</li>
@@ -1311,12 +1344,12 @@ set threshold times of attempts before marked as failed for slow-starting
 </div>
 </div>
 </div>
-<div id="outline-container-org79c611e" class="outline-3">
-<h3 id="org79c611e"><span class="section-number-3">3.23.</span> Ephemeral Storage</h3>
+<div id="outline-container-org5d6304f" class="outline-3">
+<h3 id="org5d6304f"><span class="section-number-3">3.23.</span> Ephemeral Storage</h3>
 <div class="outline-text-3" id="text-3-23">
 </div>
-<div id="outline-container-orged53904" class="outline-4">
-<h4 id="orged53904"><span class="section-number-4">3.23.1.</span> emptyDir</h4>
+<div id="outline-container-org877f311" class="outline-4">
+<h4 id="org877f311"><span class="section-number-4">3.23.1.</span> emptyDir</h4>
 <div class="outline-text-4" id="text-3-23-1">
 <p>
 It is ideal for scratch space (Temporary workspace for processing.), caching, or temporary computations where data persistence isn’t required.
@@ -1353,8 +1386,8 @@ all containter by applying this yaml will access the same data as in volume.
 </p>
 </div>
 </div>
-<div id="outline-container-org5e5c1dc" class="outline-4">
-<h4 id="org5e5c1dc"><span class="section-number-4">3.23.2.</span> Downward API</h4>
+<div id="outline-container-org54f30db" class="outline-4">
+<h4 id="org54f30db"><span class="section-number-4">3.23.2.</span> Downward API</h4>
 <div class="outline-text-4" id="text-3-23-2">
 <ul class="org-ul">
 <li>It injectes into containers in a Pod either as environment variables or through mounted files via volumes</li>
@@ -1364,8 +1397,8 @@ all containter by applying this yaml will access the same data as in volume.
 </div>
 </div>
 </div>
-<div id="outline-container-org34052ab" class="outline-3">
-<h3 id="org34052ab"><span class="section-number-3">3.24.</span> Volume <a href="https://github.com/CloudWithVarJosh/CKA-Certification-Course-2025/blob/main/Day%2027/README.md">link</a></h3>
+<div id="outline-container-org9cf64ce" class="outline-3">
+<h3 id="org9cf64ce"><span class="section-number-3">3.24.</span> Volume <a href="https://github.com/CloudWithVarJosh/CKA-Certification-Course-2025/blob/main/Day%2027/README.md">link</a></h3>
 <div class="outline-text-3" id="text-3-24">
 <ul class="org-ul">
 <li>hostPath: Persistent change map to host machine, the data can be shared between different pods only if they are scheduled on the same node.</li>
@@ -1376,8 +1409,8 @@ all containter by applying this yaml will access the same data as in volume.
 <li>to delete, pod at first, otherwise pv/pvc hold still until pod died</li>
 </ul>
 </div>
-<div id="outline-container-org816f365" class="outline-4">
-<h4 id="org816f365"><span class="section-number-4">3.24.1.</span> PV vs PVC</h4>
+<div id="outline-container-org6dbe647" class="outline-4">
+<h4 id="org6dbe647"><span class="section-number-4">3.24.1.</span> PV vs PVC</h4>
 <div class="outline-text-4" id="text-3-24-1">
 <ul class="org-ul">
 <li>common: storageClassName, accessModes,</li>
@@ -1386,12 +1419,12 @@ all containter by applying this yaml will access the same data as in volume.
 </ul>
 </div>
 </div>
-<div id="outline-container-orga3e01de" class="outline-4">
-<h4 id="orga3e01de"><span class="section-number-4">3.24.2.</span> hostPath</h4>
+<div id="outline-container-org00248d8" class="outline-4">
+<h4 id="org00248d8"><span class="section-number-4">3.24.2.</span> hostPath</h4>
 <div class="outline-text-4" id="text-3-24-2">
 </div>
 <ol class="org-ol">
-<li><a id="orge4034ba"></a>in volumes<br>
+<li><a id="org76cd997"></a>in volumes<br>
 <div class="outline-text-5" id="text-3-24-2-1">
 <div class="org-src-container">
 <pre class="src src-yaml">apiVersion: v1
@@ -1411,7 +1444,7 @@ spec:
 </div>
 </div>
 </li>
-<li><a id="orgd615856"></a>in PV<br>
+<li><a id="orga5e6b40"></a>in PV<br>
 <div class="outline-text-5" id="text-3-24-2-2">
 <div class="org-src-container">
 <pre class="src src-yaml">apiVersion: v1
@@ -1426,8 +1459,8 @@ spec:
 </li>
 </ol>
 </div>
-<div id="outline-container-org717f14c" class="outline-4">
-<h4 id="org717f14c"><span class="section-number-4">3.24.3.</span> storageClassName</h4>
+<div id="outline-container-org555cf8e" class="outline-4">
+<h4 id="org555cf8e"><span class="section-number-4">3.24.3.</span> storageClassName</h4>
 <div class="outline-text-4" id="text-3-24-3">
 <div class="org-src-container">
 <pre class="src src-yaml">apiVersion: v1
@@ -1448,8 +1481,8 @@ spec:
 </div>
 </div>
 </div>
-<div id="outline-container-org4c8c3b0" class="outline-4">
-<h4 id="org4c8c3b0"><span class="section-number-4">3.24.4.</span> volumeName</h4>
+<div id="outline-container-orgd8b4d25" class="outline-4">
+<h4 id="orgd8b4d25"><span class="section-number-4">3.24.4.</span> volumeName</h4>
 <div class="outline-text-4" id="text-3-24-4">
 <div class="org-src-container">
 <pre class="src src-yaml">apiVersion: v1
@@ -1462,8 +1495,8 @@ spec:
 </div>
 </div>
 </div>
-<div id="outline-container-org26244e7" class="outline-4">
-<h4 id="org26244e7"><span class="section-number-4">3.24.5.</span> configMap</h4>
+<div id="outline-container-org2c49ec7" class="outline-4">
+<h4 id="org2c49ec7"><span class="section-number-4">3.24.5.</span> configMap</h4>
 <div class="outline-text-4" id="text-3-24-5">
 <div class="org-src-container">
 <pre class="src src-yaml">apiVersion: v1
@@ -1542,16 +1575,16 @@ volumeMounts:
 </div>
 </div>
 </div>
-<div id="outline-container-org5ea28cf" class="outline-4">
-<h4 id="org5ea28cf"><span class="section-number-4">3.24.6.</span> secret</h4>
+<div id="outline-container-org0d764ac" class="outline-4">
+<h4 id="org0d764ac"><span class="section-number-4">3.24.6.</span> secret</h4>
 <div class="outline-text-4" id="text-3-24-6">
 <p>
 Work the same as configMap
 </p>
 </div>
 </div>
-<div id="outline-container-org31ed887" class="outline-4">
-<h4 id="org31ed887"><span class="section-number-4">3.24.7.</span> environment value with configMap and secret</h4>
+<div id="outline-container-org5ff3bd6" class="outline-4">
+<h4 id="org5ff3bd6"><span class="section-number-4">3.24.7.</span> environment value with configMap and secret</h4>
 <div class="outline-text-4" id="text-3-24-7">
 <ul class="org-ul">
 <li>when configMap and Secret are mount as volumes, the update of value is valid in the container with volume, but the application should read them again.</li>
@@ -1559,8 +1592,8 @@ Work the same as configMap
 </ul>
 </div>
 </div>
-<div id="outline-container-orgccfe9d7" class="outline-4">
-<h4 id="orgccfe9d7"><span class="section-number-4">3.24.8.</span> usage</h4>
+<div id="outline-container-org554ebff" class="outline-4">
+<h4 id="org554ebff"><span class="section-number-4">3.24.8.</span> usage</h4>
 <div class="outline-text-4" id="text-3-24-8">
 <div class="org-src-container">
 <pre class="src src-yaml">apiVersion: v1
@@ -1590,16 +1623,16 @@ spec:
 </div>
 </div>
 </div>
-<div id="outline-container-orge74a0a5" class="outline-3">
-<h3 id="orge74a0a5"><span class="section-number-3">3.25.</span> Matrics server</h3>
+<div id="outline-container-orgd963b62" class="outline-3">
+<h3 id="orgd963b62"><span class="section-number-3">3.25.</span> Matrics server</h3>
 <div class="outline-text-3" id="text-3-25">
 <p>
 kubectl apply -f <a href="https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml">https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml</a>
 </p>
 </div>
 </div>
-<div id="outline-container-orge9edf96" class="outline-3">
-<h3 id="orge9edf96"><span class="section-number-3">3.26.</span> selector</h3>
+<div id="outline-container-orgb7d9155" class="outline-3">
+<h3 id="orgb7d9155"><span class="section-number-3">3.26.</span> selector</h3>
 <div class="outline-text-3" id="text-3-26">
 <div class="org-src-container">
 <pre class="src src-yaml">selector:
@@ -1612,8 +1645,8 @@ matchExpressions:
 </div>
 </div>
 </div>
-<div id="outline-container-org831683e" class="outline-3">
-<h3 id="org831683e"><span class="section-number-3">3.27.</span> nodeAffinity</h3>
+<div id="outline-container-org36c052c" class="outline-3">
+<h3 id="org36c052c"><span class="section-number-3">3.27.</span> nodeAffinity</h3>
 <div class="outline-text-3" id="text-3-27">
 <div class="org-src-container">
 <pre class="src src-yaml">  apiVersion: v1
@@ -1642,20 +1675,20 @@ spec:
 </div>
 </div>
 </div>
-<div id="outline-container-orgbdd2788" class="outline-3">
-<h3 id="orgbdd2788"><span class="section-number-3">3.28.</span> networkPolicy</h3>
+<div id="outline-container-orgec7db89" class="outline-3">
+<h3 id="orgec7db89"><span class="section-number-3">3.28.</span> networkPolicy</h3>
 <div class="outline-text-3" id="text-3-28">
 <p>
 select pod to action
 </p>
 </div>
 </div>
-<div id="outline-container-org5f49b4d" class="outline-3">
-<h3 id="org5f49b4d"><span class="section-number-3">3.29.</span> update and rollback</h3>
+<div id="outline-container-org112307b" class="outline-3">
+<h3 id="org112307b"><span class="section-number-3">3.29.</span> update and rollback</h3>
 <div class="outline-text-3" id="text-3-29">
 </div>
-<div id="outline-container-orgd9bde56" class="outline-4">
-<h4 id="orgd9bde56"><span class="section-number-4">3.29.1.</span> 1. create the deployment and  add description in metadata</h4>
+<div id="outline-container-org89cdc11" class="outline-4">
+<h4 id="org89cdc11"><span class="section-number-4">3.29.1.</span> 1. create the deployment and  add description in metadata</h4>
 <div class="outline-text-4" id="text-3-29-1">
 <div class="org-src-container">
 <pre class="src src-bash">kubectl create deployment mynginx --image=nginx --replicas=2 
@@ -1733,8 +1766,8 @@ nginx version: nginx/1.29.3
 </pre>
 </div>
 </div>
-<div id="outline-container-org6526dca" class="outline-4">
-<h4 id="org6526dca"><span class="section-number-4">3.29.2.</span> 2. make change</h4>
+<div id="outline-container-org34e517a" class="outline-4">
+<h4 id="org34e517a"><span class="section-number-4">3.29.2.</span> 2. make change</h4>
 <div class="outline-text-4" id="text-3-29-2">
 <div class="org-src-container">
 <pre class="src src-bash">kubectl set image deployment mynginx  nginx=nginx:1.23 --record
@@ -1803,8 +1836,8 @@ nginx version: nginx/1.23.4
 </pre>
 </div>
 </div>
-<div id="outline-container-orgbc4be18" class="outline-4">
-<h4 id="orgbc4be18"><span class="section-number-4">3.29.3.</span> 3. rollback to wanted version and check again</h4>
+<div id="outline-container-org7a45e69" class="outline-4">
+<h4 id="org7a45e69"><span class="section-number-4">3.29.3.</span> 3. rollback to wanted version and check again</h4>
 <div class="outline-text-4" id="text-3-29-3">
 <div class="org-src-container">
 <pre class="src src-bash">kubectl rollout undo deployment/mynginx  --to-revision=1
@@ -1837,8 +1870,8 @@ nginx version: nginx/1.29.3
 </pre>
 </div>
 </div>
-<div id="outline-container-orgb22657a" class="outline-4">
-<h4 id="orgb22657a"><span class="section-number-4">3.29.4.</span> 4. clean</h4>
+<div id="outline-container-orgb358961" class="outline-4">
+<h4 id="orgb358961"><span class="section-number-4">3.29.4.</span> 4. clean</h4>
 <div class="outline-text-4" id="text-3-29-4">
 <div class="org-src-container">
 <pre class="src src-bash">kubectl delete deployment mynginx
@@ -1851,8 +1884,8 @@ deployment.apps "mynginx" deleted from default namespace
 </div>
 </div>
 </div>
-<div id="outline-container-org43fd7ac" class="outline-3">
-<h3 id="org43fd7ac"><span class="section-number-3">3.30.</span> DaemonSets</h3>
+<div id="outline-container-org82bf4da" class="outline-3">
+<h3 id="org82bf4da"><span class="section-number-3">3.30.</span> DaemonSets</h3>
 <div class="outline-text-3" id="text-3-30">
 <ul class="org-ul">
 <li>a pod in a node mostly for functional support</li>
@@ -1861,12 +1894,12 @@ deployment.apps "mynginx" deleted from default namespace
 </div>
 </div>
 </div>
-<div id="outline-container-orgae5c436" class="outline-2">
-<h2 id="orgae5c436"><span class="section-number-2">4.</span> Kubectl imperative</h2>
+<div id="outline-container-org9350d96" class="outline-2">
+<h2 id="org9350d96"><span class="section-number-2">4.</span> Kubectl imperative</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org68d69c9" class="outline-3">
-<h3 id="org68d69c9"><span class="section-number-3">4.1.</span> Deployment</h3>
+<div id="outline-container-orgda35e11" class="outline-3">
+<h3 id="orgda35e11"><span class="section-number-3">4.1.</span> Deployment</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Use &#x2013;dry-run=client for local validation and &#x2013;dry-run=server for API server validation
@@ -1972,12 +2005,12 @@ status: {}
 </div>
 </div>
 </div>
-<div id="outline-container-orgbe3a2a2" class="outline-2">
-<h2 id="orgbe3a2a2"><span class="section-number-2">5.</span> Examples</h2>
+<div id="outline-container-org0c21081" class="outline-2">
+<h2 id="org0c21081"><span class="section-number-2">5.</span> Examples</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org57e3737" class="outline-3">
-<h3 id="org57e3737"><span class="section-number-3">5.1.</span> Ingress</h3>
+<div id="outline-container-org4bdb26a" class="outline-3">
+<h3 id="org4bdb26a"><span class="section-number-3">5.1.</span> Ingress</h3>
 <div class="outline-text-3" id="text-5-1">
 <div class="org-src-container">
 <pre class="src src-yaml"># ================================================
@@ -2195,8 +2228,8 @@ spec:
 </div>
 </div>
 </div>
-<div id="outline-container-orgd915769" class="outline-3">
-<h3 id="orgd915769"><span class="section-number-3">5.2.</span> Milvus</h3>
+<div id="outline-container-org568c2ef" class="outline-3">
+<h3 id="org568c2ef"><span class="section-number-3">5.2.</span> Milvus</h3>
 <div class="outline-text-3" id="text-5-2">
 <ol class="org-ol">
 <li><p>
